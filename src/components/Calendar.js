@@ -18,13 +18,14 @@ const Calendar = (props) => {
   // 이번달의 시작 주, 끝 주를 구합니다.
   const start_week = moment(today).startOf("month").week();
   const end_week = moment(today).endOf("month").week();
+  
 
   // 달력에 넣을 주수 배열 길이를 구합니다. (*주의* +1 해야함(7~11주는 총 몇 주인지 생각해보세요! :)!))
   // 마지막 주가 다음 해 1주일 수 있어요. (시작 주보다 끝 주가 숫자가 작을 수 있다!)
   const week_num =
     (start_week > end_week ? 53 - start_week : end_week - start_week) + 1;
 
-  // 주수 길이의 배열을 만들고,
+  // 주수 길이의 배열을 만들고, [14, 15, 16, 17, 18]
   const _week_arr = Array.from({ length: week_num }, (v, i) => start_week + i);
 
   // 주마다 7개씩 날짜를 넣어주면 끝!
@@ -44,6 +45,8 @@ const Calendar = (props) => {
             .startOf("week")
             .add(day_index, "day");
 
+          console.log(day_index) // 0-6
+
           const is_today =
             moment().format("YYYY-MM-DD") === _day.format("YYYY-MM-DD");
 
@@ -61,7 +64,7 @@ const Calendar = (props) => {
 
           const list = _list.map((_l, idx) => {
             // 데이터 확인하기!
-            console.log(_l);
+            // console.log(_l);
             // 일정을 뿌려줘요!
             return (
               <Grid

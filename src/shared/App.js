@@ -7,6 +7,7 @@ import Login from "../pages/Login";
 import Signup from "../pages/Signup";
 import MainCalendar from "../pages/MainCalendar";
 import CalendarWrite from "../components/CalendarWrite";
+import PostWrite from "../pages/PostWrite";
 
 import { Route } from "react-router-dom";
 import { ConnectedRouter } from "connected-react-router";
@@ -35,6 +36,7 @@ function App() {
             <Route path="/login" exact component={Login} />
             <Route path="/signup" exact component={Signup} />
             <Route path="/modal" exact component={PostModal} />
+            <Route path="/write" exact component={PostWrite} />
             {/* <Route exact component={NotFound}/> */}
             <Route path="/calendar" exact component={MainCalendar} />
             <Route path="/calendarwrite" exact component={CalendarWrite} />

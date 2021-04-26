@@ -53,10 +53,11 @@ const Calendar = (props) => {
             .startOf("week")
             .add(day_index, "day");
 
-          console.log(day_index) // 0-6
+          // console.log(day_index) // 0-6
 
           const is_today =
             moment().format("YYYY-MM-DD") === _day.format("YYYY-MM-DD");
+
 
           // todo_list(Main.js에서 props로 건네줬어요!)에 해당 일자 일정이 들어가 있나 보고, 추가해줍시다.
           const list_index = Object.keys(todo_list).indexOf(
@@ -64,8 +65,8 @@ const Calendar = (props) => {
           );
 
           // 주석풀고 데이터 확인해보기! :)!
-          //   console.log(list_index);
-          //   console.log(todo_list[_day.format("YYYY-MM-DD")]);
+            // console.log(list_index);
+            console.log(todo_list[_day.format("YYYY-MM-DD")]);
           // todo_list에 해당 일 일정이 있으면 일정을 list에 넣어주자! (없으면 null이나 빈배열로! 일단 빈배열로 해봅시다! :))
           const _list =
             list_index !== -1 ? todo_list[_day.format("YYYY-MM-DD")] : [];
@@ -75,19 +76,20 @@ const Calendar = (props) => {
             // console.log(_l);
             // 일정을 뿌려줘요!
             return (
-              <DailyGrid
+              <div
                 key={`${_l.datetime}_${_l.todo_id}`}
                 onClick={() => {
                   console.log("here");
                   props._showPopup(true);
                   props._setSeletedTodo(_l);
-                }}
-              >
+                }}>
                 <Text type="label">{_l.contents}</Text>
-              </DailyGrid>
+              </div>
             );
           });
+      
           return (
+            
             <Grid
               display="flex"
               flex_direction="column"
@@ -97,16 +99,19 @@ const Calendar = (props) => {
               )}_week_${week_index}_day_${day_index}`}
               //   flex_direction="row"
               bg={is_today ? "#ffcece" : "#ffffff"}
+              
             >
               {_day.format("MM") === moment(today).format("MM") && (
                 <Text type="label">{_day.format("DD")}</Text>
               )}
-
+              <Imo>
               {
                 // 일정도 보여줍시다! :) null이 아닐때만 보여줘요!
                 _list && list
               }
+              </Imo>
             </Grid>
+           
           );
         })}
       </Grid>
@@ -158,11 +163,9 @@ const Calendar = (props) => {
   );
 };
 
-const DailyGrid = styled.div`
-  flex-direction: row;
-  height: auto;
-  margin: 1px 0px;
-  flex-wrap: nowrap;
+const Imo = styled.div`
+display:flex; 
+flex-direction:row; 
 `;
 
 // const DayGrid = styled.div`

@@ -2,6 +2,10 @@ import React from "react";
 import { Grid, Button, Text } from "../elements/Styles";
 import moment from "moment";
 
+// 임포트 해오기!
+import { useSelector, useDispatch } from "react-redux";
+import { changeToday } from "../redux/modules/todo";
+import styled from "styled-components";
 /**
  * 달력 만들기 순서
  *  - 이번달이 몇 주가 필요한 지 "주"수 구하기
@@ -10,8 +14,12 @@ import moment from "moment";
  *  - +) 일정도 같이 넣어주면 good!
  */
 const Calendar = (props) => {
-  const { today, todo_list, _changeMonth } = props;
+  const dispatch = useDispatch();
 
+  const { _changeMonth, show_completed, _showPopup, _setSeletedTodo } = props;
+
+  const today = useSelector((state) => state.todo.today);
+  const todo_list = useSelector((state) => state.todo.todo_list);
   // 넘어온 데이터를 확인하자!
   console.log(todo_list);
 
@@ -67,23 +75,27 @@ const Calendar = (props) => {
             // console.log(_l);
             // 일정을 뿌려줘요!
             return (
-              <Grid
-                bg="orange"
-                height="auto"
-                margin="1px 0px"
+              <DailyGrid
                 key={`${_l.datetime}_${_l.todo_id}`}
+                onClick={() => {
+                  console.log("here");
+                  props._showPopup(true);
+                  props._setSeletedTodo(_l);
+                }}
               >
                 <Text type="label">{_l.contents}</Text>
-              </Grid>
+              </DailyGrid>
             );
           });
           return (
             <Grid
+              display="flex"
+              flex_direction="column"
               margin="0px 2px"
               key={`${moment(today).format(
                 "MM"
               )}_week_${week_index}_day_${day_index}`}
-              flex_direction="column"
+              //   flex_direction="row"
               bg={is_today ? "#ffcece" : "#ffffff"}
             >
               {_day.format("MM") === moment(today).format("MM") && (
@@ -124,10 +136,8 @@ const Calendar = (props) => {
       <Grid justify_contents="space-between">
         <Button
           onClick={() => {
-            // 자식 컴포넌트에서 부모 컴포넌트의 state를 조절하는 건 좋은 방법은 아닙니다.
-            // 하지만 아직 뷰만들기 단계니까 맘껏 조절해볼게요 :)
-            // 이런걸 양방향 바인딩이라고 불러요 (소근 /// 양방향 바인딩.. 찾아보실거죠? 믿씁니다!)
-            _changeMonth(moment(today).clone().subtract(1, "month"));
+            // 기준일을 한달 전으로 돌려요!
+            dispatch(changeToday(moment(today).clone().subtract(1, "month")));
           }}
         >
           이전
@@ -135,7 +145,8 @@ const Calendar = (props) => {
         <Text type="title">{moment(today).format("MM")}월</Text>
         <Button
           onClick={() => {
-            _changeMonth(moment(today).clone().add(1, "month"));
+            // 기준일을 한달 후로 돌려요!
+            dispatch(changeToday(moment(today).clone().add(1, "month")));
           }}
         >
           이후
@@ -147,10 +158,24 @@ const Calendar = (props) => {
   );
 };
 
+const DailyGrid = styled.div`
+  flex-direction: row;
+  height: auto;
+  margin: 1px 0px;
+  flex-wrap: nowrap;
+`;
+
+// const DayGrid = styled.div`
+//   flex-direction: row;
+//   height: auto;
+//   margin: 1px 0px;
+//   flex-wrap: nowrap;
+// `;
+
 // 기본적으로 꼭 필요한 props를 미리 정해줍시다!
 Calendar.defaultProps = {
-  today: moment(),
-  _changeMonth: () => {},
+  _showPopup: () => {},
+  _setSeletedTodo: () => {},
 };
 
 export default Calendar;

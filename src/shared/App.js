@@ -6,6 +6,7 @@ import styled from "styled-components";
 import Login from "../pages/Login";
 import Signup from "../pages/Signup";
 import MainCalendar from "../pages/MainCalendar";
+import CalendarWrite from "../components/CalendarWrite";
 
 import { Route } from "react-router-dom";
 import { ConnectedRouter } from "connected-react-router";
@@ -34,6 +35,7 @@ function App() {
             <Route path="/signup" exact component={Signup} />
             {/* <Route exact component={NotFound}/> */}
             <Route path="/calendar" exact component={MainCalendar} />
+            <Route path="/calendarwrite" exact component={CalendarWrite} />
           </ConnectedRouter>
         </ContentWrap>
       </Wrap>

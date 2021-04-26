@@ -3,11 +3,13 @@ import thunk from "redux-thunk";
 import { createBrowserHistory } from "history";
 import { connectRouter } from "connected-react-router";
 
+import todo from "./modules/todo";
 export const history = createBrowserHistory();
 
 // 루트리듀서(여러개 모듈을 하나로 묶어서 사용)
 const rootReducer = combineReducers({
   router: connectRouter(history),
+  todo: todo,
 });
 
 // 미들웨어(thunk로) 설정

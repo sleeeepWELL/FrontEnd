@@ -6,12 +6,20 @@ const Post = (props) => {
     <React.Fragment>
       <Container>
         <TopInfoBox>
-          <div>{props.createdAt}</div>
-          <div>{props.sleeptime}</div>
+          <div style={{ marginLeft: "1rem", fontWeight: "bold" }}>
+            {props.createdAt}
+          </div>
+          <div style={{ marginRight: "1rem", fontWeight: "bold" }}>
+            {props.sleeptime}H
+          </div>
         </TopInfoBox>
         <BottomInfoBox>
           {props.tag.map((p, idx) => {
-            return <Tag key={idx} {...p} />;
+            return (
+              <Tag key={idx} {...p}>
+                {p}
+              </Tag>
+            );
           })}
         </BottomInfoBox>
       </Container>
@@ -21,7 +29,7 @@ const Post = (props) => {
 
 Post.defaultProps = {
   createdAt: "2020-02-20",
-  sleeptime: "4H",
+  sleeptime: 4,
   tag: ["음주", "운동", "야근"],
 };
 
@@ -34,19 +42,28 @@ const Container = styled.div`
 const TopInfoBox = styled.div`
   display: flex;
   width: 100%;
-  height: auto;
+  height: 2.3rem;
   justify-content: space-between;
   padding-top: 10px;
+  align-items: center;
 `;
 
 const BottomInfoBox = styled.div`
+  display: flex;
   width: 100%;
-  height: 3rem;
+  height: 4rem;
+  align-items: center;
 `;
 
 const Tag = styled.div`
+  display: flex;
   width: 5rem;
-  background-color: green;
+  height: 2rem;
+  background-color: #9c8bdf;
+  margin: 0px 1rem;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
 `;
 
 export default Post;

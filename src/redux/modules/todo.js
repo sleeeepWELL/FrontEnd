@@ -43,54 +43,30 @@ export const changeToday = (date) => {
 const initialState = {
   today: moment(),
   todo_list: {
-    "2021-04-01": [
+    "2021-04-02": [
       {
-        todo_id: 155555,
-        datetime: "2021-04-01 10:15:00",
-        contents: "😄",
-        completed: false,
-      },
-      {
-        todo_id: 122,
-        datetime: "2021-04-01 10:30:00",
-        contents: "💻",
-        completed: false,
-      },
-      {
-        todo_id: 15343435,
-        datetime: "2021-04-01 11:15:00",
-        contents: "🍻",
-        completed: false,
-      },
-      {
-        todo_id: 153,
-        datetime: "2021-04-01 12:15:00",
-        contents: "💪",
+        totalsleep: 7,
+        condition: "😄",
+        tag: ["🍻", "💪", "💻"],
+        memo: "힘든 날이었다.",
+        createdAt: "2021-04-02",
         completed: false,
       },
     ],
     "2021-04-21": [
       {
-        todo_id: 8,
-        datetime: "2021-04-21 10:00:00",
-        contents: "산책가기3",
-        completed: false,
-      },
-      {
-        todo_id: 4,
-        datetime: "2021-04-21 10:10:00",
-        contents: "산책가기4",
+        totalsleep: 12,
+        condition: "😄",
+        tag: ["🍻", "💪"],
+        memo: "산책하고 온날.",
+        createdAt: "2021-04-02",
         completed: false,
       },
     ],
   },
 };
 
-// +) 5. 파이어스토어 연결하기! 미들웨어 thunk를 쓸거예요!
-//     - 데이터를 받아오고, 수정도 하고 생성도 하고..! 화이팅!
-
-// 4. 리듀서 만들기
-//  - 이제 액션 별로 해야할 것(수정하고, 생성하고, ...)을 합시다!
+// 리듀서
 export default function reducer(state = initialState, action = {}) {
   switch (action.type) {
     // 액션 별로 처리할 내용 넣기!

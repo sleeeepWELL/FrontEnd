@@ -45,6 +45,8 @@ const Grid = styled.div`
 const Button = styled.button`
   padding: 8px 16px;
   border: none;
+  border-radius: 35%;
+  cursor: pointer;
   ${(props) => props.bg && "background-color: #ff4d4d; color: #fff;"}
   ${(props) =>
     props.float &&
@@ -66,8 +68,20 @@ const Text = (props) => {
     return <P>{props.children}</P>;
   }
 
+  if (props.type === "week") {
+    return <Week>{props.children}</Week>;
+  }
+
   if (props.type === "label") {
     return <Span>{props.children}</Span>;
+  }
+
+  if (props.type === "sun") {
+    return <Sun>{props.children}</Sun>;
+  }
+
+  if (props.type === "sat") {
+    return <Sat>{props.children}</Sat>;
   }
 
   return <React.Fragment>{props.children}</React.Fragment>;
@@ -87,8 +101,29 @@ const P = styled.p`
 
 const Span = styled.span`
   margin: 0px;
-  font-size: 0.4em;
+  font-size: 0.8em;
   color: #888;
+`;
+
+const Sun = styled.span`
+  margin: 0px;
+  font-size: 0.9em;
+  font-weight: bold;
+  color: red;
+`;
+
+const Sat = styled.span`
+  margin: 0px;
+  font-size: 0.9em;
+  font-weight: bold;
+  color: blue;
+`;
+
+const Week = styled.span`
+  margin: 0px;
+  font-size: 0.9em;
+  font-weight: bold;
+  color: black;
 `;
 
 // input 스타일!

@@ -12,10 +12,15 @@ const CalendarWrite = (props) => {
 
   // 작성할 내용과 시간을 ref로 넣을거예요. :)
   const [contents, setContents] = React.useState("");
-  const datetime = React.useState("");
+  const [datetime, setDatetime] = React.useState("");
 
   const changeContents = (e) => {
     setContents(e.target.value);
+    console.log(e.target.value);
+  };
+
+  const changeDatetime = (e) => {
+    setDatetime(e.target.value);
     console.log(e.target.value);
   };
 
@@ -46,7 +51,7 @@ const CalendarWrite = (props) => {
     // console.log(_new_todo);
 
     // 리덕스에 넣자!
-    dispatch(addTodo(contents));
+    dispatch(addTodo(contents, datetime));
     // 추가로 하나만 더! 일정을 추가했으면 원래 페이지로 돌아가야죠! replace 사용해봅시다!
     props.history.replace("/calendar");
   };
@@ -65,7 +70,7 @@ const CalendarWrite = (props) => {
         <Input type="text" onChange={changeContents} />
 
         <Text type="label">- 날짜 -</Text>
-        <Input type="datetime-local" ref={datetime} />
+        <Input type="datetime-local" onChange={changeDatetime} />
 
         <Button onClick={writeTodo}>일정 추가하기</Button>
       </Grid>

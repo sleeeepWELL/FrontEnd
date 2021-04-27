@@ -6,6 +6,7 @@ import styled from "styled-components";
 import Login from "../pages/Login";
 import Signup from "../pages/Signup";
 import MainCalendar from "../pages/MainCalendar";
+import KyuCalendar from "../pages/KyuCalendar";
 import CalendarWrite from "../components/CalendarWrite";
 import PostWrite from "../pages/PostWrite";
 
@@ -39,6 +40,7 @@ function App() {
             <Route path="/write" exact component={PostWrite} />
             {/* <Route exact component={NotFound}/> */}
             <Route path="/calendar" exact component={MainCalendar} />
+            <Route path="/kyucalendar" exact component={KyuCalendar} />
             <Route path="/calendarwrite" exact component={CalendarWrite} />
           </ConnectedRouter>
         </ContentWrap>

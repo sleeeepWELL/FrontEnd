@@ -18,8 +18,8 @@ export const loadTodo = (todo_list) => {
   return { type: LOAD, todo_list };
 };
 
-export const addTodo = (date, todo_data) => {
-  return { type: ADD, date, todo_data };
+export const addTodo = (todo_data) => {
+  return { type: ADD, todo_data };
 };
 
 export const updateTodo = (date, todo_id, todo_data) => {
@@ -102,7 +102,7 @@ export default function reducer(state = initialState, action = {}) {
       const todo_list = { ...state.todo_list };
       // 데이터 넣는 부분!
       // 1. 데이터 맹근다!
-      const new_todo_date = moment(action.date).format("YYYY-MM-DD");
+      const new_todo_date = moment(action.todo_data.datetime).format("YYYY-MM-DD");
       const new_todo_data = {
         ...action.todo_data,
         todo_id: new Date().getTime(), // 임시 아이디! (파이어베이스에 넣기 전까지 써요!)

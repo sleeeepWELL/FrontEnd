@@ -6,7 +6,7 @@ import styled from "styled-components";
 
 // 임포트 해오기!
 import { useSelector, useDispatch } from "react-redux";
-import { updateTodo, deleteTodo } from "../redux/modules/todo";
+import { actionCreators as todoActions } from "../redux/modules/todo";
 
 const Popup = (props) => {
   const dispatch = useDispatch();
@@ -50,7 +50,7 @@ const Popup = (props) => {
 
                     //   그리고 데이터 수정하는 함수를 불러다가 수정!
                     dispatch(
-                      updateTodo(
+                      todoActions.updateTodo(
                         moment(selected_todo.datetime).format("YYYY-MM-DD"),
                         selected_todo.todo_id,
                         update_data
@@ -86,7 +86,7 @@ const Popup = (props) => {
                 bg
                 onClick={() => {
                   dispatch(
-                    deleteTodo(
+                    todoActions.deleteTodo(
                       moment(selected_todo.datetime).format("YYYY-MM-DD"),
                       selected_todo.todo_id
                     )
@@ -118,7 +118,7 @@ const Popup = (props) => {
                   };
 
                   dispatch(
-                    updateTodo(
+                    todoActions.updateTodo(
                       moment(selected_todo.datetime).format("YYYY-MM-DD"),
                       selected_todo.todo_id,
                       update_data

@@ -5,7 +5,7 @@ import moment from "moment";
 
 // 임포트 해오기!
 import { useSelector, useDispatch } from "react-redux";
-import { changeToday } from "../redux/modules/todo";
+import { actionCreators as todoActions } from "../redux/modules/todo";
 import styled from "styled-components";
 /**
  * 달력 만들기 순서
@@ -60,7 +60,7 @@ const Calendar = (props) => {
           );
 
           // 주석풀고 데이터 확인해보기! :)!
-          //   console.log(list_index);
+          console.log(list_index);
           //   console.log(todo_list[_day.format("YYYY-MM-DD")]);
           // todo_list에 해당 일 일정이 있으면 일정을 list에 넣어주자! (없으면 null이나 빈배열로! 일단 빈배열로 해봅시다! :))
           const _list =
@@ -116,7 +116,11 @@ const Calendar = (props) => {
         <Button
           onClick={() => {
             // 기준일을 한달 전으로 돌려요!
-            dispatch(changeToday(moment(today).clone().subtract(1, "month")));
+            dispatch(
+              todoActions.changeToday(
+                moment(today).clone().subtract(1, "month")
+              )
+            );
           }}
         >
           ◀
@@ -127,7 +131,9 @@ const Calendar = (props) => {
         <Button
           onClick={() => {
             // 기준일을 한달 후로 돌려요!
-            dispatch(changeToday(moment(today).clone().add(1, "month")));
+            dispatch(
+              todoActions.changeToday(moment(today).clone().add(1, "month"))
+            );
           }}
         >
           ▶

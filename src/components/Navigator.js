@@ -18,7 +18,7 @@ const Navigator = () => {
 const Wrap = styled.div`
   background-color: #c6c4c4;
   width: 13rem;
-  height: 100rem;
+  height: 55rem;
   justify-content: center;
 `;
 

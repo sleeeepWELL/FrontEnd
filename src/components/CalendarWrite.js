@@ -12,15 +12,15 @@ const CalendarWrite = (props) => {
 
   // 작성할 내용과 시간을 ref로 넣을거예요. :)
   const [contents, setContents] = React.useState("");
-  const [datetime, setDatetime] = React.useState("");
+  const [datetime, setTime] = React.useState("");
+ 
 
   const changeContents = (e) => {
     setContents(e.target.value);
     console.log(e.target.value);
   };
-
-  const changeDatetime = (e) => {
-    setDatetime(e.target.value);
+  const changeTime= (e) => {
+    setTime(e.target.value);
     console.log(e.target.value);
   };
 
@@ -35,23 +35,23 @@ const CalendarWrite = (props) => {
   //   window.alert("날짜를 입력해주세요!");
   //   return;
   // }
+  console.log(datetime);
 
   const writeTodo = () => {
     // 콘솔로 내가 선택한 데이터가 잘 왔나 확인해볼까요? :)
-    // console.log(contents.current.value);
-    // console.log(datetime.current.value);
+    console.log(contents);
+    
+    let _new_todo = {
+      todo_id: "dummy_id1111", // 아이디는 나중에 디비에 저장되면, 그때 가져와야죠! 일단 가짜로 둡니다!
+      datetime: moment(datetime).format("YYYY-MM-DD"), // 우리 데이터 형식대로 맞춰줍니다.
+      contents: contents,
+      completed: false, // 지금 만들었으니 당연히 false겠죠!
+    };
 
-    // let _new_todo = {
-    //   todo_id: "dummy_id1111", // 아이디는 나중에 디비에 저장되면, 그때 가져와야죠! 일단 가짜로 둡니다!
-    //   datetime: moment(datetime.current.value).format("YYYY-MM-DD hh:mm:ss"), // 우리 데이터 형식대로 맞춰줍니다.
-    //   contents: contents.current.value,
-    //   completed: false, // 지금 만들었으니 당연히 false겠죠!
-    // };
-
-    // console.log(_new_todo);
+    console.log(_new_todo);
 
     // 리덕스에 넣자!
-    dispatch(addTodo(contents, datetime));
+    dispatch(addTodo(_new_todo));
     // 추가로 하나만 더! 일정을 추가했으면 원래 페이지로 돌아가야죠! replace 사용해봅시다!
     props.history.replace("/calendar");
   };
@@ -70,7 +70,7 @@ const CalendarWrite = (props) => {
         <Input type="text" onChange={changeContents} />
 
         <Text type="label">- 날짜 -</Text>
-        <Input type="datetime-local" onChange={changeDatetime} />
+        <Input type="datetime-local" onChange={changeTime} />
 
         <Button onClick={writeTodo}>일정 추가하기</Button>
       </Grid>

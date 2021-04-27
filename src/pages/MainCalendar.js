@@ -1,6 +1,7 @@
 import React from "react";
 import moment from "moment";
 import Calendarjj from "../components/Calendarjj";
+import KyuCalendar from "../pages/KyuCalendar";
 import Popup from "../components/Popup";
 import ToDo from "../elements/ToDo";
 
@@ -8,36 +9,36 @@ import { Button } from "../elements/Styles";
 
 import { useSelector, useDispatch } from "react-redux";
 
-// const _todo_list = {
-//   "2021-04-01": [
-//     {
-//       todo_id: 11,
-//       datetime: "2021-04-01 10:10:00",
-//       contents: "산책가기1",
-//       completed: false,
-//     },
-//     {
-//       todo_id: 155555,
-//       datetime: "2021-04-01 10:15:00",
-//       contents: "산책가기2",
-//       completed: false,
-//     },
-//   ],
-//   "2021-04-21": [
-//     {
-//       todo_id: 8,
-//       datetime: "2021-04-21 10:00:00",
-//       contents: "산책가기3",
-//       completed: false,
-//     },
-//     {
-//       todo_id: 4,
-//       datetime: "2021-04-21 10:10:00",
-//       contents: "산책가기4",
-//       completed: false,
-//     },
-//   ],
-// };
+const _todo_list = {
+  "2021-04-01": [
+    {
+      todo_id: 11,
+      datetime: "2021-04-01 10:10:00",
+      contents: "산책가기1",
+      completed: false,
+    },
+    {
+      todo_id: 155555,
+      datetime: "2021-04-01 10:15:00",
+      contents: "산책가기2",
+      completed: false,
+    },
+  ],
+  "2021-04-21": [
+    {
+      todo_id: 8,
+      datetime: "2021-04-21 10:00:00",
+      contents: "산책가기3",
+      completed: false,
+    },
+    {
+      todo_id: 4,
+      datetime: "2021-04-21 10:10:00",
+      contents: "산책가기4",
+      completed: false,
+    },
+  ],
+};
 
 const MainCalendar = (props) => {
   // is_open 사용해서 팝업을 보였다가 안보이게 해줄거예요 :)
@@ -56,6 +57,7 @@ const MainCalendar = (props) => {
   return (
     <React.Fragment>
       <Calendarjj
+      // <KyuCalendar
         show_completed={show_completed}
         _showPopup={setIsOpen}
         _setSeletedTodo={setSeletedTodo}

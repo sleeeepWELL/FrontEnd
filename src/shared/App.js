@@ -8,6 +8,8 @@ import Signup from "../pages/Signup";
 import MainCalendar from "../pages/MainCalendar";
 import CalendarWrite from "../components/CalendarWrite";
 import PostWrite from "../pages/PostWrite";
+import JieunCalendar from "../components/JieunCalendar";
+import PracCalendar from "../components/PracCalendar";
 
 import { Route } from "react-router-dom";
 import { ConnectedRouter } from "connected-react-router";
@@ -40,6 +42,8 @@ function App() {
             {/* <Route exact component={NotFound}/> */}
             <Route path="/calendar" exact component={MainCalendar} />
             <Route path="/calendarwrite" exact component={CalendarWrite} />
+            <Route path="/jieuncalendar" exact component={JieunCalendar} />
+            <Route path="/prac" exact component={PracCalendar} />
           </ConnectedRouter>
         </ContentWrap>
       </Wrap>

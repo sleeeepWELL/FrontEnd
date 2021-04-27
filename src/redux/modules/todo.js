@@ -98,7 +98,7 @@ export default function reducer(state = initialState, action = {}) {
       return state;
 
     case "todo/ADD": {
-      // 액션으로 받아오는 것 : date, todo_data
+      // 액션으로 받아오는 것 : date, todo_ddata
       const todo_list = { ...state.todo_list };
       // 데이터 넣는 부분!
       // 1. 데이터 맹근다!

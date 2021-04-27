@@ -1,7 +1,8 @@
 import React from "react";
 import moment from "moment";
-import Calendar from "../components/Calendar";
+import Calendarjj from "../components/Calendarjj";
 import Popup from "../components/Popup";
+import ToDo from "../elements/ToDo";
 
 import { Button } from "../elements/Styles";
 
@@ -54,7 +55,7 @@ const MainCalendar = (props) => {
 
   return (
     <React.Fragment>
-      <Calendar
+      <Calendarjj
         show_completed={show_completed}
         _showPopup={setIsOpen}
         _setSeletedTodo={setSeletedTodo}

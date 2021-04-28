@@ -51,18 +51,18 @@ const initialState = {
   todo_list: [
     {
       id: 5,
-      startSleep: "2020-02-15T00:00:00",
-      endSleep: "2020-02-15T09:00:00",
+      startSleep: "00:00",
+      endSleep: "09:00",
       totalSleep: 9,
-      tag: ["운동", "음주"],
+      tag: ["운동", "음주", "폭식", "과로", "명상", "커피", "스트레스"],
       condition: 1,
       memo: "오늘은 즐거웠다",
       createdAt: "2021-04-25",
     },
     {
       id: 4,
-      startSleep: "2020-02-15T00:00:00",
-      endSleep: "2020-02-15T09:00:00",
+      startSleep: "00:00",
+      endSleep: "09:00",
       totalSleep: 9,
       tag: ["운동", "음주"],
       condition: 1,
@@ -71,8 +71,8 @@ const initialState = {
     },
     {
       id: 3,
-      startSleep: "2020-02-15T00:00:00",
-      endSleep: "2020-02-15T09:00:00",
+      startSleep: "00:00",
+      endSleep: "09:00",
       totalSleep: 9,
       tag: ["운동", "음주"],
       condition: 1,
@@ -82,12 +82,39 @@ const initialState = {
   ],
 };
 
+const addTodoSV = (
+  checkDate,
+  startSleep,
+  endSleep,
+  personName,
+  condition,
+  memo
+) => {
+  return function (dispatch) {
+    console.log(checkDate, startSleep, endSleep, personName, condition, memo);
+
+    let _todo = [];
+    _todo.push({
+      startSleep: startSleep,
+      endSleep: endSleep,
+      totalSleep: 9,
+      tag: personName,
+      condition: condition,
+      memo: memo,
+      selectedAt: checkDate,
+    });
+    dispatch(addTodo(_todo));
+    console.log(_todo);
+  };
+};
+
 // 리듀서
 export default handleActions(
   {
     [LOAD]: (state, draft) => produce(state, (draft) => {}),
-    [ADD]: (state, draft) =>
+    [ADD]: (state, action) =>
       produce(state, (draft) => {
+        draft.list = action.payload.todo_list;
         // 날짜
         // let date = action.payload.todo_data.datetime;
         // const new_todo_date = moment(date).format("YYYY-MM-DD");
@@ -248,6 +275,7 @@ export default handleActions(
 const actionCreators = {
   loadTodo,
   addTodo,
+  addTodoSV,
   updateTodo,
   deleteTodo,
   changeToday,

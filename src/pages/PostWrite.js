@@ -5,6 +5,8 @@ import DatePicker from "react-datepicker";
 import TextField from "@material-ui/core/TextField";
 import { isMoment } from "moment";
 
+import { actionCreators as postActions } from "../redux/modules/todo";
+import { useDispatch, useSelector } from "react-redux";
 //태그 선택
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import Input from "@material-ui/core/Input";
@@ -20,6 +22,7 @@ import RadioGroup from "@material-ui/core/RadioGroup";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 
 const PostWrite = (props) => {
+  const dispatch = useDispatch();
   //날짜 선택
   const [checkDate, setCheckDate] = React.useState("");
 
@@ -103,7 +106,7 @@ const PostWrite = (props) => {
 
   //컨디션 체크
 
-  const [Condition, setCondition] = React.useState("");
+  const [condition, setCondition] = React.useState("");
 
   const checkCondition = (event) => {
     setCondition(event.target.value);
@@ -111,12 +114,26 @@ const PostWrite = (props) => {
   };
 
   //메모
-  const [comment, setComment] = React.useState("");
+  const [memo, setMemo] = React.useState("");
 
-  const changeComment = (event) => {
-    setComment(event.target.value);
+  const changeMemo = (event) => {
+    setMemo(event.target.value);
     console.log(event.target.value);
   };
+
+  const uploadPost = () => {
+    dispatch(
+      postActions.addTodoSV(
+        checkDate,
+        startSleep,
+        endSleep,
+        personName,
+        condition,
+        memo
+      )
+    );
+  };
+
   return (
     <React.Fragment>
       <Wrap>
@@ -126,7 +143,7 @@ const PostWrite = (props) => {
               id="date"
               type="date"
               label="날짜"
-              value={checkDate}
+              // value={checkDate}
               onChange={changeDate}
               InputLabelProps={{
                 shrink: true,
@@ -140,9 +157,8 @@ const PostWrite = (props) => {
                 id="time"
                 label="취침시간"
                 type="time"
-                value={startSleep}
+                // value={startSleep}
                 onChange={checkSleep}
-                defaultValue="11:30"
                 InputLabelProps={{
                   shrink: true,
                 }}
@@ -154,9 +170,8 @@ const PostWrite = (props) => {
                 id="time"
                 label="기상시간"
                 type="time"
-                value={endSleep}
+                // value={endSleep}
                 onChange={checkoutSleep}
-                defaultValue="07:30"
                 InputLabelProps={{
                   shrink: true,
                 }}
@@ -254,13 +269,13 @@ const PostWrite = (props) => {
               type="text"
               multiline
               placeholder="메모를 입력하세요"
-              onChange={changeComment}
+              onChange={changeMemo}
             >
               메모
             </Input>
           </MemoContainer>
           <BtnContainer>
-            <Button>OK</Button>
+            <Button onClick={uploadPost}>OK</Button>
           </BtnContainer>
         </InnerGrid>
       </Wrap>

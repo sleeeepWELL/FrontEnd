@@ -25,14 +25,17 @@ ToDo.defaultProps = {
 };
 
 const Container = styled.div`
-display:flex;
+  display: flex;
+  flex-direction: column;
   width: 100%;
   height: 100%;
-  background-color: white;
+
+  background-color: pink;
   border-radius: 8px;
   /* box-shadow: rgb(0 0 0 / 10%) 0px 4px 10px 0px; */
- 
-  justify-content: space-between;
+
+  justify-content: center;
+
   :hover {
     box-shadow: rgb(0 0 0 / 15%) 0px 4px 10px 0px;
     transition: box-shadow 0.2s ease-in 0s;
@@ -40,24 +43,22 @@ display:flex;
 
   cursor: pointer;
   position: relative;
-  
 `;
 
 const TopInfo = styled.div`
   display: flex;
   width: 100%;
-  height: auto;
-  justify-content: space-between;
+  height: 100%;
+  /* justify-content: center; */
 `;
 
 const BottomInfo = styled.div`
-  
   display: flex;
   width: 100%;
-  height: auto;
-  justify-content: flex-start;
-  font-size: 2px;
-  
+  height: 100%;
+  /* justify-content: center; */
+
+  /* font-size: 2px; */
 `;
 
 export default ToDo;

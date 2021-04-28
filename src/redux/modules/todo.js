@@ -93,6 +93,32 @@ const initialState = {
   ],
 };
 
+const addTodoSV = (
+  checkDate,
+  startSleep,
+  endSleep,
+  personName,
+  condition,
+  memo
+) => {
+  return function (dispatch) {
+    console.log(checkDate, startSleep, endSleep, personName, condition, memo);
+
+    let _todo = [];
+    _todo.push({
+      startSleep: startSleep,
+      endSleep: endSleep,
+      totalSleep: 9,
+      tag: personName,
+      condition: condition,
+      memo: memo,
+      selectedAt: checkDate,
+    });
+    dispatch(addTodo(_todo));
+    console.log(_todo);
+  };
+};
+
 // 백엔드와 협의 후 수정
 // const getAllPostAX = () => {
 //   return function (dispatch){
@@ -130,6 +156,7 @@ export default handleActions(
     }),
     [ADD]: (state, draft) =>
       produce(state, (draft) => {
+        draft.list = action.payload.todo_list;
         // 날짜
         // let date = action.payload.todo_data.datetime;
         // const new_todo_date = moment(date).format("YYYY-MM-DD");
@@ -295,6 +322,7 @@ export default handleActions(
 const actionCreators = {
   loadTodo,
   addTodo,
+  addTodoSV,
   updateTodo,
   deleteTodo,
   changeToday,

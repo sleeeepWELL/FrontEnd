@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useEffect} from "react";
 import { Grid, Button, Text } from "../elements/Styles";
 import ToDo from "../elements/ToDo";
 import moment from "moment";
@@ -20,6 +20,12 @@ const Calendar = (props) => {
 
   const today = useSelector((state) => state.todo.today);
   const todo_list = useSelector((state) => state.todo.todo_list);
+
+  useEffect(() => {
+    dispatch(todoActions.loadTodo(todo_list))
+  }, [])
+
+  console.log(todo_list)
 
   const start_week = moment(today).startOf("month").week();
   const end_week = moment(today).endOf("month").week();
@@ -68,11 +74,6 @@ const Calendar = (props) => {
             return (
               <DailyGrid
                 key={`${_l.datetime}_${_l.todo_id}`}
-                onClick={() => {
-                  console.log("here");
-                  props._showPopup(true);
-                  props._setSeletedTodo(_l);
-                }}
               >
               {/* 한 칸에 들어갈 것들 */}
               {_l.createdAt.split("-")[1]===moment(today).format("MM") ?
@@ -81,10 +82,16 @@ const Calendar = (props) => {
             );
           });
           return (
-            // 달력 한 칸(일단위)
+            // 달력 한 칸(일단위) 클릭을 하면 카드받아오는
             <DayGrid
               key={`${moment(today).format("MM")}_week_${week_index}_day_${day_index}`}
-              bg={is_today && (moment(today).format("MM")=== _day.format("MM"))? "grey" : "#ffffff"}>
+              bg={is_today && (moment(today).format("MM")=== _day.format("MM"))? "grey" : "#ffffff"}
+              onClick={() => {
+                console.log(props);
+                props._showPopup(true);
+                
+                // props._setSeletedTodo(_l);
+              }}>
               {_day.format("MM") === moment(today).format("MM") && (
                <DayText font_c={is_today ? "white" : "black"}>{_day.format("DD")}</DayText>
               )}

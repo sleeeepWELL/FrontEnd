@@ -1,12 +1,15 @@
 import moment from "moment";
 import { produce } from "immer";
+import axios from 'axios';
+import { history } from "../configureStore";
+import { config } from "../../shared/config";
 import { createAction, handleActions } from "redux-actions";
 
-const LOAD = "todo/LOAD";
-const ADD = "todo/ADD";
-const UPDATE = "todo/UPDATE";
-const DELETE = "todo/DELETE";
-const CHANGE_TODAY = "todo/CHANGE_TODAY";
+const LOAD = "LOAD";
+const ADD = "ADD";
+const UPDATE = "UPDATE";
+const DELETE = "DELETE";
+const CHANGE_TODAY = "CHANGE_TODAY";
 
 const loadTodo = createAction(LOAD, (todo_list) => ({ todo_list }));
 const addTodo = createAction(ADD, (todo_data) => ({ todo_data }));
@@ -18,36 +21,21 @@ const updateTodo = createAction(UPDATE, (date, todo_id, todo_data) => ({
 const deleteTodo = createAction(DELETE, (date, todo_id) => ({ date, todo_id }));
 const changeToday = createAction(CHANGE_TODAY, (date) => ({ date }));
 
-// Initial State
-/**
- * todo_list : 일정 목록
- * today : 기준일자
- */
-// 2. 액션 생성자 만들기
-//  - 액션을 반환할 액션 생성자를 만들어줘요.
-//  - 액션을 하기 위해(뭔가 바꾸기 위해) 필요한 데이터가 뭔지 잘 생각해서 파라미터를 받아옵시다! :)
-// export const loadTodo = (todo_list) => {
-//   return { type: LOAD, todo_list };
-// };
-
-// export const addTodo = (todo_data) => {
-//   return { type: ADD, todo_data };
-// };
-
-// export const updateTodo = (date, todo_id, todo_data) => {
-//   return { type: UPDATE, date, todo_id, todo_data };
-// };
-
-// export const deleteTodo = (date, todo_id) => {
-//   return { type: DELETE, date, todo_id };
-// };
-
-// export const changeToday = (date) => {
-//   return { type: CHANGE_TODAY, date };
-// };
-
 const initialState = {
   today: moment(),
+  day_list:{
+    "id": 5,
+    "startSleep": "2020-02-15T00:00:00",
+    "endSleep": "2020-02-15T09:00:00",
+    "totalSleep": 9,
+    "tag": [
+        "운동",
+        "음주"
+    ],
+    "condition": 1,
+    "memo": "오늘은 즐거웠다",
+    "createdAt": "2021-04-29"
+  },
   todo_list:
     [
       {
@@ -77,26 +65,69 @@ const initialState = {
           "createdAt": "2021-04-26"
       },
       {
-          "id": 3,
-          "startSleep": "2020-02-15T00:00:00",
-          "endSleep": "2020-02-15T09:00:00",
-          "totalSleep": 9,
-          "tag": [
-              "운동",
-              "음주"
-          ],
-          "condition": 1,
-          "memo": "오늘은 즐거웠다",
-          "createdAt": "2021-04-27"
-      },
-   
-  ]
+        "id": 1,
+        "startSleep": "2020-02-15T00:00:00",
+        "endSleep": "2020-02-15T09:00:00",
+        "totalSleep": 9,
+        "tag": [
+            "운동",
+            "음주"
+        ],
+        "condition": 1,
+        "memo": "오늘은 즐거웠다",
+        "createdAt": "2021-04-24"
+    },
+    {
+      "id": 5,
+      "startSleep": "2020-02-15T00:00:00",
+      "endSleep": "2020-02-15T09:00:00",
+      "totalSleep": 9,
+      "tag": [
+          "운동",
+          "음주"
+      ],
+      "condition": 1,
+      "memo": "오늘은 즐거웠다",
+      "createdAt": "2021-04-25"
+  },
+  ],
 };
+
+// 백엔드와 협의 후 수정
+// const getAllPostAX = () => {
+//   return function (dispatch){
+
+//       axios.get(`${config.api}/board/other/${_id}`,token)
+//       .then((response) => {
+//         console.log(response)
+        
+//         let todo_list = [];
+//         response.data.forEach((_item) => {
+//           let content = {
+//             id: _item.id,
+//             startSleep: _item.startSleep,
+//             endSleep: _item.endSleep,
+//             totalSleep: _item.totalSleep,
+//             tag: _item.tag,
+//             condition: _item.condition,
+//             memo: _item.memo,
+//             createdAt: _item.createdAt,
+//           }
+//           todo_list.unshift(content)
+//         })
+//         dispatch(loadTodo(todo_list))
+//       }).catch((err) => {
+//         console.log(err)
+//       })
+//   }
+// }
 
 // 리듀서
 export default handleActions(
   {
-    [LOAD]: (state, draft) => produce(state, (draft) => {}),
+    [LOAD]: (state, action) => produce(state, (draft) => {
+      draft.todo_list = action.payload.todo_list;
+    }),
     [ADD]: (state, draft) =>
       produce(state, (draft) => {
         // 날짜
@@ -107,8 +138,13 @@ export default handleActions(
         // const new_todo_list = { new_todo_date: [new_todo_data] };
         // draft.todo_list.append(new_todo_list);
       }),
-    [UPDATE]: (state, draft) => produce(state, (draft) => {}),
-    [DELETE]: (state, draft) => produce(state, (draft) => {}),
+    [UPDATE]: (state, action) => produce(state, (draft) => {
+      let idx = draft.todo_list.findIndex((d)=>d.id === action.payload.id)
+      draft.todo_list[idx]={...draft.todo_list[idx],...action.payload.todo_data}
+    }),
+    [DELETE]: (state, draft) => produce(state, (draft) => {
+     
+    }),
     [CHANGE_TODAY]: (state, draft) => produce(state, (draft) => {}),
   },
   initialState

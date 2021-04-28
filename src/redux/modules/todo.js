@@ -48,49 +48,38 @@ const changeToday = createAction(CHANGE_TODAY, (date) => ({ date }));
 
 const initialState = {
   today: moment(),
-  todo_list:
-    [
-      {
-          "id": 5,
-          "startSleep": "2020-02-15T00:00:00",
-          "endSleep": "2020-02-15T09:00:00",
-          "totalSleep": 9,
-          "tag": [
-              "운동",
-              "음주"
-          ],
-          "condition": 1,
-          "memo": "오늘은 즐거웠다",
-          "createdAt": "2021-04-25"
-      },
-      {
-          "id": 4,
-          "startSleep": "2020-02-15T00:00:00",
-          "endSleep": "2020-02-15T09:00:00",
-          "totalSleep": 9,
-          "tag": [
-              "운동",
-              "음주"
-          ],
-          "condition": 1,
-          "memo": "오늘은 즐거웠다",
-          "createdAt": "2021-04-26"
-      },
-      {
-          "id": 3,
-          "startSleep": "2020-02-15T00:00:00",
-          "endSleep": "2020-02-15T09:00:00",
-          "totalSleep": 9,
-          "tag": [
-              "운동",
-              "음주"
-          ],
-          "condition": 1,
-          "memo": "오늘은 즐거웠다",
-          "createdAt": "2021-04-27"
-      },
-   
-  ]
+  todo_list: [
+    {
+      id: 5,
+      startSleep: "2020-02-15T00:00:00",
+      endSleep: "2020-02-15T09:00:00",
+      totalSleep: 9,
+      tag: ["운동", "음주"],
+      condition: 1,
+      memo: "오늘은 즐거웠다",
+      createdAt: "2021-04-25",
+    },
+    {
+      id: 4,
+      startSleep: "2020-02-15T00:00:00",
+      endSleep: "2020-02-15T09:00:00",
+      totalSleep: 9,
+      tag: ["운동", "음주"],
+      condition: 1,
+      memo: "오늘은 즐거웠다",
+      createdAt: "2021-04-26",
+    },
+    {
+      id: 3,
+      startSleep: "2020-02-15T00:00:00",
+      endSleep: "2020-02-15T09:00:00",
+      totalSleep: 9,
+      tag: ["운동", "음주"],
+      condition: 1,
+      memo: "오늘은 즐거웠다",
+      createdAt: "2021-04-27",
+    },
+  ],
 };
 
 // 리듀서

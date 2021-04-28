@@ -35,23 +35,38 @@ const KyuCalendar = (props) => {
 
           const is_today =
             moment().format("YYYY-MM-DD") === _day.format("YYYY-MM-DD");
+          // console.log(_day.format("YYYY-MM-DD"))
+          // console.log(todo_list)
 
+
+     
+          // 해당하는 날짜배열을 반환한다
+         const _list = todo_list.filter((item,idx)=>{
+           if(item.createdAt==_day.format("YYYY-MM-DD"))
+            return (item.createdAt)
+          })
+
+    
+         
           // // todo_list에 값이 _day에서 뽑아낸 값들이 없다면 -1 
-          const list_index = Object.keys(todo_list).indexOf(_day.format("YYYY-MM-DD"));
+          // const list_index = Object.keys(todo_list).indexOf(_day.format("YYYY-MM-DD"));
+          // console.log(list_index)
           // console.log(list_index) //-1(4) 0 -1(19) 1 -1(10)
           // console.log(todo_list[_day.format("YYYY-MM-DD")]); //없으면 undefined 있으면 해당 배열이 나온다
-          const _list = list_index !== -1 ? todo_list[_day.format("YYYY-MM-DD")] : []; //일정이 있는 날이라면 넣어주고 아니면 빈값을 준다
+          // const _list = list_index !== -1 ? todo_list[_day.format("YYYY-MM-DD")] : []; //일정이 있는 날이라면 넣어주고 아니면 빈값을 준다
 
+          // console.log(_list)
           const list = _list.map((_l, idx) => {
             // console.log(_l.datetime.split("-")[1]); // 값이 있는 애들만 골라진다
             // 일정이 있는 날의 월과 오늘의 월이 같은 경우에만 컨텐츠표시!
             return (
-              <div key={`${_l.datetime}_${_l.todo_id}`}
+              <div key={`${_l.id}_${_l.createdAt}`}
                 onClick={() => { console.log("here");
                   props._showPopup(true);
                   props._setSeletedTodo(_l);}}
                 >
-                <Text>{_l.datetime.split("-")[1]===moment(today).format("MM") ?_l.contents:""}</Text>
+                  {_l.createdAt.split("-")[1]===moment(today).format("MM") ?
+                <Text>{_l.memo}</Text>:""}
               </div>
             );
           });
@@ -104,15 +119,15 @@ const KyuCalendar = (props) => {
         {week_arr}
       </CalendarContainer>
   );
+  
 };
 
 
 
 const CalendarContainer = styled.div`
-  position: absolute;
   display : flex;
   flex-direction : column;
-  width: 83%;
+  width: 100%;
   height: 90%;
   margin : 5px auto;
   padding-bottom: 10px;

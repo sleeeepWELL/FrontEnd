@@ -3,7 +3,9 @@ import moment from "moment";
 import Calendarjj from "../components/Calendarjj";
 import KyuCalendar from "../pages/KyuCalendar";
 import Popup from "../components/Popup";
+import DetailPost from "../components/DetailPost";
 import ToDo from "../elements/ToDo";
+import styled from "styled-components";
 
 import { Button } from "../elements/Styles";
 
@@ -56,12 +58,14 @@ const MainCalendar = (props) => {
 
   return (
     <React.Fragment>
+      <AllContainer>
       <Calendarjj
-      // <KyuCalendar
+     /* <KyuCalendar */
         show_completed={show_completed}
         _showPopup={setIsOpen}
         _setSeletedTodo={setSeletedTodo}
       />
+      <DetailPost/>
       {is_open && (
         <Popup
           type="todo_detail"
@@ -71,8 +75,8 @@ const MainCalendar = (props) => {
       )}
       <Button
         float
-        right="20px"
-        bottom="20px"
+        right="10px"
+        bottom="10px"
         onClick={() => {
           // 버튼을 눌렀을 때 페이지 이동이 잘되나 한 번 봅시다!
           props.history.push("/calendarwrite");
@@ -91,8 +95,18 @@ const MainCalendar = (props) => {
       >
         {show_completed ? "전체 일정 보기" : "완료된 일정만 보기"}
       </Button> */}
+      </AllContainer>
     </React.Fragment>
   );
 };
 
+const AllContainer = styled.div`
+display:flex;
+flex-direction: column;
+width:90%;
+`
+
+
+
 export default MainCalendar;
+

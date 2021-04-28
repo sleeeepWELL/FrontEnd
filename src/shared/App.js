@@ -15,7 +15,6 @@ import PracCalendar from "../components/PracCalendar";
 import { Route } from "react-router-dom";
 import { ConnectedRouter } from "connected-react-router";
 import { history } from "../redux/configureStore";
-import PostModal from "../components/PostModal";
 
 function App() {
   // const dispatch = useDispatch();
@@ -38,7 +37,6 @@ function App() {
             </div>
             <Route path="/login" exact component={Login} />
             <Route path="/signup" exact component={Signup} />
-            <Route path="/modal" exact component={PostModal} />
             <Route path="/write" exact component={PostWrite} />
             {/* <Route exact component={NotFound}/> */}
             <Route path="/calendar" exact component={MainCalendar} />

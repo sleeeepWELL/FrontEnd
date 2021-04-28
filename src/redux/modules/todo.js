@@ -23,30 +23,74 @@ const changeToday = createAction(CHANGE_TODAY, (date) => ({ date }));
  * todo_list : 일정 목록
  * today : 기준일자
  */
+// 2. 액션 생성자 만들기
+//  - 액션을 반환할 액션 생성자를 만들어줘요.
+//  - 액션을 하기 위해(뭔가 바꾸기 위해) 필요한 데이터가 뭔지 잘 생각해서 파라미터를 받아옵시다! :)
+// export const loadTodo = (todo_list) => {
+//   return { type: LOAD, todo_list };
+// };
+
+// export const addTodo = (todo_data) => {
+//   return { type: ADD, todo_data };
+// };
+
+// export const updateTodo = (date, todo_id, todo_data) => {
+//   return { type: UPDATE, date, todo_id, todo_data };
+// };
+
+// export const deleteTodo = (date, todo_id) => {
+//   return { type: DELETE, date, todo_id };
+// };
+
+// export const changeToday = (date) => {
+//   return { type: CHANGE_TODAY, date };
+// };
+
 const initialState = {
   today: moment(),
-  todo_list: {
-    "2021-04-02": [
+  todo_list:
+    [
       {
-        totalsleep: 7,
-        condition: "😄",
-        tag: ["🍻", "💪", "💻"],
-        memo: "힘든 날이었다.",
-        createdAt: "2021-04-02",
-        completed: false,
+          "id": 5,
+          "startSleep": "2020-02-15T00:00:00",
+          "endSleep": "2020-02-15T09:00:00",
+          "totalSleep": 9,
+          "tag": [
+              "운동",
+              "음주"
+          ],
+          "condition": 1,
+          "memo": "오늘은 즐거웠다",
+          "createdAt": "2021-04-25"
       },
-    ],
-    "2021-04-21": [
       {
-        totalsleep: 12,
-        condition: "😄",
-        tag: ["🍻", "💪"],
-        memo: "산책하고 온날.",
-        createdAt: "2021-04-02",
-        completed: false,
+          "id": 4,
+          "startSleep": "2020-02-15T00:00:00",
+          "endSleep": "2020-02-15T09:00:00",
+          "totalSleep": 9,
+          "tag": [
+              "운동",
+              "음주"
+          ],
+          "condition": 1,
+          "memo": "오늘은 즐거웠다",
+          "createdAt": "2021-04-26"
       },
-    ],
-  },
+      {
+          "id": 3,
+          "startSleep": "2020-02-15T00:00:00",
+          "endSleep": "2020-02-15T09:00:00",
+          "totalSleep": 9,
+          "tag": [
+              "운동",
+              "음주"
+          ],
+          "condition": 1,
+          "memo": "오늘은 즐거웠다",
+          "createdAt": "2021-04-27"
+      },
+   
+  ]
 };
 
 // 리듀서

@@ -16,15 +16,11 @@ import styled from "styled-components";
  */
 const Calendar = (props) => {
   const dispatch = useDispatch();
-
   const { _changeMonth, show_completed, _showPopup, _setSeletedTodo } = props;
 
   const today = useSelector((state) => state.todo.today);
   const todo_list = useSelector((state) => state.todo.todo_list);
 
-  // console.log(todo_list);
-
-  // 이번달의 시작 주, 끝 주를 구합니다.
   const start_week = moment(today).startOf("month").week();
   const end_week = moment(today).endOf("month").week();
 
@@ -32,15 +28,11 @@ const Calendar = (props) => {
   // 마지막 주가 다음 해 1주일 수 있어요. (시작 주보다 끝 주가 숫자가 작을 수 있다!)
   const week_num =
     (start_week > end_week ? 53 - start_week : end_week - start_week) + 1;
-
-  // 주수 길이의 배열을 만들고, [14, 15, 16, 17, 18]
   const _week_arr = Array.from({ length: week_num }, (v, i) => start_week + i);
 
-  // 주마다 7개씩 날짜를 넣어주면 끝!
   const week_arr = _week_arr.map((week_index) => {
     return (
       <Container key={`${moment(today).format("MM")}_week_${week_index}`}>
-        {/*한 주는 7일이니, 주에 7개씩 날짜 칸을 넣어줍니다. */}
         {Array.from({ length: 7 }, (v, i) => i).map((day_index) => {
           let _day = today
             .clone()
@@ -49,22 +41,25 @@ const Calendar = (props) => {
             .startOf("week")
             .add(day_index, "day");
 
-          // console.log(day_index); // 0-6
-
           const is_today =
             moment().format("YYYY-MM-DD") === _day.format("YYYY-MM-DD");
 
-          // todo_list(Main.js에서 props로 건네줬어요!)에 해당 일자 일정이 들어가 있나 보고, 추가해줍시다.
-          const list_index = Object.keys(todo_list).indexOf(
-            _day.format("YYYY-MM-DD")
-          );
+
+          const _list = todo_list.filter((item,idx)=>{
+            if(item.createdAt==_day.format("YYYY-MM-DD"))
+              return (item.createdAt)
+            })
+          
+          // const list_index = Object.keys(todo_list).indexOf(
+          //   _day.format("YYYY-MM-DD")
+          // );
 
           // 주석풀고 데이터 확인해보기! :)!
-          console.log(list_index);
+          // console.log(list_index);
           //   console.log(todo_list[_day.format("YYYY-MM-DD")]);
           // todo_list에 해당 일 일정이 있으면 일정을 list에 넣어주자! (없으면 null이나 빈배열로! 일단 빈배열로 해봅시다! :))
-          const _list =
-            list_index !== -1 ? todo_list[_day.format("YYYY-MM-DD")] : [];
+          // const _list =
+          //   list_index !== -1 ? todo_list[_day.format("YYYY-MM-DD")] : [];
 
           const list = _list.map((_l, idx) => {
             // 데이터 확인하기!
@@ -79,22 +74,19 @@ const Calendar = (props) => {
                   props._setSeletedTodo(_l);
                 }}
               >
-                <ToDo {..._l}></ToDo>
+              {/* 한 칸에 들어갈 것들 */}
+              {_l.createdAt.split("-")[1]===moment(today).format("MM") ?
+                <ToDo {..._l}></ToDo>:""}
               </DailyGrid>
             );
           });
           return (
             // 달력 한 칸(일단위)
             <DayGrid
-              key={`${moment(today).format(
-                "MM"
-              )}_week_${week_index}_day_${day_index}`}
-              //   flex_direction="row"
-              bg={is_today ? "#ffcece" : "#ffffff"}
-            >
+              key={`${moment(today).format("MM")}_week_${week_index}_day_${day_index}`}
+              bg={is_today && (moment(today).format("MM")=== _day.format("MM"))? "grey" : "#ffffff"}>
               {_day.format("MM") === moment(today).format("MM") && (
-                // 날짜 표시해주는 구간
-                <Text type="label">{_day.format("DD")}</Text>
+               <DayText font_c={is_today ? "white" : "black"}>{_day.format("DD")}</DayText>
               )}
               {
                 // 일정도 보여줍시다! :) null이 아닐때만 보여줘요!
@@ -108,7 +100,7 @@ const Calendar = (props) => {
   });
 
   // 요일이 나올 배열도 만들어주기!
-  const nomal_week = ["월", "화", "수", "목", "금"];
+  const nomal_week = ["MON", "TUE", "WED", "THU", "FRI"];
 
   return (
     <Grid flex_direction="column" width="80vw" height="80vh" margin="auto">
@@ -142,7 +134,7 @@ const Calendar = (props) => {
       <WeekGrid>
         <WEEK>
           <Text bold type="sun">
-            일
+            SUN
           </Text>
         </WEEK>
         {nomal_week.map((_d, idx) => {
@@ -156,7 +148,7 @@ const Calendar = (props) => {
         })}
         <WEEK>
           <Text bold type="sat">
-            토
+            SAT
           </Text>
         </WEEK>
       </WeekGrid>
@@ -210,7 +202,15 @@ const DayGrid = styled.div`
   align-items: flex-start;
   justify-content: flex-start;
   ${(props) => (props.bg ? `background-color: ${props.bg};` : "")}
+  border: 2px solid black;
 `;
+
+const DayText  =styled.div`
+font-size: 13px;
+font-weight: bold;
+margin: 3px 0px 0px 3px;
+color: ${(props) => props.font_c};
+`
 
 const Container = styled.div`
   box-sizing: border-box;

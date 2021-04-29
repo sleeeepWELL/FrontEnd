@@ -28,15 +28,16 @@ function App() {
 
   return (
     <React.Fragment>
-      <Wrap>
-        <Navigator />
-        <ContentWrap>
-          <ConnectedRouter history={history}>
+      <ConnectedRouter history={history}>
+        <Route path="/login" exact component={Login} />
+        <Route path="/signup" exact component={Signup} />
+        <Wrap>
+          <ContentWrap>
             <div style={{ display: "flex" }}>
               <Route path="/" exact component={Post} />
             </div>
-            <Route path="/login" exact component={Login} />
-            <Route path="/signup" exact component={Signup} />
+            {/* <Navigator /> */}
+
             <Route path="/write" exact component={PostWrite} />
             {/* <Route exact component={NotFound}/> */}
             <Route path="/calendar" exact component={MainCalendar} />
@@ -44,9 +45,9 @@ function App() {
             <Route path="/calendarwrite" exact component={CalendarWrite} />
             <Route path="/jieuncalendar" exact component={JieunCalendar} />
             <Route path="/prac" exact component={PracCalendar} />
-          </ConnectedRouter>
-        </ContentWrap>
-      </Wrap>
+          </ContentWrap>
+        </Wrap>
+      </ConnectedRouter>
     </React.Fragment>
   );
 }
@@ -58,7 +59,6 @@ const Wrap = styled.div`
 const ContentWrap = styled.div`
   display: flex;
   width: 100%;
-  margin: 1.5rem;
 `;
 
 export default App;

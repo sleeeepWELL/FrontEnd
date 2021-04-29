@@ -5,6 +5,7 @@ import KyuCalendar from "../pages/KyuCalendar";
 import Popup from "../components/Popup";
 import DetailPost from "../components/DetailPost";
 import DetailWrite from "../components/DetailWrite";
+import DetailEmpty from "../components/DetailWrite";
 import ToDo from "../elements/ToDo";
 import styled from "styled-components";
 
@@ -29,6 +30,7 @@ const MainCalendar = (props) => {
   //   그럼 캘린더가 이 값을 보고 완료된 일정만 보여주자! 앗 아니야, 전체를 보여주자! 결정할 수 있겠죠? :)
   const [show_completed, setShowCompleted] = React.useState(false);
   const [is_modify, setModify] = React.useState(false);
+  const [is_empty, setEmpty] = React.useState(false);
 
 
  
@@ -36,13 +38,13 @@ const MainCalendar = (props) => {
   return (
     <React.Fragment>
       <AllContainer>
-      <Calendarjj
-     /* <KyuCalendar */
+     <Calendarjj 
         show_completed={show_completed}
         _showPopup={setIsOpen}
         _setSeletedTodo={setSeletedTodo}
       />
-      {is_modify ?<DetailWrite _showModify={setModify}/>:<DetailPost  _showModify={setModify}/>}
+      {is_empty && <DetailEmpty _showEmpty={setEmpty}/>}
+      {is_modify && !is_empty ?<DetailWrite _showModify={setModify}/>:<DetailPost  _showModify={setModify}/>}
       {is_open && (
         <Popup
           type="todo_detail"
@@ -86,4 +88,7 @@ width:90%;
 
 
 export default MainCalendar;
+
+
+
 

@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
 import { actionCreators as todoActions } from "../redux/modules/todo";
 
-const DetailPost = (props) => {
+const DetailEmpty = (props) => {
 
   const dispatch =useDispatch();
   const day_list = useSelector((state) => state.todo.day_list); 
@@ -18,31 +18,28 @@ const DetailPost = (props) => {
       <TimeText> {day_list.selectedAt}</TimeText> 
     <RightHeader>
       <FixButton  onClick={()=>{
-       props._showModify(true)}}>추가하기 일단</FixButton> 
-        <FixButton  onClick={()=>{
-          dispatch(todoActions.removePostAX(day_list.selectedAt))
-      }}>삭제하기</FixButton> 
+       props._showEmpty(true)}}>ADD</FixButton> 
     </RightHeader>
       </ModalHeader>
 
     
     <TopContainer>
-    <TimeText>수면시간 {day_list.totalSleep}H ({day_list.startSleep} ~ {day_list.endSleep})</TimeText> 
+    <TimeText>수면시간 아직 기록되어있지 않습니다</TimeText> 
     </TopContainer>
     
     
       
       <TagContainer>
-      <TimeText>태그 {day_list.tag}</TimeText>
+      <TimeText>태그 아직 기록되어 있지 않습니다</TimeText>
       </TagContainer>
 
       <ConditionContainer>
-      <TimeText >컨디션 {day_list.condition}</TimeText>
-      <ConditionImg src={"https://cdn.crowdpic.net/list-thumb/thumb_l_17FE5A46A4D396FA6FB0E0DFA0E79376.png"}/>    
+      <TimeText >컨디션 아직 기록되어 있지 않습니다 </TimeText>
+     
       </ConditionContainer>
 
       <BottomContainer>
-      <Contents>{day_list.memo}</Contents>
+      <Contents>아직 기록되어 있지 않습니다</Contents>
       </BottomContainer>
     
        
@@ -65,15 +62,13 @@ margin: 20px 0px 5px 0px;
 
 const RightHeader = styled.div`
 background-color: black;
-display: flex;
-justify-content: space-between;
-width: 40%;
+width: 10%;
 height: 60%;
 `
 
 const FixButton = styled.button`
     width: 100%;
-    height: 100%;
+    height: 30px;
     background-color: white;
     border: #FEE500;
     font-weight: bold;
@@ -165,4 +160,4 @@ const ModalComponent = styled.div`
 `
 
 
-  export default DetailPost;
+  export default DetailEmpty;

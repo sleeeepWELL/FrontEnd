@@ -1,5 +1,5 @@
 const config = {
-    // api : 'http://13.125.250.74',
+    api : 'http://54.180.79.156',
     token : {
     //   headers: { authorization: `Bearer ${sessionStorage.getItem('JWT')}`}
     }

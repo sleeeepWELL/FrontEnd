@@ -7,19 +7,33 @@ import { isMoment } from "moment";
 
 import { actionCreators as postActions } from "../redux/modules/todo";
 import { useDispatch, useSelector } from "react-redux";
-//태그 선택
-import { makeStyles, useTheme } from "@material-ui/core/styles";
 import Input from "@material-ui/core/Input";
-import InputLabel from "@material-ui/core/InputLabel";
-import MenuItem from "@material-ui/core/MenuItem";
-import FormControl from "@material-ui/core/FormControl";
-import Select from "@material-ui/core/Select";
-import Chip from "@material-ui/core/Chip";
+
+//태그 선택
+// import { makeStyles, useTheme } from "@material-ui/core/styles";
+// import InputLabel from "@material-ui/core/InputLabel";
+// import MenuItem from "@material-ui/core/MenuItem";
+// import FormControl from "@material-ui/core/FormControl";
+// import Select from "@material-ui/core/Select";
+// import Chip from "@material-ui/core/Chip";
+import beer from "../image/beer.jpg";
+import overeat from "../image/overeat.jpg";
+import work from "../image/work.jpg";
+import workout from "../image/workout.jpg";
+
+import beer_gray from "../image/beer_gray.jpg";
+import overeat_gray from "../image/overeat_gray.jpg";
+import work_gray from "../image/work_gray.jpg";
+import workout_gray from "../image/workout_gray.jpg";
 
 //컨디션 체크
-import Radio from "@material-ui/core/Radio";
-import RadioGroup from "@material-ui/core/RadioGroup";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
+import bad from "../image/bad-condition.jpg";
+import good from "../image/good-condition.jpg";
+import soso from "../image/soso-condition.jpg";
+
+import bad_gray from "../image/bad-gray.jpg";
+import good_gray from "../image/good-gray.jpg";
+import soso_gray from "../image/soso-gray.jpg";
 
 const PostWrite = (props) => {
   const dispatch = useDispatch();
@@ -48,70 +62,85 @@ const PostWrite = (props) => {
   };
 
   //태그 선택
-  const useStyles = makeStyles((theme) => ({
-    formControl: {
-      margin: theme.spacing(1),
-      minWidth: 120,
-      maxWidth: 300,
-    },
-    chips: {
-      display: "flex",
-      flexWrap: "wrap",
-    },
-    chip: {
-      margin: 2,
-    },
-  }));
+  // const useStyles = makeStyles((theme) => ({
+  //   formControl: {
+  //     margin: theme.spacing(1),
+  //     minWidth: 120,
+  //     maxWidth: 300,
+  //   },
+  //   chips: {
+  //     display: "flex",
+  //     flexWrap: "wrap",
+  //   },
+  //   chip: {
+  //     margin: 2,
+  //   },
+  // }));
 
-  const ITEM_HEIGHT = 48;
-  const ITEM_PADDING_TOP = 8;
-  const MenuProps = {
-    PaperProps: {
-      style: {
-        maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
-        width: 250,
-      },
-    },
-  };
+  // const ITEM_HEIGHT = 48;
+  // const ITEM_PADDING_TOP = 8;
+  // const MenuProps = {
+  //   PaperProps: {
+  //     style: {
+  //       maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
+  //       width: 250,
+  //     },
+  //   },
+  // };
 
-  const names = [
-    "운동",
-    "😄",
-    "음주",
-    "커피",
-    "야근",
-    "건강식",
-    "폭식",
-    "명상",
-  ];
+  // const names = [
+  //   "운동",
+  //   "😄",
+  //   "음주",
+  //   "커피",
+  //   "야근",
+  //   "건강식",
+  //   "폭식",
+  //   "명상",
+  // ];
 
-  function getStyles(name, personName, theme) {
-    return {
-      fontWeight:
-        personName.indexOf(name) === -1
-          ? theme.typography.fontWeightRegular
-          : theme.typography.fontWeightMedium,
-    };
-  }
+  // function getStyles(name, personName, theme) {
+  //   return {
+  //     fontWeight:
+  //       personName.indexOf(name) === -1
+  //         ? theme.typography.fontWeightRegular
+  //         : theme.typography.fontWeightMedium,
+  //   };
+  // }
 
-  const classes = useStyles();
-  const theme = useTheme();
+  // const classes = useStyles();
+  // const theme = useTheme();
 
-  const [personName, setPersonName] = React.useState([]);
+  const [tags, setTags] = React.useState([""]);
 
-  const handleChange = (event) => {
-    setPersonName(event.target.value);
-    console.log(event.target.value);
-  };
+  const mytags = ["음주", "야근", "운동", "야식"];
 
-  //컨디션 체크
+  const [checkbeer, setCheckBeer] = React.useState(false);
+  const [checkovereat, setCheckOvereat] = React.useState(false);
+  const [checkwork, setCheckWork] = React.useState(false);
+  const [checkworkout, setCheckWorkOut] = React.useState(false);
+
+  const beer_icon = checkbeer ? beer : beer_gray;
+  const overeat_icon = checkovereat ? overeat : overeat_gray;
+  const work_icon = checkwork ? work : work_gray;
+  const workout_icon = checkworkout ? workout : workout_gray;
+
+  const TotalTags = [];
+  // const chooseTags = (e) => {
+  //   TotalTags.push(tags);
+  //   console.log(TotalTags);
+  // };
+  console.log(TotalTags);
+  // 컨디션 체크
 
   const [condition, setCondition] = React.useState("");
+  const [checkgood, setCheckGood] = React.useState(false);
+  const [checksoso, setCheckSoso] = React.useState(false);
+  const [checkbad, setCheckBad] = React.useState(false);
 
-  const checkCondition = (event) => {
-    setCondition(event.target.value);
-    console.log(event.target.value);
-  };
+  const good_icon = checkgood ? good : good_gray;
+  const soso_icon = checksoso ? soso : soso_gray;
+  const bad_icon = checkbad ? bad : bad_gray;
 
   //메모
   const [memo, setMemo] = React.useState("");
@@ -121,17 +150,16 @@ const PostWrite = (props) => {
     console.log(event.target.value);
   };
 
-  const uploadPost = () => {
-    dispatch(
-      postActions.addTodoSV(
-        checkDate,
-        startSleep,
-        endSleep,
-        personName,
-        condition,
-        memo
-      )
-    );
+  const addPost = () => {
+    let post = {
+      selectedAt: checkDate,
+      startSleep: startSleep,
+      endSleep: endSleep,
+      tag: tags,
+      condition: condition,
+      memo: memo,
+    };
+    dispatch(postActions.addTodoSV(post));
   };
 
   return (
@@ -181,53 +209,121 @@ const PostWrite = (props) => {
               />
             </TimeGrid>
           </InnerGrid>
-          <InnerGrid>
-            <RadioGroup
-              row
-              aria-label="position"
-              name="position"
-              defaultValue="top"
-            >
-              <FormControlLabel
-                value="1"
-                control={<Radio color="primary" />}
-                label="매우 나쁨"
-                labelPlacement="bottom"
-                onChange={checkCondition}
+          <TotalImgGrid>
+            <ImgGrid>
+              <input
+                width="40"
+                height="40"
+                type="image"
+                src={good_icon}
+                alt="컨디션 good"
+                value={1}
+                onClick={(e) => {
+                  setCondition(e.target.value);
+                  console.log(e.target.value);
+                  checkgood ? setCheckGood(false) : setCheckGood(true);
+                }}
               />
-              <FormControlLabel
-                value="2"
-                control={<Radio color="primary" />}
-                label="나쁨"
-                labelPlacement="bottom"
-                onChange={checkCondition}
+            </ImgGrid>
+            <ImgGrid>
+              <input
+                width="40"
+                height="40"
+                type="image"
+                src={soso_icon}
+                alt="컨디션 soso"
+                value={2}
+                onClick={(e) => {
+                  setCondition(e.target.value);
+                  console.log(e.target.value);
+                  checksoso ? setCheckSoso(false) : setCheckSoso(true);
+                }}
               />
-              <FormControlLabel
-                value="3"
-                control={<Radio color="primary" />}
-                label="보통"
-                labelPlacement="bottom"
-                onChange={checkCondition}
+            </ImgGrid>
+            <ImgGrid>
+              <input
+                width="40"
+                height="40"
+                type="image"
+                src={bad_icon}
+                alt="컨디션 bad"
+                value={3}
+                onClick={(e) => {
+                  setCondition(e.target.value);
+                  console.log(e.target.value);
+                  checkbad ? setCheckBad(false) : setCheckBad(true);
+                }}
               />
-              <FormControlLabel
-                value="4"
-                control={<Radio color="primary" />}
-                label="좋음"
-                labelPlacement="bottom"
-                onChange={checkCondition}
-              />
-              <FormControlLabel
-                value="5"
-                control={<Radio color="primary" />}
-                label="매우 좋음"
-                labelPlacement="bottom"
-                onChange={checkCondition}
-              />
-            </RadioGroup>
-          </InnerGrid>
+            </ImgGrid>
+          </TotalImgGrid>
         </SettingContainer>
-        <TagContainer>
-          <div>
+        <TotalImgGrid>
+          <ImgGrid>
+            <input
+              width="40"
+              height="40"
+              type="image"
+              src={beer_icon}
+              alt="beer"
+              value={mytags[0]}
+              onClick={(e) => {
+                setTags(e.target.value);
+                TotalTags.push(tags);
+
+                console.log(e.target.value);
+                checkbeer ? setCheckBeer(false) : setCheckBeer(true);
+              }}
+            />
+          </ImgGrid>
+          <ImgGrid>
+            <input
+              width="40"
+              height="40"
+              type="image"
+              src={overeat_icon}
+              alt="overeat"
+              value={"야식"}
+              onClick={(e) => {
+                setTags(e.target.value);
+                TotalTags.push(tags);
+                console.log(e.target.value);
+                checkovereat ? setCheckOvereat(false) : setCheckOvereat(true);
+              }}
+            />
+          </ImgGrid>
+          <ImgGrid>
+            <input
+              width="40"
+              height="40"
+              type="image"
+              src={work_icon}
+              alt="work"
+              value={"야근"}
+              onClick={(e) => {
+                setTags(e.target.value);
+                TotalTags.push(tags);
+                console.log(e.target.value);
+                checkwork ? setCheckWork(false) : setCheckWork(true);
+              }}
+            />
+          </ImgGrid>
+          <ImgGrid>
+            <input
+              width="40"
+              height="40"
+              type="image"
+              src={workout_icon}
+              alt="workout"
+              value={"운동"}
+              onClick={(e) => {
+                setTags(e.target.value);
+                TotalTags.append(tags);
+                console.log(e.target.value);
+                checkworkout ? setCheckWorkOut(false) : setCheckWorkOut(true);
+              }}
+            />
+          </ImgGrid>
+          {/* <div>
             <FormControl className={classes.formControl}>
               <InputLabel id="demo-mutiple-chip-label">태그</InputLabel>
               <Select
@@ -261,8 +357,8 @@ const PostWrite = (props) => {
                 ))}
               </Select>
             </FormControl>
-          </div>
-        </TagContainer>
+          </div> */}
+        </TotalImgGrid>
         <InnerGrid>
           <MemoContainer>
             <Input
@@ -275,13 +371,27 @@ const PostWrite = (props) => {
             </Input>
           </MemoContainer>
           <BtnContainer>
-            <Button onClick={uploadPost}>OK</Button>
+            <Button onClick={addPost}>OK</Button>
           </BtnContainer>
         </InnerGrid>
       </Wrap>
     </React.Fragment>
   );
 };
+
+const ImgGrid = styled.div`
+  display: flex;
+  /* background-color: blue; */
+  padding: 10px;
+`;
+
+const TotalImgGrid = styled.div`
+  display: flex;
+  flex-direction: row;
+  margin: 20px;
+  justify-content: space-evenly;
+  background-color: white;
+`;
 
 const InnerGrid = styled.div`
   flex-wrap: wrap;
@@ -312,11 +422,14 @@ const SettingContainer = styled.div`
   height: 15rem;
 `;
 
-const TagContainer = styled.div`
-  width: 100%;
-  height: 5rem;
-  margin: 20px;
-`;
+// const TagContainer = styled.div`
+//   width: 100%;
+//   height: 5rem;
+//   margin: 20px;
+//   flex-direction: row;
+//   justify-content: space-evenly;
+//   background-color: white;
+// `;
 
 const MemoContainer = styled.div`
   width: 100%;

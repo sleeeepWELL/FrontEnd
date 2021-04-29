@@ -14,17 +14,22 @@ import styled from "styled-components";
  *  - map 돌리면서 안에 날짜 넣어주기!
  *  - +) 일정도 같이 넣어주면 good!
  */
+
+
+
 const Calendar = (props) => {
+  const todo_list = useSelector((state) => state.todo.todo_list);
+  
+
+  useEffect(() => {
+    dispatch(todoActions.getAllPostAX())
+  }, [])
+  
+ 
   const dispatch = useDispatch();
   const { _changeMonth, show_completed, _showPopup, _setSeletedTodo } = props;
 
   const today = useSelector((state) => state.todo.today);
-  const todo_list = useSelector((state) => state.todo.todo_list);
-
-  useEffect(() => {
-    dispatch(todoActions.loadTodo(todo_list))
-  }, [])
-
   console.log(todo_list)
 
   const start_week = moment(today).startOf("month").week();
@@ -52,10 +57,10 @@ const Calendar = (props) => {
 
 
           const _list = todo_list.filter((item,idx)=>{
-            if(item.createdAt==_day.format("YYYY-MM-DD"))
-              return (item.createdAt)
+            if(item.selectedAt==_day.format("YYYY-MM-DD"))
+              return (item.selectedAt)
             })
-          
+          console.log(_list)
           // const list_index = Object.keys(todo_list).indexOf(
           //   _day.format("YYYY-MM-DD")
           // );
@@ -73,10 +78,10 @@ const Calendar = (props) => {
             // 일정을 뿌려줘요!
             return (
               <DailyGrid
-                key={`${_l.datetime}_${_l.todo_id}`}
+                key={`${_l.selectedAt}_${_l.id}`}
               >
               {/* 한 칸에 들어갈 것들 */}
-              {_l.createdAt.split("-")[1]===moment(today).format("MM") ?
+              {_l.selectedAt.split("-")[1]===moment(today).format("MM") ?
                 <ToDo {..._l}></ToDo>:""}
               </DailyGrid>
             );
@@ -86,12 +91,13 @@ const Calendar = (props) => {
             <DayGrid
               key={`${moment(today).format("MM")}_week_${week_index}_day_${day_index}`}
               bg={is_today && (moment(today).format("MM")=== _day.format("MM"))? "grey" : "#ffffff"}
-              onClick={() => {
-                console.log(props);
-                props._showPopup(true);
-                
-                // props._setSeletedTodo(_l);
+              onClick={()=>{
+                dispatch(todoActions.getOnePostAX(_day.format("YYYY-MM-DD")));
               }}>
+               
+                
+              
+          
               {_day.format("MM") === moment(today).format("MM") && (
                <DayText font_c={is_today ? "white" : "black"}>{_day.format("DD")}</DayText>
               )}
@@ -99,6 +105,7 @@ const Calendar = (props) => {
                 // 일정도 보여줍시다! :) null이 아닐때만 보여줘요!
                 _list && list
               }
+
             </DayGrid>
           );
         })}
@@ -160,6 +167,7 @@ const Calendar = (props) => {
         </WEEK>
       </WeekGrid>
       {week_arr}
+      
     </Grid>
   );
 };
@@ -209,7 +217,6 @@ const DayGrid = styled.div`
   align-items: flex-start;
   justify-content: flex-start;
   ${(props) => (props.bg ? `background-color: ${props.bg};` : "")}
-  border: 2px solid black;
 `;
 
 const DayText  =styled.div`

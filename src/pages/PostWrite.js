@@ -7,6 +7,7 @@ import { isMoment } from "moment";
 
 import { actionCreators as postActions } from "../redux/modules/todo";
 import { useDispatch, useSelector } from "react-redux";
+
 //태그 선택
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import Input from "@material-ui/core/Input";
@@ -17,9 +18,13 @@ import Select from "@material-ui/core/Select";
 import Chip from "@material-ui/core/Chip";
 
 //컨디션 체크
-import Radio from "@material-ui/core/Radio";
-import RadioGroup from "@material-ui/core/RadioGroup";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
+import bad from "../image/bad-condition.jpg";
+import good from "../image/good-condition.jpg";
+import soso from "../image/soso-condition.jpg";
+
+import bad_gray from "../image/bad-gray.jpg";
+import good_gray from "../image/good-gray.jpg";
+import soso_gray from "../image/soso-gray.jpg";
 
 const PostWrite = (props) => {
   const dispatch = useDispatch();
@@ -104,14 +109,16 @@ const PostWrite = (props) => {
     console.log(event.target.value);
   };
 
-  //컨디션 체크
+  // 컨디션 체크
 
   const [condition, setCondition] = React.useState("");
+  const [checkgood, setCheckGood] = React.useState(false);
+  const [checksoso, setCheckSoso] = React.useState(false);
+  const [checkbad, setCheckBad] = React.useState(false);
 
-  const checkCondition = (event) => {
-    setCondition(event.target.value);
-    console.log(event.target.value);
-  };
+  const good_icon = checkgood ? good : good_gray;
+  const soso_icon = checksoso ? soso : soso_gray;
+  const bad_icon = checkbad ? bad : bad_gray;
 
   //메모
   const [memo, setMemo] = React.useState("");
@@ -121,17 +128,16 @@ const PostWrite = (props) => {
     console.log(event.target.value);
   };
 
-  const uploadPost = () => {
-    dispatch(
-      postActions.addTodoSV(
-        checkDate,
-        startSleep,
-        endSleep,
-        personName,
-        condition,
-        memo
-      )
-    );
+  const addPost = () => {
+    let post = {
+      selectedAt: checkDate,
+      startSleep: startSleep,
+      endSleep: endSleep,
+      tag: personName,
+      condition: condition,
+      memo: memo,
+    };
+    dispatch(postActions.addTodoSV(post));
   };
 
   return (
@@ -181,50 +187,53 @@ const PostWrite = (props) => {
               />
             </TimeGrid>
           </InnerGrid>
-          <InnerGrid>
-            <RadioGroup
-              row
-              aria-label="position"
-              name="position"
-              defaultValue="top"
-            >
-              <FormControlLabel
-                value="1"
-                control={<Radio color="primary" />}
-                label="매우 나쁨"
-                labelPlacement="bottom"
-                onChange={checkCondition}
+          <TotalImgGrid>
+            <ImgGrid>
+              <input
+                width="40"
+                height="40"
+                type="image"
+                src={good_icon}
+                alt="컨디션 good"
+                value={1}
+                onClick={(e) => {
+                  setCondition(e.target.value);
+                  console.log(e.target.value);
+                  checkgood ? setCheckGood(false) : setCheckGood(true);
+                }}
               />
-              <FormControlLabel
-                value="2"
-                control={<Radio color="primary" />}
-                label="나쁨"
-                labelPlacement="bottom"
-                onChange={checkCondition}
+            </ImgGrid>
+            <ImgGrid>
+              <input
+                width="40"
+                height="40"
+                type="image"
+                src={soso_icon}
+                alt="컨디션 soso"
+                value={2}
+                onClick={(e) => {
+                  setCondition(e.target.value);
+                  console.log(e.target.value);
+                  checksoso ? setCheckSoso(false) : setCheckSoso(true);
+                }}
               />
-              <FormControlLabel
-                value="3"
-                control={<Radio color="primary" />}
-                label="보통"
-                labelPlacement="bottom"
-                onChange={checkCondition}
+            </ImgGrid>
+            <ImgGrid>
+              <input
+                width="40"
+                height="40"
+                type="image"
+                src={bad_icon}
+                alt="컨디션 bad"
+                value={3}
+                onClick={(e) => {
+                  setCondition(e.target.value);
+                  console.log(e.target.value);
+                  checkbad ? setCheckBad(false) : setCheckBad(true);
+                }}
               />
-              <FormControlLabel
-                value="4"
-                control={<Radio color="primary" />}
-                label="좋음"
-                labelPlacement="bottom"
-                onChange={checkCondition}
-              />
-              <FormControlLabel
-                value="5"
-                control={<Radio color="primary" />}
-                label="매우 좋음"
-                labelPlacement="bottom"
-                onChange={checkCondition}
-              />
-            </RadioGroup>
-          </InnerGrid>
+            </ImgGrid>
+          </TotalImgGrid>
         </SettingContainer>
         <TagContainer>
           <div>
@@ -275,13 +284,27 @@ const PostWrite = (props) => {
             </Input>
           </MemoContainer>
           <BtnContainer>
-            <Button onClick={uploadPost}>OK</Button>
+            <Button onClick={addPost}>OK</Button>
           </BtnContainer>
         </InnerGrid>
       </Wrap>
     </React.Fragment>
   );
 };
+
+const ImgGrid = styled.div`
+  display: flex;
+  /* background-color: blue; */
+  padding: 10px;
+`;
+
+const TotalImgGrid = styled.div`
+  display: flex;
+  flex-direction: row;
+  margin: 20px;
+  justify-content: space-evenly;
+  background-color: white;
+`;
 
 const InnerGrid = styled.div`
   flex-wrap: wrap;

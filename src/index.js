@@ -3,9 +3,12 @@ import ReactDOM from "react-dom";
 import store from "./redux/configureStore";
 import "./index.css";
 import App from "./shared/App";
+import axios from "axios";
 
 import reportWebVitals from "./reportWebVitals";
 import { Provider } from "react-redux";
+
+axios.defaults.withCredentials = true;
 
 ReactDOM.render(
   <Provider store={store}>

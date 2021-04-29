@@ -4,6 +4,7 @@ import styled from "styled-components";
 // import {actionCreators as userActions } from '../redux/modules/user';
 import { history } from "../redux/configureStore";
 import kakaologo from "../images/kakao.png";
+import { setCookie } from "../shared/Cookie";
 
 //로그인
 const Login = (props) => {

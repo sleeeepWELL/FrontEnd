@@ -33,18 +33,14 @@ function App() {
         <Route path="/signup" exact component={Signup} />
         <Wrap>
           <ContentWrap>
-            <div style={{ display: "flex" }}>
-              <Route path="/" exact component={Post} />
-            </div>
-            {/* <Navigator /> */}
-
+            <Navigator />
             <Route path="/write" exact component={PostWrite} />
-            {/* <Route exact component={NotFound}/> */}
             <Route path="/calendar" exact component={MainCalendar} />
             <Route path="/kyucalendar" exact component={KyuCalendar} />
             <Route path="/calendarwrite" exact component={CalendarWrite} />
             <Route path="/jieuncalendar" exact component={JieunCalendar} />
             <Route path="/prac" exact component={PracCalendar} />
+            {/* <Route exact component={NotFound}/> */}
           </ContentWrap>
         </Wrap>
       </ConnectedRouter>

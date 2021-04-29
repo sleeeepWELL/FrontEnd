@@ -2,48 +2,111 @@ import React from "react";
 import styled from "styled-components";
 
 const Navigator = () => {
+  const [currentClick, setCurrentClick] = React.useState(null);
+  const [prevClick, setPrevClick] = React.useState(null);
+
+  const GetClick = (e) => {
+    setCurrentClick(e.target.id);
+    console.log(e.target.id);
+  };
+
+  React.useEffect(
+    (e) => {
+      if (currentClick !== null) {
+        let current = document.getElementById(currentClick);
+        // console.log(current);
+        current.style.color = "black";
+        current.style.borderBottom = "2px solid";
+        current.style.borderBottomColor = "#1c28f4";
+      }
+
+      if (prevClick !== null) {
+        let prev = document.getElementById(prevClick);
+        prev.style.color = "#bebcbc";
+        prev.style.borderBottom = "none";
+      }
+      setPrevClick(currentClick);
+    },
+    [currentClick]
+  );
+
   return (
     <React.Fragment>
       <Wrap>
         <Logo>sleepwell</Logo>
-        <div style={{ height: "4rem" }}></div>
-        <Button>내 컨디션</Button>
-        <Button>분석</Button>
-        <Button>로그아웃</Button>
+        <CategoryContainer>
+          <div></div>
+          <CategoryBox id="case1" onClick={GetClick}>
+            홈페이지
+          </CategoryBox>
+          <CategoryBox id="case2" onClick={GetClick}>
+            내 컨디션
+          </CategoryBox>
+          <CategoryBox id="case3" onClick={GetClick}>
+            분석
+          </CategoryBox>
+          <div></div>
+        </CategoryContainer>
+        <LogoutBox>로그아웃</LogoutBox>
       </Wrap>
     </React.Fragment>
   );
 };
 
 const Wrap = styled.div`
-  background-color: #c6c4c4;
-  width: 13rem;
-  height: 55rem;
-  justify-content: center;
+  display: flex;
+  background-color: white;
+  width: 100%;
+  height: 4rem;
+  /* justify-content: center; */
+  align-items: center;
+  border-bottom: 0.8px solid #bebcbc;
+  position: sticky;
+  top: 0%;
 `;
 
-const Button = styled.button`
+const CategoryBox = styled.div`
   display: flex;
-  border: none;
-  background-color: #6c6a6a;
-  width: 7rem;
-  margin: auto;
-  margin-top: 1rem;
-  padding: 10px;
-  justify-content: center;
+  height: 4rem;
+  align-items: center;
+  color: #bebcbc;
+  letter-spacing: -1px;
   cursor: pointer;
-  color: white;
+  :hover {
+    color: black;
+    border-bottom: 2px solid #bebcbc;
+    transition: all 0.1s ease-out;
+  }
 `;
 
 const Logo = styled.div`
+  width: 15%;
   display: flex;
   font-size: 1.5rem;
   color: black;
-  margin: auto;
-  padding-top: 1rem;
   font-weight: bold;
   cursor: pointer;
   justify-content: center;
+`;
+
+const LogoutBox = styled.div`
+  position: absolute;
+  width: 15%;
+  right: 0%;
+  display: flex;
+  font-size: 1rem;
+  justify-content: center;
+  cursor: pointer;
+  font-weight: bold;
+`;
+
+const CategoryContainer = styled.div`
+  display: flex;
+  width: 70%;
+  justify-content: space-around;
+  align-items: center;
+  position: relative;
+  font-weight: 600;
 `;
 
 export default Navigator;

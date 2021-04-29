@@ -10,7 +10,7 @@ const setCookie = (name, value, exp = 1) => {
   date.setTime(date.getTime() + exp * 1000 * 60 * 60 * 12);
 
   // date를 그냥 가져오면 object로 나오기때문에 toUTCString으로 문자열 변환
-  document.cookie = `${name}=${value};expires=${date.toUTCString()};path=/; HttpOnly`;
+  document.cookie = `${name}=${value};expires=${date.toUTCString()};path=/`;
 };
 
 // 쿠키삭제

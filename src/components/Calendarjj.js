@@ -1,4 +1,4 @@
-import React,{useEffect} from "react";
+import React, { useEffect } from "react";
 import { Grid, Button, Text } from "../elements/Styles";
 import ToDo from "../elements/ToDo";
 import moment from "moment";
@@ -15,22 +15,18 @@ import styled from "styled-components";
  *  - +) 일정도 같이 넣어주면 good!
  */
 
-
-
 const Calendar = (props) => {
   const todo_list = useSelector((state) => state.todo.todo_list);
-  
 
   useEffect(() => {
-    dispatch(todoActions.getAllPostAX())
-  }, [])
-  
- 
+    dispatch(todoActions.getAllPostAX());
+  }, []);
+
   const dispatch = useDispatch();
   const { _changeMonth, show_completed, _showPopup, _setSeletedTodo } = props;
 
   const today = useSelector((state) => state.todo.today);
-  console.log(todo_list)
+  console.log(todo_list);
 
   const start_week = moment(today).startOf("month").week();
   const end_week = moment(today).endOf("month").week();
@@ -55,12 +51,11 @@ const Calendar = (props) => {
           const is_today =
             moment().format("YYYY-MM-DD") === _day.format("YYYY-MM-DD");
 
-
-          const _list = todo_list.filter((item,idx)=>{
-            if(item.selectedAt==_day.format("YYYY-MM-DD"))
-              return (item.selectedAt)
-            })
-          console.log(_list)
+          const _list = todo_list.filter((item, idx) => {
+            if (item.selectedAt == _day.format("YYYY-MM-DD"))
+              return item.selectedAt;
+          });
+          console.log(_list);
           // const list_index = Object.keys(todo_list).indexOf(
           //   _day.format("YYYY-MM-DD")
           // );
@@ -77,35 +72,40 @@ const Calendar = (props) => {
             console.log(_l);
             // 일정을 뿌려줘요!
             return (
-              <DailyGrid
-                key={`${_l.selectedAt}_${_l.id}`}
-              >
-              {/* 한 칸에 들어갈 것들 */}
-              {_l.selectedAt.split("-")[1]===moment(today).format("MM") ?
-                <ToDo {..._l}></ToDo>:""}
+              <DailyGrid key={`${_l.selectedAt}_${_l.id}`}>
+                {/* 한 칸에 들어갈 것들 */}
+                {_l.selectedAt.split("-")[1] === moment(today).format("MM") ? (
+                  <ToDo {..._l}></ToDo>
+                ) : (
+                  ""
+                )}
               </DailyGrid>
             );
           });
           return (
             // 달력 한 칸(일단위) 클릭을 하면 카드받아오는
             <DayGrid
-              key={`${moment(today).format("MM")}_week_${week_index}_day_${day_index}`}
-              bg={is_today && (moment(today).format("MM")=== _day.format("MM"))? "grey" : "#ffffff"}
-              onClick={()=>{
+              key={`${moment(today).format(
+                "MM"
+              )}_week_${week_index}_day_${day_index}`}
+              bg={
+                is_today && moment(today).format("MM") === _day.format("MM")
+                  ? "grey"
+                  : "#ffffff"
+              }
+              onClick={() => {
                 dispatch(todoActions.getOnePostAX(_day.format("YYYY-MM-DD")));
-              }}>
-               
-                
-              
-          
+              }}
+            >
               {_day.format("MM") === moment(today).format("MM") && (
-               <DayText font_c={is_today ? "white" : "black"}>{_day.format("DD")}</DayText>
+                <DayText font_c={is_today ? "white" : "black"}>
+                  {_day.format("DD")}
+                </DayText>
               )}
               {
                 // 일정도 보여줍시다! :) null이 아닐때만 보여줘요!
                 _list && list
               }
-
             </DayGrid>
           );
         })}
@@ -167,7 +167,6 @@ const Calendar = (props) => {
         </WEEK>
       </WeekGrid>
       {week_arr}
-      
     </Grid>
   );
 };
@@ -219,12 +218,12 @@ const DayGrid = styled.div`
   ${(props) => (props.bg ? `background-color: ${props.bg};` : "")}
 `;
 
-const DayText  =styled.div`
-font-size: 13px;
-font-weight: bold;
-margin: 3px 0px 0px 3px;
-color: ${(props) => props.font_c};
-`
+const DayText = styled.div`
+  font-size: 13px;
+  font-weight: bold;
+  margin: 3px 0px 0px 3px;
+  color: ${(props) => props.font_c};
+`;
 
 const Container = styled.div`
   box-sizing: border-box;

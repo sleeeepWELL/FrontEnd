@@ -10,12 +10,6 @@ import { useDispatch, useSelector } from "react-redux";
 import Input from "@material-ui/core/Input";
 
 //태그 선택
-// import { makeStyles, useTheme } from "@material-ui/core/styles";
-// import InputLabel from "@material-ui/core/InputLabel";
-// import MenuItem from "@material-ui/core/MenuItem";
-// import FormControl from "@material-ui/core/FormControl";
-// import Select from "@material-ui/core/Select";
-// import Chip from "@material-ui/core/Chip";
 import beer from "../image/beer.jpg";
 import overeat from "../image/overeat.jpg";
 import work from "../image/work.jpg";
@@ -111,9 +105,10 @@ const PostWrite = (props) => {
   // const classes = useStyles();
   // const theme = useTheme();
 
-  const [tags, setTags] = React.useState([""]);
-
-  const mytags = ["음주", "야근", "운동", "야식"];
+  const [tags1, setTags1] = React.useState("");
+  const [tags2, setTags2] = React.useState("");
+  const [tags3, setTags3] = React.useState("");
+  const [tags4, setTags4] = React.useState("");
 
   const [checkbeer, setCheckBeer] = React.useState(false);
   const [checkovereat, setCheckOvereat] = React.useState(false);
@@ -126,10 +121,23 @@ const PostWrite = (props) => {
   const workout_icon = checkworkout ? workout : workout_gray;
 
   const TotalTags = [];
+
   // const chooseTags = (e) => {
   //   TotalTags.push(tags);
-  //   console.log(TotalTags);
   // };
+  // console.log(TotalTags);
+  if (tags1) {
+    TotalTags.push(tags1);
+  }
+  if (tags2) {
+    TotalTags.push(tags2);
+  }
+  if (tags3) {
+    TotalTags.push(tags3);
+  }
+  if (tags4) {
+    TotalTags.push(tags4);
+  }
   console.log(TotalTags);
   // 컨디션 체크
 
@@ -155,11 +163,11 @@ const PostWrite = (props) => {
       selectedAt: checkDate,
       startSleep: startSleep,
       endSleep: endSleep,
-      tag: tags,
+      tag: TotalTags,
       condition: condition,
       memo: memo,
     };
-    dispatch(postActions.addTodoSV(post));
+    dispatch(postActions.addPostAX(post));
   };
 
   return (
@@ -265,10 +273,16 @@ const PostWrite = (props) => {
               type="image"
               src={beer_icon}
               alt="beer"
-              value={mytags[0]}
+              value={"음주"}
               onClick={(e) => {
-                setTags(e.target.value);
-                TotalTags.push(tags);
+                setTags1(e.target.value);
+
+                if (!checkbeer) {
+                  setTags1(e.target.value);
+                }
+                if (checkbeer) {
+                  setTags1(null);
+                }
 
                 console.log(e.target.value);
                 checkbeer ? setCheckBeer(false) : setCheckBeer(true);
@@ -284,8 +298,15 @@ const PostWrite = (props) => {
               alt="overeat"
               value={"야식"}
               onClick={(e) => {
-                setTags(e.target.value);
-                TotalTags.push(tags);
+                setTags2(e.target.value);
+
+                if (!checkovereat) {
+                  setTags2(e.target.value);
+                }
+                if (checkovereat) {
+                  setTags2(null);
+                }
+
                 console.log(e.target.value);
                 checkovereat ? setCheckOvereat(false) : setCheckOvereat(true);
               }}
@@ -300,8 +321,15 @@ const PostWrite = (props) => {
               alt="work"
               value={"야근"}
               onClick={(e) => {
-                setTags(e.target.value);
-                TotalTags.push(tags);
+                setTags3(e.target.value);
+
+                if (!checkwork) {
+                  setTags3(e.target.value);
+                }
+                if (checkwork) {
+                  setTags3(null);
+                }
+
                 console.log(e.target.value);
                 checkwork ? setCheckWork(false) : setCheckWork(true);
               }}
@@ -316,8 +344,15 @@ const PostWrite = (props) => {
               alt="workout"
               value={"운동"}
               onClick={(e) => {
-                setTags(e.target.value);
-                TotalTags.append(tags);
+                setTags4(e.target.value);
+
+                if (!checkworkout) {
+                  setTags4(e.target.value);
+                }
+                if (checkworkout) {
+                  setTags4(null);
+                }
+
                 console.log(e.target.value);
                 checkworkout ? setCheckWorkOut(false) : setCheckWorkOut(true);
               }}

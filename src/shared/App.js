@@ -31,9 +31,9 @@ function App() {
       <ConnectedRouter history={history}>
         <Route path="/login" exact component={Login} />
         <Route path="/signup" exact component={Signup} />
+        <Navigator />
         <Wrap>
           <ContentWrap>
-            <Navigator />
             <Route path="/write" exact component={PostWrite} />
             <Route path="/calendar" exact component={MainCalendar} />
             <Route path="/kyucalendar" exact component={KyuCalendar} />

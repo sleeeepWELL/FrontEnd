@@ -8,17 +8,60 @@ import overeat from "../image/overeat.jpg";
 import work from "../image/work.jpg";
 import workout from "../image/workout.jpg";
 
+import bad from "../image/bad-condition.jpg";
+import good from "../image/good-condition.jpg";
+import soso from "../image/soso-condition.jpg";
 
+//변수
+const mapKeywordToImg = {
+  음주: beer,
+  야식: overeat,
+  야근: work,
+  운동: workout,
+};
+
+const conditionToImg = {
+  1: good,
+  2: soso,
+  3: bad,
+};
 
 const ToDo = (props) => {
-  console.log(props)
+  console.log(props.condition);
+  console.log(props.tag);
+
+  const myCon = String(props.condition);
+  console.log(myCon);
+  let Array = [];
+  const ConArray = Array.concat(myCon);
+  console.log(ConArray);
+
+  const result = ConArray.filter((item) => item.indexOf(conditionToImg));
+  console.log(result);
+
   return (
     <React.Fragment>
       <Container>
         <TopInfo>
-          <div style={{ padding: "5px" }}>{props.condition}</div>
-          <div style={{ padding: "5px" }}>{props.totalSleepHour}H{props.totalSleepMinute}M</div>
-          <div>{props.tag}</div>
+          <div style={{ padding: "5px" }}>
+            {myCon === "1" && <img width="20px" height="20px" src={good}></img>}
+            {myCon === "2" && <img width="20px" height="20px" src={soso}></img>}
+            {myCon === "3" && <img width="20px" height="20px" src={bad}></img>}
+          </div>
+          <div style={{ padding: "5px" }}>
+            {props.totalSleepHour}H{props.totalSleepMinute}M
+          </div>
+          <div>
+            {props.tag.map((currentTag) => {
+              return (
+                <img
+                  width="20px"
+                  height="20px"
+                  src={mapKeywordToImg[currentTag]}
+                ></img>
+              );
+            })}
+          </div>
         </TopInfo>
         <BottomInfo></BottomInfo>
       </Container>
@@ -26,9 +69,7 @@ const ToDo = (props) => {
   );
 };
 
-ToDo.defaultProps = {
-  
-};
+ToDo.defaultProps = {};
 
 const Container = styled.div`
   display: flex;
@@ -66,12 +107,6 @@ const BottomInfo = styled.div`
 
   /* font-size: 2px; */
   background-color: white;
-`;
-
-const TagImg = styled.div`
-  display: flex;
-  width: 20px;
-  height: 20px;
 `;
 
 export default ToDo;

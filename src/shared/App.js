@@ -29,9 +29,10 @@ function App() {
   return (
     <React.Fragment>
       <ConnectedRouter history={history}>
+        <Navigator />
         <Route path="/login" exact component={Login} />
         <Route path="/signup" exact component={Signup} />
-        <Navigator />
+
         <Wrap>
           <ContentWrap>
             <Route path="/write" exact component={PostWrite} />

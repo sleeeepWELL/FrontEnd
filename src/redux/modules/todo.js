@@ -24,9 +24,10 @@ const initialState = {
   day_list: [
     {
       id: 5,
-      startSleep: "00:00:00",
-      endSleep: "09:00:00",
-      totalSleep: 540,
+      startSleep: "00:00",
+      endSleep: "09:00",
+      totalSleepHour: 540,
+      totalSleepMinute: 540,
       tag: ["운동", "음주"],
       condition: 1,
       memo: "오늘은 즐거웠다",

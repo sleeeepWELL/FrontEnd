@@ -46,38 +46,9 @@ const MainCalendar = (props) => {
         _showPopup={setIsOpen}
         _setSeletedTodo={setSeletedTodo}
       />
-      {is_empty && <DetailEmpty _showEmpty={setEmpty}/>}
-      {is_modify && !is_empty ?<DetailWrite date={day_list} _showModify={setModify}/>:<DetailPost  _showModify={setModify}/>}
-      {is_open && (
-        <Popup
-          type="todo_detail"
-          selected_todo={selected_todo}
-          _showPopup={setIsOpen}
-        />
-      )}
-      <Button
-        float
-        right="10px"
-        bottom="10px"
-        onClick={() => {
-          // 버튼을 눌렀을 때 페이지 이동이 잘되나 한 번 봅시다!
-          props.history.push("/calendarwrite");
-        }}
-      >
-        추가하기
-      </Button>
-      {/* <Button
-        float
-        right="20px"
-        bottom="60px"
-        onClick={() => {
-          //   !를 변수 앞에 붙여주면 무슨 뜻일까요? :) 찾아보기!
-          setShowCompleted(!show_completed);
-        }}
-      >
-        {show_completed ? "전체 일정 보기" : "완료된 일정만 보기"}
-      </Button> */}
+      {is_modify ? <DetailWrite date={day_list} _showModify={setModify}/>:<DetailPost  _showModify={setModify}/>}
       </AllContainer>
+      
     </React.Fragment>
   );
 };

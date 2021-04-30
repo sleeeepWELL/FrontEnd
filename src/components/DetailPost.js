@@ -8,16 +8,16 @@ const DetailPost = (props) => {
 
   const dispatch =useDispatch();
   const day_list = useSelector((state) => state.todo.day_list); 
+  
 
-console.log(day_list.selectedAt)
-
-  if(day_list.selectedAt===undefined){
+  if(day_list.selectedAt==undefined){
+    let _day = day_list.slice(14,24);
     return(
     <React.Fragment>
     <ModalComponent>
   
     <EmptyHeader>
-    <TimeText> {day_list}</TimeText> 
+    <TimeText> {_day}</TimeText> 
   <RightHeader>
     <AddButton  onClick={()=>{
      props._showModify(true)}}>추가하기</AddButton> 
@@ -27,9 +27,6 @@ console.log(day_list.selectedAt)
     <ConditionContainer style={{height:"30%"}}>
     <TimeText >작성된 내용이 없습니다</TimeText>  
     </ConditionContainer>
-
-  
-     
     
     </ModalComponent>
   </React.Fragment>)

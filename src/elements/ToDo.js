@@ -12,7 +12,7 @@ import bad from "../image/bad-condition.jpg";
 import good from "../image/good-condition.jpg";
 import soso from "../image/soso-condition.jpg";
 
-//변수
+//글씨 이미지로 바꾸기
 const mapKeywordToImg = {
   음주: beer,
   야식: overeat,

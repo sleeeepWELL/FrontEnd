@@ -10,12 +10,6 @@ import { useDispatch, useSelector } from "react-redux";
 import Input from "@material-ui/core/Input";
 
 //태그 선택
-// import { makeStyles, useTheme } from "@material-ui/core/styles";
-// import InputLabel from "@material-ui/core/InputLabel";
-// import MenuItem from "@material-ui/core/MenuItem";
-// import FormControl from "@material-ui/core/FormControl";
-// import Select from "@material-ui/core/Select";
-// import Chip from "@material-ui/core/Chip";
 import beer from "../image/beer.jpg";
 import overeat from "../image/overeat.jpg";
 import work from "../image/work.jpg";
@@ -62,62 +56,11 @@ const PostWrite = (props) => {
   };
 
   //태그 선택
-  // const useStyles = makeStyles((theme) => ({
-  //   formControl: {
-  //     margin: theme.spacing(1),
-  //     minWidth: 120,
-  //     maxWidth: 300,
-  //   },
-  //   chips: {
-  //     display: "flex",
-  //     flexWrap: "wrap",
-  //   },
-  //   chip: {
-  //     margin: 2,
-  //   },
-  // }));
-
-  // const ITEM_HEIGHT = 48;
-  // const ITEM_PADDING_TOP = 8;
-  // const MenuProps = {
-  //   PaperProps: {
-  //     style: {
-  //       maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
-  //       width: 250,
-  //     },
-  //   },
-  // };
-
-  // const names = [
-  //   "운동",
-  //   "😄",
-  //   "음주",
-  //   "커피",
-  //   "야근",
-  //   "건강식",
-  //   "폭식",
-  //   "명상",
-  // ];
-
-  // function getStyles(name, personName, theme) {
-  //   return {
-  //     fontWeight:
-  //       personName.indexOf(name) === -1
-  //         ? theme.typography.fontWeightRegular
-  //         : theme.typography.fontWeightMedium,
-  //   };
-  // }
-
-  // const classes = useStyles();
-  // const theme = useTheme();
 
   const [tags1, setTags1] = React.useState("");
   const [tags2, setTags2] = React.useState("");
   const [tags3, setTags3] = React.useState("");
   const [tags4, setTags4] = React.useState("");
-
-
-  const mytags = ["음주", "야근", "운동", "야식"];
 
   const [checkbeer, setCheckBeer] = React.useState(false);
   const [checkovereat, setCheckOvereat] = React.useState(false);
@@ -130,16 +73,22 @@ const PostWrite = (props) => {
   const workout_icon = checkworkout ? workout : workout_gray;
 
   const TotalTags = [];
- 
-  if(tags1){TotalTags.push(tags1);}
-  if(tags2){TotalTags.push(tags2);}
-  if(tags3){TotalTags.push(tags3);}
-  if(tags4){TotalTags.push(tags4);}
+
+  if (tags1) {
+    TotalTags.push(tags1);
+  }
+  if (tags2) {
+    TotalTags.push(tags2);
+  }
+  if (tags3) {
+    TotalTags.push(tags3);
+  }
+  if (tags4) {
+    TotalTags.push(tags4);
+  }
 
   console.log(TotalTags);
 
- 
-  
   // 컨디션 체크
 
   const [condition, setCondition] = React.useState("");
@@ -274,12 +223,15 @@ const PostWrite = (props) => {
               type="image"
               src={beer_icon}
               alt="beer"
-              value={mytags[0]}
+              value={"음주"}
               onClick={(e) => {
-                
-                if(!checkbeer){setTags1(e.target.value)};
-                if(checkbeer){setTags1(null)};
-                
+                if (!checkbeer) {
+                  setTags1(e.target.value);
+                }
+                if (checkbeer) {
+                  setTags1(null);
+                }
+
                 checkbeer ? setCheckBeer(false) : setCheckBeer(true);
               }}
             />
@@ -295,9 +247,13 @@ const PostWrite = (props) => {
               onClick={(e) => {
                 setTags2(e.target.value);
 
-                if(!checkovereat){setTags2(e.target.value)};
-                if(checkovereat){setTags2(null)};
-                
+                if (!checkovereat) {
+                  setTags2(e.target.value);
+                }
+                if (checkovereat) {
+                  setTags2(null);
+                }
+
                 console.log(e.target.value);
                 checkovereat ? setCheckOvereat(false) : setCheckOvereat(true);
               }}
@@ -313,10 +269,14 @@ const PostWrite = (props) => {
               value={"야근"}
               onClick={(e) => {
                 setTags3(e.target.value);
-                
-                if(!checkwork){setTags3(e.target.value)};
-                if(checkwork){setTags3(null)};
-                
+
+                if (!checkwork) {
+                  setTags3(e.target.value);
+                }
+                if (checkwork) {
+                  setTags3(null);
+                }
+
                 console.log(e.target.value);
                 checkwork ? setCheckWork(false) : setCheckWork(true);
               }}
@@ -333,10 +293,13 @@ const PostWrite = (props) => {
               onClick={(e) => {
                 setTags4(e.target.value);
 
-                if(!checkworkout){setTags4(e.target.value)};
-                if(checkworkout){setTags4(null)};
-                
-               
+                if (!checkworkout) {
+                  setTags4(e.target.value);
+                }
+                if (checkworkout) {
+                  setTags4(null);
+                }
+
                 console.log(e.target.value);
                 checkworkout ? setCheckWorkOut(false) : setCheckWorkOut(true);
               }}

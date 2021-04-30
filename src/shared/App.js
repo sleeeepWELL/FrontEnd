@@ -34,7 +34,6 @@ function App() {
         <Navigator />
         <Wrap>
           <ContentWrap>
-            
             <Route path="/write" exact component={PostWrite} />
             <Route path="/calendar" exact component={MainCalendar} />
             <Route path="/kyucalendar" exact component={KyuCalendar} />

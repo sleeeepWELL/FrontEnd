@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { history } from "../redux/configureStore";
 
 const Navigator = () => {
   const [currentClick, setCurrentClick] = React.useState(null);
@@ -8,13 +9,14 @@ const Navigator = () => {
   const GetClick = (e) => {
     setCurrentClick(e.target.id);
     console.log(e.target.id);
+    history.replace(`${e.target.id}`);
   };
 
   React.useEffect(
     (e) => {
       if (currentClick !== null) {
         let current = document.getElementById(currentClick);
-        // console.log(current);
+        console.log(current);
         current.style.color = "black";
         current.style.borderBottom = "2px solid";
         current.style.borderBottomColor = "#1c28f4";
@@ -36,7 +38,7 @@ const Navigator = () => {
         <Logo>sleepwell</Logo>
         <CategoryContainer>
           <div></div>
-          <CategoryBox id="case1" onClick={GetClick}>
+          <CategoryBox id="calendar" onClick={GetClick}>
             홈페이지
           </CategoryBox>
           <CategoryBox id="case2" onClick={GetClick}>

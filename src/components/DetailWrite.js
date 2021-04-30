@@ -1,7 +1,8 @@
 import React, {useState} from 'react';
 import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
-import { actionCreators as postActions } from "../redux/modules/todo";
+import { actionCreators as todoActions } from "../redux/modules/todo";
+import {history} from "../redux/configureStore";
 
 import TextField from "@material-ui/core/TextField";
 import { isMoment } from "moment";
@@ -91,18 +92,22 @@ const addPost = () => {
     condition: condition,
     memo: memo, 
   }
-  dispatch(postActions.addPostAX(post))
+  dispatch(todoActions.addPostAX(post))
 };
+  // window.alert("기록이 추가되었습니다😀");
+
   return(
     <React.Fragment>
     <ModalComponent>
 
     <TopContainer>
+     <Text>{props.date}</Text> 
     <FixButton  onClick={()=>
-    {addPost()
+    {
+      addPost();
+      props._showModify(false);
+      dispatch(todoActions.getOnePostAX(props.date));
     }}
-   //history.push("/calendar") 해당 날짜로 돌아갈 수 있도록
-      //  props._showModify(false)}
     >완료</FixButton>  
     </TopContainer>
    
@@ -287,6 +292,13 @@ width: 100%;
 height: 15%;
 margin: 5px 0px 5px 0px;
 justify-content: space-between;
+`
+
+const Text = styled.div`
+  font-size:20px;
+  font-weight: bold;
+  color: white;
+  margin: 5px 0px 0px 5px;
 `
 
 const FixButton = styled.button`

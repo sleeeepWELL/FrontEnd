@@ -9,7 +9,32 @@ const DetailPost = (props) => {
   const dispatch =useDispatch();
   const day_list = useSelector((state) => state.todo.day_list); 
 
+console.log(day_list.selectedAt)
 
+  if(day_list.selectedAt===undefined){
+    return(
+    <React.Fragment>
+    <ModalComponent>
+  
+    <EmptyHeader>
+    <TimeText> {day_list}</TimeText> 
+  <RightHeader>
+    <AddButton  onClick={()=>{
+     props._showModify(true)}}>추가하기</AddButton> 
+  </RightHeader>
+    </EmptyHeader>
+
+    <ConditionContainer style={{height:"30%"}}>
+    <TimeText >작성된 내용이 없습니다</TimeText>  
+    </ConditionContainer>
+
+  
+     
+    
+    </ModalComponent>
+  </React.Fragment>)
+  }
+  else{
   return(
     <React.Fragment>
       <ModalComponent>
@@ -18,7 +43,7 @@ const DetailPost = (props) => {
       <TimeText> {day_list.selectedAt}</TimeText> 
     <RightHeader>
       <FixButton  onClick={()=>{
-       props._showModify(true)}}>추가하기 일단</FixButton> 
+       props._showModify(true)}}>수정하기</FixButton> 
         <FixButton  onClick={()=>{
           dispatch(todoActions.removePostAX(day_list.selectedAt))
       }}>삭제하기</FixButton> 
@@ -48,7 +73,8 @@ const DetailPost = (props) => {
       
       </ModalComponent>
     </React.Fragment>
-  )
+    
+  )}
 }
 
 
@@ -61,6 +87,17 @@ width: 100%;
 height: 15%;
 margin: 20px 0px 5px 0px;
 `
+
+const EmptyHeader = styled.div`
+background-color: grey;
+display: flex;
+justify-content: space-between;
+width: 100%;
+height: 30%;
+margin: 20px 0px 5px 0px;
+`
+
+
 
 const RightHeader = styled.div`
 background-color: black;
@@ -80,6 +117,18 @@ const FixButton = styled.button`
     outline: none;
     cursor: pointer;
     `
+
+    const AddButton  = styled.button`
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    border: #FEE500;
+    font-weight: bold;
+    border-radius: 5px;
+    outline: none;
+    cursor: pointer;
+    `
+
 const ConditionImg= styled.img`
     width: 10%;
     height:100%;

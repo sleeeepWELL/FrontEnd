@@ -112,7 +112,6 @@ const addPostAX = (post) => {
   console.log(post.selectedAt);
   return function (dispatch) {
     let data = {
-      id: post.id,
       startSleep: post.startSleep,
       endSleep: post.endSleep,
       tag: post.tag,

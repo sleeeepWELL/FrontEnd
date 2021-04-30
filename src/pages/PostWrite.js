@@ -10,12 +10,6 @@ import { useDispatch, useSelector } from "react-redux";
 import Input from "@material-ui/core/Input";
 
 //태그 선택
-// import { makeStyles, useTheme } from "@material-ui/core/styles";
-// import InputLabel from "@material-ui/core/InputLabel";
-// import MenuItem from "@material-ui/core/MenuItem";
-// import FormControl from "@material-ui/core/FormControl";
-// import Select from "@material-ui/core/Select";
-// import Chip from "@material-ui/core/Chip";
 import beer from "../image/beer.jpg";
 import overeat from "../image/overeat.jpg";
 import work from "../image/work.jpg";
@@ -115,9 +109,12 @@ const PostWrite = (props) => {
   const [tags2, setTags2] = React.useState("");
   const [tags3, setTags3] = React.useState("");
   const [tags4, setTags4] = React.useState("");
+<<<<<<< HEAD
 
 
   const mytags = ["음주", "야근", "운동", "야식"];
+=======
+>>>>>>> jieun
 
   const [checkbeer, setCheckBeer] = React.useState(false);
   const [checkovereat, setCheckOvereat] = React.useState(false);
@@ -130,12 +127,32 @@ const PostWrite = (props) => {
   const workout_icon = checkworkout ? workout : workout_gray;
 
   const TotalTags = [];
+<<<<<<< HEAD
  
   if(tags1){TotalTags.push(tags1);}
   if(tags2){TotalTags.push(tags2);}
   if(tags3){TotalTags.push(tags3);}
   if(tags4){TotalTags.push(tags4);}
 
+=======
+
+  // const chooseTags = (e) => {
+  //   TotalTags.push(tags);
+  // };
+  // console.log(TotalTags);
+  if (tags1) {
+    TotalTags.push(tags1);
+  }
+  if (tags2) {
+    TotalTags.push(tags2);
+  }
+  if (tags3) {
+    TotalTags.push(tags3);
+  }
+  if (tags4) {
+    TotalTags.push(tags4);
+  }
+>>>>>>> jieun
   console.log(TotalTags);
 
  
@@ -164,7 +181,11 @@ const PostWrite = (props) => {
       selectedAt: checkDate,
       startSleep: startSleep,
       endSleep: endSleep,
+<<<<<<< HEAD
       tags: TotalTags,
+=======
+      tag: TotalTags,
+>>>>>>> jieun
       condition: condition,
       memo: memo,
     };
@@ -274,7 +295,7 @@ const PostWrite = (props) => {
               type="image"
               src={beer_icon}
               alt="beer"
-              value={mytags[0]}
+              value={"음주"}
               onClick={(e) => {
                 
                 if(!checkbeer){setTags1(e.target.value)};

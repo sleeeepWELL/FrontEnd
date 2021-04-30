@@ -4,9 +4,32 @@ import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
 import { actionCreators as todoActions } from "../redux/modules/todo";
 
+import beer from "../image/beer.jpg";
+import overeat from "../image/overeat.jpg";
+import work from "../image/work.jpg";
+import workout from "../image/workout.jpg";
+
+import bad from "../image/bad-condition.jpg";
+import good from "../image/good-condition.jpg";
+import soso from "../image/soso-condition.jpg";
+
+//글씨 이미지로 바꾸기
+const mapKeywordToImg = {
+  음주: beer,
+  야식: overeat,
+  야근: work,
+  운동: workout,
+};
+
 const DetailPost = (props) => {
   const dispatch = useDispatch();
   const day_list = useSelector((state) => state.todo.day_list);
+
+  console.log(day_list.tag);
+
+  //컨디션
+  const myCon = String(day_list.condition);
+  console.log(myCon);
 
   if (day_list.selectedAt == undefined) {
     let _day = day_list.slice(14, 24);
@@ -65,11 +88,33 @@ const DetailPost = (props) => {
           </TopContainer>
 
           <TagContainer>
-            <TimeText>태그 {day_list.tag}</TimeText>
+            <TimeText>
+              태그{" "}
+              {day_list.tag.map((currentTag) => {
+                return (
+                  <img
+                    width="20px"
+                    height="20px"
+                    src={mapKeywordToImg[currentTag]}
+                  ></img>
+                );
+              })}
+            </TimeText>
           </TagContainer>
 
           <ConditionContainer>
-            <TimeText>컨디션 {day_list.condition}</TimeText>
+            <TimeText>
+              컨디션{" "}
+              {myCon === "1" && (
+                <img width="20px" height="20px" src={good}></img>
+              )}
+              {myCon === "2" && (
+                <img width="20px" height="20px" src={soso}></img>
+              )}
+              {myCon === "3" && (
+                <img width="20px" height="20px" src={bad}></img>
+              )}
+            </TimeText>
           </ConditionContainer>
 
           <BottomContainer>

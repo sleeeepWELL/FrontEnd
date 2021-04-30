@@ -20,24 +20,12 @@ const mapKeywordToImg = {
   운동: workout,
 };
 
-const conditionToImg = {
-  1: good,
-  2: soso,
-  3: bad,
-};
-
 const ToDo = (props) => {
   console.log(props.condition);
   console.log(props.tag);
 
   const myCon = String(props.condition);
   console.log(myCon);
-  let Array = [];
-  const ConArray = Array.concat(myCon);
-  console.log(ConArray);
-
-  const result = ConArray.filter((item) => item.indexOf(conditionToImg));
-  console.log(result);
 
   return (
     <React.Fragment>

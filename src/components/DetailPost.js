@@ -27,7 +27,7 @@ const DetailPost = (props) => {
 
     
     <TopContainer>
-    <TimeText>수면시간 {day_list.totalSleep}H ({day_list.startSleep} ~ {day_list.endSleep})</TimeText> 
+    <TimeText>수면시간 {`${day_list.totalSleepHour} 시간 ${day_list.totalSleepMinute} 분`} ({day_list.startSleep} ~ {day_list.endSleep})</TimeText> 
     </TopContainer>
     
     
@@ -37,8 +37,7 @@ const DetailPost = (props) => {
       </TagContainer>
 
       <ConditionContainer>
-      <TimeText >컨디션 {day_list.condition}</TimeText>
-      <ConditionImg src={"https://cdn.crowdpic.net/list-thumb/thumb_l_17FE5A46A4D396FA6FB0E0DFA0E79376.png"}/>    
+      <TimeText >컨디션 {day_list.condition}</TimeText>  
       </ConditionContainer>
 
       <BottomContainer>

@@ -32,6 +32,9 @@ const MainCalendar = (props) => {
   const [is_modify, setModify] = React.useState(false);
   const [is_empty, setEmpty] = React.useState(false);
 
+  //day_list를 받아서 props로 넘겨주는 것과 바로 day_list를 가져오는 것은 차이가 있다.
+  //날짜를 고르고 그 값을 전달하는 건 되는데 바로하는 경우 initialState값이 들어간다
+  const day_list = useSelector((state) => state.todo.day_list);
 
  
 
@@ -44,7 +47,7 @@ const MainCalendar = (props) => {
         _setSeletedTodo={setSeletedTodo}
       />
       {is_empty && <DetailEmpty _showEmpty={setEmpty}/>}
-      {is_modify && !is_empty ?<DetailWrite _showModify={setModify}/>:<DetailPost  _showModify={setModify}/>}
+      {is_modify && !is_empty ?<DetailWrite date={day_list} _showModify={setModify}/>:<DetailPost  _showModify={setModify}/>}
       {is_open && (
         <Popup
           type="todo_detail"

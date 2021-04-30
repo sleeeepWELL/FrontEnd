@@ -1,27 +1,26 @@
 import React from "react";
 import styled from "styled-components";
 
+
+
 const ToDo = (props) => {
+  console.log(props)
   return (
     <React.Fragment>
       <Container>
         <TopInfo>
           <div style={{ padding: "5px" }}>{props.condition}</div>
-          <div style={{ padding: "5px" }}>{props.totalsleep}H</div>
+          <div style={{ padding: "5px" }}>{props.totalSleepHour}H{props.totalSleepMinute}M</div>
+          <div>{props.tag}</div>
         </TopInfo>
-        <BottomInfo>{props.tag}</BottomInfo>
+        <BottomInfo></BottomInfo>
       </Container>
     </React.Fragment>
   );
 };
 
 ToDo.defaultProps = {
-  totalsleep: 9,
-  condition: "😄",
-  tag: ["🍻", "💪", "💻"],
-  memo: "힘든 날이었다.",
-  createdAt: "2021-04-02",
-  completed: false,
+  
 };
 
 const Container = styled.div`

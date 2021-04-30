@@ -77,10 +77,10 @@ const getAllPostAX = () => {
             id: _item.id,
             startSleep: _item.startSleep,
             endSleep: _item.endSleep,
-            totalSleep: _item.totalSleep,
+            totalSleepHour: _item.totalSleepHour,
+            totalSleepMinute: _item.totalSleepMinute,
             tag: _item.tag,
             condition: _item.condition,
-            memo: _item.memo,
             selectedAt: _item.selectedAt,
           };
           todo_list.unshift(content);
@@ -115,7 +115,6 @@ const addPostAX = (post) => {
       id: post.id,
       startSleep: post.startSleep,
       endSleep: post.endSleep,
-      totalSleep: post.totalSleep,
       tag: post.tag,
       condition: post.condition,
       memo: post.memo,
@@ -127,7 +126,7 @@ const addPostAX = (post) => {
       .then((response) => {
         console.log(response);
 
-        dispatch(addTodo(post));
+        dispatch(addTodo(data));
       })
       .catch((err) => {
         console.log(err);

@@ -44,7 +44,7 @@ const Navigator = () => {
           <CategoryBox id="case2" onClick={GetClick}>
             내 컨디션
           </CategoryBox>
-          <CategoryBox id="case3" onClick={GetClick}>
+          <CategoryBox id="analysis" onClick={GetClick}>
             분석
           </CategoryBox>
           <div></div>

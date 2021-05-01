@@ -13,6 +13,12 @@
   }
 }
 
+.hover {
+  color: black;
+  border-bottom: 2px solid #bebcbc;
+  transition: all 0.1s ease-out;
+}
+
 .App-header {
   background-color: #282c34;
   min-height: 100vh;

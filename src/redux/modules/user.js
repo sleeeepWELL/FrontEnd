@@ -50,12 +50,28 @@ const loginSV = (email, pwd) => {
         const user = {
           email: email,
         };
-        console.log(moment(ACCESS_TOKEN_EXP).format("hh:mm:ss"));
-        console.log(moment(ACCESS_TOKEN_EXP - 60000).format("hh:mm:ss"));
+        console.log(ACCESS_TOKEN_EXP);
+        console.log(moment(ACCESS_TOKEN_EXP).format("DD, hh:mm:ss"));
+        console.log(moment(ACCESS_TOKEN_EXP - 60000).format("DD, hh:mm:ss"));
         dispatch(setUser(user));
 
-        // 토큰 만료 1분전에 로그인 연장함수 실행
-        setTimeout({ extensionAccess }, ACCESS_TOKEN_EXP - 60000);
+        const data = {
+          accessToken: ACCESS_TOKEN,
+          refreshToken: REFRESH_TOKEN,
+        };
+
+        // 토큰 만료 1분전에 로그인 연장 실행
+        setTimeout(
+          axios
+            .post(`${config.api}/reissue`, data)
+            .then((res) => {
+              console.log(res);
+            })
+            .catch((err) => {
+              console.log("연장실패", err);
+            }),
+          ACCESS_TOKEN_EXP - 60 * 1000
+        );
 
         history.replace("/");
       })

@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { history } from "../redux/configureStore";
 import { actionCreators as userActions } from "../redux/modules/user";
 import { useDispatch } from "react-redux";
+import "../shared/App.css";
 
 const Navigator = () => {
   const dispatch = useDispatch();
@@ -36,6 +37,9 @@ const Navigator = () => {
         let prev = document.getElementById(prevClick);
         prev.style.color = "#bebcbc";
         prev.style.borderBottom = "none";
+        // prev.addEventListener("mouseover", function () {
+        //   prev.setAttribute("class", "hover");
+        // });
       }
       setPrevClick(currentClick);
     },

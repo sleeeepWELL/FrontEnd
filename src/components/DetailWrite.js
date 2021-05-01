@@ -275,6 +275,7 @@ const addPost = () => {
       type="text"
       multiline
       placeholder="메모를 입력하세요"
+  
       onChange={changeMemo}>
     </input>
     </BottomContainer>

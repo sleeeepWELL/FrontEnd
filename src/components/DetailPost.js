@@ -12,6 +12,7 @@ import workout from "../image/workout.jpg";
 import bad from "../image/bad-condition.jpg";
 import good from "../image/good-condition.jpg";
 import soso from "../image/soso-condition.jpg";
+ 
 
 //글씨 이미지로 바꾸기
 const mapKeywordToImg = {
@@ -24,12 +25,22 @@ const mapKeywordToImg = {
 const DetailPost = (props) => {
   const dispatch = useDispatch();
   const day_list = useSelector((state) => state.todo.day_list);
+  const today = useSelector((state) => state.todo.today);
+
+
+  useEffect(() => {
+    dispatch(todoActions.getOnePostAX(today.format("YYYY-MM-DD")));
+    
+  }, []);
 
   console.log(day_list.tag);
 
   //컨디션
   const myCon = String(day_list.condition);
   console.log(myCon);
+
+
+  
 
   if (day_list.selectedAt == undefined) {
     let _day = day_list.slice(14, 24);
@@ -125,6 +136,8 @@ const DetailPost = (props) => {
     );
   }
 };
+
+
 
 const ModalHeader = styled.div`
   background-color: grey;

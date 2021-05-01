@@ -129,8 +129,8 @@ const KyuCalendar = (props) => {
 const CalendarContainer = styled.div`
   display : flex;
   flex-direction : column;
-  width: 100%;
-  height: 90%;
+  width: 900px;
+  height: 900px;
   margin : 5px auto;
   padding-bottom: 10px;
   border: 2px solid black;

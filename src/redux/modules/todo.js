@@ -67,6 +67,7 @@ const initialState = {
 
 const getAllPostAX = () => {
   return function (dispatch) {
+    console.log(axios.defaults);
     axios
       .get(`${config.api}/calendars`)
       .then((response) => {

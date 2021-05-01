@@ -62,7 +62,7 @@ const DetailWrite = (props) => {
   if(tags4){TotalTags.push(tags4);}
 
   //컨디션
-  const [condition, setCondition] = React.useState("");
+  const [conditions, setCondition] = React.useState("");
   const [checkgood, setCheckGood] = React.useState(false);
   const [checksoso, setCheckSoso] = React.useState(false);
   const [checkbad, setCheckBad] = React.useState(false);
@@ -89,13 +89,23 @@ const addPost = () => {
     endSleep: endSleep,
     selectedAt: props.date, //리덕스에서 가져오면 되나
     tag: TotalTags,
-    condition: condition,
+    conditions: conditions,
     memo: memo, 
   }
   dispatch(todoActions.addPostAX(post))
 };
   // window.alert("기록이 추가되었습니다😀");
-
+  // const editPost = () => {
+  //   let post={
+  //     startSleep: startSleep,
+  //     endSleep: endSleep,
+  //     selectedAt: props.date, //리덕스에서 가져오면 되나
+  //     tag: TotalTags,
+  //     condition: condition,
+  //     memo: memo, 
+  //   }
+  //   dispatch(todoActions.addPostAX(post))
+  // };
   return(
     <React.Fragment>
     <ModalComponent>

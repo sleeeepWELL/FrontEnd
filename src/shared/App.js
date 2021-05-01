@@ -17,16 +17,10 @@ import { Route } from "react-router-dom";
 import { ConnectedRouter } from "connected-react-router";
 import { history } from "../redux/configureStore";
 import OAuth2RedirectHandler from "./OAuth2RedirectHandler";
+// import { getCookie } from "./Cookie";
 
 function App() {
-  // const dispatch = useDispatch();
-  // const is_session = sessionStorage.getItem('JWT') ? true : false;
-
-  // React.useEffect(() => {
-  //   if (is_session) {
-  //     dispatch(userActions.loginCheck());
-  //   }
-  // }, []);
+  
 
   return (
     <React.Fragment>

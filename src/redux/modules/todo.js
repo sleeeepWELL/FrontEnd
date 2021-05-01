@@ -132,7 +132,7 @@ const addPostAX = (post) => {
       .post(`${config.api}/cards`, data)
       .then((response) => {
         console.log(response);
-
+       
         dispatch(addTodo(data));
       })
       .catch((err) => {
@@ -144,12 +144,10 @@ const addPostAX = (post) => {
 const editPostAX = (post) => {
   return function (dispatch) {
     let data = {
-      id: post.id,
       startSleep: post.startSleep,
       endSleep: post.endSleep,
-      totalSleep: post.totalSleep,
       tag: post.tag,
-      condition: post.condition,
+      conditions: post.conditions,
       memo: post.memo,
       selectedAt: post.selectedAt,
     };
@@ -162,9 +160,8 @@ const editPostAX = (post) => {
           id: post.id,
           startSleep: post.startSleep,
           endSleep: post.endSleep,
-          totalSleep: post.totalSleep,
           tag: post.tag,
-          condition: post.condition,
+          conditions: post.conditions,
           memo: post.memo,
           selectedAt: post.selectedAt,
         };
@@ -201,10 +198,10 @@ export default handleActions(
       produce(state, (draft) => {
         draft.todo_list.unshift(action.payload.todo_data);
       }),
-    // [UPDATE]: (state, action) => produce(state, (draft) => {
-    //   let idx = draft.todo_list.findIndex((d)=>d.selectedAt === action.payload.date)
-    //   draft.todo_list[idx]={...draft.todo_list[idx],...action.payload.date}
-    // }),
+    [UPDATE]: (state, action) => produce(state, (draft) => {
+      let idx = draft.todo_list.findIndex((d)=>d.selectedAt === action.payload.date)
+      draft.todo_list[idx]={...draft.todo_list[idx],...action.payload.data}
+    }),
     [DELETE]: (state, action) =>
       produce(state, (draft) => {
         draft.todo_list = draft.todo_list.filter((p) => {

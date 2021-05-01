@@ -125,17 +125,7 @@ const PostWrite = (props) => {
       <Wrap>
         <SettingContainer>
           <InnerGrid>
-            <TextField
-              id="date"
-              type="date"
-              label="날짜"
-              // value={checkDate}
-              onChange={changeDate}
-              InputLabelProps={{
-                shrink: true,
-              }}
-              defaultValue={isMoment}
-            />
+          
           </InnerGrid>
           <InnerGrid>
             <TimeGrid>

@@ -48,7 +48,7 @@ const DetailPost = (props) => {
       <React.Fragment>
         <ModalComponent>
           <EmptyHeader>
-            <TimeText> {_day}</TimeText>
+            <Text>{_day}</Text>
             <RightHeader>
               <AddButton
                 onClick={() => {
@@ -71,15 +71,15 @@ const DetailPost = (props) => {
       <React.Fragment>
         <ModalComponent>
           <ModalHeader>
-            <TimeText> {day_list.selectedAt}</TimeText>
+            <Text> {day_list.selectedAt}</Text>
             <RightHeader>
-              <FixButton
+            <AddButton
                 onClick={() => {
                   props._showModify(true);
                 }}
               >
                 수정하기
-              </FixButton>
+              </AddButton>
               <FixButton
                 onClick={() => {
                   dispatch(todoActions.removePostAX(day_list.selectedAt));
@@ -200,6 +200,12 @@ const TopContainer = styled.div`
   height: 10%;
 `;
 
+const Text = styled.div`
+  font-size:20px;
+  font-weight: bold;
+  color: white;
+  margin: 5px 0px 0px 5px;
+`
 const TimeText = styled.div`
   width: 60%;
   font-size: 15px;

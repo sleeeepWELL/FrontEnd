@@ -3,6 +3,7 @@ import { createAction, handleActions } from "redux-actions";
 import { produce } from "immer";
 import axios from "axios";
 import { config } from "../../shared/config";
+import { Repeat } from "@material-ui/icons";
 
 // 액션 타입
 const SET_USER = "SET_USER"; // 로그인
@@ -36,13 +37,23 @@ const loginSV = (email, pwd) => {
         const ACCESS_TOKEN_EXP = res.data.accessTokenExpiresIn; // access토큰 만료시간
         const REFRESH_TOKEN = res.data.refreshToken;
 
+        // 쿠키에 RefreshToken 저장(아직 httpOnly 설정 못함)
+        setCookie("is_login", REFRESH_TOKEN);
+
         // accessToken 디폴트 설정
         axios.defaults.headers.common[
           "Authorization"
         ] = `Bearer ${ACCESS_TOKEN}`;
 
+        const user = {
+          email: email,
+        };
+        dispatch(setUser(user));
+
         // 토큰 만료 1분전에 로그인 연장
         // setTimeout(, ACCESS_TOKEN_EXP - 60000);
+
+        history.replace("/");
       })
       .catch((err) => {
         console.log("로그인 에러", err);

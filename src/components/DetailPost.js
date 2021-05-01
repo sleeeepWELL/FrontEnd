@@ -7,8 +7,14 @@ import { actionCreators as todoActions } from "../redux/modules/todo";
 const DetailPost = (props) => {
 
   const dispatch =useDispatch();
-  const day_list = useSelector((state) => state.todo.day_list); 
+  const today = useSelector((state) => state.todo.today);
+  const day_list = useSelector((state) => state.todo.day_list);
+
   
+  useEffect(() => {
+    dispatch(todoActions.getOnePostAX(today.format("YYYY-MM-DD")));
+    
+  }, []);
 
   if(day_list.selectedAt==undefined){
     let _day = day_list.slice(14,24);

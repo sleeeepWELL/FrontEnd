@@ -16,17 +16,15 @@ import styled from "styled-components";
  */
 
 const Calendar = (props) => {
+  const dispatch = useDispatch();
+  const today = useSelector((state) => state.todo.today);
   const todo_list = useSelector((state) => state.todo.todo_list);
+console.log(today)
 
   useEffect(() => {
     dispatch(todoActions.getAllPostAX());
+  
   }, []);
-
-  const dispatch = useDispatch();
-  const { _changeMonth, show_completed, _showPopup, _setSeletedTodo } = props;
-
-  const today = useSelector((state) => state.todo.today);
-  console.log(todo_list);
 
   const start_week = moment(today).startOf("month").week();
   const end_week = moment(today).endOf("month").week();
@@ -51,6 +49,7 @@ const Calendar = (props) => {
           const is_today =
             moment().format("YYYY-MM-DD") === _day.format("YYYY-MM-DD");
 
+          
           const _list = todo_list.filter((item, idx) => {
             if (item.selectedAt == _day.format("YYYY-MM-DD"))
               return item.selectedAt;
@@ -123,10 +122,7 @@ const Calendar = (props) => {
           onClick={() => {
             // 기준일을 한달 전으로 돌려요!
             dispatch(
-              todoActions.changeToday(
-                moment(today).clone().subtract(1, "month")
-              )
-            );
+              todoActions.changeToday(moment(today).clone().subtract(1, "month")));
           }}
         >
           ◀
@@ -138,8 +134,7 @@ const Calendar = (props) => {
           onClick={() => {
             // 기준일을 한달 후로 돌려요!
             dispatch(
-              todoActions.changeToday(moment(today).clone().add(1, "month"))
-            );
+              todoActions.changeToday(moment(today).clone().add(1, "month")))
           }}
         >
           ▶
@@ -220,7 +215,7 @@ const DayGrid = styled.div`
 
 const DayText = styled.div`
   font-size: 13px;
-  font-weight: bold;
+ 
   margin: 3px 0px 0px 3px;
   color: ${(props) => props.font_c};
 `;

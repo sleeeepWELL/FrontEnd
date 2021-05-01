@@ -206,8 +206,17 @@ export default handleActions(
           }
         });
       }),
-    [CHANGE_TODAY]: (state, draft) => produce(state, (draft) => {}),
+    [CHANGE_TODAY]: (state, action) => 
+    produce(state, (draft) => {
+      return {...draft, today: moment(action.payload.date)}
+    }),
   },
+
+  // case "todo/CHANGE_TODAY": {
+  //   //       // action에서 받아오는 값 : date
+  //   //       return { ...state, today: moment(action.date) };
+  //   //     }
+    
   initialState
 );
 

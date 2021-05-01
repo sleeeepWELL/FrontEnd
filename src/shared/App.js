@@ -36,12 +36,12 @@ function App() {
         <Navigator />
         <Wrap>
           <ContentWrap>
+            <Route path="/kakaoLogin" component={OAuth2RedirectHandler}></Route>
             <Route path="/write" exact component={PostWrite} />
             <Route path="/calendar" exact component={MainCalendar} />
             <Route path="/kyucalendar" exact component={KyuCalendar} />
             <Route path="/calendarwrite" exact component={CalendarWrite} />
             <Route path="/jieuncalendar" exact component={JieunCalendar} />
-            <Route path="/kakaoLogin" component={OAuth2RedirectHandler}></Route>
             <Route path="/prac" exact component={PracCalendar} />
             <Route path="/analysis" exact component={Analysis} />
             {/* <Route exact component={NotFound}/> */}

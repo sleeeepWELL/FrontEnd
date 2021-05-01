@@ -65,7 +65,7 @@ const Login = (props) => {
               <LoginButton onClick={login}>
                 <span>로그인</span>
               </LoginButton>
-              <KaKaoBtn href={KAKAO_AUTH_URL} class="btn_login link_kakao_id">
+              <KaKaoBtn href={KAKAO_AUTH_URL}>
                 <img src={kakaologo}></img>
                 <span>카카오계정 로그인</span>
               </KaKaoBtn>

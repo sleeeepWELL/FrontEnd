@@ -8,6 +8,11 @@ import overeat from "../image/overeat.jpg";
 import work from "../image/work.jpg";
 import workout from "../image/workout.jpg";
 
+import beer_gray from "../image/beer_gray.jpg";
+import overeat_gray from "../image/overeat_gray.jpg";
+import work_gray from "../image/work_gray.jpg";
+import workout_gray from "../image/workout_gray.jpg";
+
 import bad from "../image/bad-condition.jpg";
 import good from "../image/good-condition.jpg";
 import soso from "../image/soso-condition.jpg";
@@ -20,9 +25,22 @@ const mapKeywordToImg = {
   운동: workout,
 };
 
+const mapKeywordToGrayImg = {
+  음주: beer_gray,
+  야식: overeat_gray,
+  야근: work_gray,
+  운동: workout_gray,
+};
+
+const TotalTags = ["음주", "야식", "야근", "운동"];
+
 const ToDo = (props) => {
   console.log(props.conditions);
   console.log(props.tag);
+  const myTags = props.tag;
+  const myTag = String(props.tag);
+
+  console.log(myTag);
 
   const myCon = String(props.conditions);
   console.log(myCon);
@@ -39,7 +57,9 @@ const ToDo = (props) => {
           <div style={{ padding: "5px" }}>
             {props.totalSleepHour}H{props.totalSleepMinute}M
           </div>
-          <div>
+        </TopInfo>
+        <BottomInfo>
+          {/* <div>
             {props.tag.map((currentTag, idx) => {
               return (
                 <img
@@ -50,9 +70,71 @@ const ToDo = (props) => {
                 ></img>
               );
             })}
+          </div> */}
+
+          <div>
+            {myTags.find((p) => p === "음주") ? (
+              <img
+                // key={idx}
+                width="20px"
+                height="20px"
+                src={beer}
+              ></img>
+            ) : (
+              <img
+                // key={idx}
+                width="20px"
+                height="20px"
+                src={beer_gray}
+              ></img>
+            )}
+            {myTags.find((p) => p === "야식") ? (
+              <img
+                // key={idx}
+                width="20px"
+                height="20px"
+                src={overeat}
+              ></img>
+            ) : (
+              <img
+                // key={idx}
+                width="20px"
+                height="20px"
+                src={overeat_gray}
+              ></img>
+            )}
+            {myTags.find((p) => p === "야근") ? (
+              <img
+                // key={idx}
+                width="20px"
+                height="20px"
+                src={work}
+              ></img>
+            ) : (
+              <img
+                // key={idx}
+                width="20px"
+                height="20px"
+                src={work_gray}
+              ></img>
+            )}
+            {myTags.find((p) => p === "운동") ? (
+              <img
+                // key={idx}
+                width="20px"
+                height="20px"
+                src={workout}
+              ></img>
+            ) : (
+              <img
+                // key={idx}
+                width="20px"
+                height="20px"
+                src={workout_gray}
+              ></img>
+            )}
           </div>
-        </TopInfo>
-        <BottomInfo></BottomInfo>
+        </BottomInfo>
       </Container>
     </React.Fragment>
   );

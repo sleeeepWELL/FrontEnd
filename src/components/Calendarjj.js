@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { Grid, Button, Text } from "../elements/Styles";
 import ToDo from "../elements/ToDo";
 import moment from "moment";
-
+import { setCookie, deleteCookie, getCookie } from "../shared/Cookie";
 // 임포트 해오기!
 import { useSelector, useDispatch } from "react-redux";
 import { actionCreators as todoActions } from "../redux/modules/todo";
@@ -19,11 +19,10 @@ const Calendar = (props) => {
   const dispatch = useDispatch();
   const today = useSelector((state) => state.todo.today);
   const todo_list = useSelector((state) => state.todo.todo_list);
-console.log(today)
+  console.log(today);
 
   useEffect(() => {
     dispatch(todoActions.getAllPostAX());
-  
   }, []);
 
   const start_week = moment(today).startOf("month").week();
@@ -49,7 +48,6 @@ console.log(today)
           const is_today =
             moment().format("YYYY-MM-DD") === _day.format("YYYY-MM-DD");
 
-          
           const _list = todo_list.filter((item, idx) => {
             if (item.selectedAt == _day.format("YYYY-MM-DD"))
               return item.selectedAt;
@@ -122,7 +120,10 @@ console.log(today)
           onClick={() => {
             // 기준일을 한달 전으로 돌려요!
             dispatch(
-              todoActions.changeToday(moment(today).clone().subtract(1, "month")));
+              todoActions.changeToday(
+                moment(today).clone().subtract(1, "month")
+              )
+            );
           }}
         >
           ◀
@@ -134,7 +135,8 @@ console.log(today)
           onClick={() => {
             // 기준일을 한달 후로 돌려요!
             dispatch(
-              todoActions.changeToday(moment(today).clone().add(1, "month")))
+              todoActions.changeToday(moment(today).clone().add(1, "month"))
+            );
           }}
         >
           ▶
@@ -215,7 +217,7 @@ const DayGrid = styled.div`
 
 const DayText = styled.div`
   font-size: 13px;
- 
+
   margin: 3px 0px 0px 3px;
   color: ${(props) => props.font_c};
 `;

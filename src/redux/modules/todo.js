@@ -4,6 +4,7 @@ import axios from "axios";
 import { history } from "../configureStore";
 import { config } from "../../shared/config";
 import { createAction, handleActions } from "redux-actions";
+import { setCookie, deleteCookie, getCookie } from "../../shared/Cookie";
 
 const LOAD = "LOAD";
 const LOADDAILY = "LOADDAILY";
@@ -67,6 +68,7 @@ const initialState = {
 
 const getAllPostAX = () => {
   return function (dispatch) {
+    console.log(axios.defaults);
     axios
       .get(`${config.api}/calendars`)
       .then((response) => {
@@ -81,7 +83,7 @@ const getAllPostAX = () => {
             totalSleepHour: _item.totalSleepHour,
             totalSleepMinute: _item.totalSleepMinute,
             tag: _item.tag,
-            condition: _item.condition,
+            conditions: _item.conditions,
             selectedAt: _item.selectedAt,
           };
           todo_list.unshift(content);
@@ -96,9 +98,11 @@ const getAllPostAX = () => {
 
 const getOnePostAX = (selectedAt) => {
   return function (dispatch) {
+    console.log(axios.defaults);
     axios
       .get(`${config.api}/cards/${selectedAt}`)
       .then((response) => {
+        console.log(response);
         console.log(response.data);
 
         dispatch(loadOneTodo(response.data));
@@ -110,21 +114,24 @@ const getOnePostAX = (selectedAt) => {
 };
 
 const addPostAX = (post) => {
+  console.log(axios.defaults);
   console.log(post.selectedAt);
   return function (dispatch) {
+    let _day = post.selectedAt.slice(14, 24);
+
     let data = {
       startSleep: post.startSleep,
       endSleep: post.endSleep,
       tag: post.tag,
-      condition: post.condition,
+      conditions: post.conditions,
       memo: post.memo,
-      selectedAt: post.selectedAt,
+      selectedAt: _day,
     };
-
+    console.log(data);
     axios
       .post(`${config.api}/cards`, data)
       .then((response) => {
-        console.log(response);
+        console.log(response.data);
 
         dispatch(addTodo(data));
       })
@@ -142,7 +149,7 @@ const editPostAX = (post) => {
       endSleep: post.endSleep,
       totalSleep: post.totalSleep,
       tag: post.tag,
-      condition: post.condition,
+      conditions: post.conditions,
       memo: post.memo,
       selectedAt: post.selectedAt,
     };
@@ -157,7 +164,7 @@ const editPostAX = (post) => {
           endSleep: post.endSleep,
           totalSleep: post.totalSleep,
           tag: post.tag,
-          condition: post.condition,
+          conditions: post.conditions,
           memo: post.memo,
           selectedAt: post.selectedAt,
         };
@@ -206,17 +213,17 @@ export default handleActions(
           }
         });
       }),
-    [CHANGE_TODAY]: (state, action) => 
-    produce(state, (draft) => {
-      return {...draft, today: moment(action.payload.date)}
-    }),
+    [CHANGE_TODAY]: (state, action) =>
+      produce(state, (draft) => {
+        return { ...draft, today: moment(action.payload.date) };
+      }),
   },
 
   // case "todo/CHANGE_TODAY": {
   //   //       // action에서 받아오는 값 : date
   //   //       return { ...state, today: moment(action.date) };
   //   //     }
-    
+
   initialState
 );
 

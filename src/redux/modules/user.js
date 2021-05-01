@@ -2,6 +2,7 @@ import { setCookie, deleteCookie, getCookie } from "../../shared/Cookie";
 import { createAction, handleActions } from "redux-actions";
 import { produce } from "immer";
 import axios from "axios";
+import { config } from "../../shared/config";
 
 // 액션 타입
 const SET_USER = "SET_USER"; // 로그인
@@ -19,20 +20,51 @@ const initialState = {
   is_login: false,
 };
 
-const signUpSV = (email, nickname, pwd, pwdCheck) => {
+const loginSV = (email, pwd) => {
   return function (dispatch, getState, { history }) {
     axios({
       method: "POST",
-      url: "API/signup",
+      url: `${config.api}/api/login`,
       data: {
         email: email,
-        username: nickname,
         password: pwd,
-        passCheck: pwdCheck,
       },
     })
       .then((res) => {
         console.log(res);
+        const ACCESS_TOKEN = res.data.accessToken;
+        const ACCESS_TOKEN_EXP = res.data.accessTokenExpiresIn; // access토큰 만료시간
+        const REFRESH_TOKEN = res.data.refreshToken;
+
+        // accessToken 디폴트 설정
+        axios.defaults.headers.common[
+          "Authorization"
+        ] = `Bearer ${ACCESS_TOKEN}`;
+
+        // 토큰 만료 1분전에 로그인 연장
+        // setTimeout(, ACCESS_TOKEN_EXP - 60000);
+      })
+      .catch((err) => {
+        console.log("로그인 에러", err);
+      });
+  };
+};
+
+const signUpSV = (email, nickname, pwd, pwdCheck) => {
+  return function (dispatch, getState, { history }) {
+    axios({
+      method: "POST",
+      url: `${config.api}/signup`,
+      data: {
+        email: email,
+        password: pwd,
+        passwordCheck: pwdCheck,
+        username: nickname,
+      },
+    })
+      .then((res) => {
+        console.log(res);
+        history.replace("/login");
       })
       .catch((err) => {
         console.log("회원가입 에러", err);
@@ -57,6 +89,7 @@ const actionCreators = {
   getUser,
   logOut,
   signUpSV,
+  loginSV,
 };
 
 export { actionCreators };

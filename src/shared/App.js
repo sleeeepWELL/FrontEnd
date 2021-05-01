@@ -15,6 +15,7 @@ import PracCalendar from "../components/PracCalendar";
 import { Route } from "react-router-dom";
 import { ConnectedRouter } from "connected-react-router";
 import { history } from "../redux/configureStore";
+import OAuth2RedirectHandler from "./OAuth2RedirectHandler";
 
 function App() {
   // const dispatch = useDispatch();
@@ -29,10 +30,9 @@ function App() {
   return (
     <React.Fragment>
       <ConnectedRouter history={history}>
-        <Navigator />
         <Route path="/login" exact component={Login} />
         <Route path="/signup" exact component={Signup} />
-
+        <Navigator />
         <Wrap>
           <ContentWrap>
             <Route path="/write" exact component={PostWrite} />
@@ -40,6 +40,7 @@ function App() {
             <Route path="/kyucalendar" exact component={KyuCalendar} />
             <Route path="/calendarwrite" exact component={CalendarWrite} />
             <Route path="/jieuncalendar" exact component={JieunCalendar} />
+            <Route path="/redirect" component={OAuth2RedirectHandler}></Route>
             <Route path="/prac" exact component={PracCalendar} />
             {/* <Route exact component={NotFound}/> */}
           </ContentWrap>

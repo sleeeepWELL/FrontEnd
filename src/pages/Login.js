@@ -5,10 +5,14 @@ import styled from "styled-components";
 import { history } from "../redux/configureStore";
 import kakaologo from "../images/kakao.png";
 import { setCookie } from "../shared/Cookie";
+import { actionCreators as userActions } from "../redux/modules/user";
+import { useDispatch } from "react-redux";
+
+import { KAKAO_AUTH_URL } from "../shared/OAuth";
 
 //로그인
 const Login = (props) => {
-  //   const dispatch = useDispatch();
+  const dispatch = useDispatch();
   const [id, setId] = React.useState(null);
   const [password, setPw] = React.useState(null);
 
@@ -17,7 +21,7 @@ const Login = (props) => {
       window.alert("아이디 혹은 비밀번호를 입력해주세요!");
       return;
     }
-    // dispatch(userActions.loginSV(id,password));
+    dispatch(userActions.loginSV(id, password));
   };
 
   //   onClick={()=>{history.push("/signup")}}
@@ -58,14 +62,10 @@ const Login = (props) => {
                 <div>비밀번호 찾기</div>
               </InfoBox>
 
-              <LoginButton
-                onClick={() => {
-                  login();
-                }}
-              >
+              <LoginButton onClick={login}>
                 <span>로그인</span>
               </LoginButton>
-              <KaKaoBtn href="#" class="btn_login link_kakao_id">
+              <KaKaoBtn href={KAKAO_AUTH_URL} class="btn_login link_kakao_id">
                 <img src={kakaologo}></img>
                 <span>카카오계정 로그인</span>
               </KaKaoBtn>

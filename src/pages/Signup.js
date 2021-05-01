@@ -30,36 +30,37 @@ const Signup = () => {
 
   //표현식 함수사용 및 체크구문
   const signup = () => {
-    if (email === "" || nickname === "" || pwd === "" || pwdCheck === "") {
-      window.alert("모든 항목을 입력해주세요!");
-      return;
-    }
-    if (pwd !== pwdCheck) {
-      window.alert("비밀번호 설정을 다시 확인하세요!");
-      return;
-    }
-    if (!pwCheck(pwd)) {
-      window.alert(
-        "비밀번호는 4자리 이상이며,  영문(대/소문자)과 숫자와 특수문자로 구성해야합니다😅"
-      );
-      return;
-    }
-    if (!nicknameCheck(nickname)) {
-      window.alert("닉네임은 1자리 이상 10자리 미만입니다😅");
-      return;
-    }
-    if (!emailCheck(email)) {
-      window.alert("이메일은 14자리 이상 30자리 이하며,  형식을 지켜주세요😅");
-      return;
-    }
-    if (pwd.search(/\s/) !== -1) {
-      window.alert("비밀번호에 공백이 포함되었습니다😅");
-      return;
-    }
-    if (nickname.search(/\s/) !== -1) {
-      window.alert("닉네임에 공백이 포함되었습니다😅");
-      return;
-    }
+    // if (email === "" || nickname === "" || pwd === "" || pwdCheck === "") {
+    //   window.alert("모든 항목을 입력해주세요!");
+    //   return;
+    // }
+    // if (pwd !== pwdCheck) {
+    //   window.alert("비밀번호 설정을 다시 확인하세요!");
+    //   return;
+    // }
+    // if (!pwCheck(pwd)) {
+    //   window.alert(
+    //     "비밀번호는 4자리 이상이며,  영문(대/소문자)과 숫자와 특수문자로 구성해야합니다😅"
+    //   );
+    //   return;
+    // }
+    // if (!nicknameCheck(nickname)) {
+    //   window.alert("닉네임은 1자리 이상 10자리 미만입니다😅");
+    //   return;
+    // }
+    // if (!emailCheck(email)) {
+    //   window.alert("이메일은 14자리 이상 30자리 이하며,  형식을 지켜주세요😅");
+    //   return;
+    // }
+    // if (pwd.search(/\s/) !== -1) {
+    //   window.alert("비밀번호에 공백이 포함되었습니다😅");
+    //   return;
+    // }
+    // if (nickname.search(/\s/) !== -1) {
+    //   window.alert("닉네임에 공백이 포함되었습니다😅");
+    //   return;
+    // }
+    console.log(email, nickname, pwd, pwdCheck);
     dispatch(userActions.signUpSV(email, nickname, pwd, pwdCheck));
   };
 
@@ -115,7 +116,7 @@ const Signup = () => {
                 <div>비밀번호 찾기</div>
               </InfoBox>
 
-              <SignUpButton onClick={() => {}}>
+              <SignUpButton onClick={signup}>
                 <span>가입완료</span>
               </SignUpButton>
             </SemiContainer>

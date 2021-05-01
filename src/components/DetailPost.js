@@ -36,7 +36,7 @@ const DetailPost = (props) => {
   console.log(day_list.tag);
 
   //컨디션
-  const myCon = String(day_list.condition);
+  const myCon = String(day_list.conditions);
   console.log(myCon);
 
 

@@ -29,7 +29,7 @@ const initialState = {
       totalSleepHour: 540,
       totalSleepMinute: 540,
       tag: ["운동", "음주"],
-      condition: 1,
+      conditions: 1,
       memo: "오늘은 즐거웠다",
       selectedAt: "2021-04-29",
     },
@@ -41,7 +41,7 @@ const initialState = {
       endSleep: "09:00:00",
       totalSleep: 9,
       tag: ["운동", "음주"],
-      condition: 1,
+      conditions: 1,
       selectedAt: "2021-04-25",
     },
     {
@@ -50,7 +50,7 @@ const initialState = {
       endSleep: "09:00:00",
       totalSleep: 9,
       tag: ["운동", "음주"],
-      condition: 1,
+      conditions: 1,
       selectedAt: "2021-04-26",
     },
     {
@@ -59,7 +59,7 @@ const initialState = {
       endSleep: "09:00:00",
       totalSleep: 9,
       tag: ["운동", "음주"],
-      condition: 1,
+      conditions: 1,
       selectedAt: "2021-04-27",
     },
   ],
@@ -71,6 +71,7 @@ const getAllPostAX = () => {
       .get(`${config.api}/calendars`)
       .then((response) => {
         console.log(response);
+        console.log(axios.default)
         let todo_list = [];
 
         response.data.forEach((_item) => {
@@ -81,7 +82,7 @@ const getAllPostAX = () => {
             totalSleepHour: _item.totalSleepHour,
             totalSleepMinute: _item.totalSleepMinute,
             tag: _item.tag,
-            condition: _item.condition,
+            conditions: _item.conditions,
             selectedAt: _item.selectedAt,
           };
           todo_list.unshift(content);
@@ -95,11 +96,13 @@ const getAllPostAX = () => {
 };
 
 const getOnePostAX = (selectedAt) => {
+  console.log(selectedAt);
   return function (dispatch) {
     axios
       .get(`${config.api}/cards/${selectedAt}`)
       .then((response) => {
         console.log(response.data);
+        
 
         dispatch(loadOneTodo(response.data));
       })
@@ -110,17 +113,20 @@ const getOnePostAX = (selectedAt) => {
 };
 
 const addPostAX = (post) => {
-  console.log(post.selectedAt);
+  console.log(axios.defaults)
+  let _day =post.selectedAt.slice(14,24);
+  console.log(_day);
   return function (dispatch) {
+    
     let data = {
       startSleep: post.startSleep,
       endSleep: post.endSleep,
       tag: post.tag,
-      condition: post.condition,
+      conditions: post.conditions,
       memo: post.memo,
-      selectedAt: post.selectedAt,
+      selectedAt: _day,
     };
-
+    console.log(data);
     axios
       .post(`${config.api}/cards`, data)
       .then((response) => {

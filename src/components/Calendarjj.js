@@ -54,7 +54,7 @@ console.log(today)
             if (item.selectedAt == _day.format("YYYY-MM-DD"))
               return item.selectedAt;
           });
-          console.log(_list);
+          // console.log(_list);
           // const list_index = Object.keys(todo_list).indexOf(
           //   _day.format("YYYY-MM-DD")
           // );

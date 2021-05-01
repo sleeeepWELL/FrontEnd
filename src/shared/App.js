@@ -40,7 +40,7 @@ function App() {
             <Route path="/kyucalendar" exact component={KyuCalendar} />
             <Route path="/calendarwrite" exact component={CalendarWrite} />
             <Route path="/jieuncalendar" exact component={JieunCalendar} />
-            <Route path="/redirect" component={OAuth2RedirectHandler}></Route>
+            <Route path="/kakaoLogin" component={OAuth2RedirectHandler}></Route>
             <Route path="/prac" exact component={PracCalendar} />
             {/* <Route exact component={NotFound}/> */}
           </ContentWrap>

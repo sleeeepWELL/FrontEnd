@@ -4,6 +4,8 @@ import { produce } from "immer";
 import axios from "axios";
 import { config } from "../../shared/config";
 import { Repeat } from "@material-ui/icons";
+import { ACCESS_TOKEN } from "../../shared/OAuth";
+import moment from "moment";
 
 // 액션 타입
 const SET_USER = "SET_USER"; // 로그인
@@ -48,10 +50,12 @@ const loginSV = (email, pwd) => {
         const user = {
           email: email,
         };
+        console.log(moment(ACCESS_TOKEN_EXP).format("hh:mm:ss"));
+        console.log(moment(ACCESS_TOKEN_EXP - 60000).format("hh:mm:ss"));
         dispatch(setUser(user));
 
-        // 토큰 만료 1분전에 로그인 연장
-        // setTimeout(, ACCESS_TOKEN_EXP - 60000);
+        // 토큰 만료 1분전에 로그인 연장함수 실행
+        setTimeout({ extensionAccess }, ACCESS_TOKEN_EXP - 60000);
 
         history.replace("/");
       })
@@ -61,6 +65,26 @@ const loginSV = (email, pwd) => {
   };
 };
 
+// 로그인 연장 함수
+const extensionAccess = () => {
+  return function (dispatch, getState, { history }) {
+    const REFRESH_TOKEN = getCookie("is_login");
+    axios({
+      method: "POST",
+      url: `${config.api}/reissue`,
+      data: {
+        accessToken: ACCESS_TOKEN,
+        refreshToken: REFRESH_TOKEN,
+      },
+    })
+      .then(console.log("연장성공!"))
+      .catch((err) => {
+        console.log("연장실패!", err);
+      });
+  };
+};
+
+// 회원가입
 const signUpSV = (email, nickname, pwd, pwdCheck) => {
   return function (dispatch, getState, { history }) {
     axios({
@@ -86,9 +110,18 @@ const signUpSV = (email, nickname, pwd, pwdCheck) => {
 // 리듀서
 export default handleActions(
   {
-    [SET_USER]: (state, action) => produce(state, (draft) => {}),
+    [SET_USER]: (state, action) =>
+      produce(state, (draft) => {
+        draft.user = action.payload.user;
+        draft.is_login = true;
+      }),
 
-    [LOG_OUT]: (state, action) => produce(state, (draft) => {}),
+    [LOG_OUT]: (state, action) =>
+      produce(state, (draft) => {
+        // 쿠키삭제
+        deleteCookie("is_login");
+        draft.is_login = false;
+      }),
 
     [GET_USER]: (state, action) => produce(state, (draft) => {}),
   },

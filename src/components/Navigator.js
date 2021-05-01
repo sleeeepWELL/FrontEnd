@@ -1,8 +1,12 @@
 import React from "react";
 import styled from "styled-components";
 import { history } from "../redux/configureStore";
+import { actionCreators as userActions } from "../redux/modules/user";
+import { useDispatch } from "react-redux";
 
 const Navigator = () => {
+  const dispatch = useDispatch();
+
   const [currentClick, setCurrentClick] = React.useState(null);
   const [prevClick, setPrevClick] = React.useState(null);
 
@@ -10,6 +14,12 @@ const Navigator = () => {
     setCurrentClick(e.target.id);
     console.log(e.target.id);
     history.replace(`${e.target.id}`);
+  };
+
+  const LOGOUT = () => {
+    dispatch(userActions.logOut());
+    history.replace("/login");
+    window.alert("로그아웃!");
   };
 
   React.useEffect(
@@ -49,7 +59,7 @@ const Navigator = () => {
           </CategoryBox>
           <div></div>
         </CategoryContainer>
-        <LogoutBox>로그아웃</LogoutBox>
+        <LogoutBox onClick={LOGOUT}>로그아웃</LogoutBox>
       </Wrap>
     </React.Fragment>
   );

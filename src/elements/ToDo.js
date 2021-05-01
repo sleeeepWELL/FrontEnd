@@ -35,6 +35,7 @@ const mapKeywordToGrayImg = {
 const TotalTags = ["음주", "야식", "야근", "운동"];
 
 const ToDo = (props) => {
+
   console.log(props.conditions);
   console.log(props.tag);
   const myTags = props.tag;
@@ -55,7 +56,7 @@ const ToDo = (props) => {
             {myCon === "3" && <img width="20px" height="20px" src={bad}></img>}
           </div>
           <div style={{ padding: "5px" }}>
-            {props.totalSleepHour}H{props.totalSleepMinute}M
+            {`${props.totalSleepHour}H ${props.totalSleepMinute} M`}
           </div>
         </TopInfo>
         <BottomInfo>

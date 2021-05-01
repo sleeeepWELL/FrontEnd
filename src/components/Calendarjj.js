@@ -127,6 +127,7 @@ const Calendar = (props) => {
           }}
         >
           ◀
+          {parseInt(moment(today).format("M"))-1===0?12:parseInt(moment(today).format("M"))-1}월
         </Button>
         <Text type="title">
           {moment(today).format("YYYY")}년 {moment(today).format("MM")}월
@@ -139,6 +140,7 @@ const Calendar = (props) => {
             );
           }}
         >
+         {parseInt(moment(today).format("M"))+1===13?1:parseInt(moment(today).format("M"))+1}월
           ▶
         </Button>
       </Grid>

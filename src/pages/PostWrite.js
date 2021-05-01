@@ -114,7 +114,7 @@ const PostWrite = (props) => {
       startSleep: startSleep,
       endSleep: endSleep,
       tags: TotalTags,
-      condition: condition,
+      conditions: condition,
       memo: memo,
     };
     dispatch(postActions.addPostAX(post));

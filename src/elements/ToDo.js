@@ -21,10 +21,10 @@ const mapKeywordToImg = {
 };
 
 const ToDo = (props) => {
-  console.log(props.condition);
+  console.log(props.conditions);
   console.log(props.tag);
 
-  const myCon = String(props.condition);
+  const myCon = String(props.conditions);
   console.log(myCon);
 
   return (
@@ -40,9 +40,10 @@ const ToDo = (props) => {
             {props.totalSleepHour}H{props.totalSleepMinute}M
           </div>
           <div>
-            {props.tag.map((currentTag) => {
+            {props.tag.map((currentTag, idx) => {
               return (
                 <img
+                  key={idx}
                   width="20px"
                   height="20px"
                   src={mapKeywordToImg[currentTag]}

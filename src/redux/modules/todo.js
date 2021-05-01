@@ -4,6 +4,7 @@ import axios from "axios";
 import { history } from "../configureStore";
 import { config } from "../../shared/config";
 import { createAction, handleActions } from "redux-actions";
+import { setCookie, deleteCookie, getCookie } from "../../shared/Cookie";
 
 const LOAD = "LOAD";
 const LOADDAILY = "LOADDAILY";
@@ -72,7 +73,7 @@ const getAllPostAX = () => {
       .get(`${config.api}/calendars`)
       .then((response) => {
         console.log(response);
-        console.log(axios.default)
+        console.log(axios.default);
         let todo_list = [];
 
         response.data.forEach((_item) => {
@@ -99,11 +100,12 @@ const getAllPostAX = () => {
 const getOnePostAX = (selectedAt) => {
   console.log(selectedAt);
   return function (dispatch) {
+    console.log(axios.defaults);
     axios
       .get(`${config.api}/cards/${selectedAt}`)
       .then((response) => {
+        console.log(response);
         console.log(response.data);
-        
 
         dispatch(loadOneTodo(response.data));
       })
@@ -114,11 +116,10 @@ const getOnePostAX = (selectedAt) => {
 };
 
 const addPostAX = (post) => {
-  console.log(axios.defaults)
-  let _day =post.selectedAt.slice(14,24);
+  console.log(axios.defaults);
+  let _day = post.selectedAt.slice(14, 24);
   console.log(_day);
   return function (dispatch) {
-    
     let data = {
       startSleep: post.startSleep,
       endSleep: post.endSleep,
@@ -131,7 +132,7 @@ const addPostAX = (post) => {
     axios
       .post(`${config.api}/cards`, data)
       .then((response) => {
-        console.log(response);
+        console.log(response.data);
 
         dispatch(addTodo(data));
       })
@@ -149,7 +150,7 @@ const editPostAX = (post) => {
       endSleep: post.endSleep,
       totalSleep: post.totalSleep,
       tag: post.tag,
-      condition: post.condition,
+      conditions: post.conditions,
       memo: post.memo,
       selectedAt: post.selectedAt,
     };
@@ -164,7 +165,7 @@ const editPostAX = (post) => {
           endSleep: post.endSleep,
           totalSleep: post.totalSleep,
           tag: post.tag,
-          condition: post.condition,
+          conditions: post.conditions,
           memo: post.memo,
           selectedAt: post.selectedAt,
         };
@@ -213,17 +214,17 @@ export default handleActions(
           }
         });
       }),
-    [CHANGE_TODAY]: (state, action) => 
-    produce(state, (draft) => {
-      return {...draft, today: moment(action.payload.date)}
-    }),
+    [CHANGE_TODAY]: (state, action) =>
+      produce(state, (draft) => {
+        return { ...draft, today: moment(action.payload.date) };
+      }),
   },
 
   // case "todo/CHANGE_TODAY": {
   //   //       // action에서 받아오는 값 : date
   //   //       return { ...state, today: moment(action.date) };
   //   //     }
-    
+
   initialState
 );
 

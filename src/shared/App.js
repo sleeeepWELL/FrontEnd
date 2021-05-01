@@ -11,6 +11,7 @@ import CalendarWrite from "../components/CalendarWrite";
 import PostWrite from "../pages/PostWrite";
 import JieunCalendar from "../components/JieunCalendar";
 import PracCalendar from "../components/PracCalendar";
+import Analysis from "../pages/Analysis";
 
 import { Route } from "react-router-dom";
 import { ConnectedRouter } from "connected-react-router";
@@ -41,6 +42,7 @@ function App() {
             <Route path="/calendarwrite" exact component={CalendarWrite} />
             <Route path="/jieuncalendar" exact component={JieunCalendar} />
             <Route path="/prac" exact component={PracCalendar} />
+            <Route path="/analysis" exact component={Analysis} />
             {/* <Route exact component={NotFound}/> */}
           </ContentWrap>
         </Wrap>

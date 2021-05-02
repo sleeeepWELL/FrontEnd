@@ -51,8 +51,10 @@ const loginSV = (email, pwd) => {
           email: email,
         };
         console.log(ACCESS_TOKEN_EXP);
-        console.log(moment(ACCESS_TOKEN_EXP).format("DD, hh:mm:ss"));
-        console.log(moment(ACCESS_TOKEN_EXP - 60000).format("DD, hh:mm:ss"));
+        console.log(moment(ACCESS_TOKEN_EXP).format("MM-DD, hh:mm:ss"));
+
+        const COMPARE_EXP = ACCESS_TOKEN_EXP - 60000 * 29;
+        console.log(ACCESS_TOKEN_EXP - COMPARE_EXP);
         dispatch(setUser(user));
 
         const data = {
@@ -60,18 +62,8 @@ const loginSV = (email, pwd) => {
           refreshToken: REFRESH_TOKEN,
         };
 
-        // 토큰 만료 1분전에 로그인 연장 실행
-        setTimeout(
-          axios
-            .post(`${config.api}/reissue`, data)
-            .then((res) => {
-              console.log(res);
-            })
-            .catch((err) => {
-              console.log("연장실패", err);
-            }),
-          ACCESS_TOKEN_EXP - 60 * 1000
-        );
+        // ACCESS토큰 만료 1분전마다 연장함수 실행
+        setTimeout(extensionAccess(data), ACCESS_TOKEN_EXP - COMPARE_EXP);
 
         history.replace("/");
       })
@@ -82,18 +74,32 @@ const loginSV = (email, pwd) => {
 };
 
 // 로그인 연장 함수
-const extensionAccess = () => {
-  return function (dispatch, getState, { history }) {
-    const REFRESH_TOKEN = getCookie("is_login");
+const extensionAccess = (data) => {
+  return function (dispatch, getState) {
+    console.log("gdgd");
     axios({
       method: "POST",
       url: `${config.api}/reissue`,
-      data: {
-        accessToken: ACCESS_TOKEN,
-        refreshToken: REFRESH_TOKEN,
-      },
+      data: data,
     })
-      .then(console.log("연장성공!"))
+      .then((res) => {
+        const ACCESS_TOKEN_EXP = res.data.accessTokenExpiresIn;
+        const ACCESS_TOKEN = res.data.accessToken;
+        const COMPARE_EXP = ACCESS_TOKEN_EXP - 60000 * 29;
+        const REFRESH_TOKEN = getCookie("is_login");
+
+        // 새롭게 발급받은 ACCESS 토큰 헤더에 담기
+        axios.defaults.headers.common[
+          "Authorization"
+        ] = `Bearer ${ACCESS_TOKEN}`;
+
+        const data = {
+          accessToken: ACCESS_TOKEN,
+          refreshToken: REFRESH_TOKEN,
+        };
+        setTimeout(extensionAccess(data), ACCESS_TOKEN_EXP - COMPARE_EXP);
+        console.log("연장성공!");
+      })
       .catch((err) => {
         console.log("연장실패!", err);
       });

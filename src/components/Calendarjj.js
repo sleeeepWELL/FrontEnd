@@ -19,7 +19,6 @@ const Calendar = (props) => {
   const dispatch = useDispatch();
   const today = useSelector((state) => state.todo.today);
   const todo_list = useSelector((state) => state.todo.todo_list);
-  console.log(today);
 
   useEffect(() => {
     dispatch(todoActions.getAllPostAX());
@@ -65,8 +64,6 @@ const Calendar = (props) => {
           //   list_index !== -1 ? todo_list[_day.format("YYYY-MM-DD")] : [];
 
           const list = _list.map((_l, idx) => {
-            // 데이터 확인하기!
-            console.log(_l);
             // 일정을 뿌려줘요!
             return (
               <DailyGrid key={`${_l.selectedAt}_${_l.id}`}>
@@ -127,7 +124,10 @@ const Calendar = (props) => {
           }}
         >
           ◀
-          {parseInt(moment(today).format("M"))-1===0?12:parseInt(moment(today).format("M"))-1}월
+          {parseInt(moment(today).format("M")) - 1 === 0
+            ? 12
+            : parseInt(moment(today).format("M")) - 1}
+          월
         </Button>
         <Text type="title">
           {moment(today).format("YYYY")}년 {moment(today).format("MM")}월
@@ -140,8 +140,10 @@ const Calendar = (props) => {
             );
           }}
         >
-         {parseInt(moment(today).format("M"))+1===13?1:parseInt(moment(today).format("M"))+1}월
-          ▶
+          {parseInt(moment(today).format("M")) + 1 === 13
+            ? 1
+            : parseInt(moment(today).format("M")) + 1}
+          월 ▶
         </Button>
       </Grid>
       <WeekGrid>

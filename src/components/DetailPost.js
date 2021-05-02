@@ -30,11 +30,8 @@ const DetailPost = (props) => {
     dispatch(todoActions.getOnePostAX(today.format("YYYY-MM-DD")));
   }, []);
 
-  console.log(day_list.tag);
-
   //컨디션
   const myCon = String(day_list.conditions);
-  console.log(myCon);
 
   if (day_list.selectedAt == undefined) {
     let _day = day_list.slice(14, 24);
@@ -67,7 +64,7 @@ const DetailPost = (props) => {
           <ModalHeader>
             <Text> {day_list.selectedAt}</Text>
             <RightHeader>
-            <AddButton
+              <AddButton
                 onClick={() => {
                   props._showModify(true);
                 }}
@@ -194,11 +191,11 @@ const TopContainer = styled.div`
 `;
 
 const Text = styled.div`
-  font-size:20px;
+  font-size: 20px;
   font-weight: bold;
   color: white;
   margin: 5px 0px 0px 5px;
-`
+`;
 const TimeText = styled.div`
   width: 60%;
   font-size: 15px;

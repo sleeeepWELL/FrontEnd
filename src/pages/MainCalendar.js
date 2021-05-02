@@ -1,4 +1,4 @@
-import React,{useEffect} from "react";
+import React, { useEffect } from "react";
 import moment from "moment";
 import Calendarjj from "../components/Calendarjj";
 import KyuCalendar from "../pages/KyuCalendar";
@@ -14,9 +14,8 @@ import { actionCreators as todoActions } from "../redux/modules/todo";
 
 import { useSelector, useDispatch } from "react-redux";
 
-
 const MainCalendar = (props) => {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   // is_open 사용해서 팝업을 보였다가 안보이게 해줄거예요 :)
   const [is_open, setIsOpen] = React.useState(false);
   // 이 값에 선택한 일정 정보를 넣어줄거예요.
@@ -36,33 +35,28 @@ const MainCalendar = (props) => {
   //날짜를 고르고 그 값을 전달하는 건 되는데 바로하는 경우 initialState값이 들어간다
   const day_list = useSelector((state) => state.todo.day_list);
 
- 
-
   return (
     <React.Fragment>
       <AllContainer>
-     <Calendarjj 
-        show_completed={show_completed}
-        _showPopup={setIsOpen}
-        _setSeletedTodo={setSeletedTodo}
-      />
-      {is_modify ? <DetailWrite date={day_list} _showModify={setModify}/>:<DetailPost  _showModify={setModify}/>}
+        <Calendarjj
+          show_completed={show_completed}
+          _showPopup={setIsOpen}
+          _setSeletedTodo={setSeletedTodo}
+        />
+        {is_modify ? (
+          <DetailWrite date={day_list} _showModify={setModify} />
+        ) : (
+          <DetailPost _showModify={setModify} />
+        )}
       </AllContainer>
-      
     </React.Fragment>
   );
 };
 
 const AllContainer = styled.div`
-display:flex;
-flex-direction: column;
-width:90%;
-`
-
-
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+`;
 
 export default MainCalendar;
-
-
-
-

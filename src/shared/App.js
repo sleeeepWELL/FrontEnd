@@ -22,15 +22,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as userActions } from "../redux/modules/user";
 import axios from "axios";
 import { getCookie } from "./Cookie";
+import LoginCheck from "../pages/LoginCheck";
 
 function App() {
   const dispatch = useDispatch();
-  const is_login = useSelector((state) => state.user.is_login);
+  const is_login = getCookie("is_login");
 
-  React.useEffect(() => {
-    dispatch(userActions.extensionAccess());
-    console.log(is_login);
-  }, [is_login]);
   return (
     <React.Fragment>
       <ConnectedRouter history={history}>
@@ -44,6 +41,7 @@ function App() {
                 path="/kakaoLogin"
                 component={OAuth2RedirectHandler}
               ></Route>
+
               <Route path="/write" exact component={PostWrite} />
               <Route path="/calendar" exact component={MainCalendar} />
               <Route path="/kyucalendar" exact component={KyuCalendar} />
@@ -51,6 +49,7 @@ function App() {
               <Route path="/jieuncalendar" exact component={JieunCalendar} />
               <Route path="/prac" exact component={PracCalendar} />
               <Route path="/analysis" exact component={Analysis} />
+              <Route path="/" component={LoginCheck} />
               {/* <Route exact component={NotFound}/> */}
             </ContentWrap>
           </Wrap>

@@ -40,6 +40,9 @@ const loginSV = (email, pwd) => {
         // 쿠키에 RefreshToken 저장(아직 httpOnly 설정 못함)
         setCookie("is_login", REFRESH_TOKEN);
 
+        // 로컬에 AccessToken 저장(최후의 방법..)
+        localStorage.setItem("token", ACCESS_TOKEN);
+
         // accessToken 디폴트 설정
         axios.defaults.headers.common[
           "Authorization"
@@ -56,18 +59,15 @@ const loginSV = (email, pwd) => {
         );
         dispatch(setUser(user));
 
-        const data = {
-          accessToken: ACCESS_TOKEN,
-          refreshToken: REFRESH_TOKEN,
-        };
+        // const data = {
+        //   accessToken: ACCESS_TOKEN,
+        //   refreshToken: REFRESH_TOKEN,
+        // };
 
         // ACCESS토큰 만료 1분전마다 연장함수 실행
-        setTimeout(
-          extensionAccess(data),
-          ACCESS_TOKEN_EXP - Current_time - 60000 * 29 - 1000 * 50
-        );
+        setTimeout(extensionAccess(), ACCESS_TOKEN_EXP - Current_time - 60000);
 
-        history.replace("/");
+        history.replace("/calendar");
       })
       .catch((err) => {
         console.log("로그인 에러", err);
@@ -76,38 +76,41 @@ const loginSV = (email, pwd) => {
 };
 
 // 로그인 연장 함수
-const extensionAccess = (data) => {
+const extensionAccess = () => {
   console.log(moment().format("hh:mm:ss"));
-
   return function (dispatch, getState) {
+    const accessToken = localStorage.getItem("token");
+    const refreshToken = getCookie("is_login");
+    console.log(accessToken, refreshToken);
     axios({
       method: "POST",
       url: `${config.api}/reissue`,
-      data: data,
+      data: {
+        accessToken: accessToken,
+        refreshToken: refreshToken,
+      },
     })
       .then((res) => {
         const ACCESS_TOKEN_EXP = res.data.accessTokenExpiresIn;
         const ACCESS_TOKEN = res.data.accessToken;
-        const REFRESH_TOKEN = getCookie("is_login");
+        const REFRESH_TOKEN = res.data.refreshToken;
 
         // 현재시간
         const Current_time = new Date().getTime();
+
+        // 새롭게 받은 리프레시 토큰도 쿠키에 다시 저장
+        setCookie("is_login", REFRESH_TOKEN);
+
+        // 새롭게 받은 access 토큰 로컬에 다시 저장(이전꺼 지우고)
+        localStorage.clear();
+        localStorage.setItem("token", ACCESS_TOKEN);
 
         // 새롭게 발급받은 ACCESS 토큰 헤더에 담기
         axios.defaults.headers.common[
           "Authorization"
         ] = `Bearer ${ACCESS_TOKEN}`;
 
-        const data = {
-          accessToken: ACCESS_TOKEN,
-          refreshToken: REFRESH_TOKEN,
-        };
-        // 로그인 상태이면 계속 연장하고 아니면(새로고침상태) 그냥 토큰만 재생성시킨다.
-        //
-        setTimeout(
-          extensionAccess(data),
-          ACCESS_TOKEN_EXP - Current_time - 60000 * 29 - 1000 * 50
-        );
+        setTimeout(extensionAccess(), ACCESS_TOKEN_EXP - Current_time - 60000);
 
         console.log(moment(Current_time).format("hh:mm:ss"));
         console.log("연장성공!");
@@ -145,6 +148,22 @@ const signUpSV = (email, nickname, pwd, pwdCheck) => {
   };
 };
 
+// 소셜로그인
+const SocialLogin = () => {
+  return function (dispatch, getState, { history }) {
+    axios({
+      method: "GET",
+      url: `${config.api}/kakaoLogin/`,
+    })
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log("소셜로그인 에러", err);
+      });
+  };
+};
+
 // 리듀서
 export default handleActions(
   {
@@ -158,6 +177,8 @@ export default handleActions(
       produce(state, (draft) => {
         // 쿠키삭제
         deleteCookie("is_login");
+        // 로컬 삭제
+        localStorage.clear();
         draft.is_login = false;
       }),
 
@@ -173,6 +194,7 @@ const actionCreators = {
   signUpSV,
   loginSV,
   extensionAccess,
+  SocialLogin,
 };
 
 export { actionCreators };

@@ -17,30 +17,44 @@ import { Route } from "react-router-dom";
 import { ConnectedRouter } from "connected-react-router";
 import { history } from "../redux/configureStore";
 import OAuth2RedirectHandler from "./OAuth2RedirectHandler";
+import { useDispatch, useSelector } from "react-redux";
 // import { getCookie } from "./Cookie";
+import { actionCreators as userActions } from "../redux/modules/user";
+import axios from "axios";
+import { getCookie } from "./Cookie";
 
 function App() {
-  
+  const dispatch = useDispatch();
+  const is_login = useSelector((state) => state.user.is_login);
 
+  React.useEffect(() => {
+    dispatch(userActions.extensionAccess());
+    console.log(is_login);
+  }, [is_login]);
   return (
     <React.Fragment>
       <ConnectedRouter history={history}>
         <Route path="/login" exact component={Login} />
         <Route path="/signup" exact component={Signup} />
-        <Navigator />
-        <Wrap>
-          <ContentWrap>
-            <Route path="/kakaoLogin" component={OAuth2RedirectHandler}></Route>
-            <Route path="/write" exact component={PostWrite} />
-            <Route path="/calendar" exact component={MainCalendar} />
-            <Route path="/kyucalendar" exact component={KyuCalendar} />
-            <Route path="/calendarwrite" exact component={CalendarWrite} />
-            <Route path="/jieuncalendar" exact component={JieunCalendar} />
-            <Route path="/prac" exact component={PracCalendar} />
-            <Route path="/analysis" exact component={Analysis} />
-            {/* <Route exact component={NotFound}/> */}
-          </ContentWrap>
-        </Wrap>
+        <div>
+          <Route path="/" component={Navigator} />
+          <Wrap>
+            <ContentWrap>
+              <Route
+                path="/kakaoLogin"
+                component={OAuth2RedirectHandler}
+              ></Route>
+              <Route path="/write" exact component={PostWrite} />
+              <Route path="/calendar" exact component={MainCalendar} />
+              <Route path="/kyucalendar" exact component={KyuCalendar} />
+              <Route path="/calendarwrite" exact component={CalendarWrite} />
+              <Route path="/jieuncalendar" exact component={JieunCalendar} />
+              <Route path="/prac" exact component={PracCalendar} />
+              <Route path="/analysis" exact component={Analysis} />
+              {/* <Route exact component={NotFound}/> */}
+            </ContentWrap>
+          </Wrap>
+        </div>
       </ConnectedRouter>
     </React.Fragment>
   );

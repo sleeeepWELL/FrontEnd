@@ -3,8 +3,6 @@ import { createAction, handleActions } from "redux-actions";
 import { produce } from "immer";
 import axios from "axios";
 import { config } from "../../shared/config";
-import { Repeat } from "@material-ui/icons";
-import { ACCESS_TOKEN } from "../../shared/OAuth";
 import moment from "moment";
 
 // 액션 타입
@@ -51,10 +49,11 @@ const loginSV = (email, pwd) => {
           email: email,
         };
         console.log(ACCESS_TOKEN_EXP);
-        console.log(moment(ACCESS_TOKEN_EXP).format("MM-DD, hh:mm:ss"));
 
-        const COMPARE_EXP = ACCESS_TOKEN_EXP - 60000 * 29;
-        console.log(ACCESS_TOKEN_EXP - COMPARE_EXP);
+        const Current_time = new Date().getTime();
+        console.log(
+          moment(ACCESS_TOKEN_EXP - Current_time - 60000).format("mm:ss")
+        );
         dispatch(setUser(user));
 
         const data = {
@@ -63,7 +62,10 @@ const loginSV = (email, pwd) => {
         };
 
         // ACCESS토큰 만료 1분전마다 연장함수 실행
-        setTimeout(extensionAccess(data), ACCESS_TOKEN_EXP - COMPARE_EXP);
+        setTimeout(
+          extensionAccess(data),
+          ACCESS_TOKEN_EXP - Current_time - 60000 * 29 - 1000 * 50
+        );
 
         history.replace("/");
       })
@@ -75,8 +77,9 @@ const loginSV = (email, pwd) => {
 
 // 로그인 연장 함수
 const extensionAccess = (data) => {
+  console.log(moment().format("hh:mm:ss"));
+
   return function (dispatch, getState) {
-    console.log("gdgd");
     axios({
       method: "POST",
       url: `${config.api}/reissue`,
@@ -85,8 +88,10 @@ const extensionAccess = (data) => {
       .then((res) => {
         const ACCESS_TOKEN_EXP = res.data.accessTokenExpiresIn;
         const ACCESS_TOKEN = res.data.accessToken;
-        const COMPARE_EXP = ACCESS_TOKEN_EXP - 60000 * 29;
         const REFRESH_TOKEN = getCookie("is_login");
+
+        // 현재시간
+        const Current_time = new Date().getTime();
 
         // 새롭게 발급받은 ACCESS 토큰 헤더에 담기
         axios.defaults.headers.common[
@@ -97,10 +102,21 @@ const extensionAccess = (data) => {
           accessToken: ACCESS_TOKEN,
           refreshToken: REFRESH_TOKEN,
         };
-        setTimeout(extensionAccess(data), ACCESS_TOKEN_EXP - COMPARE_EXP);
+        // 로그인 상태이면 계속 연장하고 아니면(새로고침상태) 그냥 토큰만 재생성시킨다.
+        //
+        setTimeout(
+          extensionAccess(data),
+          ACCESS_TOKEN_EXP - Current_time - 60000 * 29 - 1000 * 50
+        );
+
+        console.log(moment(Current_time).format("hh:mm:ss"));
         console.log("연장성공!");
+
+        console.log("토큰재생성~~");
+        return;
       })
       .catch((err) => {
+        console.log(moment().format("hh:mm:ss"));
         console.log("연장실패!", err);
       });
   };
@@ -156,6 +172,7 @@ const actionCreators = {
   logOut,
   signUpSV,
   loginSV,
+  extensionAccess,
 };
 
 export { actionCreators };

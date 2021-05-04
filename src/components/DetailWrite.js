@@ -63,11 +63,17 @@ const DetailWrite = (props) => {
   //태그
   const mytags = ["음주", "야근", "운동", "야식"];
   const TotalTags = [];
+  const EditTotalTags = [];
 
   const [tags1, setTags1] = React.useState("");
   const [tags2, setTags2] = React.useState("");
   const [tags3, setTags3] = React.useState("");
   const [tags4, setTags4] = React.useState("");
+
+  const [editTags1, setEditTags1] = React.useState("");
+  const [editTags2, setEditTags2] = React.useState("");
+  const [editTags3, setEditTags3] = React.useState("");
+  const [editTags4, setEditTags4] = React.useState("");
 
   const [checkbeer, setCheckBeer] = React.useState(false);
   const [checkovereat, setCheckOvereat] = React.useState(false);
@@ -78,6 +84,11 @@ const DetailWrite = (props) => {
   const overeat_icon = checkovereat ? overeat : overeat_gray;
   const work_icon = checkwork ? work : work_gray;
   const workout_icon = checkworkout ? workout : workout_gray;
+
+  const icon_beer = checkbeer ? beer_gray : beer;
+  const icon_overeat = checkovereat ? overeat_gray : overeat;
+  const icon_work = checkwork ? work_gray : work;
+  const icon_workout = checkworkout ? workout_gray : workout;
 
   if (tags1) {
     TotalTags.push(tags1);
@@ -92,13 +103,33 @@ const DetailWrite = (props) => {
     TotalTags.push(tags4);
   }
 
-  console.log(TotalTags);
+  console.log(checkbeer, checkovereat, checkwork, checkworkout);
 
-  //수정하기 태그 가져오기
-  // const bringConditions = String(post_list.conditions);
-  // const bringTags = props.date.tag;
+  // console.log(TotalTags);
+
+  //edit
+  // if (editTags1) {
+  //   EditTotalTags.push(editTags1);
+  // }
+  // if (editTags2) {
+  //   EditTotalTags.push(editTags2);
+  // }
+  // if (editTags3) {
+  //   EditTotalTags.push(editTags3);
+  // }
+  // if (editTags4) {
+  //   EditTotalTags.push(editTags4);
+  // }
+
+  // 수정하기 태그 가져오기
+  const bringConditions = String(post_list.conditions);
+  const bringTags = props.date.tag;
   // console.log(bringConditions);
-  // console.log(bringTags);
+  console.log(bringTags);
+
+  const sendTags = bringTags.concat(TotalTags);
+  console.log(sendTags);
+  console.log(TotalTags);
 
   //컨디션
   const [conditions, setCondition] = React.useState("");
@@ -126,9 +157,9 @@ const DetailWrite = (props) => {
     TotalCon.push(con3);
   }
 
-  console.log(TotalCon);
+  // console.log(TotalCon);
   const mycondition = String(TotalCon);
-  console.log(mycondition);
+  // console.log(mycondition);
 
   const checkSleep = (e) => {
     setstartSleep(e.target.value);
@@ -218,90 +249,175 @@ const DetailWrite = (props) => {
           <TagContainer>
             <TotalImgGrid>
               <ImgGrid>
-                <input
-                  width="40"
-                  height="40"
-                  type="image"
-                  src={beer_icon}
-                  alt="beer"
-                  value={"음주"}
-                  onClick={(e) => {
-                    //삼항연산자 사용가능할듯?
-                    if (!checkbeer) {
-                      setTags1(e.target.value);
-                    }
-                    if (checkbeer) {
-                      setTags1(null);
-                    }
-                    checkbeer ? setCheckBeer(false) : setCheckBeer(true);
-                  }}
-                />
+                {bringTags.find((p) => p === "음주") ? (
+                  <input
+                    width="40"
+                    height="40"
+                    type="image"
+                    src={icon_beer}
+                    alt="beer"
+                    value={"음주"}
+                    onClick={(e) => {
+                      if (checkbeer) {
+                        setTags1(e.target.value);
+                      }
+                      if (!checkbeer) {
+                        setTags1(null);
+                      }
+                      checkbeer ? setCheckBeer(false) : setCheckBeer(true);
+                    }}
+                  />
+                ) : (
+                  <input
+                    width="40"
+                    height="40"
+                    type="image"
+                    src={beer_icon}
+                    alt="beer"
+                    value={"음주"}
+                    onClick={(e) => {
+                      //삼항연산자 사용가능할듯?
+                      if (!checkbeer) {
+                        setTags1(e.target.value);
+                      }
+                      if (checkbeer) {
+                        setTags1(null);
+                      }
+                      checkbeer ? setCheckBeer(false) : setCheckBeer(true);
+                    }}
+                  />
+                )}
               </ImgGrid>
               <ImgGrid>
-                <input
-                  width="40"
-                  height="40"
-                  type="image"
-                  src={overeat_icon}
-                  alt="overeat"
-                  value={"야식"}
-                  onClick={(e) => {
-                    setTags2(e.target.value);
+                {bringTags.find((p) => p === "야식") ? (
+                  <input
+                    width="40"
+                    height="40"
+                    type="image"
+                    src={icon_overeat}
+                    alt="overeat"
+                    value={"야식"}
+                    onClick={(e) => {
+                      if (!checkovereat) {
+                        setTags2(e.target.value);
+                      }
+                      if (checkovereat) {
+                        setTags2(null);
+                      }
 
-                    if (!checkovereat) {
-                      setTags2(e.target.value);
-                    }
-                    if (checkovereat) {
-                      setTags2(null);
-                    }
+                      checkovereat
+                        ? setCheckOvereat(false)
+                        : setCheckOvereat(true);
+                    }}
+                  />
+                ) : (
+                  <input
+                    width="40"
+                    height="40"
+                    type="image"
+                    src={overeat_icon}
+                    alt="overeat"
+                    value={"야식"}
+                    onClick={(e) => {
+                      if (!checkovereat) {
+                        setTags2(e.target.value);
+                      }
+                      if (checkovereat) {
+                        setTags2(null);
+                      }
 
-                    checkovereat
-                      ? setCheckOvereat(false)
-                      : setCheckOvereat(true);
-                  }}
-                />
+                      checkovereat
+                        ? setCheckOvereat(false)
+                        : setCheckOvereat(true);
+                    }}
+                  />
+                )}
               </ImgGrid>
               <ImgGrid>
-                <input
-                  width="40"
-                  height="40"
-                  type="image"
-                  src={work_icon}
-                  alt="work"
-                  value={"야근"}
-                  onClick={(e) => {
-                    setTags3(e.target.value);
-                    if (!checkwork) {
-                      setTags3(e.target.value);
-                    }
-                    if (checkwork) {
-                      setTags3(null);
-                    }
-                    checkwork ? setCheckWork(false) : setCheckWork(true);
-                  }}
-                />
+                {bringTags.find((p) => p === "야근") ? (
+                  <input
+                    width="40"
+                    height="40"
+                    type="image"
+                    src={icon_work}
+                    alt="work"
+                    value={"야근"}
+                    onClick={(e) => {
+                      if (!checkwork) {
+                        setTags3(e.target.value);
+                      }
+                      if (checkwork) {
+                        setTags3(null);
+                      }
+
+                      console.log(e.target.value);
+                      checkwork ? setCheckWork(false) : setCheckWork(true);
+                    }}
+                  />
+                ) : (
+                  <input
+                    width="40"
+                    height="40"
+                    type="image"
+                    src={work_icon}
+                    alt="work"
+                    value={"야근"}
+                    onClick={(e) => {
+                      if (!checkwork) {
+                        setTags3(e.target.value);
+                      }
+                      if (checkwork) {
+                        setTags3(null);
+                      }
+                      checkwork ? setCheckWork(false) : setCheckWork(true);
+                    }}
+                  />
+                )}
               </ImgGrid>
               <ImgGrid>
-                <input
-                  width="40"
-                  height="40"
-                  type="image"
-                  src={workout_icon}
-                  alt="workout"
-                  value={"운동"}
-                  onClick={(e) => {
-                    setTags4(e.target.value);
-                    if (!checkworkout) {
-                      setTags4(e.target.value);
-                    }
-                    if (checkworkout) {
-                      setTags4(null);
-                    }
-                    checkworkout
-                      ? setCheckWorkOut(false)
-                      : setCheckWorkOut(true);
-                  }}
-                />
+                {bringTags.find((p) => p === "운동") ? (
+                  <input
+                    width="40"
+                    height="40"
+                    type="image"
+                    src={icon_workout}
+                    alt="workout"
+                    value={"운동"}
+                    onClick={(e) => {
+                      if (!checkworkout) {
+                        setTags4(e.target.value);
+                      }
+                      if (checkworkout) {
+                        setTags4(null);
+                      }
+
+                      console.log(e.target.value);
+                      checkworkout
+                        ? setCheckWorkOut(false)
+                        : setCheckWorkOut(true);
+                    }}
+                  />
+                ) : (
+                  <input
+                    width="40"
+                    height="40"
+                    type="image"
+                    src={workout_icon}
+                    alt="workout"
+                    value={"운동"}
+                    onClick={(e) => {
+                      if (!checkworkout) {
+                        setTags4(e.target.value);
+                      }
+                      if (checkworkout) {
+                        setTags4(null);
+                      }
+                      checkworkout
+                        ? setCheckWorkOut(false)
+                        : setCheckWorkOut(true);
+                    }}
+                  />
+                )}
               </ImgGrid>
             </TotalImgGrid>
           </TagContainer>

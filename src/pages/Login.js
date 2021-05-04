@@ -7,6 +7,8 @@ import kakaologo from "../images/kakao.png";
 import { setCookie } from "../shared/Cookie";
 import { actionCreators as userActions } from "../redux/modules/user";
 import { useDispatch } from "react-redux";
+import KaKaoLogin from "react-kakao-login";
+import { KAKAO_JS_ID } from "../shared/OAuth";
 
 import { KAKAO_AUTH_URL } from "../shared/OAuth";
 
@@ -23,6 +25,18 @@ const Login = (props) => {
     }
     dispatch(userActions.loginSV(id, password));
   };
+
+  // 카카오 로그인
+  // const kakaoLoginSuccessHandler = (res) => {
+  //   const data = res.response;
+  //   console.log(res);
+  // 카카오 로그인 후 받아온 토큰
+  // dispatch(
+  //   userActions.loginByKakao({
+  //     kakaoToken: data.access_token,
+  //   })
+  // );
+  // };
 
   //   onClick={()=>{history.push("/signup")}}
   return (
@@ -61,10 +75,19 @@ const Login = (props) => {
                 </div>
                 <div>비밀번호 찾기</div>
               </InfoBox>
-
               <LoginButton onClick={login}>
                 <span>로그인</span>
               </LoginButton>
+              {/* <KaKaoBtn
+                //styled component 통해 style을 입혀 줄 예정
+                jsKey={KAKAO_JS_ID}
+                //카카오에서 할당받은 jsKey를 입력
+                buttonText="카카오 계정으로 로그인"
+                //로그인 버튼의 text를 입력
+                onSuccess={kakaoLoginSuccessHandler}
+                //성공했을때 불러올 함수로서 fetch해서 localStorage에 저장할 함수를 여기로 저장
+                getProfile={true}
+              ></KaKaoBtn> */}
               <KaKaoBtn href={KAKAO_AUTH_URL}>
                 <img src={kakaologo}></img>
                 <span>카카오계정 로그인</span>
@@ -76,6 +99,24 @@ const Login = (props) => {
     </React.Fragment>
   );
 };
+
+// const KaKaoBtn = styled(KaKaoLogin)`
+//   padding: 0;
+//   width: 300px;
+//   height: 45px;
+//   line-height: 44px;
+//   color: #783c00;
+//   background-color: #ffeb00;
+//   border: 1px solid transparent;
+//   border-radius: 3px;
+//   font-size: 14px;
+//   font-weight: bold;
+//   text-align: center;
+//   cursor: pointer;
+//   &:hover {
+//     box-shadow: 0 0px 15px 0 rgba(0, 0, 0, 0.2);
+//   }
+// `;
 
 const SemiContainer = styled.div`
   width: 36%;

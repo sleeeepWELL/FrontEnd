@@ -7,18 +7,12 @@ import { actionCreators as userActions } from "../redux/modules/user";
 
 const OAuth2RedirectHandler = (props) => {
   const dispatch = useDispatch();
-  //   const code = {
-  //   axios({
-  //     method: "POST",
-  //     url: "/oauth/token HTTP/1.1",
-  //     headers: {
-  //       "Content-type": application/x-www-form-urlencoded;charset=utf-8
-  //     }
-  //   }).then((res) => {}}.catch((err) => {console.log(err)})
-  // }
+  // 인가코드
+  let requestURL = new URL(window.location.href).searchParams.get("code");
 
+  console.log(requestURL);
   React.useEffect(() => {
-    dispatch(userActions.SocialLogin());
+    dispatch(userActions.kakaoLogin(requestURL));
   }, []);
 
   return (

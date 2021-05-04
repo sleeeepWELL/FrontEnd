@@ -30,21 +30,27 @@ function App() {
   return (
     <React.Fragment>
       <ConnectedRouter history={history}>
-        <Route path="/login" exact component={Login} />
         <Route path="/signup" exact component={Signup} />
-        <Navigator />
-        <Wrap>
-          <ContentWrap>
-            <Route path="/kakaoLogin" component={OAuth2RedirectHandler}></Route>
-            <Route path="/write" exact component={PostWrite} />
-            <Route path="/calendar" exact component={MainCalendar} />
-            <Route path="/kyucalendar" exact component={KyuCalendar} />
-            <Route path="/calendarwrite" exact component={CalendarWrite} />
-            <Route path="/jieuncalendar" exact component={JieunCalendar} />
-            <Route path="/analysis" exact component={Analysis} />
-            {/* <Route exact component={NotFound}/> */}
-          </ContentWrap>
-        </Wrap>
+        <Route path="/login" exact component={Login} />
+        <div>
+          <Wrap>
+            <ContentWrap>
+              <Route path="/" exact component={Navigator} />
+              <Route
+                path="/kakaoLogin"
+                component={OAuth2RedirectHandler}
+              ></Route>
+              <Route path="/write" exact component={PostWrite} />
+              <Route path="/calendar" exact component={MainCalendar} />
+              <Route path="/kyucalendar" exact component={KyuCalendar} />
+              <Route path="/calendarwrite" exact component={CalendarWrite} />
+              <Route path="/jieuncalendar" exact component={JieunCalendar} />
+              <Route path="/analysis" exact component={Analysis} />
+              {/* <Route path="/" component={LoginCheck} /> */}
+              {/* <Route exact component={NotFound}/> */}
+            </ContentWrap>
+          </Wrap>
+        </div>
       </ConnectedRouter>
     </React.Fragment>
   );

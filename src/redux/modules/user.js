@@ -4,6 +4,7 @@ import { produce } from "immer";
 import axios from "axios";
 import { config } from "../../shared/config";
 import moment from "moment";
+import { REDIRECT_URI, CLIENT_ID } from "../../shared/OAuth";
 
 // 액션 타입
 const SET_USER = "SET_USER"; // 로그인
@@ -149,11 +150,14 @@ const signUpSV = (email, nickname, pwd, pwdCheck) => {
 };
 
 // 소셜로그인
-const SocialLogin = () => {
+const kakaoLogin = (requestURL) => {
   return function (dispatch, getState, { history }) {
     axios({
-      method: "GET",
-      url: `${config.api}/kakaoLogin/`,
+      method: "POST",
+      url: `https://kauth.kakao.com/oauth/token?grant_type=authorization_code&client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&code=${requestURL}`,
+      header: {
+        "Content-Type": "application/json",
+      },
     })
       .then((res) => {
         console.log(res);
@@ -194,7 +198,7 @@ const actionCreators = {
   signUpSV,
   loginSV,
   extensionAccess,
-  SocialLogin,
+  kakaoLogin,
 };
 
 export { actionCreators };

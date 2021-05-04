@@ -35,10 +35,14 @@ const mapKeywordToGrayImg = {
 const TotalTags = ["음주", "야식", "야근", "운동"];
 
 const ToDo = (props) => {
+
+
   const myTags = props.tag;
   const myTag = String(props.tag);
 
+
   const myCon = String(props.conditions);
+
 
   return (
     <React.Fragment>

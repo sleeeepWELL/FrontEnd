@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import moment from "moment";
 
 import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
@@ -23,23 +24,160 @@ const mapKeywordToImg = {
 
 const DetailPost = (props) => {
   const dispatch = useDispatch();
-  const day_list = useSelector((state) => state.todo.day_list);
   const today = useSelector((state) => state.todo.today);
 
-  useEffect(() => {
-    dispatch(todoActions.getOnePostAX(today.format("YYYY-MM-DD")));
-  }, []);
-
   //컨디션
-  const myCon = String(day_list.conditions);
+  const myCon = String(props.date.conditions);
 
-  if (day_list.selectedAt == undefined) {
-    let _day = day_list.slice(14, 24);
+  //조건식을 통해 분별한다
+  if(props.date[0]&&!props.date.selectedAt == undefined){
+    dispatch(todoActions.getOnePostAX(today.format("YYYY-MM-DD")));
+    if (props.date.selectedAt == undefined) {
+      let _day = props.date.slice(14, 24);
+      return (
+        <React.Fragment>
+          <ModalComponent>
+            <EmptyHeader>
+            <button
+              onClick={() => {
+                let tDate = new Date(_day);
+                tDate.setDate(tDate.getDate()-1);
+                dispatch(todoActions.getOnePostAX(moment(tDate).format("YYYY-MM-DD")));
+              }}>이전 날</button>
+               <Text>{_day}</Text>
+            <button
+              onClick={() => {
+                let tDate = new Date(_day);
+                tDate.setDate(tDate.getDate()+1);
+                dispatch(todoActions.getOnePostAX(moment(tDate).format("YYYY-MM-DD")));
+              }}>다음 날</button>
+             
+              <RightHeader>
+                <AddButton
+                  onClick={() => {
+                    props._showModify(true);
+                  }}
+                >
+                  추가하기
+                </AddButton>
+              </RightHeader>
+            </EmptyHeader>
+  
+            <ConditionContainer style={{ height: "30%" }}>
+              <TimeText>작성된 내용이 없습니다</TimeText>
+            </ConditionContainer>
+          </ModalComponent>
+        </React.Fragment>
+      );
+    } else {
+      return (
+        <React.Fragment>
+          <ModalComponent>
+            <ModalHeader>
+            <button
+              onClick={() => {
+                let tDate = new Date(props.date.selectedAt);
+                tDate.setDate(tDate.getDate()-1);
+                dispatch(todoActions.getOnePostAX(moment(tDate).format("YYYY-MM-DD")));
+              }}>이전 날</button>
+               <Text> {props.date.selectedAt}</Text>
+            <button
+              onClick={() => {
+                let tDate = new Date(props.date.selectedAt);
+                tDate.setDate(tDate.getDate()+1);
+                dispatch(todoActions.getOnePostAX(moment(tDate).format("YYYY-MM-DD")));
+              }}>다음 날</button>
+             
+              <RightHeader>
+              <AddButton
+                  onClick={() => {
+                    props._showModify(true);
+                  }}
+                >
+                  수정하기
+                </AddButton>
+                <FixButton
+                  onClick={() => {
+                    dispatch(todoActions.removePostAX(props.date.selectedAt));
+                  }}
+                >
+                  삭제하기
+                </FixButton>
+              </RightHeader>
+            </ModalHeader>
+  
+            <TopContainer>
+              <TimeText>
+                수면시간{" "}
+                {`${props.date.totalSleepHour} 시간 ${props.date.totalSleepMinute} 분`}{" "}
+                ({props.date.startSleep} ~ {props.date.endSleep}) 
+              </TimeText>
+            </TopContainer>
+  
+            <TagContainer>
+              <TimeText>
+                태그{" "}
+                {props.date.tag.map((currentTag, idx) => {
+                  return (
+                    <img
+                      key={idx}
+                      width="20px"
+                      height="20px"
+                      src={mapKeywordToImg[currentTag]}
+                    ></img>
+                  );
+                })}
+              </TimeText>
+            </TagContainer>
+  
+            <ConditionContainer>
+              <TimeText>
+                컨디션{" "}
+                {myCon === "1" && (
+                  <img width="20px" height="20px" src={good}></img>
+                )}
+                {myCon === "2" && (
+                  <img width="20px" height="20px" src={soso}></img>
+                )}
+                {myCon === "3" && (
+                  <img width="20px" height="20px" src={bad}></img>
+                )}
+              </TimeText>
+            </ConditionContainer>
+  
+            <BottomContainer>
+              <Contents>{props.date.memo}</Contents>
+            </BottomContainer>
+          </ModalComponent>
+        </React.Fragment>
+      );
+    }
+  }
+
+
+  //처음에 데이터를 보여주는 경우를 제외하고!
+  else if (props.date.selectedAt == undefined) {
+    let _day = props.date.slice(14, 24);
+ 
+
     return (
       <React.Fragment>
         <ModalComponent>
           <EmptyHeader>
-            <Text>{_day}</Text>
+          <button
+              onClick={() => {
+                let tDate = new Date(_day);
+                tDate.setDate(tDate.getDate()-1);
+                dispatch(todoActions.getOnePostAX(moment(tDate).format("YYYY-MM-DD")));
+              }}>이전 날</button>
+              <Text>{_day}</Text>
+            <button
+              onClick={() => {
+                let tDate = new Date(_day);
+                tDate.setDate(tDate.getDate()+1);
+                dispatch(todoActions.getOnePostAX(moment(tDate).format("YYYY-MM-DD")));
+              }}>다음 날</button>
+            
             <RightHeader>
               <AddButton
                 onClick={() => {
@@ -62,7 +200,20 @@ const DetailPost = (props) => {
       <React.Fragment>
         <ModalComponent>
           <ModalHeader>
-            <Text> {day_list.selectedAt}</Text>
+          <button
+              onClick={() => {
+                let tDate = new Date(props.date.selectedAt);
+                tDate.setDate(tDate.getDate()-1);
+                dispatch(todoActions.getOnePostAX(moment(tDate).format("YYYY-MM-DD")));
+              }}>이전 날</button>
+              <Text> {props.date.selectedAt}</Text>
+            <button
+              onClick={() => {
+                let tDate = new Date(props.date.selectedAt);
+                tDate.setDate(tDate.getDate()+1);
+                dispatch(todoActions.getOnePostAX(moment(tDate).format("YYYY-MM-DD")));
+              }}>다음 날</button>
+            
             <RightHeader>
               <AddButton
                 onClick={() => {
@@ -73,7 +224,7 @@ const DetailPost = (props) => {
               </AddButton>
               <FixButton
                 onClick={() => {
-                  dispatch(todoActions.removePostAX(day_list.selectedAt));
+                  dispatch(todoActions.removePostAX(props.date.selectedAt));
                 }}
               >
                 삭제하기
@@ -84,15 +235,15 @@ const DetailPost = (props) => {
           <TopContainer>
             <TimeText>
               수면시간{" "}
-              {`${day_list.totalSleepHour} 시간 ${day_list.totalSleepMinute} 분`}{" "}
-              ({day_list.startSleep} ~ {day_list.endSleep})
+              {`${props.date.totalSleepHour} 시간 ${props.date.totalSleepMinute} 분`}{" "}
+              ({props.date.startSleep} ~ {props.date.endSleep}) 
             </TimeText>
           </TopContainer>
 
           <TagContainer>
             <TimeText>
               태그{" "}
-              {day_list.tag.map((currentTag, idx) => {
+              {props.date.tag.map((currentTag, idx) => {
                 return (
                   <img
                     key={idx}
@@ -121,7 +272,7 @@ const DetailPost = (props) => {
           </ConditionContainer>
 
           <BottomContainer>
-            <Contents>{day_list.memo}</Contents>
+            <Contents>{props.date.memo}</Contents>
           </BottomContainer>
         </ModalComponent>
       </React.Fragment>

@@ -10,7 +10,6 @@ import KyuCalendar from "../pages/KyuCalendar";
 import CalendarWrite from "../components/CalendarWrite";
 import PostWrite from "../pages/PostWrite";
 import JieunCalendar from "../components/JieunCalendar";
-import PracCalendar from "../components/PracCalendar";
 import Analysis from "../pages/Analysis";
 
 import { Route } from "react-router-dom";
@@ -33,27 +32,19 @@ function App() {
       <ConnectedRouter history={history}>
         <Route path="/login" exact component={Login} />
         <Route path="/signup" exact component={Signup} />
-        <div>
-          <Route path="/" component={Navigator} />
-          <Wrap>
-            <ContentWrap>
-              <Route
-                path="/kakaoLogin"
-                component={OAuth2RedirectHandler}
-              ></Route>
-
-              <Route path="/write" exact component={PostWrite} />
-              <Route path="/calendar" exact component={MainCalendar} />
-              <Route path="/kyucalendar" exact component={KyuCalendar} />
-              <Route path="/calendarwrite" exact component={CalendarWrite} />
-              <Route path="/jieuncalendar" exact component={JieunCalendar} />
-              <Route path="/prac" exact component={PracCalendar} />
-              <Route path="/analysis" exact component={Analysis} />
-              <Route path="/" component={LoginCheck} />
-              {/* <Route exact component={NotFound}/> */}
-            </ContentWrap>
-          </Wrap>
-        </div>
+        <Navigator />
+        <Wrap>
+          <ContentWrap>
+            <Route path="/kakaoLogin" component={OAuth2RedirectHandler}></Route>
+            <Route path="/write" exact component={PostWrite} />
+            <Route path="/calendar" exact component={MainCalendar} />
+            <Route path="/kyucalendar" exact component={KyuCalendar} />
+            <Route path="/calendarwrite" exact component={CalendarWrite} />
+            <Route path="/jieuncalendar" exact component={JieunCalendar} />
+            <Route path="/analysis" exact component={Analysis} />
+            {/* <Route exact component={NotFound}/> */}
+          </ContentWrap>
+        </Wrap>
       </ConnectedRouter>
     </React.Fragment>
   );

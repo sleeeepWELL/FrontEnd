@@ -5,8 +5,6 @@ import { actionCreators as todoActions } from "../redux/modules/todo";
 import { history } from "../redux/configureStore";
 
 import TextField from "@material-ui/core/TextField";
-import { isMoment } from "moment";
-import Input from "@material-ui/core/Input";
 
 //태그
 import beer from "../image/beer.jpg";
@@ -30,11 +28,25 @@ import soso_gray from "../image/soso-gray.jpg";
 
 const DetailWrite = (props) => {
   const dispatch =useDispatch();
-  console.log(props.date)
   const [startSleep, setstartSleep] = React.useState("");
   const [endSleep, setendSleep] = React.useState("");
   const [memo, setMemo] = React.useState("");
+  const startMinute = parseInt(startSleep.slice(0,2)*60)+ parseInt(startSleep.slice(3,5));
+  const endMinute = parseInt(endSleep.slice(0,2)*60)+ parseInt(endSleep.slice(3,5));
+  
+  //초기값
+  let totalSleepHour = 1;
+  let totalSleepMinute = 2;
 
+  if(endMinute-startMinute>=0){
+    totalSleepHour = Math.floor((endMinute-startMinute)/60);
+    totalSleepMinute = (endMinute-startMinute)%60; 
+  }else{
+    totalSleepHour = Math.floor((endMinute-startMinute+24*60)/60);
+    totalSleepMinute = (endMinute-startMinute+24*60)%60;
+  }
+   
+ 
   //태그
   const mytags = ["음주", "야근", "운동", "야식"];
   const TotalTags = [];
@@ -54,18 +66,10 @@ const DetailWrite = (props) => {
   const work_icon = checkwork ? work : work_gray;
   const workout_icon = checkworkout ? workout : workout_gray;
 
-  if (tags1) {
-    TotalTags.push(tags1);
-  }
-  if (tags2) {
-    TotalTags.push(tags2);
-  }
-  if (tags3) {
-    TotalTags.push(tags3);
-  }
-  if (tags4) {
-    TotalTags.push(tags4);
-  }
+  if (tags1) {TotalTags.push(tags1);}
+  if (tags2) {TotalTags.push(tags2);}
+  if (tags3) {TotalTags.push(tags3);}
+  if (tags4) {TotalTags.push(tags4);}
 
   //컨디션
   const [conditions, setCondition] = React.useState("");
@@ -77,110 +81,88 @@ const DetailWrite = (props) => {
   const soso_icon = checksoso ? soso : soso_gray;
   const bad_icon = checkbad ? bad : bad_gray;
 
-  const checkSleep = (event) => {
-    setstartSleep(event.target.value);
-  };
-  const checkoutSleep = (event) => {
-    setendSleep(event.target.value);
-  };
-  const changeMemo = (event) => {
-    setMemo(event.target.value);
-    console.log(event.target.value);
-  };
+  const checkSleep = (e) => {setstartSleep(e.target.value);};
+  const checkoutSleep = (e) => {setendSleep(e.target.value);};
+  const changeMemo = (e) => {setMemo(e.target.value);};
 
-  console.log(TotalTags);
+  //추가하는 경우는 데이터를 잘라서 사용해야하고
   const addPost = () => {
     let post = {
       startSleep: startSleep,
       endSleep: endSleep,
-      selectedAt: props.date, //리덕스에서 가져오면 되나
+      totalSleepHour: totalSleepHour,
+      totalSleepMinute: totalSleepMinute,
+      selectedAt: props.date.slice(14, 24),
       tag: TotalTags,
       conditions: conditions,
       memo: memo,
     };
+
+  
     dispatch(todoActions.addPostAX(post));
+    // dispatch(todoActions.getOnePostAX(props.date.slice(14,24)));
   };
-  // window.alert("기록이 추가되었습니다😀");
+
+  // 수정하는 경우는 데이터를 그대로 사용해도 된다
   const editPost = () => {
     let post={
       id: props.date.id,
       startSleep: startSleep,
       endSleep: endSleep,
-      selectedAt: props.date.selectedAt, //리덕스에서 가져오면 되나
+      totalSleepHour: totalSleepHour,
+      totalSleepMinute: totalSleepMinute,
+      selectedAt: props.date.selectedAt,
       tag: TotalTags,
       conditions: conditions,
       memo: memo, 
     }
-    dispatch(todoActions.editPostAX(post))
+    
+      // dispatch(todoActions.getOnePostAX(props.date.selectedAt));
+    dispatch(todoActions.editPostAX(post));
   };
 
+  //수정하는 경우
   if(props.date.id){ 
     return(
      <React.Fragment>
-    <ModalComponent>
-    <TopContainer>
-     <Text>{props.date.selectedAt}</Text> 
-    <FixButton  onClick={()=>
+      <ModalComponent>
+      <TopContainer>
+      <Text>{props.date.selectedAt}</Text> 
+      <FixButton  onClick={()=>
     {
       editPost();
       props._showModify(false);
-      dispatch(todoActions.getOnePostAX(props.date.selectedAt));
-    }}
-    >완료</FixButton>  
+    }}>완료</FixButton>  
     </TopContainer>
-   
+    
     <Container>
     <TextField
-      id="time"
-      label="취침시간"
-      type="time"
+      id="time" label="취침시간" type="time"
       // placeholder={props.date.startSleep}
-      onChange={checkSleep}
-      InputLabelProps={{
-        shrink: true,
-      }}
-      inputProps={{
-        step: 300, // 5 min
-      }}
-    />
+      onChange={checkSleep} InputLabelProps={{shrink: true,}}
+      inputProps={{step: 300,}}/>
     <TextField
-      id="time"
-      label="기상시간"
-      type="time"
+      id="time" label="기상시간" type="time"
       // placehoder={props.date.endSleep}
-      onChange={checkoutSleep}
-      InputLabelProps={{
-        shrink: true,
-      }}
-      inputProps={{
-        step: 300, // 5 min
-      }}
+      onChange={checkoutSleep} InputLabelProps={{shrink: true,}}
+      inputProps={{step: 300,}}
     />
     </Container>
     
     <TagContainer>
     <TotalImgGrid>
           <ImgGrid>
-            <input
-              width="40"
-              height="40"
-              type="image"
-              src={beer_icon}
-              alt="beer"
-              value={"음주"}
-              onClick={(e) => {
-                
+            <input width="40" height="40" type="image" src={beer_icon}
+              alt="beer" value={"음주"}
+              onClick={(e) => {  
+                //삼항연산자 사용가능할듯?
                 if(!checkbeer){setTags1(e.target.value)};
                 if(checkbeer){setTags1(null)};
-                
                 checkbeer ? setCheckBeer(false) : setCheckBeer(true);
-              }}
-            />
+              }}/>
           </ImgGrid>
           <ImgGrid>
-            <input
-              width="40"
-              height="40"
+            <input width="40" height="40"
               type="image"
               src={overeat_icon}
               alt="overeat"
@@ -191,7 +173,7 @@ const DetailWrite = (props) => {
                 if(!checkovereat){setTags2(e.target.value)};
                 if(checkovereat){setTags2(null)};
                 
-                console.log(e.target.value);
+                
                 checkovereat ? setCheckOvereat(false) : setCheckOvereat(true);
               }}
             />
@@ -206,11 +188,8 @@ const DetailWrite = (props) => {
               value={"야근"}
               onClick={(e) => {
                 setTags3(e.target.value);
-                
                 if(!checkwork){setTags3(e.target.value)};
                 if(checkwork){setTags3(null)};
-                
-                console.log(e.target.value);
                 checkwork ? setCheckWork(false) : setCheckWork(true);
               }}
             />
@@ -225,12 +204,8 @@ const DetailWrite = (props) => {
               value={"운동"}
               onClick={(e) => {
                 setTags4(e.target.value);
-
                 if(!checkworkout){setTags4(e.target.value)};
                 if(checkworkout){setTags4(null)};
-                
-               
-                console.log(e.target.value);
                 checkworkout ? setCheckWorkOut(false) : setCheckWorkOut(true);
               }}
             />
@@ -250,7 +225,7 @@ const DetailWrite = (props) => {
                 value={1}
                 onClick={(e) => {
                   setCondition(e.target.value);
-                  console.log(e.target.value);
+              
                   checkgood ? setCheckGood(false) : setCheckGood(true);
                 }}
               />
@@ -265,7 +240,7 @@ const DetailWrite = (props) => {
                 value={2}
                 onClick={(e) => {
                   setCondition(e.target.value);
-                  console.log(e.target.value);
+              
                   checksoso ? setCheckSoso(false) : setCheckSoso(true);
                 }}
               />
@@ -280,7 +255,7 @@ const DetailWrite = (props) => {
                 value={3}
                 onClick={(e) => {
                   setCondition(e.target.value);
-                  console.log(e.target.value);
+               
                   checkbad ? setCheckBad(false) : setCheckBad(true);
                 }}
               />
@@ -300,17 +275,20 @@ const DetailWrite = (props) => {
     </React.Fragment>
   )
   }else{
+    console.log(props)
+     //추가를 하고 난 다음에 화면전환되도록 했다  바로 수정하는 것이 문제(수정하기 누르는데 추가페이지로 다시 들어가는듯...)
+     //해당하는 props값이 내려오지 않는다
   return(
     <React.Fragment>
     <ModalComponent>
-
+    
     <TopContainer>
      <Text>{props.date.slice(14,24)}</Text> 
+    
     <FixButton  onClick={()=>
-    {
+    { 
       addPost();
       props._showModify(false);
-      dispatch(todoActions.getOnePostAX(props.date));
     }}
     >완료</FixButton>  
     </TopContainer>
@@ -377,7 +355,7 @@ const DetailWrite = (props) => {
                 if(!checkovereat){setTags2(e.target.value)};
                 if(checkovereat){setTags2(null)};
                 
-                console.log(e.target.value);
+              
                 checkovereat ? setCheckOvereat(false) : setCheckOvereat(true);
               }}
             />
@@ -396,7 +374,7 @@ const DetailWrite = (props) => {
                 if(!checkwork){setTags3(e.target.value)};
                 if(checkwork){setTags3(null)};
                 
-                console.log(e.target.value);
+                
                 checkwork ? setCheckWork(false) : setCheckWork(true);
               }}
             />
@@ -416,7 +394,7 @@ const DetailWrite = (props) => {
                 if(checkworkout){setTags4(null)};
                 
                
-                console.log(e.target.value);
+              
                 checkworkout ? setCheckWorkOut(false) : setCheckWorkOut(true);
               }}
             />
@@ -436,7 +414,7 @@ const DetailWrite = (props) => {
                 value={1}
                 onClick={(e) => {
                   setCondition(e.target.value);
-                  console.log(e.target.value);
+                
                   checkgood ? setCheckGood(false) : setCheckGood(true);
                 }}
               />
@@ -451,7 +429,7 @@ const DetailWrite = (props) => {
                 value={2}
                 onClick={(e) => {
                   setCondition(e.target.value);
-                  console.log(e.target.value);
+              
                   checksoso ? setCheckSoso(false) : setCheckSoso(true);
                 }}
               />
@@ -466,7 +444,7 @@ const DetailWrite = (props) => {
                 value={3}
                 onClick={(e) => {
                   setCondition(e.target.value);
-                  console.log(e.target.value);
+                 
                   checkbad ? setCheckBad(false) : setCheckBad(true);
                 }}
               />
@@ -568,7 +546,6 @@ const BottomContainer = styled.div`
 const ModalComponent = styled.div`
   width: 100%;
   height: 30%;
-
   display: flex;
   flex-direction: column;
 `;

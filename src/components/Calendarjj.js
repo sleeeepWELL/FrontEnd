@@ -78,44 +78,10 @@ const Calendar = (props) => {
             );
           });
 
-          if (moment().format("YYYY-MM-DD") === _day.format("YYYY-MM-DD")) {
+          //해당 월이 아닌 경우 보여지지 않고 눌리지 않게 한다
+          if (_day.format("MM") !== today.format("MM")) {
             return (
               // 달력 한 칸(일단위) 클릭을 하면 카드받아오는
-
-              <DayGrid
-                key={`${moment(today).format(
-                  "MM"
-                )}_week_${week_index}_day_${day_index}`}
-                bg={
-                  is_today && moment(today).format("MM") === _day.format("MM")
-                    ? "grey"
-                    : "#ffffff"
-                }
-                onClick={() => {
-                  dispatch(todoActions.getOnePostAX(_day.format("YYYY-MM-DD")));
-                }}
-              >
-                {_day.format("MM") === moment(today).format("MM") ? (
-                  <DayText
-                    font_c={is_today ? "white" : "black"}
-                    // onClick={clickDate}
-                  >
-                    {_day.format("DD")}
-                  </DayText>
-                ) : (
-                  <DayText font_c={is_today ? "white" : "black"}></DayText>
-                )}
-
-                {
-                  // 일정도 보여줍시다! :) null이 아닐때만 보여줘요!
-                  _list && list
-                }
-              </DayGrid>
-            );
-          } else if (_day.format("MM") !== today.format("MM")) {
-            return (
-              // 달력 한 칸(일단위) 클릭을 하면 카드받아오는
-
               <DayGrid
                 key={`${moment(today).format(
                   "MM"
@@ -127,20 +93,13 @@ const Calendar = (props) => {
                 }
               >
                 {_day.format("MM") === moment(today).format("MM") ? (
-                  <DayText
-                    font_c={is_today ? "white" : "black"}
-                    // onClick={clickDate}
-                  >
+                  <DayText font_c={is_today ? "white" : "black"}>
                     {_day.format("DD")}
                   </DayText>
                 ) : (
                   <DayText font_c={is_today ? "white" : "black"}></DayText>
                 )}
-
-                {
-                  // 일정도 보여줍시다! :) null이 아닐때만 보여줘요!
-                  _list && list
-                }
+                {_list && list}
               </DayGrid>
             );
           } else {
@@ -159,20 +118,13 @@ const Calendar = (props) => {
                 }}
               >
                 {_day.format("MM") === moment(today).format("MM") ? (
-                  <DayText
-                    font_c={is_today ? "white" : "black"}
-                    // onClick={clickDate}
-                  >
+                  <DayText font_c={is_today ? "white" : "black"}>
                     {_day.format("DD")}
                   </DayText>
                 ) : (
                   <DayText font_c={is_today ? "white" : "black"}></DayText>
                 )}
-
-                {
-                  // 일정도 보여줍시다! :) null이 아닐때만 보여줘요!
-                  _list && list
-                }
+                {_list && list}
               </DayGrid>
             );
           }

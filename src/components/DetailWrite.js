@@ -92,12 +92,13 @@ const DetailWrite = (props) => {
     TotalTags.push(tags4);
   }
 
-  //수정하기 태그 가져오기
+  console.log(TotalTags);
 
-  const bringConditions = String(post_list.conditions);
-  const bringTags = props.date.tag;
-  console.log(bringConditions);
-  console.log(bringTags);
+  //수정하기 태그 가져오기
+  // const bringConditions = String(post_list.conditions);
+  // const bringTags = props.date.tag;
+  // console.log(bringConditions);
+  // console.log(bringTags);
 
   //컨디션
   const [conditions, setCondition] = React.useState("");
@@ -108,6 +109,26 @@ const DetailWrite = (props) => {
   const good_icon = checkgood ? good : good_gray;
   const soso_icon = checksoso ? soso : soso_gray;
   const bad_icon = checkbad ? bad : bad_gray;
+
+  //컨디션 배열에 넣고 빼기
+  const [con1, setCon1] = React.useState("");
+  const [con2, setCon2] = React.useState("");
+  const [con3, setCon3] = React.useState("");
+
+  const TotalCon = [];
+  if (con1) {
+    TotalCon.push(con1);
+  }
+  if (con2) {
+    TotalCon.push(con2);
+  }
+  if (con3) {
+    TotalCon.push(con3);
+  }
+
+  console.log(TotalCon);
+  const mycondition = String(TotalCon);
+  console.log(mycondition);
 
   const checkSleep = (e) => {
     setstartSleep(e.target.value);
@@ -128,7 +149,7 @@ const DetailWrite = (props) => {
       totalSleepMinute: totalSleepMinute,
       selectedAt: props.date.slice(14, 24),
       tag: TotalTags,
-      conditions: conditions,
+      conditions: mycondition,
       memo: memo,
     };
 
@@ -146,7 +167,7 @@ const DetailWrite = (props) => {
       totalSleepMinute: totalSleepMinute,
       selectedAt: props.date.selectedAt,
       tag: TotalTags,
-      conditions: conditions,
+      conditions: mycondition,
       memo: memo,
     };
 
@@ -297,7 +318,12 @@ const DetailWrite = (props) => {
                   alt="컨디션 good"
                   value={1}
                   onClick={(e) => {
-                    setCondition(e.target.value);
+                    if (!checkgood) {
+                      setCon1(e.target.value);
+                    }
+                    if (checkgood) {
+                      setCon1(null);
+                    }
 
                     checkgood ? setCheckGood(false) : setCheckGood(true);
                   }}
@@ -312,7 +338,12 @@ const DetailWrite = (props) => {
                   alt="컨디션 soso"
                   value={2}
                   onClick={(e) => {
-                    setCondition(e.target.value);
+                    if (!checksoso) {
+                      setCon2(e.target.value);
+                    }
+                    if (checksoso) {
+                      setCon2(null);
+                    }
 
                     checksoso ? setCheckSoso(false) : setCheckSoso(true);
                   }}
@@ -327,7 +358,12 @@ const DetailWrite = (props) => {
                   alt="컨디션 bad"
                   value={3}
                   onClick={(e) => {
-                    setCondition(e.target.value);
+                    if (!checkbad) {
+                      setCon3(e.target.value);
+                    }
+                    if (checkbad) {
+                      setCon3(null);
+                    }
 
                     checkbad ? setCheckBad(false) : setCheckBad(true);
                   }}
@@ -503,7 +539,12 @@ const DetailWrite = (props) => {
                   alt="컨디션 good"
                   value={1}
                   onClick={(e) => {
-                    setCondition(e.target.value);
+                    if (!checkgood) {
+                      setCon1(e.target.value);
+                    }
+                    if (checkgood) {
+                      setCon1(null);
+                    }
 
                     checkgood ? setCheckGood(false) : setCheckGood(true);
                   }}
@@ -518,7 +559,12 @@ const DetailWrite = (props) => {
                   alt="컨디션 soso"
                   value={2}
                   onClick={(e) => {
-                    setCondition(e.target.value);
+                    if (!checksoso) {
+                      setCon2(e.target.value);
+                    }
+                    if (checksoso) {
+                      setCon2(null);
+                    }
 
                     checksoso ? setCheckSoso(false) : setCheckSoso(true);
                   }}
@@ -533,7 +579,12 @@ const DetailWrite = (props) => {
                   alt="컨디션 bad"
                   value={3}
                   onClick={(e) => {
-                    setCondition(e.target.value);
+                    if (!checkbad) {
+                      setCon3(e.target.value);
+                    }
+                    if (checkbad) {
+                      setCon3(null);
+                    }
 
                     checkbad ? setCheckBad(false) : setCheckBad(true);
                   }}

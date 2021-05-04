@@ -29,31 +29,39 @@ const DetailPost = (props) => {
   //컨디션
   const myCon = String(props.date.conditions);
   //조건식을 통해 분별한다
- 
 
   //처음에 데이터를 보여주는 경우를 제외하고!
   if (props.date.selectedAt == undefined) {
     let _day = props.date.slice(14, 24);
- 
 
     return (
       <React.Fragment>
         <ModalComponent>
           <EmptyHeader>
-          <button
-              onClick={() => {
-                let tDate = new Date(_day);
-                tDate.setDate(tDate.getDate()-1);
-                dispatch(todoActions.getOnePostAX(moment(tDate).format("YYYY-MM-DD")));
-              }}>이전 날</button>
-              <Text>{_day}</Text>
             <button
               onClick={() => {
                 let tDate = new Date(_day);
-                tDate.setDate(tDate.getDate()+1);
-                dispatch(todoActions.getOnePostAX(moment(tDate).format("YYYY-MM-DD")));
-              }}>다음 날</button>
-            
+                tDate.setDate(tDate.getDate() - 1);
+                dispatch(
+                  todoActions.getOnePostAX(moment(tDate).format("YYYY-MM-DD"))
+                );
+              }}
+            >
+              이전 날
+            </button>
+            <Text>{_day}</Text>
+            <button
+              onClick={() => {
+                let tDate = new Date(_day);
+                tDate.setDate(tDate.getDate() + 1);
+                dispatch(
+                  todoActions.getOnePostAX(moment(tDate).format("YYYY-MM-DD"))
+                );
+              }}
+            >
+              다음 날
+            </button>
+
             <RightHeader>
               <AddButton
                 onClick={() => {
@@ -76,20 +84,30 @@ const DetailPost = (props) => {
       <React.Fragment>
         <ModalComponent>
           <ModalHeader>
-          <button
-              onClick={() => {
-                let tDate = new Date(props.date.selectedAt);
-                tDate.setDate(tDate.getDate()-1);
-                dispatch(todoActions.getOnePostAX(moment(tDate).format("YYYY-MM-DD")));
-              }}>이전 날</button>
-              <Text> {props.date.selectedAt}</Text>
             <button
               onClick={() => {
                 let tDate = new Date(props.date.selectedAt);
-                tDate.setDate(tDate.getDate()+1);
-                dispatch(todoActions.getOnePostAX(moment(tDate).format("YYYY-MM-DD")));
-              }}>다음 날</button>
-            
+                tDate.setDate(tDate.getDate() - 1);
+                dispatch(
+                  todoActions.getOnePostAX(moment(tDate).format("YYYY-MM-DD"))
+                );
+              }}
+            >
+              이전 날
+            </button>
+            <Text> {props.date.selectedAt}</Text>
+            <button
+              onClick={() => {
+                let tDate = new Date(props.date.selectedAt);
+                tDate.setDate(tDate.getDate() + 1);
+                dispatch(
+                  todoActions.getOnePostAX(moment(tDate).format("YYYY-MM-DD"))
+                );
+              }}
+            >
+              다음 날
+            </button>
+
             <RightHeader>
               <AddButton
                 onClick={() => {
@@ -112,7 +130,7 @@ const DetailPost = (props) => {
             <TimeText>
               수면시간{" "}
               {`${props.date.totalSleepHour} 시간 ${props.date.totalSleepMinute} 분`}{" "}
-              ({props.date.startSleep} ~ {props.date.endSleep}) 
+              ({props.date.startSleep} ~ {props.date.endSleep})
             </TimeText>
           </TopContainer>
 

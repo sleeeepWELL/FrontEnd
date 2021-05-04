@@ -154,8 +154,9 @@ const DetailWrite = (props) => {
     dispatch(todoActions.editPostAX(post));
   };
 
+  console.log(props.date)
   //수정하는 경우
-  if (props.date.id) {
+  if (props.date.selectedAt!==undefined) {
     return (
       <React.Fragment>
         <ModalComponent>

@@ -14,6 +14,9 @@ import bad from "../image/bad-condition.jpg";
 import good from "../image/good-condition.jpg";
 import soso from "../image/soso-condition.jpg";
 
+import ChevronRightIcon from '@material-ui/icons/ChevronRight';
+import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
+
 //글씨 이미지로 바꾸기
 const mapKeywordToImg = {
   음주: beer,
@@ -29,11 +32,12 @@ const DetailPost = (props) => {
   //컨디션
   const myCon = String(props.date.conditions);
   //조건식을 통해 분별한다
+ 
+ 
 
   //처음에 데이터를 보여주는 경우를 제외하고!
   if (props.date.selectedAt == undefined) {
     let _day = props.date.slice(14, 24);
-
     return (
       <React.Fragment>
         <ModalComponent>
@@ -41,27 +45,17 @@ const DetailPost = (props) => {
             <button
               onClick={() => {
                 let tDate = new Date(_day);
-                tDate.setDate(tDate.getDate() - 1);
-                dispatch(
-                  todoActions.getOnePostAX(moment(tDate).format("YYYY-MM-DD"))
-                );
-              }}
-            >
-              이전 날
-            </button>
-            <Text>{_day}</Text>
+                tDate.setDate(tDate.getDate()-1);
+                dispatch(todoActions.getOnePostAX(moment(tDate).format("YYYY-MM-DD")));
+              }}><ChevronLeftIcon/></button>
+              <Text>{_day}</Text>
             <button
               onClick={() => {
                 let tDate = new Date(_day);
-                tDate.setDate(tDate.getDate() + 1);
-                dispatch(
-                  todoActions.getOnePostAX(moment(tDate).format("YYYY-MM-DD"))
-                );
-              }}
-            >
-              다음 날
-            </button>
-
+                tDate.setDate(tDate.getDate()+1);
+                dispatch(todoActions.getOnePostAX(moment(tDate).format("YYYY-MM-DD")));
+              }}><ChevronRightIcon/></button>
+            
             <RightHeader>
               <AddButton
                 onClick={() => {
@@ -87,27 +81,17 @@ const DetailPost = (props) => {
             <button
               onClick={() => {
                 let tDate = new Date(props.date.selectedAt);
-                tDate.setDate(tDate.getDate() - 1);
-                dispatch(
-                  todoActions.getOnePostAX(moment(tDate).format("YYYY-MM-DD"))
-                );
-              }}
-            >
-              이전 날
-            </button>
-            <Text> {props.date.selectedAt}</Text>
+                tDate.setDate(tDate.getDate()-1);
+                dispatch(todoActions.getOnePostAX(moment(tDate).format("YYYY-MM-DD")));
+              }}><ChevronLeftIcon/></button>
+              <Text> {props.date.selectedAt}</Text>
             <button
               onClick={() => {
                 let tDate = new Date(props.date.selectedAt);
-                tDate.setDate(tDate.getDate() + 1);
-                dispatch(
-                  todoActions.getOnePostAX(moment(tDate).format("YYYY-MM-DD"))
-                );
-              }}
-            >
-              다음 날
-            </button>
-
+                tDate.setDate(tDate.getDate()+1);
+                dispatch(todoActions.getOnePostAX(moment(tDate).format("YYYY-MM-DD")));
+              }}><ChevronRightIcon/></button>
+            
             <RightHeader>
               <AddButton
                 onClick={() => {
@@ -175,7 +159,7 @@ const DetailPost = (props) => {
 };
 
 const ModalHeader = styled.div`
-  background-color: grey;
+  background-color: black;
   display: flex;
   justify-content: space-between;
   width: 100%;
@@ -184,7 +168,7 @@ const ModalHeader = styled.div`
 `;
 
 const EmptyHeader = styled.div`
-  background-color: grey;
+  background-color: black;
   display: flex;
   justify-content: space-between;
   width: 100%;
@@ -203,29 +187,28 @@ const RightHeader = styled.div`
 const FixButton = styled.button`
   width: 100%;
   height: 100%;
-  background-color: white;
-  border: #fee500;
+  background-color: black;
+  border: 2px solid white;
   font-weight: bold;
   border-radius: 5px;
   outline: none;
   cursor: pointer;
+  color: white;
+  
 `;
 
 const AddButton = styled.button`
   width: 100%;
   height: 100%;
-  background-color: white;
-  border: #fee500;
+  background-color: black;
+  border: 2px solid white;
   font-weight: bold;
   border-radius: 5px;
   outline: none;
   cursor: pointer;
+  color: white;
 `;
 
-const ConditionImg = styled.img`
-  width: 10%;
-  height: 100%;
-`;
 
 const TopContainer = styled.div`
   background-color: grey;
@@ -243,13 +226,14 @@ const Text = styled.div`
 `;
 const TimeText = styled.div`
   width: 60%;
+  color: white;
   font-size: 15px;
   margin: 5px 0px 0px 10px;
   font-weight: bold;
 `;
 
 const TagContainer = styled.div`
-  background-color: grey;
+  background-color: black;
   width: 100%;
   height: 10%;
   display: flex;
@@ -258,14 +242,14 @@ const TagContainer = styled.div`
   justify-content: space-between;
 `;
 const ConditionContainer = styled.div`
-  background-color: grey;
+  background-color: black;
   width: 100%;
   height: 10%;
   display: flex;
 `;
 
 const BottomContainer = styled.div`
-  background-color: grey;
+  background-color: black;
   width: 100%;
   height: 30%;
   display: flex;
@@ -277,20 +261,9 @@ const BottomContainer = styled.div`
 const Contents = styled.div`
   width: 100%;
   height: 55%;
-  background-color: white;
+  background-color: black;
   margin-top: 5px;
 `;
-// const ReturnButton = styled.button`
-//     width: 30%;
-//     height: 30px;
-//     background-color: white;
-//     border: #FEE500;
-//     font-weight: bold;
-//     border-radius: 5px;
-//     outline: none;
-//     cursor: pointer;
-//     margin-top:10px;
-// `
 
 const ModalComponent = styled.div`
   width: 100%;

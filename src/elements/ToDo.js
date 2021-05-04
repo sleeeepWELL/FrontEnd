@@ -36,15 +36,13 @@ const TotalTags = ["음주", "야식", "야근", "운동"];
 
 const ToDo = (props) => {
 
-  console.log(props.conditions);
-  console.log(props.tag);
+
   const myTags = props.tag;
   const myTag = String(props.tag);
 
-  console.log(myTag);
 
   const myCon = String(props.conditions);
-  console.log(myCon);
+
 
   return (
     <React.Fragment>

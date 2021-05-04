@@ -17,20 +17,20 @@ const loadTodo = createAction(LOAD, (todo_list) => ({ todo_list }));
 const loadOneTodo = createAction(LOADDAILY, (day_list) => ({ day_list }));
 const addTodo = createAction(ADD, (todo_data) => ({ todo_data }));
 const updateTodo = createAction(UPDATE, (date, data) => ({ date, data })); //이거 조심
-const deleteTodo = createAction(DELETE, (todo_id) => ({ todo_id }));
+const deleteTodo = createAction(DELETE, (date) => ({ date }));
 const changeToday = createAction(CHANGE_TODAY, (date) => ({ date }));
 
 const initialState = {
   today: moment(),
   day_list: [
     {
-      id: 5,
+      id: 2,
       startSleep: "00:00",
       endSleep: "09:00",
       totalSleepHour: 540,
       totalSleepMinute: 540,
       tag: ["운동", "음주"],
-      conditions: 1,
+      conditions: "First_View",
       memo: "오늘은 즐거웠다",
       selectedAt: "2021-04-29",
     },
@@ -45,37 +45,16 @@ const initialState = {
       conditions: 1,
       selectedAt: "2021-04-25",
     },
-    {
-      id: 4,
-      startSleep: "00:00:00",
-      endSleep: "09:00:00",
-      totalSleep: 9,
-      tag: ["운동", "음주"],
-      conditions: 1,
-      selectedAt: "2021-04-26",
-    },
-    {
-      id: 7,
-      startSleep: "00:00:00",
-      endSleep: "09:00:00",
-      totalSleep: 9,
-      tag: ["운동", "음주"],
-      conditions: 1,
-      selectedAt: "2021-04-27",
-    },
   ],
 };
 
 const getAllPostAX = () => {
   return function (dispatch) {
-    console.log(axios.defaults);
     axios
       .get(`${config.api}/calendars`)
       .then((response) => {
-        console.log(response);
-        console.log(axios.default);
+     
         let todo_list = [];
-
         response.data.forEach((_item) => {
           let content = {
             id: _item.id,
@@ -98,14 +77,13 @@ const getAllPostAX = () => {
 };
 
 const getOnePostAX = (selectedAt) => {
-  console.log(selectedAt);
+ 
   return function (dispatch) {
-    console.log(axios.defaults);
+   
     axios
       .get(`${config.api}/cards/${selectedAt}`)
       .then((response) => {
-        console.log(response);
-        console.log(response.data);
+       
 
         dispatch(loadOneTodo(response.data));
       })
@@ -116,9 +94,6 @@ const getOnePostAX = (selectedAt) => {
 };
 
 const addPostAX = (post) => {
-  console.log(axios.defaults);
-  let _day = post.selectedAt.slice(14, 24);
-  console.log(_day);
   return function (dispatch) {
     let data = {
       startSleep: post.startSleep,
@@ -126,15 +101,13 @@ const addPostAX = (post) => {
       tag: post.tag,
       conditions: post.conditions,
       memo: post.memo,
-      selectedAt: _day,
+      selectedAt: post.selectedAt,
     };
-    console.log(data);
+  
     axios
       .post(`${config.api}/cards`, data)
       .then((response) => {
-        console.log(response.data);
-
-        dispatch(addTodo(data));
+        dispatch(addTodo(post));
       })
       .catch((err) => {
         console.log(err);
@@ -155,18 +128,19 @@ const editPostAX = (post) => {
     axios
       .put(`${config.api}/cards/${post.selectedAt}`, data)
       .then((response) => {
-        console.log(response);
 
-        let data = {
+        let data2 = {
           id: post.id,
           startSleep: post.startSleep,
           endSleep: post.endSleep,
+          totalSleepHour: post.totalSleepHour,
+          totalSleepMinute: post.totalSleepMinute,
           tag: post.tag,
           conditions: post.conditions,
           memo: post.memo,
           selectedAt: post.selectedAt,
         };
-        dispatch(updateTodo(post.selectedAt, data));
+        dispatch(updateTodo(post.selectedAt, data2));
       })
       .catch((err) => {
         console.log(err);
@@ -178,7 +152,7 @@ const editPostAX = (post) => {
 const removePostAX = (selectedAt) => {
   return function (dispatch) {
     axios.delete(`${config.api}/cards/${selectedAt}`).then((reponse) => {
-      console.log(reponse.data);
+     
       dispatch(deleteTodo(selectedAt));
     });
   };
@@ -198,30 +172,28 @@ export default handleActions(
     [ADD]: (state, action) =>
       produce(state, (draft) => {
         draft.todo_list.unshift(action.payload.todo_data);
+        draft.day_list = action.payload.todo_data;
       }),
     [UPDATE]: (state, action) => produce(state, (draft) => {
       let idx = draft.todo_list.findIndex((d)=>d.selectedAt === action.payload.date)
       draft.todo_list[idx]={...draft.todo_list[idx],...action.payload.data}
+      draft.day_list= action.payload.data;
     }),
     [DELETE]: (state, action) =>
       produce(state, (draft) => {
         draft.todo_list = draft.todo_list.filter((p) => {
-          if (p.selectedAt !== action.payload.todo_id) {
+          if (p.selectedAt !== action.payload.date) {
             return [...draft.todo_list, p];
           }
         });
+        let _date = `{"selectedAt":${action.payload.date}}`                        
+        draft.day_list = _date;
       }),
     [CHANGE_TODAY]: (state, action) =>
       produce(state, (draft) => {
         return { ...draft, today: moment(action.payload.date) };
       }),
   },
-
-  // case "todo/CHANGE_TODAY": {
-  //   //       // action에서 받아오는 값 : date
-  //   //       return { ...state, today: moment(action.date) };
-  //   //     }
-
   initialState
 );
 

@@ -31,17 +31,16 @@ function App() {
   return (
     <React.Fragment>
       <ConnectedRouter history={history}>
-        <Route path="/login" exact component={Login} />
         <Route path="/signup" exact component={Signup} />
+        <Route path="/login" exact component={Login} />
         <div>
-          <Route path="/" component={Navigator} />
           <Wrap>
             <ContentWrap>
+              <Route path="/" exact component={Navigator} />
               <Route
                 path="/kakaoLogin"
                 component={OAuth2RedirectHandler}
               ></Route>
-
               <Route path="/write" exact component={PostWrite} />
               <Route path="/calendar" exact component={MainCalendar} />
               <Route path="/kyucalendar" exact component={KyuCalendar} />
@@ -49,7 +48,7 @@ function App() {
               <Route path="/jieuncalendar" exact component={JieunCalendar} />
               <Route path="/prac" exact component={PracCalendar} />
               <Route path="/analysis" exact component={Analysis} />
-              <Route path="/" component={LoginCheck} />
+              {/* <Route path="/" component={LoginCheck} /> */}
               {/* <Route exact component={NotFound}/> */}
             </ContentWrap>
           </Wrap>

@@ -63,17 +63,11 @@ const DetailWrite = (props) => {
   //태그
   const mytags = ["음주", "야근", "운동", "야식"];
   const TotalTags = [];
-  const EditTotalTags = [];
 
   const [tags1, setTags1] = React.useState("");
   const [tags2, setTags2] = React.useState("");
   const [tags3, setTags3] = React.useState("");
   const [tags4, setTags4] = React.useState("");
-
-  const [editTags1, setEditTags1] = React.useState("");
-  const [editTags2, setEditTags2] = React.useState("");
-  const [editTags3, setEditTags3] = React.useState("");
-  const [editTags4, setEditTags4] = React.useState("");
 
   const [checkbeer, setCheckBeer] = React.useState(false);
   const [checkovereat, setCheckOvereat] = React.useState(false);
@@ -103,33 +97,14 @@ const DetailWrite = (props) => {
     TotalTags.push(tags4);
   }
 
-  console.log(checkbeer, checkovereat, checkwork, checkworkout);
-
-  // console.log(TotalTags);
-
-  //edit
-  // if (editTags1) {
-  //   EditTotalTags.push(editTags1);
-  // }
-  // if (editTags2) {
-  //   EditTotalTags.push(editTags2);
-  // }
-  // if (editTags3) {
-  //   EditTotalTags.push(editTags3);
-  // }
-  // if (editTags4) {
-  //   EditTotalTags.push(editTags4);
-  // }
-
   // 수정하기 태그 가져오기
-  const bringConditions = String(post_list.conditions);
   const bringTags = props.date.tag;
-  // console.log(bringConditions);
-  console.log(bringTags);
 
-  const sendTags = bringTags.concat(TotalTags);
-  console.log(sendTags);
-  console.log(TotalTags);
+  const [editTags, setEditTags] = React.useState(bringTags);
+  // console.log("받아온배열:", editTags);
+  // console.log("수정한배열:", TotalTags);
+  const sendTags = editTags.concat(TotalTags);
+  // console.log("최종 보낼배열:", sendTags);
 
   //컨디션
   const [conditions, setCondition] = React.useState("");
@@ -140,6 +115,10 @@ const DetailWrite = (props) => {
   const good_icon = checkgood ? good : good_gray;
   const soso_icon = checksoso ? soso : soso_gray;
   const bad_icon = checkbad ? bad : bad_gray;
+
+  const icon_good = checkgood ? good_gray : good;
+  const icon_soso = checksoso ? soso_gray : soso;
+  const icon_bad = checkbad ? bad_gray : bad;
 
   //컨디션 배열에 넣고 빼기
   const [con1, setCon1] = React.useState("");
@@ -160,6 +139,14 @@ const DetailWrite = (props) => {
   // console.log(TotalCon);
   const mycondition = String(TotalCon);
   // console.log(mycondition);
+
+  //컨디션 수정
+  const bringConditions = String(props.date.conditions);
+  console.log(bringConditions);
+
+  const [editCon, setEditCon] = React.useState(bringConditions);
+  console.log("받아온 컨디션:", editCon);
+  console.log("보낼 컨디션:", TotalCon);
 
   const checkSleep = (e) => {
     setstartSleep(e.target.value);
@@ -197,7 +184,7 @@ const DetailWrite = (props) => {
       totalSleepHour: totalSleepHour,
       totalSleepMinute: totalSleepMinute,
       selectedAt: props.date.selectedAt,
-      tag: TotalTags,
+      tag: sendTags,
       conditions: mycondition,
       memo: memo,
     };
@@ -206,9 +193,9 @@ const DetailWrite = (props) => {
     dispatch(todoActions.editPostAX(post));
   };
 
-  console.log(props.date)
+  // console.log(props.date);
   //수정하는 경우
-  if (props.date.selectedAt!==undefined) {
+  if (props.date.selectedAt !== undefined) {
     return (
       <React.Fragment>
         <ModalComponent>
@@ -250,7 +237,7 @@ const DetailWrite = (props) => {
           <TagContainer>
             <TotalImgGrid>
               <ImgGrid>
-                {bringTags.find((p) => p === "음주") ? (
+                {editTags.find((p) => p === "음주") ? (
                   <input
                     width="40"
                     height="40"
@@ -259,13 +246,10 @@ const DetailWrite = (props) => {
                     alt="beer"
                     value={"음주"}
                     onClick={(e) => {
-                      if (checkbeer) {
-                        setTags1(e.target.value);
-                      }
                       if (!checkbeer) {
-                        setTags1(null);
+                        setEditTags(editTags.filter((p) => p !== "음주"));
+                        console.log("!checkbeer");
                       }
-                      checkbeer ? setCheckBeer(false) : setCheckBeer(true);
                     }}
                   />
                 ) : (
@@ -290,7 +274,7 @@ const DetailWrite = (props) => {
                 )}
               </ImgGrid>
               <ImgGrid>
-                {bringTags.find((p) => p === "야식") ? (
+                {editTags.find((p) => p === "야식") ? (
                   <input
                     width="40"
                     height="40"
@@ -300,15 +284,8 @@ const DetailWrite = (props) => {
                     value={"야식"}
                     onClick={(e) => {
                       if (!checkovereat) {
-                        setTags2(e.target.value);
+                        setEditTags(editTags.filter((p) => p !== "야식"));
                       }
-                      if (checkovereat) {
-                        setTags2(null);
-                      }
-
-                      checkovereat
-                        ? setCheckOvereat(false)
-                        : setCheckOvereat(true);
                     }}
                   />
                 ) : (
@@ -335,7 +312,7 @@ const DetailWrite = (props) => {
                 )}
               </ImgGrid>
               <ImgGrid>
-                {bringTags.find((p) => p === "야근") ? (
+                {editTags.find((p) => p === "야근") ? (
                   <input
                     width="40"
                     height="40"
@@ -345,14 +322,8 @@ const DetailWrite = (props) => {
                     value={"야근"}
                     onClick={(e) => {
                       if (!checkwork) {
-                        setTags3(e.target.value);
+                        setEditTags(editTags.filter((p) => p !== "야근"));
                       }
-                      if (checkwork) {
-                        setTags3(null);
-                      }
-
-                      console.log(e.target.value);
-                      checkwork ? setCheckWork(false) : setCheckWork(true);
                     }}
                   />
                 ) : (
@@ -376,7 +347,7 @@ const DetailWrite = (props) => {
                 )}
               </ImgGrid>
               <ImgGrid>
-                {bringTags.find((p) => p === "운동") ? (
+                {editTags.find((p) => p === "운동") ? (
                   <input
                     width="40"
                     height="40"
@@ -386,16 +357,8 @@ const DetailWrite = (props) => {
                     value={"운동"}
                     onClick={(e) => {
                       if (!checkworkout) {
-                        setTags4(e.target.value);
+                        setEditTags(editTags.filter((p) => p !== "운동"));
                       }
-                      if (checkworkout) {
-                        setTags4(null);
-                      }
-
-                      console.log(e.target.value);
-                      checkworkout
-                        ? setCheckWorkOut(false)
-                        : setCheckWorkOut(true);
                     }}
                   />
                 ) : (
@@ -426,64 +389,112 @@ const DetailWrite = (props) => {
           <ConditionContainer>
             <TotalImgGrid>
               <ImgGrid>
-                <input
-                  width="40"
-                  height="40"
-                  type="image"
-                  src={good_icon}
-                  alt="컨디션 good"
-                  value={1}
-                  onClick={(e) => {
-                    if (!checkgood) {
-                      setCon1(e.target.value);
-                    }
-                    if (checkgood) {
-                      setCon1(null);
-                    }
+                {editCon === "1" ? (
+                  <input
+                    width="40"
+                    height="40"
+                    type="image"
+                    src={icon_good}
+                    alt="컨디션 good"
+                    value={1}
+                    onClick={(e) => {
+                      if (!checkgood) {
+                        setEditCon(null);
+                      }
+                    }}
+                  />
+                ) : (
+                  <input
+                    width="40"
+                    height="40"
+                    type="image"
+                    src={good_icon}
+                    alt="컨디션 good"
+                    value={1}
+                    onClick={(e) => {
+                      if (!checkgood) {
+                        setCon1(e.target.value);
+                      }
+                      if (checkgood) {
+                        setCon1(null);
+                      }
 
-                    checkgood ? setCheckGood(false) : setCheckGood(true);
-                  }}
-                />
+                      checkgood ? setCheckGood(false) : setCheckGood(true);
+                    }}
+                  />
+                )}
               </ImgGrid>
               <ImgGrid>
-                <input
-                  width="40"
-                  height="40"
-                  type="image"
-                  src={soso_icon}
-                  alt="컨디션 soso"
-                  value={2}
-                  onClick={(e) => {
-                    if (!checksoso) {
-                      setCon2(e.target.value);
-                    }
-                    if (checksoso) {
-                      setCon2(null);
-                    }
+                {editCon === "2" ? (
+                  <input
+                    width="40"
+                    height="40"
+                    type="image"
+                    src={icon_soso}
+                    alt="컨디션 soso"
+                    value={2}
+                    onClick={(e) => {
+                      if (!checksoso) {
+                        setEditCon(null);
+                      }
+                    }}
+                  />
+                ) : (
+                  <input
+                    width="40"
+                    height="40"
+                    type="image"
+                    src={soso_icon}
+                    alt="컨디션 soso"
+                    value={2}
+                    onClick={(e) => {
+                      if (!checksoso) {
+                        setCon2(e.target.value);
+                      }
+                      if (checksoso) {
+                        setCon2(null);
+                      }
 
-                    checksoso ? setCheckSoso(false) : setCheckSoso(true);
-                  }}
-                />
+                      checksoso ? setCheckSoso(false) : setCheckSoso(true);
+                    }}
+                  />
+                )}
               </ImgGrid>
               <ImgGrid>
-                <input
-                  width="40"
-                  height="40"
-                  type="image"
-                  src={bad_icon}
-                  alt="컨디션 bad"
-                  value={3}
-                  onClick={(e) => {
-                    if (!checkbad) {
-                      setCon3(e.target.value);
-                    }
-                    if (checkbad) {
-                      setCon3(null);
-                    }
+                {editCon === "3" ? (
+                  <input
+                    width="40"
+                    height="40"
+                    type="image"
+                    src={icon_bad}
+                    alt="컨디션 bad"
+                    value={3}
+                    onClick={(e) => {
+                      if (!checkbad) {
+                        setEditCon(null);
+                      }
+                    }}
+                  />
+                ) : (
+                  <input
+                    width="40"
+                    height="40"
+                    type="image"
+                    src={bad_icon}
+                    alt="컨디션 bad"
+                    value={3}
+                    onClick={(e) => {
+                      if (!checkbad) {
+                        setCon3(e.target.value);
+                      }
+                      if (checkbad) {
+                        setCon3(null);
+                      }
 
-                    checkbad ? setCheckBad(false) : setCheckBad(true);
-                  }}
-                />
+                      checkbad ? setCheckBad(false) : setCheckBad(true);
+                    }}
+                  />
+                )}
               </ImgGrid>
             </TotalImgGrid>
           </ConditionContainer>

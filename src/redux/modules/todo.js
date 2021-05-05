@@ -53,7 +53,6 @@ const getAllPostAX = () => {
     axios
       .get(`${config.api}/calendars`)
       .then((response) => {
-     
         let todo_list = [];
         response.data.forEach((_item) => {
           let content = {
@@ -77,14 +76,10 @@ const getAllPostAX = () => {
 };
 
 const getOnePostAX = (selectedAt) => {
- 
   return function (dispatch) {
-   
     axios
       .get(`${config.api}/cards/${selectedAt}`)
       .then((response) => {
-       
-
         dispatch(loadOneTodo(response.data));
       })
       .catch((err) => {
@@ -103,7 +98,7 @@ const addPostAX = (post) => {
       memo: post.memo,
       selectedAt: post.selectedAt,
     };
-  
+
     axios
       .post(`${config.api}/cards`, data)
       .then((response) => {
@@ -116,6 +111,7 @@ const addPostAX = (post) => {
 };
 
 const editPostAX = (post) => {
+  console.log(post);
   return function (dispatch) {
     let data = {
       startSleep: post.startSleep,
@@ -123,12 +119,10 @@ const editPostAX = (post) => {
       tag: post.tag,
       conditions: post.conditions,
       memo: post.memo,
-      selectedAt: post.selectedAt,
     };
     axios
       .put(`${config.api}/cards/${post.selectedAt}`, data)
       .then((response) => {
-
         let data2 = {
           id: post.id,
           startSleep: post.startSleep,
@@ -152,7 +146,6 @@ const editPostAX = (post) => {
 const removePostAX = (selectedAt) => {
   return function (dispatch) {
     axios.delete(`${config.api}/cards/${selectedAt}`).then((reponse) => {
-     
       dispatch(deleteTodo(selectedAt));
     });
   };
@@ -174,11 +167,17 @@ export default handleActions(
         draft.todo_list.unshift(action.payload.todo_data);
         draft.day_list = action.payload.todo_data;
       }),
-    [UPDATE]: (state, action) => produce(state, (draft) => {
-      let idx = draft.todo_list.findIndex((d)=>d.selectedAt === action.payload.date)
-      draft.todo_list[idx]={...draft.todo_list[idx],...action.payload.data}
-      draft.day_list= action.payload.data;
-    }),
+    [UPDATE]: (state, action) =>
+      produce(state, (draft) => {
+        let idx = draft.todo_list.findIndex(
+          (d) => d.selectedAt === action.payload.date
+        );
+        draft.todo_list[idx] = {
+          ...draft.todo_list[idx],
+          ...action.payload.data,
+        };
+        draft.day_list = action.payload.data;
+      }),
     [DELETE]: (state, action) =>
       produce(state, (draft) => {
         draft.todo_list = draft.todo_list.filter((p) => {
@@ -186,7 +185,7 @@ export default handleActions(
             return [...draft.todo_list, p];
           }
         });
-        let _date = `{"selectedAt":${action.payload.date}}`                        
+        let _date = `{"selectedAt":${action.payload.date}}`;
         draft.day_list = _date;
       }),
     [CHANGE_TODAY]: (state, action) =>

@@ -99,7 +99,6 @@ const DetailWrite = (props) => {
 
   // 수정하기 태그 가져오기
   const bringTags = props.date.tag;
-
   const [editTags, setEditTags] = React.useState(bringTags);
   // console.log("받아온배열:", editTags);
   // console.log("수정한배열:", TotalTags);
@@ -140,14 +139,13 @@ const DetailWrite = (props) => {
   const mycondition = String(TotalCon);
   // console.log(mycondition);
 
-  //컨디션 수정
+  // / /컨디션 수정
   const bringConditions = String(props.date.conditions);
   console.log(bringConditions);
 
   const [editCon, setEditCon] = React.useState(bringConditions);
   console.log("받아온 컨디션:", editCon);
   console.log("보낼 컨디션:", TotalCon);
-
   const checkSleep = (e) => {
     setstartSleep(e.target.value);
   };
@@ -193,7 +191,7 @@ const DetailWrite = (props) => {
     dispatch(todoActions.editPostAX(post));
   };
 
-  // console.log(props.date);
+  console.log(props.date);
   //수정하는 경우
   if (props.date.selectedAt !== undefined) {
     return (

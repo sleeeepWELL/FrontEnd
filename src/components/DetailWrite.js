@@ -97,18 +97,15 @@ const DetailWrite = (props) => {
     TotalTags.push(tags4);
   }
 
-  console.log(checkbeer, checkovereat, checkwork, checkworkout);
-
-
-
-  
+  // console.log(checkbeer, checkovereat, checkwork, checkworkout);
 
   // 수정하기 태그 가져오기
   const bringTags = props.date.tag;
   const [editTags, setEditTags] = React.useState(bringTags);
-  // console.log("받아온배열:", editTags);
-  // console.log("수정한배열:", TotalTags);
+
   const sendTags = editTags.concat(TotalTags);
+  //  console.log("받아온배열:", editTags);
+  //  console.log("수정한배열:", TotalTags);
   // console.log("최종 보낼배열:", sendTags);
 
   //컨디션
@@ -143,15 +140,19 @@ const DetailWrite = (props) => {
 
   // console.log(TotalCon);
   const mycondition = String(TotalCon);
-  // console.log(mycondition);
+  console.log(mycondition);
 
   // / /컨디션 수정
-  const bringConditions = String(props.date.conditions);
+  const bringConditions = props.date.conditions;
   console.log(bringConditions);
 
   const [editCon, setEditCon] = React.useState(bringConditions);
   console.log("받아온 컨디션:", editCon);
-  console.log("보낼 컨디션:", TotalCon);
+  console.log("수정된 컨디션:", mycondition);
+
+  const sendCon = TotalCon.concat(editCon)[0];
+  console.log(sendCon);
+
   const checkSleep = (e) => {
     setstartSleep(e.target.value);
   };
@@ -189,7 +190,7 @@ const DetailWrite = (props) => {
       totalSleepMinute: totalSleepMinute,
       selectedAt: props.date.selectedAt,
       tag: sendTags,
-      conditions: mycondition,
+      conditions: sendCon,
       memo: memo,
     };
 
@@ -393,7 +394,7 @@ const DetailWrite = (props) => {
           <ConditionContainer>
             <TotalImgGrid>
               <ImgGrid>
-                {editCon === "1" ? (
+                {editCon === 1 ? (
                   <input
                     width="40"
                     height="40"
@@ -403,7 +404,7 @@ const DetailWrite = (props) => {
                     value={1}
                     onClick={(e) => {
                       if (!checkgood) {
-                        setEditCon(null);
+                        setEditCon("");
                       }
                     }}
                   />
@@ -429,7 +430,7 @@ const DetailWrite = (props) => {
                 )}
               </ImgGrid>
               <ImgGrid>
-                {editCon === "2" ? (
+                {editCon === 2 ? (
                   <input
                     width="40"
                     height="40"
@@ -439,7 +440,7 @@ const DetailWrite = (props) => {
                     value={2}
                     onClick={(e) => {
                       if (!checksoso) {
-                        setEditCon(null);
+                        setEditCon("");
                       }
                     }}
                   />
@@ -465,7 +466,7 @@ const DetailWrite = (props) => {
                 )}
               </ImgGrid>
               <ImgGrid>
-                {editCon === "3" ? (
+                {editCon === 3 ? (
                   <input
                     width="40"
                     height="40"
@@ -475,7 +476,7 @@ const DetailWrite = (props) => {
                     value={3}
                     onClick={(e) => {
                       if (!checkbad) {
-                        setEditCon(null);
+                        setEditCon("");
                       }
                     }}
                   />

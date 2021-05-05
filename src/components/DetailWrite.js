@@ -97,27 +97,21 @@ const DetailWrite = (props) => {
     TotalTags.push(tags4);
   }
 
-<<<<<<< HEAD
-=======
   console.log(checkbeer, checkovereat, checkwork, checkworkout);
 
 
 
   
 
->>>>>>> kyu0504
   // 수정하기 태그 가져오기
   const bringTags = props.date.tag;
 
-<<<<<<< HEAD
   const [editTags, setEditTags] = React.useState(bringTags);
   // console.log("받아온배열:", editTags);
   // console.log("수정한배열:", TotalTags);
   const sendTags = editTags.concat(TotalTags);
   // console.log("최종 보낼배열:", sendTags);
 
-=======
->>>>>>> kyu0504
   //컨디션
   const [conditions, setCondition] = React.useState("");
   const [checkgood, setCheckGood] = React.useState(false);

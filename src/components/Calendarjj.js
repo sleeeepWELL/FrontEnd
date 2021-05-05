@@ -78,44 +78,23 @@ const Calendar = (props) => {
             );
           });
 
-<<<<<<< HEAD
-          //해당 월이 아닌 경우 보여지지 않고 눌리지 않게 한다
-=======
           
->>>>>>> kyu0504
           if (_day.format("MM") !== today.format("MM")) {
             return (
               // 달력 한 칸(일단위) 클릭을 하면 카드받아오는
               <DayGrid
-<<<<<<< HEAD
-                key={`${moment(today).format(
-                  "MM"
-                )}_week_${week_index}_day_${day_index}`}
-                bg={
-                  is_today && moment(today).format("MM") === _day.format("MM")
-                    ? "grey"
-                    : "#ffffff"
-                }
-              >
-=======
                 key={`${moment(today).format("MM")}_week_${week_index}_day_${day_index}`}
                 bg={is_today && moment(today).format("MM") === _day.format("MM")? "grey": "#ffffff"}>
 
->>>>>>> kyu0504
                 {_day.format("MM") === moment(today).format("MM") ? (
                   <DayText font_c={is_today ? "white" : "black"}>
                     {_day.format("DD")}
                   </DayText>
                 ) : (
-<<<<<<< HEAD
-                  <DayText font_c={is_today ? "white" : "black"}></DayText>
-                )}
-=======
                   <DayText font_c={is_today ? "white" : "black"}>
                   </DayText>
                 )}
 
->>>>>>> kyu0504
                 {_list && list}
               </DayGrid>
             );

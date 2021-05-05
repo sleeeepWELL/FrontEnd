@@ -97,15 +97,27 @@ const DetailWrite = (props) => {
     TotalTags.push(tags4);
   }
 
+<<<<<<< HEAD
+=======
+  console.log(checkbeer, checkovereat, checkwork, checkworkout);
+
+
+
+  
+
+>>>>>>> kyu0504
   // 수정하기 태그 가져오기
   const bringTags = props.date.tag;
 
+<<<<<<< HEAD
   const [editTags, setEditTags] = React.useState(bringTags);
   // console.log("받아온배열:", editTags);
   // console.log("수정한배열:", TotalTags);
   const sendTags = editTags.concat(TotalTags);
   // console.log("최종 보낼배열:", sendTags);
 
+=======
+>>>>>>> kyu0504
   //컨디션
   const [conditions, setCondition] = React.useState("");
   const [checkgood, setCheckGood] = React.useState(false);
@@ -513,8 +525,7 @@ const DetailWrite = (props) => {
     );
   } else {
     console.log(props);
-    //추가를 하고 난 다음에 화면전환되도록 했다  바로 수정하는 것이 문제(수정하기 누르는데 추가페이지로 다시 들어가는듯...)
-    //해당하는 props값이 내려오지 않는다
+
     return (
       <React.Fragment>
         <ModalComponent>

@@ -1,100 +1,20 @@
 import React from "react";
 import styled from "styled-components";
-import {Doughnut} from 'react-chartjs-2';
-import {Bar} from 'react-chartjs-2';
+import BarChart from "../components/BarChart";
+import LineChart from "../components/LineChart";
  
 const Analysis = () => {
-  
-  const data = {
-    labels: [
-      'Red',
-      'Green',
-      'Yellow',
-      'Blue',
-    ],
-    
-    datasets: [{
-      data: [0, 50, 100, 200],
-      backgroundColor: [
-      'red',
-      'green',
-      'yellow',
-      'blue'
-      ],
-      hoverBackgroundColor: [
-      'pink',
-      'white',
-      'gold',
-      'skyblue'
-      ]
-    }]
-  };
-
-  const options = {
-    responsive: true,
-    plugins: {
-      legend: {
-        position: 'top',
-      },
-      title: {
-        display: true,
-        text: 'SleepWell Dought'
-      }
-    }
-  };
-  
- const weeklydata = [60,70,60,70,60,70,60]  
-
-  //몇번 째 주를 보내주면 그 주에 해당하는 정보를 월-일까지 쭉 내려주는 
-  const chartData = {
-    labels: ['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN'],
-    datasets: [
-      {
-        label: 'Sleep Time',
-        backgroundColor: 'black',
-        borderColor: 'white',
-        borderWidth: 2,
-        hoverBackgroundColor: 'blue',
-        hoverBorderColor: 'grey',
-        data: weeklydata
-      }
-    ]
-  };
-
-  const chartOptions = {
-    responsive: true,
-    plugins: {
-      legend: {
-        position: 'top',
-        backgroundColor: 'black'
-      },
-      title: {
-        display: true,
-        text: 'SleepWell Chart'
-      }
-    }
-  };
  
- 
+
  return (
     <React.Fragment>
       <Container>
-        <SleepTime>수면시간</SleepTime>
+       
+        {/* <SleepTime>수면시간</SleepTime>
         <Condition>컨디션</Condition>
-        <Graph>그래프</Graph>
-        <DContainer>
-        <Doughnut 
-        data={data}
-        options={options}
-        />
-        </DContainer>
-        <CContainer>
-        <Bar
-        data={chartData}
-        options={chartOptions}
-        
-        />
-        </CContainer>
+        <Graph>그래프</Graph> */}
+        <BarChart/>
+        <LineChart/>
    </Container>
     </React.Fragment>
   );
@@ -102,22 +22,28 @@ const Analysis = () => {
 
 const Container = styled.div`
   width: 100%;
-  height: 100%;
+  height: 90%;
   border: 1px solid blue;
   margin: 30px;
 `;
 
-const DContainer = styled.div`
-  width: 20%;
-  height: 30%;
+const CContainer = styled.div`
+  width: 90%;
+  height: 50%;
   border: 1px solid blue;
   margin: 30px;
+  display: flex;
+  
+
 `;
-const CContainer = styled.div`
+
+const CContainer1 = styled.div`
   width: 40%;
   height: 10%;
   border: 1px solid blue;
   margin: 30px;
+  
+
 `;
 
 

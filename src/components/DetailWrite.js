@@ -70,11 +70,6 @@ const DetailWrite = (props) => {
   const [tags3, setTags3] = React.useState("");
   const [tags4, setTags4] = React.useState("");
 
-  const [editTags1, setEditTags1] = React.useState("");
-  const [editTags2, setEditTags2] = React.useState("");
-  const [editTags3, setEditTags3] = React.useState("");
-  const [editTags4, setEditTags4] = React.useState("");
-
   const [checkbeer, setCheckBeer] = React.useState(false);
   const [checkovereat, setCheckOvereat] = React.useState(false);
   const [checkwork, setCheckWork] = React.useState(false);
@@ -105,31 +100,15 @@ const DetailWrite = (props) => {
 
   console.log(checkbeer, checkovereat, checkwork, checkworkout);
 
-  // console.log(TotalTags);
 
-  //edit
-  // if (editTags1) {
-  //   EditTotalTags.push(editTags1);
-  // }
-  // if (editTags2) {
-  //   EditTotalTags.push(editTags2);
-  // }
-  // if (editTags3) {
-  //   EditTotalTags.push(editTags3);
-  // }
-  // if (editTags4) {
-  //   EditTotalTags.push(editTags4);
-  // }
+
+  
 
   // 수정하기 태그 가져오기
   const bringConditions = String(post_list.conditions);
   const bringTags = props.date.tag;
   // console.log(bringConditions);
   console.log(bringTags);
-
-  const sendTags = bringTags.concat(TotalTags);
-  console.log(sendTags);
-  console.log(TotalTags);
 
   //컨디션
   const [conditions, setCondition] = React.useState("");
@@ -502,8 +481,7 @@ const DetailWrite = (props) => {
     );
   } else {
     console.log(props);
-    //추가를 하고 난 다음에 화면전환되도록 했다  바로 수정하는 것이 문제(수정하기 누르는데 추가페이지로 다시 들어가는듯...)
-    //해당하는 props값이 내려오지 않는다
+
     return (
       <React.Fragment>
         <ModalComponent>

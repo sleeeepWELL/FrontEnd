@@ -33,11 +33,11 @@ function App() {
         <Route path="/signup" exact component={Signup} />
         <Route path="/login" exact component={Login} />
         <div>
+          <Route path="/" exact component={Navigator} />
           <Wrap>
             <ContentWrap>
-              <Route path="/" exact component={Navigator} />
               <Route
-                path="/kakaoLogin"
+                path="/oauth/callback/kakao"
                 component={OAuth2RedirectHandler}
               ></Route>
               <Route path="/write" exact component={PostWrite} />

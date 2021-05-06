@@ -150,20 +150,24 @@ const signUpSV = (email, nickname, pwd, pwdCheck) => {
 };
 
 // 소셜로그인
-const kakaoLogin = (requestURL) => {
+const kakaoLogin = (code) => {
   return function (dispatch, getState, { history }) {
     axios({
       method: "POST",
-      url: `https://kauth.kakao.com/oauth/token?grant_type=authorization_code&client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&code=${requestURL}`,
-      header: {
-        "Content-Type": "application/json",
+      url: `http://3.35.208.142/oauth/callback/kakao`,
+      data: {
+        authorizedCode: code,
       },
     })
       .then((res) => {
         console.log(res);
+        window.alert("환영합니다");
+        history.replace("/calendar");
       })
       .catch((err) => {
         console.log("소셜로그인 에러", err);
+        window.alert("로그인에 실패하였습니다");
+        history.replace("/login");
       });
   };
 };

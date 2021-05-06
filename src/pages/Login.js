@@ -88,7 +88,8 @@ const Login = (props) => {
                 //성공했을때 불러올 함수로서 fetch해서 localStorage에 저장할 함수를 여기로 저장
                 getProfile={true}
               ></KaKaoBtn> */}
-              <KaKaoBtn href={KAKAO_AUTH_URL}>
+              {/* {KAKAO_AUTH_URL} */}
+              <KaKaoBtn href="http://3.35.208.142/oauth/kakao">
                 <img src={kakaologo}></img>
                 <span>카카오계정 로그인</span>
               </KaKaoBtn>

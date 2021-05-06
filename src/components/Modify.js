@@ -30,12 +30,8 @@ const Modify = (props) => {
   const dispatch = useDispatch();
 
   const post_list = useSelector((state) => state.todo.day_list);
-  console.log(post_list);
 
-  const post_id = props.props.date.id;
-  const is_edit = post_id ? true : false;
-
-  const _post = is_edit ? post_list : null;
+  const _post = props.props.date.selectedAt ? post_list : null;
   console.log(_post);
 
   const [startSleep, setstartSleep] = React.useState(

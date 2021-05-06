@@ -2,19 +2,20 @@ import React from "react";
 import styled from "styled-components";
 import {Bar} from 'react-chartjs-2';
  
-const BarChart = () => {
+const BarChart = (props) => {
   
+
  //오늘을 드리면 음주는 몇번 / 운동은 몇번/ 야근은 몇번
  //해당하는 월을  드리면 음주는 몇번/ ...
- const weeklydata = [3,7,4,7]   
- const monthlydata = [15,1,7,30]    
+ const weeklydata = props.tags.weekly; 
+ const monthlydata = props.tags.monthly;   
  //최대값 고정
 
   const chartData1 = {
-    labels: ['음주', '운동', '야근'],
+    labels: ['WORKOUT', 'DRINK', 'OVERTIME'],
     datasets: [
       {
-        label: 'Sleep Time',
+        label: 'Frequency',
         backgroundColor: ['rgba(54, 162, 235, 0.2)',
         'rgba(153, 102, 255, 0.2)',
         'rgba(201, 203, 207, 0.2)'],
@@ -22,7 +23,7 @@ const BarChart = () => {
         borderWidth: 2,
         base: 0,
         max: 100,
-        barThickness: 10,
+        barThickness: 50,
         // borderSkipped: 'start',
         borderRadius: 10,
         // barPercentage:2.0,
@@ -33,8 +34,8 @@ const BarChart = () => {
         hoverBorderColor: 'black',
         hoverBorderWidth: 5,
         hoverBorderRadius:0,
-        indexAxis: 'y',
-        // indexAxis: 'x',
+        // indexAxis: 'y',
+        indexAxis: 'x',
         data: weeklydata,
         // order: 30,
         // pointStyle: 'triangle',
@@ -43,17 +44,17 @@ const BarChart = () => {
   };
 
   const chartData2 = {
-    labels: ['음주', '운동', '야근'],
+    labels: ['WORKOUT', 'DRINK', 'OVERTIME'],
     datasets: [
       {
-        label: 'Sleep Time',
+        label: 'Frequency',
         backgroundColor: ['rgba(255, 99, 132, 0.2)',
         'rgba(255, 159, 64, 0.2)',
         'rgba(255, 205, 86, 0.2)'],
         borderColor: 'purple',
         borderWidth: 2,
         base: 0,
-        barThickness: 10,
+        barThickness: 50,
         
         // borderSkipped: 'start',
         borderRadius: 10,
@@ -64,8 +65,8 @@ const BarChart = () => {
         hoverBorderColor: 'black',
         hoverBorderWidth: 5,
         hoverBorderRadius:0,
-        indexAxis: 'y',
-        // indexAxis: 'x',
+        // indexAxis: 'y',
+        indexAxis: 'x',
         data: monthlydata,
         // order: 30,
         // pointStyle: 'triangle',
@@ -83,7 +84,7 @@ const BarChart = () => {
       },
       title: {
         display: true,
-        text: 'Weekly SleepWell Chart'
+        text: 'Weekly Frequency'
       },
       
     }
@@ -98,7 +99,7 @@ const BarChart = () => {
       },
       title: {
         display: true,
-        text: 'Monthly SleepWell Chart'
+        text: 'Monthly Frequency'
       },
       
     }
@@ -114,7 +115,7 @@ const BarChart = () => {
             <Bar
               data={chartData1}
               width={150}
-              height={60}
+              height={80}
               options={chartOptions1}
             />
           </CContainer1>
@@ -122,7 +123,7 @@ const BarChart = () => {
             <Bar
             data={chartData2}
             width={150}
-            height={60}
+            height={80}
             options={chartOptions2}
             />
             </CContainer1>
@@ -134,17 +135,16 @@ const BarChart = () => {
 const Container = styled.div`
   width: 100%;
   height: 100%;
-  border: 1px solid blue;
   margin: 30px;
 `;
 
 const CContainer = styled.div`
-  width: 100%;
+  width: 80%;
   height: 30%;
-  border: 1px solid blue;
   margin: 30px;
   display: flex;
   // flex-direction: column;
+  
   
 
 `;
@@ -152,7 +152,6 @@ const CContainer = styled.div`
 const CContainer1 = styled.div`
   width: 40%;
   height: 10%;
-  border: 1px solid blue;
   margin: 30px;
   
 

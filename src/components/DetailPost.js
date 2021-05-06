@@ -41,21 +41,22 @@ const DetailPost = (props) => {
     return (
       <React.Fragment>
         <ModalComponent>
-          <EmptyHeader>
-            <button
+          <DayHeader>
+          <LeftHeader>
+            <MoveDButton
               onClick={() => {
                 let tDate = new Date(_day);
                 tDate.setDate(tDate.getDate()-1);
                 dispatch(todoActions.getOnePostAX(moment(tDate).format("YYYY-MM-DD")));
-              }}><ChevronLeftIcon/></button>
-              <Text>{_day}</Text>
-            <button
+              }}><ChevronLeftIcon /></MoveDButton>
+              <DText>{_day}</DText>
+              <MoveDButton
               onClick={() => {
                 let tDate = new Date(_day);
                 tDate.setDate(tDate.getDate()+1);
                 dispatch(todoActions.getOnePostAX(moment(tDate).format("YYYY-MM-DD")));
-              }}><ChevronRightIcon/></button>
-            
+              }}><ChevronRightIcon/></MoveDButton>
+          </LeftHeader>
             <RightHeader>
               <AddButton
                 onClick={() => {
@@ -65,7 +66,7 @@ const DetailPost = (props) => {
                 추가하기
               </AddButton>
             </RightHeader>
-          </EmptyHeader>
+          </ DayHeader >
 
           <ConditionContainer style={{ height: "30%" }}>
             <TimeText>작성된 내용이 없습니다</TimeText>
@@ -77,20 +78,22 @@ const DetailPost = (props) => {
     return (
       <React.Fragment>
         <ModalComponent>
-          <ModalHeader>
-            <button
+        < DayHeader >
+        <LeftHeader>
+            <MoveDButton
               onClick={() => {
                 let tDate = new Date(props.date.selectedAt);
                 tDate.setDate(tDate.getDate()-1);
                 dispatch(todoActions.getOnePostAX(moment(tDate).format("YYYY-MM-DD")));
-              }}><ChevronLeftIcon/></button>
-              <Text> {props.date.selectedAt}</Text>
-            <button
+              }}><ChevronLeftIcon/></MoveDButton>
+              <DText>{props.date.selectedAt}</DText>
+              <MoveDButton
               onClick={() => {
                 let tDate = new Date(props.date.selectedAt);
                 tDate.setDate(tDate.getDate()+1);
                 dispatch(todoActions.getOnePostAX(moment(tDate).format("YYYY-MM-DD")));
-              }}><ChevronRightIcon/></button>
+              }}><ChevronRightIcon/></MoveDButton>
+          </LeftHeader>
             
             <RightHeader>
               <AddButton
@@ -108,19 +111,19 @@ const DetailPost = (props) => {
                 삭제하기
               </FixButton>
             </RightHeader>
-          </ModalHeader>
+            </ DayHeader >
 
-          <TopContainer>
+          <SleepTimeContainer>
             <TimeText>
-              수면시간{" "}
+              수면시간 :{" "}
               {`${props.date.totalSleepHour} 시간 ${props.date.totalSleepMinute} 분`}{" "}
               ({props.date.startSleep} ~ {props.date.endSleep})
             </TimeText>
-          </TopContainer>
+          </SleepTimeContainer>
 
           <TagContainer>
             <TimeText>
-              태그{" "}
+              태그 :{" "}
               {props.date.tag.map((currentTag, idx) => {
                 return (
                   <img
@@ -158,16 +161,14 @@ const DetailPost = (props) => {
   }
 };
 
-const ModalHeader = styled.div`
-  background-color: black;
-  display: flex;
-  justify-content: space-between;
+const ModalComponent = styled.div`
   width: 100%;
-  height: 15%;
-  margin: 20px 0px 5px 0px;
+  height: 30%;
+  display: flex;
+  flex-direction: column;
 `;
 
-const EmptyHeader = styled.div`
+const DayHeader = styled.div`
   background-color: black;
   display: flex;
   justify-content: space-between;
@@ -175,17 +176,46 @@ const EmptyHeader = styled.div`
   height: 30%;
   margin: 20px 0px 5px 0px;
 `;
+const LeftHeader = styled.div`
+  background-color: black;
+  display: flex;
+  flex-direction: row;
+  width: 40%;
+  height: 100%;
+  border: none;
+`;
 
+const MoveDButton = styled.button`
+  width: 10%;
+  background-color: black;
+  font-weight: bold;
+  border-radius: 5px;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  color: white;
+`;
+const DText = styled.div`
+  font-weight: bold;
+  font-size: 20px;
+  color: white;
+  height: 100%;
+  width: 40%;
+  border: none;
+  text-align: center;
+  padding-top: 2px;
+
+  
+ `;
 const RightHeader = styled.div`
   background-color: black;
   display: flex;
   justify-content: space-between;
-  width: 40%;
+  width: 20%;
   height: 60%;
 `;
-
 const FixButton = styled.button`
-  width: 100%;
+  width: 50%;
   height: 100%;
   background-color: black;
   border: 2px solid white;
@@ -194,11 +224,11 @@ const FixButton = styled.button`
   outline: none;
   cursor: pointer;
   color: white;
-  
+  margin: 9px 0px 0px 9px;
 `;
 
 const AddButton = styled.button`
-  width: 100%;
+  width: 50%;
   height: 100%;
   background-color: black;
   border: 2px solid white;
@@ -207,23 +237,18 @@ const AddButton = styled.button`
   outline: none;
   cursor: pointer;
   color: white;
+  margin: 9px 9px 0px 0px;
 `;
 
 
-const TopContainer = styled.div`
-  background-color: grey;
+const SleepTimeContainer = styled.div`
+  background-color: black;
   display: flex;
   justify-content: space-between;
   width: 100%;
-  height: 10%;
+  height: 12%;
 `;
 
-const Text = styled.div`
-  font-size: 20px;
-  font-weight: bold;
-  color: white;
-  margin: 5px 0px 0px 5px;
-`;
 const TimeText = styled.div`
   width: 60%;
   color: white;
@@ -235,7 +260,7 @@ const TimeText = styled.div`
 const TagContainer = styled.div`
   background-color: black;
   width: 100%;
-  height: 10%;
+  height: 12%;
   display: flex;
   flex-direction: column;
 
@@ -244,7 +269,7 @@ const TagContainer = styled.div`
 const ConditionContainer = styled.div`
   background-color: black;
   width: 100%;
-  height: 10%;
+  height: 12%;
   display: flex;
 `;
 
@@ -265,12 +290,5 @@ const Contents = styled.div`
   margin-top: 5px;
 `;
 
-const ModalComponent = styled.div`
-  width: 100%;
-  height: 30%;
-
-  display: flex;
-  flex-direction: column;
-`;
 
 export default DetailPost;

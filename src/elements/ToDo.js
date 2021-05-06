@@ -53,7 +53,7 @@ const ToDo = (props) => {
             {myCon === "2" && <img width="20px" height="20px" src={soso}></img>}
             {myCon === "3" && <img width="20px" height="20px" src={bad}></img>}
           </div>
-          <div style={{ padding: "5px" }}>
+          <div style={{ padding: "5px" ,color: "white"}}>
             {`${props.totalSleepHour}H ${props.totalSleepMinute} M`}
           </div>
         </TopInfo>
@@ -147,7 +147,7 @@ const Container = styled.div`
   width: 100%;
   height: 100%;
 
-  /* background-color: pink; */
+ 
   border-radius: 8px;
   /* box-shadow: rgb(0 0 0 / 10%) 0px 4px 10px 0px; */
 
@@ -176,7 +176,7 @@ const BottomInfo = styled.div`
   /* justify-content: center; */
 
   /* font-size: 2px; */
-  background-color: white;
+  background-color: black;
 `;
 
 export default ToDo;

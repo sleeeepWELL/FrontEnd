@@ -1,10 +1,21 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import styled from "styled-components";
 import BarChart from "../components/BarChart";
 import LineChart from "../components/LineChart";
+import { actionCreators as todoActions } from "../redux/modules/result";
  
 const Analysis = () => {
- 
+  const dispatch = useDispatch();
+  const resulttime = useSelector((state) => state.result.result_sleeptime);
+
+  useEffect(() => {
+    dispatch(todoActions.getTimeAX());
+  }, []);
+
+  
+
+  
 
  return (
     <React.Fragment>
@@ -15,6 +26,7 @@ const Analysis = () => {
         <Graph>그래프</Graph> */}
         <BarChart/>
         <LineChart/>
+        <div>당신의 적정수면은 {resulttime.hour}시간 {resulttime.minute}분 입니다</div>
    </Container>
     </React.Fragment>
   );

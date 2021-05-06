@@ -13,45 +13,47 @@ import overeat_gray from "../image/overeat_gray.jpg";
 import work_gray from "../image/work_gray.jpg";
 import workout_gray from "../image/workout_gray.jpg";
 
-import bad from "../image/bad-condition.jpg";
-import good from "../image/good-condition.jpg";
-import soso from "../image/soso-condition.jpg";
+import one from "../image/1-condition.jpg";
+import two from "../image/2-condition.jpg";
+import three from "../image/3-condition.jpg";
+import four from "../image/4-condition.jpg";
+import five from "../image/5-condition.jpg";
 
 //글씨 이미지로 바꾸기
-const mapKeywordToImg = {
-  음주: beer,
-  야식: overeat,
-  야근: work,
-  운동: workout,
-};
+// const mapKeywordToImg = {
+//   음주: beer,
+//   야식: overeat,
+//   야근: work,
+//   운동: workout,
+// };
 
-const mapKeywordToGrayImg = {
-  음주: beer_gray,
-  야식: overeat_gray,
-  야근: work_gray,
-  운동: workout_gray,
-};
+// const mapKeywordToGrayImg = {
+//   음주: beer_gray,
+//   야식: overeat_gray,
+//   야근: work_gray,
+//   운동: workout_gray,
+// };
 
-const TotalTags = ["음주", "야식", "야근", "운동"];
+// const TotalTags = ["음주", "야식", "야근", "운동"];
 
 const ToDo = (props) => {
-
-
   const myTags = props.tag;
   const myTag = String(props.tag);
 
-
   const myCon = String(props.conditions);
-
 
   return (
     <React.Fragment>
       <Container>
         <TopInfo>
           <div style={{ padding: "5px" }}>
-            {myCon === "1" && <img width="20px" height="20px" src={good}></img>}
-            {myCon === "2" && <img width="20px" height="20px" src={soso}></img>}
-            {myCon === "3" && <img width="20px" height="20px" src={bad}></img>}
+            {myCon === "1" && <img width="20px" height="20px" src={one}></img>}
+            {myCon === "2" && <img width="20px" height="20px" src={two}></img>}
+            {myCon === "3" && (
+              <img width="20px" height="20px" src={three}></img>
+            )}
+            {myCon === "4" && <img width="20px" height="20px" src={four}></img>}
+            {myCon === "5" && <img width="20px" height="20px" src={five}></img>}
           </div>
           <div style={{ padding: "5px" }}>
             {`${props.totalSleepHour}H ${props.totalSleepMinute} M`}

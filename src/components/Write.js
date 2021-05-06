@@ -85,8 +85,6 @@ const Write = (props) => {
     TotalTags.push(tags4);
   }
 
-
-
   //컨디션
   const [checkgood, setCheckGood] = React.useState(false);
   const [checksoso, setCheckSoso] = React.useState(false);
@@ -102,11 +100,18 @@ const Write = (props) => {
   const [con3, setCon3] = React.useState("");
 
   const TotalCon = [];
-  if (con1) {TotalCon.push(con1);}
-  if (con2) {TotalCon.push(con2);}
-  if (con3) {TotalCon.push(con3);}
+  if (con1) {
+    TotalCon.push(con1);
+  }
+  if (con2) {
+    TotalCon.push(con2);
+  }
+  if (con3) {
+    TotalCon.push(con3);
+  }
 
-  const mycondition = String(TotalCon);
+  const mycondition = Number(String(TotalCon));
+  console.log("추가할 컨디션:", mycondition);
 
   //컨디션 수정
   const checkSleep = (e) => {
@@ -136,223 +141,213 @@ const Write = (props) => {
     // dispatch(todoActions.getOnePostAX(props.date.slice(14,24)));
   };
 
-    return (
-      <React.Fragment>
-        <ModalComponent>
-          <TopContainer>
-            <Text>{props.props.date.slice(14, 24)}</Text>
+  return (
+    <React.Fragment>
+      <ModalComponent>
+        <TopContainer>
+          <Text>{props.props.date.slice(14, 24)}</Text>
 
-            <FixButton
-              onClick={() => {
-                addPost();
-                props.props._showModify(false);
-              }}
-            >
-              완료
-            </FixButton>
-          </TopContainer>
+          <FixButton
+            onClick={() => {
+              addPost();
+              props.props._showModify(false);
+            }}
+          >
+            완료
+          </FixButton>
+        </TopContainer>
 
-          <Container>
-            <TextField
-              id="time"
-              label="취침시간"
-              type="time"
-              // value={startSleep}
-              onChange={checkSleep}
-              InputLabelProps={{
-                shrink: true,
-              }}
-              inputProps={{
-                step: 300, // 5 min
-              }}
-            />
-            <TextField
-              id="time"
-              label="기상시간"
-              type="time"
-              // value={endSleep}
-              onChange={checkoutSleep}
-              InputLabelProps={{
-                shrink: true,
-              }}
-              inputProps={{
-                step: 300, // 5 min
-              }}
-            />
-          </Container>
+        <Container>
+          <TextField
+            id="time"
+            label="취침시간"
+            type="time"
+            // value={startSleep}
+            onChange={checkSleep}
+            InputLabelProps={{
+              shrink: true,
+            }}
+            inputProps={{
+              step: 300, // 5 min
+            }}
+          />
+          <TextField
+            id="time"
+            label="기상시간"
+            type="time"
+            // value={endSleep}
+            onChange={checkoutSleep}
+            InputLabelProps={{
+              shrink: true,
+            }}
+            inputProps={{
+              step: 300, // 5 min
+            }}
+          />
+        </Container>
 
-          <TagContainer>
-            <TotalImgGrid>
-              <ImgGrid>
-                <input
-                  width="40"
-                  height="40"
-                  type="image"
-                  src={beer_icon}
-                  alt="beer"
-                  value={'음주'}
-                  onClick={(e) => {
-                    if (!checkbeer) {
-                      setTags1(e.target.value);
-                    }
-                    if (checkbeer) {
-                      setTags1(null);
-                    }
+        <TagContainer>
+          <TotalImgGrid>
+            <ImgGrid>
+              <input
+                width="40"
+                height="40"
+                type="image"
+                src={beer_icon}
+                alt="beer"
+                value={"음주"}
+                onClick={(e) => {
+                  if (!checkbeer) {
+                    setTags1(e.target.value);
+                  }
+                  if (checkbeer) {
+                    setTags1(null);
+                  }
 
-                    checkbeer ? setCheckBeer(false) : setCheckBeer(true);
-                  }}
-                />
-              </ImgGrid>
-              <ImgGrid>
-                <input
-                  width="40"
-                  height="40"
-                  type="image"
-                  src={overeat_icon}
-                  alt="overeat"
-                  value={"야식"}
-                  onClick={(e) => {
+                  checkbeer ? setCheckBeer(false) : setCheckBeer(true);
+                }}
+              />
+            </ImgGrid>
+            <ImgGrid>
+              <input
+                width="40"
+                height="40"
+                type="image"
+                src={overeat_icon}
+                alt="overeat"
+                value={"야식"}
+                onClick={(e) => {
+                  if (!checkovereat) {
                     setTags2(e.target.value);
+                  }
+                  if (checkovereat) {
+                    setTags2(null);
+                  }
 
-                    if (!checkovereat) {
-                      setTags2(e.target.value);
-                    }
-                    if (checkovereat) {
-                      setTags2(null);
-                    }
-
-                    checkovereat
-                      ? setCheckOvereat(false)
-                      : setCheckOvereat(true);
-                  }}
-                />
-              </ImgGrid>
-              <ImgGrid>
-                <input
-                  width="40"
-                  height="40"
-                  type="image"
-                  src={work_icon}
-                  alt="work"
-                  value={"야근"}
-                  onClick={(e) => {
+                  checkovereat ? setCheckOvereat(false) : setCheckOvereat(true);
+                }}
+              />
+            </ImgGrid>
+            <ImgGrid>
+              <input
+                width="40"
+                height="40"
+                type="image"
+                src={work_icon}
+                alt="work"
+                value={"야근"}
+                onClick={(e) => {
+                  if (!checkwork) {
                     setTags3(e.target.value);
+                  }
+                  if (checkwork) {
+                    setTags3(null);
+                  }
 
-                    if (!checkwork) {
-                      setTags3(e.target.value);
-                    }
-                    if (checkwork) {
-                      setTags3(null);
-                    }
-
-                    checkwork ? setCheckWork(false) : setCheckWork(true);
-                  }}
-                />
-              </ImgGrid>
-              <ImgGrid>
-                <input
-                  width="40"
-                  height="40"
-                  type="image"
-                  src={workout_icon}
-                  alt="workout"
-                  value={"운동"}
-                  onClick={(e) => {
+                  checkwork ? setCheckWork(false) : setCheckWork(true);
+                }}
+              />
+            </ImgGrid>
+            <ImgGrid>
+              <input
+                width="40"
+                height="40"
+                type="image"
+                src={workout_icon}
+                alt="workout"
+                value={"운동"}
+                onClick={(e) => {
+                  if (!checkworkout) {
                     setTags4(e.target.value);
+                  }
+                  if (checkworkout) {
+                    setTags4(null);
+                  }
 
-                    if (!checkworkout) {
-                      setTags4(e.target.value);
-                    }
-                    if (checkworkout) {
-                      setTags4(null);
-                    }
+                  checkworkout ? setCheckWorkOut(false) : setCheckWorkOut(true);
+                }}
+              />
+            </ImgGrid>
+          </TotalImgGrid>
+        </TagContainer>
 
-                    checkworkout
-                      ? setCheckWorkOut(false)
-                      : setCheckWorkOut(true);
-                  }}
-                />
-              </ImgGrid>
-            </TotalImgGrid>
-          </TagContainer>
+        <ConditionContainer>
+          <TotalImgGrid>
+            <ImgGrid>
+              <input
+                width="40"
+                height="40"
+                type="image"
+                src={good_icon}
+                alt="컨디션 good"
+                value={1}
+                onClick={(e) => {
+                  if (!checkgood) {
+                    setCon1(e.target.value);
+                  }
+                  if (checkgood) {
+                    setCon1(null);
+                  }
 
-          <ConditionContainer>
-            <TotalImgGrid>
-              <ImgGrid>
-                <input
-                  width="40"
-                  height="40"
-                  type="image"
-                  src={good_icon}
-                  alt="컨디션 good"
-                  value={1}
-                  onClick={(e) => {
-                    if (!checkgood) {
-                      setCon1(e.target.value);
-                    }
-                    if (checkgood) {
-                      setCon1(null);
-                    }
+                  checkgood ? setCheckGood(false) : setCheckGood(true);
+                }}
+              />
+            </ImgGrid>
+            <ImgGrid>
+              <input
+                width="40"
+                height="40"
+                type="image"
+                src={soso_icon}
+                alt="컨디션 soso"
+                value={2}
+                onClick={(e) => {
+                  if (!checksoso) {
+                    setCon2(e.target.value);
+                  }
+                  if (checksoso) {
+                    setCon2(null);
+                  }
 
-                    checkgood ? setCheckGood(false) : setCheckGood(true);
-                  }}
-                />
-              </ImgGrid>
-              <ImgGrid>
-                <input
-                  width="40"
-                  height="40"
-                  type="image"
-                  src={soso_icon}
-                  alt="컨디션 soso"
-                  value={2}
-                  onClick={(e) => {
-                    if (!checksoso) {
-                      setCon2(e.target.value);
-                    }
-                    if (checksoso) {
-                      setCon2(null);
-                    }
+                  checksoso ? setCheckSoso(false) : setCheckSoso(true);
+                }}
+              />
+            </ImgGrid>
+            <ImgGrid>
+              <input
+                width="40"
+                height="40"
+                type="image"
+                src={bad_icon}
+                alt="컨디션 bad"
+                value={3}
+                onClick={(e) => {
+                  if (!checkbad) {
+                    setCon3(e.target.value);
+                  }
+                  if (checkbad) {
+                    setCon3(null);
+                  }
 
-                    checksoso ? setCheckSoso(false) : setCheckSoso(true);
-                  }}
-                />
-              </ImgGrid>
-              <ImgGrid>
-                <input
-                  width="40"
-                  height="40"
-                  type="image"
-                  src={bad_icon}
-                  alt="컨디션 bad"
-                  value={3}
-                  onClick={(e) => {
-                    if (!checkbad) {
-                      setCon3(e.target.value);
-                    }
-                    if (checkbad) {
-                      setCon3(null);
-                    }
+                  checkbad ? setCheckBad(false) : setCheckBad(true);
+                }}
+              />
+            </ImgGrid>
+          </TotalImgGrid>
+        </ConditionContainer>
 
-                    checkbad ? setCheckBad(false) : setCheckBad(true);
-                  }}
-                />
-              </ImgGrid>
-            </TotalImgGrid>
-          </ConditionContainer>
-
-          <BottomContainer>
-            <input
-                type="text"
-              multiline
-              placeholder="메모를 입력하세요"
-              onChange={changeMemo}
-            ></input>
-          </BottomContainer>
-        </ModalComponent>
-      </React.Fragment>
-    );
-  };
+        <BottomContainer>
+          <input
+            type="text"
+            multiline
+            placeholder="메모를 입력하세요"
+            onChange={changeMemo}
+          ></input>
+        </BottomContainer>
+      </ModalComponent>
+    </React.Fragment>
+  );
+};
 
 const Container = styled.div`
   background-color: grey;

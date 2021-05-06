@@ -138,14 +138,14 @@ const Modify = (props) => {
   // console.log(mycondition);
 
   // / /컨디션 수정
-  const bringConditions = props.props.date.conditions;
+  const bringConditions = String(props.props.date.conditions);
   console.log(bringConditions);
 
   const [editCon, setEditCon] = React.useState(bringConditions);
   console.log("받아온 컨디션:", editCon);
   console.log("수정된 컨디션:", mycondition);
 
-  const sendCon = TotalCon.concat(editCon)[0];
+  const sendCon = Number(TotalCon.concat(editCon)[0]);
   console.log(sendCon);
 
   const checkSleep = (e) => {
@@ -372,7 +372,7 @@ const Modify = (props) => {
           <ConditionContainer>
             <TotalImgGrid>
               <ImgGrid>
-                {editCon === 1 ? (
+                {editCon === "1" ? (
                   <input
                     width="40"
                     height="40"
@@ -408,7 +408,7 @@ const Modify = (props) => {
                 )}
               </ImgGrid>
               <ImgGrid>
-                {editCon === 2 ? (
+                {editCon === "2" ? (
                   <input
                     width="40"
                     height="40"
@@ -444,7 +444,7 @@ const Modify = (props) => {
                 )}
               </ImgGrid>
               <ImgGrid>
-                {editCon === 3 ? (
+                {editCon === "3" ? (
                   <input
                     width="40"
                     height="40"

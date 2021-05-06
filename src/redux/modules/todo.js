@@ -89,6 +89,7 @@ const getOnePostAX = (selectedAt) => {
 };
 
 const addPostAX = (post) => {
+  console.log(axios.data);
   return function (dispatch) {
     let data = {
       startSleep: post.startSleep,

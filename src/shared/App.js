@@ -35,7 +35,6 @@ function App() {
         <div>
         <Navigator/>
           <Wrap>
-            <Navigator />
             <ContentWrap>
               <Route path="/" exact component={Navigator} />
               <Route

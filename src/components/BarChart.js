@@ -12,12 +12,13 @@ const BarChart = (props) => {
  //최대값 고정
 
   const chartData1 = {
-    labels: ['WORKOUT', 'DRINK', 'OVERTIME'],
+    labels: ['WORKOUT', 'DRINK', 'OVERTIME','OVEREAT'],
     datasets: [
       {
         label: 'Frequency',
         backgroundColor: ['rgba(54, 162, 235, 0.2)',
         'rgba(153, 102, 255, 0.2)',
+        'rgba(201, 203, 207, 0.2)',
         'rgba(201, 203, 207, 0.2)'],
         borderColor: 'purple',
         borderWidth: 2,
@@ -44,13 +45,12 @@ const BarChart = (props) => {
   };
 
   const chartData2 = {
-    labels: ['WORKOUT', 'DRINK', 'OVERTIME'],
+    labels: ['WORKOUT', 'DRINK', 'OVERTIME','OVEREAT'],
     datasets: [
       {
         label: 'Frequency',
         backgroundColor: ['rgba(255, 99, 132, 0.2)',
-        'rgba(255, 159, 64, 0.2)',
-        'rgba(255, 205, 86, 0.2)'],
+        'rgba(255, 159, 64, 0.2)','rgba(255, 205, 86, 0.2)','rgba(255, 205, 86, 0.2)'],
         borderColor: 'purple',
         borderWidth: 2,
         base: 0,

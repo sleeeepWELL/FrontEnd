@@ -5,6 +5,7 @@ import { connectRouter } from "connected-react-router";
 
 import todo from "./modules/todo";
 import User from "./modules/user";
+import Result from "./modules/result";
 export const history = createBrowserHistory();
 
 // 루트리듀서(여러개 모듈을 하나로 묶어서 사용)
@@ -12,6 +13,7 @@ const rootReducer = combineReducers({
   router: connectRouter(history),
   todo: todo,
   user: User,
+  result: Result,
 });
 
 // 미들웨어(thunk로) 설정

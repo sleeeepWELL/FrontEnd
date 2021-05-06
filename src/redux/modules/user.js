@@ -68,7 +68,7 @@ const loginSV = (email, pwd) => {
         // ACCESS토큰 만료 1분전마다 연장함수 실행
         setTimeout(extensionAccess(), ACCESS_TOKEN_EXP - Current_time - 60000);
 
-        history.replace("/calendar");
+        history.replace("/");
       })
       .catch((err) => {
         console.log("로그인 에러", err);

@@ -49,7 +49,6 @@ const Write = (props) => {
   }
 
   //태그
-  const mytags = ["음주", "야근", "운동", "야식"];
   const TotalTags = [];
 
   const [tags1, setTags1] = React.useState("");
@@ -66,11 +65,6 @@ const Write = (props) => {
   const overeat_icon = checkovereat ? overeat : overeat_gray;
   const work_icon = checkwork ? work : work_gray;
   const workout_icon = checkworkout ? workout : workout_gray;
-
-  const icon_beer = checkbeer ? beer_gray : beer;
-  const icon_overeat = checkovereat ? overeat_gray : overeat;
-  const icon_work = checkwork ? work_gray : work;
-  const icon_workout = checkworkout ? workout_gray : workout;
 
   if (tags1) {
     TotalTags.push(tags1);
@@ -111,7 +105,7 @@ const Write = (props) => {
   }
 
   const mycondition = Number(String(TotalCon));
-  console.log("추가할 컨디션:", mycondition);
+  // console.log("추가할 컨디션:", mycondition);
 
   //컨디션 수정
   const checkSleep = (e) => {

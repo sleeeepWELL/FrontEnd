@@ -57,7 +57,6 @@ const Modify = (props) => {
   }
 
   //태그
-  const mytags = ["음주", "야근", "운동", "야식"];
   const TotalTags = [];
 
   const [tags1, setTags1] = React.useState("");
@@ -98,7 +97,7 @@ const Modify = (props) => {
 
   const [editTags, setEditTags] = React.useState(bringTags);
 
-  const sendTags = editTags.concat(TotalTags);
+  const sendTags = TotalTags.concat(editTags);
   // console.log("받아온배열:", editTags);
   // console.log("수정한배열:", TotalTags);
   // console.log("최종 보낼배열:", sendTags);
@@ -133,20 +132,17 @@ const Modify = (props) => {
     TotalCon.push(con3);
   }
 
-  // console.log(TotalCon);
   const mycondition = String(TotalCon);
-  // console.log(mycondition);
 
   // / /컨디션 수정
   const bringConditions = String(props.props.date.conditions);
-  console.log(bringConditions);
 
   const [editCon, setEditCon] = React.useState(bringConditions);
-  console.log("받아온 컨디션:", editCon);
-  console.log("수정된 컨디션:", mycondition);
+  // console.log("받아온 컨디션:", editCon);
+  // console.log("수정된 컨디션:", mycondition);
 
   const sendCon = Number(TotalCon.concat(editCon)[0]);
-  console.log(sendCon);
+  //console.log("보낼 컨디션:", sendCon)
 
   const checkSleep = (e) => {
     setstartSleep(e.target.value);

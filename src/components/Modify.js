@@ -195,7 +195,6 @@ const Modify = (props) => {
               id="time"
               label="취침시간"
               type="time"
-              // placeholder={props.date.startSleep}
               onChange={checkSleep}
               InputLabelProps={{ shrink: true }}
               inputProps={{ step: 300 }}
@@ -205,7 +204,6 @@ const Modify = (props) => {
               id="time"
               label="기상시간"
               type="time"
-              // placehoder={props.date.endSleep}
               onChange={checkoutSleep}
               InputLabelProps={{ shrink: true }}
               inputProps={{ step: 300 }}
@@ -225,10 +223,7 @@ const Modify = (props) => {
                     alt="beer"
                     value={"음주"}
                     onClick={(e) => {
-                      if (!checkbeer) {
-                        setEditTags(editTags.filter((p) => p !== "음주"));
-                        console.log("!checkbeer");
-                      }
+                      setEditTags(editTags.filter((p) => p !== "음주"));
                     }}
                   />
                 ) : (
@@ -240,13 +235,7 @@ const Modify = (props) => {
                     alt="beer"
                     value={"음주"}
                     onClick={(e) => {
-                      //삼항연산자 사용가능할듯?
-                      if (!checkbeer) {
-                        setTags1(e.target.value);
-                      }
-                      if (checkbeer) {
-                        setTags1(null);
-                      }
+                      checkbeer ? setTags1(null) : setTags1(e.target.value);
                       checkbeer ? setCheckBeer(false) : setCheckBeer(true);
                     }}
                   />
@@ -262,9 +251,7 @@ const Modify = (props) => {
                     alt="overeat"
                     value={"야식"}
                     onClick={(e) => {
-                      if (!checkovereat) {
-                        setEditTags(editTags.filter((p) => p !== "야식"));
-                      }
+                      setEditTags(editTags.filter((p) => p !== "야식"));
                     }}
                   />
                 ) : (
@@ -276,12 +263,7 @@ const Modify = (props) => {
                     alt="overeat"
                     value={"야식"}
                     onClick={(e) => {
-                      if (!checkovereat) {
-                        setTags2(e.target.value);
-                      }
-                      if (checkovereat) {
-                        setTags2(null);
-                      }
+                      checkovereat ? setTags2(null) : setTags2(e.target.value);
 
                       checkovereat
                         ? setCheckOvereat(false)
@@ -300,9 +282,7 @@ const Modify = (props) => {
                     alt="work"
                     value={"야근"}
                     onClick={(e) => {
-                      if (!checkwork) {
-                        setEditTags(editTags.filter((p) => p !== "야근"));
-                      }
+                      setEditTags(editTags.filter((p) => p !== "야근"));
                     }}
                   />
                 ) : (
@@ -314,12 +294,7 @@ const Modify = (props) => {
                     alt="work"
                     value={"야근"}
                     onClick={(e) => {
-                      if (!checkwork) {
-                        setTags3(e.target.value);
-                      }
-                      if (checkwork) {
-                        setTags3(null);
-                      }
+                      checkwork ? setTags3(null) : setTags3(e.target.value);
                       checkwork ? setCheckWork(false) : setCheckWork(true);
                     }}
                   />
@@ -335,9 +310,7 @@ const Modify = (props) => {
                     alt="workout"
                     value={"운동"}
                     onClick={(e) => {
-                      if (!checkworkout) {
-                        setEditTags(editTags.filter((p) => p !== "운동"));
-                      }
+                      setEditTags(editTags.filter((p) => p !== "운동"));
                     }}
                   />
                 ) : (
@@ -349,12 +322,7 @@ const Modify = (props) => {
                     alt="workout"
                     value={"운동"}
                     onClick={(e) => {
-                      if (!checkworkout) {
-                        setTags4(e.target.value);
-                      }
-                      if (checkworkout) {
-                        setTags4(null);
-                      }
+                      checkworkout ? setTags4(null) : setTags4(e.target.value);
                       checkworkout
                         ? setCheckWorkOut(false)
                         : setCheckWorkOut(true);
@@ -377,9 +345,7 @@ const Modify = (props) => {
                     alt="컨디션 good"
                     value={1}
                     onClick={(e) => {
-                      if (!checkgood) {
-                        setEditCon("");
-                      }
+                      setEditCon("");
                     }}
                   />
                 ) : (
@@ -391,13 +357,7 @@ const Modify = (props) => {
                     alt="컨디션 good"
                     value={1}
                     onClick={(e) => {
-                      if (!checkgood) {
-                        setCon1(e.target.value);
-                      }
-                      if (checkgood) {
-                        setCon1(null);
-                      }
-
+                      checkgood ? setCon1(null) : setCon1(e.target.value);
                       checkgood ? setCheckGood(false) : setCheckGood(true);
                     }}
                   />
@@ -413,9 +373,7 @@ const Modify = (props) => {
                     alt="컨디션 soso"
                     value={2}
                     onClick={(e) => {
-                      if (!checksoso) {
-                        setEditCon("");
-                      }
+                      setEditCon("");
                     }}
                   />
                 ) : (
@@ -427,13 +385,7 @@ const Modify = (props) => {
                     alt="컨디션 soso"
                     value={2}
                     onClick={(e) => {
-                      if (!checksoso) {
-                        setCon2(e.target.value);
-                      }
-                      if (checksoso) {
-                        setCon2(null);
-                      }
-
+                      checksoso ? setCon2(null) : setCon2(e.target.value);
                       checksoso ? setCheckSoso(false) : setCheckSoso(true);
                     }}
                   />
@@ -449,9 +401,7 @@ const Modify = (props) => {
                     alt="컨디션 bad"
                     value={3}
                     onClick={(e) => {
-                      if (!checkbad) {
-                        setEditCon("");
-                      }
+                      setEditCon("");
                     }}
                   />
                 ) : (
@@ -463,13 +413,7 @@ const Modify = (props) => {
                     alt="컨디션 bad"
                     value={3}
                     onClick={(e) => {
-                      if (!checkbad) {
-                        setCon3(e.target.value);
-                      }
-                      if (checkbad) {
-                        setCon3(null);
-                      }
-
+                      checkbad ? setCon3(null) : setCon3(e.target.value);
                       checkbad ? setCheckBad(false) : setCheckBad(true);
                     }}
                   />

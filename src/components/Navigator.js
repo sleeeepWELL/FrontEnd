@@ -28,7 +28,7 @@ const Navigator = () => {
       if (currentClick !== null) {
         let current = document.getElementById(currentClick);
         console.log(current);
-        current.style.color = "black";
+        current.style.color = "white";
         current.style.borderBottom = "2px solid";
         current.style.borderBottomColor = "#1c28f4";
       }
@@ -71,7 +71,7 @@ const Navigator = () => {
 
 const Wrap = styled.div`
   display: flex;
-  background-color: white;
+  background-color: black;
   width: 100%;
   height: 4rem;
   /* justify-content: center; */
@@ -99,7 +99,7 @@ const Logo = styled.div`
   width: 15%;
   display: flex;
   font-size: 1.5rem;
-  color: black;
+  color: white;
   font-weight: bold;
   cursor: pointer;
   justify-content: center;
@@ -114,6 +114,7 @@ const LogoutBox = styled.div`
   justify-content: center;
   cursor: pointer;
   font-weight: bold;
+  color:white;
 `;
 
 const CategoryContainer = styled.div`
@@ -123,6 +124,7 @@ const CategoryContainer = styled.div`
   align-items: center;
   position: relative;
   font-weight: 600;
+ 
 `;
 
 export default Navigator;

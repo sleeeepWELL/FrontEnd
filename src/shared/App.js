@@ -33,8 +33,8 @@ function App() {
         <Route path="/signup" exact component={Signup} />
         <Route path="/login" exact component={Login} />
         <div>
+        <Navigator/>
           <Wrap>
-            <Navigator/>
             <ContentWrap>
               <Route path="/" exact component={Navigator} />
               <Route

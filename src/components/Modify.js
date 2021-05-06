@@ -99,9 +99,6 @@ const Modify = (props) => {
   const [editTags, setEditTags] = React.useState(bringTags);
 
   const sendTags = editTags.concat(TotalTags);
-  // console.log("받아온배열:", editTags);
-  // console.log("수정한배열:", TotalTags);
-  // console.log("최종 보낼배열:", sendTags);
 
   //컨디션
   const [conditions, setCondition] = React.useState("");

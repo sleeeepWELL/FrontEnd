@@ -81,10 +81,10 @@ const Calendar = (props) => {
           
           if (_day.format("MM") !== today.format("MM")) {
             return (
-              // 달력 한 칸(일단위) 클릭을 하면 카드받아오는
+              
               <DayGrid
                 key={`${moment(today).format("MM")}_week_${week_index}_day_${day_index}`}
-                bg={is_today && moment(today).format("MM") === _day.format("MM")? "grey": "#ffffff"}>
+                bg={is_today && moment(today).format("MM") === _day.format("MM")? "grey": "black"}>
 
                 {_day.format("MM") === moment(today).format("MM") ? (
                   <DayText font_c={is_today ? "white" : "black"}>
@@ -106,8 +106,8 @@ const Calendar = (props) => {
                 )}_week_${week_index}_day_${day_index}`}
                 bg={
                   is_today && moment(today).format("MM") === _day.format("MM")
-                    ? "grey"
-                    : "#ffffff"
+                    ? "gray"
+                    : "black"
                 }
                 onClick={() => {
                   props._showModify(false);
@@ -115,7 +115,7 @@ const Calendar = (props) => {
                 }}
               >
                 {_day.format("MM") === moment(today).format("MM") ? (
-                  <DayText font_c={is_today ? "white" : "black"}>
+                  <DayText font_c={is_today ? "black" : "white"}>
                     {_day.format("DD")}
                   </DayText>
                 ) : (
@@ -134,28 +134,19 @@ const Calendar = (props) => {
   const nomal_week = ["MON", "TUE", "WED", "THU", "FRI"];
 
   return (
-    <Grid flex_direction="column" width="80vw" height="80vh" margin="auto">
-      <Grid justify_contents="space-between">
-        <Button
-          onClick={() => {
-            // 기준일을 한달 전으로 돌려요!
-            dispatch(
-              todoActions.changeToday(
-                moment(today).clone().subtract(1, "month")
-              )
-            );
-          }}
-        >
-          ◀
-          {parseInt(moment(today).format("M")) - 1 === 0
-            ? 12
-            : parseInt(moment(today).format("M")) - 1}
-          월
-        </Button>
+    <Grid flex_direction="column" width="100%" height="85vh" margin="auto">
+      <Grid height="10%" justify_contents="space-between" margin="5px 0px 5px 0px">
+        
+        <MoveMButton onClick={() => {
+            dispatch(todoActions.changeToday(moment(today).clone().subtract(1, "month")));
+          }}> <MText>◀</MText>
+          <MText>{parseInt(moment(today).format("M")) - 1 === 0? 12:parseInt(moment(today).format("M")) - 1}
+          월</MText></MoveMButton>
+        
         <Text type="title">
           {moment(today).format("YYYY")}년 {moment(today).format("MM")}월
         </Text>
-        <Button
+        <MoveMButton
           onClick={() => {
             // 기준일을 한달 후로 돌려요!
             dispatch(
@@ -163,11 +154,11 @@ const Calendar = (props) => {
             );
           }}
         >
-          {parseInt(moment(today).format("M")) + 1 === 13
+         <MText> {parseInt(moment(today).format("M")) + 1 === 13
             ? 1
             : parseInt(moment(today).format("M")) + 1}
-          월 ▶
-        </Button>
+          월</MText><MText>▶</MText>
+        </MoveMButton>
       </Grid>
       <WeekGrid>
         <WEEK>
@@ -195,18 +186,34 @@ const Calendar = (props) => {
   );
 };
 
+
+const Container = styled.div`
+  box-sizing: border-box;
+  margin: 2px auto;
+  flex-direction: row;
+  display: flex;
+  width: 100%;
+  min-width: 50px;
+  height: 100%;
+  align-items: center;
+  padding: 2px;
+  background-color: black;
+  border-radius: 5px;
+`;
+
 const DailyGrid = styled.div`
   flex-direction: row;
   height: auto;
   margin: 1px 0px;
   flex-wrap: nowrap;
+  
 `;
 
 const WEEK = styled.div`
   margin: 4px 2px;
   width: 100%;
   flex-direction: column;
-  background-color: #ffffff;
+  background-color: black;
   height: auto;
   box-sizing: border-box;
   display: flex;
@@ -221,52 +228,59 @@ const WeekGrid = styled.div`
   flex-direction: row;
   width: 100%;
   min-width: 50px;
-  height: auto;
+  height: 4%;
+  font-size: 2px;
   align-items: center;
   justify-content: flex-start;
   border-bottom: 3px solid #746d6d;
-  /* margin-bottom: 10px; */
-  padding-bottom: 5px;
+  background-color: black;
+  border-radius: 5px;
+  margin-top:9px;
+
 `;
 
 const DayGrid = styled.div`
-  box-sizing: border-box;
-  flex-direction: column;
-  margin: 0px 2px;
-  display: flex;
-  width: 100%;
-  min-width: 50px;
-  height: 100%;
-  align-items: flex-start;
-  justify-content: flex-start;
-  ${(props) => (props.bg ? `background-color: ${props.bg};` : "")}
+box-sizing: border-box;
+flex-direction: column;
+margin: 0px 2px;
+display: flex;
+width: 100%;
+min-width: 50px;
+height: 100%;
+align-items: flex-start;
+justify-content: flex-start;
+border: 1px grey solid;
+border-radius:3px;
+
+${(props) => (props.bg ? `background-color: ${props.bg};` : "")}
 `;
 
 const DayText = styled.div`
-  font-size: 13px;
+  font-size: 9px;
   margin: 3px 0px 0px 3px;
   color: ${(props) => props.font_c};
+  font-weight: bold;
 `;
 
-const Container = styled.div`
-  box-sizing: border-box;
-  margin: 0px auto;
-  flex-direction: row;
-  /* border: 1px solid gray;
-  border-top: none; */
+
+const MoveMButton = styled.button`
+  padding: 7px 10px;
   display: flex;
-  width: 100%;
-  min-width: 50px;
-  height: 100%;
-  align-items: center;
-  justify-content: flex-start;
-  padding: 5px;
-`;
+  flex-direction: row;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  background-color: #121212;
+  color: white;
+ `;
 
-// 기본적으로 꼭 필요한 props를 미리 정해줍시다!
-Calendar.defaultProps = {
-  _showPopup: () => {},
-  _setSeletedTodo: () => {},
-};
+ const MText = styled.div`
+  font-weight: bold;
+  margin:0px 3px 0px 3px;
+  font-size: 12px;
+ `;
+
+
+
 
 export default Calendar;

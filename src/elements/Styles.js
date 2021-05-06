@@ -89,8 +89,9 @@ const Text = (props) => {
 
 const H1 = styled.h1`
   margin: 0px;
-  font-size: 1.5em;
+  font-size: 19px;
   text-align: center;
+  color: white;
   ${(props) => (props.bold ? `font-weight: bold;` : "")}
 `;
 
@@ -109,21 +110,21 @@ const Sun = styled.span`
   margin: 0px;
   font-size: 0.9em;
   font-weight: bold;
-  color: red;
+  color: #CD1039;
 `;
 
 const Sat = styled.span`
   margin: 0px;
   font-size: 0.9em;
   font-weight: bold;
-  color: blue;
+  color: #2828CD;
 `;
 
 const Week = styled.span`
   margin: 0px;
   font-size: 0.9em;
   font-weight: bold;
-  color: black;
+  color: white;
 `;
 
 // input 스타일!

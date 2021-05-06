@@ -118,16 +118,16 @@ const LineChart = () => {
           <CContainer1>
             <Line
               data={chartData1}
-              width={150}
-              height={120}
+              width={120}
+              height={50}
               options={chartOptions1}
             />
           </CContainer1>
             <CContainer1>
             <Line
             data={chartData2}
-            width={150}
-            height={120}
+            width={120}
+            height={50}
             options={chartOptions2}
             />
             </CContainer1>
@@ -144,9 +144,8 @@ const Container = styled.div`
 `;
 
 const CContainer = styled.div`
-  width: 100%;
+  width: 80%;
   height: 40%;
-  border: 1px solid blue;
   margin: 30px;
   display: flex;
   
@@ -156,7 +155,6 @@ const CContainer = styled.div`
 const CContainer1 = styled.div`
   width: 40%;
   height: 10%;
-  border: 1px solid blue;
   margin: 30px;
   
 

@@ -371,7 +371,7 @@ const Text = styled.div`
 `;
 
 const FixButton = styled.button`
-  width: 10%;
+  width: 13%;
   height: 30px;
   background-color: white;
   border: #fee500;

@@ -10,12 +10,14 @@ import overeat from "../image/overeat.jpg";
 import work from "../image/work.jpg";
 import workout from "../image/workout.jpg";
 
-import bad from "../image/bad-condition.jpg";
-import good from "../image/good-condition.jpg";
-import soso from "../image/soso-condition.jpg";
+import one from "../image/1-condition.jpg";
+import two from "../image/2-condition.jpg";
+import three from "../image/3-condition.jpg";
+import four from "../image/4-condition.jpg";
+import five from "../image/5-condition.jpg";
 
-import ChevronRightIcon from '@material-ui/icons/ChevronRight';
-import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
+import ChevronRightIcon from "@material-ui/icons/ChevronRight";
+import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 
 //글씨 이미지로 바꾸기
 const mapKeywordToImg = {
@@ -32,8 +34,6 @@ const DetailPost = (props) => {
   //컨디션
   const myCon = String(props.date.conditions);
   //조건식을 통해 분별한다
- 
- 
 
   //처음에 데이터를 보여주는 경우를 제외하고!
   if (props.date.selectedAt == undefined) {
@@ -42,21 +42,31 @@ const DetailPost = (props) => {
       <React.Fragment>
         <ModalComponent>
           <DayHeader>
-          <LeftHeader>
-            <MoveDButton
-              onClick={() => {
-                let tDate = new Date(_day);
-                tDate.setDate(tDate.getDate()-1);
-                dispatch(todoActions.getOnePostAX(moment(tDate).format("YYYY-MM-DD")));
-              }}><ChevronLeftIcon /></MoveDButton>
+            <LeftHeader>
+              <MoveDButton
+                onClick={() => {
+                  let tDate = new Date(_day);
+                  tDate.setDate(tDate.getDate() - 1);
+                  dispatch(
+                    todoActions.getOnePostAX(moment(tDate).format("YYYY-MM-DD"))
+                  );
+                }}
+              >
+                <ChevronLeftIcon />
+              </MoveDButton>
               <DText>{_day}</DText>
               <MoveDButton
-              onClick={() => {
-                let tDate = new Date(_day);
-                tDate.setDate(tDate.getDate()+1);
-                dispatch(todoActions.getOnePostAX(moment(tDate).format("YYYY-MM-DD")));
-              }}><ChevronRightIcon/></MoveDButton>
-          </LeftHeader>
+                onClick={() => {
+                  let tDate = new Date(_day);
+                  tDate.setDate(tDate.getDate() + 1);
+                  dispatch(
+                    todoActions.getOnePostAX(moment(tDate).format("YYYY-MM-DD"))
+                  );
+                }}
+              >
+                <ChevronRightIcon />
+              </MoveDButton>
+            </LeftHeader>
             <RightHeader>
               <AddButton
                 onClick={() => {
@@ -66,7 +76,7 @@ const DetailPost = (props) => {
                 추가하기
               </AddButton>
             </RightHeader>
-          </ DayHeader >
+          </DayHeader>
 
           <ConditionContainer style={{ height: "30%" }}>
             <TimeText>작성된 내용이 없습니다</TimeText>
@@ -78,23 +88,33 @@ const DetailPost = (props) => {
     return (
       <React.Fragment>
         <ModalComponent>
-        < DayHeader >
-        <LeftHeader>
-            <MoveDButton
-              onClick={() => {
-                let tDate = new Date(props.date.selectedAt);
-                tDate.setDate(tDate.getDate()-1);
-                dispatch(todoActions.getOnePostAX(moment(tDate).format("YYYY-MM-DD")));
-              }}><ChevronLeftIcon/></MoveDButton>
+          <DayHeader>
+            <LeftHeader>
+              <MoveDButton
+                onClick={() => {
+                  let tDate = new Date(props.date.selectedAt);
+                  tDate.setDate(tDate.getDate() - 1);
+                  dispatch(
+                    todoActions.getOnePostAX(moment(tDate).format("YYYY-MM-DD"))
+                  );
+                }}
+              >
+                <ChevronLeftIcon />
+              </MoveDButton>
               <DText>{props.date.selectedAt}</DText>
               <MoveDButton
-              onClick={() => {
-                let tDate = new Date(props.date.selectedAt);
-                tDate.setDate(tDate.getDate()+1);
-                dispatch(todoActions.getOnePostAX(moment(tDate).format("YYYY-MM-DD")));
-              }}><ChevronRightIcon/></MoveDButton>
-          </LeftHeader>
-            
+                onClick={() => {
+                  let tDate = new Date(props.date.selectedAt);
+                  tDate.setDate(tDate.getDate() + 1);
+                  dispatch(
+                    todoActions.getOnePostAX(moment(tDate).format("YYYY-MM-DD"))
+                  );
+                }}
+              >
+                <ChevronRightIcon />
+              </MoveDButton>
+            </LeftHeader>
+
             <RightHeader>
               <AddButton
                 onClick={() => {
@@ -111,7 +131,7 @@ const DetailPost = (props) => {
                 삭제하기
               </FixButton>
             </RightHeader>
-            </ DayHeader >
+          </DayHeader>
 
           <SleepTimeContainer>
             <TimeText>
@@ -141,13 +161,19 @@ const DetailPost = (props) => {
             <TimeText>
               컨디션{" "}
               {myCon === "1" && (
-                <img width="20px" height="20px" src={good}></img>
+                <img width="20px" height="20px" src={one}></img>
               )}
               {myCon === "2" && (
-                <img width="20px" height="20px" src={soso}></img>
+                <img width="20px" height="20px" src={two}></img>
               )}
               {myCon === "3" && (
-                <img width="20px" height="20px" src={bad}></img>
+                <img width="20px" height="20px" src={three}></img>
+              )}
+              {myCon === "4" && (
+                <img width="20px" height="20px" src={four}></img>
+              )}
+              {myCon === "5" && (
+                <img width="20px" height="20px" src={five}></img>
               )}
             </TimeText>
           </ConditionContainer>
@@ -204,9 +230,7 @@ const DText = styled.div`
   border: none;
   text-align: center;
   padding-top: 2px;
-
-  
- `;
+`;
 const RightHeader = styled.div`
   background-color: black;
   display: flex;
@@ -239,7 +263,6 @@ const AddButton = styled.button`
   color: white;
   margin: 9px 9px 0px 0px;
 `;
-
 
 const SleepTimeContainer = styled.div`
   background-color: black;
@@ -289,6 +312,5 @@ const Contents = styled.div`
   background-color: black;
   margin-top: 5px;
 `;
-
 
 export default DetailPost;

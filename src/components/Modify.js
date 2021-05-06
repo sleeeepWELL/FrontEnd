@@ -18,13 +18,17 @@ import work_gray from "../image/work_gray.jpg";
 import workout_gray from "../image/workout_gray.jpg";
 
 //컨디션
-import bad from "../image/bad-condition.jpg";
-import good from "../image/good-condition.jpg";
-import soso from "../image/soso-condition.jpg";
+import one from "../image/1-condition.jpg";
+import two from "../image/2-condition.jpg";
+import three from "../image/3-condition.jpg";
+import four from "../image/4-condition.jpg";
+import five from "../image/5-condition.jpg";
 
-import bad_gray from "../image/bad-gray.jpg";
-import good_gray from "../image/good-gray.jpg";
-import soso_gray from "../image/soso-gray.jpg";
+import one_gray from "../image/1-gray.jpg";
+import two_gray from "../image/2-gray.jpg";
+import three_gray from "../image/3-gray.jpg";
+import four_gray from "../image/4-gray.jpg";
+import five_gray from "../image/5-gray.jpg";
 
 const Modify = (props) => {
   const dispatch = useDispatch();
@@ -103,23 +107,30 @@ const Modify = (props) => {
   // console.log("최종 보낼배열:", sendTags);
 
   //컨디션
-  const [conditions, setCondition] = React.useState("");
-  const [checkgood, setCheckGood] = React.useState(false);
-  const [checksoso, setCheckSoso] = React.useState(false);
-  const [checkbad, setCheckBad] = React.useState(false);
+  const [checkone, setCheckOne] = React.useState(false);
+  const [checktwo, setCheckTwo] = React.useState(false);
+  const [checkthree, setCheckThree] = React.useState(false);
+  const [checkfour, setCheckFour] = React.useState(false);
+  const [checkfive, setCheckFive] = React.useState(false);
 
-  const good_icon = checkgood ? good : good_gray;
-  const soso_icon = checksoso ? soso : soso_gray;
-  const bad_icon = checkbad ? bad : bad_gray;
+  const one_icon = checkone ? one : one_gray;
+  const two_icon = checktwo ? two : two_gray;
+  const three_icon = checkthree ? three : three_gray;
+  const four_icon = checkfour ? four : four_gray;
+  const five_icon = checkfive ? five : five_gray;
 
-  const icon_good = checkgood ? good_gray : good;
-  const icon_soso = checksoso ? soso_gray : soso;
-  const icon_bad = checkbad ? bad_gray : bad;
+  const icon_one = checkone ? one_gray : one;
+  const icon_two = checktwo ? two_gray : two;
+  const icon_three = checkthree ? three_gray : three;
+  const icon_four = checkfour ? four_gray : four;
+  const icon_five = checkfive ? five_gray : five;
 
   //컨디션 배열에 넣고 빼기
   const [con1, setCon1] = React.useState("");
   const [con2, setCon2] = React.useState("");
   const [con3, setCon3] = React.useState("");
+  const [con4, setCon4] = React.useState("");
+  const [con5, setCon5] = React.useState("");
 
   const TotalCon = [];
   if (con1) {
@@ -130,6 +141,12 @@ const Modify = (props) => {
   }
   if (con3) {
     TotalCon.push(con3);
+  }
+  if (con4) {
+    TotalCon.push(con4);
+  }
+  if (con5) {
+    TotalCon.push(con5);
   }
 
   const mycondition = String(TotalCon);
@@ -341,8 +358,8 @@ const Modify = (props) => {
                     width="40"
                     height="40"
                     type="image"
-                    src={icon_good}
-                    alt="컨디션 good"
+                    src={icon_one}
+                    alt="매우나쁨"
                     value={1}
                     onClick={(e) => {
                       setEditCon("");
@@ -353,12 +370,12 @@ const Modify = (props) => {
                     width="40"
                     height="40"
                     type="image"
-                    src={good_icon}
-                    alt="컨디션 good"
+                    src={one_icon}
+                    alt="매우나쁨"
                     value={1}
                     onClick={(e) => {
-                      checkgood ? setCon1(null) : setCon1(e.target.value);
-                      checkgood ? setCheckGood(false) : setCheckGood(true);
+                      checkone ? setCon1(null) : setCon1(e.target.value);
+                      checkone ? setCheckOne(false) : setCheckOne(true);
                     }}
                   />
                 )}
@@ -369,8 +386,8 @@ const Modify = (props) => {
                     width="40"
                     height="40"
                     type="image"
-                    src={icon_soso}
-                    alt="컨디션 soso"
+                    src={icon_two}
+                    alt="나쁨"
                     value={2}
                     onClick={(e) => {
                       setEditCon("");
@@ -381,12 +398,12 @@ const Modify = (props) => {
                     width="40"
                     height="40"
                     type="image"
-                    src={soso_icon}
-                    alt="컨디션 soso"
+                    src={two_icon}
+                    alt="나쁨"
                     value={2}
                     onClick={(e) => {
-                      checksoso ? setCon2(null) : setCon2(e.target.value);
-                      checksoso ? setCheckSoso(false) : setCheckSoso(true);
+                      checktwo ? setCon2(null) : setCon2(e.target.value);
+                      checktwo ? setCheckTwo(false) : setCheckTwo(true);
                     }}
                   />
                 )}
@@ -397,8 +414,8 @@ const Modify = (props) => {
                     width="40"
                     height="40"
                     type="image"
-                    src={icon_bad}
-                    alt="컨디션 bad"
+                    src={icon_three}
+                    alt="보통"
                     value={3}
                     onClick={(e) => {
                       setEditCon("");
@@ -409,12 +426,68 @@ const Modify = (props) => {
                     width="40"
                     height="40"
                     type="image"
-                    src={bad_icon}
-                    alt="컨디션 bad"
+                    src={three_icon}
+                    alt="보통"
                     value={3}
                     onClick={(e) => {
-                      checkbad ? setCon3(null) : setCon3(e.target.value);
-                      checkbad ? setCheckBad(false) : setCheckBad(true);
+                      checkthree ? setCon3(null) : setCon3(e.target.value);
+                      checkthree ? setCheckThree(false) : setCheckThree(true);
+                    }}
+                  />
+                )}
+              </ImgGrid>
+              <ImgGrid>
+                {editCon === "4" ? (
+                  <input
+                    width="40"
+                    height="40"
+                    type="image"
+                    src={icon_four}
+                    alt="좋음"
+                    value={4}
+                    onClick={(e) => {
+                      setEditCon("");
+                    }}
+                  />
+                ) : (
+                  <input
+                    width="40"
+                    height="40"
+                    type="image"
+                    src={four_icon}
+                    alt="좋음"
+                    value={4}
+                    onClick={(e) => {
+                      checkfour ? setCon4(null) : setCon4(e.target.value);
+                      checkfour ? setCheckFour(false) : setCheckFour(true);
+                    }}
+                  />
+                )}
+              </ImgGrid>
+              <ImgGrid>
+                {editCon === "5" ? (
+                  <input
+                    width="40"
+                    height="40"
+                    type="image"
+                    src={icon_five}
+                    alt="매우 좋음"
+                    value={5}
+                    onClick={(e) => {
+                      setEditCon("");
+                    }}
+                  />
+                ) : (
+                  <input
+                    width="40"
+                    height="40"
+                    type="image"
+                    src={five_icon}
+                    alt="매우 좋음"
+                    value={5}
+                    onClick={(e) => {
+                      checkfive ? setCon5(null) : setCon5(e.target.value);
+                      checkfive ? setCheckFive(false) : setCheckFive(true);
                     }}
                   />
                 )}

@@ -136,6 +136,12 @@ const Write = (props) => {
 
   //추가하는 경우는 데이터를 잘라서 사용해야하고
   const addPost = () => {
+    if (startSleep === "" || endSleep === "" || mycondition === 0) {
+      window.alert(
+        "정확한 수면분석을 위해 취침시간, 기상시간, 컨디션을 모두 입력해주세요!"
+      );
+      return;
+    }
     let post = {
       startSleep: startSleep,
       endSleep: endSleep,

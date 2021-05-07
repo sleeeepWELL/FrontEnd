@@ -159,7 +159,7 @@ const DetailPost = (props) => {
 
           <ConditionContainer>
             <TimeText>
-              컨디션{" "}
+              컨디션 :{" "}
               {myCon === "1" && (
                 <img width="20px" height="20px" src={one}></img>
               )}
@@ -179,7 +179,7 @@ const DetailPost = (props) => {
           </ConditionContainer>
 
           <BottomContainer>
-            <Contents>{props.date.memo}</Contents>
+            <Contents> {props.date.memo}</Contents>
           </BottomContainer>
         </ModalComponent>
       </React.Fragment>
@@ -286,7 +286,6 @@ const TagContainer = styled.div`
   height: 12%;
   display: flex;
   flex-direction: column;
-
   justify-content: space-between;
 `;
 const ConditionContainer = styled.div`
@@ -310,7 +309,8 @@ const Contents = styled.div`
   width: 100%;
   height: 55%;
   background-color: black;
-  margin-top: 5px;
+  margin: 5px 0px 0px 10px;
+  color: white;
 `;
 
 export default DetailPost;

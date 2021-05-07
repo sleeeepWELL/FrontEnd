@@ -367,8 +367,7 @@ const Modify = (props) => {
                   />
                 ) : (
                   <input
-                    width="40"
-                    height="40"
+                    width="40"height="40"
                     type="image"
                     src={one_icon}
                     alt="매우나쁨"

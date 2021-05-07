@@ -7,6 +7,7 @@ import DetailWrite from "../components/DetailWrite";
 import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
 
+
 const MainCalendar = (props) => {
   const [is_modify, setModify] = React.useState(false);
   //day_list를 받아서 props로 넘겨주는 것과 DetailWrite에서 바로 day_list를 가져오는 것은 다르다.
@@ -22,7 +23,9 @@ const MainCalendar = (props) => {
      <Calendarjj _showModify={setModify}/>
      {is_modify ? <DetailWrite date={day_list} _showModify={setModify}/>:<DetailPost  date={day_list} _showModify={setModify}/>}
       </AllContainer>
+      
     </Background>
+   
     </React.Fragment>
   );
 };

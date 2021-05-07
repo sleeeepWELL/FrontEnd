@@ -36,7 +36,7 @@ function App() {
         <Navigator/>
           <Wrap>
             <ContentWrap>
-              <Navigator />
+            
               <Route path="/" exact component={Navigator} />
               <Route
                 path="/kakaoLogin"

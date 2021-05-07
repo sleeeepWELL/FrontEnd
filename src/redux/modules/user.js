@@ -8,12 +8,10 @@ import { REDIRECT_URI, CLIENT_ID } from "../../shared/OAuth";
 
 // 액션 타입
 const SET_USER = "SET_USER"; // 로그인
-const GET_USER = "GET_USER"; //회원정보 조회
 const LOG_OUT = "LOG_OUT"; // 로그아웃
 
 // 액션 생성함수
 const setUser = createAction(SET_USER, (user) => ({ user }));
-const getUser = createAction(GET_USER, (user) => ({ user }));
 const logOut = createAction(LOG_OUT, (user) => ({ user }));
 
 // 초기값
@@ -22,6 +20,7 @@ const initialState = {
   is_login: false,
 };
 
+// 로그인
 const loginSV = (email, pwd) => {
   return function (dispatch, getState, { history }) {
     axios({
@@ -59,11 +58,6 @@ const loginSV = (email, pwd) => {
           moment(ACCESS_TOKEN_EXP - Current_time - 60000).format("mm:ss")
         );
         dispatch(setUser(user));
-
-        // const data = {
-        //   accessToken: ACCESS_TOKEN,
-        //   refreshToken: REFRESH_TOKEN,
-        // };
 
         // ACCESS토큰 만료 1분전마다 연장함수 실행
         setTimeout(extensionAccess(), ACCESS_TOKEN_EXP - Current_time - 60000);
@@ -150,20 +144,45 @@ const signUpSV = (email, nickname, pwd, pwdCheck) => {
 };
 
 // 소셜로그인
-const kakaoLogin = (requestURL) => {
+const kakaoLogin = (code) => {
   return function (dispatch, getState, { history }) {
     axios({
-      method: "POST",
-      url: `https://kauth.kakao.com/oauth/token?grant_type=authorization_code&client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&code=${requestURL}`,
-      header: {
-        "Content-Type": "application/json",
-      },
+      method: "GET",
+      url: `http://3.35.208.142/oauth/callback/kakao?code=${code}`,
     })
-      .then((res) => {
+      .then(async (res) => {
         console.log(res);
+        window.alert("환영합니다");
+
+        const ACCESS_TOKEN = res.data.accessToken;
+        const ACCESS_TOKEN_EXP = res.data.accessTokenExpiresIn;
+        const REFRESH_TOKEN = res.data.refreshToken;
+
+        // refresh 토큰 쿠키저장
+        await setCookie("is_login", REFRESH_TOKEN);
+
+        // access 토큰 로컬에 저장(이전꺼 지우고)
+        localStorage.clear();
+        localStorage.setItem("token", ACCESS_TOKEN);
+
+        // 현재시간
+        const Current_time = new Date().getTime();
+
+        // 헤더 설정
+        axios.defaults.headers.common[
+          "Authorization"
+        ] = `Bearer ${ACCESS_TOKEN}`;
+
+        // 토큰 만료 1분전 자동연장
+        setTimeout(extensionAccess(), ACCESS_TOKEN_EXP - Current_time - 60000);
+
+        // 메인화면 이동
+        await history.replace("/calendar");
       })
       .catch((err) => {
         console.log("소셜로그인 에러", err);
+        window.alert("로그인에 실패하였습니다");
+        history.replace("/login");
       });
   };
 };
@@ -185,15 +204,12 @@ export default handleActions(
         localStorage.clear();
         draft.is_login = false;
       }),
-
-    [GET_USER]: (state, action) => produce(state, (draft) => {}),
   },
   initialState
 );
 
 const actionCreators = {
   setUser,
-  getUser,
   logOut,
   signUpSV,
   loginSV,

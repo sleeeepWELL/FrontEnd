@@ -84,7 +84,7 @@ const Calendar = (props) => {
               
               <DayGrid
                 key={`${moment(today).format("MM")}_week_${week_index}_day_${day_index}`}
-                bg={is_today && moment(today).format("MM") === _day.format("MM")? "grey": "black"}>
+                bg={is_today && moment(today).format("MM") === _day.format("MM")? "grey": "#121212"}>
 
                 {_day.format("MM") === moment(today).format("MM") ? (
                   <DayText font_c={is_today ? "white" : "black"}>
@@ -107,7 +107,7 @@ const Calendar = (props) => {
                 bg={
                   is_today && moment(today).format("MM") === _day.format("MM")
                     ? "gray"
-                    : "black"
+                    : "#121212"
                 }
                 onClick={() => {
                   props._showModify(false);
@@ -249,7 +249,7 @@ min-width: 50px;
 height: 100%;
 align-items: flex-start;
 justify-content: flex-start;
-border: 1px grey solid;
+border: 1px #FAFAD2 solid;
 border-radius:3px;
 
 ${(props) => (props.bg ? `background-color: ${props.bg};` : "")}

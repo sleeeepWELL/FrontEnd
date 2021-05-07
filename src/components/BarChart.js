@@ -1,6 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 import {Bar} from 'react-chartjs-2';
+import { PlayCircleFilledWhite } from "@material-ui/icons";
+import { withTheme } from "@material-ui/core";
  
 const BarChart = (props) => {
   
@@ -12,7 +14,8 @@ const BarChart = (props) => {
  //최대값 고정
 
   const chartData1 = {
-    labels: ['WORKOUT', 'DRINK', 'OVERTIME','OVEREAT'],
+    type: 'bar',
+    labels: ['WORKOUT', 'DRINK', 'OVERTIME','야식'],
     datasets: [
       {
         label: 'Frequency',
@@ -20,12 +23,14 @@ const BarChart = (props) => {
         'rgba(153, 102, 255, 0.2)',
         'rgba(201, 203, 207, 0.2)',
         'rgba(201, 203, 207, 0.2)'],
-        borderColor: 'purple',
+      
+        borderColor: 'white',
         borderWidth: 2,
         base: 0,
         max: 100,
         barThickness: 50,
         // borderSkipped: 'start',
+        color: 'white',
         borderRadius: 10,
         // barPercentage:2.0,
         // categoryPercentage: 0.5,
@@ -45,9 +50,10 @@ const BarChart = (props) => {
   };
 
   const chartData2 = {
-    labels: ['WORKOUT', 'DRINK', 'OVERTIME','OVEREAT'],
+    labels: ['WORKOUT', 'DRINK', 'OVERTIME','야식'],
     datasets: [
       {
+        
         label: 'Frequency',
         backgroundColor: ['rgba(255, 99, 132, 0.2)',
         'rgba(255, 159, 64, 0.2)','rgba(255, 205, 86, 0.2)','rgba(255, 205, 86, 0.2)'],
@@ -73,20 +79,38 @@ const BarChart = (props) => {
       }
     ]
   };
-
+  
 
   const chartOptions1 = {
     responsive: true,
     plugins: {
+     
       legend: {
-        position: 'top',
-        backgroundColor: 'yellow'
+        labels: {
+          fontColor: "white",
+          fontSize: 18
+        }
+
       },
       title: {
         display: true,
-        text: 'Weekly Frequency'
+        text: 'Weekly Frequency',
+
       },
-      
+      scales: {
+        yAxes: [{
+          ticks: {
+            beginAtZero: true,
+            stepSize : 2,
+            fontColor : "white",
+            fontSize : 14,
+          },
+          gridLines:{
+            color: 'white',
+            lineWidth:3
+          }
+        }]
+      }
     }
   };
 

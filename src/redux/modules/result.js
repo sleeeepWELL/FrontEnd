@@ -9,32 +9,31 @@ import { setCookie, deleteCookie, getCookie } from "../../shared/Cookie";
 const GET_TIME = "GET_TIME";
 const GET_TAG = "GET_TAG";
 
-
-const getTime = createAction(GET_TIME,(data) => ({data}));
-const getTag = createAction(GET_TAG,(data) => ({data}));
+const getTime = createAction(GET_TIME, (data) => ({ data }));
+const getTag = createAction(GET_TAG, (data) => ({ data }));
 
 const initialState = {
-    result_sleeptime:{
-        hour: 4,
-        minute: 121,
-    },
-    tags:{
-      weekly: [],
-      monthly: [],
-    },
+  result_sleeptime: {
+    hour: 4,
+    minute: 121,
+  },
+  tags: {
+    weekly: [],
+    monthly: [],
+  },
 };
 
-const getTags= (today) => {
+const getTags = (today) => {
   return function (dispatch) {
     axios
-      .get(`${config.api}/barChart/${today}`)
+      .get(`${config.test_api}/barChart/${today}`)
       .then((res) => {
-        let data={
-            weekly: res.data[0],
-            monthly: res.data[1],
-        }
+        let data = {
+          weekly: res.data[0],
+          monthly: res.data[1],
+        };
         console.log(data);
-      dispatch(getTag(data));
+        dispatch(getTag(data));
       })
       .catch((err) => {
         console.log(err);
@@ -42,25 +41,24 @@ const getTags= (today) => {
   };
 };
 
-const getTimeAX= () => {
+const getTimeAX = () => {
   return function (dispatch) {
     axios
-      .get(`${config.api}/yourSleepTime`)
+      .get(`${config.test_api}/yourSleepTime`)
       .then((res) => {
         console.log(res);
-        let data={
-            hour: res.data[0],
-            minute: res.data[1],
-        }
-        console.log(data)
-      dispatch(getTime(data));
+        let data = {
+          hour: res.data[0],
+          minute: res.data[1],
+        };
+        console.log(data);
+        dispatch(getTime(data));
       })
       .catch((err) => {
         console.log(err);
       });
   };
 };
-
 
 // 리듀서
 export default handleActions(
@@ -78,10 +76,10 @@ export default handleActions(
 );
 
 const actionCreators = {
-    getTime,
-    getTimeAX,
-    getTags,
-    getTag,
+  getTime,
+  getTimeAX,
+  getTags,
+  getTag,
 };
 
 export { actionCreators };

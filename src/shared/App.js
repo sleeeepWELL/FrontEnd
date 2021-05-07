@@ -31,6 +31,7 @@ function App() {
         <div>
           <Route path="/" exact component={Navigator} />
           <Wrap>
+            <Navigator/>
             <ContentWrap>
               <Route
                 path="/oauth/callback/kakao"

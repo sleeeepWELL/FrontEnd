@@ -25,7 +25,7 @@ const loginSV = (email, pwd) => {
   return function (dispatch, getState, { history }) {
     axios({
       method: "POST",
-      url: `${config.api}/api/login`,
+      url: `${config.test_api}/api/login`,
       data: {
         email: email,
         password: pwd,
@@ -79,7 +79,7 @@ const extensionAccess = () => {
     console.log(accessToken, refreshToken);
     axios({
       method: "POST",
-      url: `${config.api}/reissue`,
+      url: `${config.test_api}/reissue`,
       data: {
         accessToken: accessToken,
         refreshToken: refreshToken,
@@ -125,7 +125,7 @@ const signUpSV = (email, nickname, pwd, pwdCheck) => {
   return function (dispatch, getState, { history }) {
     axios({
       method: "POST",
-      url: `${config.api}/signup`,
+      url: `${config.test_api}/signup`,
       data: {
         email: email,
         password: pwd,

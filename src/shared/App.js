@@ -46,8 +46,8 @@ function App() {
               <Route path="/calendarwrite" exact component={CalendarWrite} />
               <Route path="/jieuncalendar" exact component={JieunCalendar} />
               <Route path="/analysis" exact component={Analysis} />
-              {/* <Route path="/" component={LoginCheck} /> */}
-              {/* <Route exact component={NotFound}/> */}
+              <Route path="/" component={LoginCheck} />
+              {/* <Route exact component={NotFound} /> */}
             </ContentWrap>
           </Wrap>
         </div>

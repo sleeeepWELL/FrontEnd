@@ -14,7 +14,7 @@ const Navigator = () => {
   const GetClick = (e) => {
     setCurrentClick(e.target.id);
     console.log(e.target.id);
-    history.replace(`${e.target.id}`);
+    history.replace(`/${e.target.id}`);
   };
 
   const LOGOUT = () => {
@@ -52,13 +52,13 @@ const Navigator = () => {
         <Logo>sleepwell</Logo>
         <CategoryContainer>
           <div></div>
-          <CategoryBox id="calendar" onClick={GetClick}>
+          <CategoryBox id="main" onClick={GetClick}>
             홈페이지
           </CategoryBox>
-          <CategoryBox id="case2" onClick={GetClick}>
+          <CategoryBox id="main/case2" onClick={GetClick}>
             내 컨디션
           </CategoryBox>
-          <CategoryBox id="analysis" onClick={GetClick}>
+          <CategoryBox id="main/analysis" onClick={GetClick}>
             분석
           </CategoryBox>
           <div></div>
@@ -114,7 +114,7 @@ const LogoutBox = styled.div`
   justify-content: center;
   cursor: pointer;
   font-weight: bold;
-  color:white;
+  color: white;
 `;
 
 const CategoryContainer = styled.div`
@@ -124,7 +124,6 @@ const CategoryContainer = styled.div`
   align-items: center;
   position: relative;
   font-weight: 600;
- 
 `;
 
 export default Navigator;

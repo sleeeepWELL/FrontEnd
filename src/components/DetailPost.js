@@ -188,10 +188,11 @@ const DetailPost = (props) => {
 };
 
 const ModalComponent = styled.div`
-  width: 100%;
-  height: 30%;
+  width: 50%;
+  height: 50%;
   display: flex;
   flex-direction: column;
+  box-sizing: border-box;
 `;
 
 const DayHeader = styled.div`

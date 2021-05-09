@@ -28,26 +28,17 @@ function App() {
       <ConnectedRouter history={history}>
         <Route path="/signup" exact component={Signup} />
         <Route path="/login" exact component={Login} />
-        <div>
-          <Route path="/" exact component={Navigator} />
-          <Wrap>
-            <Navigator/>
-            <ContentWrap>
-              <Route
-                path="/oauth/callback/kakao"
-                component={OAuth2RedirectHandler}
-              ></Route>
-              <Route path="/write" exact component={PostWrite} />
-              <Route path="/calendar" exact component={MainCalendar} />
-              <Route path="/kyucalendar" exact component={KyuCalendar} />
-              <Route path="/calendarwrite" exact component={CalendarWrite} />
-              <Route path="/jieuncalendar" exact component={JieunCalendar} />
-              <Route path="/analysis" exact component={Analysis} />
-              <Route path="/" component={LoginCheck} />
-              {/* <Route exact component={NotFound} /> */}
-            </ContentWrap>
-          </Wrap>
-        </div>
+        <Wrap>
+          <Route
+            path="/oauth/callback/kakao"
+            component={OAuth2RedirectHandler}
+          ></Route>
+          <Route path="/main" component={Navigator} />
+          <Route path="/main" component={MainCalendar} />
+          <Route path="/main/analysis" exact component={Analysis} />
+          <Route path="/" component={LoginCheck} />
+          {/* <Route exact component={NotFound} /> */}
+        </Wrap>
       </ConnectedRouter>
     </React.Fragment>
   );
@@ -55,6 +46,7 @@ function App() {
 
 const Wrap = styled.div`
   display: flex;
+  flex-direction: column;
 `;
 
 const ContentWrap = styled.div`

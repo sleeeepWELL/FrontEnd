@@ -62,7 +62,7 @@ const loginSV = (email, pwd) => {
         // ACCESS토큰 만료 1분전마다 연장함수 실행
         setTimeout(extensionAccess(), ACCESS_TOKEN_EXP - Current_time - 60000);
 
-        history.replace("/");
+        history.replace("/main/calendar");
       })
       .catch((err) => {
         console.log("로그인 에러", err);
@@ -187,6 +187,46 @@ const kakaoLogin = (code) => {
   };
 };
 
+// 회원가입 : 이메일로 인증번호 전송
+const SendAuth = (email) => {
+  return function (dispatch, getState, { history }) {
+    axios({
+      method: "POST",
+      url: `${config.test_api}/email/certification/send`,
+      data: {
+        email: email,
+      },
+    })
+      .then((res) => {
+        console.log(res);
+        window.alert("입력하신 이메일로 인증번호가 발송되었습니다.");
+      })
+      .catch((err) => {
+        console.log("인증번호 발송 에러", err);
+      });
+  };
+};
+
+// 이메일인증번호 인증완료
+const ConfirmAuth = (email, AuthNum) => {
+  return function (dispatch, getState, { history }) {
+    axios({
+      method: "POST",
+      url: `${config.test_api}/email/certification/confirm`,
+      data: {
+        email: email,
+        certificationNumber: AuthNum,
+      },
+    })
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+};
+
 // 리듀서
 export default handleActions(
   {
@@ -215,6 +255,8 @@ const actionCreators = {
   loginSV,
   extensionAccess,
   kakaoLogin,
+  SendAuth,
+  ConfirmAuth,
 };
 
 export { actionCreators };

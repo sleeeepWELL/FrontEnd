@@ -12,6 +12,7 @@ const Signup = () => {
   const [nickname, setNickname] = React.useState(null);
   const [pwd, setPwd] = React.useState(null);
   const [pwdCheck, setPwdCheck] = React.useState(null);
+  const [authNum, setAuthNum] = React.useState(null);
 
   //표현식 체크함수
   const emailCheck = (email) => {
@@ -28,12 +29,23 @@ const Signup = () => {
     return nicknameReg.test(nickname);
   };
 
+  const sendAuth = () => {
+    console.log(email);
+    dispatch(userActions.SendAuth(email));
+  };
+
+  const confirmAuth = () => {
+    console.log(authNum);
+    console.log(email);
+    dispatch(userActions.ConfirmAuth(email, authNum));
+  };
+
   //표현식 함수사용 및 체크구문
   const signup = () => {
-    // if (email === "" || nickname === "" || pwd === "" || pwdCheck === "") {
-    //   window.alert("모든 항목을 입력해주세요!");
-    //   return;
-    // }
+    if (email === "" || nickname === "" || pwd === "" || pwdCheck === "") {
+      window.alert("모든 항목을 입력해주세요!");
+      return;
+    }
     // if (pwd !== pwdCheck) {
     //   window.alert("비밀번호 설정을 다시 확인하세요!");
     //   return;
@@ -77,18 +89,33 @@ const Signup = () => {
               <div style={{ fontSize: "30px", fontWeight: "600" }}>
                 회원가입
               </div>
-              <IdBox
-                onChange={(e) => {
-                  setEmail(e.target.value);
-                }}
-                placeholder="이메일을 입력해주세요"
-              />
-              <InputBox
-                onChange={(e) => {
-                  setNickname(e.target.value);
-                }}
-                placeholder="닉네임을 입력해주세요"
-              />
+              <InputContainer>
+                <InputBox
+                  onChange={(e) => {
+                    setEmail(e.target.value);
+                  }}
+                  placeholder="이메일을 입력해주세요"
+                />
+                <CheckBnt onClick={sendAuth}>인증번호발송</CheckBnt>
+              </InputContainer>
+              <InputContainer>
+                <InputBox
+                  onChange={(e) => {
+                    setAuthNum(e.target.value);
+                  }}
+                  placeholder="인증번호를 입력해주세요"
+                />
+                <CheckBnt onClick={confirmAuth}>인증완료</CheckBnt>
+              </InputContainer>
+              <InputContainer>
+                <InputBox
+                  onChange={(e) => {
+                    setNickname(e.target.value);
+                  }}
+                  placeholder="닉네임을 입력해주세요"
+                />
+                <CheckBnt>중복확인</CheckBnt>
+              </InputContainer>
               <PwBox
                 onChange={(e) => {
                   setPwd(e.target.value);
@@ -136,6 +163,11 @@ const SemiContainer = styled.div`
   flex-direction: column;
 `;
 
+const InputContainer = styled.div`
+  display: flex;
+  margin-top: 2rem;
+`;
+
 const InfoBox = styled.div`
   width: 100%;
   height: 40px;
@@ -147,6 +179,20 @@ const InfoBox = styled.div`
   justify-content: space-between;
   color: gray;
   font-size: 15px;
+`;
+
+const CheckBnt = styled.button`
+  background-color: white;
+  border: 1px gray solid;
+  height: 3rem;
+  align-items: flex-end;
+  font-size: 0.7rem;
+  cursor: pointer;
+  width: 7rem;
+  :hover {
+    background-color: gray;
+    color: white;
+  }
 `;
 
 const Wrap = styled.div`
@@ -219,7 +265,6 @@ const IdBox = styled.input`
   padding: 15px;
   outline: none;
   font-size: 15px;
-  margin-top: 3.5rem;
   font-weight: bold;
   color: black;
 `;
@@ -232,11 +277,11 @@ const InputBox = styled.input`
   border-left: none;
   border-bottom: 1px solid grey;
   border-radius: 1px;
-  margin-top: 2rem;
   outline: none;
   font-size: 15px;
   font-weight: bold;
   color: black;
+  width: 100%;
 `;
 
 const PwBox = styled.input`

@@ -78,7 +78,6 @@ const Login = (props) => {
               <LoginButton onClick={login}>
                 <span>로그인</span>
               </LoginButton>
-              {/* "http://3.35.208.142/oauth/kakao" */}
               <KaKaoBtn href={KAKAO_AUTH_URL}>
                 <img src={kakaologo}></img>
                 <span>카카오계정 로그인</span>

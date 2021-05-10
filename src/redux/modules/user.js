@@ -8,10 +8,12 @@ import { REDIRECT_URI, CLIENT_ID } from "../../shared/OAuth";
 
 // 액션 타입
 const SET_USER = "SET_USER"; // 로그인
+const GET_USER = "GET_USER"; // 유저 정보 불러오기
 const LOG_OUT = "LOG_OUT"; // 로그아웃
 
 // 액션 생성함수
 const setUser = createAction(SET_USER, (user) => ({ user }));
+const getUser = createAction(GET_USER, (username) => ({ username }));
 const logOut = createAction(LOG_OUT, (user) => ({ user }));
 
 // 초기값
@@ -47,7 +49,7 @@ const loginSV = (email, pwd) => {
         // accessToken 디폴트 설정
         axios.defaults.headers.common[
           "Authorization"
-        ] = `Bearer ${ACCESS_TOKEN}`;
+        ] = `bearer ${ACCESS_TOKEN}`;
 
         const user = {
           email: email,
@@ -63,7 +65,7 @@ const loginSV = (email, pwd) => {
         // ACCESS토큰 만료 1분전마다 연장함수 실행
         setTimeout(extensionAccess(), ACCESS_TOKEN_EXP - Current_time - 60000);
 
-        history.replace("/");
+        history.replace("/main/calendar");
       })
       .catch((err) => {
         console.log("로그인 에러", err);
@@ -191,12 +193,79 @@ const kakaoLogin = (code) => {
   };
 };
 
+// 회원가입 : 이메일로 인증번호 전송
+const SendAuth = (email) => {
+  return function (dispatch, getState, { history }) {
+    axios({
+      method: "POST",
+      url: `${config.test_api}/email/certification/send`,
+      data: {
+        email: email,
+      },
+    })
+      .then((res) => {
+        console.log(res);
+        window.alert("입력하신 이메일로 인증번호가 발송되었습니다.");
+      })
+      .catch((err) => {
+        console.log("인증번호 발송 에러", err);
+      });
+  };
+};
+
+// 이메일인증번호 인증완료
+const ConfirmAuth = (email, AuthNum) => {
+  return function (dispatch, getState, { history }) {
+    axios({
+      method: "POST",
+      url: `${config.test_api}/email/certification/confirm`,
+      data: {
+        email: email,
+        certificationNumber: AuthNum,
+      },
+    })
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+};
+
+// 유저 정보 불러오기
+const getUserSV = () => {
+  return function (dispatch, getState, { history }) {
+    const ACCESS_TOKEN = localStorage.getItem("token");
+    axios.defaults.headers.common["Authorization"] = `bearer ${ACCESS_TOKEN}`;
+
+    console.log(axios.defaults);
+
+    axios({
+      method: "GET",
+      url: `${config.api}/username`,
+    })
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log("유저 이름 가져오기 에러", err);
+      });
+  };
+};
+
 // 리듀서
 export default handleActions(
   {
     [SET_USER]: (state, action) =>
       produce(state, (draft) => {
         draft.user = action.payload.user;
+        draft.is_login = true;
+      }),
+
+    [GET_USER]: (state, action) =>
+      produce(state, (draft) => {
+        draft.user = action.payload.username;
         draft.is_login = true;
       }),
 
@@ -219,6 +288,9 @@ const actionCreators = {
   loginSV,
   extensionAccess,
   kakaoLogin,
+  SendAuth,
+  ConfirmAuth,
+  getUserSV,
 };
 
 export { actionCreators };

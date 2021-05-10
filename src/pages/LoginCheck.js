@@ -13,7 +13,7 @@ const LoginCheck = (props) => {
       />
     );
   } else {
-    return <Redirect to={{ pathname: "/" }} />;
+    return <Redirect to={{ pathname: "/main" }} />;
   }
 };
 

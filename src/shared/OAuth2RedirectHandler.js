@@ -1,5 +1,4 @@
-import React, { Component } from "react";
-// import { Redirect } from "react-router-dom";
+import React from "react";
 import { useDispatch } from "react-redux";
 import { actionCreators as userActions } from "../redux/modules/user";
 import Spinner from "./Spinner";
@@ -14,11 +13,6 @@ const OAuth2RedirectHandler = (props) => {
     await dispatch(userActions.kakaoLogin(code));
   }, []);
 
-  // <Redirect
-  //     to={{
-  //       pathname: "/calendar",
-  //     }}
-  //   />
   return <Spinner />;
 };
 

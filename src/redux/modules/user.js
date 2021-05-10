@@ -27,7 +27,7 @@ const loginSV = (email, pwd) => {
   return function (dispatch, getState, { history }) {
     axios({
       method: "POST",
-      url: `${config.test_api}/api/login`,
+      url: `${config.api}/api/login`,
       // url: `${config.api}/api/login`,
       data: {
         email: email,
@@ -82,7 +82,7 @@ const extensionAccess = () => {
     console.log(accessToken, refreshToken);
     axios({
       method: "POST",
-      url: `${config.test_api}/reissue`,
+      url: `${config.api}/reissue`,
       // url: `${config.api}/reissue`,
       data: {
         accessToken: accessToken,
@@ -124,15 +124,12 @@ const extensionAccess = () => {
   };
 };
 
-
-
-
 // 회원가입
 const signUpSV = (email, nickname, pwd, pwdCheck) => {
   return function (dispatch, getState, { history }) {
     axios({
       method: "POST",
-      url: `${config.test_api}/signup`,
+      url: `${config.api}/signup`,
       // url: `${config.api}/signup`,
       data: {
         email: email,
@@ -156,13 +153,10 @@ const kakaoLogin = (code) => {
   return function (dispatch, getState, { history }) {
     axios({
       method: "GET",
-      url: `${config.test_api}/oauth/callback/kakao?code=${code}`,
+      url: `${config.api}/oauth/callback/kakao?code=${code}`,
       // url: `${config.api}/oauth/callback/kakao?code=${code}`,
     })
       .then(async (res) => {
-        console.log(res);
-        window.alert("환영합니다");
-
         const ACCESS_TOKEN = res.data.accessToken;
         const ACCESS_TOKEN_EXP = res.data.accessTokenExpiresIn;
         const REFRESH_TOKEN = res.data.refreshToken;
@@ -187,6 +181,7 @@ const kakaoLogin = (code) => {
 
         // 메인화면 이동
         await history.replace("/calendar");
+        window.alert("환영합니다");
       })
       .catch((err) => {
         console.log("소셜로그인 에러", err);
@@ -201,7 +196,7 @@ const SendAuth = (email) => {
   return function (dispatch, getState, { history }) {
     axios({
       method: "POST",
-      url: `${config.test_api}/email/certification/send`,
+      url: `${config.api}/email/certification/send`,
       data: {
         email: email,
       },
@@ -221,7 +216,7 @@ const ConfirmAuth = (email, AuthNum) => {
   return function (dispatch, getState, { history }) {
     axios({
       method: "POST",
-      url: `${config.test_api}/email/certification/confirm`,
+      url: `${config.api}/email/certification/confirm`,
       data: {
         email: email,
         certificationNumber: AuthNum,

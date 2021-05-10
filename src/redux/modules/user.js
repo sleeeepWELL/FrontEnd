@@ -124,6 +124,9 @@ const extensionAccess = () => {
   };
 };
 
+
+
+
 // 회원가입
 const signUpSV = (email, nickname, pwd, pwdCheck) => {
   return function (dispatch, getState, { history }) {

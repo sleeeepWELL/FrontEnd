@@ -29,8 +29,12 @@ const initialState = {
 const getTags = (today) => {
   return function (dispatch) {
     axios
+<<<<<<< HEAD
       .get(`${config.test_api}/chart/barChart/${today}`)
       // .get(`${config.api}/barChart/${today}`)
+=======
+      .get(`${config.api}/chart/barChart/${today}`)
+>>>>>>> kyu0507
       .then((res) => {
         let data = {
           weekly: res.data[0],
@@ -44,12 +48,19 @@ const getTags = (today) => {
       });
   };
 };
+<<<<<<< HEAD
 
 const getTimeAX = () => {
   return function (dispatch) {
     axios
       .get(`${config.test_api}/chart/yourSleepTime`)
       // .get(`${config.api}/yourSleepTime`)
+=======
+const getTimeAX= () => {
+  return function (dispatch) {
+    axios
+      .get(`${config.api}/chart/yourSleepTime`)
+>>>>>>> kyu0507
       .then((res) => {
         console.log(res);
         let data = {

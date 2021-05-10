@@ -35,6 +35,7 @@ const Write = (props) => {
   const [startSleep, setstartSleep] = React.useState("");
   const [endSleep, setendSleep] = React.useState("");
   const [memo, setMemo] = React.useState("");
+
   const startMinute =
     parseInt(startSleep.slice(0, 2) * 60) + parseInt(startSleep.slice(3, 5));
   const endMinute =
@@ -70,18 +71,10 @@ const Write = (props) => {
   const work_icon = checkwork ? work : work_gray;
   const workout_icon = checkworkout ? workout : workout_gray;
 
-  if (tags1) {
-    TotalTags.push(tags1);
-  }
-  if (tags2) {
-    TotalTags.push(tags2);
-  }
-  if (tags3) {
-    TotalTags.push(tags3);
-  }
-  if (tags4) {
-    TotalTags.push(tags4);
-  }
+  if (tags1) {TotalTags.push(tags1);}
+  if (tags2) {TotalTags.push(tags2);}
+  if (tags3) {TotalTags.push(tags3);}
+  if (tags4) {TotalTags.push(tags4);}
 
   //컨디션
   const [checkone, setCheckOne] = React.useState(false);

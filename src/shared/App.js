@@ -1,14 +1,14 @@
 import React from "react";
-import Navigator from "../components/Navigator";
 import styled from "styled-components";
 
+import Navigator from "../components/Navigator";
 import Login from "../pages/Login";
 import Signup from "../pages/Signup";
 import MainCalendar from "../pages/MainCalendar";
 import Analysis from "../pages/Analysis";
 import PracAnalysis from "../pages/PracAnalysis";
 
-import { Route } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 import { ConnectedRouter } from "connected-react-router";
 import { history } from "../redux/configureStore";
 import OAuth2RedirectHandler from "./OAuth2RedirectHandler";
@@ -17,9 +17,17 @@ import { getCookie } from "./Cookie";
 import LoginCheck from "../pages/LoginCheck";
 import { actionCreators as userActions } from "../redux/modules/user";
 
+
+
 function App() {
   const dispatch = useDispatch();
-  const is_login = getCookie("is_login");
+  // const is_login = getCookie("is_login") ? true: false;
+  
+  // React.useEffect(() => {
+  //   if (is_login) {
+  //     dispatch(userAction.againLogin());
+  //   }
+  // }, []);
 
   React.useEffect(() => {
     dispatch(userActions.getUserSV());
@@ -27,6 +35,7 @@ function App() {
 
   return (
     <React.Fragment>
+<<<<<<< HEAD
       <ConnectedRouter history={history} is_login={is_login}>
         <Route path="/signup" exact component={Signup} />
         <Route path="/login" exact component={Login} />
@@ -42,7 +51,28 @@ function App() {
           <Route path="/" component={LoginCheck} />
           {/* <Route exact component={NotFound} /> */}
         </Wrap>
+=======
+      <ConnectedRouter history={history}>
+        <Switch>
+        <Route path="/signup" exact component={Signup} />
+        <Route path="/login" exact component={Login} />
+        
+        <div>
+        <Navigator/>
+          <Wrap>
+            <ContentWrap>
+              <Route path="/oauth/callback/kakao"component={OAuth2RedirectHandler}/>
+              <Route path="/calendar" exact component={MainCalendar} />
+              <Route path="/analysis" exact component={Analysis} />
+              <Route path="/" exact component={LoginCheck} />
+              {/* <Route exact component={NotFound} /> */}
+            </ContentWrap>
+          </Wrap>
+        </div>
+        </Switch>
+>>>>>>> kyu0507
       </ConnectedRouter>
+    
     </React.Fragment>
   );
 }
@@ -56,5 +86,7 @@ const ContentWrap = styled.div`
   display: flex;
   width: 100%;
 `;
+
+
 
 export default App;

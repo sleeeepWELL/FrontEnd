@@ -10,19 +10,16 @@ import Modify from "../components/Modify";
 
 const DetailWrite = (props) => {
   
-  console.log(props);
   if (props.date.selectedAt !== undefined) {
    return (
    <React.Fragment>
     <Modify props={props}/>
-   </React.Fragment>
-   )
-  } else {
+   </React.Fragment>)
+  }else{
     return(
     <React.Fragment>
       <Write props={props}/>
-    </React.Fragment>
-    );
+    </React.Fragment>);
   }
 };
 

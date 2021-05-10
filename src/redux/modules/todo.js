@@ -49,10 +49,16 @@ const initialState = {
 };
 
 const getAllPostAX = () => {
+ 
   return function (dispatch) {
+    console.log(axios.defaults);
     axios
+<<<<<<< HEAD
       .get(`${config.test_api}/cards/calendars`)
       // .get(`${config.api}/calendars`)
+=======
+      .get(`${config.api}/cards/calendars`, config.token)
+>>>>>>> kyu0507
       .then((response) => {
         let todo_list = [];
         response.data.forEach((_item) => {
@@ -73,6 +79,7 @@ const getAllPostAX = () => {
       .catch((err) => {
         console.log("캘린더 리스트 정보 불러오기 에러", err);
       });
+     
   };
 };
 

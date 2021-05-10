@@ -3,15 +3,15 @@ import styled from "styled-components";
 import { actionCreators as todoActions } from "../redux/modules/todo";
 import { useDispatch, useSelector } from "react-redux";
 
-import beer from "../image/beer.jpg";
-import overeat from "../image/overeat.jpg";
-import work from "../image/work.jpg";
-import workout from "../image/workout.jpg";
+import beer from "../image/beer.png";
+import snack from "../image/snack.png";
+import work from "../image/work.png";
+import workout from "../image/workout.png";
 
-import beer_gray from "../image/beer_gray.jpg";
-import overeat_gray from "../image/overeat_gray.jpg";
-import work_gray from "../image/work_gray.jpg";
-import workout_gray from "../image/workout_gray.jpg";
+import beer_gray from "../image/beer_gray.png";
+import snack_gray from "../image/snack_gray.png";
+import work_gray from "../image/work_gray.png";
+import workout_gray from "../image/workout_gray.png";
 
 import one from "../image/1-condition.jpg";
 import two from "../image/2-condition.jpg";
@@ -104,7 +104,7 @@ const ToDo = (props) => {
                 // key={idx}
                 width="21%"
                 height="90%"
-                src={overeat}
+                src={snack}
                 alt="tag"
               ></img>
             ) : (
@@ -112,7 +112,7 @@ const ToDo = (props) => {
                 // key={idx}
                 width="21%"
                 height="90%"
-                src={overeat_gray}
+                src={snack_gray}
                 alt="tag"
               ></img>
             )}
@@ -190,11 +190,11 @@ const TopInfo = styled.div`
 
 const BottomInfo = styled.div`
   display: flex;
-  width:100%;
+  width: 100%;
   height: 50%;
   /* justify-content: center; */
- background-color: white;
- margin-top: 3px;
+  background-color: white;
+  margin-top: 3px;
   /* font-size: 2px; */
 `;
 

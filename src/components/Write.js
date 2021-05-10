@@ -7,15 +7,15 @@ import { history } from "../redux/configureStore";
 import TextField from "@material-ui/core/TextField";
 
 //태그
-import beer from "../image/beer.jpg";
-import overeat from "../image/overeat.jpg";
-import work from "../image/work.jpg";
-import workout from "../image/workout.jpg";
+import beer from "../image/beer.png";
+import snack from "../image/snack.png";
+import work from "../image/work.png";
+import workout from "../image/workout.png";
 
-import beer_gray from "../image/beer_gray.jpg";
-import overeat_gray from "../image/overeat_gray.jpg";
-import work_gray from "../image/work_gray.jpg";
-import workout_gray from "../image/workout_gray.jpg";
+import beer_gray from "../image/beer_gray.png";
+import snack_gray from "../image/snack_gray.png";
+import work_gray from "../image/work_gray.png";
+import workout_gray from "../image/workout_gray.png";
 
 //컨디션
 import one from "../image/1-condition.jpg";
@@ -62,19 +62,27 @@ const Write = (props) => {
   const [tags4, setTags4] = React.useState("");
 
   const [checkbeer, setCheckBeer] = React.useState(false);
-  const [checkovereat, setCheckOvereat] = React.useState(false);
+  const [checksnack, setCheckSnack] = React.useState(false);
   const [checkwork, setCheckWork] = React.useState(false);
   const [checkworkout, setCheckWorkOut] = React.useState(false);
 
   const beer_icon = checkbeer ? beer : beer_gray;
-  const overeat_icon = checkovereat ? overeat : overeat_gray;
+  const snack_icon = checksnack ? snack : snack_gray;
   const work_icon = checkwork ? work : work_gray;
   const workout_icon = checkworkout ? workout : workout_gray;
 
-  if (tags1) {TotalTags.push(tags1);}
-  if (tags2) {TotalTags.push(tags2);}
-  if (tags3) {TotalTags.push(tags3);}
-  if (tags4) {TotalTags.push(tags4);}
+  if (tags1) {
+    TotalTags.push(tags1);
+  }
+  if (tags2) {
+    TotalTags.push(tags2);
+  }
+  if (tags3) {
+    TotalTags.push(tags3);
+  }
+  if (tags4) {
+    TotalTags.push(tags4);
+  }
 
   //컨디션
   const [checkone, setCheckOne] = React.useState(false);
@@ -214,12 +222,12 @@ const Write = (props) => {
                 width="40"
                 height="40"
                 type="image"
-                src={overeat_icon}
-                alt="overeat"
+                src={snack_icon}
+                alt="snack"
                 value={"야식"}
                 onClick={(e) => {
-                  checkovereat ? setTags2(null) : setTags2(e.target.value);
-                  checkovereat ? setCheckOvereat(false) : setCheckOvereat(true);
+                  checksnack ? setTags2(null) : setTags2(e.target.value);
+                  checksnack ? setCheckSnack(false) : setCheckSnack(true);
                 }}
               />
             </ImgGrid>

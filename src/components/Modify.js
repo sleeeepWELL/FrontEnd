@@ -7,15 +7,15 @@ import { history } from "../redux/configureStore";
 import TextField from "@material-ui/core/TextField";
 
 //태그
-import beer from "../image/beer.jpg";
-import overeat from "../image/overeat.jpg";
-import work from "../image/work.jpg";
-import workout from "../image/workout.jpg";
+import beer from "../image/beer.png";
+import snack from "../image/snack.png";
+import work from "../image/work.png";
+import workout from "../image/workout.png";
 
-import beer_gray from "../image/beer_gray.jpg";
-import overeat_gray from "../image/overeat_gray.jpg";
-import work_gray from "../image/work_gray.jpg";
-import workout_gray from "../image/workout_gray.jpg";
+import beer_gray from "../image/beer_gray.png";
+import snack_gray from "../image/snack_gray.png";
+import work_gray from "../image/work_gray.png";
+import workout_gray from "../image/workout_gray.png";
 
 //컨디션
 import one from "../image/1-condition.jpg";
@@ -69,17 +69,17 @@ const Modify = (props) => {
   const [tags4, setTags4] = React.useState("");
 
   const [checkbeer, setCheckBeer] = React.useState(false);
-  const [checkovereat, setCheckOvereat] = React.useState(false);
+  const [checksnack, setCheckSnack] = React.useState(false);
   const [checkwork, setCheckWork] = React.useState(false);
   const [checkworkout, setCheckWorkOut] = React.useState(false);
 
   const beer_icon = checkbeer ? beer : beer_gray;
-  const overeat_icon = checkovereat ? overeat : overeat_gray;
+  const snack_icon = checksnack ? snack : snack_gray;
   const work_icon = checkwork ? work : work_gray;
   const workout_icon = checkworkout ? workout : workout_gray;
 
   const icon_beer = checkbeer ? beer_gray : beer;
-  const icon_overeat = checkovereat ? overeat_gray : overeat;
+  const icon_snack = checksnack ? snack_gray : snack;
   const icon_work = checkwork ? work_gray : work;
   const icon_workout = checkworkout ? workout_gray : workout;
 
@@ -271,8 +271,8 @@ const Modify = (props) => {
                     width="40"
                     height="40"
                     type="image"
-                    src={icon_overeat}
-                    alt="overeat"
+                    src={icon_snack}
+                    alt="snack"
                     value={"야식"}
                     onClick={(e) => {
                       setEditTags(editTags.filter((p) => p !== "야식"));
@@ -283,15 +283,13 @@ const Modify = (props) => {
                     width="40"
                     height="40"
                     type="image"
-                    src={overeat_icon}
-                    alt="overeat"
+                    src={snack_icon}
+                    alt="snack"
                     value={"야식"}
                     onClick={(e) => {
-                      checkovereat ? setTags2(null) : setTags2(e.target.value);
+                      checksnack ? setTags2(null) : setTags2(e.target.value);
 
-                      checkovereat
-                        ? setCheckOvereat(false)
-                        : setCheckOvereat(true);
+                      checksnack ? setCheckSnack(false) : setCheckSnack(true);
                     }}
                   />
                 )}
@@ -374,7 +372,8 @@ const Modify = (props) => {
                   />
                 ) : (
                   <input
-                    width="40"height="40"
+                    width="40"
+                    height="40"
                     type="image"
                     src={one_icon}
                     alt="매우나쁨"

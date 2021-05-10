@@ -102,6 +102,10 @@ const getOnePostAX = (selectedAt) => {
 
 const addPostAX = (post) => {
   console.log(axios.data);
+  const _token = localStorage.getItem("token");
+  let token = {
+    headers: { Authorization: `Bearer ${_token}` },
+  };
   return function (dispatch) {
     let data = {
       startSleep: post.startSleep,
@@ -113,7 +117,7 @@ const addPostAX = (post) => {
     };
 
     axios
-      .post(`${config.api}/cards`, data, config.token)
+      .post(`${config.api}/cards`, data, token)
       .then((response) => {
         dispatch(addTodo(post));
       })
@@ -162,13 +166,15 @@ const editPostAX = (post) => {
 };
 
 const removePostAX = (selectedAt) => {
+  const _token = localStorage.getItem("token");
+  let token = {
+    headers: { Authorization: `Bearer ${_token}` },
+  };
   return function (dispatch) {
-    axios
-      .delete(`${config.api}/cards/${selectedAt}`, config.token)
-      .then((reponse) => {
-        // axios.delete(`${config.api}/cards/${selectedAt}`).then((reponse) => {
-        dispatch(deleteTodo(selectedAt));
-      });
+    axios.delete(`${config.api}/cards/${selectedAt}`, token).then((reponse) => {
+      // axios.delete(`${config.api}/cards/${selectedAt}`).then((reponse) => {
+      dispatch(deleteTodo(selectedAt));
+    });
   };
 };
 

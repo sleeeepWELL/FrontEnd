@@ -5,10 +5,10 @@ import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
 import { actionCreators as todoActions } from "../redux/modules/todo";
 
-import beer from "../image/beer.jpg";
-import overeat from "../image/overeat.jpg";
-import work from "../image/work.jpg";
-import workout from "../image/workout.jpg";
+import beer from "../image/beer.png";
+import snack from "../image/snack.png";
+import work from "../image/work.png";
+import workout from "../image/workout.png";
 
 import one from "../image/1-condition.jpg";
 import two from "../image/2-condition.jpg";
@@ -22,7 +22,7 @@ import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 //글씨 이미지로 바꾸기
 const mapKeywordToImg = {
   음주: beer,
-  야식: overeat,
+  야식: snack,
   야근: work,
   운동: workout,
 };
@@ -43,27 +43,38 @@ const DetailPost = (props) => {
         <ModalComponent>
           <DayHeader>
             <LeftHeader>
-              <MoveDButton onClick={() => {
+              <MoveDButton
+                onClick={() => {
                   let tDate = new Date(_day);
                   tDate.setDate(tDate.getDate() - 1);
-                  dispatch(todoActions.getOnePostAX(moment(tDate).format("YYYY-MM-DD")));
-                }}>
+                  dispatch(
+                    todoActions.getOnePostAX(moment(tDate).format("YYYY-MM-DD"))
+                  );
+                }}
+              >
                 <ChevronLeftIcon />
               </MoveDButton>
 
               <DText>{_day}</DText>
 
-              <MoveDButton onClick={() => {
+              <MoveDButton
+                onClick={() => {
                   let tDate = new Date(_day);
                   tDate.setDate(tDate.getDate() + 1);
-                  dispatch(todoActions.getOnePostAX(moment(tDate).format("YYYY-MM-DD")));
-                }}>
+                  dispatch(
+                    todoActions.getOnePostAX(moment(tDate).format("YYYY-MM-DD"))
+                  );
+                }}
+              >
                 <ChevronRightIcon />
               </MoveDButton>
             </LeftHeader>
             <RightHeader>
               <AddButton
-                onClick={() => {props._showModify(true);}}>
+                onClick={() => {
+                  props._showModify(true);
+                }}
+              >
                 추가하기
               </AddButton>
             </RightHeader>
@@ -139,8 +150,8 @@ const DetailPost = (props) => {
                 return (
                   <img
                     key={idx}
-                    width="20px"
-                    height="20px"
+                    width="40px"
+                    height="40px"
                     src={mapKeywordToImg[currentTag]}
                   ></img>
                 );
@@ -169,9 +180,7 @@ const DetailPost = (props) => {
             </TimeText>
           </ConditionContainer>
 
-         
-            <Contents> 메모 :{props.date.memo}</Contents>
-         
+          <Contents> 메모 :{props.date.memo}</Contents>
         </ModalComponent>
       </React.Fragment>
     );

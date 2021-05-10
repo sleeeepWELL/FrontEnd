@@ -21,7 +21,7 @@ const ConditionChart = (props) => {
         from="2021-01-01"
         to="2021-12-31"
         emptyColor="#eeeeee"
-        colors={["#FF0000", "#FF9100", "#FFDC3C", "#80E12A", "#1E821E"]}
+        colors={["#F27153", "#F29846", "#EAE35E", "#81D3A2", "#309EB7"]}
         minValue={1}
         maxValue={5}
         margin={{ top: 40, right: 40, bottom: 40, left: 40 }}
@@ -61,35 +61,35 @@ const Container = styled.div`
 const One = styled.div`
   width: 20px;
   height: 20px;
-  background-color: red;
+  background-color: #f27153;
   display: flex;
 `;
 
 const Two = styled.div`
   width: 20px;
   height: 20px;
-  background-color: orange;
+  background-color: #f29846;
   display: flex;
 `;
 
 const Three = styled.div`
   width: 20px;
   height: 20px;
-  background-color: yellow;
+  background-color: #eae35e;
   display: flex;
 `;
 
 const Four = styled.div`
   width: 20px;
   height: 20px;
-  background-color: yellowgreen;
+  background-color: #81d3a2;
   display: flex;
 `;
 
 const Five = styled.div`
   width: 20px;
   height: 20px;
-  background-color: green;
+  background-color: #309eb7;
   display: flex;
 `;
 

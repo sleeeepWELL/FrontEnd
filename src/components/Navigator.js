@@ -46,6 +46,10 @@ const Navigator = () => {
     [currentClick]
   );
 
+  //로그인 회원가입에서 헤더 안보이게
+  if (window.location.href === "/login" || window.location.href === "/signup")
+    return null;
+
   return (
     <React.Fragment>
       <Wrap>
@@ -55,12 +59,13 @@ const Navigator = () => {
           <CategoryBox id="calendar" onClick={GetClick}>
             홈페이지
           </CategoryBox>
-          <CategoryBox id="case2" onClick={GetClick}>
+          <CategoryBox id="prac" onClick={GetClick}>
             내 컨디션
           </CategoryBox>
           <CategoryBox id="analysis" onClick={GetClick}>
             분석
           </CategoryBox>
+
           <div></div>
         </CategoryContainer>
         <LogoutBox onClick={LOGOUT}>로그아웃</LogoutBox>
@@ -114,7 +119,7 @@ const LogoutBox = styled.div`
   justify-content: center;
   cursor: pointer;
   font-weight: bold;
-  color:white;
+  color: white;
 `;
 
 const CategoryContainer = styled.div`
@@ -124,7 +129,6 @@ const CategoryContainer = styled.div`
   align-items: center;
   position: relative;
   font-weight: 600;
- 
 `;
 
 export default Navigator;

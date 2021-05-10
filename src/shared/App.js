@@ -10,6 +10,7 @@ import CalendarWrite from "../components/CalendarWrite";
 import PostWrite from "../pages/PostWrite";
 import JieunCalendar from "../components/JieunCalendar";
 import Analysis from "../pages/Analysis";
+import PracAnalysis from "../pages/PracAnalysis";
 
 import { Route } from "react-router-dom";
 import { ConnectedRouter } from "connected-react-router";
@@ -25,13 +26,12 @@ function App() {
 
   return (
     <React.Fragment>
-      <ConnectedRouter history={history}>
+      <ConnectedRouter history={history} is_login={is_login}>
         <Route path="/signup" exact component={Signup} />
         <Route path="/login" exact component={Login} />
         <div>
-          <Route path="/" exact component={Navigator} />
+          <Navigator />
           <Wrap>
-            <Navigator/>
             <ContentWrap>
               <Route
                 path="/oauth/callback/kakao"
@@ -43,6 +43,7 @@ function App() {
               <Route path="/calendarwrite" exact component={CalendarWrite} />
               <Route path="/jieuncalendar" exact component={JieunCalendar} />
               <Route path="/analysis" exact component={Analysis} />
+              <Route path="/prac" exact component={PracAnalysis} />
               <Route path="/" component={LoginCheck} />
               {/* <Route exact component={NotFound} /> */}
             </ContentWrap>

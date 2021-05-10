@@ -47,15 +47,23 @@ const ToDo = (props) => {
       <Container>
         <TopInfo>
           <div style={{ padding: "5px" }}>
-            {myCon === "1" && <img width="20px" height="20px" src={one}></img>}
-            {myCon === "2" && <img width="20px" height="20px" src={two}></img>}
-            {myCon === "3" && (
-              <img width="20px" height="20px" src={three}></img>
+            {myCon === "1" && (
+              <img width="20px" height="20px" src={one} alt="condition"></img>
             )}
-            {myCon === "4" && <img width="20px" height="20px" src={four}></img>}
-            {myCon === "5" && <img width="20px" height="20px" src={five}></img>}
+            {myCon === "2" && (
+              <img width="20px" height="20px" src={two} alt="condition"></img>
+            )}
+            {myCon === "3" && (
+              <img width="20px" height="20px" src={three} alt="condition"></img>
+            )}
+            {myCon === "4" && (
+              <img width="20px" height="20px" src={four} alt="condition"></img>
+            )}
+            {myCon === "5" && (
+              <img width="20px" height="20px" src={five} alt="condition"></img>
+            )}
           </div>
-          <div style={{ padding: "5px" ,color: "white"}}>
+          <div style={{ padding: "5px", color: "white" }}>
             {`${props.totalSleepHour}H ${props.totalSleepMinute} M`}
           </div>
         </TopInfo>
@@ -80,6 +88,7 @@ const ToDo = (props) => {
                 width="20px"
                 height="20px"
                 src={beer}
+                alt="tag"
               ></img>
             ) : (
               <img
@@ -87,6 +96,7 @@ const ToDo = (props) => {
                 width="20px"
                 height="20px"
                 src={beer_gray}
+                alt="tag"
               ></img>
             )}
             {myTags.find((p) => p === "야식") ? (
@@ -95,6 +105,7 @@ const ToDo = (props) => {
                 width="20px"
                 height="20px"
                 src={overeat}
+                alt="tag"
               ></img>
             ) : (
               <img
@@ -102,6 +113,7 @@ const ToDo = (props) => {
                 width="20px"
                 height="20px"
                 src={overeat_gray}
+                alt="tag"
               ></img>
             )}
             {myTags.find((p) => p === "야근") ? (
@@ -110,6 +122,7 @@ const ToDo = (props) => {
                 width="20px"
                 height="20px"
                 src={work}
+                alt="tag"
               ></img>
             ) : (
               <img
@@ -117,6 +130,7 @@ const ToDo = (props) => {
                 width="20px"
                 height="20px"
                 src={work_gray}
+                alt="tag"
               ></img>
             )}
             {myTags.find((p) => p === "운동") ? (
@@ -125,6 +139,7 @@ const ToDo = (props) => {
                 width="20px"
                 height="20px"
                 src={workout}
+                alt="tag"
               ></img>
             ) : (
               <img
@@ -132,6 +147,7 @@ const ToDo = (props) => {
                 width="20px"
                 height="20px"
                 src={workout_gray}
+                alt="tag"
               ></img>
             )}
           </div>
@@ -149,7 +165,6 @@ const Container = styled.div`
   width: 100%;
   height: 100%;
 
- 
   border-radius: 8px;
   /* box-shadow: rgb(0 0 0 / 10%) 0px 4px 10px 0px; */
 

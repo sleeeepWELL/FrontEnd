@@ -8,9 +8,11 @@ import { setCookie, deleteCookie, getCookie } from "../../shared/Cookie";
 
 const GET_TIME = "GET_TIME";
 const GET_TAG = "GET_TAG";
+const GET_CONDITION = "GET_CONDITION";
 
 const getTime = createAction(GET_TIME, (data) => ({ data }));
 const getTag = createAction(GET_TAG, (data) => ({ data }));
+const getCondition = createAction(GET_CONDITION, (data) => ({ data }));
 
 const initialState = {
   result_sleeptime: {
@@ -21,12 +23,23 @@ const initialState = {
     weekly: [],
     monthly: [],
   },
+  condition: [
+    {
+      day: "2021-01-01",
+      value: 1,
+    },
+    {
+      day: "2021-01-02",
+      value: 2,
+    },
+  ],
 };
 
 const getTags = (today) => {
   return function (dispatch) {
     axios
-      .get(`${config.test_api}/barChart/${today}`)
+      .get(`${config.test_api}/chart/barChart/${today}`)
+      // .get(`${config.api}/barChart/${today}`)
       .then((res) => {
         let data = {
           weekly: res.data[0],
@@ -44,7 +57,8 @@ const getTags = (today) => {
 const getTimeAX = () => {
   return function (dispatch) {
     axios
-      .get(`${config.test_api}/yourSleepTime`)
+      .get(`${config.test_api}/chart/yourSleepTime`)
+      // .get(`${config.api}/yourSleepTime`)
       .then((res) => {
         console.log(res);
         let data = {
@@ -53,6 +67,29 @@ const getTimeAX = () => {
         };
         console.log(data);
         dispatch(getTime(data));
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+};
+
+const getConditionAX = () => {
+  return function (dispatch) {
+    axios
+      .get(`${config.test_api}/chart/grassChart`)
+      // .get(`${config.api}/barChart/${today}`)
+      .then((res) => {
+        console.log(res);
+        let condition = [];
+        for (let i = 0; i < res.data.length; i++) {
+          condition.push({
+            day: res.data[i]["day"],
+            value: res.data[i]["value"],
+          });
+        }
+        dispatch(getCondition(condition));
+        console.log(condition);
       })
       .catch((err) => {
         console.log(err);
@@ -71,6 +108,10 @@ export default handleActions(
       produce(state, (draft) => {
         draft.tags = action.payload.data;
       }),
+    [GET_CONDITION]: (state, action) =>
+      produce(state, (draft) => {
+        draft.condition = action.payload.data;
+      }),
   },
   initialState
 );
@@ -80,6 +121,8 @@ const actionCreators = {
   getTimeAX,
   getTags,
   getTag,
+  getCondition,
+  getConditionAX,
 };
 
 export { actionCreators };

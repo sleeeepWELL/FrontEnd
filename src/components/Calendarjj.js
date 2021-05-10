@@ -78,21 +78,24 @@ const Calendar = (props) => {
             );
           });
 
-          
           if (_day.format("MM") !== today.format("MM")) {
             return (
-              
               <DayGrid
-                key={`${moment(today).format("MM")}_week_${week_index}_day_${day_index}`}
-                bg={is_today && moment(today).format("MM") === _day.format("MM")? "grey": "#121212"}>
-
+                key={`${moment(today).format(
+                  "MM"
+                )}_week_${week_index}_day_${day_index}`}
+                bg={
+                  is_today && moment(today).format("MM") === _day.format("MM")
+                    ? "grey"
+                    : "#121212"
+                }
+              >
                 {_day.format("MM") === moment(today).format("MM") ? (
                   <DayText font_c={is_today ? "white" : "black"}>
                     {_day.format("DD")}
                   </DayText>
                 ) : (
-                  <DayText font_c={is_today ? "white" : "black"}>
-                  </DayText>
+                  <DayText font_c={is_today ? "white" : "black"}></DayText>
                 )}
 
                 {_list && list}
@@ -135,14 +138,30 @@ const Calendar = (props) => {
 
   return (
     <Grid flex_direction="column" width="100%" height="85vh" margin="auto">
-      <Grid height="10%" justify_contents="space-between" margin="5px 0px 5px 0px">
-        
-        <MoveMButton onClick={() => {
-            dispatch(todoActions.changeToday(moment(today).clone().subtract(1, "month")));
-          }}> <MText>◀</MText>
-          <MText>{parseInt(moment(today).format("M")) - 1 === 0? 12:parseInt(moment(today).format("M")) - 1}
-          월</MText></MoveMButton>
-        
+      <Grid
+        height="10%"
+        justify_contents="space-between"
+        margin="5px 0px 5px 0px"
+      >
+        <MoveMButton
+          onClick={() => {
+            dispatch(
+              todoActions.changeToday(
+                moment(today).clone().subtract(1, "month")
+              )
+            );
+          }}
+        >
+          {" "}
+          <MText>◀</MText>
+          <MText>
+            {parseInt(moment(today).format("M")) - 1 === 0
+              ? 12
+              : parseInt(moment(today).format("M")) - 1}
+            월
+          </MText>
+        </MoveMButton>
+
         <Text type="title">
           {moment(today).format("YYYY")}년 {moment(today).format("MM")}월
         </Text>
@@ -154,10 +173,14 @@ const Calendar = (props) => {
             );
           }}
         >
-         <MText> {parseInt(moment(today).format("M")) + 1 === 13
-            ? 1
-            : parseInt(moment(today).format("M")) + 1}
-          월</MText><MText>▶</MText>
+          <MText>
+            {" "}
+            {parseInt(moment(today).format("M")) + 1 === 13
+              ? 1
+              : parseInt(moment(today).format("M")) + 1}
+            월
+          </MText>
+          <MText>▶</MText>
         </MoveMButton>
       </Grid>
       <WeekGrid>
@@ -186,7 +209,6 @@ const Calendar = (props) => {
   );
 };
 
-
 const Container = styled.div`
   box-sizing: border-box;
   margin: 2px auto;
@@ -206,7 +228,6 @@ const DailyGrid = styled.div`
   height: auto;
   margin: 1px 0px;
   flex-wrap: nowrap;
-  
 `;
 
 const WEEK = styled.div`
@@ -235,24 +256,23 @@ const WeekGrid = styled.div`
   border-bottom: 3px solid #746d6d;
   background-color: black;
   border-radius: 5px;
-  margin-top:9px;
-
+  margin-top: 9px;
 `;
 
 const DayGrid = styled.div`
-box-sizing: border-box;
-flex-direction: column;
-margin: 0px 2px;
-display: flex;
-width: 100%;
-min-width: 50px;
-height: 100%;
-align-items: flex-start;
-justify-content: flex-start;
-border: 1px #FAFAD2 solid;
-border-radius:3px;
+  box-sizing: border-box;
+  flex-direction: column;
+  margin: 0px 2px;
+  display: flex;
+  width: 100%;
+  min-width: 50px;
+  height: 100%;
+  align-items: flex-start;
+  justify-content: flex-start;
+  border: 1px #fafad2 solid;
+  border-radius: 3px;
 
-${(props) => (props.bg ? `background-color: ${props.bg};` : "")}
+  ${(props) => (props.bg ? `background-color: ${props.bg};` : "")}
 `;
 
 const DayText = styled.div`
@@ -261,7 +281,6 @@ const DayText = styled.div`
   color: ${(props) => props.font_c};
   font-weight: bold;
 `;
-
 
 const MoveMButton = styled.button`
   padding: 7px 10px;
@@ -272,15 +291,12 @@ const MoveMButton = styled.button`
   cursor: pointer;
   background-color: #121212;
   color: white;
- `;
+`;
 
- const MText = styled.div`
+const MText = styled.div`
   font-weight: bold;
-  margin:0px 3px 0px 3px;
+  margin: 0px 3px 0px 3px;
   font-size: 12px;
- `;
-
-
-
+`;
 
 export default Calendar;

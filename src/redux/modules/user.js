@@ -26,6 +26,7 @@ const loginSV = (email, pwd) => {
     axios({
       method: "POST",
       url: `${config.test_api}/api/login`,
+      // url: `${config.api}/api/login`,
       data: {
         email: email,
         password: pwd,
@@ -80,6 +81,7 @@ const extensionAccess = () => {
     axios({
       method: "POST",
       url: `${config.test_api}/reissue`,
+      // url: `${config.api}/reissue`,
       data: {
         accessToken: accessToken,
         refreshToken: refreshToken,
@@ -126,6 +128,7 @@ const signUpSV = (email, nickname, pwd, pwdCheck) => {
     axios({
       method: "POST",
       url: `${config.test_api}/signup`,
+      // url: `${config.api}/signup`,
       data: {
         email: email,
         password: pwd,
@@ -148,7 +151,8 @@ const kakaoLogin = (code) => {
   return function (dispatch, getState, { history }) {
     axios({
       method: "GET",
-      url: `http://3.35.208.142/oauth/callback/kakao?code=${code}`,
+      url: `${config.test_api}/oauth/callback/kakao?code=${code}`,
+      // url: `${config.api}/oauth/callback/kakao?code=${code}`,
     })
       .then(async (res) => {
         console.log(res);

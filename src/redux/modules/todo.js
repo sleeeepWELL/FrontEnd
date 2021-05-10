@@ -51,7 +51,8 @@ const initialState = {
 const getAllPostAX = () => {
   return function (dispatch) {
     axios
-      .get(`${config.test_api}/calendars`)
+      .get(`${config.test_api}/cards/calendars`)
+      // .get(`${config.api}/calendars`)
       .then((response) => {
         let todo_list = [];
         response.data.forEach((_item) => {
@@ -79,6 +80,7 @@ const getOnePostAX = (selectedAt) => {
   return function (dispatch) {
     axios
       .get(`${config.test_api}/cards/${selectedAt}`)
+      // .get(`${config.api}/cards/${selectedAt}`)
       .then((response) => {
         dispatch(loadOneTodo(response.data));
       })
@@ -123,6 +125,7 @@ const editPostAX = (post) => {
     };
     axios
       .put(`${config.test_api}/cards/${post.selectedAt}`, data)
+      // .put(`${config.api}/cards/${post.selectedAt}`, data)
       .then((response) => {
         let data2 = {
           id: post.id,
@@ -147,6 +150,7 @@ const editPostAX = (post) => {
 const removePostAX = (selectedAt) => {
   return function (dispatch) {
     axios.delete(`${config.test_api}/cards/${selectedAt}`).then((reponse) => {
+      // axios.delete(`${config.api}/cards/${selectedAt}`).then((reponse) => {
       dispatch(deleteTodo(selectedAt));
     });
   };

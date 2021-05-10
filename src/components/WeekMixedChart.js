@@ -3,9 +3,9 @@ import styled from "styled-components";
 import Chart from "chart.js/auto";
 
 const WeekMixedChart = (props) => {
-  let ctx = document.getElementById("mixedChart").getContext("2d");
+  //   let ctx = document.getElementById("mixedChart").getContext("2d");
 
-  const mixedChart = new Chart(ctx, {
+  const mixedChart = new Chart({
     data: {
       datasets: [
         {
@@ -32,9 +32,32 @@ const WeekMixedChart = (props) => {
 
   return (
     <>
-      <mixedChart></mixedChart>
+      <Wrap>
+        <Container>
+          <mixedChart width={150} height={100}></mixedChart>
+        </Container>
+      </Wrap>
     </>
   );
 };
+
+const Wrap = styled.div`
+  width: 100%;
+  max-height: 45vh;
+  display: flex;
+  background-color: red;
+  justify-content: center;
+  align-items: center;
+  margin-top: 2rem;
+  overflow: hidden;
+`;
+
+const Container = styled.div`
+  display: flex;
+  width: 60%;
+  height: auto;
+  background-color: white;
+  opacity: 0.7;
+`;
 
 export default WeekMixedChart;

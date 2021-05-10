@@ -26,7 +26,8 @@ const Analysis = () => {
           <ResultContainer1>
             {/* <WeekBarChart tags={tags} /> */}
             <MonthBarChart tags={tags} />
-            <LineChart />
+            {/* <LineChart /> */}
+            <WeekMixedChart />
           </ResultContainer1>
 
           <ResultContainer2>

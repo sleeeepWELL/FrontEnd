@@ -26,6 +26,7 @@ const ConditionChart = (props) => {
         maxValue={5}
         margin={{ top: 40, right: 40, bottom: 40, left: 40 }}
         yearSpacing={40}
+        // monthSpacing={3}
         monthBorderColor="#ffffff"
         dayBorderWidth={2}
         dayBorderColor="#ffffff"

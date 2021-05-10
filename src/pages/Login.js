@@ -26,6 +26,16 @@ const Login = (props) => {
     dispatch(userActions.loginSV(id, password));
   };
 
+  const onClick = () => {
+    login();
+  };
+
+  const onKeyPress = (e) => {
+    if (e.key == "Enter") {
+      onClick();
+    }
+  };
+
   // 카카오 로그인
   // const kakaoLoginSuccessHandler = (res) => {
   //   const data = res.response;
@@ -62,6 +72,7 @@ const Login = (props) => {
                 }}
                 placeholder="비밀번호를 입력해주세요"
                 type="password"
+                onKeyPress={onKeyPress}
               />
 
               <InfoBox>
@@ -75,7 +86,7 @@ const Login = (props) => {
                 </div>
                 <div>비밀번호 찾기</div>
               </InfoBox>
-              <LoginButton onClick={login}>
+              <LoginButton onClick={onClick}>
                 <span>로그인</span>
               </LoginButton>
               <KaKaoBtn href={KAKAO_AUTH_URL}>

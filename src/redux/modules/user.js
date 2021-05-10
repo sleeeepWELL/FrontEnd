@@ -37,13 +37,14 @@ const loginSV = (email, pwd) => {
         password: pwd,
       },
     })
-      .then((res) => {
+      .then(async (res) => {
+        console.log(res);
         const ACCESS_TOKEN = res.data.accessToken;
         const ACCESS_TOKEN_EXP = res.data.accessTokenExpiresIn; // access토큰 만료시간
         const REFRESH_TOKEN = res.data.refreshToken;
 
         // 쿠키에 RefreshToken 저장(아직 httpOnly 설정 못함)
-        setCookie("is_login", REFRESH_TOKEN);
+        await setCookie("is_login", REFRESH_TOKEN);
 
         // 로컬에 AccessToken 저장(최후의 방법..)
         localStorage.setItem("token", ACCESS_TOKEN);
@@ -63,7 +64,8 @@ const loginSV = (email, pwd) => {
         // ACCESS토큰 만료 1분전마다 연장함수 실행
         setTimeout(extensionAccess(), ACCESS_TOKEN_EXP - Current_time - 60000);
 
-        history.replace("/main");
+        await history.replace("/main");
+        window.alert("환영합니다");
       })
       .catch((err) => {
         console.log("로그인 에러", err);
@@ -76,7 +78,7 @@ const extensionAccess = () => {
   return function (dispatch, getState) {
     const accessToken = localStorage.getItem("token");
     const refreshToken = getCookie("is_login");
-
+    // console.log(accessToken, refreshToken);
     axios({
       method: "POST",
       url: `${config.api}/reissue`,

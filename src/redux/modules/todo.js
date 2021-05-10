@@ -49,14 +49,13 @@ const initialState = {
 };
 
 const getAllPostAX = () => {
-  
   return function (dispatch) {
     console.log(axios.defaults);
 
-    const _token= localStorage.getItem("token")
+    const _token = localStorage.getItem("token");
     let token = {
-      headers : { Authorization: `Bearer ${_token}`}
-    }
+      headers: { Authorization: `Bearer ${_token}` },
+    };
 
     axios
       .get(`${config.test_api}/cards/calendars`, token)
@@ -81,14 +80,17 @@ const getAllPostAX = () => {
       .catch((err) => {
         console.log("캘린더 리스트 정보 불러오기 에러", err);
       });
-     
   };
 };
 
 const getOnePostAX = (selectedAt) => {
   return function (dispatch) {
+    const _token = localStorage.getItem("token");
+    let token = {
+      headers: { Authorization: `Bearer ${_token}` },
+    };
     axios
-      .get(`${config.test_api}/cards/${selectedAt}`,config.token)
+      .get(`${config.test_api}/cards/${selectedAt}`, token)
       // .get(`${config.api}/cards/${selectedAt}`)
       .then((response) => {
         dispatch(loadOneTodo(response.data));
@@ -112,7 +114,7 @@ const addPostAX = (post) => {
     };
 
     axios
-      .post(`${config.test_api}/cards`, data,config.token)
+      .post(`${config.test_api}/cards`, data, config.token)
       .then((response) => {
         dispatch(addTodo(post));
       })
@@ -124,6 +126,10 @@ const addPostAX = (post) => {
 
 const editPostAX = (post) => {
   console.log(post);
+  const _token = localStorage.getItem("token");
+  let token = {
+    headers: { Authorization: `Bearer ${_token}` },
+  };
   return function (dispatch) {
     let data = {
       startSleep: post.startSleep,
@@ -133,7 +139,7 @@ const editPostAX = (post) => {
       memo: post.memo,
     };
     axios
-      .put(`${config.test_api}/cards/${post.selectedAt}`, data,config.token)
+      .put(`${config.test_api}/cards/${post.selectedAt}`, data, token)
       // .put(`${config.api}/cards/${post.selectedAt}`, data)
       .then((response) => {
         let data2 = {
@@ -158,10 +164,12 @@ const editPostAX = (post) => {
 
 const removePostAX = (selectedAt) => {
   return function (dispatch) {
-    axios.delete(`${config.test_api}/cards/${selectedAt}`,config.token).then((reponse) => {
-      // axios.delete(`${config.api}/cards/${selectedAt}`).then((reponse) => {
-      dispatch(deleteTodo(selectedAt));
-    });
+    axios
+      .delete(`${config.test_api}/cards/${selectedAt}`, config.token)
+      .then((reponse) => {
+        // axios.delete(`${config.api}/cards/${selectedAt}`).then((reponse) => {
+        dispatch(deleteTodo(selectedAt));
+      });
   };
 };
 

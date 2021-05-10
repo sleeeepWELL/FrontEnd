@@ -27,9 +27,13 @@ const initialState = {
 };
 
 const getTags = (today) => {
+  const _token = localStorage.getItem("token");
+  let token = {
+    headers: { Authorization: `Bearer ${_token}` },
+  };
   return function (dispatch) {
     axios
-      .get(`${config.test_api}/chart/barChart/${today}`,config.token)
+      .get(`${config.test_api}/chart/barChart/${today}`, token)
       // .get(`${config.api}/chart/barChart/${today}`)
       .then((res) => {
         let data = {
@@ -46,9 +50,13 @@ const getTags = (today) => {
 };
 
 const getTimeAX = () => {
+  const _token = localStorage.getItem("token");
+  let token = {
+    headers: { Authorization: `Bearer ${_token}` },
+  };
   return function (dispatch) {
     axios
-      .get(`${config.test_api}/chart/yourSleepTime`,config.token)
+      .get(`${config.test_api}/chart/yourSleepTime`, token)
       // .get(`${config.api}/chart/yourSleepTime`)
       .then((res) => {
         console.log(res);
@@ -66,9 +74,13 @@ const getTimeAX = () => {
 };
 
 const getConditionAX = () => {
+  const _token = localStorage.getItem("token");
+  let token = {
+    headers: { Authorization: `Bearer ${_token}` },
+  };
   return function (dispatch) {
     axios
-      .get(`${config.test_api}/chart/grassChart`,config.token)
+      .get(`${config.test_api}/chart/grassChart`, token)
       // .get(`${config.api}/barChart/${today}`)
       .then((res) => {
         console.log(res);

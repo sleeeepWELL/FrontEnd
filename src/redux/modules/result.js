@@ -23,16 +23,7 @@ const initialState = {
     weekly: [],
     monthly: [],
   },
-  condition: [
-    {
-      day: "2021-01-01",
-      value: 1,
-    },
-    {
-      day: "2021-01-02",
-      value: 2,
-    },
-  ],
+  condition: [{}, {}],
 };
 
 const getTags = (today) => {

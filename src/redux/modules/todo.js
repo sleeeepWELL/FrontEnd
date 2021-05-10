@@ -70,7 +70,7 @@ const getAllPostAX = () => {
         dispatch(loadTodo(todo_list));
       })
       .catch((err) => {
-        console.log(err);
+        console.log("캘린더 리스트 정보 불러오기 에러", err);
       });
   };
 };

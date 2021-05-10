@@ -5,10 +5,6 @@ import styled from "styled-components";
 import Login from "../pages/Login";
 import Signup from "../pages/Signup";
 import MainCalendar from "../pages/MainCalendar";
-import KyuCalendar from "../pages/KyuCalendar";
-import CalendarWrite from "../components/CalendarWrite";
-import PostWrite from "../pages/PostWrite";
-import JieunCalendar from "../components/JieunCalendar";
 import Analysis from "../pages/Analysis";
 
 import { Route } from "react-router-dom";
@@ -18,10 +14,15 @@ import OAuth2RedirectHandler from "./OAuth2RedirectHandler";
 import { useDispatch, useSelector } from "react-redux";
 import { getCookie } from "./Cookie";
 import LoginCheck from "../pages/LoginCheck";
+import { actionCreators as userActions } from "../redux/modules/user";
 
 function App() {
   const dispatch = useDispatch();
   const is_login = getCookie("is_login");
+
+  React.useEffect(() => {
+    dispatch(userActions.getUserSV());
+  }, []);
 
   return (
     <React.Fragment>

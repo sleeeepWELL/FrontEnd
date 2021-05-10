@@ -43,36 +43,27 @@ const DetailPost = (props) => {
         <ModalComponent>
           <DayHeader>
             <LeftHeader>
-              <MoveDButton
-                onClick={() => {
+              <MoveDButton onClick={() => {
                   let tDate = new Date(_day);
                   tDate.setDate(tDate.getDate() - 1);
-                  dispatch(
-                    todoActions.getOnePostAX(moment(tDate).format("YYYY-MM-DD"))
-                  );
-                }}
-              >
+                  dispatch(todoActions.getOnePostAX(moment(tDate).format("YYYY-MM-DD")));
+                }}>
                 <ChevronLeftIcon />
               </MoveDButton>
+
               <DText>{_day}</DText>
-              <MoveDButton
-                onClick={() => {
+
+              <MoveDButton onClick={() => {
                   let tDate = new Date(_day);
                   tDate.setDate(tDate.getDate() + 1);
-                  dispatch(
-                    todoActions.getOnePostAX(moment(tDate).format("YYYY-MM-DD"))
-                  );
-                }}
-              >
+                  dispatch(todoActions.getOnePostAX(moment(tDate).format("YYYY-MM-DD")));
+                }}>
                 <ChevronRightIcon />
               </MoveDButton>
             </LeftHeader>
             <RightHeader>
               <AddButton
-                onClick={() => {
-                  props._showModify(true);
-                }}
-              >
+                onClick={() => {props._showModify(true);}}>
                 추가하기
               </AddButton>
             </RightHeader>
@@ -178,9 +169,9 @@ const DetailPost = (props) => {
             </TimeText>
           </ConditionContainer>
 
-          <BottomContainer>
-            <Contents> {props.date.memo}</Contents>
-          </BottomContainer>
+         
+            <Contents> 메모 :{props.date.memo}</Contents>
+         
         </ModalComponent>
       </React.Fragment>
     );
@@ -206,7 +197,7 @@ const LeftHeader = styled.div`
   background-color: black;
   display: flex;
   flex-direction: row;
-  width: 40%;
+  width: 65%;
   height: 100%;
   border: none;
 `;
@@ -235,7 +226,7 @@ const RightHeader = styled.div`
   background-color: black;
   display: flex;
   justify-content: space-between;
-  width: 20%;
+  width: 35%;
   height: 60%;
 `;
 const FixButton = styled.button`
@@ -311,6 +302,7 @@ const Contents = styled.div`
   background-color: black;
   margin: 5px 0px 0px 10px;
   color: white;
+  font-weight: bold;
 `;
 
 export default DetailPost;

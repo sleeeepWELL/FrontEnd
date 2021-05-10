@@ -3,17 +3,11 @@ import { Grid, Button, Text } from "../elements/Styles";
 import ToDo from "../elements/ToDo";
 import moment from "moment";
 import { setCookie, deleteCookie, getCookie } from "../shared/Cookie";
-// 임포트 해오기!
+
 import { useSelector, useDispatch } from "react-redux";
 import { actionCreators as todoActions } from "../redux/modules/todo";
 import styled from "styled-components";
-/**
- * 달력 만들기 순서
- *  - 이번달이 몇 주가 필요한 지 "주"수 구하기
- *  - 주수만큼 map 돌리기
- *  - map 돌리면서 안에 날짜 넣어주기!
- *  - +) 일정도 같이 넣어주면 good!
- */
+
 
 const Calendar = (props) => {
   const dispatch = useDispatch();
@@ -26,9 +20,6 @@ const Calendar = (props) => {
 
   const start_week = moment(today).startOf("month").week();
   const end_week = moment(today).endOf("month").week();
-
-  // 달력에 넣을 주수 배열 길이를 구합니다. (*주의* +1 해야함(7~11주는 총 몇 주인지 생각해보세요! :)!))
-  // 마지막 주가 다음 해 1주일 수 있어요. (시작 주보다 끝 주가 숫자가 작을 수 있다!)
   const week_num =
     (start_week > end_week ? 53 - start_week : end_week - start_week) + 1;
   const _week_arr = Array.from({ length: week_num }, (v, i) => start_week + i);
@@ -51,18 +42,6 @@ const Calendar = (props) => {
             if (item.selectedAt == _day.format("YYYY-MM-DD"))
               return item.selectedAt;
           });
-
-          // console.log(_list);
-          // const list_index = Object.keys(todo_list).indexOf(
-          //   _day.format("YYYY-MM-DD")
-          // );
-
-          // 주석풀고 데이터 확인해보기! :)!
-          // console.log(list_index);
-          //   console.log(todo_list[_day.format("YYYY-MM-DD")]);
-          // todo_list에 해당 일 일정이 있으면 일정을 list에 넣어주자! (없으면 null이나 빈배열로! 일단 빈배열로 해봅시다! :))
-          // const _list =
-          //   list_index !== -1 ? todo_list[_day.format("YYYY-MM-DD")] : [];
 
           const list = _list.map((_l, idx) => {
             // 일정을 뿌려줘요!
@@ -203,7 +182,7 @@ const Container = styled.div`
 
 const DailyGrid = styled.div`
   flex-direction: row;
-  height: auto;
+  height: 100%;
   margin: 1px 0px;
   flex-wrap: nowrap;
   

@@ -49,9 +49,11 @@ const initialState = {
 };
 
 const getAllPostAX = () => {
+ 
   return function (dispatch) {
+    console.log(axios.defaults);
     axios
-      .get(`${config.api}/calendars`)
+      .get(`${config.api}/cards/calendars`, config.token)
       .then((response) => {
         let todo_list = [];
         response.data.forEach((_item) => {
@@ -72,6 +74,7 @@ const getAllPostAX = () => {
       .catch((err) => {
         console.log(err);
       });
+     
   };
 };
 

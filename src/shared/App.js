@@ -1,17 +1,13 @@
 import React from "react";
-import Navigator from "../components/Navigator";
 import styled from "styled-components";
 
+import Navigator from "../components/Navigator";
 import Login from "../pages/Login";
 import Signup from "../pages/Signup";
 import MainCalendar from "../pages/MainCalendar";
-import KyuCalendar from "../pages/KyuCalendar";
-import CalendarWrite from "../components/CalendarWrite";
-import PostWrite from "../pages/PostWrite";
-import JieunCalendar from "../components/JieunCalendar";
 import Analysis from "../pages/Analysis";
 
-import { Route } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 import { ConnectedRouter } from "connected-react-router";
 import { history } from "../redux/configureStore";
 import OAuth2RedirectHandler from "./OAuth2RedirectHandler";
@@ -19,35 +15,40 @@ import { useDispatch, useSelector } from "react-redux";
 import { getCookie } from "./Cookie";
 import LoginCheck from "../pages/LoginCheck";
 
+
+
 function App() {
   const dispatch = useDispatch();
-  const is_login = getCookie("is_login");
+  // const is_login = getCookie("is_login") ? true: false;
+  
+  // React.useEffect(() => {
+  //   if (is_login) {
+  //     dispatch(userAction.againLogin());
+  //   }
+  // }, []);
 
   return (
     <React.Fragment>
       <ConnectedRouter history={history}>
+        <Switch>
         <Route path="/signup" exact component={Signup} />
         <Route path="/login" exact component={Login} />
+        
         <div>
-          <Route path="/" exact component={Navigator} />
+        <Navigator/>
           <Wrap>
             <ContentWrap>
-              <Route
-                path="/oauth/callback/kakao"
-                component={OAuth2RedirectHandler}
-              ></Route>
-              <Route path="/write" exact component={PostWrite} />
+              <Route path="/oauth/callback/kakao"component={OAuth2RedirectHandler}/>
               <Route path="/calendar" exact component={MainCalendar} />
-              <Route path="/kyucalendar" exact component={KyuCalendar} />
-              <Route path="/calendarwrite" exact component={CalendarWrite} />
-              <Route path="/jieuncalendar" exact component={JieunCalendar} />
               <Route path="/analysis" exact component={Analysis} />
-              <Route path="/" component={LoginCheck} />
+              <Route path="/" exact component={LoginCheck} />
               {/* <Route exact component={NotFound} /> */}
             </ContentWrap>
           </Wrap>
         </div>
+        </Switch>
       </ConnectedRouter>
+    
     </React.Fragment>
   );
 }
@@ -60,5 +61,7 @@ const ContentWrap = styled.div`
   display: flex;
   width: 100%;
 `;
+
+
 
 export default App;

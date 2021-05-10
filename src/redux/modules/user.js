@@ -49,7 +49,7 @@ const loginSV = (email, pwd) => {
         // accessToken 디폴트 설정
         axios.defaults.headers.common[
           "Authorization"
-        ] = `bearer ${ACCESS_TOKEN}`;
+        ] = `Bearer ${ACCESS_TOKEN}`;
 
         const user = {
           email: email,
@@ -65,7 +65,7 @@ const loginSV = (email, pwd) => {
         // ACCESS토큰 만료 1분전마다 연장함수 실행
         setTimeout(extensionAccess(), ACCESS_TOKEN_EXP - Current_time - 60000);
 
-        history.replace("/main/calendar");
+        history.replace("/main");
       })
       .catch((err) => {
         console.log("로그인 에러", err);

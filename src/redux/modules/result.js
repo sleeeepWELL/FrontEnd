@@ -29,7 +29,7 @@ const initialState = {
 const getTags = (today) => {
   return function (dispatch) {
     axios
-      .get(`${config.test_api}/chart/barChart/${today}`)
+      .get(`${config.test_api}/chart/barChart/${today}`,config.token)
       // .get(`${config.api}/chart/barChart/${today}`)
       .then((res) => {
         let data = {
@@ -48,7 +48,7 @@ const getTags = (today) => {
 const getTimeAX = () => {
   return function (dispatch) {
     axios
-      .get(`${config.test_api}/chart/yourSleepTime`)
+      .get(`${config.test_api}/chart/yourSleepTime`,config.token)
       // .get(`${config.api}/chart/yourSleepTime`)
       .then((res) => {
         console.log(res);
@@ -68,7 +68,7 @@ const getTimeAX = () => {
 const getConditionAX = () => {
   return function (dispatch) {
     axios
-      .get(`${config.test_api}/chart/grassChart`)
+      .get(`${config.test_api}/chart/grassChart`,config.token)
       // .get(`${config.api}/barChart/${today}`)
       .then((res) => {
         console.log(res);

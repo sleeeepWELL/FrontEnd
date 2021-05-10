@@ -32,10 +32,11 @@ function App() {
   React.useEffect(() => {
     dispatch(userActions.getUserSV());
   }, []);
+  
 
   return (
     <React.Fragment>
-      <ConnectedRouter history={history} is_login={is_login}>
+      <ConnectedRouter history={history} >
         <Route path="/signup" exact component={Signup} />
         <Route path="/login" exact component={Login} />
         <Wrap>

@@ -49,10 +49,8 @@ const initialState = {
 };
 
 const getAllPostAX = () => {
-  
   return function (dispatch) {
     console.log(axios.defaults);
-
     const _token= localStorage.getItem("token")
     let token = {
       headers : { Authorization: `Bearer ${_token}`}

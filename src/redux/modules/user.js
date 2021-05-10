@@ -10,16 +10,19 @@ import { REDIRECT_URI, CLIENT_ID } from "../../shared/OAuth";
 const SET_USER = "SET_USER"; // 로그인
 const GET_USER = "GET_USER"; // 유저 정보 불러오기
 const LOG_OUT = "LOG_OUT"; // 로그아웃
+const NAME_CHECK = "NAME_CHECK"; //닉네임 중복검사 완료유무
 
 // 액션 생성함수
 const setUser = createAction(SET_USER, (user) => ({ user }));
 const getUser = createAction(GET_USER, (username) => ({ username }));
 const logOut = createAction(LOG_OUT, (user) => ({ user }));
+const nameCheck = createAction(NAME_CHECK, (name_check) => ({ name_check }));
 
 // 초기값
 const initialState = {
   user: "",
   is_login: false,
+  name_check: false,
 };
 
 // 로그인
@@ -35,7 +38,6 @@ const loginSV = (email, pwd) => {
       },
     })
       .then((res) => {
-        console.log(res);
         const ACCESS_TOKEN = res.data.accessToken;
         const ACCESS_TOKEN_EXP = res.data.accessTokenExpiresIn; // access토큰 만료시간
         const REFRESH_TOKEN = res.data.refreshToken;
@@ -54,12 +56,8 @@ const loginSV = (email, pwd) => {
         const user = {
           email: email,
         };
-        console.log(ACCESS_TOKEN_EXP);
 
         const Current_time = new Date().getTime();
-        console.log(
-          moment(ACCESS_TOKEN_EXP - Current_time - 60000).format("mm:ss")
-        );
         dispatch(setUser(user));
 
         // ACCESS토큰 만료 1분전마다 연장함수 실행
@@ -75,11 +73,10 @@ const loginSV = (email, pwd) => {
 
 // 로그인 연장 함수
 const extensionAccess = () => {
-  console.log(moment().format("hh:mm:ss"));
   return function (dispatch, getState) {
     const accessToken = localStorage.getItem("token");
     const refreshToken = getCookie("is_login");
-    console.log(accessToken, refreshToken);
+
     axios({
       method: "POST",
       url: `${config.api}/reissue`,
@@ -130,7 +127,6 @@ const signUpSV = (email, nickname, pwd, pwdCheck) => {
     axios({
       method: "POST",
       url: `${config.api}/signup`,
-      // url: `${config.api}/signup`,
       data: {
         email: email,
         password: pwd,
@@ -139,7 +135,7 @@ const signUpSV = (email, nickname, pwd, pwdCheck) => {
       },
     })
       .then((res) => {
-        console.log(res);
+        window.alert("회원가입이 완료되었습니다");
         history.replace("/login");
       })
       .catch((err) => {
@@ -180,8 +176,8 @@ const kakaoLogin = (code) => {
         setTimeout(extensionAccess(), ACCESS_TOKEN_EXP - Current_time - 60000);
 
         // 메인화면 이동
-        await history.replace("/calendar");
-        window.alert("환영합니다");
+        await history.replace("/main");
+        await window.alert("환영합니다");
       })
       .catch((err) => {
         console.log("소셜로그인 에러", err);
@@ -202,7 +198,6 @@ const SendAuth = (email) => {
       },
     })
       .then((res) => {
-        console.log(res);
         window.alert("입력하신 이메일로 인증번호가 발송되었습니다.");
       })
       .catch((err) => {
@@ -224,6 +219,7 @@ const ConfirmAuth = (email, AuthNum) => {
     })
       .then((res) => {
         console.log(res);
+        window.alert("인증이 완료되었습니다");
       })
       .catch((err) => {
         console.log(err);
@@ -252,6 +248,27 @@ const getUserSV = () => {
   };
 };
 
+// 닉네임 중복 체크
+const userNameCheck = (nickname) => {
+  return function (dispatch, getState, { history }) {
+    axios({
+      method: "GET",
+      url: `${config.api}/username/${nickname}`,
+    })
+      .then((res) => {
+        console.log(res.data);
+        res.data
+          ? window.alert("중복된 닉네임입니다")
+          : window.alert("사용가능한 닉네임입니다");
+
+        dispatch(nameCheck(res.data));
+      })
+      .catch((err) => {
+        console.log("닉네임 중복검사 오류", err);
+      });
+  };
+};
+
 // 리듀서
 export default handleActions(
   {
@@ -275,6 +292,11 @@ export default handleActions(
         localStorage.clear();
         draft.is_login = false;
       }),
+
+    [NAME_CHECK]: (state, action) =>
+      produce(state, (draft) => {
+        draft.name_check = action.payload.name_check;
+      }),
   },
   initialState
 );
@@ -289,6 +311,8 @@ const actionCreators = {
   SendAuth,
   ConfirmAuth,
   getUserSV,
+  userNameCheck,
+  nameCheck,
 };
 
 export { actionCreators };

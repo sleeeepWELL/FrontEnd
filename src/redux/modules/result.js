@@ -33,7 +33,7 @@ const getTags = (today) => {
   };
   return function (dispatch) {
     axios
-      .get(`${config.test_api}/chart/barChart/${today}`, token)
+      .get(`${config.api}/chart/barChart/${today}`, token)
       // .get(`${config.api}/chart/barChart/${today}`)
       .then((res) => {
         let data = {
@@ -56,7 +56,7 @@ const getTimeAX = () => {
   };
   return function (dispatch) {
     axios
-      .get(`${config.test_api}/chart/yourSleepTime`, token)
+      .get(`${config.api}/chart/yourSleepTime`, token)
       // .get(`${config.api}/chart/yourSleepTime`)
       .then((res) => {
         console.log(res);
@@ -80,8 +80,7 @@ const getConditionAX = () => {
   };
   return function (dispatch) {
     axios
-      .get(`${config.test_api}/chart/grassChart`, token)
-      // .get(`${config.api}/barChart/${today}`)
+      .get(`${config.api}/chart/grassChart`, token)
       .then((res) => {
         console.log(res);
         let condition = [];

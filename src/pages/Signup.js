@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { actionCreators as userActions } from "../redux/modules/user";
 import { history } from "../redux/configureStore";
 
@@ -13,6 +13,10 @@ const Signup = () => {
   const [pwd, setPwd] = React.useState(null);
   const [pwdCheck, setPwdCheck] = React.useState(null);
   const [authNum, setAuthNum] = React.useState(null);
+
+  //닉네임 중복검사 통과 여부 (true면 중복, false면 통과)
+  const nameCheck = useSelector((state) => state.user.name_check);
+  console.log(nameCheck);
 
   //표현식 체크함수
   const emailCheck = (email) => {
@@ -29,15 +33,20 @@ const Signup = () => {
     return nicknameReg.test(nickname);
   };
 
+  // 인증번호 발송
   const sendAuth = () => {
     console.log(email);
     dispatch(userActions.SendAuth(email));
   };
 
+  // 인증완료
   const confirmAuth = () => {
-    console.log(authNum);
-    console.log(email);
     dispatch(userActions.ConfirmAuth(email, authNum));
+  };
+
+  // 닉네임 중복검사
+  const userNameCheck = () => {
+    dispatch(userActions.userNameCheck(nickname));
   };
 
   //표현식 함수사용 및 체크구문
@@ -46,6 +55,12 @@ const Signup = () => {
       window.alert("모든 항목을 입력해주세요!");
       return;
     }
+
+    if (nameCheck) {
+      window.alert("중복된 닉네임 입니다. 다른 닉네임을 입력해주세요.");
+      return;
+    }
+
     // if (pwd !== pwdCheck) {
     //   window.alert("비밀번호 설정을 다시 확인하세요!");
     //   return;
@@ -114,7 +129,7 @@ const Signup = () => {
                   }}
                   placeholder="닉네임을 입력해주세요"
                 />
-                <CheckBnt>중복확인</CheckBnt>
+                <CheckBnt onClick={userNameCheck}>중복확인</CheckBnt>
               </InputContainer>
               <PwBox
                 onChange={(e) => {

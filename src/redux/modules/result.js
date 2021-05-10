@@ -81,7 +81,6 @@ const getConditionAX = () => {
   return function (dispatch) {
     axios
       .get(`${config.api}/chart/grassChart`, token)
-      // .get(`${config.api}/barChart/${today}`)
       .then((res) => {
         console.log(res);
         let condition = [];

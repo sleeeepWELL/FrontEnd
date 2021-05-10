@@ -1,165 +1,149 @@
 import React from "react";
 import styled from "styled-components";
-import {Line} from 'react-chartjs-2';
- 
+import { Line } from "react-chartjs-2";
+
 const LineChart = () => {
-  
- const weeklydata = [3,7,4,4,4,4,4]   
- const monthlydata = [1,2,3,1,4]    
- //최대값 고정
+  const weeklydata = [3, 7, 4, 4, 4, 4, 4];
+  const monthlydata = [1, 2, 3, 1, 4];
+  //최대값 고정
 
   const chartData1 = {
-    labels: ['M', 'T', 'W','T','F','S','S'],
+    labels: ["M", "T", "W", "T", "F", "S", "S"],
     datasets: [
       {
-        label: 'Sleep Time',
-        backgroundColor: 'black',
+        label: "Sleep Time",
+        backgroundColor: "black",
         borderColor: [
-      'rgb(255, 99, 132)',
-      'rgb(255, 159, 64)',
-      'rgb(255, 205, 86)',
-      'rgb(75, 192, 192)',
-      'rgb(54, 162, 235)',
-      'rgb(153, 102, 255)',
-      'rgb(201, 203, 207)'
-    ],
-        borderCapStyle: 'circle',
-        borderDash:[10],
+          "rgb(255, 99, 132)",
+          "rgb(255, 159, 64)",
+          "rgb(255, 205, 86)",
+          "rgb(75, 192, 192)",
+          "rgb(54, 162, 235)",
+          "rgb(153, 102, 255)",
+          "rgb(201, 203, 207)",
+        ],
+        borderCapStyle: "circle",
+        borderDash: [10],
         // borderDashOffset:1.0,
         // borderJoinStyle:'miter',
         borderWidth: 10,
         base: 0,
         barThickness: 10,
-        cubicInterpolationMode:'monotone',
+        cubicInterpolationMode: "monotone",
         // borderSkipped: 'start',
         // categoryPercentage: 0.5,
-        // clip: 3, 
-        // grouped: false, 
-        hoverBackgroundColor: 'blue',
-        hoverBorderColor: 'black',
+        // clip: 3,
+        // grouped: false,
+        hoverBackgroundColor: "blue",
+        hoverBorderColor: "black",
         hoverBorderWidth: 5,
-        hoverBorderRadius:0,
+        hoverBorderRadius: 0,
         // indexAxis: 'y',
-        indexAxis: 'x',
+        indexAxis: "x",
         data: weeklydata,
-        pointBackgroundColor: 'black',
-        pointStyle:'square',
+        pointBackgroundColor: "black",
+        pointStyle: "square",
         // order: 30,
         // pointStyle: 'triangle',
-      }
-    ]
+      },
+    ],
   };
 
   const chartData2 = {
-    labels: ['1','2','3','4','5'],
+    labels: ["1", "2", "3", "4", "5"],
     datasets: [
       {
-        label: 'Sleep Time',
-        backgroundColor: 'black',
-        borderColor: 'purple',
+        label: "Sleep Time",
+        backgroundColor: "black",
+        borderColor: "purple",
         borderWidth: 2,
         base: 0,
         barThickness: 10,
         // borderSkipped: 'start',
         borderRadius: 10,
         // categoryPercentage: 0.5,
-        // clip: 3, 
-        // grouped: false, 
-        hoverBackgroundColor: 'blue',
-        hoverBorderColor: 'black',
+        // clip: 3,
+        // grouped: false,
+        hoverBackgroundColor: "blue",
+        hoverBorderColor: "black",
         hoverBorderWidth: 5,
-        hoverBorderRadius:0,
+        hoverBorderRadius: 0,
         // indexAxis: 'y',
-        indexAxis: 'x',
+        indexAxis: "x",
         data: monthlydata,
         // order: 30,
         // pointStyle: 'triangle',
-      }
-    ]
+      },
+    ],
   };
-
 
   const chartOptions1 = {
     responsive: true,
     plugins: {
       legend: {
-        position: 'top',
-        backgroundColor: 'yellow'
+        display: false,
       },
       title: {
         display: true,
-        text: 'Weekly SleepWell Chart'
+        text: "주간 수면시간",
       },
-      
-    }
+    },
   };
 
   const chartOptions2 = {
     responsive: true,
     plugins: {
       legend: {
-        position: 'top',
-        backgroundColor: 'yellow'
+        position: "top",
+        backgroundColor: "yellow",
       },
       title: {
         display: true,
-        text: 'Monthly SleepWell Chart'
+        text: "Monthly SleepWell Chart",
       },
-      
-    }
+    },
   };
- 
- 
- 
- return (
+
+  return (
     <React.Fragment>
-       
-        <CContainer>
-          <CContainer1>
-            <Line
-              data={chartData1}
-              width={120}
-              height={50}
-              options={chartOptions1}
-            />
-          </CContainer1>
-            <CContainer1>
+      <Wrap>
+        <CContainer1>
+          <Line
+            data={chartData1}
+            width={120}
+            height={50}
+            options={chartOptions1}
+          />
+        </CContainer1>
+        {/* <CContainer1>
             <Line
             data={chartData2}
             width={120}
             height={50}
             options={chartOptions2}
             />
-            </CContainer1>
-      </CContainer>
+            </CContainer1> */}
+      </Wrap>
     </React.Fragment>
   );
 };
 
-const Container = styled.div`
+const Wrap = styled.div`
   width: 100%;
-  height: 100%;
-  border: 1px solid blue;
-  margin: 30px;
-`;
-
-const CContainer = styled.div`
-  width: 80%;
-  height: 40%;
-  margin: 30px;
+  height: 45vh;
   display: flex;
-  
-
+  background-color: white;
+  box-sizing: border-box;
+  margin-top: 2rem;
+  justify-content: center;
+  align-items: center;
 `;
 
 const CContainer1 = styled.div`
-  width: 40%;
-  height: 10%;
-  margin: 30px;
-  
-
+  width: 60vw;
+  height: auto;
+  background-color: lightblue;
 `;
-
 
 const SleepTime = styled.div`
   width: auto;
@@ -185,4 +169,4 @@ const Graph = styled.div`
   padding: 10px;
 `;
 
-export default  LineChart ;
+export default LineChart;

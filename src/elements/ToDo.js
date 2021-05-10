@@ -46,7 +46,6 @@ const ToDo = (props) => {
     <React.Fragment>
       <Container>
         <TopInfo>
-<<<<<<< HEAD
           <div style={{ padding: "5px" }}>
             {myCon === "1" && (
               <img width="20px" height="20px" src={one} alt="condition"></img>
@@ -65,16 +64,6 @@ const ToDo = (props) => {
             )}
           </div>
           <div style={{ padding: "5px", color: "white" }}>
-=======
-          <div style={{ padding: "1px" }}>
-            {myCon === "1" && <img width="30%" height="50%" src={one}></img>}
-            {myCon === "2" && <img width="30%" height="50%" src={two}></img>}
-            {myCon === "3" && <img width="30%" height="50%" src={three}></img>}
-            {myCon === "4" && <img width="30%" height="50%" src={four}></img>}
-            {myCon === "5" && <img width="30%" height="50%" src={five}></img>}
-        
-         
->>>>>>> kyu0507
             {`${props.totalSleepHour}H ${props.totalSleepMinute} M`}
           </div>
         </TopInfo>

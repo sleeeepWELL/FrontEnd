@@ -35,7 +35,6 @@ function App() {
 
   return (
     <React.Fragment>
-<<<<<<< HEAD
       <ConnectedRouter history={history} is_login={is_login}>
         <Route path="/signup" exact component={Signup} />
         <Route path="/login" exact component={Login} />
@@ -51,26 +50,6 @@ function App() {
           <Route path="/" component={LoginCheck} />
           {/* <Route exact component={NotFound} /> */}
         </Wrap>
-=======
-      <ConnectedRouter history={history}>
-        <Switch>
-        <Route path="/signup" exact component={Signup} />
-        <Route path="/login" exact component={Login} />
-        
-        <div>
-        <Navigator/>
-          <Wrap>
-            <ContentWrap>
-              <Route path="/oauth/callback/kakao"component={OAuth2RedirectHandler}/>
-              <Route path="/calendar" exact component={MainCalendar} />
-              <Route path="/analysis" exact component={Analysis} />
-              <Route path="/" exact component={LoginCheck} />
-              {/* <Route exact component={NotFound} /> */}
-            </ContentWrap>
-          </Wrap>
-        </div>
-        </Switch>
->>>>>>> kyu0507
       </ConnectedRouter>
     
     </React.Fragment>

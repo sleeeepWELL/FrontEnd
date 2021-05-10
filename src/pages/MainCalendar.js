@@ -4,8 +4,6 @@ import {useSelector} from "react-redux";
 import Calendarjj from "../components/Calendarjj";
 import DetailPost from "../components/DetailPost";
 import DetailWrite from "../components/DetailWrite";
-import styled from "styled-components";
-import { useSelector, useDispatch } from "react-redux";
 
 const MainCalendar = (props) => {
   const [is_modify, setModify] = React.useState(false);

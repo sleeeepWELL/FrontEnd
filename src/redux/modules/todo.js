@@ -53,7 +53,7 @@ const getAllPostAX = () => {
   return function (dispatch) {
     console.log(axios.defaults);
     axios
-      .get(`${config.test_api}/cards/calendars`)
+      .get(`${config.test_api}/cards/calendars`,config.token)
       // .get(`${config.api}/cards/calendars`)
       .then((response) => {
         let todo_list = [];
@@ -82,7 +82,7 @@ const getAllPostAX = () => {
 const getOnePostAX = (selectedAt) => {
   return function (dispatch) {
     axios
-      .get(`${config.test_api}/cards/${selectedAt}`)
+      .get(`${config.test_api}/cards/${selectedAt}`,config.token)
       // .get(`${config.api}/cards/${selectedAt}`)
       .then((response) => {
         dispatch(loadOneTodo(response.data));

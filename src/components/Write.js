@@ -28,7 +28,7 @@ import one_gray from "../image/1-gray.jpg";
 import two_gray from "../image/2-gray.jpg";
 import three_gray from "../image/3-gray.jpg";
 import four_gray from "../image/4-gray.jpg";
-import five_gray from "../image/5-gray.jpg";
+import five_gray from "../image/5-gray.png";
 
 const Write = (props) => {
   const dispatch = useDispatch();

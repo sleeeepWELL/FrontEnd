@@ -11,18 +11,23 @@ const SET_USER = "SET_USER"; // 로그인
 const GET_USER = "GET_USER"; // 유저 정보 불러오기
 const LOG_OUT = "LOG_OUT"; // 로그아웃
 const NAME_CHECK = "NAME_CHECK"; //닉네임 중복검사 완료유무
+const AUTH_CHECK = "AUTH_CHECK"; // 인증완료 실시여부
+const DELETE_USER = "DELETE_USER"; // 회원탈퇴
 
 // 액션 생성함수
 const setUser = createAction(SET_USER, (user) => ({ user }));
 const getUser = createAction(GET_USER, (username) => ({ username }));
 const logOut = createAction(LOG_OUT, (user) => ({ user }));
 const nameCheck = createAction(NAME_CHECK, (name_check) => ({ name_check }));
+const authCheck = createAction(AUTH_CHECK, (auth_check) => ({ auth_check }));
+const deleteUser = createAction(DELETE_USER, () => ({}));
 
 // 초기값
 const initialState = {
   user: "",
   is_login: false,
   name_check: false,
+  auth_check: false,
 };
 
 // 로그인
@@ -68,6 +73,7 @@ const loginSV = (email, pwd) => {
         window.alert("환영합니다");
       })
       .catch((err) => {
+        window.alert("잘못된 정보입니다.");
         console.log("로그인 에러", err);
       });
   };
@@ -222,6 +228,8 @@ const ConfirmAuth = (email, AuthNum) => {
       .then((res) => {
         console.log(res);
         window.alert("인증이 완료되었습니다");
+        let check = true;
+        dispatch(authCheck(check));
       })
       .catch((err) => {
         console.log(err);
@@ -271,6 +279,59 @@ const userNameCheck = (nickname) => {
   };
 };
 
+// 이메일 인증번호 발송(비밀번호 찾기전용)
+const sendPwdAuth = (email) => {
+  return function (dispatch, getState, { history }) {
+    axios({
+      method: "POST",
+      url: `${config.api}/email/certification/send/reset`,
+      data: {
+        email: email,
+      },
+    })
+      .then((res) => {
+        console.log(res);
+        window.alert("인증번호가 발송되었습니다");
+      })
+      .catch((err) => {
+        console.log("인증번호발송 에러", err);
+        window.alert("가입되지 않은 이메일 입니다");
+      });
+  };
+};
+
+// 비밀번호 재설정
+const changePwd = (email, pwd, pwdCheck) => {
+  return function (dispatch, getState, { history }) {
+    const data = { email: email, password: pwd, passwordCheck: pwdCheck };
+    axios
+      .put(`${config.api}/setting/password`, data)
+      .then((res) => {
+        window.alert("비밀번호가 변경되었습니다");
+        history.replace("/login");
+      })
+      .catch((err) => {
+        console.log("비밀번호 재설정 에러", err);
+      });
+  };
+};
+
+// 회원 탈퇴
+const deleteUserSV = () => {
+  return function (dispatch, getState, { history }) {
+    axios
+      .delete(`${config.api}/withdrawal/membership`)
+      .then(async () => {
+        await dispatch(deleteUser());
+        await history.replace("/login");
+        await window.alert("정상처리 되었습니다. 이용해주셔서 감사합니다.");
+      })
+      .catch((err) => {
+        console.log("회원탈퇴 에러", err);
+      });
+  };
+};
+
 // 리듀서
 export default handleActions(
   {
@@ -299,6 +360,20 @@ export default handleActions(
       produce(state, (draft) => {
         draft.name_check = action.payload.name_check;
       }),
+
+    [AUTH_CHECK]: (state, action) =>
+      produce(state, (draft) => {
+        draft.auth_check = action.payload.auth_check;
+      }),
+
+    [DELETE_USER]: (state, action) =>
+      produce(state, (draft) => {
+        // 쿠키삭제
+        deleteCookie("is_login");
+        // 로컬 삭제
+        localStorage.clear();
+        draft.is_login = false;
+      }),
   },
   initialState
 );
@@ -315,6 +390,10 @@ const actionCreators = {
   getUserSV,
   userNameCheck,
   nameCheck,
+  changePwd,
+  sendPwdAuth,
+  deleteUserSV,
+  deleteUser,
 };
 
 export { actionCreators };

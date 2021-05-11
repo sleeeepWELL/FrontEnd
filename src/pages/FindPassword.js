@@ -5,22 +5,16 @@ import { actionCreators as userActions } from "../redux/modules/user";
 import { history } from "../redux/configureStore";
 
 //회원가입
-const Signup = () => {
+const FindPassword = () => {
   const dispatch = useDispatch();
 
   const [email, setEmail] = React.useState(null);
-  const [nickname, setNickname] = React.useState(null);
   const [pwd, setPwd] = React.useState(null);
   const [pwdCheck, setPwdCheck] = React.useState(null);
-  const [authNum, setAuthNum] = React.useState(null);
-
-  //닉네임 중복검사 통과 여부 (true면 중복, false면 통과)
-  const nameCheck = useSelector((state) => state.user.name_check);
-  console.log(nameCheck);
+  const [authNum, setAuthNum] = React.useState(null); //인증번호
 
   //인증완료 성공 여부 (true면 완료, false면 미완료)
   const authCheck = useSelector((state) => state.user.auth_check);
-  console.log(authCheck);
 
   //표현식 체크함수
   const emailCheck = (email) => {
@@ -38,9 +32,8 @@ const Signup = () => {
   };
 
   // 인증번호 발송
-  const sendAuth = () => {
-    console.log(email);
-    dispatch(userActions.SendAuth(email));
+  const sendPwdAuth = () => {
+    dispatch(userActions.sendPwdAuth(email));
   };
 
   // 인증완료
@@ -48,20 +41,10 @@ const Signup = () => {
     dispatch(userActions.ConfirmAuth(email, authNum));
   };
 
-  // 닉네임 중복검사
-  const userNameCheck = () => {
-    dispatch(userActions.userNameCheck(nickname));
-  };
-
   //표현식 함수사용 및 체크구문
-  const signup = () => {
-    if (email === "" || nickname === "" || pwd === "" || pwdCheck === "") {
+  const changePwd = () => {
+    if (email === "" || pwd === "" || pwdCheck === "") {
       window.alert("모든 항목을 입력해주세요!");
-      return;
-    }
-
-    if (nameCheck) {
-      window.alert("중복된 닉네임 입니다. 다른 닉네임을 입력해주세요.");
       return;
     }
 
@@ -70,34 +53,8 @@ const Signup = () => {
       return;
     }
 
-    // if (pwd !== pwdCheck) {
-    //   window.alert("비밀번호 설정을 다시 확인하세요!");
-    //   return;
-    // }
-    // if (!pwCheck(pwd)) {
-    //   window.alert(
-    //     "비밀번호는 4자리 이상이며,  영문(대/소문자)과 숫자와 특수문자로 구성해야합니다😅"
-    //   );
-    //   return;
-    // }
-    // if (!nicknameCheck(nickname)) {
-    //   window.alert("닉네임은 1자리 이상 10자리 미만입니다😅");
-    //   return;
-    // }
-    // if (!emailCheck(email)) {
-    //   window.alert("이메일은 14자리 이상 30자리 이하며,  형식을 지켜주세요😅");
-    //   return;
-    // }
-    // if (pwd.search(/\s/) !== -1) {
-    //   window.alert("비밀번호에 공백이 포함되었습니다😅");
-    //   return;
-    // }
-    // if (nickname.search(/\s/) !== -1) {
-    //   window.alert("닉네임에 공백이 포함되었습니다😅");
-    //   return;
-    // }
-    console.log(email, nickname, pwd, pwdCheck);
-    dispatch(userActions.signUpSV(email, nickname, pwd, pwdCheck));
+    console.log(email, pwd, pwdCheck);
+    dispatch(userActions.changePwd(email, pwd, pwdCheck));
   };
 
   return (
@@ -111,16 +68,16 @@ const Signup = () => {
           <SignUpContainer>
             <SemiContainer>
               <div style={{ fontSize: "30px", fontWeight: "600" }}>
-                회원가입
+                비밀번호 찾기
               </div>
               <InputContainer>
                 <InputBox
                   onChange={(e) => {
                     setEmail(e.target.value);
                   }}
-                  placeholder="이메일을 입력해주세요"
+                  placeholder="가입한 이메일을 입력해주세요"
                 />
-                <CheckBnt onClick={sendAuth}>인증번호발송</CheckBnt>
+                <CheckBnt onClick={sendPwdAuth}>인증번호발송</CheckBnt>
               </InputContainer>
               <InputContainer>
                 <InputBox
@@ -131,30 +88,20 @@ const Signup = () => {
                 />
                 <CheckBnt onClick={confirmAuth}>인증완료</CheckBnt>
               </InputContainer>
-              <InputContainer>
-                <InputBox
-                  onChange={(e) => {
-                    setNickname(e.target.value);
-                  }}
-                  placeholder="닉네임을 입력해주세요"
-                />
-                <CheckBnt onClick={userNameCheck}>중복확인</CheckBnt>
-              </InputContainer>
               <PwBox
                 onChange={(e) => {
                   setPwd(e.target.value);
                 }}
-                placeholder="비밀번호를 입력해주세요"
+                placeholder="새로운 비밀번호를 입력해주세요"
                 type="password"
               />
               <PwBox
                 onChange={(e) => {
                   setPwdCheck(e.target.value);
                 }}
-                placeholder="비밀번호를 확인해주세요"
+                placeholder="비밀번호를 한번 더 입력해주세요"
                 type="password"
               />
-
               <InfoBox>
                 <div
                   style={{ cursor: "pointer" }}
@@ -167,15 +114,15 @@ const Signup = () => {
                 <div
                   style={{ cursor: "pointer" }}
                   onClick={() => {
-                    history.replace("/findpwd");
+                    history.replace("/signup");
                   }}
                 >
-                  비밀번호 찾기
+                  회원가입
                 </div>
               </InfoBox>
 
-              <SignUpButton onClick={signup}>
-                <span>가입완료</span>
+              <SignUpButton onClick={changePwd}>
+                <span>완료</span>
               </SignUpButton>
             </SemiContainer>
           </SignUpContainer>
@@ -395,4 +342,4 @@ const SLoginButton = styled.button`
   outline: none;
   cursor: pointer;
 `;
-export default Signup;
+export default FindPassword;

@@ -107,7 +107,7 @@ const getConditionAX = () => {
         console.log(condition);
       })
       .catch((err) => {
-        console.log(err);
+        console.log("컨디션 불러오기 오류", err);
       });
   };
 };

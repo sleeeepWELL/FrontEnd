@@ -7,6 +7,7 @@ import Signup from "../pages/Signup";
 import MainCalendar from "../pages/MainCalendar";
 import Analysis from "../pages/Analysis";
 import PracAnalysis from "../pages/PracAnalysis";
+import FindPassword from "../pages/FindPassword";
 
 import { Switch, Route } from "react-router-dom";
 import { ConnectedRouter } from "connected-react-router";
@@ -17,12 +18,10 @@ import { getCookie } from "./Cookie";
 import LoginCheck from "../pages/LoginCheck";
 import { actionCreators as userActions } from "../redux/modules/user";
 
-
-
 function App() {
   const dispatch = useDispatch();
   // const is_login = getCookie("is_login") ? true: false;
-  
+
   // React.useEffect(() => {
   //   if (is_login) {
   //     dispatch(userAction.againLogin());
@@ -32,13 +31,13 @@ function App() {
   React.useEffect(() => {
     dispatch(userActions.getUserSV());
   }, []);
-  
 
   return (
     <React.Fragment>
-      <ConnectedRouter history={history} >
+      <ConnectedRouter history={history}>
         <Route path="/signup" exact component={Signup} />
         <Route path="/login" exact component={Login} />
+        <Route path="/findpwd" exact component={FindPassword} />
         <Wrap>
           <Route
             path="/oauth/callback/kakao"
@@ -52,7 +51,6 @@ function App() {
           {/* <Route exact component={NotFound} /> */}
         </Wrap>
       </ConnectedRouter>
-    
     </React.Fragment>
   );
 }
@@ -66,7 +64,5 @@ const ContentWrap = styled.div`
   display: flex;
   width: 100%;
 `;
-
-
 
 export default App;

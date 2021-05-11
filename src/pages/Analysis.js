@@ -31,10 +31,9 @@ const Analysis = () => {
   }, []);
 
   return (
-   <React.Fragment>
- 
+    <React.Fragment>
+      <Background>
         <Container>
-  
           <ChartContainer1>
             {Click === "weekTag" && (
               <>
@@ -86,19 +85,9 @@ const Analysis = () => {
               )}
             </InfoContainer>
           </ResultContainer2>
-            <Table table={table}/>
-            <WeekBarChart tags={tags} />  
-            
-            <MonthBarChart tags={tags}/>
-        
-     
-    
-        
-           
-        
         </Container>
-      
-      </React.Fragment>
+      </Background>
+    </React.Fragment>
   );
 };
 

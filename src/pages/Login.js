@@ -36,19 +36,6 @@ const Login = (props) => {
     }
   };
 
-  // 카카오 로그인
-  // const kakaoLoginSuccessHandler = (res) => {
-  //   const data = res.response;
-  //   console.log(res);
-  // 카카오 로그인 후 받아온 토큰
-  // dispatch(
-  //   userActions.loginByKakao({
-  //     kakaoToken: data.access_token,
-  //   })
-  // );
-  // };
-
-  //   onClick={()=>{history.push("/signup")}}
   return (
     <React.Fragment>
       <Wrap>
@@ -84,7 +71,14 @@ const Login = (props) => {
                 >
                   회원가입
                 </div>
-                <div>비밀번호 찾기</div>
+                <div
+                  style={{ cursor: "pointer" }}
+                  onClick={() => {
+                    history.replace("/findpwd");
+                  }}
+                >
+                  비밀번호 찾기
+                </div>
               </InfoBox>
               <LoginButton onClick={onClick}>
                 <span>로그인</span>

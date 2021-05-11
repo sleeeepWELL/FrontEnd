@@ -26,9 +26,9 @@ const WeekBarChart = (props) => {
         color: "white",
         borderRadius: 10,
         hoverBackgroundColor: "white",
-        hoverBorderColor: "black",
-        hoverBorderWidth: 5,
-        hoverBorderRadius: 0,
+        hoverBorderColor: "white",
+        hoverBorderWidth: 1,
+        hoverBorderRadius: 5,
         indexAxis: "x",
         data: weeklydata,
       },
@@ -51,9 +51,7 @@ const WeekBarChart = (props) => {
   return (
     <React.Fragment>
       <Wrap>
-
         <CContainer1>
-     
           <Bar
             data={chartData1}
             width={130}

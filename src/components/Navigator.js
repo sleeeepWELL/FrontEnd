@@ -23,6 +23,15 @@ const Navigator = () => {
     window.alert("로그아웃!");
   };
 
+  //회원탈퇴
+  const deleteUser = () => {
+    if (window.confirm("탈퇴 하시겠습니까?")) {
+      dispatch(userActions.deleteUserSV());
+    } else {
+      return;
+    }
+  };
+
   React.useEffect(
     (e) => {
       if (currentClick !== null) {
@@ -66,7 +75,12 @@ const Navigator = () => {
             분석
           </CategoryBox>
 
-          <div></div>
+          <div
+            style={{ color: "white", cursor: "pointer" }}
+            onClick={deleteUser}
+          >
+            회원탈퇴
+          </div>
         </CategoryContainer>
         <LogoutBox onClick={LOGOUT}>로그아웃</LogoutBox>
       </Wrap>

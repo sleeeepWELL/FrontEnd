@@ -51,6 +51,11 @@ const Analysis = () => {
                 <WeekMixedChart data={MixedData} />
               </>
             )}
+            {Click === "table" && (
+              <>
+                <Table table={table} />
+              </>
+            )}
           </ChartContainer1>
           <BtnContainer>
             <ChartBtn id="weekTag" onClick={GetClick}>

@@ -173,12 +173,7 @@ const Modify = (props) => {
 
   // 수정하는 경우는 데이터를 그대로 사용해도 된다
   const editPost = () => {
-    if (startSleep === "" || endSleep === "" || sendCon === 0) {
-      window.alert(
-        "정확한 수면분석을 위해 취침시간, 기상시간, 컨디션을 모두 입력해주세요!"
-      );
-      return;
-    }
+   
 
     let post = {
       id: props.props.date.id,
@@ -206,8 +201,15 @@ const Modify = (props) => {
             <Text>{props.props.date.selectedAt}</Text>
             <FixButton
               onClick={() => {
+                if (startSleep === "" || endSleep === "" || sendCon === 0) {
+                  window.alert(
+                    "정확한 수면분석을 위해 취침시간, 기상시간, 컨디션을 모두 입력해주세요!"
+                  );
+                  return;
+                }else{
                 editPost();
                 props.props._showModify(false);
+              }
               }}
             >
               완료

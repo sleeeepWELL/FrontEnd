@@ -18,11 +18,11 @@ import work_gray from "../image/work_gray.png";
 import workout_gray from "../image/workout_gray.png";
 
 //컨디션
-import one from "../image/1-condition.jpg";
-import two from "../image/2-condition.jpg";
-import three from "../image/3-condition.jpg";
-import four from "../image/4-condition.jpg";
-import five from "../image/5-condition.jpg";
+import one from "../image/1-condition.png";
+import two from "../image/2-condition.png";
+import three from "../image/3-condition.png";
+import four from "../image/4-condition.png";
+import five from "../image/5-condition.png";
 
 import one_gray from "../image/1-gray.jpg";
 import two_gray from "../image/2-gray.jpg";
@@ -151,7 +151,7 @@ const Modify = (props) => {
 
   const mycondition = String(TotalCon);
 
-  // / /컨디션 수정
+  // // / /컨디션 수정
   const bringConditions = String(props.props.date.conditions);
 
   const [editCon, setEditCon] = React.useState(bringConditions);
@@ -173,9 +173,9 @@ const Modify = (props) => {
 
   // 수정하는 경우는 데이터를 그대로 사용해도 된다
   const editPost = () => {
-    if (startSleep === "" || endSleep === "" || sendCon === 0) {
+    if (startSleep === "" || endSleep === "") {
       window.alert(
-        "정확한 수면분석을 위해 취침시간, 기상시간, 컨디션을 모두 입력해주세요!"
+        "정확한 수면분석을 위해 취침시간, 기상시간을 모두 입력해주세요!"
       );
       return;
     }

@@ -5,6 +5,10 @@ import { actionCreators as todoActions } from "../redux/modules/todo";
 import { history } from "../redux/configureStore";
 
 import TextField from "@material-ui/core/TextField";
+import MobileTimePicker from "@material-ui/lab/MobileTimePicker";
+import AdapterDateFns from "@material-ui/lab/AdapterDateFns";
+import LocalizationProvider from "@material-ui/lab/LocalizationProvider";
+import moment from "moment";
 
 //태그
 import beer from "../image/beer.png";
@@ -18,11 +22,11 @@ import work_gray from "../image/work_gray.png";
 import workout_gray from "../image/workout_gray.png";
 
 //컨디션
-import one from "../image/1-condition.jpg";
-import two from "../image/2-condition.jpg";
-import three from "../image/3-condition.jpg";
-import four from "../image/4-condition.jpg";
-import five from "../image/5-condition.jpg";
+import one from "../image/1-condition.png";
+import two from "../image/2-condition.png";
+import three from "../image/3-condition.png";
+import four from "../image/4-condition.png";
+import five from "../image/5-condition.png";
 
 import one_gray from "../image/1-gray.jpg";
 import two_gray from "../image/2-gray.jpg";
@@ -32,9 +36,15 @@ import five_gray from "../image/5-gray.png";
 
 const Write = (props) => {
   const dispatch = useDispatch();
-  const [startSleep, setstartSleep] = React.useState("");
-  const [endSleep, setendSleep] = React.useState("");
+
   const [memo, setMemo] = React.useState("");
+
+  const [start, setStart] = React.useState(new Date("2021-01-01T23:00"));
+  const startSleep = moment(start).format("hh:mm");
+  // console.log(startSleep);
+  const [end, setEnd] = React.useState(new Date("2021-01-01T09:00"));
+  const endSleep = moment(end).format("hh:mm");
+  // console.log(endSleep);
 
   const startMinute =
     parseInt(startSleep.slice(0, 2) * 60) + parseInt(startSleep.slice(3, 5));
@@ -124,13 +134,6 @@ const Write = (props) => {
   const mycondition = Number(String(TotalCon));
   console.log("추가할 컨디션:", mycondition);
 
-  //컨디션 수정
-  const checkSleep = (e) => {
-    setstartSleep(e.target.value);
-  };
-  const checkoutSleep = (e) => {
-    setendSleep(e.target.value);
-  };
   const changeMemo = (e) => {
     setMemo(e.target.value);
   };
@@ -175,30 +178,34 @@ const Write = (props) => {
         </TopContainer>
 
         <Container>
-          <TextField
-            id="time"
-            label="취침시간"
-            type="time"
-            onChange={checkSleep}
-            InputLabelProps={{
-              shrink: true,
-            }}
-            inputProps={{
-              step: 300, // 5 min
-            }}
-          />
-          <TextField
-            id="time"
-            label="기상시간"
-            type="time"
-            onChange={checkoutSleep}
-            InputLabelProps={{
-              shrink: true,
-            }}
-            inputProps={{
-              step: 300, // 5 min
-            }}
-          />
+          <LocalizationProvider dateAdapter={AdapterDateFns}>
+            <div style={{ width: 150, color: "white" }}>
+              <MobileTimePicker
+                label="취침 시간 선택"
+                value={start}
+                onChange={(newStart) => {
+                  setStart(newStart);
+                }}
+                renderInput={(params) => (
+                  <TextField {...params} margin="normal" />
+                )}
+              />
+            </div>
+          </LocalizationProvider>
+          <LocalizationProvider dateAdapter={AdapterDateFns}>
+            <div style={{ width: 150 }}>
+              <MobileTimePicker
+                label="기상 시간 선택"
+                value={end}
+                onChange={(newEnd) => {
+                  setEnd(newEnd);
+                }}
+                renderInput={(params) => (
+                  <TextField {...params} margin="normal" />
+                )}
+              />
+            </div>
+          </LocalizationProvider>
         </Container>
 
         <TagContainer>

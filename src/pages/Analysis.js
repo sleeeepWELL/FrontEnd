@@ -29,24 +29,13 @@ const Analysis = () => {
       <Background>
         <Container>
           <ResultContainer1>
-            {/* <WeekBarChart tags={tags} /> */}
+            <WeekBarChart tags={tags} />
             <MonthBarChart tags={tags} />
-            <LineChart />
-          {/* <SleepTime>수면시간</SleepTime>
-          <Condition>컨디션</Condition>
-          <Graph>그래프</Graph> */}
-          <BarChart tags={tags}/>
-          {/* <LineChart/> */}
-         
-          </ResultContainer1>
-          <ResultContainer1>
-          <Table table={table}/>
-         
-          </ResultContainer1>
-         
-        
 
+          </ResultContainer1>
+        
           <ResultContainer2>
+          <Table table={table}/>
             {resulttime.hour == undefined ? (
               <Text>데이터가 부족하여 현재 측정 불가합니다</Text>
             ) : (
@@ -70,23 +59,26 @@ const Container = styled.div`
 `;
 
 const ResultContainer1 = styled.div`
-  width: 100%;
-  height: 40%;
+  width: 80%;
+  height: 50%;
   justify-content: center;
-  margin-bottom: 150px;
+  display: flex;
+  flex-direction: row;
 `;
 
 const ResultContainer2 = styled.div`
-  width: 100%;
-  height: 50%;
+  width: 80%;
+  height: 30%;
   justify-content: center;
   margin: 10px 0px 0px 40px;
+  display: flex;
+  flex-direction: row;
 `;
 
 const Background = styled.div`
   width: 100%;
   height: 100vh;
-  background-color: gray;
+  background-color: black;
   z-index: -1;
 `;
 

@@ -39,7 +39,7 @@ const WeekBarChart = (props) => {
     responsive: true,
     plugins: {
       legend: {
-        display: false,
+        display: true,
       },
       title: {
         display: true,
@@ -54,8 +54,8 @@ const WeekBarChart = (props) => {
         <CContainer1>
           <Bar
             data={chartData1}
-            width={150}
-            height={100}
+            width={130}
+            height={90}
             options={chartOptions1}
           />
         </CContainer1>
@@ -65,7 +65,7 @@ const WeekBarChart = (props) => {
 };
 
 const Wrap = styled.div`
-  width: 100%;
+  width: 50%;
   height: 45vh;
   display: flex;
   /* background-color: red; */
@@ -78,8 +78,7 @@ const Wrap = styled.div`
 const CContainer1 = styled.div`
   display: flex;
   width: 60%;
-  height: auto;
-  background-color: none;
+  // background-color: none;
 `;
 
 export default WeekBarChart;

@@ -51,8 +51,8 @@ const MonthBarChart = (props) => {
         <CContainer1>
           <Bar
             data={chartData2}
-            width={150}
-            height={100}
+            width={130}
+            height={90}
             options={chartOptions2}
           />
         </CContainer1>
@@ -62,7 +62,7 @@ const MonthBarChart = (props) => {
 };
 
 const Wrap = styled.div`
-  width: 100%;
+  width: 50%;
   max-height: 45vh;
   display: flex;
   /* background-color: red; */
@@ -75,9 +75,9 @@ const Wrap = styled.div`
 const CContainer1 = styled.div`
   display: flex;
   width: 60%;
-  height: auto;
-  background-color: white;
-  opacity: 0.7;
+
+  // background-color: white;
+  // opacity: 0.7;
 `;
 
 export default MonthBarChart;

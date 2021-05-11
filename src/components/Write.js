@@ -5,6 +5,10 @@ import { actionCreators as todoActions } from "../redux/modules/todo";
 import { history } from "../redux/configureStore";
 
 import TextField from "@material-ui/core/TextField";
+import MobileTimePicker from "@material-ui/lab/MobileTimePicker";
+import AdapterDateFns from "@material-ui/lab/AdapterDateFns";
+import LocalizationProvider from "@material-ui/lab/LocalizationProvider";
+import moment from "moment";
 
 //태그
 import beer from "../image/beer.png";
@@ -18,11 +22,11 @@ import work_gray from "../image/work_gray.png";
 import workout_gray from "../image/workout_gray.png";
 
 //컨디션
-import one from "../image/1-condition.jpg";
-import two from "../image/2-condition.jpg";
-import three from "../image/3-condition.jpg";
-import four from "../image/4-condition.jpg";
-import five from "../image/5-condition.jpg";
+import one from "../image/1-condition.png";
+import two from "../image/2-condition.png";
+import three from "../image/3-condition.png";
+import four from "../image/4-condition.png";
+import five from "../image/5-condition.png";
 
 import one_gray from "../image/1-gray.jpg";
 import two_gray from "../image/2-gray.jpg";
@@ -32,9 +36,15 @@ import five_gray from "../image/5-gray.png";
 
 const Write = (props) => {
   const dispatch = useDispatch();
-  const [startSleep, setstartSleep] = React.useState("");
-  const [endSleep, setendSleep] = React.useState("");
+
   const [memo, setMemo] = React.useState("");
+
+  const [start, setStart] = React.useState(new Date("2021-01-01T23:00"));
+  const startSleep = moment(start).format("hh:mm");
+  // console.log(startSleep);
+  const [end, setEnd] = React.useState(new Date("2021-01-01T09:00"));
+  const endSleep = moment(end).format("hh:mm");
+  // console.log(endSleep);
 
   const startMinute =
     parseInt(startSleep.slice(0, 2) * 60) + parseInt(startSleep.slice(3, 5));
@@ -124,20 +134,12 @@ const Write = (props) => {
   const mycondition = Number(String(TotalCon));
   console.log("추가할 컨디션:", mycondition);
 
-  //컨디션 수정
-  const checkSleep = (e) => {
-    setstartSleep(e.target.value);
-  };
-  const checkoutSleep = (e) => {
-    setendSleep(e.target.value);
-  };
   const changeMemo = (e) => {
     setMemo(e.target.value);
   };
 
   //추가하는 경우는 데이터를 잘라서 사용해야하고
   const addPost = () => {
-  
     let post = {
       startSleep: startSleep,
       endSleep: endSleep,
@@ -166,11 +168,10 @@ const Write = (props) => {
                   "정확한 수면분석을 위해 취침시간, 기상시간, 컨디션을 모두 입력해주세요!"
                 );
                 return;
-              }else{
-              addPost();
-              props.props._showModify(false);
+              } else {
+                addPost();
+                props.props._showModify(false);
               }
-              
             }}
           >
             Complete
@@ -178,30 +179,34 @@ const Write = (props) => {
         </TopContainer>
 
         <TimeContainer>
-          <TextField
-            id="time"
-            label="취침시간"
-            type="time"
-            onChange={checkSleep}
-            InputLabelProps={{
-              shrink: true,
-            }}
-            inputProps={{
-              step: 300, // 5 min
-            }}
-          />
-          <TextField
-            id="time"
-            label="기상시간"
-            type="time"
-            onChange={checkoutSleep}
-            InputLabelProps={{
-              shrink: true,
-            }}
-            inputProps={{
-              step: 300, // 5 min
-            }}
-          />
+          <LocalizationProvider dateAdapter={AdapterDateFns}>
+            <div style={{ width: 150, color: "white" }}>
+              <MobileTimePicker
+                label="취침 시간 선택"
+                value={start}
+                onChange={(newStart) => {
+                  setStart(newStart);
+                }}
+                renderInput={(params) => (
+                  <TextField {...params} margin="normal" />
+                )}
+              />
+            </div>
+          </LocalizationProvider>
+          <LocalizationProvider dateAdapter={AdapterDateFns}>
+            <div style={{ width: 150 }}>
+              <MobileTimePicker
+                label="기상 시간 선택"
+                value={end}
+                onChange={(newEnd) => {
+                  setEnd(newEnd);
+                }}
+                renderInput={(params) => (
+                  <TextField {...params} margin="normal" />
+                )}
+              />
+            </div>
+          </LocalizationProvider>
         </TimeContainer>
 
         <TagContainer>
@@ -356,18 +361,17 @@ const Write = (props) => {
 const Container = styled.div`
   background-color: grey;
   display: flex;
-  width: 100%; 
+  width: 100%;
   height: 100%;
   flex-direction: column;
   justify-content: space-between;
   box-sizing: border-box;
 `;
 
-
 const TimeContainer = styled.div`
   background-color: white;
   display: flex;
-  width: 100%; 
+  width: 100%;
   height: 100%;
   flex-direction: column;
   justify-content: space-between;
@@ -393,19 +397,17 @@ const AddButton = styled.button`
   color: white;
   margin: 9px 9px 0px 0px;
   font-size: 3px;
-  
 `;
 const ImgGrid = styled.div`
   display: flex;
-  
+
   /* background-color: blue; */
   padding: 10px;
- 
 `;
 
 const TotalImgGrid = styled.div`
   display: flex;
-  width:100%;
+  width: 100%;
   flex-direction: row;
   margin: 20px;
   justify-content: space-evenly;

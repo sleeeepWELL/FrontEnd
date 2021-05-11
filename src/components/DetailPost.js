@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import moment from "moment";
 
-import styled, { keyframes } from 'styled-components';
+import styled, { keyframes } from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
 import { actionCreators as todoActions } from "../redux/modules/todo";
 
@@ -10,11 +10,11 @@ import snack from "../image/snack.png";
 import work from "../image/work.png";
 import workout from "../image/workout.png";
 
-import one from "../image/1-condition.jpg";
-import two from "../image/2-condition.jpg";
-import three from "../image/3-condition.jpg";
-import four from "../image/4-condition.jpg";
-import five from "../image/5-condition.jpg";
+import one from "../image/1-condition.png";
+import two from "../image/2-condition.png";
+import three from "../image/3-condition.png";
+import four from "../image/4-condition.png";
+import five from "../image/5-condition.png";
 
 import ChevronRightIcon from "@material-ui/icons/ChevronRight";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
@@ -192,7 +192,6 @@ const DetailPost = (props) => {
     );
   }
 };
-
 
 const ModalComponent = styled.div`
   width: 100%;

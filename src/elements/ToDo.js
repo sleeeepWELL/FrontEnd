@@ -13,11 +13,11 @@ import snack_gray from "../image/snack_gray.png";
 import work_gray from "../image/work_gray.png";
 import workout_gray from "../image/workout_gray.png";
 
-import one from "../image/1-condition.jpg";
-import two from "../image/2-condition.jpg";
-import three from "../image/3-condition.jpg";
-import four from "../image/4-condition.jpg";
-import five from "../image/5-condition.jpg";
+import one from "../image/1-condition.png";
+import two from "../image/2-condition.png";
+import three from "../image/3-condition.png";
+import four from "../image/4-condition.png";
+import five from "../image/5-condition.png";
 
 //글씨 이미지로 바꾸기
 // const mapKeywordToImg = {
@@ -63,7 +63,7 @@ const ToDo = (props) => {
               <img width="20px" height="20px" src={five} alt="condition"></img>
             )}
           </div>
-          <div style={{ padding: "5px" , color: "white"}}>
+          <div style={{ padding: "5px", color: "white" }}>
             {`${props.totalSleepHour}H ${props.totalSleepMinute} M`}
           </div>
         </TopInfo>

@@ -8,6 +8,7 @@ import MainCalendar from "../pages/MainCalendar";
 import Analysis from "../pages/Analysis";
 import PracAnalysis from "../pages/PracAnalysis";
 import FindPassword from "../pages/FindPassword";
+import Ready from "../pages/Ready";
 
 import { Switch, Route } from "react-router-dom";
 import { ConnectedRouter } from "connected-react-router";
@@ -46,7 +47,7 @@ function App() {
           <Route path="/main" component={Navigator} />
           <Route path="/main" exact component={MainCalendar} />
           <Route path="/main/analysis" exact component={Analysis} />
-          <Route path="/main/prac" exact component={PracAnalysis} />
+          <Route path="/main/prac" exact component={Ready} />
           <Route path="/" component={LoginCheck} />
           {/* <Route exact component={NotFound} /> */}
         </Wrap>

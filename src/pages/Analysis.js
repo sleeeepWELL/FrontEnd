@@ -6,6 +6,7 @@ import MonthBarChart from "../components/MonthBarChart";
 import WeekMixedChart from "../components/WeekMixedChart";
 import Table from "../components/Table";
 import { actionCreators as todoActions } from "../redux/modules/result";
+import PracAnalysis from "./PracAnalysis";
 
 import moment from "moment";
 
@@ -16,7 +17,7 @@ const Analysis = () => {
   const MixedData = useSelector((state) => state.result);
   const table = useSelector((state) => state.result.table);
 
-  const [Click, setClick] = React.useState("weekTag");
+  const [Click, setClick] = React.useState("Condition");
 
   const GetClick = (e) => {
     setClick(e.target.id);
@@ -35,6 +36,11 @@ const Analysis = () => {
       <Background>
         <Container>
           <ChartContainer1>
+            {Click === "Condition" && (
+              <>
+                <PracAnalysis />
+              </>
+            )}
             {Click === "weekTag" && (
               <>
                 <WeekBarChart tags={tags} />
@@ -57,6 +63,10 @@ const Analysis = () => {
             )}
           </ChartContainer1>
           <BtnContainer>
+            <ChartBtn id="Condition" onClick={GetClick}>
+              연간컨디션
+            </ChartBtn>
+            <div style={{ width: "2rem" }}></div>
             <ChartBtn id="weekTag" onClick={GetClick}>
               주간태그현황
             </ChartBtn>

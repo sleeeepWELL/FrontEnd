@@ -51,8 +51,8 @@ const DetailPost = (props) => {
                     todoActions.getOnePostAX(moment(tDate).format("YYYY-MM-DD"))
                   );
                 }}
-              >
-                <ChevronLeftIcon />
+              >◀
+                {/* <ChevronLeftIcon /> */}
               </MoveDButton>
 
               <DText>{_day}</DText>
@@ -65,8 +65,8 @@ const DetailPost = (props) => {
                     todoActions.getOnePostAX(moment(tDate).format("YYYY-MM-DD"))
                   );
                 }}
-              >
-                <ChevronRightIcon />
+              >▶
+                {/* <ChevronRightIcon /> */}
               </MoveDButton>
             </LeftHeader>
             <RightHeader>
@@ -75,13 +75,13 @@ const DetailPost = (props) => {
                   props._showModify(true);
                 }}
               >
-                추가하기
+                ADD
               </AddButton>
             </RightHeader>
           </DayHeader>
 
           <ConditionContainer style={{ height: "30%" }}>
-            <TimeText>작성된 내용이 없습니다</TimeText>
+            <EmptyText>NO CONTENTS</EmptyText>
           </ConditionContainer>
         </ModalComponent>
       </React.Fragment>
@@ -100,8 +100,8 @@ const DetailPost = (props) => {
                     todoActions.getOnePostAX(moment(tDate).format("YYYY-MM-DD"))
                   );
                 }}
-              >
-                <ChevronLeftIcon />
+              > ◀
+              {/* <ChevronLeftIcon/> */}
               </MoveDButton>
               <DText>{props.date.selectedAt}</DText>
               <MoveDButton
@@ -112,8 +112,8 @@ const DetailPost = (props) => {
                     todoActions.getOnePostAX(moment(tDate).format("YYYY-MM-DD"))
                   );
                 }}
-              >
-                <ChevronRightIcon />
+              >▶
+                {/* <ChevronRightIcon /> */}
               </MoveDButton>
             </LeftHeader>
 
@@ -123,46 +123,23 @@ const DetailPost = (props) => {
                   props._showModify(true);
                 }}
               >
-                수정하기
+                MODIFY
               </AddButton>
-              <FixButton
+              <DeleteButton
                 onClick={() => {
                   dispatch(todoActions.removePostAX(props.date.selectedAt));
                 }}
               >
-                삭제하기
-              </FixButton>
+                DELETE
+              </DeleteButton>
             </RightHeader>
           </DayHeader>
 
-          <SleepTimeContainer>
-            <TimeText>
-              수면시간 :{" "}
-              {`${props.date.totalSleepHour} 시간 ${props.date.totalSleepMinute} 분`}{" "}
-              ({props.date.startSleep} ~ {props.date.endSleep})
-            </TimeText>
-          </SleepTimeContainer>
-
-          <TagContainer>
-            <TimeText>
-              태그 :{" "}
-              {props.date.tag.map((currentTag, idx) => {
-                return (
-                  <img
-                    key={idx}
-                    width="40px"
-                    height="40px"
-                    src={mapKeywordToImg[currentTag]}
-                  ></img>
-                );
-              })}
-            </TimeText>
-          </TagContainer>
-
           <ConditionContainer>
-            <TimeText>
-              컨디션 :{" "}
-              {myCon === "1" && (
+            <ConditionText>
+              CONDITION
+            </ConditionText>
+            {myCon === "1" && (
                 <img width="20px" height="20px" src={one}></img>
               )}
               {myCon === "2" && (
@@ -177,10 +154,39 @@ const DetailPost = (props) => {
               {myCon === "5" && (
                 <img width="20px" height="20px" src={five}></img>
               )}
-            </TimeText>
+            
           </ConditionContainer>
 
-          <Contents> 메모 :{props.date.memo}</Contents>
+          <TimeContainer>  
+            
+          <TimeText>
+          SLEEP TIME
+          </TimeText>
+          <TimeText2>
+          {`${props.date.totalSleepHour} 시간 ${props.date.totalSleepMinute} 분`}
+              ({props.date.startSleep} ~ {props.date.endSleep})
+          </TimeText2>
+          </TimeContainer>
+
+          <TagContainer>
+            <TimeText>
+              TAG
+            </TimeText>
+            {props.date.tag.map((currentTag, idx) => {
+                return (
+                  <img
+                    key={idx}
+                    width="40px"
+                    height="40px"
+                    src={mapKeywordToImg[currentTag]}
+                  ></img>
+                );
+              })}
+          </TagContainer>
+
+         
+
+          <Contents> MEMO {props.date.memo}</Contents>
         </ModalComponent>
       </React.Fragment>
     );
@@ -189,12 +195,14 @@ const DetailPost = (props) => {
 
 
 const ModalComponent = styled.div`
-  width: 50%;
-  height: 50%;
+  width: 100%;
+  height: 100%;
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
+
 `;
+
 
 const DayHeader = styled.div`
   background-color: black;
@@ -202,33 +210,60 @@ const DayHeader = styled.div`
   justify-content: space-between;
   width: 100%;
   height: 30%;
-  margin: 20px 0px 5px 0px;
+  margin: 20px 0px 30px 0px;
 `;
-const LeftHeader = styled.div`
+
+const ConditionContainer = styled.div`
   background-color: black;
+  width: 100%;
+  height: 12%;
+  display: flex;
+  margin-bottom: 20px;
+`;
+
+const TimeContainer = styled.div`
+  background-color: black;
+  width: 100%;
+  height: 10%;
+  display: flex;
+  margin-bottom: 20px;
+`;
+
+const TagContainer = styled.div`
+  background-color: black;
+  width: 100%;
+  height: 12%;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+`;
+
+const LeftHeader = styled.div`
   display: flex;
   flex-direction: row;
-  width: 65%;
+  width: 60%;
   height: 100%;
   border: none;
+  // background-color: white;
+
 `;
 
 const MoveDButton = styled.button`
-  width: 10%;
-  background-color: black;
+  width: 15%;
   font-weight: bold;
   border-radius: 5px;
   outline: none;
   border: none;
   cursor: pointer;
   color: white;
+  background-color: black;
+  text-align: center;
 `;
 const DText = styled.div`
   font-weight: bold;
   font-size: 20px;
   color: white;
-  height: 100%;
-  width: 40%;
+  width: 90%;
   border: none;
   text-align: center;
   padding-top: 2px;
@@ -237,20 +272,8 @@ const RightHeader = styled.div`
   background-color: black;
   display: flex;
   justify-content: space-between;
-  width: 35%;
+  width: 37%;
   height: 60%;
-`;
-const FixButton = styled.button`
-  width: 50%;
-  height: 100%;
-  background-color: black;
-  border: 2px solid white;
-  font-weight: bold;
-  border-radius: 5px;
-  outline: none;
-  cursor: pointer;
-  color: white;
-  margin: 9px 0px 0px 9px;
 `;
 
 const AddButton = styled.button`
@@ -264,48 +287,59 @@ const AddButton = styled.button`
   cursor: pointer;
   color: white;
   margin: 9px 9px 0px 0px;
+  font-size: 3px;
+  
 `;
 
-const SleepTimeContainer = styled.div`
+const DeleteButton = styled.button`
+  width: 50%;
+  height: 100%;
   background-color: black;
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-  height: 12%;
+  border: 2px solid white;
+  font-weight: bold;
+  border-radius: 5px;
+  outline: none;
+  cursor: pointer;
+  color: white;
+  margin: 9px 0px 0px 3px;
+  font-size: 3px;
+  
 `;
 
 const TimeText = styled.div`
-  width: 60%;
+  width: 35%;
+  color: white;
+  font-size: 15px;
+  margin: 5px 0px 0px 10px;
+  font-weight: bold;
+
+`;
+const EmptyText = styled.div`
+  width: 100%;
+  color: white;
+  font-size: 15px;
+  font-weight: bold;
+  text-align: center;
+`;
+
+const TimeText2 = styled.div`
+  width: 65%;
+  color: white;
+  font-size: 12px;
+  margin: 5px 0px 0px 10px;
+  font-weight: bold;
+`;
+
+
+const ConditionText = styled.div`
+  width: 35%;
   color: white;
   font-size: 15px;
   margin: 5px 0px 0px 10px;
   font-weight: bold;
 `;
 
-const TagContainer = styled.div`
-  background-color: black;
-  width: 100%;
-  height: 12%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-`;
-const ConditionContainer = styled.div`
-  background-color: black;
-  width: 100%;
-  height: 12%;
-  display: flex;
-`;
 
-const BottomContainer = styled.div`
-  background-color: black;
-  width: 100%;
-  height: 30%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  // margin-top:20px;
-`;
 
 const Contents = styled.div`
   width: 100%;

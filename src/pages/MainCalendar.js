@@ -14,27 +14,27 @@ const MainCalendar = () => {
   return (
     <React.Fragment>
       <Background>
-        <AllContainer>
-          <Calendarjj _showModify={setModify} />
-          {is_modify ? (
-            <DetailWrite date={day_list} _showModify={setModify} />
-          ) : (
-            <DetailPost date={day_list} _showModify={setModify} />
-          )}
-        </AllContainer>
-      </Background>
+      <AllContainer>
+      <CalendarContainer>
+     <Calendarjj _showModify={setModify}/>
+     </CalendarContainer>
+     <PostContainer>
+     {is_modify ? <DetailWrite date={day_list} _showModify={setModify}/>:<DetailPost  date={day_list} _showModify={setModify}/>}
+     </PostContainer>
+      </AllContainer>
+    </Background>
     </React.Fragment>
   );
 };
 const slidein = keyframes`
  from {
   margin-left: 100%;
-  width: 200%
+  width: 50%
 }
 
 to {
-  margin-left: 0%;
-  width: 100%;
+  margin-left: 5%;
+  width: 90%;
 }
  `;
 
@@ -44,6 +44,20 @@ const AllContainer = styled.div`
   width: 90%;
   margin: auto;
   animation: ${slidein} 2s;
+`;
+
+
+const CalendarContainer = styled.div`
+  display: flex;
+  width: 75%;
+  margin:auto;
+
+`;
+const PostContainer = styled.div`
+  display: flex;
+  width: 20%;
+  height: 100%;
+  margin-left:5%;
 `;
 
 const Background = styled.div`

@@ -51,7 +51,9 @@ const WeekBarChart = (props) => {
   return (
     <React.Fragment>
       <Wrap>
+
         <CContainer1>
+     
           <Bar
             data={chartData1}
             width={130}

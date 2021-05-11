@@ -1,4 +1,3 @@
-import moment from "moment";
 import { produce } from "immer";
 import axios from "axios";
 import { history } from "../configureStore";
@@ -9,12 +8,16 @@ import { setCookie, deleteCookie, getCookie } from "../../shared/Cookie";
 const GET_TIME = "GET_TIME";
 const GET_TAG = "GET_TAG";
 const GET_CONDITION = "GET_CONDITION";
-const GET_TABLE ="GET_TABLE";
+const GET_TABLE = "GET_TABLE";
+const GET_COMPARESLEEPTIME = "GET_COMPARESLEEPTIME";
 
 const getTime = createAction(GET_TIME, (data) => ({ data }));
 const getTag = createAction(GET_TAG, (data) => ({ data }));
 const getCondition = createAction(GET_CONDITION, (data) => ({ data }));
-const getTable = createAction(GET_TABLE, (data)=> ({ data }));
+const getTable = createAction(GET_TABLE, (data) => ({ data }));
+const getCompareSleepTime = createAction(GET_COMPARESLEEPTIME, (data) => ({
+  data,
+})); // 혼합차트 데이터 가져오기
 
 const initialState = {
   result_sleeptime: {
@@ -26,20 +29,22 @@ const initialState = {
     monthly: [],
   },
   condition: [{}, {}],
-  table:{
+  table: {
     week_stimeaverage: [],
     week_wakeaverage: [],
     week_sleepaverage: [],
     good_stime: [],
-  }
+  },
+  compareSleepData: [],
 };
 
 const getTags = (today) => {
-  const _token = localStorage.getItem("token");
-  let token = {
-    headers: { Authorization: `Bearer ${_token}` },
-  };
   return function (dispatch) {
+    const _token = localStorage.getItem("token");
+    let token = {
+      headers: { Authorization: `Bearer ${_token}` },
+    };
+
     axios
       .get(`${config.api}/chart/barChart/${today}`, token)
       // .get(`${config.api}/chart/barChart/${today}`)
@@ -82,11 +87,11 @@ const getTimeAX = () => {
 };
 
 const getConditionAX = () => {
-  const _token = localStorage.getItem("token");
-  let token = {
-    headers: { Authorization: `Bearer ${_token}` },
-  };
   return function (dispatch) {
+    const _token = localStorage.getItem("token");
+    let token = {
+      headers: { Authorization: `Bearer ${_token}` },
+    };
     axios
       .get(`${config.api}/chart/grassChart`, token)
       .then((res) => {
@@ -106,7 +111,6 @@ const getConditionAX = () => {
       });
   };
 };
-
 
 const getTableAX = (today) => {
   const _token = localStorage.getItem("token");
@@ -133,6 +137,26 @@ const getTableAX = (today) => {
   };
 };
 
+// 혼합차트 데이터(수면시간 비교)
+const getCompareDataSV = (today) => {
+  return function (dispatch, getState, { history }) {
+    const _token = localStorage.getItem("token");
+    let token = {
+      headers: { Authorization: `Bearer ${_token}` },
+    };
+
+    axios
+      .get(`${config.api}/chart/lineChart/${today}`, token)
+      .then((res) => {
+        console.log(res);
+        const data = res.data;
+        dispatch(getCompareSleepTime(data));
+      })
+      .catch((err) => {
+        console.log("혼합차트 데이터불러오기 오류", err);
+      });
+  };
+};
 
 // 리듀서
 export default handleActions(
@@ -150,9 +174,15 @@ export default handleActions(
         draft.condition = action.payload.data;
       }),
     [GET_TABLE]: (state, action) =>
-    produce(state, (draft) => {
-      draft.table = action.payload.data;
-    }),
+      produce(state, (draft) => {
+        draft.table = action.payload.data;
+      }),
+
+    [GET_COMPARESLEEPTIME]: (state, action) =>
+      produce(state, (draft) => {
+        console.log(action.payload.data);
+        draft.compareSleepData = action.payload.data;
+      }),
   },
   initialState
 );
@@ -166,6 +196,8 @@ const actionCreators = {
   getConditionAX,
   getTableAX,
   getTable,
+  getCompareDataSV,
+  getCompareSleepTime,
 };
 
 export { actionCreators };

@@ -62,22 +62,18 @@ const MonthBarChart = (props) => {
 };
 
 const Wrap = styled.div`
-  width: 50%;
-  max-height: 45vh;
+  width: 100%;
+  max-height: 50vh;
   display: flex;
-  /* background-color: red; */
   justify-content: center;
   align-items: center;
-  margin-top: 2rem;
   overflow: hidden;
 `;
 
 const CContainer1 = styled.div`
   display: flex;
-  width: 60%;
-
-  // background-color: white;
-  // opacity: 0.7;
+  width: 50%;
+  max-height: 43vh;
 `;
 
 export default MonthBarChart;

@@ -5,6 +5,7 @@ import WeekBarChart from "../components/WeekBarChart";
 import MonthBarChart from "../components/MonthBarChart";
 import WeekMixedChart from "../components/WeekMixedChart";
 import LineChart from "../components/LineChart";
+import Table from "../components/Table";
 import { actionCreators as todoActions } from "../redux/modules/result";
 import moment from "moment";
 
@@ -12,11 +13,15 @@ const Analysis = () => {
   const dispatch = useDispatch();
   const resulttime = useSelector((state) => state.result.result_sleeptime);
   const tags = useSelector((state) => state.result.tags);
+  const table = useSelector((state) => state.result.table);
   const _today = moment();
 
   useEffect(() => {
+
     dispatch(todoActions.getTimeAX());
     dispatch(todoActions.getTags(_today.format("YYYY-MM-DD")));
+    dispatch(todoActions.getTableAX(_today.format("YYYY-MM-DD")));
+    
   }, []);
 
   return (
@@ -27,7 +32,19 @@ const Analysis = () => {
             {/* <WeekBarChart tags={tags} /> */}
             <MonthBarChart tags={tags} />
             <LineChart />
+          {/* <SleepTime>수면시간</SleepTime>
+          <Condition>컨디션</Condition>
+          <Graph>그래프</Graph> */}
+          <BarChart tags={tags}/>
+          {/* <LineChart/> */}
+         
           </ResultContainer1>
+          <ResultContainer1>
+          <Table table={table}/>
+         
+          </ResultContainer1>
+         
+        
 
           <ResultContainer2>
             {resulttime.hour == undefined ? (

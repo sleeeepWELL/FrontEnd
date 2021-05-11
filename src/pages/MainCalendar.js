@@ -1,5 +1,5 @@
 import React from "react";
-import styled from "styled-components";
+import styled, { keyframes } from 'styled-components';
 import {useSelector} from "react-redux";
 import Calendarjj from "../components/Calendarjj";
 import DetailPost from "../components/DetailPost";
@@ -19,13 +19,24 @@ const MainCalendar = () => {
     </React.Fragment>
   );
 };
+const slidein = keyframes`
+ from {
+  margin-left: 100%;
+  width: 200%
+}
+
+to {
+  margin-left: 0%;
+  width: 100%;
+}
+ ` 
 
 const AllContainer = styled.div`
   display: flex;
   flex-direction: row;
   width: 90%;
   margin:auto;
- 
+  animation: ${slidein} 2s;
 `;
 
 const Background = styled.div`

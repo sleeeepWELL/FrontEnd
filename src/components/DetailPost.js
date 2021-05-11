@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import moment from "moment";
 
-import styled from "styled-components";
+import styled, { keyframes } from 'styled-components';
 import { useSelector, useDispatch } from "react-redux";
 import { actionCreators as todoActions } from "../redux/modules/todo";
 
@@ -186,6 +186,7 @@ const DetailPost = (props) => {
     );
   }
 };
+
 
 const ModalComponent = styled.div`
   width: 50%;

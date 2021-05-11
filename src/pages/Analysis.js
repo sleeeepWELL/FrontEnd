@@ -16,38 +16,44 @@ const Analysis = () => {
   const table = useSelector((state) => state.result.table);
   const _today = moment();
 
-  useEffect(() => {
 
+  useEffect(() => {
     dispatch(todoActions.getTimeAX());
     dispatch(todoActions.getTags(_today.format("YYYY-MM-DD")));
     dispatch(todoActions.getTableAX(_today.format("YYYY-MM-DD")));
-    
   }, []);
 
   return (
-    <>
-      <Background>
+   <React.Fragment>
+ 
         <Container>
-          <ResultContainer1>
-            <WeekBarChart tags={tags} />
-            <MonthBarChart tags={tags} />
-
-          </ResultContainer1>
+        <Background>
+     
+    
+        <ResultContainer1>
+        
+      
+        <WeekBarChart tags={tags} />  
+            
+            <MonthBarChart tags={tags}/>
+           
+        </ResultContainer1>
         
           <ResultContainer2>
           <Table table={table}/>
-            {resulttime.hour == undefined ? (
+            {resulttime.hour == undefined ? 
               <Text>데이터가 부족하여 현재 측정 불가합니다</Text>
-            ) : (
+            : 
               <Text>
                 당신의 적정수면시간은 {resulttime.hour}시간 {resulttime.minute}
                 분 입니다
               </Text>
-            )}
+            }
           </ResultContainer2>
+          </Background>
         </Container>
-      </Background>
-    </>
+      
+      </React.Fragment>
   );
 };
 

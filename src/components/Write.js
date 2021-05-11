@@ -159,7 +159,7 @@ const Write = (props) => {
         <TopContainer>
           <Text>{props.props.date.slice(14, 24)}</Text>
 
-          <FixButton
+          <AddButton
             onClick={() => {
               if (startSleep === "" || endSleep === "" || mycondition === 0) {
                 window.alert(
@@ -173,11 +173,11 @@ const Write = (props) => {
               
             }}
           >
-            완료
-          </FixButton>
+            Complete
+          </AddButton>
         </TopContainer>
 
-        <Container>
+        <TimeContainer>
           <TextField
             id="time"
             label="취침시간"
@@ -202,7 +202,7 @@ const Write = (props) => {
               step: 300, // 5 min
             }}
           />
-        </Container>
+        </TimeContainer>
 
         <TagContainer>
           <TotalImgGrid>
@@ -356,10 +356,22 @@ const Write = (props) => {
 const Container = styled.div`
   background-color: grey;
   display: flex;
-  width: 100%;
-  height: 15%;
-  margin: 5px 0px 5px 0px;
+  width: 100%; 
+  height: 100%;
+  flex-direction: column;
   justify-content: space-between;
+  box-sizing: border-box;
+`;
+
+
+const TimeContainer = styled.div`
+  background-color: white;
+  display: flex;
+  width: 100%; 
+  height: 100%;
+  flex-direction: column;
+  justify-content: space-between;
+  box-sizing: border-box;
 `;
 
 const Text = styled.div`
@@ -369,25 +381,31 @@ const Text = styled.div`
   margin: 5px 0px 0px 5px;
 `;
 
-const FixButton = styled.button`
-  width: 13%;
-  height: 30px;
-  background-color: white;
-  border: #fee500;
+const AddButton = styled.button`
+  width: 30%;
+  height: 100%;
+  background-color: black;
+  border: 2px solid white;
   font-weight: bold;
   border-radius: 5px;
   outline: none;
   cursor: pointer;
-  margin: 10px 2px 10px 0px;
+  color: white;
+  margin: 9px 9px 0px 0px;
+  font-size: 3px;
+  
 `;
 const ImgGrid = styled.div`
   display: flex;
+  
   /* background-color: blue; */
   padding: 10px;
+ 
 `;
 
 const TotalImgGrid = styled.div`
   display: flex;
+  width:100%;
   flex-direction: row;
   margin: 20px;
   justify-content: space-evenly;
@@ -395,12 +413,12 @@ const TotalImgGrid = styled.div`
 `;
 
 const TopContainer = styled.div`
-  background-color: grey;
+  background-color: black;
   display: flex;
   justify-content: space-between;
   width: 100%;
   height: 20%;
-  margin-bottom: 5px;
+  margin: 20px 0px 20px 0px;
 `;
 
 const TagContainer = styled.div`

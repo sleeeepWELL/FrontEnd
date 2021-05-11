@@ -48,6 +48,8 @@ const initialState = {
   ],
 };
 
+
+
 const getAllPostAX = () => {
   return function (dispatch) {
     console.log(axios.defaults);
@@ -103,6 +105,8 @@ const getOnePostAX = (selectedAt) => {
 const addPostAX = (post) => {
   console.log(axios.data);
   return function (dispatch) {
+    
+
     let data = {
       startSleep: post.startSleep,
       endSleep: post.endSleep,
@@ -111,9 +115,12 @@ const addPostAX = (post) => {
       memo: post.memo,
       selectedAt: post.selectedAt,
     };
-
+    const _token = localStorage.getItem("token");
+    let token = {
+      headers: { Authorization: `Bearer ${_token}` },
+    };
     axios
-      .post(`${config.api}/cards`, data, config.token)
+      .post(`${config.api}/cards`, data, token)
       .then((response) => {
         dispatch(addTodo(post));
       })
@@ -137,6 +144,7 @@ const editPostAX = (post) => {
       conditions: post.conditions,
       memo: post.memo,
     };
+
     axios
       .put(`${config.api}/cards/${post.selectedAt}`, data, token)
       // .put(`${config.api}/cards/${post.selectedAt}`, data)
@@ -163,8 +171,12 @@ const editPostAX = (post) => {
 
 const removePostAX = (selectedAt) => {
   return function (dispatch) {
+  const _token = localStorage.getItem("token");
+  let token = {
+    headers: { Authorization: `Bearer ${_token}` },
+  };
     axios
-      .delete(`${config.api}/cards/${selectedAt}`, config.token)
+      .delete(`${config.api}/cards/${selectedAt}`,token)
       .then((reponse) => {
         // axios.delete(`${config.api}/cards/${selectedAt}`).then((reponse) => {
         dispatch(deleteTodo(selectedAt));

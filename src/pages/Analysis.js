@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import styled from "styled-components";
 import BarChart from "../components/BarChart";
 import LineChart from "../components/LineChart";
+import Table from "../components/Table";
 import { actionCreators as todoActions } from "../redux/modules/result";
 import moment from "moment";
 import { CSSTransitionGroup } from 'react-transition-group'
@@ -10,12 +11,16 @@ import { CSSTransitionGroup } from 'react-transition-group'
 const Analysis = () => {
   const dispatch = useDispatch();
   const resulttime = useSelector((state) => state.result.result_sleeptime);
-  const tags =useSelector((state) => state.result.tags);
+  const tags = useSelector((state) => state.result.tags);
+  const table = useSelector((state) => state.result.table);
   const _today = moment();
 
   useEffect(() => {
+
     dispatch(todoActions.getTimeAX());
     dispatch(todoActions.getTags(_today.format("YYYY-MM-DD")));
+    dispatch(todoActions.getTableAX(_today.format("YYYY-MM-DD")));
+    
   }, []);
 
  return (
@@ -34,7 +39,14 @@ const Analysis = () => {
           <Graph>그래프</Graph> */}
           <BarChart tags={tags}/>
           {/* <LineChart/> */}
+         
           </ResultContainer1>
+          <ResultContainer1>
+          <Table table={table}/>
+         
+          </ResultContainer1>
+         
+        
 
           <ResultContainer2>
           {resulttime.hour==undefined ? <Text>충분한 데이터가 있지 않아 현재 측정 불가합니다</Text>

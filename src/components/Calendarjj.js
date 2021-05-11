@@ -6,7 +6,7 @@ import { setCookie, deleteCookie, getCookie } from "../shared/Cookie";
 
 import { useSelector, useDispatch } from "react-redux";
 import { actionCreators as todoActions } from "../redux/modules/todo";
-import styled from "styled-components";
+import styled, { keyframes } from 'styled-components';
 
 
 const Calendar = (props) => {
@@ -188,6 +188,9 @@ const Calendar = (props) => {
   );
 };
 
+
+
+
 const Container = styled.div`
   box-sizing: border-box;
   margin: 2px auto;
@@ -200,6 +203,7 @@ const Container = styled.div`
   padding: 2px;
   background-color: black;
   border-radius: 5px;
+ 
 `;
 
 const DailyGrid = styled.div`

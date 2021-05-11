@@ -9,10 +9,12 @@ import { setCookie, deleteCookie, getCookie } from "../../shared/Cookie";
 const GET_TIME = "GET_TIME";
 const GET_TAG = "GET_TAG";
 const GET_CONDITION = "GET_CONDITION";
+const GET_TABLE ="GET_TABLE";
 
 const getTime = createAction(GET_TIME, (data) => ({ data }));
 const getTag = createAction(GET_TAG, (data) => ({ data }));
 const getCondition = createAction(GET_CONDITION, (data) => ({ data }));
+const getTable = createAction(GET_TABLE, (data)=> ({ data }));
 
 const initialState = {
   result_sleeptime: {
@@ -24,6 +26,12 @@ const initialState = {
     monthly: [],
   },
   condition: [{}, {}],
+  table:{
+    week_stimeaverage: [],
+    week_wakeaverage: [],
+    week_sleepaverage: [],
+    good_stime: [],
+  }
 };
 
 const getTags = (today) => {
@@ -100,6 +108,33 @@ const getConditionAX = () => {
   };
 };
 
+
+const getTableAX = (today) => {
+  const _token = localStorage.getItem("token");
+  let token = {
+    headers: { Authorization: `Bearer ${_token}` },
+  };
+  return function (dispatch) {
+    axios
+      .get(`${config.api}/chart/table/${today}`, token)
+      .then((res) => {
+        console.log(res);
+        let data = {
+          week_stimeaverage: res.data[0],
+          week_wakeaverage: res.data[1],
+          week_sleepaverage: res.data[2],
+          good_stime: res.data[3],
+        };
+        console.log(data);
+        dispatch(getTable(data));
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+};
+
+
 // 리듀서
 export default handleActions(
   {
@@ -115,6 +150,10 @@ export default handleActions(
       produce(state, (draft) => {
         draft.condition = action.payload.data;
       }),
+    [GET_TABLE]: (state, action) =>
+    produce(state, (draft) => {
+      draft.table = action.payload.data;
+    }),
   },
   initialState
 );
@@ -126,6 +165,8 @@ const actionCreators = {
   getTag,
   getCondition,
   getConditionAX,
+  getTableAX,
+  getTable,
 };
 
 export { actionCreators };

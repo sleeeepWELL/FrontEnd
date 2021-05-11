@@ -54,8 +54,8 @@ const WeekBarChart = (props) => {
         <CContainer1>
           <Bar
             data={chartData1}
-            width={150}
-            height={100}
+            width={140}
+            height={80}
             options={chartOptions1}
           />
         </CContainer1>
@@ -66,20 +66,17 @@ const WeekBarChart = (props) => {
 
 const Wrap = styled.div`
   width: 100%;
-  height: 45vh;
+  max-height: 50vh;
   display: flex;
-  /* background-color: red; */
   justify-content: center;
   align-items: center;
-  margin-top: 2rem;
   overflow: hidden;
 `;
 
 const CContainer1 = styled.div`
   display: flex;
-  width: 60%;
-  height: auto;
-  background-color: none;
+  width: 50%;
+  max-height: 43vh;
 `;
 
 export default WeekBarChart;

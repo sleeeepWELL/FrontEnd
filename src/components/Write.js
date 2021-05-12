@@ -41,8 +41,8 @@ const Write = (props) => {
 
   const [start, setStart] = React.useState(new Date("2021-01-01T23:00"));
   const startSleep = moment(start).format("HH:mm");
-  console.log("실제 찍히는 데이터:::", start);
-  console.log("보낼 데이터:::", startSleep);
+  // console.log("실제 찍히는 데이터:::", start);
+  // console.log("보낼 데이터:::", startSleep);
   const [end, setEnd] = React.useState(new Date("2021-01-01T09:00"));
   const endSleep = moment(end).format("HH:mm");
   // console.log(end);
@@ -97,6 +97,7 @@ const Write = (props) => {
   }
 
   //컨디션
+
   const [checkone, setCheckOne] = React.useState(false);
   const [checktwo, setCheckTwo] = React.useState(false);
   const [checkthree, setCheckThree] = React.useState(false);
@@ -132,6 +133,36 @@ const Write = (props) => {
   if (con5) {
     TotalCon.push(con5);
   }
+
+  //컨디션 체크 하나만 되게
+  // const [checktrue, setCheckTrue] = React.useState(false);
+
+  // const checkCon = [];
+  // if (checktrue) {
+  //   checkCon.push(checktrue);
+  // }
+  // console.log(checkCon);
+
+  const TrueCon = [];
+  if (checkone) {
+    TrueCon.push(checkone);
+  }
+  if (checktwo) {
+    TrueCon.push(checktwo);
+  }
+  if (checkthree) {
+    TrueCon.push(checkthree);
+  }
+  if (checkfour) {
+    TrueCon.push(checkfour);
+  }
+  if (checkfive) {
+    TrueCon.push(checkfive);
+  }
+
+  // console.log(checkone, checktwo, checkthree, checkfour, checkfive);
+  console.log(TrueCon);
+  console.log(TotalCon);
 
   const mycondition = Number(String(TotalCon));
   console.log("추가할 컨디션:", mycondition);
@@ -311,8 +342,12 @@ const Write = (props) => {
                 alt="보통"
                 value={3}
                 onClick={(e) => {
-                  checkthree ? setCon3(null) : setCon3(e.target.value);
-                  checkthree ? setCheckThree(false) : setCheckThree(true);
+                  if (TrueCon == "true") {
+                    return null;
+                  } else {
+                    checkthree ? setCon3(null) : setCon3(e.target.value);
+                    checkthree ? setCheckThree(false) : setCheckThree(true);
+                  }
                 }}
               />
             </ImgGrid>
@@ -325,8 +360,12 @@ const Write = (props) => {
                 alt="좋음"
                 value={4}
                 onClick={(e) => {
-                  checkfour ? setCon4(null) : setCon4(e.target.value);
-                  checkfour ? setCheckFour(false) : setCheckFour(true);
+                  if (TrueCon == "true") {
+                    return null;
+                  } else {
+                    checkfour ? setCon4(null) : setCon4(e.target.value);
+                    checkfour ? setCheckFour(false) : setCheckFour(true);
+                  }
                 }}
               />
             </ImgGrid>
@@ -339,8 +378,12 @@ const Write = (props) => {
                 alt="매우 좋음"
                 value={5}
                 onClick={(e) => {
-                  checkfive ? setCon5(null) : setCon5(e.target.value);
-                  checkfive ? setCheckFive(false) : setCheckFive(true);
+                  if (TrueCon == "true") {
+                    return null;
+                  } else {
+                    checkfive ? setCon5(null) : setCon5(e.target.value);
+                    checkfive ? setCheckFive(false) : setCheckFive(true);
+                  }
                 }}
               />
             </ImgGrid>

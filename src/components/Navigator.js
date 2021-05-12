@@ -63,11 +63,11 @@ const Navigator = () => {
   return (
     <React.Fragment>
       <Wrap>
-        <div className="Logo">SLEEPWELL</div>
+        <Logo className="Logo" onClick={()=>{history.replace("/main")}}>SLEEPWELL</Logo>
         <CategoryContainer>
           <div></div>
           <CategoryBox id="main" onClick={GetClick}>
-            홈페이지
+            캘린더
           </CategoryBox>
           <CategoryBox id="main/prac" onClick={GetClick}>
             내 컨디션
@@ -115,7 +115,7 @@ const CategoryBox = styled.div`
   }
 `;
 
-const Logo = styled.div`
+const Logo = styled.button`
   width: 15%;
   display: flex;
   font-size: 1.5rem;
@@ -123,6 +123,8 @@ const Logo = styled.div`
   font-weight: bold;
   cursor: pointer;
   justify-content: center;
+  outline: none;
+  border: none;
 `;
 
 const LogoutBox = styled.div`

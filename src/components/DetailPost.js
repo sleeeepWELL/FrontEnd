@@ -142,7 +142,7 @@ const DetailPost = (props) => {
           </DayHeader>
 
           <ConditionContainer>
-            <ConditionText>CONDITION</ConditionText>
+            <ConditionText>컨디션</ConditionText>
             {myCon === "1" && <img width="40px" height="40px" src={one}></img>}
             {myCon === "2" && <img width="40px" height="40px" src={two}></img>}
             {myCon === "3" && (
@@ -153,7 +153,7 @@ const DetailPost = (props) => {
           </ConditionContainer>
 
           <TimeContainer>
-            <TimeText>SLEEP TIME</TimeText>
+            <TimeText>수면 시간</TimeText>
             <TimeText2>
               {`${props.date.totalSleepHour} 시간 ${props.date.totalSleepMinute} 분`}
               ({props.date.startSleep} ~ {props.date.endSleep})
@@ -161,7 +161,7 @@ const DetailPost = (props) => {
           </TimeContainer>
 
           <TagContainer>
-            <TimeText>TAG</TimeText>
+            <TimeText>태그</TimeText>
             {props.date.tag.map((currentTag, idx) => {
               return (
                 <img
@@ -174,7 +174,7 @@ const DetailPost = (props) => {
             })}
           </TagContainer>
 
-          <Contents> MEMO {props.date.memo}</Contents>
+          <Contents> 메모 {props.date.memo}</Contents>
         </ModalComponent>
       </React.Fragment>
        
@@ -188,10 +188,11 @@ const ModalComponent = styled.div`
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
+  // border-radius: 20px;
 `;
 
 const DayHeader = styled.div`
-  background-color: black;
+  background-color: white;
   display: flex;
   justify-content: space-between;
   width: 100%;
@@ -200,7 +201,7 @@ const DayHeader = styled.div`
 `;
 
 const ConditionContainer = styled.div`
-  background-color: black;
+  background-color: white;
   width: 100%;
   height: 12%;
   display: flex;
@@ -208,7 +209,7 @@ const ConditionContainer = styled.div`
 `;
 
 const TimeContainer = styled.div`
-  background-color: black;
+  background-color: white;
   width: 100%;
   height: 10%;
   display: flex;
@@ -216,7 +217,7 @@ const TimeContainer = styled.div`
 `;
 
 const TagContainer = styled.div`
-  background-color: black;
+  background-color: white;
   width: 100%;
   height: 12%;
   display: flex;
@@ -240,21 +241,21 @@ const MoveDButton = styled.button`
   outline: none;
   border: none;
   cursor: pointer;
-  color: white;
-  background-color: black;
+  color: black;
+  background-color: white;
   text-align: center;
 `;
 const DText = styled.div`
   font-weight: bold;
   font-size: 20px;
-  color: white;
+  color: black;
   width: 90%;
   border: none;
   text-align: center;
   padding-top: 2px;
 `;
 const RightHeader = styled.div`
-  background-color: black;
+  background-color:white;
   display: flex;
   justify-content: space-between;
   width: 37%;
@@ -291,14 +292,14 @@ const DeleteButton = styled.button`
 
 const TimeText = styled.div`
   width: 35%;
-  color: white;
+  color: black;
   font-size: 15px;
   margin: 5px 0px 0px 10px;
   font-weight: bold;
 `;
 const EmptyText = styled.div`
   width: 100%;
-  color: white;
+  color: black;
   font-size: 15px;
   font-weight: bold;
   text-align: center;
@@ -306,7 +307,7 @@ const EmptyText = styled.div`
 
 const TimeText2 = styled.div`
   width: 65%;
-  color: white;
+  color: black;
   font-size: 12px;
   margin: 5px 0px 0px 10px;
   font-weight: bold;
@@ -314,7 +315,7 @@ const TimeText2 = styled.div`
 
 const ConditionText = styled.div`
   width: 35%;
-  color: white;
+  color: black;
   font-size: 15px;
   margin: 5px 0px 0px 10px;
   font-weight: bold;
@@ -323,9 +324,9 @@ const ConditionText = styled.div`
 const Contents = styled.div`
   width: 100%;
   height: 55%;
-  background-color: black;
+  background-color: white;
   margin: 5px 0px 0px 10px;
-  color: white;
+  color: black;
   font-weight: bold;
 `;
 

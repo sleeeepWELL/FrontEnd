@@ -198,8 +198,7 @@ const Container = styled.div`
   flex-direction: row;
   display: flex;
   width: 95%;
-  min-width: 50px;
-  height: 100%;
+  height: 50%;
   align-items: center;
   // border: 1px solid black;
  
@@ -241,7 +240,7 @@ const DayGrid = styled.div`
   display: flex;
   width: 100%;
 
-  height: 14.0vh;
+  height: 15.5vh;
 
   border: 1px #000000 solid;
   align-items: flex-end;

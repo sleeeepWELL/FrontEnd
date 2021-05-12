@@ -54,8 +54,8 @@ const WeekBarChart = (props) => {
         <CContainer1>
           <Bar
             data={chartData1}
-            width={130}
-            height={90}
+            width={70}
+            height={30}
             options={chartOptions1}
           />
         </CContainer1>

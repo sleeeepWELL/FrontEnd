@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { Bar } from "react-chartjs-2";
+import  Cube  from "./Cube";
 
 const MonthBarChart = (props) => {
   const monthlydata = props.tags.monthly;
@@ -48,11 +49,12 @@ const MonthBarChart = (props) => {
   return (
     <React.Fragment>
       <Wrap>
+      {/* <Cube/> */}
         <CContainer1>
           <Bar
             data={chartData2}
-            width={130}
-            height={90}
+            width={70}
+            height={30}
             options={chartOptions2}
           />
         </CContainer1>
@@ -73,6 +75,7 @@ const Wrap = styled.div`
 const CContainer1 = styled.div`
   display: flex;
   width: 50%;
+ 
   max-height: 43vh;
 `;
 

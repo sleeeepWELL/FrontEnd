@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import Calendarjj from "../components/Calendarjj";
 import DetailPost from "../components/DetailPost";
 import DetailWrite from "../components/DetailWrite";
+import Search from "../components/Search";
 
 const MainCalendar = () => {
   const [is_modify, setModify] = React.useState(false);
@@ -19,16 +20,23 @@ const MainCalendar = () => {
           <CalendarContainer>
             <Calendarjj _showModify={setModify} />
           </CalendarContainer>
+          <RightContainer>
           <PostContainer>
             {is_modify ? (
               <DetailWrite date={day_list} _showModify={setModify} />
             ) : (
               <DetailPost date={day_list} _showModify={setModify} />
             )}
+             
           </PostContainer>
-          {/* <SearchContainer>
-            <Search/>
-          </SearchContainer> */}
+          <PostContainer>
+          <Search/>
+          </PostContainer>
+          </RightContainer>
+          
+         
+           
+          
         </AllContainer>
 
       </Background>
@@ -60,20 +68,35 @@ const AllContainer = styled.div`
 `;
 
 const CalendarContainer = styled.div`
-  display: flex;
-  width: 85%;
-  margin: auto;
+  width: 70%;
+  height:140%;
   background-color: white;
   margin-top: 10px;
   border-radius: 15px;
 `;
+
+
+const RightContainer = styled.div`
+  display: flex;
+  width: 30%;
+  height: 100%;
+  flex-direction: column;
+`;
+
+
+
 const PostContainer = styled.div`
   display: flex;
-  width: 15%;
+  width: 100%;
   height: 100%;
   margin-left: 5%;
-  background-color: black;
+   margin-top: 10px;
+  background-color: white;
+  flex-direction: column;
+  border-radius: 20px;
 `;
+
+
 
 const Background = styled.div`
   width: 100%;

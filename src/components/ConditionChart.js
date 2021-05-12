@@ -56,7 +56,8 @@ const ConditionChart = (props) => {
 
 const Container = styled.div`
   width: 100%;
-  height: 400px;
+  margin-top: 100px;
+  height: 60%;
 `;
 
 const One = styled.div`
@@ -95,7 +96,7 @@ const Five = styled.div`
 `;
 
 const ColorBox = styled.div`
-  width: 400px;
+  width: 30%;
   display: flex;
   flex-direction: row;
   margin: auto;

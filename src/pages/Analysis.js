@@ -7,9 +7,9 @@ import WeekMixedChart from "../components/WeekMixedChart";
 import Table from "../components/Table";
 
 import { actionCreators as todoActions } from "../redux/modules/result";
-import PracAnalysis from "./PracAnalysis";
 
 import moment from "moment";
+import ConditionChart from "../components/ConditionChart";
 
 const Analysis = () => {
   const dispatch = useDispatch();
@@ -40,7 +40,7 @@ const Analysis = () => {
           <ChartContainer1>
             {Click === "Condition" && (
               <>
-                <PracAnalysis />
+                <ConditionChart />
               </>
             )}
             {Click === "weekTag" && (
@@ -173,28 +173,6 @@ const Text = styled.div`
   color: white;
 `;
 
-const SleepTime = styled.div`
-  width: auto;
-  height: auto;
-  border: 1px solid blue;
-  margin: 20px;
-  padding: 10px;
-`;
 
-const Condition = styled.div`
-  width: auto;
-  height: auto;
-  border: 1px solid blue;
-  margin: 20px;
-  padding: 10px;
-`;
-
-const Graph = styled.div`
-  width: auto;
-  height: auto;
-  border: 1px solid blue;
-  margin: 20px;
-  padding: 10px;
-`;
 
 export default Analysis;

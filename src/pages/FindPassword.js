@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
 import { actionCreators as userActions } from "../redux/modules/user";
 import { history } from "../redux/configureStore";
+import Graphic from "../components/Graphic";
 
 //회원가입
 const FindPassword = () => {
@@ -60,7 +61,7 @@ const FindPassword = () => {
   return (
     <React.Fragment>
       <Wrap>
-        <Background></Background>
+        <Graphic />
         <LoginWrap>
           <SignUpContainer>
             <SemiContainer>
@@ -178,17 +179,6 @@ const Wrap = styled.div`
   box-sizing: border-box;
   flex-direction: row;
   justify-content: flex-start;
-`;
-
-const Background = styled.div`
-  display: flex;
-  top: 0;
-  left: 0;
-  background-image: url("https://images.unsplash.com/photo-1488866022504-f2584929ca5f?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1343&q=80");
-  width: 60vw;
-  height: 100vh;
-  background-size: cover;
-  z-index: -1;
 `;
 
 const LoginWrap = styled.div`

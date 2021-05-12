@@ -62,9 +62,6 @@ const FindPassword = () => {
       <Wrap>
         <Background></Background>
         <LoginWrap>
-          <LogoContainer>
-            <Logo>SleepWell</Logo>
-          </LogoContainer>
           <SignUpContainer>
             <SemiContainer>
               <div style={{ fontSize: "30px", fontWeight: "600" }}>
@@ -104,7 +101,7 @@ const FindPassword = () => {
               />
               <InfoBox>
                 <div
-                  style={{ cursor: "pointer" }}
+                  style={{ cursor: "pointer", fontSize: "13px" }}
                   onClick={() => {
                     history.replace("/login");
                   }}
@@ -112,7 +109,7 @@ const FindPassword = () => {
                   로그인
                 </div>
                 <div
-                  style={{ cursor: "pointer" }}
+                  style={{ cursor: "pointer", fontSize: "13px" }}
                   onClick={() => {
                     history.replace("/signup");
                   }}
@@ -160,13 +157,14 @@ const InfoBox = styled.div`
 `;
 
 const CheckBnt = styled.button`
-  background-color: white;
-  border: 1px gray solid;
+  background-color: rgba(238, 238, 238, 1);
+  border-radius: 10px;
+  border: none;
   height: 3rem;
   align-items: flex-end;
   font-size: 0.7rem;
   cursor: pointer;
-  width: 7rem;
+  width: 27%;
   :hover {
     background-color: gray;
     color: white;
@@ -250,31 +248,34 @@ const IdBox = styled.input`
 const InputBox = styled.input`
   background-color: white;
   padding: 15px;
-  border-top: none;
-  border-right: none;
-  border-left: none;
-  border-bottom: 1px solid grey;
-  border-radius: 1px;
+  border: 0.5px solid rgba(76, 76, 76, 0.3);
+  border-radius: 10px;
   outline: none;
   font-size: 15px;
   font-weight: bold;
   color: black;
-  width: 100%;
+  margin-right: 0.5rem;
+  width: 70%;
+  opacity: 0.7;
+  ::placeholder {
+    font-size: 13px;
+  }
 `;
 
 const PwBox = styled.input`
   background-color: white;
   padding: 15px;
-  border-top: none;
-  border-right: none;
-  border-left: none;
-  border-bottom: 1px solid grey;
-  border-radius: 1px;
+  border: 0.5px solid rgba(76, 76, 76, 0.3);
+  border-radius: 10px;
   margin-top: 2rem;
   outline: none;
   font-size: 15px;
   font-weight: bold;
   color: black;
+  opacity: 0.7;
+  ::placeholder {
+    font-size: 13px;
+  }
 `;
 
 const SignUpButton = styled.a`
@@ -282,10 +283,9 @@ const SignUpButton = styled.a`
   display: block;
   height: 60px;
   margin-top: 10px;
-  background-color: white;
-  border: 1px solid gray;
+  background-color: rgba(1, 0, 1, 1);
+  border: none;
   text-align: center;
-  border-radius: 4px;
   align-content: center;
   cursor: pointer;
   & > span {
@@ -293,7 +293,7 @@ const SignUpButton = styled.a`
     padding-top: 17px;
     font-size: 16px;
     line-height: 24px;
-    color: black;
+    color: white;
     vertical-align: top;
     font-family: sans-serif;
     font-weight: bold;

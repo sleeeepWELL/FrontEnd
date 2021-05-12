@@ -5,8 +5,6 @@ import Calendarjj from "../components/Calendarjj";
 import DetailPost from "../components/DetailPost";
 import DetailWrite from "../components/DetailWrite";
 
-
-
 const MainCalendar = () => {
   const [is_modify, setModify] = React.useState(false);
   const day_list = useSelector((state) => state.todo.day_list);
@@ -15,7 +13,6 @@ const MainCalendar = () => {
 
   return (
     <React.Fragment>
-     
       <Background>
         <AllContainer>
           <CalendarContainer>
@@ -35,13 +32,15 @@ const MainCalendar = () => {
 };
 const slidein = keyframes`
  from {
-  margin-left: 100%;
-  width: 50%
+  /* margin-left: 100%;
+  width: 50% */
+  opacity:0
 }
 
 to {
-  margin-left: 5%;
-  width: 90%;
+  /* margin-left: 5%;
+  width: 90%; */
+  opacity:1;
 }
  `;
 
@@ -50,7 +49,7 @@ const AllContainer = styled.div`
   flex-direction: row;
   width: 90%;
   margin: auto;
-  animation: ${slidein} 2s;
+  animation: ${slidein} 1s;
 `;
 
 const CalendarContainer = styled.div`
@@ -62,15 +61,16 @@ const PostContainer = styled.div`
   display: flex;
   width: 20%;
   height: 100%;
-  margin-left:5%;
+  margin-left: 5%;
   background-color: black;
 `;
 
 const Background = styled.div`
- width: 100%;
- left:0;
- top:0;
- background-color: #F2F2F2;
-`
+  width: 100%;
+  height: 100vh;
+  left: 0;
+  top: 0;
+  background-color: #f2f2f2;
+`;
 
 export default MainCalendar;

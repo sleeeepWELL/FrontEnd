@@ -158,7 +158,7 @@ const ResultContainer2 = styled.div`
 const Background = styled.div`
   width: 100%;
   height: 100vh;
-  background-color: black;
+  background-color: rgba(242, 242, 242, 1);
   z-index: 999;
 `;
 

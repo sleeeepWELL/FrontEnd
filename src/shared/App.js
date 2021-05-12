@@ -32,6 +32,7 @@ function App() {
 
   React.useEffect(() => {
     dispatch(userActions.getUserSV());
+    dispatch(userActions.extensionAccess());
   }, []);
 
   return (

@@ -108,7 +108,6 @@ const KaKaoWrap = styled.div`
   display: flex;
   width: 100%;
   height: auto;
-  /* background-color: green; */
   justify-content: center;
   align-items: center;
   & span {
@@ -147,17 +146,6 @@ const Wrap = styled.div`
   box-sizing: border-box;
   flex-direction: row;
   justify-content: flex-start;
-`;
-
-const Background = styled.div`
-  display: flex;
-  top: 0;
-  left: 0;
-  background-image: url("https://images.unsplash.com/photo-1488866022504-f2584929ca5f?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1343&q=80");
-  width: 60vw;
-  height: 100vh;
-  background-size: cover;
-  z-index: -1;
 `;
 
 const LoginWrap = styled.div`
@@ -250,18 +238,6 @@ const KaKaoImg = styled.img`
   width: 17px;
   height: 17px;
   margin-right: 10px;
-`;
-
-const SLoginButton = styled.button`
-  width: 360px;
-  height: 30px;
-  background-color: #ffd700;
-  margin-top: 10px;
-  border: #fee500;
-  font-weight: bold;
-  border-radius: 5px;
-  outline: none;
-  cursor: pointer;
 `;
 
 export default Login;

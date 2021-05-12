@@ -14,6 +14,7 @@ const MainCalendar = () => {
   return (
     <React.Fragment>
       <Background>
+ 
         <AllContainer>
           <CalendarContainer>
             <Calendarjj _showModify={setModify} />
@@ -25,7 +26,11 @@ const MainCalendar = () => {
               <DetailPost date={day_list} _showModify={setModify} />
             )}
           </PostContainer>
+          {/* <SearchContainer>
+            <Search/>
+          </SearchContainer> */}
         </AllContainer>
+
       </Background>
     </React.Fragment>
   );
@@ -44,22 +49,27 @@ to {
 }
  `;
 
+ 
+
 const AllContainer = styled.div`
   display: flex;
   flex-direction: row;
-  width: 90%;
+  width: 95%;
   margin: auto;
   animation: ${slidein} 1s;
 `;
 
 const CalendarContainer = styled.div`
   display: flex;
-  width: 75%;
+  width: 85%;
   margin: auto;
+  background-color: white;
+  margin-top: 10px;
+  border-radius: 15px;
 `;
 const PostContainer = styled.div`
   display: flex;
-  width: 20%;
+  width: 15%;
   height: 100%;
   margin-left: 5%;
   background-color: black;

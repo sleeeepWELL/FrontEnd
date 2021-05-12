@@ -145,30 +145,68 @@ const Write = (props) => {
 
   const TrueCon = [];
   if (checkone) {
-    TrueCon.push(checkone);
+    TrueCon.push(1);
   }
   if (checktwo) {
-    TrueCon.push(checktwo);
+    TrueCon.push(2);
   }
   if (checkthree) {
-    TrueCon.push(checkthree);
+    TrueCon.push(3);
   }
   if (checkfour) {
-    TrueCon.push(checkfour);
+    TrueCon.push(4);
   }
   if (checkfive) {
-    TrueCon.push(checkfive);
+    TrueCon.push(5);
   }
 
   // console.log(checkone, checktwo, checkthree, checkfour, checkfive);
   console.log(TrueCon);
   console.log(TotalCon);
 
-  const mycondition = Number(String(TotalCon));
+  const mycondition = Number(String(TrueCon));
   console.log("추가할 컨디션:", mycondition);
 
   const changeMemo = (e) => {
     setMemo(e.target.value);
+  };
+
+  const [currentClick, setCurrentClick] = React.useState(null);
+  const [prevClick, setPrevClick] = React.useState(null);
+
+  const getClick = (e) => {
+    console.log(e.target.value); // 1,2,3,4,5 로 넘어옴
+    if (e.target.value == 1) {
+      setCheckOne(true);
+      setCheckTwo(false);
+      setCheckThree(false);
+      setCheckFour(false);
+      setCheckFive(false);
+    } else if (e.target.value == 2) {
+      setCheckOne(false);
+      setCheckTwo(true);
+      setCheckThree(false);
+      setCheckFour(false);
+      setCheckFive(false);
+    } else if (e.target.value == 3) {
+      setCheckOne(false);
+      setCheckTwo(false);
+      setCheckThree(true);
+      setCheckFour(false);
+      setCheckFive(false);
+    } else if (e.target.value == 4) {
+      setCheckOne(false);
+      setCheckTwo(false);
+      setCheckThree(false);
+      setCheckFour(true);
+      setCheckFive(false);
+    } else if (e.target.value == 5) {
+      setCheckOne(false);
+      setCheckTwo(false);
+      setCheckThree(false);
+      setCheckFour(false);
+      setCheckFive(true);
+    }
   };
 
   //추가하는 경우는 데이터를 잘라서 사용해야하고
@@ -313,10 +351,7 @@ const Write = (props) => {
                 src={one_icon}
                 alt="매우나쁨"
                 value={1}
-                onClick={(e) => {
-                  checkone ? setCon1(null) : setCon1(e.target.value);
-                  checkone ? setCheckOne(false) : setCheckOne(true);
-                }}
+                onClick={getClick}
               />
             </ImgGrid>
             <ImgGrid>
@@ -327,10 +362,7 @@ const Write = (props) => {
                 src={two_icon}
                 alt="나쁨"
                 value={2}
-                onClick={(e) => {
-                  checktwo ? setCon2(null) : setCon2(e.target.value);
-                  checktwo ? setCheckTwo(false) : setCheckTwo(true);
-                }}
+                onClick={getClick}
               />
             </ImgGrid>
             <ImgGrid>
@@ -341,14 +373,7 @@ const Write = (props) => {
                 src={three_icon}
                 alt="보통"
                 value={3}
-                onClick={(e) => {
-                  if (TrueCon == "true") {
-                    return null;
-                  } else {
-                    checkthree ? setCon3(null) : setCon3(e.target.value);
-                    checkthree ? setCheckThree(false) : setCheckThree(true);
-                  }
-                }}
+                onClick={getClick}
               />
             </ImgGrid>
             <ImgGrid>
@@ -359,14 +384,7 @@ const Write = (props) => {
                 src={four_icon}
                 alt="좋음"
                 value={4}
-                onClick={(e) => {
-                  if (TrueCon == "true") {
-                    return null;
-                  } else {
-                    checkfour ? setCon4(null) : setCon4(e.target.value);
-                    checkfour ? setCheckFour(false) : setCheckFour(true);
-                  }
-                }}
+                onClick={getClick}
               />
             </ImgGrid>
             <ImgGrid>
@@ -377,14 +395,7 @@ const Write = (props) => {
                 src={five_icon}
                 alt="매우 좋음"
                 value={5}
-                onClick={(e) => {
-                  if (TrueCon == "true") {
-                    return null;
-                  } else {
-                    checkfive ? setCon5(null) : setCon5(e.target.value);
-                    checkfive ? setCheckFive(false) : setCheckFive(true);
-                  }
-                }}
+                onClick={getClick}
               />
             </ImgGrid>
           </TotalImgGrid>

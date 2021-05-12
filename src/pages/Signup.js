@@ -171,7 +171,6 @@ const Signup = () => {
                   비밀번호 찾기
                 </div>
               </InfoBox>
-
               <SignUpButton onClick={signup}>
                 <span>가입완료</span>
               </SignUpButton>
@@ -185,11 +184,11 @@ const Signup = () => {
 
 const SemiContainer = styled.div`
   width: 36%;
-  height: 70%;
+  height: 90%;
   display: flex;
   position: absolute;
-  top: 26%;
   flex-direction: column;
+  justify-content: center;
 `;
 
 const InputContainer = styled.div`
@@ -240,20 +239,20 @@ const LoginWrap = styled.div`
   height: 100vh;
   justify-content: center;
   box-sizing: border-box;
-  align-items: flex-start;
+  align-items: center;
   flex-direction: column;
 `;
 
 const SignUpContainer = styled.div`
   display: flex;
   margin: 0px;
-  padding: 1rem;
   width: 100%;
   height: 100%;
   border: none;
   box-sizing: border-box;
-  align-content: center;
+  align-items: center;
   justify-content: center;
+  flex-direction: column;
 `;
 
 const InputBox = styled.input`
@@ -290,25 +289,18 @@ const PwBox = styled.input`
 `;
 
 const SignUpButton = styled.a`
-  margin-top: 30px;
-  display: block;
-  height: 60px;
+  display: flex;
+  height: 50px;
   margin-top: 10px;
   background-color: rgba(1, 0, 1, 1);
   border: none;
   text-align: center;
-  align-content: center;
+  border-radius: 4px;
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
-  & > span {
-    display: inline-block;
-    padding-top: 17px;
-    font-size: 16px;
-    line-height: 24px;
-    color: white;
-    vertical-align: top;
-    font-family: sans-serif;
-    font-weight: bold;
-  }
+  color: white;
+  font-weight: 600;
 `;
 
 const KaKaoBtn = styled.a`

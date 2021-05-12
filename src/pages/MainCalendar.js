@@ -37,15 +37,11 @@ const MainCalendar = () => {
 };
 const slidein = keyframes`
  from {
-  /* margin-left: 100%;
-  width: 50% */
   opacity:0
 }
 
 to {
-  /* margin-left: 5%;
-  width: 90%; */
-  opacity:1;
+  opacity: 1;
 }
  `;
 

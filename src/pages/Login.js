@@ -38,7 +38,7 @@ const Login = (props) => {
   return (
     <React.Fragment>
       <Wrap>
-        <Graphic></Graphic>
+        <Graphic />
         <LoginWrap>
           <LoginContainer>
             <SemiContainer>
@@ -122,7 +122,6 @@ const SemiContainer = styled.div`
   height: 70%;
   display: flex;
   position: absolute;
-  top: 26%;
   flex-direction: column;
 `;
 
@@ -168,6 +167,7 @@ const LoginContainer = styled.div`
   box-sizing: border-box;
   align-content: center;
   justify-content: center;
+  flex-direction: column;
 `;
 
 const IdBox = styled.input`
@@ -179,7 +179,7 @@ const IdBox = styled.input`
   padding: 15px;
   outline: none;
   font-size: 15px;
-  margin-top: 3.5rem;
+  margin-top: 15%;
   font-weight: bold;
   color: black;
   opacity: 0.7;
@@ -203,12 +203,13 @@ const PwBox = styled.input`
     font-size: 13px;
   }
   @media (max-width: 975px) {
-    width: 90%;
+    width: auto;
   }
 `;
 
 const LoginButton = styled.a`
   display: flex;
+  width: auto;
   height: 50px;
   margin-top: 10px;
   background-color: rgba(1, 0, 1, 1);

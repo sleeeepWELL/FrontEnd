@@ -132,11 +132,11 @@ const FindPassword = () => {
 
 const SemiContainer = styled.div`
   width: 36%;
-  height: 70%;
+  height: 90%;
   display: flex;
   position: absolute;
-  top: 26%;
   flex-direction: column;
+  justify-content: center;
 `;
 
 const InputContainer = styled.div`

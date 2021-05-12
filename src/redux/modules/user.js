@@ -332,6 +332,40 @@ const deleteUserSV = () => {
   };
 };
 
+// 마이페이지
+// username 변경
+const changeUsernameSV = (username) => {
+  return function (dispatch, getState, { history }) {
+    const data = {
+      username: username,
+    };
+    axios
+      .put(`${config.api}/setting/username`, data)
+      .then(() => {
+        window.alert("닉네임이 변경되었습니다.");
+      })
+      .catch((err) => {
+        console.log("닉네임변경 에러", err);
+      });
+  };
+};
+
+// 비밀번호 변경
+const changePwdSV = (password, passwordCheck) => {
+  return function (dispatch, getState, { history }) {
+    const data = { password: password, passwordCheck: passwordCheck };
+    axios
+      .put(`${config.api}/setting/password/new`, data)
+      .then(() => {
+        window.alert("비밀번호가 변경되었습니다. 다시 로그인 해주세요.");
+        history.replace("/login");
+      })
+      .catch((err) => {
+        console.log("비밀번호 변경 오류", err);
+      });
+  };
+};
+
 // 리듀서
 export default handleActions(
   {
@@ -394,6 +428,8 @@ const actionCreators = {
   sendPwdAuth,
   deleteUserSV,
   deleteUser,
+  changeUsernameSV,
+  changePwdSV,
 };
 
 export { actionCreators };

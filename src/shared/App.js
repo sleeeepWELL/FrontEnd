@@ -9,6 +9,7 @@ import Analysis from "../pages/Analysis";
 import PracAnalysis from "../pages/PracAnalysis";
 import FindPassword from "../pages/FindPassword";
 import Ready from "../pages/Ready";
+import MyPage from "../pages/MyPage";
 
 import { Switch, Route } from "react-router-dom";
 import { ConnectedRouter } from "connected-react-router";
@@ -20,7 +21,6 @@ import LoginCheck from "../pages/LoginCheck";
 import { actionCreators as userActions } from "../redux/modules/user";
 
 function App() {
-  
   const dispatch = useDispatch();
   // const is_login = getCookie("is_login") ? true: false;
 
@@ -49,6 +49,7 @@ function App() {
           <Route path="/main" exact component={MainCalendar} />
           <Route path="/main/analysis" exact component={Analysis} />
           <Route path="/main/prac" exact component={Ready} />
+          <Route path="/main/mypage" exact component={MyPage} />
           <Route path="/" component={LoginCheck} />
           {/* <Route exact component={NotFound} /> */}
         </Wrap>

@@ -43,32 +43,6 @@ const Ready = () => {
         </SubInfo>
         <SubInfo>빠른 시일내에 준비하여 찾아뵙겠습니다.</SubInfo>
         <div></div>
-        <InputContainer>
-          <InputBox
-            onChange={(e) => {
-              setNickname(e.target.value);
-            }}
-            placeholder="변경할 닉네임 입력"
-          />
-          <CheckBnt onClick={changeNickname}>닉네임변경</CheckBnt>
-        </InputContainer>
-        <PwBox
-          onChange={(e) => {
-            setPwd(e.target.value);
-          }}
-          placeholder="새 비밀번호 입력"
-          type="password"
-        />
-        <PwBox
-          onChange={(e) => {
-            setPwdCheck(e.target.value);
-          }}
-          placeholder="새 비밀번호 다시입력"
-          type="password"
-        />
-        <SignUpButton onClick={changePwd}>
-          <span>비밀번호변경</span>
-        </SignUpButton>
       </Wrap>
     </>
   );

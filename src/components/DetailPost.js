@@ -30,12 +30,13 @@ const mapKeywordToImg = {
 const DetailPost = (props) => {
   const dispatch = useDispatch();
   const today = useSelector((state) => state.todo.today);
+  const _today = moment();
 
   //컨디션
   const myCon = String(props.date.conditions);
   //조건식을 통해 분별한다
 
-  //처음에 데이터를 보여주는 경우를 제외하고!
+ 
   if (props.date.selectedAt == undefined) {
     let _day = props.date.slice(14, 24);
     return (
@@ -84,6 +85,10 @@ const DetailPost = (props) => {
             <EmptyText>NO CONTENTS</EmptyText>
           </ConditionContainer>
         </ModalComponent>
+        {props.date[0].conditions=="First_View"?  
+       dispatch(
+        todoActions.getOnePostAX(moment(today).format("YYYY-MM-DD"))): null
+       }
       </React.Fragment>
     );
   } else {
@@ -172,6 +177,7 @@ const DetailPost = (props) => {
           <Contents> MEMO {props.date.memo}</Contents>
         </ModalComponent>
       </React.Fragment>
+       
     );
   }
 };

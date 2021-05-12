@@ -8,6 +8,14 @@ import { useSelector, useDispatch } from "react-redux";
 import { actionCreators as todoActions } from "../redux/modules/todo";
 import styled, { keyframes } from 'styled-components';
 
+import './Font.css';
+
+
+
+// import HattonLight from "../fonts/Hatton-Light.ttf";
+
+
+
 
 const Calendar = (props) => {
   const dispatch = useDispatch();
@@ -57,6 +65,7 @@ const Calendar = (props) => {
             );
           });
 
+          //여기 코드 쓸모없는게 많음(다시 수정)
           if (_day.format("MM") !== today.format("MM")) {
             return (
               <DayGrid
@@ -64,20 +73,9 @@ const Calendar = (props) => {
                   "MM"
                 )}_week_${week_index}_day_${day_index}`}
                 bg={
-                  is_today && moment(today).format("MM") === _day.format("MM")
-                    ? "grey"
-                    : "#121212"
+                 "#FFFFFF"
                 }
               >
-                {_day.format("MM") === moment(today).format("MM") ? (
-                  <DayText font_c={is_today ? "white" : "black"}>
-                    {_day.format("DD")}
-                  </DayText>
-                ) : (
-                  <DayText font_c={is_today ? "white" : "black"}></DayText>
-                )}
-
-                {_list && list}
               </DayGrid>
             );
           } else {
@@ -89,7 +87,7 @@ const Calendar = (props) => {
                 bg={
                   is_today && moment(today).format("MM") === _day.format("MM")
                     ? "gray"
-                    : "#121212"
+                    : "#FFFFFF"
                 }
                 onClick={() => {
                   props._showModify(false);
@@ -97,11 +95,11 @@ const Calendar = (props) => {
                 }}
               >
                 {_day.format("MM") === moment(today).format("MM") ? (
-                  <DayText font_c={is_today ? "black" : "white"}>
+                  <div className="DayText" font_c={is_today ? "#FFFFFF" : "black"}>
                     {_day.format("DD")}
-                  </DayText>
+                  </div>
                 ) : (
-                  <DayText font_c={is_today ? "white" : "black"}></DayText>
+                  <div className="DayText" font_c={is_today ? "black" : "#FFFFFF"}></div>
                 )}
                 {_list && list}
               </DayGrid>
@@ -113,10 +111,12 @@ const Calendar = (props) => {
   });
 
   // 요일이 나올 배열도 만들어주기!
-  const nomal_week = ["MON", "TUE", "WED", "THU", "FRI"];
-
+  const nomal_week = ["mon", "tue", "wed", "thu", "fri"];
+  const move_month = parseInt(moment(today).format("M"));
   return (
+    
     <Grid flex_direction="column" width="100%" height="85vh" margin="auto">
+     
       <Grid
         height="10%"
         justify_contents="space-between"
@@ -131,19 +131,23 @@ const Calendar = (props) => {
             );
           }}
         >
-          {" "}
-          <MText>◀</MText>
-          <MText>
-            {parseInt(moment(today).format("M")) - 1 === 0
-              ? 12
-              : parseInt(moment(today).format("M")) - 1}
-            월
-          </MText>
+     
+          <MMText>◀</MMText>
+          <div className="MText">
+            { move_month - 1 === 0
+              ? parseInt(moment(today).format("YYYY"))-1+"."+12
+              :moment(today).format("YYYY")+"." + (move_month<=10 ? "0"+(move_month - 1):(move_month - 1))}
+            
+          </div>
         </MoveMButton>
 
-        <Text type="title">
-          {moment(today).format("YYYY")}년 {moment(today).format("MM")}월
-        </Text>
+        
+        <div className="TitleText">  
+        
+          {moment(today).format("YYYY")}. {moment(today).format("MM")}
+        </div>
+       
+
         <MoveMButton
           onClick={() => {
             // 기준일을 한달 후로 돌려요!
@@ -152,36 +156,35 @@ const Calendar = (props) => {
             );
           }}
         >
-          <MText>
-            {" "}
-            {parseInt(moment(today).format("M")) + 1 === 13
-              ? 1
-              : parseInt(moment(today).format("M")) + 1}
-            월
-          </MText>
-          <MText>▶</MText>
+          <div className="MText">
+            {move_month + 1 === 13
+              ? parseInt(moment(today).format("YYYY"))+1+"."+ '01'
+              :moment(today).format("YYYY")+"." + (move_month<9 ? "0"+(move_month + 1):(move_month + 1))}
+          
+          </div>
+          <MMText>▶</MMText>
         </MoveMButton>
       </Grid>
       <WeekGrid>
-        <WEEK>
+        <div className="WEEK">
           <Text bold type="sun">
-            SUN
+            sun
           </Text>
-        </WEEK>
+        </div>
         {nomal_week.map((_d, idx) => {
           return (
-            <WEEK key={idx}>
+            <div className="WEEK" key={idx}>
               <Text bold type="week">
                 {_d}
               </Text>
-            </WEEK>
+            </div>
           );
         })}
-        <WEEK>
+        <div className="WEEK">
           <Text bold type="sat">
-            SAT
+            sat
           </Text>
-        </WEEK>
+        </div>
       </WeekGrid>
       {week_arr}
     </Grid>
@@ -189,42 +192,31 @@ const Calendar = (props) => {
 };
 
 
-
-
 const Container = styled.div`
   box-sizing: border-box;
-  margin: 2px auto;
+  // margin: 2px auto;
   flex-direction: row;
   display: flex;
   width: 100%;
   min-width: 50px;
   height: 100%;
   align-items: center;
-  padding: 2px;
-  background-color: black;
-  border-radius: 5px;
+  // border: 1px solid black;
  
 `;
+
+
 
 const DailyGrid = styled.div`
   flex-direction: row;
   height: 100%;
   margin: 1px 0px;
   flex-wrap: nowrap;
+  // border: 1px solid black;
+  
 `;
 
-const WEEK = styled.div`
-  margin: 4px 2px;
-  width: 100%;
-  flex-direction: column;
-  background-color: black;
-  height: auto;
-  box-sizing: border-box;
-  display: flex;
-  min-width: 50px;
-  align-items: center;
-  justify-content: flex-start;
-`;
+
 
 const WeekGrid = styled.div`
   box-sizing: border-box;
@@ -232,54 +224,58 @@ const WeekGrid = styled.div`
   flex-direction: row;
   width: 100%;
   min-width: 50px;
-  height: 4%;
-  font-size: 2px;
+  height: 20%;
   align-items: center;
   justify-content: flex-start;
-  border-bottom: 3px solid #746d6d;
+  // border-bottom: 3px solid #746d6d;
   background-color: black;
-  border-radius: 5px;
-  margin-top: 9px;
+  // border-radius: 5px;
+  
+
 `;
 
 const DayGrid = styled.div`
   box-sizing: border-box;
   flex-direction: column;
-  margin: 0px 2px;
   display: flex;
   width: 100%;
   min-width: 50px;
   height: 100%;
-  align-items: flex-start;
-  justify-content: flex-start;
-  border: 1px #fafad2 solid;
-  border-radius: 3px;
+
+  border: 1px grey solid;
+  align-items: flex-end;
+  
+
+
 
   ${(props) => (props.bg ? `background-color: ${props.bg};` : "")}
 `;
 
 const DayText = styled.div`
-  font-size: 9px;
-  margin: 3px 0px 0px 3px;
-  color: ${(props) => props.font_c};
-  font-weight: bold;
+ 
 `;
 
 const MoveMButton = styled.button`
-  padding: 7px 10px;
+  width:15%;
+  background-color: #FFFFFF;
   display: flex;
   flex-direction: row;
   border: none;
   border-radius: 10px;
   cursor: pointer;
-  background-color: #121212;
-  color: white;
 `;
 
 const MText = styled.div`
+  margin: 0px 3px 0px 3px;
+  border-bottom: 2px solid black;
+`;
+
+const MMText = styled.div`
   font-weight: bold;
   margin: 0px 3px 0px 3px;
   font-size: 12px;
+  color: #6C6969;
 `;
+
 
 export default Calendar;

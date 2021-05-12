@@ -8,10 +8,13 @@ import axios from "axios";
 import reportWebVitals from "./reportWebVitals";
 import { Provider } from "react-redux";
 
+
+
 axios.defaults.withCredentials = true;
 
 ReactDOM.render(
   <Provider store={store}>
+    
     <App />
   </Provider>,
   document.getElementById("root")

@@ -4,6 +4,7 @@ import { history } from "../redux/configureStore";
 import { actionCreators as userActions } from "../redux/modules/user";
 import { useDispatch } from "react-redux";
 import "../shared/App.css";
+import './Font.css';
 
 const Navigator = () => {
   const dispatch = useDispatch();
@@ -62,7 +63,7 @@ const Navigator = () => {
   return (
     <React.Fragment>
       <Wrap>
-        <Logo>sleepwell</Logo>
+        <div className="Logo">SLEEPWELL</div>
         <CategoryContainer>
           <div></div>
           <CategoryBox id="main" onClick={GetClick}>
@@ -92,7 +93,7 @@ const Wrap = styled.div`
   display: flex;
   background-color: black;
   width: 100%;
-  height: 4rem;
+  height: 2.5rem;
   /* justify-content: center; */
   align-items: center;
   border-bottom: 0.8px solid #bebcbc;
@@ -112,16 +113,6 @@ const CategoryBox = styled.div`
     border-bottom: 2px solid #bebcbc;
     transition: all 0.1s ease-out;
   }
-`;
-
-const Logo = styled.div`
-  width: 15%;
-  display: flex;
-  font-size: 1.5rem;
-  color: white;
-  font-weight: bold;
-  cursor: pointer;
-  justify-content: center;
 `;
 
 const LogoutBox = styled.div`

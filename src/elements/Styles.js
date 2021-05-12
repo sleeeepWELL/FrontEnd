@@ -60,9 +60,7 @@ const Button = styled.button`
  *  - bold : boolean | true면 볼드 줌, false면 볼드 안줌
  */
 const Text = (props) => {
-  if (props.type === "title") {
-    return <H1>{props.children}</H1>;
-  }
+ 
 
   if (props.type === "contents") {
     return <P>{props.children}</P>;
@@ -87,13 +85,7 @@ const Text = (props) => {
   return <React.Fragment>{props.children}</React.Fragment>;
 };
 
-const H1 = styled.h1`
-  margin: 0px;
-  font-size: 19px;
-  text-align: center;
-  color: white;
-  ${(props) => (props.bold ? `font-weight: bold;` : "")}
-`;
+
 
 const P = styled.p`
   margin: 0px;

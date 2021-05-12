@@ -46,6 +46,7 @@ function App() {
             component={OAuth2RedirectHandler}
           ></Route>
           <Route path="/main" component={Navigator} />
+        
           <Route path="/main" exact component={MainCalendar} />
           <Route path="/main/analysis" exact component={Analysis} />
           <Route path="/main/prac" exact component={Ready} />

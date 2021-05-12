@@ -13,7 +13,7 @@ const Table = (props) => {
  return (
     <React.Fragment>  
     <CContainer>
-
+ 
    
    <BoxContainer>
    {wsleep_av[0]>11?
@@ -36,8 +36,9 @@ const Table = (props) => {
    </BoxContainer>
    
     
-   
+  
     </CContainer>
+    
     </React.Fragment>
   );
 };

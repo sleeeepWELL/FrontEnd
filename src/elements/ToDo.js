@@ -63,7 +63,7 @@ const ToDo = (props) => {
               <img width="20px" height="20px" src={five} alt="condition"></img>
             )}
           </div>
-          <div style={{ padding: "5px", color: "white" }}>
+          <div style={{ padding: "5px", color: "black" }}>
             {`${props.totalSleepHour}H ${props.totalSleepMinute} M`}
           </div>
         </TopInfo>
@@ -163,7 +163,7 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-  height: 100%;
+  height: 70%;
 
   border-radius: 8px;
   /* box-shadow: rgb(0 0 0 / 10%) 0px 4px 10px 0px; */
@@ -183,7 +183,7 @@ const TopInfo = styled.div`
   width: 100%;
   height: 50%;
   font-size: 2px;
-  background-color: black;
+
   display: flex;
   flex-direction: row;
 `;
@@ -193,7 +193,7 @@ const BottomInfo = styled.div`
   width: 100%;
   height: 50%;
   /* justify-content: center; */
-  background-color: black;
+ 
   margin-top: 3px;
   /* font-size: 2px; */
 `;

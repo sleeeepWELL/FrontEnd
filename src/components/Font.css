@@ -5,10 +5,10 @@
 }
 .TitleText {
     text-align: center;
-    font-size: 31px;  
+    font-size: 25px;  
     font-family: 'HattonLight';
     color: #000000;
-    border-bottom: 1px solid black;
+    border-bottom: 2px solid black;
   }
 
 .MText{
@@ -22,7 +22,7 @@
   font-family: 'HattonLight';
   width: 100%;
   flex-direction: column;
-  background-color: black;
+  background-color: #000000;
   height: auto;
   box-sizing: border-box;
   display: flex;
@@ -35,11 +35,12 @@
 
 .DayText{
     font-family: 'HattonLight';
-    font-size: 9px;
-    margin: 3px 5px 0px 3px;
-    /* color: ${(props) => props.font_c}; */
+    font-size: 10px;
+    margin: 3px 3px 0px 0px;
+    
     font-weight: bold;
     border-bottom: 1px solid black;
+
     
     
 }

@@ -84,23 +84,23 @@ const Calendar = (props) => {
                 key={`${moment(today).format(
                   "MM"
                 )}_week_${week_index}_day_${day_index}`}
-                bg={
-                  is_today && moment(today).format("MM") === _day.format("MM")
-                    ? "gray"
-                    : "#FFFFFF"
-                }
+                // bg={
+                //   is_today && moment(today).format("MM") === _day.format("MM")
+                //     ? "gray"
+                //     : "#FFFFFF"
+                // }
+
                 onClick={() => {
                   props._showModify(false);
                   dispatch(todoActions.getOnePostAX(_day.format("YYYY-MM-DD")));
                 }}
               >
-                {_day.format("MM") === moment(today).format("MM") ? (
-                  <div className="DayText" font_c={is_today ? "#FFFFFF" : "black"}>
+                  <DayText className="DayText" 
+                  bg={is_today ? "black" : "white"} font_c={is_today ? "white" : "black"}
+                  br={is_today ? "9px" : "null"} >
                     {_day.format("DD")}
-                  </div>
-                ) : (
-                  <div className="DayText" font_c={is_today ? "black" : "#FFFFFF"}></div>
-                )}
+                  </DayText>
+                
                 {_list && list}
               </DayGrid>
             );
@@ -197,7 +197,7 @@ const Container = styled.div`
   // margin: 2px auto;
   flex-direction: row;
   display: flex;
-  width: 100%;
+  width: 95%;
   min-width: 50px;
   height: 100%;
   align-items: center;
@@ -218,17 +218,18 @@ const DailyGrid = styled.div`
 
 
 
+
 const WeekGrid = styled.div`
   box-sizing: border-box;
   display: flex;
   flex-direction: row;
-  width: 100%;
+  width: 95%;
   min-width: 50px;
   height: 20%;
   align-items: center;
   justify-content: flex-start;
   // border-bottom: 3px solid #746d6d;
-  background-color: black;
+  background-color: #000000;
   // border-radius: 5px;
   
 
@@ -239,11 +240,15 @@ const DayGrid = styled.div`
   flex-direction: column;
   display: flex;
   width: 100%;
-  min-width: 50px;
-  height: 100%;
 
-  border: 1px grey solid;
+  height: 14.0vh;
+
+  border: 1px #000000 solid;
   align-items: flex-end;
+   :hover {
+    box-shadow: rgb(10 50 10 / 100%) 0px 4px 10px 0px;
+    transition: box-shadow 0.2s ease-in 0s;
+  }
   
 
 
@@ -252,7 +257,11 @@ const DayGrid = styled.div`
 `;
 
 const DayText = styled.div`
- 
+color: ${(props) => props.font_c};
+background-color: ${(props) => props.bg};
+border-radius: ${(props) => props.br};
+padding: 2px 4px 0px 4px;
+border-bottom: ${(props) => props.bb};
 `;
 
 const MoveMButton = styled.button`

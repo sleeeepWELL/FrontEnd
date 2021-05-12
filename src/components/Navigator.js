@@ -76,7 +76,7 @@ const Navigator = () => {
           </CategoryBox>
 
           <div
-            style={{ color: "white", cursor: "pointer" }}
+            style={{ color: "black", cursor: "pointer" }}
             onClick={deleteUser}
           >
             회원탈퇴
@@ -90,7 +90,7 @@ const Navigator = () => {
 
 const Wrap = styled.div`
   display: flex;
-  background-color: black;
+  background-color: rgba(242, 242, 242, 1);
   width: 100%;
   height: 4rem;
   /* justify-content: center; */
@@ -118,7 +118,7 @@ const Logo = styled.div`
   width: 15%;
   display: flex;
   font-size: 1.5rem;
-  color: white;
+  color: black;
   font-weight: bold;
   cursor: pointer;
   justify-content: center;
@@ -133,7 +133,7 @@ const LogoutBox = styled.div`
   justify-content: center;
   cursor: pointer;
   font-weight: bold;
-  color: white;
+  color: black;
 `;
 
 const CategoryContainer = styled.div`

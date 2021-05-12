@@ -32,13 +32,15 @@ const MainCalendar = () => {
 };
 const slidein = keyframes`
  from {
-  margin-left: 100%;
-  width: 50%
+  /* margin-left: 100%;
+  width: 50% */
+  opacity:0
 }
 
 to {
-  margin-left: 5%;
-  width: 90%;
+  /* margin-left: 5%;
+  width: 90%; */
+  opacity:1;
 }
  `;
 
@@ -47,7 +49,7 @@ const AllContainer = styled.div`
   flex-direction: row;
   width: 90%;
   margin: auto;
-  animation: ${slidein} 2s;
+  animation: ${slidein} 1s;
 `;
 
 const CalendarContainer = styled.div`
@@ -67,7 +69,7 @@ const Background = styled.div`
   height: 100vh;
   left: 0;
   top: 0;
-  background-color: black;
+  background-color: rgba(242, 242, 242, 1);
 `;
 
 export default MainCalendar;

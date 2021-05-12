@@ -28,10 +28,10 @@ import three from "../image/3-condition.png";
 import four from "../image/4-condition.png";
 import five from "../image/5-condition.png";
 
-import one_gray from "../image/1-gray.jpg";
-import two_gray from "../image/2-gray.jpg";
-import three_gray from "../image/3-gray.jpg";
-import four_gray from "../image/4-gray.jpg";
+import one_gray from "../image/1-gray.png";
+import two_gray from "../image/2-gray.png";
+import three_gray from "../image/3-gray.png";
+import four_gray from "../image/4-gray.png";
 import five_gray from "../image/5-gray.png";
 
 const Write = (props) => {
@@ -40,10 +40,12 @@ const Write = (props) => {
   const [memo, setMemo] = React.useState("");
 
   const [start, setStart] = React.useState(new Date("2021-01-01T23:00"));
-  const startSleep = moment(start).format("hh:mm");
-  // console.log(startSleep);
+  const startSleep = moment(start).format("HH:mm");
+  console.log("실제 찍히는 데이터:::", start);
+  console.log("보낼 데이터:::", startSleep);
   const [end, setEnd] = React.useState(new Date("2021-01-01T09:00"));
-  const endSleep = moment(end).format("hh:mm");
+  const endSleep = moment(end).format("HH:mm");
+  // console.log(end);
   // console.log(endSleep);
 
   const startMinute =

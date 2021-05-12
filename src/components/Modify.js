@@ -5,6 +5,10 @@ import { actionCreators as todoActions } from "../redux/modules/todo";
 import { history } from "../redux/configureStore";
 
 import TextField from "@material-ui/core/TextField";
+import MobileTimePicker from "@material-ui/lab/MobileTimePicker";
+import AdapterDateFns from "@material-ui/lab/AdapterDateFns";
+import LocalizationProvider from "@material-ui/lab/LocalizationProvider";
+import moment from "moment";
 
 //태그
 import beer from "../image/beer.png";
@@ -24,10 +28,10 @@ import three from "../image/3-condition.png";
 import four from "../image/4-condition.png";
 import five from "../image/5-condition.png";
 
-import one_gray from "../image/1-gray.jpg";
-import two_gray from "../image/2-gray.jpg";
-import three_gray from "../image/3-gray.jpg";
-import four_gray from "../image/4-gray.jpg";
+import one_gray from "../image/1-gray.png";
+import two_gray from "../image/2-gray.png";
+import three_gray from "../image/3-gray.png";
+import four_gray from "../image/4-gray.png";
 import five_gray from "../image/5-gray.png";
 
 const Modify = (props) => {
@@ -36,13 +40,25 @@ const Modify = (props) => {
   const post_list = useSelector((state) => state.todo.day_list);
 
   const _post = props.props.date.selectedAt ? post_list : null;
-  console.log(_post);
 
-  const [startSleep, setstartSleep] = React.useState(
-    _post ? _post.startSleep : ""
-  );
-  const [endSleep, setendSleep] = React.useState(_post ? _post.endSleep : "");
+  //받아온 취침시간
+  const getStart = _post.startSleep;
+  // console.log("받아온 취침시간:::", getStart);
+  const myStart = "2021-05-12T" + getStart;
+
+  //받아온 기상시간
+  const getEnd = _post.endSleep;
+  // console.log("받아온 기상시간:::", getEnd);
+  const myEnd = "2021-05-12T" + getEnd;
+
   const [memo, setMemo] = React.useState(_post ? _post.memo : "");
+
+  const [start, setStart] = React.useState(_post ? myStart : "");
+  const startSleep = moment(start).format("HH:mm");
+
+  const [end, setEnd] = React.useState(_post ? myEnd : "");
+  const endSleep = moment(end).format("HH:mm");
+
   const startMinute =
     parseInt(startSleep.slice(0, 2) * 60) + parseInt(startSleep.slice(3, 5));
   const endMinute =
@@ -161,12 +177,6 @@ const Modify = (props) => {
   const sendCon = Number(TotalCon.concat(editCon)[0]);
   console.log("보낼 컨디션:", sendCon);
 
-  const checkSleep = (e) => {
-    setstartSleep(e.target.value);
-  };
-  const checkoutSleep = (e) => {
-    setendSleep(e.target.value);
-  };
   const changeMemo = (e) => {
     setMemo(e.target.value);
   };
@@ -215,24 +225,34 @@ const Modify = (props) => {
           </TopContainer>
 
           <Container>
-            <TextField
-              id="time"
-              label="취침시간"
-              type="time"
-              onChange={checkSleep}
-              InputLabelProps={{ shrink: true }}
-              inputProps={{ step: 300 }}
-              value={startSleep}
-            />
-            <TextField
-              id="time"
-              label="기상시간"
-              type="time"
-              onChange={checkoutSleep}
-              InputLabelProps={{ shrink: true }}
-              inputProps={{ step: 300 }}
-              value={endSleep}
-            />
+            <LocalizationProvider dateAdapter={AdapterDateFns}>
+              <div style={{ width: 150, color: "white" }}>
+                <MobileTimePicker
+                  label="취침 시간 선택"
+                  value={start}
+                  onChange={(newStart) => {
+                    setStart(newStart);
+                  }}
+                  renderInput={(params) => (
+                    <TextField {...params} margin="normal" />
+                  )}
+                />
+              </div>
+            </LocalizationProvider>
+            <LocalizationProvider dateAdapter={AdapterDateFns}>
+              <div style={{ width: 150 }}>
+                <MobileTimePicker
+                  label="기상 시간 선택"
+                  value={end}
+                  onChange={(newEnd) => {
+                    setEnd(newEnd);
+                  }}
+                  renderInput={(params) => (
+                    <TextField {...params} margin="normal" />
+                  )}
+                />
+              </div>
+            </LocalizationProvider>
           </Container>
 
           <TagContainer>

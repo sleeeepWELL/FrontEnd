@@ -13,11 +13,11 @@ import snack_gray from "../image/snack_gray.png";
 import work_gray from "../image/work_gray.png";
 import workout_gray from "../image/workout_gray.png";
 
-import one from "../image/1-condition.png";
-import two from "../image/2-condition.png";
-import three from "../image/3-condition.png";
-import four from "../image/4-condition.png";
-import five from "../image/5-condition.png";
+import one from "../image/1-conditions.png";
+import two from "../image/2-conditions.png";
+import three from "../image/3-conditions.png";
+import four from "../image/4-conditions.png";
+import five from "../image/5-conditions.png";
 
 //글씨 이미지로 바꾸기
 // const mapKeywordToImg = {

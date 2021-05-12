@@ -51,8 +51,8 @@ const DetailPost = (props) => {
                     todoActions.getOnePostAX(moment(tDate).format("YYYY-MM-DD"))
                   );
                 }}
-              >◀
-                {/* <ChevronLeftIcon /> */}
+              >
+                ◀{/* <ChevronLeftIcon /> */}
               </MoveDButton>
 
               <DText>{_day}</DText>
@@ -65,8 +65,8 @@ const DetailPost = (props) => {
                     todoActions.getOnePostAX(moment(tDate).format("YYYY-MM-DD"))
                   );
                 }}
-              >▶
-                {/* <ChevronRightIcon /> */}
+              >
+                ▶{/* <ChevronRightIcon /> */}
               </MoveDButton>
             </LeftHeader>
             <RightHeader>
@@ -100,8 +100,9 @@ const DetailPost = (props) => {
                     todoActions.getOnePostAX(moment(tDate).format("YYYY-MM-DD"))
                   );
                 }}
-              > ◀
-              {/* <ChevronLeftIcon/> */}
+              >
+                {" "}
+                ◀{/* <ChevronLeftIcon/> */}
               </MoveDButton>
               <DText>{props.date.selectedAt}</DText>
               <MoveDButton
@@ -112,8 +113,8 @@ const DetailPost = (props) => {
                     todoActions.getOnePostAX(moment(tDate).format("YYYY-MM-DD"))
                   );
                 }}
-              >▶
-                {/* <ChevronRightIcon /> */}
+              >
+                ▶{/* <ChevronRightIcon /> */}
               </MoveDButton>
             </LeftHeader>
 
@@ -136,55 +137,37 @@ const DetailPost = (props) => {
           </DayHeader>
 
           <ConditionContainer>
-            <ConditionText>
-              CONDITION
-            </ConditionText>
-            {myCon === "1" && (
-                <img width="20px" height="20px" src={one}></img>
-              )}
-              {myCon === "2" && (
-                <img width="20px" height="20px" src={two}></img>
-              )}
-              {myCon === "3" && (
-                <img width="20px" height="20px" src={three}></img>
-              )}
-              {myCon === "4" && (
-                <img width="20px" height="20px" src={four}></img>
-              )}
-              {myCon === "5" && (
-                <img width="20px" height="20px" src={five}></img>
-              )}
-            
+            <ConditionText>CONDITION</ConditionText>
+            {myCon === "1" && <img width="40px" height="40px" src={one}></img>}
+            {myCon === "2" && <img width="40px" height="40px" src={two}></img>}
+            {myCon === "3" && (
+              <img width="40px" height="40px" src={three}></img>
+            )}
+            {myCon === "4" && <img width="40px" height="40px" src={four}></img>}
+            {myCon === "5" && <img width="40px" height="40px" src={five}></img>}
           </ConditionContainer>
 
-          <TimeContainer>  
-            
-          <TimeText>
-          SLEEP TIME
-          </TimeText>
-          <TimeText2>
-          {`${props.date.totalSleepHour} 시간 ${props.date.totalSleepMinute} 분`}
+          <TimeContainer>
+            <TimeText>SLEEP TIME</TimeText>
+            <TimeText2>
+              {`${props.date.totalSleepHour} 시간 ${props.date.totalSleepMinute} 분`}
               ({props.date.startSleep} ~ {props.date.endSleep})
-          </TimeText2>
+            </TimeText2>
           </TimeContainer>
 
           <TagContainer>
-            <TimeText>
-              TAG
-            </TimeText>
+            <TimeText>TAG</TimeText>
             {props.date.tag.map((currentTag, idx) => {
-                return (
-                  <img
-                    key={idx}
-                    width="40px"
-                    height="40px"
-                    src={mapKeywordToImg[currentTag]}
-                  ></img>
-                );
-              })}
+              return (
+                <img
+                  key={idx}
+                  width="40px"
+                  height="40px"
+                  src={mapKeywordToImg[currentTag]}
+                ></img>
+              );
+            })}
           </TagContainer>
-
-         
 
           <Contents> MEMO {props.date.memo}</Contents>
         </ModalComponent>
@@ -199,9 +182,7 @@ const ModalComponent = styled.div`
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
-
 `;
-
 
 const DayHeader = styled.div`
   background-color: black;
@@ -244,7 +225,6 @@ const LeftHeader = styled.div`
   height: 100%;
   border: none;
   // background-color: white;
-
 `;
 
 const MoveDButton = styled.button`
@@ -287,7 +267,6 @@ const AddButton = styled.button`
   color: white;
   margin: 9px 9px 0px 0px;
   font-size: 3px;
-  
 `;
 
 const DeleteButton = styled.button`
@@ -302,7 +281,6 @@ const DeleteButton = styled.button`
   color: white;
   margin: 9px 0px 0px 3px;
   font-size: 3px;
-  
 `;
 
 const TimeText = styled.div`
@@ -311,7 +289,6 @@ const TimeText = styled.div`
   font-size: 15px;
   margin: 5px 0px 0px 10px;
   font-weight: bold;
-
 `;
 const EmptyText = styled.div`
   width: 100%;
@@ -329,7 +306,6 @@ const TimeText2 = styled.div`
   font-weight: bold;
 `;
 
-
 const ConditionText = styled.div`
   width: 35%;
   color: white;
@@ -337,8 +313,6 @@ const ConditionText = styled.div`
   margin: 5px 0px 0px 10px;
   font-weight: bold;
 `;
-
-
 
 const Contents = styled.div`
   width: 100%;

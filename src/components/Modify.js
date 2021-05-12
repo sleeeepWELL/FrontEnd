@@ -154,19 +154,6 @@ const Modify = (props) => {
   const four_icon = checkfour ? four : four_gray;
   const five_icon = checkfive ? five : five_gray;
 
-  const icon_one = checkone ? one_gray : one;
-  const icon_two = checktwo ? two_gray : two;
-  const icon_three = checkthree ? three_gray : three;
-  const icon_four = checkfour ? four_gray : four;
-  const icon_five = checkfive ? five_gray : five;
-
-  //컨디션 배열에 넣고 빼기
-  const [con1, setCon1] = React.useState("");
-  const [con2, setCon2] = React.useState("");
-  const [con3, setCon3] = React.useState("");
-  const [con4, setCon4] = React.useState("");
-  const [con5, setCon5] = React.useState("");
-
   const TotalCon = [];
   if (checkone) {
     TotalCon.push(1);
@@ -186,7 +173,7 @@ const Modify = (props) => {
 
   const mycondition = String(TotalCon);
 
-  // // / /컨디션 수정
+  //컨디션 수정
   const bringConditions = String(props.props.date.conditions);
 
   const [editCon, setEditCon] = React.useState(bringConditions);
@@ -195,10 +182,6 @@ const Modify = (props) => {
 
   const sendCon = Number(TotalCon.concat(editCon)[0]);
   console.log("보낼 컨디션:", sendCon);
-
-  const changeMemo = (e) => {
-    setMemo(e.target.value);
-  };
 
   const getClick = (e) => {
     console.log(e.target.value); // 1,2,3,4,5 로 넘어옴
@@ -233,6 +216,11 @@ const Modify = (props) => {
       setCheckFour(false);
       setCheckFive(true);
     }
+  };
+
+  //메모
+  const changeMemo = (e) => {
+    setMemo(e.target.value);
   };
 
   // 수정하는 경우는 데이터를 그대로 사용해도 된다

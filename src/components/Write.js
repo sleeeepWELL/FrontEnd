@@ -111,38 +111,6 @@ const Write = (props) => {
   const five_icon = checkfive ? five : five_gray;
 
   //컨디션 배열에 넣고 빼기
-  const [con1, setCon1] = React.useState("");
-  const [con2, setCon2] = React.useState("");
-  const [con3, setCon3] = React.useState("");
-  const [con4, setCon4] = React.useState("");
-  const [con5, setCon5] = React.useState("");
-
-  const TotalCon = [];
-  if (con1) {
-    TotalCon.push(con1);
-  }
-  if (con2) {
-    TotalCon.push(con2);
-  }
-  if (con3) {
-    TotalCon.push(con3);
-  }
-  if (con4) {
-    TotalCon.push(con4);
-  }
-  if (con5) {
-    TotalCon.push(con5);
-  }
-
-  //컨디션 체크 하나만 되게
-  // const [checktrue, setCheckTrue] = React.useState(false);
-
-  // const checkCon = [];
-  // if (checktrue) {
-  //   checkCon.push(checktrue);
-  // }
-  // console.log(checkCon);
-
   const TrueCon = [];
   if (checkone) {
     TrueCon.push(1);
@@ -160,19 +128,8 @@ const Write = (props) => {
     TrueCon.push(5);
   }
 
-  // console.log(checkone, checktwo, checkthree, checkfour, checkfive);
-  console.log(TrueCon);
-  console.log(TotalCon);
-
   const mycondition = Number(String(TrueCon));
   console.log("추가할 컨디션:", mycondition);
-
-  const changeMemo = (e) => {
-    setMemo(e.target.value);
-  };
-
-  const [currentClick, setCurrentClick] = React.useState(null);
-  const [prevClick, setPrevClick] = React.useState(null);
 
   const getClick = (e) => {
     console.log(e.target.value); // 1,2,3,4,5 로 넘어옴
@@ -207,6 +164,11 @@ const Write = (props) => {
       setCheckFour(false);
       setCheckFive(true);
     }
+  };
+
+  //메모
+  const changeMemo = (e) => {
+    setMemo(e.target.value);
   };
 
   //추가하는 경우는 데이터를 잘라서 사용해야하고

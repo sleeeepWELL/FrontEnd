@@ -117,6 +117,25 @@ const Modify = (props) => {
 
   const [editTags, setEditTags] = React.useState(bringTags);
 
+  React.useEffect(() => {
+    if (editCon == 1) {
+      setEditCon(null);
+      setCheckOne(true);
+    } else if (editCon == 2) {
+      setEditCon(null);
+      setCheckTwo(true);
+    } else if (editCon == 3) {
+      setEditCon(null);
+      setCheckThree(true);
+    } else if (editCon == 4) {
+      setEditCon(null);
+      setCheckFour(true);
+    } else if (editCon == 5) {
+      setEditCon(null);
+      setCheckFive(true);
+    }
+  }, []);
+
   const sendTags = TotalTags.concat(editTags);
   // console.log("받아온배열:", editTags);
   // console.log("수정한배열:", TotalTags);
@@ -149,20 +168,20 @@ const Modify = (props) => {
   const [con5, setCon5] = React.useState("");
 
   const TotalCon = [];
-  if (con1) {
-    TotalCon.push(con1);
+  if (checkone) {
+    TotalCon.push(1);
   }
-  if (con2) {
-    TotalCon.push(con2);
+  if (checktwo) {
+    TotalCon.push(2);
   }
-  if (con3) {
-    TotalCon.push(con3);
+  if (checkthree) {
+    TotalCon.push(3);
   }
-  if (con4) {
-    TotalCon.push(con4);
+  if (checkfour) {
+    TotalCon.push(4);
   }
-  if (con5) {
-    TotalCon.push(con5);
+  if (checkfive) {
+    TotalCon.push(5);
   }
 
   const mycondition = String(TotalCon);
@@ -181,6 +200,41 @@ const Modify = (props) => {
     setMemo(e.target.value);
   };
 
+  const getClick = (e) => {
+    console.log(e.target.value); // 1,2,3,4,5 로 넘어옴
+    if (e.target.value == 1) {
+      setCheckOne(true);
+      setCheckTwo(false);
+      setCheckThree(false);
+      setCheckFour(false);
+      setCheckFive(false);
+    } else if (e.target.value == 2) {
+      setCheckOne(false);
+      setCheckTwo(true);
+      setCheckThree(false);
+      setCheckFour(false);
+      setCheckFive(false);
+    } else if (e.target.value == 3) {
+      setCheckOne(false);
+      setCheckTwo(false);
+      setCheckThree(true);
+      setCheckFour(false);
+      setCheckFive(false);
+    } else if (e.target.value == 4) {
+      setCheckOne(false);
+      setCheckTwo(false);
+      setCheckThree(false);
+      setCheckFour(true);
+      setCheckFive(false);
+    } else if (e.target.value == 5) {
+      setCheckOne(false);
+      setCheckTwo(false);
+      setCheckThree(false);
+      setCheckFour(false);
+      setCheckFive(true);
+    }
+  };
+
   // 수정하는 경우는 데이터를 그대로 사용해도 된다
   const editPost = () => {
     let post = {
@@ -191,7 +245,7 @@ const Modify = (props) => {
       totalSleepMinute: totalSleepMinute,
       selectedAt: props.props.date.selectedAt,
       tag: sendTags,
-      conditions: sendCon,
+      conditions: parseInt(TotalCon),
       memo: memo,
     };
 
@@ -378,144 +432,59 @@ const Modify = (props) => {
           <ConditionContainer>
             <TotalImgGrid>
               <ImgGrid>
-                {editCon === "1" ? (
-                  <input
-                    width="40"
-                    height="40"
-                    type="image"
-                    src={icon_one}
-                    alt="매우나쁨"
-                    value={1}
-                    onClick={(e) => {
-                      setEditCon("");
-                    }}
-                  />
-                ) : (
-                  <input
-                    width="40"
-                    height="40"
-                    type="image"
-                    src={one_icon}
-                    alt="매우나쁨"
-                    value={1}
-                    onClick={(e) => {
-                      checkone ? setCon1(null) : setCon1(e.target.value);
-                      checkone ? setCheckOne(false) : setCheckOne(true);
-                    }}
-                  />
-                )}
+                <input
+                  width="40"
+                  height="40"
+                  type="image"
+                  src={one_icon}
+                  alt="매우나쁨"
+                  value={1}
+                  onClick={getClick}
+                />
               </ImgGrid>
               <ImgGrid>
-                {editCon === "2" ? (
-                  <input
-                    width="40"
-                    height="40"
-                    type="image"
-                    src={icon_two}
-                    alt="나쁨"
-                    value={2}
-                    onClick={(e) => {
-                      setEditCon("");
-                    }}
-                  />
-                ) : (
-                  <input
-                    width="40"
-                    height="40"
-                    type="image"
-                    src={two_icon}
-                    alt="나쁨"
-                    value={2}
-                    onClick={(e) => {
-                      checktwo ? setCon2(null) : setCon2(e.target.value);
-                      checktwo ? setCheckTwo(false) : setCheckTwo(true);
-                    }}
-                  />
-                )}
+                <input
+                  width="40"
+                  height="40"
+                  type="image"
+                  src={two_icon}
+                  alt="나쁨"
+                  value={2}
+                  onClick={getClick}
+                />
               </ImgGrid>
               <ImgGrid>
-                {editCon === "3" ? (
-                  <input
-                    width="40"
-                    height="40"
-                    type="image"
-                    src={icon_three}
-                    alt="보통"
-                    value={3}
-                    onClick={(e) => {
-                      setEditCon("");
-                    }}
-                  />
-                ) : (
-                  <input
-                    width="40"
-                    height="40"
-                    type="image"
-                    src={three_icon}
-                    alt="보통"
-                    value={3}
-                    onClick={(e) => {
-                      checkthree ? setCon3(null) : setCon3(e.target.value);
-                      checkthree ? setCheckThree(false) : setCheckThree(true);
-                    }}
-                  />
-                )}
+                <input
+                  width="40"
+                  height="40"
+                  type="image"
+                  src={three_icon}
+                  alt="보통"
+                  value={3}
+                  onClick={getClick}
+                />
               </ImgGrid>
               <ImgGrid>
-                {editCon === "4" ? (
-                  <input
-                    width="40"
-                    height="40"
-                    type="image"
-                    src={icon_four}
-                    alt="좋음"
-                    value={4}
-                    onClick={(e) => {
-                      setEditCon("");
-                    }}
-                  />
-                ) : (
-                  <input
-                    width="40"
-                    height="40"
-                    type="image"
-                    src={four_icon}
-                    alt="좋음"
-                    value={4}
-                    onClick={(e) => {
-                      checkfour ? setCon4(null) : setCon4(e.target.value);
-                      checkfour ? setCheckFour(false) : setCheckFour(true);
-                    }}
-                  />
-                )}
+                <input
+                  width="40"
+                  height="40"
+                  type="image"
+                  src={four_icon}
+                  alt="좋음"
+                  value={4}
+                  onClick={getClick}
+                />
               </ImgGrid>
               <ImgGrid>
-                {editCon === "5" ? (
-                  <input
-                    width="40"
-                    height="40"
-                    type="image"
-                    src={icon_five}
-                    alt="매우 좋음"
-                    value={5}
-                    onClick={(e) => {
-                      setEditCon("");
-                    }}
-                  />
-                ) : (
-                  <input
-                    width="40"
-                    height="40"
-                    type="image"
-                    src={five_icon}
-                    alt="매우 좋음"
-                    value={5}
-                    onClick={(e) => {
-                      checkfive ? setCon5(null) : setCon5(e.target.value);
-                      checkfive ? setCheckFive(false) : setCheckFive(true);
-                    }}
-                  />
-                )}
+                <input
+                  width="40"
+                  height="40"
+                  type="image"
+                  src={five_icon}
+                  alt="매우 좋음"
+                  value={5}
+                  onClick={getClick}
+                />
               </ImgGrid>
             </TotalImgGrid>
           </ConditionContainer>

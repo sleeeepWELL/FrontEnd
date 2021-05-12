@@ -49,9 +49,9 @@ const loginSV = (email, pwd) => {
         const REFRESH_TOKEN = res.data.refreshToken;
 
         // 쿠키에 RefreshToken 저장(아직 httpOnly 설정 못함)
-        await setCookie("is_login", REFRESH_TOKEN);
+        setCookie("is_login", REFRESH_TOKEN);
 
-        // 로컬에 AccessToken 저장(최후의 방법..)
+        // 로컬에 AccessToken 저장
         localStorage.setItem("token", ACCESS_TOKEN);
 
         // accessToken 디폴트 설정
@@ -69,7 +69,7 @@ const loginSV = (email, pwd) => {
         // ACCESS토큰 만료 1분전마다 연장함수 실행
         setTimeout(extensionAccess(), ACCESS_TOKEN_EXP - Current_time - 60000);
 
-        await history.replace("/main");
+        history.replace("/main");
         window.alert("환영합니다");
       })
       .catch((err) => {
@@ -115,6 +115,7 @@ const extensionAccess = () => {
         ] = `Bearer ${ACCESS_TOKEN}`;
 
         setTimeout(extensionAccess(), ACCESS_TOKEN_EXP - Current_time - 60000);
+        // 1000 * 60 * 29 - 1000 * 56
 
         console.log(moment(Current_time).format("hh:mm:ss"));
         console.log("연장성공!");
@@ -166,7 +167,7 @@ const kakaoLogin = (code) => {
         const REFRESH_TOKEN = res.data.refreshToken;
 
         // refresh 토큰 쿠키저장
-        await setCookie("is_login", REFRESH_TOKEN);
+        setCookie("is_login", REFRESH_TOKEN);
 
         // access 토큰 로컬에 저장(이전꺼 지우고)
         localStorage.clear();
@@ -182,10 +183,11 @@ const kakaoLogin = (code) => {
 
         // 토큰 만료 1분전 자동연장
         setTimeout(extensionAccess(), ACCESS_TOKEN_EXP - Current_time - 60000);
+        console.log("연장성공");
 
         // 메인화면 이동
-        await history.replace("/main");
-        await window.alert("환영합니다");
+        history.replace("/main");
+        window.alert("환영합니다");
       })
       .catch((err) => {
         console.log("소셜로그인 에러", err);

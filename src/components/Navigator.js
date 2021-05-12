@@ -29,7 +29,7 @@ const Navigator = () => {
       if (currentClick !== null) {
         let current = document.getElementById(currentClick);
         console.log(current);
-        current.style.color = "white";
+        current.style.color = "black";
         current.style.borderBottom = "2px solid";
         current.style.borderBottomColor = "#1c28f4";
       }
@@ -91,16 +91,16 @@ const Wrap = styled.div`
 
 const CategoryBox = styled.div`
   display: flex;
-  height: 4rem;
+  height: 2.5rem;
   align-items: center;
   color: #bebcbc;
   letter-spacing: -1px;
   cursor: pointer;
-  :hover {
+  /* :hover {
     color: black;
     border-bottom: 2px solid #bebcbc;
     transition: all 0.1s ease-out;
-  }
+  } */
 `;
 
 const Logo = styled.button`

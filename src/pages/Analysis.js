@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import WeekBarChart from "../components/WeekBarChart";
 import MonthBarChart from "../components/MonthBarChart";
 import WeekMixedChart from "../components/WeekMixedChart";
@@ -104,6 +104,15 @@ const Analysis = () => {
   );
 };
 
+const FadeIn = keyframes`
+from {
+  opacity:0
+}
+to {
+  opacity: 1;
+}
+`;
+
 const InfoContainer = styled.div`
   display: flex;
   width: 50%;
@@ -114,14 +123,17 @@ const InfoContainer = styled.div`
 
 const Container = styled.div`
   width: 100%;
-  height: 100%;
+  height: 100vh;
   border: none;
   justify-content: center;
+  animation: ${FadeIn} 2s;
+  display: flex;
+  flex-direction: column;
 `;
 
 const BtnContainer = styled.div`
   width: 100%;
-  height: 3rem;
+  height: 10%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -146,7 +158,7 @@ const ChartBtn = styled.div`
 const ChartContainer1 = styled.div`
   display: flex;
   width: 100%;
-  height: 50%;
+  height: 55%;
   justify-content: center;
   align-content: center;
 `;
@@ -154,13 +166,13 @@ const ChartContainer1 = styled.div`
 const ResultContainer2 = styled.div`
   display: flex;
   width: 100%;
-  height: 100%;
+  height: 35%;
   justify-content: center;
 `;
 
 const Background = styled.div`
   width: 100%;
-  height: 100vh;
+  min-height: 100vh;
   background-color: rgba(242, 242, 242, 1);
   z-index: 999;
 `;
@@ -170,7 +182,7 @@ const Text = styled.div`
   height: 50px;
   margin-left: 20px;
   font-weight: bold;
-  color: white;
+  color: black;
 `;
 
 const SleepTime = styled.div`

@@ -121,14 +121,16 @@ const InfoContainer = styled.div`
   padding-top: 2rem;
 `;
 
+//전체 프레임을 위해서 100vh > 87vh로 수정했습니다
 const Container = styled.div`
   width: 100%;
-  height: 100vh;
+  height: 87vh;
   border: none;
   justify-content: center;
   animation: ${FadeIn} 2s;
   display: flex;
   flex-direction: column;
+  
 `;
 
 const BtnContainer = styled.div`
@@ -170,9 +172,10 @@ const ResultContainer2 = styled.div`
   justify-content: center;
 `;
 
+//여기도 height 수정했습니다(배경이 짧지않게)
 const Background = styled.div`
   width: 100%;
-  min-height: 100vh;
+  height: 92.9vh;
   background-color: rgba(242, 242, 242, 1);
   z-index: 999;
 `;

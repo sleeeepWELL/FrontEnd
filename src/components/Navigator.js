@@ -81,12 +81,14 @@ const Wrap = styled.div`
   display: flex;
   background-color: rgba(242, 242, 242, 1);
   width: 100%;
-  height: 2.5rem;
+  // height: 2.5rem;
+  height: 7vh;
   /* justify-content: center; */
   align-items: center;
   border-bottom: 0.8px solid #bebcbc;
   position: sticky;
   top: 0%;
+  z-index:1;
 `;
 
 const CategoryBox = styled.div`

@@ -213,7 +213,7 @@ const Write = (props) => {
 
         <TimeContainer>
           <LocalizationProvider dateAdapter={AdapterDateFns}>
-            <div style={{ width: 150, color: "white" }}>
+            <div style={{ width: "50%", color: "white" }}>
               <MobileTimePicker
                 label="취침 시간 선택"
                 value={start}
@@ -227,7 +227,7 @@ const Write = (props) => {
             </div>
           </LocalizationProvider>
           <LocalizationProvider dateAdapter={AdapterDateFns}>
-            <div style={{ width: 150 }}>
+            <div style={{ width: "50%" }}>
               <MobileTimePicker
                 label="기상 시간 선택"
                 value={end}
@@ -365,8 +365,8 @@ const Write = (props) => {
 
         <BottomContainer>
           <textarea
-            rows="7"
-            cols="60"
+            rows="5"
+            cols="55"
             placeholder="메모를 입력하세요"
             onChange={changeMemo}
           ></textarea>
@@ -390,8 +390,8 @@ const TimeContainer = styled.div`
   background-color: white;
   display: flex;
   width: 100%;
-  height: 100%;
-  flex-direction: column;
+  height:20%;
+  flex-direction: row;
   justify-content: space-between;
   box-sizing: border-box;
 `;
@@ -399,7 +399,7 @@ const TimeContainer = styled.div`
 const Text = styled.div`
   font-size: 20px;
   font-weight: bold;
-  color: white;
+  color: black;
   margin: 5px 0px 0px 5px;
 `;
 
@@ -433,12 +433,12 @@ const TotalImgGrid = styled.div`
 `;
 
 const TopContainer = styled.div`
-  background-color: black;
+  background-color: white;
   display: flex;
   justify-content: space-between;
   width: 100%;
-  height: 20%;
-  margin: 20px 0px 20px 0px;
+  height: 10%;
+ 
 `;
 
 const TagContainer = styled.div`
@@ -447,13 +447,13 @@ const TagContainer = styled.div`
   height: 20%;
   display: flex;
   flex-direction: column;
-  margin-bottom: 10px;
+ 
   justify-content: space-between;
 `;
 const ConditionContainer = styled.div`
   background-color: grey;
   width: 100%;
-  height: 30%;
+  height: 20%;
   display: flex;
 `;
 
@@ -464,12 +464,12 @@ const BottomContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 10px;
+  
 `;
 
 const ModalComponent = styled.div`
   width: 100%;
-  height: 30%;
+  height: 100%;
   display: flex;
   flex-direction: column;
 `;

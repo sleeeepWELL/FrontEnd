@@ -103,41 +103,38 @@ const DetailPost = (props) => {
                   tDate.setDate(tDate.getDate() - 1);
                   dispatch(
                     todoActions.getOnePostAX(moment(tDate).format("YYYY-MM-DD"))
-                  );
-                }}
-              >
-                {" "}
+                  );}}>
                 ◀{/* <ChevronLeftIcon/> */}
               </MoveDButton>
+
               <DText>{props.date.selectedAt}</DText>
+              
               <MoveDButton
                 onClick={() => {
                   let tDate = new Date(props.date.selectedAt);
                   tDate.setDate(tDate.getDate() + 1);
                   dispatch(
                     todoActions.getOnePostAX(moment(tDate).format("YYYY-MM-DD"))
-                  );
-                }}
-              >
+                  );}}>
                 ▶{/* <ChevronRightIcon /> */}
               </MoveDButton>
             </LeftHeader>
 
             <RightHeader>
-              <AddButton
+              <ModifyButton
                 onClick={() => {
                   props._showModify(true);
                 }}
               >
                 MODIFY
-              </AddButton>
-              <DeleteButton
+              </ModifyButton>
+              <ModifyButton
                 onClick={() => {
                   dispatch(todoActions.removePostAX(props.date.selectedAt));
                 }}
               >
                 DELETE
-              </DeleteButton>
+              </ModifyButton>
             </RightHeader>
           </DayHeader>
 
@@ -174,7 +171,10 @@ const DetailPost = (props) => {
             })}
           </TagContainer>
 
-          <Contents> 메모 {props.date.memo}</Contents>
+          <Contents>
+          <TimeText>메모</TimeText>
+          <TimeText2>{props.date.memo}</TimeText2>
+          </Contents>
         </ModalComponent>
       </React.Fragment>
        
@@ -196,7 +196,7 @@ const DayHeader = styled.div`
   display: flex;
   justify-content: space-between;
   width: 100%;
-  height: 30%;
+  height: 20%;
   margin: 20px 0px 30px 0px;
 `;
 
@@ -221,7 +221,6 @@ const TagContainer = styled.div`
   width: 100%;
   height: 12%;
   display: flex;
-  justify-content: space-between;
   margin-bottom: 20px;
 `;
 
@@ -236,6 +235,7 @@ const LeftHeader = styled.div`
 
 const MoveDButton = styled.button`
   width: 15%;
+  height: 25%;
   font-weight: bold;
   border-radius: 5px;
   outline: none;
@@ -249,22 +249,22 @@ const DText = styled.div`
   font-weight: bold;
   font-size: 20px;
   color: black;
-  width: 90%;
+  width: 50%;
   border: none;
   text-align: center;
-  padding-top: 2px;
+  
 `;
 const RightHeader = styled.div`
   background-color:white;
   display: flex;
   justify-content: space-between;
-  width: 37%;
+  width: 30%;
   height: 60%;
 `;
 
 const AddButton = styled.button`
   width: 50%;
-  height: 100%;
+  height: 60%;
   background-color: black;
   border: 2px solid white;
   font-weight: bold;
@@ -272,13 +272,12 @@ const AddButton = styled.button`
   outline: none;
   cursor: pointer;
   color: white;
-  margin: 9px 9px 0px 0px;
+  
   font-size: 3px;
 `;
 
-const DeleteButton = styled.button`
+const ModifyButton = styled.button`
   width: 50%;
-  height: 100%;
   background-color: black;
   border: 2px solid white;
   font-weight: bold;
@@ -286,7 +285,7 @@ const DeleteButton = styled.button`
   outline: none;
   cursor: pointer;
   color: white;
-  margin: 9px 0px 0px 3px;
+ 
   font-size: 3px;
 `;
 
@@ -325,9 +324,10 @@ const Contents = styled.div`
   width: 100%;
   height: 55%;
   background-color: white;
-  margin: 5px 0px 0px 10px;
   color: black;
   font-weight: bold;
+  display: flex;
+  margin-bottom: 20px;
 `;
 
 export default DetailPost;

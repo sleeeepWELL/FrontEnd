@@ -5,6 +5,7 @@ import Calendarjj from "../components/Calendarjj";
 import DetailPost from "../components/DetailPost";
 import DetailWrite from "../components/DetailWrite";
 import Search from "../components/Search";
+import  Cube  from "../components/Cube";
 
 const MainCalendar = () => {
   const [is_modify, setModify] = React.useState(false);
@@ -29,13 +30,19 @@ const MainCalendar = () => {
             )}
              
           </PostContainer>
-          <PostContainer>
-          <Search/>
-          </PostContainer>
+          <SearchContainer>
+          <Search _showModify={setModify}/>
+          </SearchContainer>
+          <SearchContainer>
+          {/* <CubeButton onClick={()=>{console.log("하이")}}>
+            <Cube />
+            <Text>날짜 검색</Text>
+          </CubeButton> */}
+          </SearchContainer>
           </RightContainer>
           
          
-           
+          
           
         </AllContainer>
 
@@ -65,7 +72,7 @@ const AllContainer = styled.div`
 
 const CalendarContainer = styled.div`
   width: 70%;
-  height:140%;
+  height: 90vh;
   background-color: white;
   margin-top: 10px;
   border-radius: 15px;
@@ -75,7 +82,7 @@ const CalendarContainer = styled.div`
 const RightContainer = styled.div`
   display: flex;
   width: 30%;
-  height: 100%;
+  height: 90vh;
   flex-direction: column;
 `;
 
@@ -84,22 +91,52 @@ const RightContainer = styled.div`
 const PostContainer = styled.div`
   display: flex;
   width: 100%;
-  height: 100%;
+  height: 80%;
   margin-left: 5%;
    margin-top: 10px;
+   margin-bottom: 120px;
   background-color: white;
   flex-direction: column;
   border-radius: 20px;
 `;
+const SearchContainer = styled.div`
+  display: flex;
+  width: 100%;
+  height: 5%;
+  margin-left: 5%;
+   margin-top: 10px;
+  align-content: center;
+  border-radius: 20px;
+`;
 
 
-
+//현재는 6월 기준 
 const Background = styled.div`
   width: 100%;
-  height: 100vh;
+  height: 92.9vh;
   left: 0;
   top: 0;
   background-color: #f2f2f2;
 `;
+
+const CubeButton= styled.div`
+  width: 20%;
+  display: flex;
+  border: 1px solid black;
+  border:none;
+  
+ 
+`;
+const Text= styled.div`
+  
+  font-weight: bold;
+  z-index:2;
+  color: #121212;
+  :hover{
+    color: white;
+  };
+  margin-top:24px;
+`;
+
 
 export default MainCalendar;

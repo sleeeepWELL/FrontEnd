@@ -3,6 +3,9 @@
     font-family: 'HattonLight';
     src: url("../fonts/Hatton-Light.ttf") format('truetype');
 }
+
+
+/* Calendar */
 .TitleText {
     text-align: center;
     font-size: 25px;  
@@ -39,15 +42,12 @@
     margin: 3px 3px 0px 0px;
     
     font-weight: bold;
-    border-bottom: 1px solid black;
-
-    
-    
+    border-bottom: 1px solid black;  
 }
 
 
 
-
+/* Navigator */
 .Logo{
     font-family: 'HattonLight';
     color: ivory;
@@ -59,3 +59,4 @@
     justify-content: center;
     margin-left: 5%;
 }
+

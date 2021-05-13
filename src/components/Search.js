@@ -5,29 +5,66 @@ import { actionCreators as todoActions } from "../redux/modules/todo";
 import { history } from "../redux/configureStore";
 import moment from "moment";
 
-const Write = (props) => {
+const Search = (props) => {
   const dispatch = useDispatch();
+  const today = moment();
+  const [year, setYear] =React.useState("");
+  const [month, setMonth] =React.useState("");
+  const [day, setDay] =React.useState("");
 
-  const [date, setDate] =React.useState(null);
 
   return (
     <React.Fragment>
+      {year.length==4 ? document.getElementById("second").focus():null}
+      {month.length==2 ? document.getElementById("third").focus():null}
       <ModalComponent>
+      <InputBox 
+        id ="first"
+        onChange={(e) => {
+          setYear(e.target.value);
+        }}
+        placeholder={moment(today).format("YYYY")}
+      />
+
       <InputBox
         onChange={(e) => {
-          setDate(e.target.value);
+          setMonth(e.target.value);
         }}
-        placeholder="날짜를 입력해주세요 ex) 2020-04-05"
+        placeholder={moment(today).format("MM")}
+        value={month}
+        maxLength="2" 
+        id="second"
+      
       />
-      <button onClick={()=>{
-        let myDate = new Date(date);
+      <InputBox
+        onChange={(e) => {
+          setDay(e.target.value);
+        }}
+        placeholder={moment(today).format("DD")}
+        value={day}
+        maxLength="2"
+        id="third"
+      />
+      <ReturnBtn  onClick={()=>{
+        let myDate = new Date(`${year}-${month}-${day}`);
+
+        props._showModify(false);
         dispatch(
           todoActions.getOnePostAX(moment(myDate).format("YYYY-MM-DD"))
         );
         dispatch(
           todoActions.changeToday(moment(myDate).format("YYYY-MM-DD"))
         )}
-      }>검색</button>
+      }>SEARCH</ReturnBtn>
+      <ReturnBtn onClick={()=>{
+        props._showModify(false);
+        dispatch(
+          todoActions.getOnePostAX(moment(today).format("YYYY-MM-DD"))
+        );
+        dispatch(
+          todoActions.changeToday(moment(today).format("YYYY-MM-DD"))
+        )}
+      }>TODAY</ReturnBtn>
       </ModalComponent>
     </React.Fragment>
   );
@@ -43,20 +80,27 @@ const InputBox = styled.input`
   font-weight: bold;
   color: black;
   margin-right: 0.5rem;
-  width: 90%;
+  width: 15%;
+  height: 20%;
   opacity: 0.5;
   ::placeholder {
     font-size: 13px;
   }
 `;
 
-
+const ReturnBtn =styled.button`
+background-color: black;
+margin-left: 1rem;
+color: white;
+border-radius: 10px;
+width :12%;
+height : 100%;
+`
 
 const ModalComponent = styled.div`
-  width: %;
-  height: 30%;
-  display: flex;
-  flex-direction: column;
+  width: 100%;
+  height: 100%;
+
 `;
 
-export default Write;
+export default Search;

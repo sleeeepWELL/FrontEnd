@@ -27,6 +27,8 @@ const Search = (props) => {
       {year.length == 4 ? document.getElementById("second").focus() : null}
       {month.length == 2 ? document.getElementById("third").focus() : null}
       <ModalComponent>
+       <div className="Search">날짜 검색하기</div> 
+        <InputContainer>
         <InputBox
           id="first"
           onChange={(e) => {
@@ -54,8 +56,8 @@ const Search = (props) => {
           id="third"
           onKeyPress={onSearch}
         />
-
-        <ReturnBtn
+        </InputContainer>
+        <ReturnBtn className="ReturnBtn"
           onClick={() => {
             props._showModify(false);
             dispatch(
@@ -66,12 +68,19 @@ const Search = (props) => {
             );
           }}
         >
-          TODAY
+         오늘로 이동하기
         </ReturnBtn>
       </ModalComponent>
     </React.Fragment>
   );
 };
+
+const InputContainer = styled.div`
+ display: flex;
+ flex-direction:row;
+ margin-top: 10px;
+ height:30%;
+`
 
 const InputBox = styled.input`
   background-color: white;
@@ -92,17 +101,22 @@ const InputBox = styled.input`
 `;
 
 const ReturnBtn = styled.button`
-  background-color: black;
-  margin-left: 1rem;
+  background-color:grey;
+  margin-top:20px;
   color: white;
   border-radius: 10px;
-  width: 16%;
-  height: 100%;
+  width: 40%;
+  height:50%;
 `;
+
+
 
 const ModalComponent = styled.div`
   width: 100%;
   height: 100%;
+  display: flex;
+  flex-direction: column;
+  
 `;
 
 export default Search;

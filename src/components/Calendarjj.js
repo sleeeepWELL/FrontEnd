@@ -29,7 +29,7 @@ const Calendar = (props) => {
 
   const week_arr = _week_arr.map((week_index) => {
     return (
-      <Container key={`${moment(today).format("MM")}_week_${week_index}`}>
+      <CalendarContainer key={`${moment(today).format("MM")}_week_${week_index}`}>
         {Array.from({ length: 7 }, (v, i) => i).map((day_index) => {
           let _day = today
             .clone()
@@ -101,7 +101,7 @@ const Calendar = (props) => {
             );
           }
         })}
-      </Container>
+      </CalendarContainer>
     );
   });
 
@@ -109,58 +109,40 @@ const Calendar = (props) => {
   const nomal_week = ["mon", "tue", "wed", "thu", "fri"];
   const move_month = parseInt(moment(today).format("M"));
   return (
-    <Grid flex_direction="column" width="100%" height="85vh" margin="auto">
-      <Grid
-        height="10%"
-        justify_contents="space-between"
-        margin="5px 0px 5px 0px"
-      >
-        <MoveMButton
-          onClick={() => {
-            dispatch(
-              todoActions.changeToday(
-                moment(today).clone().subtract(1, "month")
-              )
-            );
-          }}
-        >
+    
+    <AllContainer> 
+      <TopContainer>
+        <MoveMButton onClick={() => {
+          dispatch(
+              todoActions.changeToday(moment(today).clone().subtract(1, "month")));
+          }}>
           <MMText>◀</MMText>
-          <div className="MText">
-            {move_month - 1 === 0
-              ? parseInt(moment(today).format("YYYY")) - 1 + "." + 12
-              : moment(today).format("YYYY") +
-                "." +
-                (move_month <= 10 ? "0" + (move_month - 1) : move_month - 1)}
-          </div>
+            <div className="MText">
+              { move_month - 1 === 0
+                ? parseInt(moment(today).format("YYYY"))-1+"."+12
+                :moment(today).format("YYYY")+"." + (move_month<=10 ? "0"+(move_month - 1):(move_month - 1))}
+            </div>
         </MoveMButton>
 
-        <div className="TitleText">
+        <div className="TitleText"> 
           {moment(today).format("YYYY")}. {moment(today).format("MM")}
         </div>
-
-        <MoveMButton
-          onClick={() => {
-            // 기준일을 한달 후로 돌려요!
-            dispatch(
-              todoActions.changeToday(moment(today).clone().add(1, "month"))
-            );
-          }}
-        >
+      
+        <MoveMButton onClick={() => {
+            dispatch(todoActions.changeToday(moment(today).clone().add(1, "month")));
+          }}>
           <div className="MText">
             {move_month + 1 === 13
-              ? parseInt(moment(today).format("YYYY")) + 1 + "." + "01"
-              : moment(today).format("YYYY") +
-                "." +
-                (move_month < 9 ? "0" + (move_month + 1) : move_month + 1)}
+              ? parseInt(moment(today).format("YYYY"))+1+"."+ '01'
+              :moment(today).format("YYYY")+"." + (move_month<9 ? "0"+(move_month + 1):(move_month + 1))}
           </div>
           <MMText>▶</MMText>
         </MoveMButton>
-      </Grid>
+      </TopContainer>
+
       <WeekGrid>
         <div className="WEEK">
-          <Text bold type="sun">
-            sun
-          </Text>
+          <Text bold type="sun">sun</Text>
         </div>
         {nomal_week.map((_d, idx) => {
           return (
@@ -172,35 +154,52 @@ const Calendar = (props) => {
           );
         })}
         <div className="WEEK">
-          <Text bold type="sat">
-            sat
-          </Text>
+          <Text bold type="sat">sat</Text>
         </div>
       </WeekGrid>
+
       {week_arr}
-    </Grid>
+    </AllContainer>
   );
 };
 
-const Container = styled.div`
+const AllContainer = styled.div`
+box-sizing: border-box;
+display: flex;
+flex-direction: column; 
+width: 100%; 
+min-width: 50px;
+height= 100%; 
+margin="auto";
+align-items: center;
+justify-content: flex-start;
+`;
+
+const CalendarContainer = styled.div`
   box-sizing: border-box;
-  // margin: 2px auto;
   flex-direction: row;
   display: flex;
   width: 95%;
-  height: 100%;
+  height: 80%;
   align-items: center;
-  // border: 1px solid black;
+  
 `;
 
-const DailyGrid = styled.div`
-  flex-direction: row;
-  height: 100%;
+const TopContainer = styled.div`
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;  
   width: 100%;
-  margin: 1px 0px;
-  flex-wrap: nowrap;
-  // border: 1px solid black;
+  min-width: 50px;  
+  height:16%;
+  align-items: center;
+  justify-content: space-between;
+  margin: 15px 0px 5px 0px;
+ 
+  
 `;
+
+
 
 const WeekGrid = styled.div`
   box-sizing: border-box;
@@ -208,13 +207,29 @@ const WeekGrid = styled.div`
   flex-direction: row;
   width: 95%;
   min-width: 50px;
-  height: 20%;
+  height: 10%;
   align-items: center;
   justify-content: flex-start;
   // border-bottom: 3px solid #746d6d;
   background-color: #000000;
   // border-radius: 5px;
 `;
+
+
+
+const DailyGrid = styled.div`
+  flex-direction: row;
+  height: 100%;
+  margin: 1px 0px;
+  flex-wrap: nowrap;
+  // border: 1px solid black;
+  
+`;
+
+
+
+
+
 
 //현재는 6월 기준
 const DayGrid = styled.div`

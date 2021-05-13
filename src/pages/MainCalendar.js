@@ -70,9 +70,10 @@ const AllContainer = styled.div`
   animation: ${slidein} 1s;
 `;
 
+//CalendarBackground
 const CalendarContainer = styled.div`
   width: 70%;
-  height: 90vh;
+  height: 105vh;
   background-color: white;
   margin-top: 10px;
   border-radius: 15px;
@@ -113,10 +114,11 @@ const SearchContainer = styled.div`
 //현재는 6월 기준 
 const Background = styled.div`
   width: 100%;
-  height: 92.9vh;
+  height: 110vh;
   left: 0;
   top: 0;
-  background-color: #f2f2f2;
+  // background-color: #f2f2f2;
+   background-color: #121212;
 `;
 
 const CubeButton= styled.div`

@@ -198,7 +198,7 @@ const Container = styled.div`
   flex-direction: row;
   display: flex;
   width: 95%;
-  height: 70vh;
+  height: 100%;
   align-items: center;
   // border: 1px solid black;
  

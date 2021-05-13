@@ -8,26 +8,30 @@ import moment from "moment";
 const Write = (props) => {
   const dispatch = useDispatch();
 
-  const [date, setDate] =React.useState(null);
+  const [date, setDate] = React.useState(null);
 
   return (
     <React.Fragment>
       <ModalComponent>
-      <InputBox
-        onChange={(e) => {
-          setDate(e.target.value);
-        }}
-        placeholder="날짜를 입력해주세요 ex) 2020-04-05"
-      />
-      <button onClick={()=>{
-        let myDate = new Date(date);
-        dispatch(
-          todoActions.getOnePostAX(moment(myDate).format("YYYY-MM-DD"))
-        );
-        dispatch(
-          todoActions.changeToday(moment(myDate).format("YYYY-MM-DD"))
-        )}
-      }>검색</button>
+        <InputBox
+          onChange={(e) => {
+            setDate(e.target.value);
+          }}
+          placeholder="날짜를 입력해주세요 ex) 2020-04-05"
+        />
+        <button
+          onClick={() => {
+            let myDate = new Date(date);
+            dispatch(
+              todoActions.getOnePostAX(moment(myDate).format("YYYY-MM-DD"))
+            );
+            dispatch(
+              todoActions.changeToday(moment(myDate).format("YYYY-MM-DD"))
+            );
+          }}
+        >
+          검색
+        </button>
       </ModalComponent>
     </React.Fragment>
   );
@@ -50,10 +54,8 @@ const InputBox = styled.input`
   }
 `;
 
-
-
 const ModalComponent = styled.div`
-  width: %;
+  width: 100%;
   height: 30%;
   display: flex;
   flex-direction: column;

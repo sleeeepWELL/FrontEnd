@@ -478,13 +478,13 @@ const Modify = (props) => {
           </ConditionContainer>
 
           <BottomContainer>
-            <input
-              type="text"
-              multiline
+            <textarea
+              rows="7"
+              cols="60"
               placeholder={props.props.date.memo}
               onChange={changeMemo}
               value={memo}
-            ></input>
+            ></textarea>
           </BottomContainer>
         </ModalComponent>
       </React.Fragment>

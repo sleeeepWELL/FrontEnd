@@ -198,7 +198,7 @@ const Container = styled.div`
   flex-direction: row;
   display: flex;
   width: 95%;
-  height: 50%;
+  height: 70vh;
   align-items: center;
   // border: 1px solid black;
  
@@ -234,6 +234,7 @@ const WeekGrid = styled.div`
 
 `;
 
+//현재는 6월 기준
 const DayGrid = styled.div`
   box-sizing: border-box;
   flex-direction: column;

@@ -44,11 +44,11 @@ const Table = (props) => {
 };
 
 const CContainer = styled.div`
-  width: 80%;
-  height: 100%;
+  width: 30%;
+  // height: 50%;
   display: flex;
   flex-direction: column;
-  color: white;
+  color: black;
   margin: auto;
 `;
 
@@ -72,46 +72,46 @@ const boxFade = keyframes`
  
 const Box1 = styled.div`
   width: 45%;
-  height:200px; 
-  border: 5px white solid;
+  height: 17vh; 
+  border: 5px black solid;
   border-radius: 15px;
   margin: 10px 5px 10px 5px;
   text-align: center;
   align-items: center;
-  animation: ${boxFade} 2s;
+  animation: ${boxFade} 1s;
 `
 
 const Box2 = styled.div`
   width: 45%;
-  height:200px; 
-  border: 5px white solid;
+  height: 17vh;  
+  border: 5px black solid;
   border-radius: 15px;
   margin: 10px 5px 10px 5px;
   text-align: center;
   align-items: center;
-  animation: ${boxFade} 5s alternate;
+  animation: ${boxFade} 2s alternate;
 `
 
 const Box3 = styled.div`
   width: 45%;
-  height:200px; 
-  border: 5px white solid;
+  height: 17vh; 
+  border: 5px black solid;
   border-radius: 15px;
   margin: 10px 5px 10px 5px;
   text-align: center;
   align-items: center;
-  animation: ${boxFade} 8s alternate;
+  animation: ${boxFade} 3s alternate;
 `
 
 const Box4 = styled.div`
   width: 45%;
-  height:200px; 
-  border: 5px white solid;
+  height: 17vh; 
+  border: 5px black solid;
   border-radius: 15px;
   margin: 10px 5px 10px 5px;
   text-align: center;
   align-items: center;
-  animation: ${boxFade} 11s alternate;
+  animation: ${boxFade} 4s alternate;
 `
 
 const BoxContainer = styled.div`

@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { Bar } from "react-chartjs-2";
-import  Cube  from "./Cube";
+
 
 const MonthBarChart = (props) => {
   const monthlydata = props.tags.monthly;
@@ -49,7 +49,7 @@ const MonthBarChart = (props) => {
   return (
     <React.Fragment>
       <Wrap>
-      {/* <Cube/> */}
+      
         <CContainer1>
           <Bar
             data={chartData2}
@@ -78,5 +78,7 @@ const CContainer1 = styled.div`
  
   max-height: 43vh;
 `;
+
+
 
 export default MonthBarChart;

@@ -10,6 +10,7 @@ import { actionCreators as todoActions } from "../redux/modules/result";
 
 import moment from "moment";
 import ConditionChart from "../components/ConditionChart";
+import "../components/Font.css";
 
 const Analysis = () => {
   const dispatch = useDispatch();
@@ -66,34 +67,36 @@ const Analysis = () => {
             )}
           </ChartContainer1>
           <BtnContainer>
-            <ChartBtn id="Condition" onClick={GetClick}>
+            <ChartBtn className="TimeText" id="Condition" onClick={GetClick}>
               연간컨디션
             </ChartBtn>
             <div style={{ width: "2rem" }}></div>
-            <ChartBtn id="weekTag" onClick={GetClick}>
+            <ChartBtn className="TimeText" id="weekTag" onClick={GetClick}>
               주간태그현황
             </ChartBtn>
             <div style={{ width: "2rem" }}></div>
-            <ChartBtn id="monthTag" onClick={GetClick}>
+            <ChartBtn className="TimeText" id="monthTag" onClick={GetClick}>
               월간태그현황
             </ChartBtn>
             <div style={{ width: "2rem" }}></div>
-            <ChartBtn id="weekSleep" onClick={GetClick}>
+            <ChartBtn className="TimeText" id="weekSleep" onClick={GetClick}>
               주간수면시간
             </ChartBtn>
             <div style={{ width: "2rem" }}></div>
-            <ChartBtn id="table" onClick={GetClick}>
+            <ChartBtn className="TimeText" id="table" onClick={GetClick}>
               요약
             </ChartBtn>
           </BtnContainer>
           <ResultContainer2>
             <InfoContainer>
               {resulttime.hour == undefined ? (
-                <Text>데이터가 부족하여 현재 측정 불가합니다</Text>
+                <Text className="TimeText">
+                  데이터가 부족하여 현재 측정 불가합니다
+                </Text>
               ) : (
-                <Text>
-                  {username}님의 적정수면시간은 {resulttime.hour}시간{" "}
-                  {resulttime.minute}분 입니다
+                <Text className="TimeText">
+                  {username}님의&nbsp; 적정수면시간은&nbsp; {resulttime.hour}
+                  시간 &nbsp;{resulttime.minute}분 입니다
                 </Text>
               )}
             </InfoContainer>
@@ -130,7 +133,6 @@ const Container = styled.div`
   animation: ${FadeIn} 2s;
   display: flex;
   flex-direction: column;
-  
 `;
 
 const BtnContainer = styled.div`
@@ -149,7 +151,7 @@ const ChartBtn = styled.div`
   background-color: lightgray;
   justify-content: center;
   border-radius: 7px;
-  font-size: 12px;
+  font-size: 14px;
   cursor: pointer;
   :hover {
     background-color: gray;
@@ -181,10 +183,11 @@ const Background = styled.div`
 `;
 
 const Text = styled.div`
-  width: 350px;
+  width: 400px;
   height: 50px;
   margin-left: 20px;
   font-weight: bold;
+  font-size: 20px;
   color: black;
 `;
 

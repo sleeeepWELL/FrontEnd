@@ -54,24 +54,37 @@ const Navigator = () => {
   return (
     <React.Fragment>
       <Wrap>
-        <Logo className="Logo" onClick={()=>{history.replace("/main")}}>SLEEPWELL</Logo>
+        <Logo
+          className="Logo"
+          onClick={() => {
+            history.replace("/main");
+          }}
+        >
+          SLEEPWELL
+        </Logo>
         <CategoryContainer>
           <div></div>
-          <CategoryBox id="main" onClick={GetClick}>
+          <CategoryBox className="TimeText" id="main" onClick={GetClick}>
             캘린더
           </CategoryBox>
-          <CategoryBox id="main/prac" onClick={GetClick}>
+          <CategoryBox className="TimeText" id="main/prac" onClick={GetClick}>
             내 컨디션
           </CategoryBox>
-          <CategoryBox id="main/analysis" onClick={GetClick}>
+          <CategoryBox
+            className="TimeText"
+            id="main/analysis"
+            onClick={GetClick}
+          >
             분석
           </CategoryBox>
-          <CategoryBox id="main/mypage" onClick={GetClick}>
+          <CategoryBox className="TimeText" id="main/mypage" onClick={GetClick}>
             마이페이지
           </CategoryBox>
           <div></div>
         </CategoryContainer>
-        <LogoutBox onClick={LOGOUT}>로그아웃</LogoutBox>
+        <LogoutBox className="TimeText" onClick={LOGOUT}>
+          로그아웃
+        </LogoutBox>
       </Wrap>
     </React.Fragment>
   );
@@ -88,7 +101,7 @@ const Wrap = styled.div`
   border-bottom: 0.8px solid #bebcbc;
   position: sticky;
   top: 0%;
-  z-index:1;
+  z-index: 1;
 `;
 
 const CategoryBox = styled.div`

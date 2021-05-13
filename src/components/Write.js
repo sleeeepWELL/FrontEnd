@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
 import { actionCreators as todoActions } from "../redux/modules/todo";
 import { history } from "../redux/configureStore";
+import "./Font.css";
 
 import TextField from "@material-ui/core/TextField";
 import MobileTimePicker from "@material-ui/lab/MobileTimePicker";
@@ -192,9 +193,10 @@ const Write = (props) => {
     <React.Fragment>
       <ModalComponent>
         <TopContainer>
-          <Text>{props.props.date.slice(14, 24)}</Text>
+          <Text className="Date">{props.props.date.slice(14, 24)}</Text>
 
           <AddButton
+            className="TimeText"
             onClick={() => {
               if (startSleep === "" || endSleep === "" || mycondition === 0) {
                 window.alert(
@@ -213,7 +215,7 @@ const Write = (props) => {
 
         <TimeContainer>
           <LocalizationProvider dateAdapter={AdapterDateFns}>
-            <div style={{ width: "50%", color: "white" }}>
+            <div style={{ width: "45%", margin: "auto" }}>
               <MobileTimePicker
                 label="취침 시간 선택"
                 value={start}
@@ -227,7 +229,7 @@ const Write = (props) => {
             </div>
           </LocalizationProvider>
           <LocalizationProvider dateAdapter={AdapterDateFns}>
-            <div style={{ width: "50%" }}>
+            <div style={{ width: "45%", margin: "auto" }}>
               <MobileTimePicker
                 label="기상 시간 선택"
                 value={end}
@@ -246,8 +248,8 @@ const Write = (props) => {
           <TotalImgGrid>
             <ImgGrid>
               <input
-                width="40"
-                height="40"
+                width="45"
+                height="45"
                 type="image"
                 src={beer_icon}
                 alt="beer"
@@ -260,8 +262,8 @@ const Write = (props) => {
             </ImgGrid>
             <ImgGrid>
               <input
-                width="40"
-                height="40"
+                width="45"
+                height="45"
                 type="image"
                 src={snack_icon}
                 alt="snack"
@@ -274,8 +276,8 @@ const Write = (props) => {
             </ImgGrid>
             <ImgGrid>
               <input
-                width="40"
-                height="40"
+                width="45"
+                height="45"
                 type="image"
                 src={work_icon}
                 alt="work"
@@ -288,8 +290,8 @@ const Write = (props) => {
             </ImgGrid>
             <ImgGrid>
               <input
-                width="40"
-                height="40"
+                width="45"
+                height="45"
                 type="image"
                 src={workout_icon}
                 alt="workout"
@@ -307,8 +309,8 @@ const Write = (props) => {
           <TotalImgGrid>
             <ImgGrid>
               <input
-                width="40"
-                height="40"
+                width="45"
+                height="45"
                 type="image"
                 src={one_icon}
                 alt="매우나쁨"
@@ -318,8 +320,8 @@ const Write = (props) => {
             </ImgGrid>
             <ImgGrid>
               <input
-                width="40"
-                height="40"
+                width="45"
+                height="45"
                 type="image"
                 src={two_icon}
                 alt="나쁨"
@@ -329,8 +331,8 @@ const Write = (props) => {
             </ImgGrid>
             <ImgGrid>
               <input
-                width="40"
-                height="40"
+                width="45"
+                height="45"
                 type="image"
                 src={three_icon}
                 alt="보통"
@@ -340,8 +342,8 @@ const Write = (props) => {
             </ImgGrid>
             <ImgGrid>
               <input
-                width="40"
-                height="40"
+                width="45"
+                height="45"
                 type="image"
                 src={four_icon}
                 alt="좋음"
@@ -351,8 +353,8 @@ const Write = (props) => {
             </ImgGrid>
             <ImgGrid>
               <input
-                width="40"
-                height="40"
+                width="45"
+                height="45"
                 type="image"
                 src={five_icon}
                 alt="매우 좋음"
@@ -365,8 +367,9 @@ const Write = (props) => {
 
         <BottomContainer>
           <textarea
-            rows="5"
-            cols="55"
+            className="TimeText2"
+            rows="7"
+            cols="45"
             placeholder="메모를 입력하세요"
             onChange={changeMemo}
           ></textarea>
@@ -390,7 +393,8 @@ const TimeContainer = styled.div`
   background-color: white;
   display: flex;
   width: 100%;
-  height:20%;
+  height: 20%;
+  margin: 10px 0px 0px 0px;
   flex-direction: row;
   justify-content: space-between;
   box-sizing: border-box;
@@ -400,7 +404,7 @@ const Text = styled.div`
   font-size: 20px;
   font-weight: bold;
   color: black;
-  margin: 5px 0px 0px 5px;
+  margin: 5px 0px 0px 11px;
 `;
 
 const AddButton = styled.button`
@@ -413,7 +417,7 @@ const AddButton = styled.button`
   outline: none;
   cursor: pointer;
   color: white;
-  margin: 9px 9px 0px 0px;
+  margin: 0px 9px 9px 0px;
   font-size: 3px;
 `;
 const ImgGrid = styled.div`
@@ -427,7 +431,7 @@ const TotalImgGrid = styled.div`
   display: flex;
   width: 100%;
   flex-direction: row;
-  margin: 20px;
+  margin: auto;
   justify-content: space-evenly;
   background-color: white;
 `;
@@ -438,33 +442,32 @@ const TopContainer = styled.div`
   justify-content: space-between;
   width: 100%;
   height: 10%;
- 
+  margin: 19px 0px 0px 0px;
 `;
 
 const TagContainer = styled.div`
-  background-color: grey;
+  /* background-color: grey; */
   width: 100%;
   height: 20%;
   display: flex;
   flex-direction: column;
- 
   justify-content: space-between;
 `;
 const ConditionContainer = styled.div`
-  background-color: grey;
+  /* background-color: grey; */
   width: 100%;
   height: 20%;
   display: flex;
 `;
 
 const BottomContainer = styled.div`
-  background-color: grey;
+  /* background-color: grey; */
+  margin: 20px 0px;
   width: 100%;
   height: 30%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  
 `;
 
 const ModalComponent = styled.div`

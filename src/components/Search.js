@@ -8,21 +8,18 @@ import moment from "moment";
 const Search = (props) => {
   const dispatch = useDispatch();
   const today = moment();
-  const [year, setYear] =React.useState("");
-  const [month, setMonth] =React.useState("");
-  const [day, setDay] =React.useState("");
-  
+  const [year, setYear] = React.useState("");
+  const [month, setMonth] = React.useState("");
+  const [day, setDay] = React.useState("");
+
   const onSearch = (e) => {
     if (e.key == "Enter") {
       let myDate = new Date(`${year}-${month}-${day}`);
 
       props._showModify(false);
-      dispatch(
-        todoActions.getOnePostAX(moment(myDate).format("YYYY-MM-DD"))
-      );
-      dispatch(
-        todoActions.changeToday(moment(myDate).format("YYYY-MM-DD"))
-      )}
+      dispatch(todoActions.getOnePostAX(moment(myDate).format("YYYY-MM-DD")));
+      dispatch(todoActions.changeToday(moment(myDate).format("YYYY-MM-DD")));
+    }
   };
 
   return (
@@ -38,39 +35,39 @@ const Search = (props) => {
           placeholder={moment(today).format("YYYY")}
         />
 
-      <InputBox
-        onChange={(e) => {
-          setMonth(e.target.value);
-        }}
-        placeholder={moment(today).format("MM")}
-        value={month}
-        maxLength="2" 
-        id="second"
-      
-      />
-      <InputBox
-        onChange={(e) => {
-          setDay(e.target.value);
-        }}
-        placeholder={moment(today).format("DD")}
-        value={day}
-        maxLength="2"
-        id="third"
-        onKeyPress={onSearch}
-      />
+        <InputBox
+          onChange={(e) => {
+            setMonth(e.target.value);
+          }}
+          placeholder={moment(today).format("MM")}
+          value={month}
+          maxLength="2"
+          id="second"
+        />
+        <InputBox
+          onChange={(e) => {
+            setDay(e.target.value);
+          }}
+          placeholder={moment(today).format("DD")}
+          value={day}
+          maxLength="2"
+          id="third"
+          onKeyPress={onSearch}
+        />
 
-
-  
-
-      <ReturnBtn onClick={()=>{
-        props._showModify(false);
-        dispatch(
-          todoActions.getOnePostAX(moment(today).format("YYYY-MM-DD"))
-        );
-        dispatch(
-          todoActions.changeToday(moment(today).format("YYYY-MM-DD"))
-        )}
-      }>TODAY</ReturnBtn>
+        <ReturnBtn
+          onClick={() => {
+            props._showModify(false);
+            dispatch(
+              todoActions.getOnePostAX(moment(today).format("YYYY-MM-DD"))
+            );
+            dispatch(
+              todoActions.changeToday(moment(today).format("YYYY-MM-DD"))
+            );
+          }}
+        >
+          TODAY
+        </ReturnBtn>
       </ModalComponent>
     </React.Fragment>
   );
@@ -99,7 +96,7 @@ const ReturnBtn = styled.button`
   margin-left: 1rem;
   color: white;
   border-radius: 10px;
-  width: 12%;
+  width: 16%;
   height: 100%;
 `;
 

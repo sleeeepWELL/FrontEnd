@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { actionCreators as userActions } from "../redux/modules/user";
 import { history } from "../redux/configureStore";
 import Graphic from "../components/Graphic";
+import "../components/Font.css";
 
 //회원가입
 const Signup = () => {
@@ -107,40 +108,53 @@ const Signup = () => {
         <Graphic />
         <LoginWrap>
           <SignUpContainer>
-            <SemiContainer>
+            <SemiContainer className="TimeText">
               <div style={{ fontSize: "30px", fontWeight: "600" }}>
                 회원가입
               </div>
               <InputContainer>
                 <InputBox
+                  className="TimeText2"
                   onChange={(e) => {
                     setEmail(e.target.value);
                   }}
                   placeholder="이메일을 입력해주세요"
                 />
-                <CheckBnt id="auth" disabled="" onClick={sendAuth}>
+                <CheckBnt
+                  className="TimeText"
+                  id="auth"
+                  disabled=""
+                  onClick={sendAuth}
+                >
                   인증번호발송
                 </CheckBnt>
               </InputContainer>
               <InputContainer>
                 <InputBox
+                  className="TimeText2"
                   onChange={(e) => {
                     setAuthNum(e.target.value);
                   }}
                   placeholder="인증번호를 입력해주세요"
                 />
-                <CheckBnt onClick={confirmAuth}>인증완료</CheckBnt>
+                <CheckBnt className="TimeText" onClick={confirmAuth}>
+                  인증완료
+                </CheckBnt>
               </InputContainer>
               <InputContainer>
                 <InputBox
+                  className="TimeText2"
                   onChange={(e) => {
                     setNickname(e.target.value);
                   }}
                   placeholder="닉네임을 입력해주세요"
                 />
-                <CheckBnt onClick={userNameCheck}>중복확인</CheckBnt>
+                <CheckBnt className="TimeText" onClick={userNameCheck}>
+                  중복확인
+                </CheckBnt>
               </InputContainer>
               <PwBox
+                className="TimeText2"
                 onChange={(e) => {
                   setPwd(e.target.value);
                 }}
@@ -148,6 +162,7 @@ const Signup = () => {
                 type="password"
               />
               <PwBox
+                className="TimeText2"
                 onChange={(e) => {
                   setPwdCheck(e.target.value);
                 }}
@@ -217,7 +232,7 @@ const CheckBnt = styled.button`
   border: none;
   height: 3rem;
   align-items: flex-end;
-  font-size: 0.7rem;
+  font-size: 0.8rem;
   cursor: pointer;
   width: 27%;
   :hover {

@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import graphic from "../images/graphic.png";
 import background from "../images/background.png";
+import "./Font.css";
 
 const Graphic = () => {
   return (
@@ -9,19 +10,19 @@ const Graphic = () => {
       <Background>
         <TopContainer>
           <TitleWrap>
-            <Title>DO YOU</Title>
-            <Title>SLEEP WELL?</Title>
+            <Title className="TimeText">DO YOU</Title>
+            <Title className="TimeText">SLEEP WELL?</Title>
           </TitleWrap>
         </TopContainer>
         <MiddleContainer>
           <MadeByWrap>
-            <MadeByInfo>develped by</MadeByInfo>
+            <MadeByInfo className="TimeText2">develped by</MadeByInfo>
             <div style={{ width: "120%" }}></div>
-            <MadeByInfo>sleepwell</MadeByInfo>
+            <MadeByInfo className="TimeText2">sleepwell</MadeByInfo>
           </MadeByWrap>
         </MiddleContainer>
         <BottomContainer>
-          <BottomInfoBox>
+          <BottomInfoBox className="TimeText2">
             <BottomInfo>
               sleepwell은 수면 시간을 기록하여 정확한 분석을 바탕으로 가장
               최적의 수면시간을 제안하는 웹사이트 입니다.

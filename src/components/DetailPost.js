@@ -4,6 +4,7 @@ import moment from "moment";
 import styled, { keyframes } from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
 import { actionCreators as todoActions } from "../redux/modules/todo";
+import "./Font.css";
 
 import beer from "../image/beer.png";
 import snack from "../image/snack.png";
@@ -36,7 +37,6 @@ const DetailPost = (props) => {
   const myCon = String(props.date.conditions);
   //조건식을 통해 분별한다
 
- 
   if (props.date.selectedAt == undefined) {
     let _day = props.date.slice(14, 24);
     return (
@@ -56,7 +56,7 @@ const DetailPost = (props) => {
                 ◀{/* <ChevronLeftIcon /> */}
               </MoveDButton>
 
-              <DText>{_day}</DText>
+              <DText className="DayText">{_day}</DText>
 
               <MoveDButton
                 onClick={() => {
@@ -72,6 +72,7 @@ const DetailPost = (props) => {
             </LeftHeader>
             <RightHeader>
               <AddButton
+                className="TimeText"
                 onClick={() => {
                   props._showModify(true);
                 }}
@@ -82,13 +83,14 @@ const DetailPost = (props) => {
           </DayHeader>
 
           <ConditionContainer style={{ height: "30%" }}>
-            <EmptyText>NO CONTENTS</EmptyText>
+            <EmptyText className="TimeText">NO CONTENTS</EmptyText>
           </ConditionContainer>
         </ModalComponent>
-        {props.date[0].conditions=="First_View"?  
-       dispatch(
-        todoActions.getOnePostAX(moment(today).format("YYYY-MM-DD"))): null
-       }
+        {props.date[0].conditions == "First_View"
+          ? dispatch(
+              todoActions.getOnePostAX(moment(today).format("YYYY-MM-DD"))
+            )
+          : null}
       </React.Fragment>
     );
   } else {
@@ -103,25 +105,30 @@ const DetailPost = (props) => {
                   tDate.setDate(tDate.getDate() - 1);
                   dispatch(
                     todoActions.getOnePostAX(moment(tDate).format("YYYY-MM-DD"))
-                  );}}>
+                  );
+                }}
+              >
                 ◀{/* <ChevronLeftIcon/> */}
               </MoveDButton>
 
-              <DText>{props.date.selectedAt}</DText>
-              
+              <DText className="DayText">{props.date.selectedAt}</DText>
+
               <MoveDButton
                 onClick={() => {
                   let tDate = new Date(props.date.selectedAt);
                   tDate.setDate(tDate.getDate() + 1);
                   dispatch(
                     todoActions.getOnePostAX(moment(tDate).format("YYYY-MM-DD"))
-                  );}}>
+                  );
+                }}
+              >
                 ▶{/* <ChevronRightIcon /> */}
               </MoveDButton>
             </LeftHeader>
 
             <RightHeader>
               <ModifyButton
+                className="TimeText"
                 onClick={() => {
                   props._showModify(true);
                 }}
@@ -129,6 +136,7 @@ const DetailPost = (props) => {
                 MODIFY
               </ModifyButton>
               <ModifyButton
+                className="TimeText"
                 onClick={() => {
                   dispatch(todoActions.removePostAX(props.date.selectedAt));
                 }}
@@ -139,26 +147,26 @@ const DetailPost = (props) => {
           </DayHeader>
 
           <ConditionContainer>
-            <ConditionText>컨디션</ConditionText>
-            {myCon === "1" && <img width="40px" height="40px" src={one}></img>}
-            {myCon === "2" && <img width="40px" height="40px" src={two}></img>}
+            <ConditionText className="ConditionText">컨디션</ConditionText>
+            {myCon === "1" && <img width="45px" height="45px" src={one}></img>}
+            {myCon === "2" && <img width="45px" height="45px" src={two}></img>}
             {myCon === "3" && (
-              <img width="40px" height="40px" src={three}></img>
+              <img width="45px" height="45px" src={three}></img>
             )}
-            {myCon === "4" && <img width="40px" height="40px" src={four}></img>}
-            {myCon === "5" && <img width="40px" height="40px" src={five}></img>}
+            {myCon === "4" && <img width="45px" height="45px" src={four}></img>}
+            {myCon === "5" && <img width="45px" height="45px" src={five}></img>}
           </ConditionContainer>
 
           <TimeContainer>
-            <TimeText>수면 시간</TimeText>
-            <TimeText2>
+            <TimeText className="TimeText">수면 시간</TimeText>
+            <TimeText2 className="TimeText2">
               {`${props.date.totalSleepHour} 시간 ${props.date.totalSleepMinute} 분`}
               ({props.date.startSleep} ~ {props.date.endSleep})
             </TimeText2>
           </TimeContainer>
 
           <TagContainer>
-            <TimeText>태그</TimeText>
+            <TimeText className="TimeText">태그</TimeText>
             {props.date.tag.map((currentTag, idx) => {
               return (
                 <img
@@ -172,12 +180,11 @@ const DetailPost = (props) => {
           </TagContainer>
 
           <Contents>
-          <TimeText>메모</TimeText>
-          <TimeText2>{props.date.memo}</TimeText2>
+            <TimeText className="TimeText">메모</TimeText>
+            <TimeText2 className="TimeText2">{props.date.memo}</TimeText2>
           </Contents>
         </ModalComponent>
       </React.Fragment>
-       
     );
   }
 };
@@ -247,15 +254,14 @@ const MoveDButton = styled.button`
 `;
 const DText = styled.div`
   font-weight: bold;
-  font-size: 20px;
+  font-size: 18px;
   color: black;
-  width: 50%;
+  width: 60%;
   border: none;
   text-align: center;
-  
 `;
 const RightHeader = styled.div`
-  background-color:white;
+  background-color: white;
   display: flex;
   justify-content: space-between;
   width: 30%;
@@ -272,7 +278,7 @@ const AddButton = styled.button`
   outline: none;
   cursor: pointer;
   color: white;
-  
+
   font-size: 3px;
 `;
 
@@ -285,21 +291,21 @@ const ModifyButton = styled.button`
   outline: none;
   cursor: pointer;
   color: white;
- 
+
   font-size: 3px;
 `;
 
 const TimeText = styled.div`
   width: 35%;
   color: black;
-  font-size: 15px;
+  font-size: 17px;
   margin: 5px 0px 0px 10px;
   font-weight: bold;
 `;
 const EmptyText = styled.div`
   width: 100%;
   color: black;
-  font-size: 15px;
+  font-size: 18px;
   font-weight: bold;
   text-align: center;
 `;
@@ -307,7 +313,7 @@ const EmptyText = styled.div`
 const TimeText2 = styled.div`
   width: 65%;
   color: black;
-  font-size: 12px;
+  font-size: 13px;
   margin: 5px 0px 0px 10px;
   font-weight: bold;
 `;
@@ -315,7 +321,7 @@ const TimeText2 = styled.div`
 const ConditionText = styled.div`
   width: 35%;
   color: black;
-  font-size: 15px;
+  font-size: 17px;
   margin: 5px 0px 0px 10px;
   font-weight: bold;
 `;

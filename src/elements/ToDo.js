@@ -151,7 +151,7 @@ const BottomInfo = styled.div`
   height: 30%;
   justify-content: center;
 
-  margin: 5px 0px;
+  margin: 0px 0px 7px 0px;
   /* font-size: 2px; */
 `;
 

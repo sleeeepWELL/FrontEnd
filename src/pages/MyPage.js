@@ -1,8 +1,9 @@
 import React from "react";
 import styled from "styled-components";
-
+import "../components/Font.css";
 import { useSelector, useDispatch } from "react-redux";
 import { actionCreators as userActions } from "../redux/modules/user";
+import "../components/Font.css";
 
 const MyPage = () => {
   const dispatch = useDispatch();
@@ -37,19 +38,23 @@ const MyPage = () => {
       <Background>
         <Wrap>
           <Container>
-            <Title>정보변경</Title>
+            <Title className="TimeText">정보변경</Title>
             <InputContainer>
               <InputBox
+                className="TimeText"
                 value={nickname}
                 onChange={(e) => {
                   setNickname(e.target.value);
                 }}
                 placeholder="변경할 닉네임 입력"
               />
-              <CheckBnt onClick={changeNickname}>닉네임변경</CheckBnt>
+              <CheckBnt onClick={changeNickname} className="TimeText">
+                닉네임변경
+              </CheckBnt>
             </InputContainer>
             <PwdContainer>
               <PwBox
+                className="TimeText"
                 onChange={(e) => {
                   setPwd(e.target.value);
                 }}
@@ -57,6 +62,7 @@ const MyPage = () => {
                 type="password"
               />
               <PwBox
+                className="TimeText"
                 onChange={(e) => {
                   setPwdCheck(e.target.value);
                 }}
@@ -70,7 +76,9 @@ const MyPage = () => {
                   marginTop: "2rem",
                 }}
               >
-                <CheckBnt onClick={changePwd}>비밀번호변경</CheckBnt>
+                <CheckBnt onClick={changePwd} className="TimeText">
+                  비밀번호변경
+                </CheckBnt>
               </div>
             </PwdContainer>
             <div
@@ -80,7 +88,9 @@ const MyPage = () => {
                 marginTop: "2rem",
               }}
             >
-              <CheckBnt onClick={deleteUser}>회원탈퇴</CheckBnt>
+              <CheckBnt onClick={deleteUser} className="TimeText2">
+                회원탈퇴
+              </CheckBnt>
             </div>
           </Container>
         </Wrap>
@@ -94,7 +104,7 @@ const Title = styled.div`
   box-sizing: border-box;
   width: 100%;
   height: auto;
-  margin: 0px;
+  margin: 10px 0px 0px 0px;
   font-size: 20px;
   font-weight: 600;
 `;
@@ -173,7 +183,7 @@ const PwdContainer = styled.div`
 `;
 
 const PwBox = styled.input`
-  background-color: white;
+  /* background-color: white; */
   padding: 15px;
   border: 0.5px solid rgba(76, 76, 76, 0.3);
   border-radius: 10px;

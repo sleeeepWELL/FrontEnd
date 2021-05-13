@@ -5,7 +5,7 @@ import Calendarjj from "../components/Calendarjj";
 import DetailPost from "../components/DetailPost";
 import DetailWrite from "../components/DetailWrite";
 import Search from "../components/Search";
-import  Cube  from "../components/Cube";
+import Cube from "../components/Cube";
 
 const MainCalendar = () => {
   const [is_modify, setModify] = React.useState(false);
@@ -16,36 +16,29 @@ const MainCalendar = () => {
   return (
     <React.Fragment>
       <Background>
- 
         <AllContainer>
           <CalendarContainer>
             <Calendarjj _showModify={setModify} />
           </CalendarContainer>
           <RightContainer>
-          <PostContainer>
-            {is_modify ? (
-              <DetailWrite date={day_list} _showModify={setModify} />
-            ) : (
-              <DetailPost date={day_list} _showModify={setModify} />
-            )}
-             
-          </PostContainer>
-          <SearchContainer>
-          <Search _showModify={setModify}/>
-          </SearchContainer>
-          <SearchContainer>
-          {/* <CubeButton onClick={()=>{console.log("하이")}}>
+            <PostContainer>
+              {is_modify ? (
+                <DetailWrite date={day_list} _showModify={setModify} />
+              ) : (
+                <DetailPost date={day_list} _showModify={setModify} />
+              )}
+            </PostContainer>
+            <SearchContainer>
+              <Search _showModify={setModify} />
+            </SearchContainer>
+            <SearchContainer>
+              {/* <CubeButton onClick={()=>{console.log("하이")}}>
             <Cube />
             <Text>날짜 검색</Text>
           </CubeButton> */}
-          </SearchContainer>
+            </SearchContainer>
           </RightContainer>
-          
-         
-          
-          
         </AllContainer>
-
       </Background>
     </React.Fragment>
   );
@@ -59,8 +52,6 @@ to {
   opacity: 1;
 }
  `;
-
- 
 
 const AllContainer = styled.div`
   display: flex;
@@ -80,23 +71,21 @@ const CalendarContainer = styled.div`
   padding-bottom: 20px;
 `;
 
-
 const RightContainer = styled.div`
   display: flex;
   width: 25%;
   height: 90vh;
   flex-direction: column;
+  margin-top: 10px;
 `;
-
-
 
 const PostContainer = styled.div`
   display: flex;
   width: 100%;
   height: 80%;
   margin-left: 5%;
-   margin-top: 10px;
-   margin-bottom: 120px;
+  margin-top: 10px;
+  margin-bottom: 120px;
   background-color: white;
   flex-direction: column;
   border-radius: 20px;
@@ -106,40 +95,35 @@ const SearchContainer = styled.div`
   width: 100%;
   height: 5%;
   margin-left: 5%;
-   margin-top: 10px;
+  margin-top: 10px;
   align-content: center;
   border-radius: 20px;
 `;
 
-
-//현재는 6월 기준 
+//현재는 6월 기준
 const Background = styled.div`
   width: 100%;
   height: 111vh;
   left: 0;
   top: 0;
   // background-color: #f2f2f2;
-   background-color: #121212;
+  background-color: #121212;
 `;
 
-const CubeButton= styled.div`
+const CubeButton = styled.div`
   width: 20%;
   display: flex;
   border: 1px solid black;
-  border:none;
-  
- 
+  border: none;
 `;
-const Text= styled.div`
-  
+const Text = styled.div`
   font-weight: bold;
-  z-index:2;
+  z-index: 2;
   color: #121212;
-  :hover{
+  :hover {
     color: white;
-  };
-  margin-top:24px;
+  }
+  margin-top: 24px;
 `;
-
 
 export default MainCalendar;

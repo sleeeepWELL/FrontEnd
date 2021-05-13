@@ -8,6 +8,7 @@ import { useDispatch } from "react-redux";
 import KaKaoLogin from "react-kakao-login";
 import { KAKAO_JS_ID } from "../shared/OAuth";
 import Graphic from "../components/Graphic";
+import "../components/Font.css";
 
 import { KAKAO_AUTH_URL } from "../shared/OAuth";
 
@@ -41,15 +42,17 @@ const Login = (props) => {
         <Graphic />
         <LoginWrap>
           <LoginContainer>
-            <SemiContainer>
-              <div style={{ fontSize: "30px", fontWeight: "600" }}>로그인</div>
+            <SemiContainer className="TimeText">
+              <LoGin className="TimeText">로그인</LoGin>
               <IdBox
+                className="TimeText2"
                 onChange={(e) => {
                   setId(e.target.value);
                 }}
                 placeholder="이메일   Ex. test@gmail.com"
               />
               <PwBox
+                className="TimeText2"
                 onChange={(e) => {
                   setPw(e.target.value);
                 }}
@@ -92,6 +95,10 @@ const Login = (props) => {
     </React.Fragment>
   );
 };
+
+const LoGin = styled.div`
+  font-size: 30px;
+`;
 
 const Or = styled.div`
   display: flex;

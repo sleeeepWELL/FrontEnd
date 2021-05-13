@@ -3,6 +3,16 @@
   src: url("../fonts/Hatton-Light.ttf") format("truetype");
 }
 
+@font-face {
+  font-family: "NanumSquare_acEB";
+  src: url("../fonts/NanumSquare_acEB.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "NanumSquareB";
+  src: url("../fonts/NanumSquareB.ttf") format("truetype");
+}
+
 /* Calendar */
 .TitleText {
   text-align: center;
@@ -66,4 +76,25 @@
   cursor: pointer;
   justify-content: center;
   margin-left: 5%;
+}
+
+/* DetailPost */
+.ConditionText {
+  font-family: "NanumSquare_acEB";
+}
+.TimeText {
+  font-family: "NanumSquare_acEB";
+}
+
+.TimeText2 {
+  font-family: "NanumSquareB";
+}
+
+/* Modify . Write */
+.Date {
+  font-family: "HattonLight";
+  font-size: 10px;
+  margin: 3px 3px 0px 0px;
+
+  font-weight: bold;
 }

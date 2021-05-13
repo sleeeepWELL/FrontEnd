@@ -1,19 +1,22 @@
 import React from "react";
 import ready from "../images/ready.png";
 import styled from "styled-components";
+import "../components/Font.css";
 
 const Ready = () => {
   return (
     <>
       <Wrap>
         <MainImg src={ready}></MainImg>
-        <MainInfo>
+        <MainInfo className="TimeText">
           페이지 <span style={{ color: "royalblue" }}>준비중</span> 입니다.
         </MainInfo>
-        <SubInfo>
+        <SubInfo className="TimeText">
           보다 나은 서비스 제공을 위하여 페이지 준비중에 있습니다.
         </SubInfo>
-        <SubInfo>빠른 시일내에 준비하여 찾아뵙겠습니다.</SubInfo>
+        <SubInfo className="TimeText">
+          빠른 시일내에 준비하여 찾아뵙겠습니다.
+        </SubInfo>
         <div></div>
       </Wrap>
     </>
@@ -39,7 +42,7 @@ const MainInfo = styled.div`
 `;
 
 const SubInfo = styled.div`
-  font-size: 13px;
+  font-size: 15px;
   color: gray;
   margin-bottom: 5px;
 `;

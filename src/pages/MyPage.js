@@ -8,9 +8,7 @@ import { passwordCheck, nicknameCheck } from "../shared/common";
 
 const MyPage = () => {
   const dispatch = useDispatch();
-
   const username = useSelector((state) => state.user.user);
-
   const [nickname, setNickname] = React.useState(username);
   const [pwd, setPwd] = React.useState(null);
   const [pwdCheck, setPwdCheck] = React.useState(null);
@@ -32,6 +30,8 @@ const MyPage = () => {
       }
     });
   };
+
+  React.useEffect(() => {}, []);
 
   //비밀번호 변경 버튼
   const changePwd = () => {

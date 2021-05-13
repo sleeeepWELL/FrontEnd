@@ -110,7 +110,7 @@ const extensionAccess = () => {
         Authorization: `Bearer ${accessToken}`,
       },
     })
-      .then((res) => {
+      .then(async (res) => {
         const ACCESS_TOKEN_EXP = res.data.accessTokenExpiresIn;
         const ACCESS_TOKEN = res.data.accessToken;
         const REFRESH_TOKEN = res.data.refreshToken;
@@ -119,11 +119,11 @@ const extensionAccess = () => {
         const Current_time = new Date().getTime();
 
         // 새롭게 받은 리프레시 토큰도 쿠키에 다시 저장
-        setCookie("is_login", REFRESH_TOKEN);
+        await setCookie("is_login", REFRESH_TOKEN);
 
         // 새롭게 받은 access 토큰 로컬에 다시 저장(이전꺼 지우고)
-        localStorage.clear();
-        localStorage.setItem("token", ACCESS_TOKEN);
+        await localStorage.clear();
+        await localStorage.setItem("token", ACCESS_TOKEN);
 
         // 새롭게 발급받은 ACCESS 토큰 헤더에 담기
         axios.defaults.headers.common[
@@ -187,11 +187,11 @@ const kakaoLogin = (code) => {
         const REFRESH_TOKEN = res.data.refreshToken;
 
         // refresh 토큰 쿠키저장
-        setCookie("is_login", REFRESH_TOKEN);
+        await setCookie("is_login", REFRESH_TOKEN);
 
         // access 토큰 로컬에 저장(이전꺼 지우고)
-        localStorage.clear();
-        localStorage.setItem("token", ACCESS_TOKEN);
+        await localStorage.clear();
+        await localStorage.setItem("token", ACCESS_TOKEN);
 
         // 현재시간
         const Current_time = new Date().getTime();

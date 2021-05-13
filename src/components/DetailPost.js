@@ -33,7 +33,9 @@ const DetailPost = (props) => {
   const today = useSelector((state) => state.todo.today);
   const _today = moment();
 
- 
+  if(moment(new Date(today)) <= _today){
+    console.log("hi")
+    }
 
   //컨디션
   const myCon = String(props.date.conditions);

@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { actionCreators as todoActions } from "../redux/modules/todo";
 import { useDispatch, useSelector } from "react-redux";
+import "../components/Font.css";
 
 import beer from "../image/beer.png";
 import snack from "../image/snack.png";
@@ -35,11 +36,9 @@ const ToDo = (props) => {
           {myCon === "4" && <ConImg src={four}></ConImg>}
           {myCon === "5" && <ConImg src={five}></ConImg>}
 
-          <SleepTime>
-            {`${props.totalSleepHour}h`}
-            <br />
-            {`${props.totalSleepMinute}m`}
-          </SleepTime>
+          <SleepTime className="SleepTime">{`${props.totalSleepHour}h`}</SleepTime>
+
+          <SleepMin className="SleepMin">{`${props.totalSleepMinute}m`}</SleepMin>
         </TopInfo>
         <BottomInfo>
           <>
@@ -73,24 +72,48 @@ const ToDo = (props) => {
 ToDo.defaultProps = {};
 
 const ConImg = styled.img`
-  width: 45%;
-  height: 90%;
+  width: 42%;
+  height: 92%;
 `;
 
 const TagImg = styled.img`
   width: 20%;
-  height: 85%;
+  height: 82%;
   display: flex;
 `;
 
-const SleepTime = styled.text`
+const SleepTime = styled.h4`
   position: absolute;
-  top: 17%;
-  left: 42%;
-  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
+  text-align: center;
+
+  top: -20%;
+  padding: 5% 0%;
+  /* transform: translate(-3%, -3%); */
   /* margin: auto; */
   /* display: flex; */
-  font-size: 0.9rem;
+
+  font-weight: 700;
+  color: white;
+`;
+
+const SleepMin = styled.h5`
+  position: absolute;
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
+  text-align: center;
+
+  top: 12%;
+  padding: 5% 0%;
+  /* transform: translate(-3%, -3%); */
+  /* margin: auto; */
+  /* display: flex; */
+
   font-weight: 700;
   color: white;
 `;
@@ -128,7 +151,7 @@ const BottomInfo = styled.div`
   height: 30%;
   justify-content: center;
 
-  margin: 3px 0px 3px 0px;
+  margin: 5px 0px;
   /* font-size: 2px; */
 `;
 

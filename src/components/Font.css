@@ -1,28 +1,26 @@
-
 @font-face {
-    font-family: 'HattonLight';
-    src: url("../fonts/Hatton-Light.ttf") format('truetype');
+  font-family: "HattonLight";
+  src: url("../fonts/Hatton-Light.ttf") format("truetype");
 }
-
 
 /* Calendar */
 .TitleText {
-    text-align: center;
-    font-size: 25px;  
-    font-family: 'HattonLight';
-    color: #000000;
-    border-bottom: 2px solid black;
-  }
-
-.MText{
-    font-weight: bold;
-     margin: 0px 3px 0px 3px;
-     font-family: 'HattonLight';
-    border-bottom: 2px solid #6C6969;
-    color: #000000;
+  text-align: center;
+  font-size: 25px;
+  font-family: "HattonLight";
+  color: #000000;
+  border-bottom: 2px solid black;
 }
-.WEEK{
-  font-family: 'HattonLight';
+
+.MText {
+  font-weight: bold;
+  margin: 0px 3px 0px 3px;
+  font-family: "HattonLight";
+  border-bottom: 2px solid #6c6969;
+  color: #000000;
+}
+.WEEK {
+  font-family: "HattonLight";
   width: 100%;
   flex-direction: column;
   background-color: #000000;
@@ -33,30 +31,39 @@
   align-items: center;
   justify-content: flex-start;
   font-size: 20px;
-  
 }
 
-.DayText{
-    font-family: 'HattonLight';
-    font-size: 10px;
-    margin: 3px 3px 0px 0px;
-    
-    font-weight: bold;
-    border-bottom: 1px solid black;  
+.DayText {
+  font-family: "HattonLight";
+  font-size: 10px;
+  margin: 3px 3px 0px 0px;
+
+  font-weight: bold;
+  border-bottom: 1px solid black;
 }
 
+/* ToDo */
+.SleepTime {
+  font-family: "HattonLight";
+  font-size: 14px;
+  font-weight: bold;
+}
 
+.SleepMin {
+  font-family: "HattonLight";
+  font-size: 11px;
+  font-weight: bold;
+}
 
 /* Navigator */
-.Logo{
-    font-family: 'HattonLight';
-    color: ivory;
-    width: 15%;
-    display: flex;
-    font-size: 1.9rem;
-    font-weight: bold;
-    cursor: pointer;
-    justify-content: center;
-    margin-left: 5%;
+.Logo {
+  font-family: "HattonLight";
+  color: ivory;
+  width: 15%;
+  display: flex;
+  font-size: 1.9rem;
+  font-weight: bold;
+  cursor: pointer;
+  justify-content: center;
+  margin-left: 5%;
 }
-

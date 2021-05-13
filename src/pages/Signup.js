@@ -114,7 +114,7 @@ const Signup = () => {
               </div>
               <InputContainer>
                 <InputBox
-                  className="TimeText2"
+                  className="TimeText"
                   onChange={(e) => {
                     setEmail(e.target.value);
                   }}
@@ -131,7 +131,7 @@ const Signup = () => {
               </InputContainer>
               <InputContainer>
                 <InputBox
-                  className="TimeText2"
+                  className="TimeText"
                   onChange={(e) => {
                     setAuthNum(e.target.value);
                   }}
@@ -143,7 +143,7 @@ const Signup = () => {
               </InputContainer>
               <InputContainer>
                 <InputBox
-                  className="TimeText2"
+                  className="TimeText"
                   onChange={(e) => {
                     setNickname(e.target.value);
                   }}
@@ -154,7 +154,7 @@ const Signup = () => {
                 </CheckBnt>
               </InputContainer>
               <PwBox
-                className="TimeText2"
+                className="TimeText"
                 onChange={(e) => {
                   setPwd(e.target.value);
                 }}
@@ -162,7 +162,7 @@ const Signup = () => {
                 type="password"
               />
               <PwBox
-                className="TimeText2"
+                className="TimeText"
                 onChange={(e) => {
                   setPwdCheck(e.target.value);
                 }}

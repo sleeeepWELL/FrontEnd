@@ -45,14 +45,14 @@ const Login = (props) => {
             <SemiContainer className="TimeText">
               <LoGin className="TimeText">로그인</LoGin>
               <IdBox
-                className="TimeText2"
+                className="TimeText"
                 onChange={(e) => {
                   setId(e.target.value);
                 }}
                 placeholder="이메일   Ex. test@gmail.com"
               />
               <PwBox
-                className="TimeText2"
+                className="TimeText"
                 onChange={(e) => {
                   setPw(e.target.value);
                 }}

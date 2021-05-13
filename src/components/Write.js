@@ -42,13 +42,10 @@ const Write = (props) => {
 
   const [start, setStart] = React.useState(new Date("2021-01-01T23:00"));
   const startSleep = moment(start).format("HH:mm");
-  // console.log("실제 찍히는 데이터:::", start);
-  // console.log("보낼 데이터:::", startSleep);
   const [end, setEnd] = React.useState(new Date("2021-01-01T09:00"));
-  const endSleep = moment(end).format("HH:mm");
-  // console.log(end);
-  // console.log(endSleep);
+ 
 
+  const endSleep = moment(end).format("HH:mm");
   const startMinute =
     parseInt(startSleep.slice(0, 2) * 60) + parseInt(startSleep.slice(3, 5));
   const endMinute =
@@ -195,6 +192,7 @@ const Write = (props) => {
         <TopContainer>
           <Text className="Date">{props.props.date.slice(14, 24)}</Text>
 
+         
           <AddButton
             className="TimeText"
             onClick={() => {

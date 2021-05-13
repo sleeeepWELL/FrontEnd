@@ -74,7 +74,7 @@ const CalendarContainer = styled.div`
 const RightContainer = styled.div`
   display: flex;
   width: 25%;
-  height: 90vh;
+  height: 100%;
   flex-direction: column;
   margin-top: 10px;
 `;
@@ -82,7 +82,7 @@ const RightContainer = styled.div`
 const PostContainer = styled.div`
   display: flex;
   width: 100%;
-  height: 80%;
+  height: 65%;
   margin-left: 5%;
   margin-top: 10px;
   margin-bottom: 120px;
@@ -93,7 +93,7 @@ const PostContainer = styled.div`
 const SearchContainer = styled.div`
   display: flex;
   width: 100%;
-  height: 5%;
+  height: 35%;
   margin-left: 5%;
   margin-top: 10px;
   align-content: center;
@@ -106,8 +106,8 @@ const Background = styled.div`
   height: 111vh;
   left: 0;
   top: 0;
-  // background-color: #f2f2f2;
-  background-color: #121212;
+  background-color: #f2f2f2;
+  
 `;
 
 const CubeButton = styled.div`

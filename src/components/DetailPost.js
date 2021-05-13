@@ -33,6 +33,8 @@ const DetailPost = (props) => {
   const today = useSelector((state) => state.todo.today);
   const _today = moment();
 
+ 
+
   //컨디션
   const myCon = String(props.date.conditions);
   //조건식을 통해 분별한다
@@ -71,7 +73,8 @@ const DetailPost = (props) => {
               </MoveDButton>
             </LeftHeader>
             <RightHeader>
-              <AddButton
+            {/* {(moment(new Date(today)) <= _today) && */}
+               <AddButton
                 className="TimeText"
                 onClick={() => {
                   props._showModify(true);
@@ -79,6 +82,7 @@ const DetailPost = (props) => {
               >
                 ADD
               </AddButton>
+              {/* } */}
             </RightHeader>
           </DayHeader>
 

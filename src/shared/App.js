@@ -24,30 +24,32 @@ import { actionCreators as userActions } from "../redux/modules/user";
 function App() {
   const dispatch = useDispatch();
 
-  React.useEffect(() => {
-    dispatch(userActions.getUserSV());
+  React.useEffect(async () => {
+    await dispatch(userActions.getUserSV());
     dispatch(userActions.extensionAccess());
   }, []);
 
   return (
     <React.Fragment>
       <ConnectedRouter history={history}>
-        <Route path="/signup" exact component={Signup} />
-        <Route path="/login" exact component={Login} />
-        <Route path="/findpwd" exact component={FindPassword} />
-        <Wrap>
-          <Route
-            path="/oauth/callback/kakao"
-            component={OAuth2RedirectHandler}
-          ></Route>
-          <Route path="/main" component={Navigator} />
-          <Route path="/main" exact component={MainCalendar} />
-          <Route path="/main/analysis" exact component={Analysis} />
-          <Route path="/main/prac" exact component={Ready} />
-          <Route path="/main/mypage" exact component={MyPage} />
-          <Route path="/" component={LoginCheck} />
+        <Switch>
+          <Route path="/signup" exact component={Signup} />
+          <Route path="/login" exact component={Login} />
+          <Route path="/findpwd" exact component={FindPassword} />
+          <Wrap>
+            <Route
+              path="/oauth/callback/kakao"
+              component={OAuth2RedirectHandler}
+            ></Route>
+            <Route path="/main" component={Navigator} />
+            <Route path="/main" exact component={MainCalendar} />
+            <Route path="/main/analysis" exact component={Analysis} />
+            <Route path="/main/prac" exact component={Ready} />
+            <Route path="/main/mypage" exact component={MyPage} />
+            <Route path="/" component={LoginCheck} />
+          </Wrap>
           <Route component={NotFound} />
-        </Wrap>
+        </Switch>
       </ConnectedRouter>
     </React.Fragment>
   );

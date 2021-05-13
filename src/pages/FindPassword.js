@@ -4,6 +4,8 @@ import { useSelector, useDispatch } from "react-redux";
 import { actionCreators as userActions } from "../redux/modules/user";
 import { history } from "../redux/configureStore";
 import Graphic from "../components/Graphic";
+import Swal from "sweetalert2";
+import { passwordCheck } from "../shared/common";
 
 //회원가입
 const FindPassword = () => {
@@ -16,21 +18,6 @@ const FindPassword = () => {
 
   //인증완료 성공 여부 (true면 완료, false면 미완료)
   const authCheck = useSelector((state) => state.user.auth_check);
-
-  //표현식 체크함수
-  const emailCheck = (email) => {
-    let emailReg = /^(?=.*[@])(?=.*[.])[a-zA-Z0-9@.]{14,30}$/g;
-    return emailReg.test(email);
-  };
-
-  const pwCheck = (pwd) => {
-    let pwReg = /^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*\W)[a-zA-Z0-9].{4,}$/;
-    return pwReg.test(pwd);
-  };
-  const nicknameCheck = (nickname) => {
-    let nicknameReg = /^[a-zA-Z0-9ㄱ-ㅎ가-힣]{1,9}$/g;
-    return nicknameReg.test(nickname);
-  };
 
   // 인증번호 발송
   const sendPwdAuth = (e) => {
@@ -46,16 +33,50 @@ const FindPassword = () => {
   //표현식 함수사용 및 체크구문
   const changePwd = () => {
     if (email === "" || pwd === "" || pwdCheck === "") {
-      window.alert("모든 항목을 입력해주세요!");
+      Swal.fire({
+        title: "모든항목을 입력해주세요.",
+        icon: "info",
+        showCancelButton: false,
+        focusConfirm: false,
+        confirmButtonText: "확인",
+      });
       return;
     }
 
     if (authCheck === false) {
-      window.alert("이메일 인증이 완료되지 않았습니다.");
+      Swal.fire({
+        title: "이메일 인증이 완료되지 않았습니다.",
+        icon: "info",
+        showCancelButton: false,
+        focusConfirm: false,
+        confirmButtonText: "확인",
+      });
       return;
     }
 
-    console.log(email, pwd, pwdCheck);
+    if (pwd !== pwdCheck) {
+      Swal.fire({
+        title: "비밀번호가 다르게 입력되었습니다.",
+        icon: "info",
+        showCancelButton: false,
+        focusConfirm: false,
+        confirmButtonText: "확인",
+      });
+      return;
+    }
+
+    if (!passwordCheck(pwd)) {
+      Swal.fire({
+        title: "비밀번호를 재설정해주세요.",
+        html: "비밀번호는 8글자 이상, 영문+숫자+특수문자로 구성해야합니다.",
+        icon: "info",
+        showCancelButton: false,
+        focusConfirm: false,
+        confirmButtonText: "확인",
+      });
+      return;
+    }
+
     dispatch(userActions.changePwd(email, pwd, pwdCheck));
   };
 

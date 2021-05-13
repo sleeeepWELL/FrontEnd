@@ -15,7 +15,9 @@ const setCookie = (name, value, exp = 1) => {
 
 // 쿠키삭제
 const deleteCookie = (name) => {
-  document.cookie = name + "=; expires=Thu, 01 Jan 1999 00:00:10 GMT;";
+  // document.cookie =
+  //   name + "=; expires=Thu, 01 Jan 1970 00:00:01 GMT;domain=localhost;path=/;";
+  document.cookie = name + "=; expires=Thu, 01 Jan 1970 00:00:01 GMT;";
 };
 
 // 쿠키가져오기

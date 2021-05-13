@@ -5,6 +5,7 @@ import { actionCreators as userActions } from "../redux/modules/user";
 import { useDispatch } from "react-redux";
 import "../shared/App.css";
 import "./Font.css";
+import Swal from "sweetalert2";
 
 const Navigator = () => {
   const dispatch = useDispatch();
@@ -21,7 +22,11 @@ const Navigator = () => {
   const LOGOUT = () => {
     dispatch(userActions.logOut());
     history.replace("/login");
-    window.alert("로그아웃!");
+    Swal.fire({
+      icon: "success",
+      title: "로그아웃 되었습니다.",
+      showConfirmButton: false,
+    });
   };
 
   React.useEffect(
@@ -33,7 +38,6 @@ const Navigator = () => {
         current.style.borderBottom = "2px solid";
         current.style.borderBottomColor = "#1c28f4";
       }
-
       if (prevClick !== null) {
         let prev = document.getElementById(prevClick);
         prev.style.color = "#bebcbc";
@@ -54,7 +58,14 @@ const Navigator = () => {
   return (
     <React.Fragment>
       <Wrap>
-        <Logo className="Logo" onClick={()=>{history.replace("/main")}}>SLEEPWELL</Logo>
+        <Logo
+          className="Logo"
+          onClick={() => {
+            history.go(0);
+          }}
+        >
+          SLEEPWELL
+        </Logo>
         <CategoryContainer>
           <div></div>
           <CategoryBox id="main" onClick={GetClick}>
@@ -88,12 +99,12 @@ const Wrap = styled.div`
   border-bottom: 0.8px solid #bebcbc;
   position: sticky;
   top: 0%;
-  z-index:1;
+  z-index: 1;
 `;
 
 const CategoryBox = styled.div`
   display: flex;
-  height: 2.5rem;
+  height: 7vh;
   align-items: center;
   color: #bebcbc;
   letter-spacing: -1px;

@@ -1,8 +1,10 @@
 import React from "react";
 import styled from "styled-components";
+import Swal from "sweetalert2";
 
 import { useSelector, useDispatch } from "react-redux";
 import { actionCreators as userActions } from "../redux/modules/user";
+import { passwordCheck, nicknameCheck } from "../shared/common";
 
 const MyPage = () => {
   const dispatch = useDispatch();
@@ -15,20 +17,63 @@ const MyPage = () => {
 
   //회원탈퇴
   const deleteUser = () => {
-    if (window.confirm("탈퇴 하시겠습니까?")) {
-      dispatch(userActions.deleteUserSV());
-    } else {
-      return;
-    }
+    Swal.fire({
+      title: "정말 탈퇴 하시겠습니까?",
+      text: "탈퇴시 입력하신 수면정보를 모두 잃게됩니다.",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#d33",
+      cancelButtonColor: "#3085d6",
+      confirmButtonText: "네, 탈퇴할래요.",
+      cancelButtonText: "아니오",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        dispatch(userActions.deleteUserSV());
+      }
+    });
   };
 
   //비밀번호 변경 버튼
   const changePwd = () => {
+    if (pwd !== pwdCheck) {
+      Swal.fire({
+        title: "비밀번호 입력오류",
+        html: "비밀번호가 서로 다릅니다. 다시 입력해주세요.",
+        icon: "info",
+        showCancelButton: false,
+        focusConfirm: false,
+        confirmButtonText: "확인",
+      });
+      return;
+    }
+
+    if (!passwordCheck(pwd)) {
+      Swal.fire({
+        title: "비밀번호 설정오류",
+        html: "8글자 이상, 영문+숫자+특수문자로 구성해야합니다.",
+        icon: "info",
+        showCancelButton: false,
+        focusConfirm: false,
+        confirmButtonText: "확인",
+      });
+      return;
+    }
     dispatch(userActions.changePwdSV(pwd, pwdCheck));
   };
 
   // 닉네임 변경 버튼
   const changeNickname = () => {
+    if (!nicknameCheck(nickname)) {
+      Swal.fire({
+        title: "닉네임을 다시 정해주세요",
+        html: "닉네임은 1글자 이상 9글자 이하로 정해주세요!",
+        icon: "info",
+        showCancelButton: false,
+        focusConfirm: false,
+        confirmButtonText: "확인",
+      });
+      return;
+    }
     dispatch(userActions.changeUsernameSV(nickname));
   };
 

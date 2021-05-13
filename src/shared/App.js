@@ -10,6 +10,7 @@ import PracAnalysis from "../pages/PracAnalysis";
 import FindPassword from "../pages/FindPassword";
 import Ready from "../pages/Ready";
 import MyPage from "../pages/MyPage";
+import NotFound from "../pages/NotFound";
 
 import { Switch, Route } from "react-router-dom";
 import { ConnectedRouter } from "connected-react-router";
@@ -40,13 +41,12 @@ function App() {
             component={OAuth2RedirectHandler}
           ></Route>
           <Route path="/main" component={Navigator} />
-
           <Route path="/main" exact component={MainCalendar} />
           <Route path="/main/analysis" exact component={Analysis} />
           <Route path="/main/prac" exact component={Ready} />
           <Route path="/main/mypage" exact component={MyPage} />
           <Route path="/" component={LoginCheck} />
-          {/* <Route exact component={NotFound} /> */}
+          <Route component={NotFound} />
         </Wrap>
       </ConnectedRouter>
     </React.Fragment>

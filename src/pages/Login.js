@@ -49,7 +49,7 @@ const Login = (props) => {
                 onChange={(e) => {
                   setId(e.target.value);
                 }}
-                placeholder="이메일   Ex. test@gmail.com"
+                placeholder="이메일   ex) sleep@gmail.com"
               />
               <PwBox
                 className="TimeText"

@@ -5,6 +5,7 @@ import { history } from "../configureStore";
 import { config } from "../../shared/config";
 import { createAction, handleActions } from "redux-actions";
 import { setCookie, deleteCookie, getCookie } from "../../shared/Cookie";
+import Swal from "sweetalert2";
 
 const LOAD = "LOAD";
 const LOADDAILY = "LOADDAILY";
@@ -47,8 +48,6 @@ const initialState = {
     },
   ],
 };
-
-
 
 const getAllPostAX = () => {
   return function (dispatch) {
@@ -109,8 +108,6 @@ const addPostAX = (post) => {
     headers: { Authorization: `Bearer ${_token}` },
   };
   return function (dispatch) {
-    
-
     let data = {
       startSleep: post.startSleep,
       endSleep: post.endSleep,
@@ -127,6 +124,11 @@ const addPostAX = (post) => {
       .post(`${config.api}/cards`, data, token)
       .then((response) => {
         dispatch(addTodo(post));
+        Swal.fire({
+          icon: "success",
+          title: "기록이 추가되었습니다.",
+          showConfirmButton: false,
+        });
       })
       .catch((err) => {
         console.log(err);
@@ -165,6 +167,11 @@ const editPostAX = (post) => {
           selectedAt: post.selectedAt,
         };
         dispatch(updateTodo(post.selectedAt, data2));
+        Swal.fire({
+          icon: "success",
+          title: "기록이 수정되었습니다.",
+          showConfirmButton: false,
+        });
       })
       .catch((err) => {
         console.log(err);
@@ -179,16 +186,25 @@ const removePostAX = (selectedAt) => {
     headers: { Authorization: `Bearer ${_token}` },
   };
   return function (dispatch) {
-  const _token = localStorage.getItem("token");
-  let token = {
-    headers: { Authorization: `Bearer ${_token}` },
-  };
-    axios
-      .delete(`${config.api}/cards/${selectedAt}`,token)
-      .then((reponse) => {
-        // axios.delete(`${config.api}/cards/${selectedAt}`).then((reponse) => {
-        dispatch(deleteTodo(selectedAt));
+    const _token = localStorage.getItem("token");
+    let token = {
+      headers: { Authorization: `Bearer ${_token}` },
+    };
+    axios.delete(`${config.api}/cards/${selectedAt}`, token).then((reponse) => {
+      Swal.fire({
+        title: "삭제 하시겠습니까?",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#d33",
+        cancelButtonColor: "#3085d6",
+        confirmButtonText: "예",
+        cancelButtonText: "아니오",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          dispatch(deleteTodo(selectedAt));
+        }
       });
+    });
   };
 };
 

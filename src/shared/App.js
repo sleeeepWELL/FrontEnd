@@ -24,8 +24,8 @@ import { actionCreators as userActions } from "../redux/modules/user";
 function App() {
   const dispatch = useDispatch();
 
-  React.useEffect(() => {
-    dispatch(userActions.getUserSV());
+  React.useEffect(async () => {
+    await dispatch(userActions.getUserSV());
     dispatch(userActions.extensionAccess());
   }, []);
 

@@ -5,6 +5,8 @@ import { actionCreators as userActions } from "../redux/modules/user";
 import { history } from "../redux/configureStore";
 import Graphic from "../components/Graphic";
 import "../components/Font.css";
+import Swal from "sweetalert2";
+import { passwordCheck, nicknameCheck } from "../shared/common";
 
 //회원가입
 const Signup = () => {
@@ -18,26 +20,9 @@ const Signup = () => {
 
   //닉네임 중복검사 통과 여부 (true면 중복, false면 통과)
   const nameCheck = useSelector((state) => state.user.name_check);
-  console.log(nameCheck);
 
   //인증완료 성공 여부 (true면 완료, false면 미완료)
   const authCheck = useSelector((state) => state.user.auth_check);
-  console.log(authCheck);
-
-  //표현식 체크함수
-  const emailCheck = (email) => {
-    let emailReg = /^(?=.*[@])(?=.*[.])[a-zA-Z0-9@.]{14,30}$/g;
-    return emailReg.test(email);
-  };
-
-  const pwCheck = (pwd) => {
-    let pwReg = /^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*\W)[a-zA-Z0-9].{4,}$/;
-    return pwReg.test(pwd);
-  };
-  const nicknameCheck = (nickname) => {
-    let nicknameReg = /^[a-zA-Z0-9ㄱ-ㅎ가-힣]{1,9}$/g;
-    return nicknameReg.test(nickname);
-  };
 
   // 인증번호 발송
   const sendAuth = (e) => {
@@ -52,53 +37,78 @@ const Signup = () => {
 
   // 닉네임 중복검사
   const userNameCheck = () => {
+    if (!nicknameCheck(nickname)) {
+      Swal.fire({
+        title: "닉네임을 다시 정해주세요",
+        html: "닉네임은 1글자 이상 9글자 이하로 정해주세요!",
+        icon: "info",
+        showCancelButton: false,
+        focusConfirm: false,
+        confirmButtonText: "확인",
+      });
+      return;
+    }
     dispatch(userActions.userNameCheck(nickname));
   };
 
-  //표현식 함수사용 및 체크구문
+  //회원가입 버튼
   const signup = () => {
     if (email === "" || nickname === "" || pwd === "" || pwdCheck === "") {
-      window.alert("모든 항목을 입력해주세요!");
+      Swal.fire({
+        title: "모든항목을 입력해주세요.",
+        icon: "info",
+        showCancelButton: false,
+        focusConfirm: false,
+        confirmButtonText: "확인",
+      });
       return;
     }
 
     if (nameCheck) {
-      window.alert("중복된 닉네임 입니다. 다른 닉네임을 입력해주세요.");
+      Swal.fire({
+        title: "닉네임 중복확인이 완료되지 않았습니다.",
+        icon: "info",
+        showCancelButton: false,
+        focusConfirm: false,
+        confirmButtonText: "확인",
+      });
       return;
     }
 
     if (authCheck === false) {
-      window.alert("이메일 인증이 완료되지 않았습니다.");
+      Swal.fire({
+        title: "이메일 인증이 완료되지 않았습니다.",
+        icon: "info",
+        showCancelButton: false,
+        focusConfirm: false,
+        confirmButtonText: "확인",
+      });
       return;
     }
 
-    // if (pwd !== pwdCheck) {
-    //   window.alert("비밀번호 설정을 다시 확인하세요!");
-    //   return;
-    // }
-    // if (!pwCheck(pwd)) {
-    //   window.alert(
-    //     "비밀번호는 4자리 이상이며,  영문(대/소문자)과 숫자와 특수문자로 구성해야합니다😅"
-    //   );
-    //   return;
-    // }
-    // if (!nicknameCheck(nickname)) {
-    //   window.alert("닉네임은 1자리 이상 10자리 미만입니다😅");
-    //   return;
-    // }
-    // if (!emailCheck(email)) {
-    //   window.alert("이메일은 14자리 이상 30자리 이하며,  형식을 지켜주세요😅");
-    //   return;
-    // }
-    // if (pwd.search(/\s/) !== -1) {
-    //   window.alert("비밀번호에 공백이 포함되었습니다😅");
-    //   return;
-    // }
-    // if (nickname.search(/\s/) !== -1) {
-    //   window.alert("닉네임에 공백이 포함되었습니다😅");
-    //   return;
-    // }
-    console.log(email, nickname, pwd, pwdCheck);
+    if (pwd !== pwdCheck) {
+      Swal.fire({
+        title: "비밀번호가 다르게 입력되었습니다.",
+        icon: "info",
+        showCancelButton: false,
+        focusConfirm: false,
+        confirmButtonText: "확인",
+      });
+      return;
+    }
+
+    if (!passwordCheck(pwd)) {
+      Swal.fire({
+        title: "비밀번호를 재설정해주세요.",
+        html: "비밀번호는 8글자 이상, 영문+숫자+특수문자로 구성해야합니다.",
+        icon: "info",
+        showCancelButton: false,
+        focusConfirm: false,
+        confirmButtonText: "확인",
+      });
+      return;
+    }
+
     dispatch(userActions.signUpSV(email, nickname, pwd, pwdCheck));
   };
 
@@ -122,7 +132,7 @@ const Signup = () => {
                 />
                 <CheckBnt
                   className="TimeText"
-                  id="auth"
+                  id="userauth"
                   disabled=""
                   onClick={sendAuth}
                 >

@@ -4,7 +4,8 @@ import { produce } from "immer";
 import axios from "axios";
 import { config } from "../../shared/config";
 import moment from "moment";
-import { REDIRECT_URI, CLIENT_ID } from "../../shared/OAuth";
+import Swal from "sweetalert2";
+import welcome from "../../images/welcome.png";
 
 // 액션 타입
 const SET_USER = "SET_USER"; // 로그인
@@ -17,7 +18,7 @@ const DELETE_USER = "DELETE_USER"; // 회원탈퇴
 // 액션 생성함수
 const setUser = createAction(SET_USER, (user) => ({ user }));
 const getUser = createAction(GET_USER, (username) => ({ username }));
-const logOut = createAction(LOG_OUT, (user) => ({ user }));
+const logOut = createAction(LOG_OUT, () => ({}));
 const nameCheck = createAction(NAME_CHECK, (name_check) => ({ name_check }));
 const authCheck = createAction(AUTH_CHECK, (auth_check) => ({ auth_check }));
 const deleteUser = createAction(DELETE_USER, () => ({}));
@@ -69,11 +70,23 @@ const loginSV = (email, pwd) => {
         // ACCESS토큰 만료 1분전마다 연장함수 실행
         setTimeout(extensionAccess(), ACCESS_TOKEN_EXP - Current_time - 60000);
 
-        await window.alert("환영합니다");
+        await Swal.fire({
+          title: "환영합니다!",
+          text: "수면시간을 기록해보세요.",
+          imageUrl: welcome,
+          imageWidth: 400,
+          imageHeight: 200,
+          imageAlt: "welcome",
+        });
         await history.replace("/main");
       })
       .catch((err) => {
-        window.alert("잘못된 정보입니다.");
+        Swal.fire({
+          icon: "error",
+          title: "로그인 실패",
+          text: "회원정보를 정확히 입력해주세요.",
+          confirmButtonText: "확인",
+        });
         console.log("로그인 에러", err);
       });
   };
@@ -147,7 +160,11 @@ const signUpSV = (email, nickname, pwd, pwdCheck) => {
       },
     })
       .then((res) => {
-        window.alert("회원가입이 완료되었습니다");
+        Swal.fire({
+          icon: "success",
+          title: "회원가입이 완료되었습니다",
+          showConfirmButton: false,
+        });
         history.replace("/login");
       })
       .catch((err) => {
@@ -189,18 +206,31 @@ const kakaoLogin = (code) => {
         console.log("연장성공");
 
         // 메인화면 이동
-        await window.alert("환영합니다");
+        await Swal.fire({
+          title: "환영합니다!",
+          text: "수면시간을 기록해보세요.",
+          imageUrl: welcome,
+          imageWidth: 400,
+          imageHeight: 200,
+          imageAlt: "welcome",
+        });
         await history.replace("/main");
       })
       .catch((err) => {
         console.log("소셜로그인 에러", err);
-        window.alert("로그인에 실패하였습니다");
+        Swal.fire({
+          icon: "error",
+          title: "로그인 실패",
+          text: "잠시후 다시 시도해주세요.",
+          confirmButtonText: "확인",
+        });
         history.replace("/login");
       });
   };
 };
 
-// 회원가입 : 이메일로 인증번호 전송
+// 회원가입
+// 이메일로 인증번호 전송
 const SendAuth = (email) => {
   return function (dispatch, getState, { history }) {
     axios({
@@ -211,7 +241,26 @@ const SendAuth = (email) => {
       },
     })
       .then((res) => {
-        window.alert("입력하신 이메일로 인증번호가 발송되었습니다.");
+        console.log(res);
+        console.log(res.data);
+        if (res.data === "이메일 중복") {
+          Swal.fire({
+            title: "이미 가입된 이메일 입니다",
+            icon: "info",
+            showCancelButton: false,
+            focusConfirm: false,
+            confirmButtonText: "확인",
+          });
+
+          // 이미가입된 이메일이면 인증번호 전송 계속 해야하니 버튼 활성화
+          document.getElementById("userauth").disabled = false;
+        } else {
+          Swal.fire({
+            icon: "success",
+            title: "입력하신 이메일로 인증번호가 발송되었습니다.",
+            showConfirmButton: false,
+          });
+        }
       })
       .catch((err) => {
         console.log("인증번호 발송 에러", err);
@@ -231,13 +280,22 @@ const ConfirmAuth = (email, AuthNum) => {
       },
     })
       .then((res) => {
-        console.log(res);
-        window.alert("인증이 완료되었습니다");
+        Swal.fire({
+          icon: "success",
+          title: "인증되었습니다.",
+          showConfirmButton: false,
+        });
         let check = true;
         dispatch(authCheck(check));
       })
       .catch((err) => {
         console.log(err);
+        Swal.fire({
+          icon: "error",
+          title: "인증이 실패했습니다.",
+          text: "유효시간 3분이 지났거나 인증번호가 잘못되었습니다.",
+          confirmButtonText: "확인",
+        });
       });
   };
 };
@@ -273,8 +331,16 @@ const userNameCheck = (nickname) => {
       .then((res) => {
         console.log(res.data);
         res.data
-          ? window.alert("중복된 닉네임입니다")
-          : window.alert("사용가능한 닉네임입니다");
+          ? Swal.fire({
+              icon: "error",
+              title: "중복된 닉네임 입니다.",
+              confirmButtonText: "확인",
+            })
+          : Swal.fire({
+              icon: "success",
+              title: "사용가능한 닉네임 입니다.",
+              confirmButtonText: "확인",
+            });
 
         dispatch(nameCheck(res.data));
       })
@@ -284,7 +350,8 @@ const userNameCheck = (nickname) => {
   };
 };
 
-// 이메일 인증번호 발송(비밀번호 찾기전용)
+// 비밀번호 찾기화면
+// 이메일 인증번호 발송
 const sendPwdAuth = (email) => {
   return function (dispatch, getState, { history }) {
     axios({
@@ -295,12 +362,27 @@ const sendPwdAuth = (email) => {
       },
     })
       .then((res) => {
-        console.log(res);
-        window.alert("인증번호가 발송되었습니다");
+        console.log(res.data);
+        if (res.data === "The email does not exist !") {
+          Swal.fire({
+            title: "가입되지 않은 이메일입니다.",
+            icon: "info",
+            showCancelButton: false,
+            focusConfirm: false,
+            confirmButtonText: "확인",
+          });
+          // 이미가입된 이메일이면 인증번호 전송 계속 해야하니 버튼 활성화
+          document.getElementById("auth").disabled = false;
+        } else {
+          Swal.fire({
+            icon: "success",
+            title: "입력하신 이메일로 인증번호가 발송되었습니다.",
+            showConfirmButton: false,
+          });
+        }
       })
       .catch((err) => {
         console.log("인증번호발송 에러", err);
-        window.alert("가입되지 않은 이메일 입니다");
       });
   };
 };
@@ -312,7 +394,11 @@ const changePwd = (email, pwd, pwdCheck) => {
     axios
       .put(`${config.api}/setting/password`, data)
       .then((res) => {
-        window.alert("비밀번호가 변경되었습니다");
+        Swal.fire({
+          icon: "success",
+          title: "비밀번호가 변경되었습니다.",
+          showConfirmButton: false,
+        });
         history.replace("/login");
       })
       .catch((err) => {
@@ -328,8 +414,13 @@ const deleteUserSV = () => {
       .delete(`${config.api}/withdrawal/membership`)
       .then(async () => {
         await dispatch(deleteUser());
+        await Swal.fire({
+          title: "정상 처리 되었습니다.",
+          text: "이용해주셔서 감사합니다.",
+          icon: "success",
+          confirmButtonText: "확인",
+        });
         await history.replace("/login");
-        await window.alert("정상처리 되었습니다. 이용해주셔서 감사합니다.");
       })
       .catch((err) => {
         console.log("회원탈퇴 에러", err);
@@ -347,7 +438,12 @@ const changeUsernameSV = (username) => {
     axios
       .put(`${config.api}/setting/username`, data)
       .then(() => {
-        window.alert("닉네임이 변경되었습니다.");
+        Swal.fire({
+          title: "닉네임이 변경되었습니다.",
+          text: "새로고침 이후 변경된 닉네임이 적용됩니다.",
+          icon: "success",
+          confirmButtonText: "확인",
+        });
       })
       .catch((err) => {
         console.log("닉네임변경 에러", err);
@@ -355,15 +451,22 @@ const changeUsernameSV = (username) => {
   };
 };
 
+// 마이페이지
 // 비밀번호 변경
 const changePwdSV = (password, passwordCheck) => {
   return function (dispatch, getState, { history }) {
     const data = { password: password, passwordCheck: passwordCheck };
     axios
       .put(`${config.api}/setting/password/new`, data)
-      .then(() => {
-        window.alert("비밀번호가 변경되었습니다. 다시 로그인 해주세요.");
-        history.replace("/login");
+      .then(async () => {
+        Swal.fire({
+          title: "비밀번호가 변경되었습니다.",
+          text: "다시 로그인 해주세요.",
+          icon: "success",
+          confirmButtonText: "확인",
+        });
+        await dispatch(logOut());
+        await history.replace("/login");
       })
       .catch((err) => {
         console.log("비밀번호 변경 오류", err);
@@ -387,9 +490,11 @@ export default handleActions(
       }),
 
     [LOG_OUT]: (state, action) =>
-      produce(state, (draft) => {
+      produce(state, async (draft) => {
+        console.log("in");
         // 쿠키삭제
-        deleteCookie("is_login");
+        await deleteCookie("is_login");
+        console.log("out");
         // 로컬 삭제
         localStorage.clear();
         draft.is_login = false;
@@ -406,9 +511,9 @@ export default handleActions(
       }),
 
     [DELETE_USER]: (state, action) =>
-      produce(state, (draft) => {
+      produce(state, async (draft) => {
         // 쿠키삭제
-        deleteCookie("is_login");
+        await deleteCookie("is_login");
         // 로컬 삭제
         localStorage.clear();
         draft.is_login = false;

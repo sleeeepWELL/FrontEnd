@@ -19,23 +19,6 @@ import three from "../image/3-conditions.png";
 import four from "../image/4-conditions.png";
 import five from "../image/5-conditions.png";
 
-//글씨 이미지로 바꾸기
-// const mapKeywordToImg = {
-//   음주: beer,
-//   야식: overeat,
-//   야근: work,
-//   운동: workout,
-// };
-
-// const mapKeywordToGrayImg = {
-//   음주: beer_gray,
-//   야식: overeat_gray,
-//   야근: work_gray,
-//   운동: workout_gray,
-// };
-
-// const TotalTags = ["음주", "야식", "야근", "운동"];
-
 const ToDo = (props) => {
   const myTags = props.tag;
   const myTag = String(props.tag);
@@ -46,111 +29,41 @@ const ToDo = (props) => {
     <React.Fragment>
       <Container>
         <TopInfo>
-          <div style={{ padding: "5px" }}>
-            {myCon === "1" && (
-              <img width="20px" height="20px" src={one} alt="condition"></img>
-            )}
-            {myCon === "2" && (
-              <img width="20px" height="20px" src={two} alt="condition"></img>
-            )}
-            {myCon === "3" && (
-              <img width="20px" height="20px" src={three} alt="condition"></img>
-            )}
-            {myCon === "4" && (
-              <img width="20px" height="20px" src={four} alt="condition"></img>
-            )}
-            {myCon === "5" && (
-              <img width="20px" height="20px" src={five} alt="condition"></img>
-            )}
-          </div>
-          <div style={{ padding: "5px", color: "black" }}>
-            {`${props.totalSleepHour}H ${props.totalSleepMinute} M`}
-          </div>
+          {myCon === "1" && <ConImg src={one}></ConImg>}
+          {myCon === "2" && <ConImg src={two}></ConImg>}
+          {myCon === "3" && <ConImg src={three}></ConImg>}
+          {myCon === "4" && <ConImg src={four}></ConImg>}
+          {myCon === "5" && <ConImg src={five}></ConImg>}
+
+          <SleepTime>
+            {`${props.totalSleepHour}h`}
+            <br />
+            {`${props.totalSleepMinute}m`}
+          </SleepTime>
         </TopInfo>
         <BottomInfo>
-          {/* <div>
-            {props.tag.map((currentTag, idx) => {
-              return (
-                <img
-                  key={idx}
-                  width="20px"
-                  height="20px"
-                  src={mapKeywordToImg[currentTag]}
-                ></img>
-              );
-            })}
-          </div> */}
-
-          <div>
+          <>
             {myTags.find((p) => p === "음주") ? (
-              <img
-                // key={idx}
-                width="21%"
-                height="90%"
-                src={beer}
-                alt="tag"
-              ></img>
+              <TagImg src={beer}></TagImg>
             ) : (
-              <img
-                // key={idx}
-                width="21%"
-                height="90%"
-                src={beer_gray}
-                alt="tag"
-              ></img>
+              <TagImg src={beer_gray}></TagImg>
             )}
             {myTags.find((p) => p === "야식") ? (
-              <img
-                // key={idx}
-                width="21%"
-                height="90%"
-                src={snack}
-                alt="tag"
-              ></img>
+              <TagImg src={snack}></TagImg>
             ) : (
-              <img
-                // key={idx}
-                width="21%"
-                height="90%"
-                src={snack_gray}
-                alt="tag"
-              ></img>
+              <TagImg src={snack_gray}></TagImg>
             )}
             {myTags.find((p) => p === "야근") ? (
-              <img
-                // key={idx}
-                width="21%"
-                height="90%"
-                src={work}
-                alt="tag"
-              ></img>
+              <TagImg src={work}></TagImg>
             ) : (
-              <img
-                // key={idx}
-                width="21%"
-                height="90%"
-                src={work_gray}
-                alt="tag"
-              ></img>
+              <TagImg src={work_gray}></TagImg>
             )}
             {myTags.find((p) => p === "운동") ? (
-              <img
-                // key={idx}
-                width="21%"
-                height="90%"
-                src={workout}
-                alt="tag"
-              ></img>
+              <TagImg src={workout}></TagImg>
             ) : (
-              <img
-                // key={idx}
-                width="21%"
-                height="90%"
-                src={workout_gray}
-                alt="tag"
-              ></img>
+              <TagImg src={workout_gray}></TagImg>
             )}
-          </div>
+          </>
         </BottomInfo>
       </Container>
     </React.Fragment>
@@ -159,17 +72,39 @@ const ToDo = (props) => {
 
 ToDo.defaultProps = {};
 
+const ConImg = styled.img`
+  width: 45%;
+  height: 90%;
+`;
+
+const TagImg = styled.img`
+  width: 20%;
+  height: 85%;
+  display: flex;
+`;
+
+const SleepTime = styled.text`
+  position: absolute;
+  top: 17%;
+  left: 42%;
+  width: 100%;
+  /* margin: auto; */
+  /* display: flex; */
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: white;
+`;
+
 const Container = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-  height: 70%;
+  height: 100%;
 
   border-radius: 8px;
   /* box-shadow: rgb(0 0 0 / 10%) 0px 4px 10px 0px; */
 
   justify-content: center;
-
 
   cursor: pointer;
   position: relative;
@@ -177,20 +112,23 @@ const Container = styled.div`
 
 const TopInfo = styled.div`
   width: 100%;
-  height: 50%;
-  font-size: 2px;
+  height: 70%;
 
   display: flex;
   flex-direction: row;
+  position: relative;
+  justify-content: center;
 `;
 
 const BottomInfo = styled.div`
   display: flex;
+  flex-direction: row;
+
   width: 100%;
-  height: 50%;
-  /* justify-content: center; */
- 
-  margin-top: 3px;
+  height: 30%;
+  justify-content: center;
+
+  margin: 3px 0px 3px 0px;
   /* font-size: 2px; */
 `;
 

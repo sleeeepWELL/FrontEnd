@@ -72,17 +72,18 @@ const AllContainer = styled.div`
 
 //CalendarBackground
 const CalendarContainer = styled.div`
-  width: 70%;
-  height: 105vh;
+  width: 75%;
+  height: 130%;
   background-color: white;
-  margin-top: 10px;
+  margin-top: 20px;
   border-radius: 15px;
+  padding-bottom: 20px;
 `;
 
 
 const RightContainer = styled.div`
   display: flex;
-  width: 30%;
+  width: 25%;
   height: 90vh;
   flex-direction: column;
 `;
@@ -114,7 +115,7 @@ const SearchContainer = styled.div`
 //현재는 6월 기준 
 const Background = styled.div`
   width: 100%;
-  height: 110vh;
+  height: 111vh;
   left: 0;
   top: 0;
   // background-color: #f2f2f2;

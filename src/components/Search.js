@@ -11,7 +11,19 @@ const Search = (props) => {
   const [year, setYear] =React.useState("");
   const [month, setMonth] =React.useState("");
   const [day, setDay] =React.useState("");
+  
+  const onSearch = (e) => {
+    if (e.key == "Enter") {
+      let myDate = new Date(`${year}-${month}-${day}`);
 
+      props._showModify(false);
+      dispatch(
+        todoActions.getOnePostAX(moment(myDate).format("YYYY-MM-DD"))
+      );
+      dispatch(
+        todoActions.changeToday(moment(myDate).format("YYYY-MM-DD"))
+      )}
+  };
 
   return (
     <React.Fragment>
@@ -44,18 +56,12 @@ const Search = (props) => {
         value={day}
         maxLength="2"
         id="third"
+        onKeyPress={onSearch}
       />
-      <ReturnBtn  onClick={()=>{
-        let myDate = new Date(`${year}-${month}-${day}`);
 
-        props._showModify(false);
-        dispatch(
-          todoActions.getOnePostAX(moment(myDate).format("YYYY-MM-DD"))
-        );
-        dispatch(
-          todoActions.changeToday(moment(myDate).format("YYYY-MM-DD"))
-        )}
-      }>SEARCH</ReturnBtn>
+
+  
+
       <ReturnBtn onClick={()=>{
         props._showModify(false);
         dispatch(

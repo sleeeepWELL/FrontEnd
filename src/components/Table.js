@@ -16,13 +16,13 @@ const Table = (props) => {
  
    
    <BoxContainer>
-   {wsleep_av[0]>11?
+   {sleeptime_av[0]>11?
    <Box1>
      <Text>Weekly Sleep Time Average</Text> 
-     <Text>PM {wsleep_av[0]-12}H {wsleep_av[1]}M</Text>
+     <Text>PM {sleeptime_av[0]-12}H {sleeptime_av[1]}M</Text>
       </Box1>:
     <Box1> <Text>Weekly Sleep Time Average</Text> 
-    <Text>  AM {wsleep_av[0]}H{wsleep_av[1]}M</Text>  
+    <Text>  AM {sleeptime_av[0]}H{sleeptime_av[1]}M</Text>  
     </Box1>}
 
     {wwake_av[0]>11? <Box2><Text> Weekly Wake Time Average</Text> 
@@ -31,7 +31,7 @@ const Table = (props) => {
     <Text> AM {wwake_av[0]}H {wwake_av[1]}M</Text>  </Box2>}
    
    
-    <Box3><Text>  Weekly Sleep Time Average</Text>  <Text> {sleeptime_av[0]}H {sleeptime_av[1]}M</Text> </Box3>
+    <Box3><Text>  Weekly Total Time Average</Text>  <Text> {wsleep_av[0]}H {wsleep_av[1]}M</Text> </Box3>
     <Box4><Text> 당신의 적정 수면시간</Text> <Text>  {result_time[0]}H {result_time[1]}M</Text>  </Box4>
    </BoxContainer>
    

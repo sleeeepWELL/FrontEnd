@@ -33,9 +33,11 @@ const DetailPost = (props) => {
   const today = useSelector((state) => state.todo.today);
   const _today = moment();
 
-  if(moment(new Date(today)) <= _today){
-    console.log("hi")
-    }
+  console.log( moment(props.date.slice(14, 24)))
+  console.log(_today)
+ 
+
+
 
   //컨디션
   const myCon = String(props.date.conditions);
@@ -75,7 +77,7 @@ const DetailPost = (props) => {
               </MoveDButton>
             </LeftHeader>
             <RightHeader>
-            {/* {(moment(new Date(today)) <= _today) && */}
+              {moment(props.date.slice(14, 24))<=_today &&
                <AddButton
                 className="TimeText"
                 onClick={() => {
@@ -84,7 +86,7 @@ const DetailPost = (props) => {
               >
                 ADD
               </AddButton>
-              {/* } */}
+              }
             </RightHeader>
           </DayHeader>
 

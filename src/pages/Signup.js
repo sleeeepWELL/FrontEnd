@@ -39,8 +39,8 @@ const Signup = () => {
   };
 
   // 인증번호 발송
-  const sendAuth = () => {
-    console.log(email);
+  const sendAuth = (e) => {
+    document.getElementById(e.target.id).disabled = true;
     dispatch(userActions.SendAuth(email));
   };
 
@@ -118,7 +118,9 @@ const Signup = () => {
                   }}
                   placeholder="이메일을 입력해주세요"
                 />
-                <CheckBnt onClick={sendAuth}>인증번호발송</CheckBnt>
+                <CheckBnt id="auth" disabled="" onClick={sendAuth}>
+                  인증번호발송
+                </CheckBnt>
               </InputContainer>
               <InputContainer>
                 <InputBox

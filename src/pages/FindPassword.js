@@ -33,7 +33,8 @@ const FindPassword = () => {
   };
 
   // 인증번호 발송
-  const sendPwdAuth = () => {
+  const sendPwdAuth = (e) => {
+    document.getElementById(e.target.id).disabled = true;
     dispatch(userActions.sendPwdAuth(email));
   };
 
@@ -75,7 +76,9 @@ const FindPassword = () => {
                   }}
                   placeholder="가입한 이메일을 입력해주세요"
                 />
-                <CheckBnt onClick={sendPwdAuth}>인증번호발송</CheckBnt>
+                <CheckBnt id="auth" disabled="" onClick={sendPwdAuth}>
+                  인증번호발송
+                </CheckBnt>
               </InputContainer>
               <InputContainer>
                 <InputBox

@@ -1,13 +1,15 @@
 import React from "react";
 import styled from "styled-components";
 
-import { useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { actionCreators as userActions } from "../redux/modules/user";
 
 const MyPage = () => {
   const dispatch = useDispatch();
 
-  const [nickname, setNickname] = React.useState(null);
+  const username = useSelector((state) => state.user.user);
+
+  const [nickname, setNickname] = React.useState(username);
   const [pwd, setPwd] = React.useState(null);
   const [pwdCheck, setPwdCheck] = React.useState(null);
 
@@ -38,6 +40,7 @@ const MyPage = () => {
             <Title>정보변경</Title>
             <InputContainer>
               <InputBox
+                value={nickname}
                 onChange={(e) => {
                   setNickname(e.target.value);
                 }}

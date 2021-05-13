@@ -22,13 +22,6 @@ import { actionCreators as userActions } from "../redux/modules/user";
 
 function App() {
   const dispatch = useDispatch();
-  // const is_login = getCookie("is_login") ? true: false;
-
-  // React.useEffect(() => {
-  //   if (is_login) {
-  //     dispatch(userAction.againLogin());
-  //   }
-  // }, []);
 
   React.useEffect(() => {
     dispatch(userActions.getUserSV());
@@ -47,7 +40,7 @@ function App() {
             component={OAuth2RedirectHandler}
           ></Route>
           <Route path="/main" component={Navigator} />
-        
+
           <Route path="/main" exact component={MainCalendar} />
           <Route path="/main/analysis" exact component={Analysis} />
           <Route path="/main/prac" exact component={Ready} />

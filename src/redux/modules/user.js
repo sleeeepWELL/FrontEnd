@@ -69,8 +69,8 @@ const loginSV = (email, pwd) => {
         // ACCESS토큰 만료 1분전마다 연장함수 실행
         setTimeout(extensionAccess(), ACCESS_TOKEN_EXP - Current_time - 60000);
 
-        history.replace("/main");
-        window.alert("환영합니다");
+        await window.alert("환영합니다");
+        await history.replace("/main");
       })
       .catch((err) => {
         window.alert("잘못된 정보입니다.");
@@ -84,7 +84,7 @@ const extensionAccess = () => {
   return function (dispatch, getState) {
     const accessToken = localStorage.getItem("token");
     const refreshToken = getCookie("is_login");
-    // console.log(accessToken, refreshToken);
+
     axios({
       method: "POST",
       url: `${config.api}/reissue`,
@@ -92,6 +92,9 @@ const extensionAccess = () => {
       data: {
         accessToken: accessToken,
         refreshToken: refreshToken,
+      },
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
       },
     })
       .then((res) => {
@@ -186,8 +189,8 @@ const kakaoLogin = (code) => {
         console.log("연장성공");
 
         // 메인화면 이동
-        history.replace("/main");
-        window.alert("환영합니다");
+        await window.alert("환영합니다");
+        await history.replace("/main");
       })
       .catch((err) => {
         console.log("소셜로그인 에러", err);
@@ -243,16 +246,16 @@ const ConfirmAuth = (email, AuthNum) => {
 const getUserSV = () => {
   return function (dispatch, getState, { history }) {
     const ACCESS_TOKEN = localStorage.getItem("token");
-    axios.defaults.headers.common["Authorization"] = `bearer ${ACCESS_TOKEN}`;
-
-    console.log(axios.defaults);
 
     axios({
       method: "GET",
       url: `${config.api}/username`,
+      headers: {
+        Authorization: `Bearer ${ACCESS_TOKEN}`,
+      },
     })
       .then((res) => {
-        console.log(res);
+        dispatch(getUser(res.data));
       })
       .catch((err) => {
         console.log("유저 이름 가져오기 에러", err);

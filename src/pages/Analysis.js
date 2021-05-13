@@ -17,6 +17,7 @@ const Analysis = () => {
   const tags = useSelector((state) => state.result.tags);
   const MixedData = useSelector((state) => state.result);
   const table = useSelector((state) => state.result.table);
+  const username = useSelector((state) => state.user.user);
 
   const [Click, setClick] = React.useState("Condition");
 
@@ -61,7 +62,6 @@ const Analysis = () => {
             {Click === "table" && (
               <>
                 <Table table={table} />
-                
               </>
             )}
           </ChartContainer1>
@@ -92,7 +92,7 @@ const Analysis = () => {
                 <Text>데이터가 부족하여 현재 측정 불가합니다</Text>
               ) : (
                 <Text>
-                  당신의 적정수면시간은 {resulttime.hour}시간{" "}
+                  {username}님의 적정수면시간은 {resulttime.hour}시간{" "}
                   {resulttime.minute}분 입니다
                 </Text>
               )}
@@ -184,7 +184,5 @@ const Text = styled.div`
   font-weight: bold;
   color: black;
 `;
-
-
 
 export default Analysis;

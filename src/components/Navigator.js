@@ -15,7 +15,6 @@ const Navigator = () => {
 
   const GetClick = (e) => {
     setCurrentClick(e.target.id);
-    console.log(e.target.id);
     history.replace(`/${e.target.id}`);
   };
 
@@ -132,6 +131,8 @@ const Logo = styled.button`
   justify-content: center;
   outline: none;
   border: none;
+  background-color: none;
+  z-index: -1;
 `;
 
 const LogoutBox = styled.div`

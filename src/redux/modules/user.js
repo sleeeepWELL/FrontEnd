@@ -60,12 +60,8 @@ const loginSV = (email, pwd) => {
           "Authorization"
         ] = `Bearer ${ACCESS_TOKEN}`;
 
-        const user = {
-          email: email,
-        };
-
         const Current_time = new Date().getTime();
-        dispatch(setUser(user));
+        dispatch(setUser());
 
         // ACCESS토큰 만료 1분전마다 연장함수 실행
         setTimeout(extensionAccess(), ACCESS_TOKEN_EXP - Current_time - 60000);
@@ -130,6 +126,9 @@ const extensionAccess = () => {
           "Authorization"
         ] = `Bearer ${ACCESS_TOKEN}`;
 
+        // 로그인상태 true 로 바꿔주기
+        dispatch(setUser());
+
         setTimeout(extensionAccess(), ACCESS_TOKEN_EXP - Current_time - 60000);
         // 1000 * 60 * 29 - 1000 * 56
 
@@ -190,7 +189,7 @@ const kakaoLogin = (code) => {
         await setCookie("is_login", REFRESH_TOKEN);
 
         // access 토큰 로컬에 저장(이전꺼 지우고)
-        await localStorage.clear();
+        // await localStorage.clear();
         await localStorage.setItem("token", ACCESS_TOKEN);
 
         // 현재시간
@@ -205,7 +204,6 @@ const kakaoLogin = (code) => {
         setTimeout(extensionAccess(), ACCESS_TOKEN_EXP - Current_time - 60000);
         console.log("연장성공");
 
-        // 메인화면 이동
         await Swal.fire({
           title: "환영합니다!",
           text: "수면시간을 기록해보세요.",
@@ -214,6 +212,10 @@ const kakaoLogin = (code) => {
           imageHeight: 200,
           imageAlt: "welcome",
         });
+
+        dispatch(setUser());
+
+        // 메인화면 이동
         await history.replace("/main");
       })
       .catch((err) => {
@@ -491,10 +493,8 @@ export default handleActions(
 
     [LOG_OUT]: (state, action) =>
       produce(state, async (draft) => {
-        console.log("in");
         // 쿠키삭제
         await deleteCookie("is_login");
-        console.log("out");
         // 로컬 삭제
         localStorage.clear();
         draft.is_login = false;

@@ -13,6 +13,10 @@ const MyPage = () => {
   const [pwd, setPwd] = React.useState(null);
   const [pwdCheck, setPwdCheck] = React.useState(null);
 
+  // React.useEffect(() => {
+  //   dispatch(userActions.getUserSV());
+  // }, []);
+
   //회원탈퇴
   const deleteUser = () => {
     Swal.fire({

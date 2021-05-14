@@ -19,6 +19,7 @@ import five from "../image/5-condition.png";
 
 import ChevronRightIcon from "@material-ui/icons/ChevronRight";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
+import Swal from "sweetalert2";
 
 //글씨 이미지로 바꾸기
 const mapKeywordToImg = {
@@ -33,11 +34,24 @@ const DetailPost = (props) => {
   const today = useSelector((state) => state.todo.today);
   const _today = moment();
 
-  console.log( moment(props.date.slice(14, 24)))
-  console.log(_today)
- 
+  console.log(moment(props.date.slice(14, 24)));
+  console.log(_today);
 
-
+  const deletePost = () => {
+    Swal.fire({
+      title: "삭제 하시겠습니까?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#d33",
+      cancelButtonColor: "#3085d6",
+      confirmButtonText: "예",
+      cancelButtonText: "아니오",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        dispatch(todoActions.removePostAX(props.date.selectedAt));
+      }
+    });
+  };
 
   //컨디션
   const myCon = String(props.date.conditions);
@@ -77,16 +91,16 @@ const DetailPost = (props) => {
               </MoveDButton>
             </LeftHeader>
             <RightHeader>
-              {moment(props.date.slice(14, 24))<=_today &&
-               <AddButton
-                className="TimeText"
-                onClick={() => {
-                  props._showModify(true);
-                }}
-              >
-                ADD
-              </AddButton>
-              }
+              {moment(props.date.slice(14, 24)) <= _today && (
+                <AddButton
+                  className="TimeText"
+                  onClick={() => {
+                    props._showModify(true);
+                  }}
+                >
+                  ADD
+                </AddButton>
+              )}
             </RightHeader>
           </DayHeader>
 
@@ -143,12 +157,7 @@ const DetailPost = (props) => {
               >
                 MODIFY
               </ModifyButton>
-              <ModifyButton
-                className="TimeText"
-                onClick={() => {
-                  dispatch(todoActions.removePostAX(props.date.selectedAt));
-                }}
-              >
+              <ModifyButton className="TimeText" onClick={deletePost}>
                 DELETE
               </ModifyButton>
             </RightHeader>

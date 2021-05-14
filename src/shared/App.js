@@ -24,17 +24,25 @@ import { actionCreators as userActions } from "../redux/modules/user";
 function App() {
   const dispatch = useDispatch();
 
-  React.useEffect(async () => {
-    await dispatch(userActions.getUserSV());
-    dispatch(userActions.extensionAccess());
-  }, []);
+  // 로그인 상태
+  const status = useSelector((state) => state.user.is_login);
+  console.log(status);
+
+  React.useEffect(() => {
+    if (status) {
+      dispatch(userActions.getUserSV());
+    } else {
+      dispatch(userActions.extensionAccess());
+    }
+  }, [status]);
 
   return (
     <React.Fragment>
       <ConnectedRouter history={history}>
+        <Route path="/login" exact component={Login} />
         <Switch>
           <Route path="/signup" exact component={Signup} />
-          <Route path="/login" exact component={Login} />
+
           <Route path="/findpwd" exact component={FindPassword} />
           <Wrap>
             <Route

@@ -5,6 +5,7 @@ import WeekBarChart from "../components/WeekBarChart";
 import MonthBarChart from "../components/MonthBarChart";
 import WeekMixedChart from "../components/WeekMixedChart";
 import Table from "../components/Table";
+import { actionCreators as userActions } from "../redux/modules/user";
 
 import { actionCreators as todoActions } from "../redux/modules/result";
 

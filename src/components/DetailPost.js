@@ -33,8 +33,6 @@ const DetailPost = (props) => {
   const today = useSelector((state) => state.todo.today);
   const _today = moment();
 
-  console.log( moment(props.date.slice(14, 24)))
-  console.log(_today)
  
 
 
@@ -264,7 +262,7 @@ const DText = styled.div`
   font-weight: bold;
   font-size: 18px;
   color: black;
-  width: 60%;
+  width: 80%;
   border: none;
   text-align: center;
 `;
@@ -273,7 +271,7 @@ const RightHeader = styled.div`
   display: flex;
   justify-content: space-between;
   width: 30%;
-  height: 60%;
+  height: 100%;
 `;
 
 const AddButton = styled.button`

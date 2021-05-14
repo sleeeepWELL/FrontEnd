@@ -17,8 +17,6 @@ import three from "../image/3-condition.png";
 import four from "../image/4-condition.png";
 import five from "../image/5-condition.png";
 
-import ChevronRightIcon from "@material-ui/icons/ChevronRight";
-import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 
 //글씨 이미지로 바꾸기
 const mapKeywordToImg = {

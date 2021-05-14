@@ -17,8 +17,7 @@ import three from "../image/3-condition.png";
 import four from "../image/4-condition.png";
 import five from "../image/5-condition.png";
 
-import ChevronRightIcon from "@material-ui/icons/ChevronRight";
-import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
+
 import Swal from "sweetalert2";
 
 //글씨 이미지로 바꾸기
@@ -273,7 +272,7 @@ const DText = styled.div`
   font-weight: bold;
   font-size: 18px;
   color: black;
-  width: 60%;
+  width: 80%;
   border: none;
   text-align: center;
 `;
@@ -282,7 +281,7 @@ const RightHeader = styled.div`
   display: flex;
   justify-content: space-between;
   width: 30%;
-  height: 60%;
+  height: 100%;
 `;
 
 const AddButton = styled.button`

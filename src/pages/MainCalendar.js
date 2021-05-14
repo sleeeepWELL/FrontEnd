@@ -18,7 +18,7 @@ const MainCalendar = () => {
       <Background>
         <AllContainer>
           <CalendarContainer>
-            <Calendarjj _showModify={setModify} />
+            <Calendarjj _showModify={setModify}/>
           </CalendarContainer>
           <RightContainer>
             <PostContainer>
@@ -43,15 +43,12 @@ const MainCalendar = () => {
     </React.Fragment>
   );
 };
-const slidein = keyframes`
- from {
-  opacity:0
-}
 
-to {
-  opacity: 1;
-}
- `;
+
+const slidein = keyframes`
+from {opacity:0}
+to {opacity: 1;}
+`;
 
 const AllContainer = styled.div`
   display: flex;
@@ -60,8 +57,7 @@ const AllContainer = styled.div`
   margin: auto;
   animation: ${slidein} 1s;
 `;
-
-//CalendarBackground
+ 
 const CalendarContainer = styled.div`
   width: 75%;
   height: 130%;
@@ -71,6 +67,7 @@ const CalendarContainer = styled.div`
   padding-bottom: 20px;
 `;
 
+// 카드와 검색 
 const RightContainer = styled.div`
   display: flex;
   width: 25%;
@@ -100,7 +97,7 @@ const SearchContainer = styled.div`
   border-radius: 20px;
 `;
 
-//현재는 6월 기준
+
 const Background = styled.div`
   width: 100%;
   height: 111vh;
@@ -125,5 +122,6 @@ const Text = styled.div`
   }
   margin-top: 24px;
 `;
+
 
 export default MainCalendar;

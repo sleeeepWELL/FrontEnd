@@ -51,7 +51,6 @@ const initialState = {
 
 const getAllPostAX = () => {
   return function (dispatch) {
-    console.log(axios.defaults);
     const _token = localStorage.getItem("token");
     let token = {
       headers: { Authorization: `Bearer ${_token}` },
@@ -102,7 +101,6 @@ const getOnePostAX = (selectedAt) => {
 };
 
 const addPostAX = (post) => {
-  console.log(axios.data);
   const _token = localStorage.getItem("token");
   let token = {
     headers: { Authorization: `Bearer ${_token}` },
@@ -137,7 +135,6 @@ const addPostAX = (post) => {
 };
 
 const editPostAX = (post) => {
-  console.log(post);
   const _token = localStorage.getItem("token");
   let token = {
     headers: { Authorization: `Bearer ${_token}` },
@@ -190,19 +187,12 @@ const removePostAX = (selectedAt) => {
     let token = {
       headers: { Authorization: `Bearer ${_token}` },
     };
-    axios.delete(`${config.api}/cards/${selectedAt}`, token).then((reponse) => {
-      Swal.fire({
-        title: "삭제 하시겠습니까?",
-        icon: "warning",
-        showCancelButton: true,
-        confirmButtonColor: "#d33",
-        cancelButtonColor: "#3085d6",
-        confirmButtonText: "예",
-        cancelButtonText: "아니오",
-      }).then((result) => {
-        if (result.isConfirmed) {
-          dispatch(deleteTodo(selectedAt));
-        }
+    axios.delete(`${config.api}/cards/${selectedAt}`, token).then(async () => {
+      await dispatch(deleteTodo(selectedAt));
+      await Swal.fire({
+        title: "삭제 되었습니다.",
+        icon: "success",
+        confirmButtonText: "확인",
       });
     });
   };

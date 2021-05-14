@@ -53,7 +53,7 @@ const getTags = (today) => {
           weekly: res.data[0],
           monthly: res.data[1],
         };
-        console.log(data);
+
         dispatch(getTag(data));
       })
       .catch((err) => {
@@ -72,12 +72,11 @@ const getTimeAX = () => {
       .get(`${config.api}/chart/yourSleepTime`, token)
       // .get(`${config.api}/chart/yourSleepTime`)
       .then((res) => {
-        console.log(res);
         let data = {
           hour: res.data[0],
           minute: res.data[1],
         };
-        console.log(data);
+
         dispatch(getTime(data));
       })
       .catch((err) => {
@@ -95,7 +94,6 @@ const getConditionAX = () => {
     axios
       .get(`${config.api}/chart/grassChart`, token)
       .then((res) => {
-        console.log(res);
         let condition = [];
         for (let i = 0; i < res.data.length; i++) {
           condition.push({
@@ -104,7 +102,6 @@ const getConditionAX = () => {
           });
         }
         dispatch(getCondition(condition));
-        console.log(condition);
       })
       .catch((err) => {
         console.log("컨디션 불러오기 오류", err);
@@ -121,14 +118,13 @@ const getTableAX = (today) => {
     axios
       .get(`${config.api}/chart/table/${today}`, token)
       .then((res) => {
-        console.log(res);
         let data = {
           week_stimeaverage: res.data[0],
           week_wakeaverage: res.data[1],
           week_sleepaverage: res.data[2],
           good_stime: res.data[3],
         };
-        console.log(data);
+
         dispatch(getTable(data));
       })
       .catch((err) => {
@@ -148,7 +144,6 @@ const getCompareDataSV = (today) => {
     axios
       .get(`${config.api}/chart/lineChart/${today}`, token)
       .then((res) => {
-        console.log(res);
         const data = res.data;
         dispatch(getCompareSleepTime(data));
       })
@@ -180,7 +175,6 @@ export default handleActions(
 
     [GET_COMPARESLEEPTIME]: (state, action) =>
       produce(state, (draft) => {
-        console.log(action.payload.data);
         draft.compareSleepData = action.payload.data;
       }),
   },

@@ -9,7 +9,6 @@ const ConditionChart = (props) => {
   const dispatch = useDispatch();
 
   const condition = useSelector((state) => state.result.condition);
-  console.log(condition);
 
   useEffect(() => {
     dispatch(todoActions.getConditionAX());

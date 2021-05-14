@@ -13,10 +13,6 @@ const MyPage = () => {
   const [pwd, setPwd] = React.useState(null);
   const [pwdCheck, setPwdCheck] = React.useState(null);
 
-  // React.useEffect(() => {
-  //   dispatch(userActions.getUserSV());
-  // }, []);
-
   //회원탈퇴
   const deleteUser = () => {
     Swal.fire({
@@ -34,8 +30,6 @@ const MyPage = () => {
       }
     });
   };
-
-  React.useEffect(() => {}, []);
 
   //비밀번호 변경 버튼
   const changePwd = () => {
@@ -85,75 +79,91 @@ const MyPage = () => {
     <>
       <Background>
         <Wrap>
-          <Container>
+          <TotalContainer>
             <Title className="TimeText">정보변경</Title>
-            <InputContainer>
-              <InputBox
-                className="TimeText"
-                value={nickname}
-                onChange={(e) => {
-                  setNickname(e.target.value);
-                }}
-                placeholder="변경할 닉네임 입력"
-              />
-              <CheckBnt onClick={changeNickname} className="TimeText">
-                닉네임변경
-              </CheckBnt>
-            </InputContainer>
-            <PwdContainer>
-              <PwBox
-                className="TimeText"
-                onChange={(e) => {
-                  setPwd(e.target.value);
-                }}
-                placeholder="새 비밀번호 입력"
-                type="password"
-              />
-              <PwBox
-                className="TimeText"
-                onChange={(e) => {
-                  setPwdCheck(e.target.value);
-                }}
-                placeholder="새 비밀번호 다시입력"
-                type="password"
-              />
-              <div
-                style={{
-                  display: "flex",
-                  justifyContent: "center",
-                  marginTop: "2rem",
-                }}
-              >
-                <CheckBnt onClick={changePwd} className="TimeText">
-                  비밀번호변경
+            <Container>
+              <InfoText>닉네임 변경</InfoText>
+              <InputContainer>
+                <SemiContainer>
+                  <InputBox
+                    className="TimeText"
+                    value={nickname}
+                    onChange={(e) => {
+                      setNickname(e.target.value);
+                    }}
+                    placeholder="변경할 닉네임 입력"
+                  />
+                </SemiContainer>
+                <CheckBnt onClick={changeNickname} className="TimeText">
+                  변경
                 </CheckBnt>
-              </div>
-            </PwdContainer>
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "center",
-                marginTop: "2rem",
-              }}
-            >
-              <CheckBnt onClick={deleteUser} className="TimeText2">
+              </InputContainer>
+            </Container>
+            <Container>
+              <InfoText>비밀번호 변경</InfoText>
+              <PwdContainer>
+                <SemiContainer>
+                  <InputBox
+                    className="TimeText"
+                    onChange={(e) => {
+                      setPwd(e.target.value);
+                    }}
+                    placeholder="새 비밀번호 입력"
+                    type="password"
+                  />
+                  <div style={{ height: "0.8rem" }} />
+                  <InputBox
+                    className="TimeText"
+                    onChange={(e) => {
+                      setPwdCheck(e.target.value);
+                    }}
+                    placeholder="새 비밀번호 다시 입력"
+                    type="password"
+                  />
+                </SemiContainer>
+                <CheckBnt onClick={changePwd} className="TimeText">
+                  변경
+                </CheckBnt>
+              </PwdContainer>
+            </Container>
+            <Container>
+              <WithdrawBtn onClick={deleteUser} className="TimeText2">
                 회원탈퇴
-              </CheckBnt>
-            </div>
-          </Container>
+              </WithdrawBtn>
+            </Container>
+          </TotalContainer>
         </Wrap>
       </Background>
     </>
   );
 };
 
+const Container = styled.div`
+  width: 100%;
+  height: auto;
+  margin: 0.7rem 0px;
+`;
+
+const SemiContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+`;
+
+const InfoText = styled.div`
+  display: flex;
+  font-size: 0.6rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+`;
+
 const Title = styled.div`
   display: flex;
   box-sizing: border-box;
   width: 100%;
   height: auto;
-  margin: 10px 0px 0px 0px;
-  font-size: 20px;
+  margin: 0px 0px 0.4rem 0px;
+  font-size: 1.5rem;
   font-weight: 600;
 `;
 const Background = styled.div`
@@ -170,38 +180,51 @@ const Wrap = styled.div`
   height: 100%;
 `;
 
-const Container = styled.div`
+const TotalContainer = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  width: 60%;
-  height: 60%;
-  background-color: white;
+  justify-content: flex-start;
+  width: 50%;
+  height: 75%;
+  background-color: none;
   border-radius: 20px;
-  padding: 2rem;
 `;
 
 const CheckBnt = styled.button`
-  background-color: rgba(238, 238, 238, 1);
+  color: rgba(238, 238, 238, 1);
+  background-color: rgba(56, 56, 56, 1);
   border-radius: 10px;
   border: none;
   height: 3rem;
-  align-items: flex-end;
   font-size: 0.7rem;
   cursor: pointer;
-  width: 27%;
+  width: 20%;
   :hover {
     background-color: gray;
     color: white;
+    transition: ease 0.5s;
+  }
+`;
+
+const WithdrawBtn = styled.button`
+  background-color: rgb(210 210 210);
+  border: none;
+  height: 1rem;
+  color: #909090;
+  border-radius: 5px;
+  font-size: 0.6rem;
+  :hover {
+    background-color: gray;
+    color: white;
+    transition: ease 0.5s;
   }
 `;
 
 const InputContainer = styled.div`
   display: flex;
   flex-direction: row;
-  justify-content: center;
-  padding: 2rem 0px;
-  border-bottom: 0.5px solid rgba(76, 76, 76, 0.3);
+  justify-content: space-between;
+  width: 100%;
 `;
 
 const InputBox = styled.input`
@@ -216,7 +239,6 @@ const InputBox = styled.input`
   font-weight: bold;
   color: black;
   margin-right: 0.5rem;
-  width: 70%;
   opacity: 0.7;
   ::placeholder {
     font-size: 13px;
@@ -225,25 +247,8 @@ const InputBox = styled.input`
 
 const PwdContainer = styled.div`
   display: flex;
-  padding-bottom: 2rem;
-  border-bottom: 0.5px solid rgba(76, 76, 76, 0.3);
-  flex-direction: column;
-`;
-
-const PwBox = styled.input`
-  /* background-color: white; */
-  padding: 15px;
-  border: 0.5px solid rgba(76, 76, 76, 0.3);
-  border-radius: 10px;
-  margin-top: 2rem;
-  outline: none;
-  font-size: 15px;
-  font-weight: bold;
-  color: black;
-  opacity: 0.7;
-  ::placeholder {
-    font-size: 13px;
-  }
+  flex-direction: row;
+  justify-content: space-between;
 `;
 
 const SignUpButton = styled.a`

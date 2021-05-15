@@ -54,21 +54,21 @@ to {opacity: 1;}
 const AllContainer = styled.div`
   display: flex;
   flex-direction: row;
-  width: 95%;
+  width: 97%;
   margin-top: 40px;
   animation: ${slidein} 1s ;
   // ease-in infinite alternate
 `;
 
 
- 
+ //캘린더 배경
 const CalendarContainer = styled.div`
-  width: 65%;
-  height: 130%;
-  background-color: white;
-  margin-top: 20px;
-  margin-right: 40px;
-  margin-left: 105px;
+  width: 66%;
+  height: 100%;
+  background-color: #F3F3F3;
+  margin-top: 1%;
+  margin-right: 2%;
+  margin-left: 5%;
   border-radius: 15px;
   padding-bottom: 20px;
   box-shadow: rgb(82 82 82/ 40%) 0px 5px 8px 0px;
@@ -78,19 +78,17 @@ const CalendarContainer = styled.div`
 const RightContainer = styled.div`
   display: flex;
   width: 25%;
-  height: 100%;
+  height: 117vh;
   flex-direction: column;
-  margin-top: 10px;
   
 `;
 
 const PostContainer = styled.div`
   display: flex;
   width: 100%;
-  height: 65%;
-  margin-left: 5%;
+  height: 77%;
+  margin-left: 3%;
   margin-top: 10px;
-  margin-bottom: 120px;
   background-color: white;
   flex-direction: column;
   border-radius: 20px;
@@ -99,7 +97,7 @@ const PostContainer = styled.div`
 const SearchContainer = styled.div`
   display: flex;
   width: 100%;
-  height: 35%;
+
   margin-left: 5%;
   margin-top: 10px;
   align-content: center;
@@ -113,7 +111,7 @@ const Background = styled.div`
   height: 111vh;
   left: 0;
   top: 0;
-  background-color: #f2f2f2;
+  background-color: #DBDBDB;
  
   
 `;

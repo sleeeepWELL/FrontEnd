@@ -22,12 +22,19 @@ const Table = (props) => {
         <BoxContainer>
       
             <Box1>
-              
               <Text className="Contents">
-                <div>운동 {monthly_tag[0]}</div>
-                <div> 음주 {monthly_tag[1]}</div>
-                <div> 야식 {monthly_tag[2]}</div>
-                <div>야근 {monthly_tag[3]}</div>
+                <Title>
+                <div>운동 </div>
+                <div> 음주 </div>
+                <div> 야식 </div>
+                <div>야근 </div>
+                </Title>
+                <Value>
+                <div> {monthly_tag[0]}</div>
+                <div>  {monthly_tag[1]}</div>
+                <div>  {monthly_tag[2]}</div>
+                <div> {monthly_tag[3]}</div>
+              </Value>
               </Text>
             </Box1>
      
@@ -36,20 +43,30 @@ const Table = (props) => {
             <Box2>
              
               <Text className="Contents">
-              <div>매우 나쁨 {monthly_condition[0]}</div>
-              <div>나쁨 {monthly_condition[1]}</div>
-              <div>보통 {monthly_condition[2]}</div>
-              <div>좋음 {monthly_condition[3]}</div>
-              <div>매우 좋음 {monthly_condition[4]}</div>
+                <Title>
+                  <div>매우 나쁨</div>
+                  <div>나쁨 </div>
+                  <div>보통 </div>
+                  <div>좋음 </div>
+                  <div>매우 좋음</div>
+                </Title>
+                <Value>
+              <div>{monthly_condition[0]}</div>
+              <div>{monthly_condition[1]}</div>
+              <div>{monthly_condition[2]}</div>
+              <div>{monthly_condition[3]}</div>
+              <div>{monthly_condition[4]}</div>
+              </Value>
               </Text>{" "}
             </Box2>
        
    
 
           <Box3>
-          
+          <Text className="Contents">
             <Text className="BigTimeText">
               { weekly_s_average[0]}시간 { weekly_s_average[1]}분
+            </Text>
             </Text>
           </Box3>
           
@@ -70,12 +87,37 @@ const CContainer = styled.div`
 
 const Text = styled.div`
   width: 100%;
-  height: 20%;
-
-
+  height: 100%;
   padding-top: 3px;
   font-weight: bold;
+  
 `;
+
+const Title = styled.div`
+ display: flex;
+ flex-direction: column;
+ width: 60%;
+ height:50%;
+ justify-content: space-between;
+ text-align: left;
+ margin: auto 20%;
+
+ 
+`;
+
+const Value = styled.div`
+ display: flex;
+ flex-direction: column;
+ width: 40%;
+ height:50%;
+ justify-content: space-between;
+ margin: auto;
+ color: lightgrey;
+ text-align: left;
+
+
+`;
+
 const boxFade = keyframes`
   0% {
     opacity: 0;
@@ -135,7 +177,7 @@ const BoxContainer = styled.div`
   align-items: center;
 `;
 const TitleContainer = styled.div`
-  width: 70%;
+  width: 69%;
  height: 5%;
   display: flex;
   justify-content: space-between;

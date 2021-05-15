@@ -102,7 +102,7 @@ const DetailPost = (props) => {
           </DayHeader>
 
           <ConditionContainer style={{ height: "30%" }}>
-            <EmptyText className="TimeText">NO CONTENTS</EmptyText>
+            <EmptyText className="TimeText">수면기록을 입력해주세요!</EmptyText>
           </ConditionContainer>
         </ModalComponent>
         {props.date[0].conditions == "First_View"
@@ -329,6 +329,7 @@ const EmptyText = styled.div`
   font-size: 18px;
   font-weight: bold;
   text-align: center;
+  opacity: 40%;
 `;
 
 const TimeText2 = styled.div`

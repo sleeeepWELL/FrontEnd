@@ -58,6 +58,18 @@ const DetailPost = (props) => {
       <React.Fragment>
         <ModalComponent>
           <DayHeader>
+            <RightHeader>
+              {moment(props.date.slice(14, 24)) <= _today && (
+                <AddButton
+                  className="TimeText"
+                  onClick={() => {
+                    props._showModify(true);
+                  }}
+                >
+                  기록
+                </AddButton>
+              )}
+            </RightHeader>
             <LeftHeader>
               <MoveDButton
                 onClick={() => {
@@ -85,18 +97,6 @@ const DetailPost = (props) => {
                 ▶{/* <ChevronRightIcon /> */}
               </MoveDButton>
             </LeftHeader>
-            <RightHeader>
-              {moment(props.date.slice(14, 24)) <= _today && (
-                <AddButton
-                  className="TimeText"
-                  onClick={() => {
-                    props._showModify(true);
-                  }}
-                >
-                  ADD
-                </AddButton>
-              )}
-            </RightHeader>
           </DayHeader>
 
           <ConditionContainer style={{ height: "30%" }}>
@@ -122,10 +122,10 @@ const DetailPost = (props) => {
                   props._showModify(true);
                 }}
               >
-                MODIFY
+                수정
               </ModifyButton>
               <ModifyButton className="TimeText" onClick={deletePost}>
-                DELETE
+                삭제
               </ModifyButton>
             </RightHeader>
             <LeftHeader>
@@ -167,7 +167,7 @@ const DetailPost = (props) => {
           </ConditionContainer>
 
           <TimeContainer>
-            <TimeText className="TimeText">수면 시간</TimeText>
+            <TimeText className="ConditionText">수면 시간</TimeText>
             <TimeText2 className="TimeText2">
               {`${props.date.totalSleepHour} 시간 ${props.date.totalSleepMinute} 분`}
               ({props.date.startSleep} ~ {props.date.endSleep})
@@ -175,14 +175,14 @@ const DetailPost = (props) => {
           </TimeContainer>
 
           <TagContainer>
-            <TimeText className="TimeText">태그</TimeText>
+            <ConditionText className="ConditionText">태그</ConditionText>
             {props.date.tag.map((currentTag, idx) => {
               return <TagImg img={mapKeywordToImg[currentTag]}></TagImg>;
             })}
           </TagContainer>
 
           <Contents>
-            <TimeText className="TimeText">메모</TimeText>
+            <TimeText className="ConditionText">메모</TimeText>
             <TimeText2 className="TimeText2">{props.date.memo}</TimeText2>
           </Contents>
         </ModalComponent>
@@ -200,83 +200,144 @@ const ModalComponent = styled.div`
   // border-radius: 20px;
 `;
 
-const DayHeader = styled.div`
-  background-color: white;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  width: 100%;
-  height: 20%;
-  margin: 10px 0px 60px 0px;
-`;
-
 //컨디션
 const ConditionContainer = styled.div`
-  background-color: white;
+  /* background-color: yellow; */
   width: 100%;
-  height: 40%;
+  height: 20%;
   display: flex;
   flex-direction: row;
-  padding: 0px 0px 30px 0px;
+
+  margin: 0px 20px 20px 20px;
   box-sizing: border-box;
+  align-items: center;
 `;
 
 const ConditionText = styled.div`
-  width: 35%;
+  width: 25%;
   height: 100%;
   color: black;
   font-size: 17px;
   margin: 5px 0px 0px 10px;
   font-weight: bold;
   display: flex;
+  align-items: center;
 `;
 
 const ConImg = styled.div`
   background-image: url(${(props) => props.img});
   background-size: contain;
-  width: 50%;
-  height: 50%;
+  width: 15%;
+  height: 70%;
   background-repeat: no-repeat;
-  /* background-position: center; */
+  background-position: center;
+  display: flex;
 `;
 
+//수면시간
 const TimeContainer = styled.div`
-  background-color: white;
-  width: 100%;
+  /* background-color: blue; */
+  width: 90%;
   height: 10%;
   display: flex;
-  margin-bottom: 60px;
+  margin: 0px 20px 20px 20px;
+  box-sizing: border-box;
+  align-items: center;
+`;
+
+const TimeText = styled.div`
+  width: 29%;
+  color: black;
+  font-size: 17px;
+  margin: 5px 0px 0px 10px;
+  font-weight: bold;
+`;
+
+const TimeText2 = styled.div`
+  width: 65%;
+  color: black;
+  font-size: 16px;
+  /* margin: 5px 0px 0px 10px; */
+  font-weight: bold;
 `;
 
 //태그
 const TagContainer = styled.div`
-  background-color: white;
+  /* background-color: pink; */
   width: 100%;
   height: 20%;
   display: flex;
-  margin-bottom: 60px;
+
+  margin: 0px 20px 20px 20px;
+  box-sizing: border-box;
+  align-items: center;
 `;
 
 const TagImg = styled.div`
   background-image: url(${(props) => props.img});
   background-size: contain;
   background-repeat: no-repeat;
-  width: 30%;
-  height: 70%;
+  width: 15%;
+  height: 60%;
 
   display: flex;
-  justify-content: center;
+  background-position: center;
   margin: 0px 2px 0px 2px;
 `;
 
+//카드 헤더
+const DayHeader = styled.div`
+  display: flex;
+  flex-direction: column;
+
+  width: 100%;
+  height: 30%;
+  margin: 10px 0px 50px 0px;
+  box-sizing: border-box;
+  /* background-color: red; */
+`;
+
 const LeftHeader = styled.div`
+  /* background-color: pink; */
   display: flex;
   flex-direction: row;
   width: 60%;
   height: 100%;
   border: none;
-  // background-color: white;
+  justify-content: center;
+  margin: 10px auto auto auto;
+  box-sizing: border-box;
 `;
+
+const RightHeader = styled.div`
+  /* background-color: blue; */
+  display: flex;
+  flex-direction: row;
+  text-align: center;
+  justify-content: flex-end;
+  width: 100%;
+  height: 100%;
+  margin-bottom: 10px;
+  box-sizing: border-box;
+`;
+
+// const ModifyButton = styled.button`
+//   width: 20%;
+//   height: 100%;
+//   background-color: black;
+//   border: 2px solid black;
+//   font-weight: bold;
+//   border-radius: 5px;
+//   outline: none;
+//   cursor: pointer;
+//   color: white;
+//   display: flex;
+//   justify-content: flex-end;
+//   font-size: 3px;
+//   text-align: center;
+//   margin: 0px 10px 0px 0px;
+//   box-sizing: border-box;
+// `;
 
 const MoveDButton = styled.button`
   width: 15%;
@@ -299,19 +360,25 @@ const DText = styled.div`
   text-align: center;
   box-shadow: rgb(82 82 82/ 20%) 0px 5px 8px 0px;
 `;
-const RightHeader = styled.div`
-  background-color: white;
-  display: flex;
-  // text-align: right;
-  justify-content: space-between;
-  width: 30%;
-  height: 100%;
-  margin-bottom: 10px;
+
+const ModifyButton = styled.button`
+  width: 20%;
+  height: 80%;
+  background-color: #4a5566;
+  border: 2px solid white;
+  font-weight: bold;
+  border-radius: 5px;
+  outline: none;
+  cursor: pointer;
+  color: white;
+
+  font-size: 3px;
+  margin: 0px 10px 0px 0px;
 `;
 
 const AddButton = styled.button`
-  width: 50%;
-  height: 60%;
+  width: 20%;
+  height: 50%;
   background-color: black;
   border: 2px solid white;
   font-weight: bold;
@@ -323,26 +390,6 @@ const AddButton = styled.button`
   font-size: 3px;
 `;
 
-const ModifyButton = styled.button`
-  width: 50%;
-  background-color: black;
-  border: 2px solid white;
-  font-weight: bold;
-  border-radius: 5px;
-  outline: none;
-  cursor: pointer;
-  color: white;
-
-  font-size: 3px;
-`;
-
-const TimeText = styled.div`
-  width: 35%;
-  color: black;
-  font-size: 17px;
-  margin: 5px 0px 0px 10px;
-  font-weight: bold;
-`;
 const EmptyText = styled.div`
   width: 100%;
   color: black;
@@ -352,22 +399,16 @@ const EmptyText = styled.div`
   opacity: 40%;
 `;
 
-const TimeText2 = styled.div`
-  width: 65%;
-  color: black;
-  font-size: 13px;
-  margin: 5px 0px 0px 10px;
-  font-weight: bold;
-`;
-
 const Contents = styled.div`
-  width: 100%;
+  /* background-color: green; */
+  width: 90%;
   height: 55%;
-  background-color: white;
   color: black;
   font-weight: bold;
   display: flex;
-  margin-bottom: 20px;
+  margin: 0px 20px 20px 20px;
+  box-sizing: border-box;
+  align-items: baseline;
 `;
 
 export default DetailPost;

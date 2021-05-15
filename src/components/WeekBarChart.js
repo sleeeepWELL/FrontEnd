@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { Bar } from "react-chartjs-2";
+import { AspectRatio } from "@material-ui/icons";
 
 const WeekBarChart = (props) => {
   const weeklydata = props.tags.weekly;
@@ -12,10 +13,10 @@ const WeekBarChart = (props) => {
       {
         label: "빈도",
         backgroundColor: [
-          "rgba(54, 162, 235, 0.2)",
-          "rgba(153, 102, 255, 0.2)",
-          "rgba(201, 203, 207, 0.2)",
-          "rgba(206, 203, 210, 0.5)",
+          "rgba(26,35,78,1)",
+          "rgba(64,81,133,1)",
+          "rgba(153,163,196,1)",
+          "rgba(220,228,239,1)",
         ],
 
         borderColor: "white",
@@ -25,10 +26,10 @@ const WeekBarChart = (props) => {
         barThickness: 55,
         color: "white",
         borderRadius: 10,
-        hoverBackgroundColor: "white",
+        // hoverBackgroundColor: "white",
         hoverBorderColor: "white",
         hoverBorderWidth: 1,
-        hoverBorderRadius: 5,
+        hoverBorderRadius: 10,
         indexAxis: "x",
         data: weeklydata,
       },
@@ -36,6 +37,7 @@ const WeekBarChart = (props) => {
   };
 
   const chartOptions1 = {
+    maintainAspectRatio: false, //상위 컴포넌트에 사이즈 귀속
     responsive: true,
     plugins: {
       legend: {
@@ -52,12 +54,7 @@ const WeekBarChart = (props) => {
     <React.Fragment>
       <Wrap>
         <CContainer1>
-          <Bar
-            data={chartData1}
-            width={70}
-            height={30}
-            options={chartOptions1}
-          />
+          <Bar data={chartData1} options={chartOptions1} />
         </CContainer1>
       </Wrap>
     </React.Fragment>
@@ -75,8 +72,14 @@ const Wrap = styled.div`
 
 const CContainer1 = styled.div`
   display: flex;
-  width: 50%;
-  max-height: 43vh;
+  border-radius: 20px;
+  width: 99%;
+  height: 80%;
+  background-color: white;
+  position: relative;
+  align-items: center;
+  border: 0.5px solid black;
+  box-shadow: rgb(0, 0, 0, 15%) 0px 5px 5px 0px;
 `;
 
 export default WeekBarChart;

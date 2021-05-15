@@ -43,7 +43,6 @@ const ConditionChart = (props) => {
           },
         ]}
       />
-
       <ColorBox>
         <One /> <Text className="TimeText2">매우 나쁨</Text> <Two />{" "}
         <Text className="TimeText2">나쁨</Text>
@@ -57,9 +56,13 @@ const ConditionChart = (props) => {
 
 const Container = styled.div`
   width: 100%;
-  margin-top: 100px;
+  margin-top: 8%;
   height: 60%;
   font-size: 14px;
+  background-color: white;
+  border-radius: 45px;
+  border: 0.5px solid black;
+  box-shadow: rgb(0, 0, 0, 15%) 0px 5px 5px 0px;
 `;
 
 const One = styled.div`
@@ -98,14 +101,16 @@ const Five = styled.div`
 `;
 
 const ColorBox = styled.div`
-  width: 30%;
+  width: 100%;
   display: flex;
   flex-direction: row;
-  margin: auto;
-  justify-content: space-evenly;
+  margin-top: 2rem;
+  justify-content: center;
+  align-items: center;
 `;
 
 const Text = styled.div`
-  font-size: 14px;
+  font-size: 0.8rem;
+  margin: 0px 0.5rem;
 `;
 export default ConditionChart;

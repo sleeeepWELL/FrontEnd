@@ -2,7 +2,6 @@ import React from "react";
 import styled from "styled-components";
 import { Bar } from "react-chartjs-2";
 
-
 const MonthBarChart = (props) => {
   const monthlydata = props.tags.monthly;
 
@@ -12,10 +11,10 @@ const MonthBarChart = (props) => {
       {
         label: "빈도",
         backgroundColor: [
-          "rgba(54, 162, 235, 0.4)",
-          "rgba(153, 102, 255, 0.3)",
-          "rgba(201, 203, 207, 0.4)",
-          "rgba(206, 203, 210, 0.6)",
+          "rgba(26,35,78,1)",
+          "rgba(64,81,133,1)",
+          "rgba(153,163,196,1)",
+          "rgba(220,228,239,1)",
         ],
         borderColor: "white",
         borderWidth: 2,
@@ -23,10 +22,8 @@ const MonthBarChart = (props) => {
         barThickness: 55,
         borderRadius: 10,
         clip: 3,
-        hoverBackgroundColor: "blue",
-        hoverBorderColor: "black",
-        hoverBorderWidth: 5,
-        hoverBorderRadius: 0,
+        hoverBorderWidth: 2,
+        hoverBorderRadius: 10,
         indexAxis: "x",
         data: monthlydata,
       },
@@ -34,6 +31,7 @@ const MonthBarChart = (props) => {
   };
 
   const chartOptions2 = {
+    maintainAspectRatio: false,
     responsive: true,
     plugins: {
       legend: {
@@ -49,14 +47,8 @@ const MonthBarChart = (props) => {
   return (
     <React.Fragment>
       <Wrap>
-      
         <CContainer1>
-          <Bar
-            data={chartData2}
-            width={70}
-            height={30}
-            options={chartOptions2}
-          />
+          <Bar data={chartData2} options={chartOptions2} />
         </CContainer1>
       </Wrap>
     </React.Fragment>
@@ -74,11 +66,14 @@ const Wrap = styled.div`
 
 const CContainer1 = styled.div`
   display: flex;
-  width: 50%;
- 
-  max-height: 43vh;
+  border-radius: 20px;
+  width: 99%;
+  height: 80%;
+  background-color: white;
+  position: relative;
+  align-items: center;
+  border: 0.5px solid black;
+  box-shadow: rgb(0, 0, 0, 15%) 0px 5px 5px 0px;
 `;
-
-
 
 export default MonthBarChart;

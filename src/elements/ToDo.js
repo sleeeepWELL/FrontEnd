@@ -74,7 +74,7 @@ ToDo.defaultProps = {};
 const ConImg = styled.div`
   background-image: url(${(props) => props.img});
   background-size: contain;
-  width: 41%;
+  width: 100%;
   height: 100%;
   background-repeat: no-repeat;
   display: flex;
@@ -94,14 +94,14 @@ const TagImg = styled.div`
   margin: 0px 2px 0px 2px;
 `;
 
-const SleepTime = styled.h4`
+const SleepTime = styled.h6`
   position: absolute;
   margin-left: auto;
   margin-right: auto;
   right: 0;
   text-align: center;
 
-  top: -5%;
+  top: -70%;
   left: 8%;
   transform: translate(-5%, -8%);
 
@@ -109,14 +109,14 @@ const SleepTime = styled.h4`
   color: white;
 `;
 
-const SleepMin = styled.h5`
+const SleepMin = styled.h6`
   position: absolute;
   margin-left: auto;
   margin-right: auto;
   right: 0;
   text-align: center;
 
-  top: 24%;
+  top: -20%;
   left: 10%;
   transform: translate(-5%, -10%);
 

@@ -12,15 +12,15 @@ import LocalizationProvider from "@material-ui/lab/LocalizationProvider";
 import moment from "moment";
 
 //태그
-import beer from "../image/beer.png";
-import snack from "../image/snack.png";
-import work from "../image/work.png";
-import workout from "../image/workout.png";
+import beer_word from "../image/beer_word.png";
+import snack_word from "../image/snack_word.png";
+import work_word from "../image/work_word.png";
+import workout_word from "../image/workout_word.png";
 
-import beer_gray from "../image/beer_gray.png";
-import snack_gray from "../image/snack_gray.png";
-import work_gray from "../image/work_gray.png";
-import workout_gray from "../image/workout_gray.png";
+import beer_word_gray from "../image/beer_word_gray.png";
+import snack_word_gray from "../image/snack_word_gray.png";
+import work_word_gray from "../image/work_word_gray.png";
+import workout_word_gray from "../image/workout_word_gray.png";
 
 //컨디션
 import one from "../image/1-condition.png";
@@ -75,10 +75,10 @@ const Write = (props) => {
   const [checkwork, setCheckWork] = React.useState(false);
   const [checkworkout, setCheckWorkOut] = React.useState(false);
 
-  const beer_icon = checkbeer ? beer : beer_gray;
-  const snack_icon = checksnack ? snack : snack_gray;
-  const work_icon = checkwork ? work : work_gray;
-  const workout_icon = checkworkout ? workout : workout_gray;
+  const beer_icon = checkbeer ? beer_word : beer_word_gray;
+  const snack_icon = checksnack ? snack_word : snack_word_gray;
+  const work_icon = checkwork ? work_word : work_word_gray;
+  const workout_icon = checkworkout ? workout_word : workout_word_gray;
 
   if (tags1) {
     TotalTags.push(tags1);
@@ -189,28 +189,31 @@ const Write = (props) => {
     <React.Fragment>
       <ModalComponent>
         <TopContainer>
-          <Text className="Date">{props.props.date.slice(14, 24)}</Text>
-
-          <AddButton
-            className="TimeText"
-            onClick={() => {
-              if (startSleep === "" || endSleep === "" || mycondition === 0) {
-                window.alert(
-                  "정확한 수면분석을 위해 취침시간, 기상시간, 컨디션을 모두 입력해주세요!"
-                );
-                return;
-              } else {
-                addPost();
-                props.props._showModify(false);
-              }
-            }}
-          >
-            Complete
-          </AddButton>
+          <BtnDiv>
+            <AddButton
+              className="TimeText"
+              onClick={() => {
+                if (startSleep === "" || endSleep === "" || mycondition === 0) {
+                  window.alert(
+                    "정확한 수면분석을 위해 취침시간, 기상시간, 컨디션을 모두 입력해주세요!"
+                  );
+                  return;
+                } else {
+                  addPost();
+                  props.props._showModify(false);
+                }
+              }}
+            >
+              Complete
+            </AddButton>
+          </BtnDiv>
+          <DateContainer>
+            <Text className="Date">{props.props.date.slice(14, 24)}</Text>
+          </DateContainer>
         </TopContainer>
         <TimeContainer>
           <LocalizationProvider dateAdapter={AdapterDateFns}>
-            <div style={{ width: "45%", margin: "auto" }}>
+            <div style={{ width: "45%", margin: "20px 40px 10px 40px" }}>
               <MobileTimePicker
                 label="취침 시간 선택"
                 value={start}
@@ -224,7 +227,7 @@ const Write = (props) => {
             </div>
           </LocalizationProvider>
           <LocalizationProvider dateAdapter={AdapterDateFns}>
-            <div style={{ width: "45%", margin: "auto" }}>
+            <div style={{ width: "45%", margin: "20px 40px 10px 40px" }}>
               <MobileTimePicker
                 label="기상 시간 선택"
                 value={end}
@@ -239,12 +242,12 @@ const Write = (props) => {
           </LocalizationProvider>
         </TimeContainer>
         <TagContainer>
-          태그
-          <TotalImgGrid>
-            <ImgGrid>
+          <TagText>태그 </TagText>
+          <TotalTagGrid>
+            <TagGrid>
               <input
-                width="45"
-                height="45"
+                width="50"
+                height="50"
                 type="image"
                 src={beer_icon}
                 alt="beer"
@@ -254,11 +257,11 @@ const Write = (props) => {
                   checkbeer ? setCheckBeer(false) : setCheckBeer(true);
                 }}
               />
-            </ImgGrid>
-            <ImgGrid>
+            </TagGrid>
+            <TagGrid>
               <input
-                width="45"
-                height="45"
+                width="50"
+                height="50"
                 type="image"
                 src={snack_icon}
                 alt="snack"
@@ -268,11 +271,11 @@ const Write = (props) => {
                   checksnack ? setCheckSnack(false) : setCheckSnack(true);
                 }}
               />
-            </ImgGrid>
-            <ImgGrid>
+            </TagGrid>
+            <TagGrid>
               <input
-                width="45"
-                height="45"
+                width="50"
+                height="50"
                 type="image"
                 src={work_icon}
                 alt="work"
@@ -282,11 +285,11 @@ const Write = (props) => {
                   checkwork ? setCheckWork(false) : setCheckWork(true);
                 }}
               />
-            </ImgGrid>
-            <ImgGrid>
+            </TagGrid>
+            <TagGrid>
               <input
-                width="45"
-                height="45"
+                width="50"
+                height="50"
                 type="image"
                 src={workout_icon}
                 alt="workout"
@@ -296,11 +299,12 @@ const Write = (props) => {
                   checkworkout ? setCheckWorkOut(false) : setCheckWorkOut(true);
                 }}
               />
-            </ImgGrid>
-          </TotalImgGrid>
+            </TagGrid>
+          </TotalTagGrid>
         </TagContainer>
-        컨디션
+
         <ConditionContainer>
+          <TagText>컨디션</TagText>
           <TotalImgGrid>
             <ImgGrid>
               <input
@@ -360,7 +364,7 @@ const Write = (props) => {
           </TotalImgGrid>
         </ConditionContainer>
         <BottomContainer>
-          메모
+          <MemoText>메모</MemoText>
           <TextArea
             className="TimeText2"
             minRows={9}
@@ -374,8 +378,119 @@ const Write = (props) => {
   );
 };
 
+//취침 기상
+const TimeContainer = styled.div`
+  background-color: white;
+  display: flex;
+  width: 100%;
+  height: 20%;
+  flex-direction: row;
+  justify-content: space-between;
+  box-sizing: border-box;
+  /* background-color: pink; */
+  margin: 0px 0px 0px 0px;
+`;
+
+//헤더
+const TopContainer = styled.div`
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+  height: 15%;
+  margin: 20px 0px 0px 0px;
+
+  /* background-color: red; */
+`;
+
+const DateContainer = styled.div`
+  width: 100%;
+  height: 100%;
+  margin: 10px 0px 10px 0px;
+  justify-content: center;
+  display: flex;
+`;
+
+const Text = styled.div`
+  font-size: 25px;
+  font-weight: bold;
+  color: black;
+`;
+
+const AddButton = styled.button`
+  width: 30%;
+  height: 100%;
+  background-color: black;
+  font-weight: bold;
+  border-radius: 5px;
+  outline: none;
+  cursor: pointer;
+  color: white;
+  margin: 0px 9px 9px 0px;
+  font-size: 3px;
+`;
+
+const BtnDiv = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  margin: 3px 0px 0px 0px;
+  /* background-color: red; */
+`;
+
+//태그
+const TagText = styled.div`
+  font-size: 16px;
+  font-weight: bold;
+  color: black;
+  margin: 0px 0px 5px 0px;
+`;
+
+const TagContainer = styled.div`
+  /* background-color: blue; */
+  width: 100%;
+  height: 20%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-sizing: border-box;
+  padding: 25px 40px 40px 40px;
+`;
+
+const TotalImgGrid = styled.div`
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  margin: auto;
+  justify-content: space-between;
+  background-color: white;
+`;
+
+const ImgGrid = styled.div`
+  display: flex;
+`;
+
+const TotalTagGrid = styled.div`
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  margin: auto;
+  justify-content: space-between;
+  background-color: white;
+`;
+
+const TagGrid = styled.div`
+  display: flex;
+`;
+
+//메모
+const MemoText = styled.div`
+  font-size: 16px;
+  font-weight: bold;
+  color: black;
+`;
 const TextArea = styled.textarea`
-  width: 85%;
+  width: 87%;
   height: 100px;
   border: none;
   border-radius: 6px;
@@ -386,97 +501,25 @@ const TextArea = styled.textarea`
   background-color: #dcdcdc;
 `;
 
-const Container = styled.div`
-  background-color: grey;
-  display: flex;
+const BottomContainer = styled.div`
+  /* background-color: green; */
   width: 100%;
   height: 100%;
-  flex-direction: column;
-  justify-content: space-between;
-  box-sizing: border-box;
-`;
-
-const TimeContainer = styled.div`
-  background-color: white;
-  display: flex;
-  width: 100%;
-  height: 20%;
-  margin: 10px 0px 0px 0px;
-  flex-direction: row;
-  justify-content: space-between;
-  box-sizing: border-box;
-`;
-
-const Text = styled.div`
-  font-size: 20px;
-  font-weight: bold;
-  color: black;
-  margin: 5px 0px 0px 11px;
-`;
-
-const AddButton = styled.button`
-  width: 30%;
-  height: 100%;
-  background-color: black;
-  border: 2px solid white;
-  font-weight: bold;
-  border-radius: 5px;
-  outline: none;
-  cursor: pointer;
-  color: white;
-  margin: 0px 9px 9px 0px;
-  font-size: 3px;
-`;
-const ImgGrid = styled.div`
-  display: flex;
-
-  /* background-color: blue; */
-  padding: 10px;
-`;
-
-const TotalImgGrid = styled.div`
-  display: flex;
-  width: 100%;
-  flex-direction: row;
-  margin: auto;
-  justify-content: space-evenly;
-  background-color: white;
-`;
-
-const TopContainer = styled.div`
-  background-color: white;
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-  height: 10%;
-  margin: 19px 0px 0px 0px;
-`;
-
-const TagContainer = styled.div`
-  /* background-color: grey; */
-  width: 100%;
-  height: 20%;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  margin: 0px 0px 20px 20px;
+  box-sizing: border-box;
+  padding: 20px;
 `;
+
 const ConditionContainer = styled.div`
   /* background-color: grey; */
   width: 100%;
   height: 20%;
   display: flex;
-`;
-
-const BottomContainer = styled.div`
-  /* background-color: grey; */
-  width: 100%;
-  height: 100%;
-  display: flex;
   flex-direction: column;
-  /* align-items: center; */
-  margin: 20px;
-
-  justify-content: flex-start;
+  box-sizing: border-box;
+  padding: 25px 40px 40px 40px;
 `;
 
 const ModalComponent = styled.div`

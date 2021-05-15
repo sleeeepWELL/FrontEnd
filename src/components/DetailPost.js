@@ -191,18 +191,6 @@ const DetailPost = (props) => {
   }
 };
 
-const TagImg = styled.div`
-  background-image: url(${(props) => props.img});
-  background-size: contain;
-  background-repeat: no-repeat;
-  width: 50%;
-  height: 100%;
-
-  display: flex;
-  justify-content: center;
-  margin: 0px 2px 0px 2px;
-`;
-
 const ModalComponent = styled.div`
   width: 100%;
   height: 100%;
@@ -226,7 +214,7 @@ const DayHeader = styled.div`
 const ConditionContainer = styled.div`
   background-color: white;
   width: 100%;
-  height: 50%;
+  height: 40%;
   display: flex;
   flex-direction: row;
   padding: 0px 0px 30px 0px;
@@ -245,9 +233,9 @@ const ConditionText = styled.div`
 
 const ConImg = styled.div`
   background-image: url(${(props) => props.img});
-  background-size: 100%;
-  width: 100%;
-  height: 100%;
+  background-size: contain;
+  width: 50%;
+  height: 50%;
   background-repeat: no-repeat;
   /* background-position: center; */
 `;
@@ -260,12 +248,25 @@ const TimeContainer = styled.div`
   margin-bottom: 60px;
 `;
 
+//태그
 const TagContainer = styled.div`
   background-color: white;
   width: 100%;
-  height: 12%;
+  height: 20%;
   display: flex;
   margin-bottom: 60px;
+`;
+
+const TagImg = styled.div`
+  background-image: url(${(props) => props.img});
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 30%;
+  height: 70%;
+
+  display: flex;
+  justify-content: center;
+  margin: 0px 2px 0px 2px;
 `;
 
 const LeftHeader = styled.div`

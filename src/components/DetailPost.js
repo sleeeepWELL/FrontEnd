@@ -32,8 +32,6 @@ const DetailPost = (props) => {
   const today = useSelector((state) => state.todo.today);
   const _today = moment();
 
-
-
   const deletePost = () => {
     Swal.fire({
       title: "삭제 하시겠습니까?",
@@ -117,7 +115,7 @@ const DetailPost = (props) => {
       <React.Fragment>
         <ModalComponent>
           <DayHeader>
-          <RightHeader>
+            <RightHeader>
               <ModifyButton
                 className="TimeText"
                 onClick={() => {
@@ -157,19 +155,15 @@ const DetailPost = (props) => {
                 ▶{/* <ChevronRightIcon /> */}
               </MoveDButton>
             </LeftHeader>
-
-            
           </DayHeader>
 
           <ConditionContainer>
             <ConditionText className="ConditionText">컨디션</ConditionText>
-            {myCon === "1" && <img width="45px" height="45px" src={one}></img>}
-            {myCon === "2" && <img width="45px" height="45px" src={two}></img>}
-            {myCon === "3" && (
-              <img width="45px" height="45px" src={three}></img>
-            )}
-            {myCon === "4" && <img width="45px" height="45px" src={four}></img>}
-            {myCon === "5" && <img width="45px" height="45px" src={five}></img>}
+            {myCon === "1" && <ConImg img={one}></ConImg>}
+            {myCon === "2" && <ConImg img={two}> </ConImg>}
+            {myCon === "3" && <ConImg img={three}></ConImg>}
+            {myCon === "4" && <ConImg img={four}></ConImg>}
+            {myCon === "5" && <ConImg img={five}></ConImg>}
           </ConditionContainer>
 
           <TimeContainer>
@@ -183,14 +177,7 @@ const DetailPost = (props) => {
           <TagContainer>
             <TimeText className="TimeText">태그</TimeText>
             {props.date.tag.map((currentTag, idx) => {
-              return (
-                <img
-                  key={idx}
-                  width="40px"
-                  height="40px"
-                  src={mapKeywordToImg[currentTag]}
-                ></img>
-              );
+              return <TagImg img={mapKeywordToImg[currentTag]}></TagImg>;
             })}
           </TagContainer>
 
@@ -203,6 +190,18 @@ const DetailPost = (props) => {
     );
   }
 };
+
+const TagImg = styled.div`
+  background-image: url(${(props) => props.img});
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 50%;
+  height: 100%;
+
+  display: flex;
+  justify-content: center;
+  margin: 0px 2px 0px 2px;
+`;
 
 const ModalComponent = styled.div`
   width: 100%;
@@ -223,12 +222,34 @@ const DayHeader = styled.div`
   margin: 10px 0px 60px 0px;
 `;
 
+//컨디션
 const ConditionContainer = styled.div`
   background-color: white;
   width: 100%;
-  height: 12%;
+  height: 50%;
   display: flex;
-  margin-bottom: 60px;
+  flex-direction: row;
+  padding: 0px 0px 30px 0px;
+  box-sizing: border-box;
+`;
+
+const ConditionText = styled.div`
+  width: 35%;
+  height: 100%;
+  color: black;
+  font-size: 17px;
+  margin: 5px 0px 0px 10px;
+  font-weight: bold;
+  display: flex;
+`;
+
+const ConImg = styled.div`
+  background-image: url(${(props) => props.img});
+  background-size: 100%;
+  width: 100%;
+  height: 100%;
+  background-repeat: no-repeat;
+  /* background-position: center; */
 `;
 
 const TimeContainer = styled.div`
@@ -254,7 +275,6 @@ const LeftHeader = styled.div`
   height: 100%;
   border: none;
   // background-color: white;
- 
 `;
 
 const MoveDButton = styled.button`
@@ -277,7 +297,6 @@ const DText = styled.div`
   border: none;
   text-align: center;
   box-shadow: rgb(82 82 82/ 20%) 0px 5px 8px 0px;
-  
 `;
 const RightHeader = styled.div`
   background-color: white;
@@ -335,14 +354,6 @@ const TimeText2 = styled.div`
   width: 65%;
   color: black;
   font-size: 13px;
-  margin: 5px 0px 0px 10px;
-  font-weight: bold;
-`;
-
-const ConditionText = styled.div`
-  width: 35%;
-  color: black;
-  font-size: 17px;
   margin: 5px 0px 0px 10px;
   font-weight: bold;
 `;

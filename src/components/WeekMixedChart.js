@@ -71,23 +71,24 @@ const WeekMixedChart = (props) => {
         // 선 그래프
         label: "적정 수면시간",
         data: linedata,
-        backgroundColor: "rgba(0, 216, 190, 1)",
-        borderColor: "rgba(0, 216, 190, 1)",
+        backgroundColor: "#FFDF48",
+        borderColor: "#FFDF48",
         type: "line",
       },
       {
         // 막대그래프
         label: "실제 수면시간",
         data: bardata,
-        backgroundColor: "rgba(54, 162, 235, 0.4)",
+        backgroundColor: "#384870",
         borderColor: "rgba(54, 162, 235, 0.4)",
         borderRadius: 5,
-        // stack: "combined",
         type: "bar",
+        barThickness: 55,
       },
     ],
   };
   const chartOptions = {
+    maintainAspectRatio: false,
     responsive: true,
     plugins: {
       //범례
@@ -117,7 +118,7 @@ const WeekMixedChart = (props) => {
     <>
       <Wrap>
         <Container>
-          <Bar data={data} width={140} height={80} options={chartOptions}></Bar>
+          <Bar data={data} options={chartOptions}></Bar>
         </Container>
       </Wrap>
     </>
@@ -135,10 +136,14 @@ const Wrap = styled.div`
 
 const Container = styled.div`
   display: flex;
-  width: 50%;
-  max-height: 43vh;
-  /* background-color: white; */
-  /* opacity: 0.7; */
+  border-radius: 20px;
+  width: 99%;
+  height: 80%;
+  background-color: white;
+  position: relative;
+  align-items: center;
+  border: 0.5px solid black;
+  box-shadow: rgb(0, 0, 0, 15%) 0px 5px 5px 0px;
 `;
 
 export default WeekMixedChart;

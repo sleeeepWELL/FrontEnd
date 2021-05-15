@@ -21,11 +21,14 @@ const Analysis = () => {
   const table = useSelector((state) => state.result.table);
   const username = useSelector((state) => state.user.user);
 
+  const [currentClick, setCurrentClick] = React.useState(null);
+  const [prevClick, setPrevClick] = React.useState(null);
+
   const [Click, setClick] = React.useState("Condition");
 
   const GetClick = (e) => {
     setClick(e.target.id);
-    console.log(e.target.id);
+    setCurrentClick(e.target.id);
   };
 
   useEffect(async () => {
@@ -35,6 +38,23 @@ const Analysis = () => {
     dispatch(todoActions.getTableAX(_today));
     dispatch(todoActions.getCompareDataSV(_today));
   }, []);
+
+  useEffect(
+    (e) => {
+      if (currentClick !== null) {
+        let current = document.getElementById(currentClick);
+        current.style.backgroundColor = "rgba(74, 85, 102, 1)";
+        current.style.color = "white";
+      }
+      if (prevClick !== null) {
+        let prev = document.getElementById(prevClick);
+        prev.style.backgroundColor = "lightgray";
+        prev.style.color = "black";
+      }
+      setPrevClick(currentClick);
+    },
+    [currentClick]
+  );
 
   return (
     <React.Fragment>
@@ -96,8 +116,12 @@ const Analysis = () => {
                 </Text>
               ) : (
                 <Text className="TimeText">
-                  {username}님의&nbsp; 적정수면시간은&nbsp; {resulttime.hour}
-                  시간 &nbsp;{resulttime.minute}분 입니다
+                  {username}님의&nbsp; 적정수면시간은&nbsp;{" "}
+                  <span>
+                    {resulttime.hour}
+                    시간 &nbsp;{resulttime.minute}분
+                  </span>
+                  &nbsp; 입니다.
                 </Text>
               )}
             </InfoContainer>
@@ -119,18 +143,18 @@ to {
 
 const InfoContainer = styled.div`
   display: flex;
-  width: 50%;
-  height: 100%;
+  width: 100%;
   justify-content: center;
+  text-align: center;
   padding-top: 2rem;
 `;
 
 //전체 프레임을 위해서 100vh > 87vh로 수정했습니다
 const Container = styled.div`
-  width: 100%;
-  height: 108vh;
+  width: 70%;
+  height: 100%;
   border: none;
-  justify-content: center;
+  justify-content: flex-start;
   animation: ${FadeIn} 2s;
   display: flex;
   flex-direction: column;
@@ -142,12 +166,11 @@ const BtnContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top:5%;
 `;
 
 const ChartBtn = styled.div`
   display: flex;
-  width: 6rem;
+  width: auto;
   height: 2.5rem;
   align-items: center;
   background-color: lightgray;
@@ -155,16 +178,14 @@ const ChartBtn = styled.div`
   border-radius: 7px;
   font-size: 14px;
   cursor: pointer;
-  :hover {
-    background-color: gray;
-    color: white;
-  }
+  padding: 0px 13px;
+  box-shadow: rgb(0 0 0 / 10%) 0px 2px 2px 1px;
 `;
 
 const ChartContainer1 = styled.div`
   display: flex;
   width: 100%;
-  height: 55%;
+  height: 40%;
   justify-content: center;
   align-content: center;
 `;
@@ -178,19 +199,31 @@ const ResultContainer2 = styled.div`
 
 //여기도 height 수정했습니다(배경이 짧지않게)
 const Background = styled.div`
-  width: 100%;
-  height: 92.9vh;
-  background-color: rgba(242, 242, 242, 1);
+  display: flex;
+  justify-content: center;
+  width: 100vw;
+  height: 110vh;
+  background-color: rgba(219, 219, 219, 1);
   z-index: 999;
+  margin: 0px;
+  box-sizing: border-box;
 `;
 
 const Text = styled.div`
-  width: 400px;
+  word-break: keep-all;
+  width: 100%;
   height: 50px;
   margin-left: 20px;
   font-weight: bold;
   font-size: 20px;
   color: black;
+  & > span {
+    background-color: rgba(254, 233, 133, 1);
+    padding: 7px;
+    border-radius: 8px;
+    box-shadow: rgb(0 0 0 / 10%) 0px 2px 2px 1px;
+    cursor: pointer;
+  }
 `;
 
 export default Analysis;

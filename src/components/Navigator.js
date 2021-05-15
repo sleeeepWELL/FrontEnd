@@ -6,6 +6,7 @@ import { useSelector, useDispatch } from "react-redux";
 import "../shared/App.css";
 import "./Font.css";
 import Swal from "sweetalert2";
+import Logo from "../images/Logo.png";
 
 const Navigator = () => {
   const dispatch = useDispatch();
@@ -70,9 +71,7 @@ const Navigator = () => {
   return (
     <React.Fragment>
       <Wrap>
-        <Logo className="Logo" id="logo" onClick={LogoClick}>
-          SLEEPWELL
-        </Logo>
+        <LogoImg className="Logo" id="logo" onClick={LogoClick} />
         <CategoryContainer>
           <div></div>
           <CategoryBox className="TimeText" id="main" onClick={GetClick}>
@@ -94,7 +93,7 @@ const Navigator = () => {
           <div></div>
         </CategoryContainer>
         <LogoutBox className="TimeText" onClick={LOGOUT}>
-          로그아웃
+          <span>로그아웃</span>
         </LogoutBox>
       </Wrap>
     </React.Fragment>
@@ -103,14 +102,14 @@ const Navigator = () => {
 
 const Wrap = styled.div`
   display: flex;
-  background-color: rgba(242, 242, 242, 1);
+  background-color: rgba(219, 219, 219, 1);
   width: 100%;
   height: 7vh;
   align-items: center;
   border-bottom: 0.8px solid #bebcbc;
   position: sticky;
   top: 0%;
-  z-index: 1;
+  z-index: 9999;
 `;
 
 const CategoryBox = styled.div`
@@ -120,25 +119,19 @@ const CategoryBox = styled.div`
   color: #bebcbc;
   letter-spacing: -1px;
   cursor: pointer;
-  /* :hover {
-    color: black;
-    border-bottom: 2px solid #bebcbc;
-    transition: all 0.1s ease-out;
-  } */
 `;
 
-const Logo = styled.button`
-  width: 15%;
+const LogoImg = styled.div`
+  width: 10rem;
+  height: 6.5vh;
   display: flex;
-  font-size: 1.5rem;
-  color: black;
-  font-weight: bold;
   cursor: pointer;
   justify-content: center;
   outline: none;
   border: none;
-  background-color: none;
-  z-index: -1;
+  background: url(${Logo});
+  background-size: auto 100%;
+  background-repeat: no-repeat;
 `;
 
 const LogoutBox = styled.div`
@@ -149,8 +142,13 @@ const LogoutBox = styled.div`
   font-size: 1rem;
   justify-content: center;
   cursor: pointer;
-  font-weight: bold;
   color: black;
+  & > span {
+    background-color: rgba(56, 56, 56, 1);
+    padding: 1vw;
+    border-radius: 4px;
+    color: white;
+  }
 `;
 
 const CategoryContainer = styled.div`

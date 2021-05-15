@@ -193,6 +193,7 @@ const AllContainer = styled.div`
   margin: auto;
   align-items: center;
   justify-content: flex-start;
+  
 `;
 
 const TopContainer = styled.div`
@@ -213,6 +214,7 @@ const Container = styled.div`
   width: 100%;
   height: 95%;
   // margin: 20px 0px 20px 0px;
+ 
 `;
 
 //선 얇게하려고 나눠둠
@@ -223,7 +225,8 @@ const CalendarContainer = styled.div`
   width: 100%;
   height: 100%;
   align-items: center;
-  border-right: 1px solid grey;
+  border-right: 1px solid #AAAAAA;
+  
 `;
 
 const WeekGrid = styled.div`
@@ -232,7 +235,7 @@ const WeekGrid = styled.div`
   flex-direction: row;
   width: 100%;
   min-width: 50px;
-  height: 4.5vh;
+  height: 4.0vh;
   align-items: flex-end;
   justify-content: flex-start;
   // border-bottom: 3px solid #746d6d;
@@ -258,8 +261,8 @@ const DayGrid = styled.div`
 
   height: 15.5vh;
 
-  border-left: 0.1px grey solid;
-  border-bottom: 0.1px grey solid;
+  border-left: 0.1px #AAAAAA solid;
+  border-bottom: 0.1px #AAAAAA solid;
   
   align-items: flex-end;
   :hover {
@@ -275,13 +278,14 @@ const DayText = styled.div`
   background-color: ${(props) => props.bg};
   border-radius: ${(props) => props.br};
   padding: 2px 4px 0px 4px;
+  text-shadow: 0.5px 0.5px 0.5px gray;
  
 
 `;
 
 const MoveMButton = styled.button`
   width:10.5%;
-  font-size: 1.2vw;
+  font-size: 1.4vw;
   background-color: #ffffff;
  border:none;
   display:flex;
@@ -298,7 +302,7 @@ const MMText = styled.div`
   
   font-weight: bold;
   color: #6c6969;
-  margin: 0vh 0.4vh 1.2vh 0.4vh;
+  margin: 0vh 0.4vh 0.8vh 0.4vh;
 `;
 
 export default Calendar;

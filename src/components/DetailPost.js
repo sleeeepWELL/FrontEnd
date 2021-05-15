@@ -117,6 +117,19 @@ const DetailPost = (props) => {
       <React.Fragment>
         <ModalComponent>
           <DayHeader>
+          <RightHeader>
+              <ModifyButton
+                className="TimeText"
+                onClick={() => {
+                  props._showModify(true);
+                }}
+              >
+                MODIFY
+              </ModifyButton>
+              <ModifyButton className="TimeText" onClick={deletePost}>
+                DELETE
+              </ModifyButton>
+            </RightHeader>
             <LeftHeader>
               <MoveDButton
                 onClick={() => {
@@ -145,19 +158,7 @@ const DetailPost = (props) => {
               </MoveDButton>
             </LeftHeader>
 
-            <RightHeader>
-              <ModifyButton
-                className="TimeText"
-                onClick={() => {
-                  props._showModify(true);
-                }}
-              >
-                MODIFY
-              </ModifyButton>
-              <ModifyButton className="TimeText" onClick={deletePost}>
-                DELETE
-              </ModifyButton>
-            </RightHeader>
+            
           </DayHeader>
 
           <ConditionContainer>
@@ -215,10 +216,11 @@ const ModalComponent = styled.div`
 const DayHeader = styled.div`
   background-color: white;
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
   width: 100%;
   height: 20%;
-  margin: 20px 0px 30px 0px;
+  margin: 10px 0px 60px 0px;
 `;
 
 const ConditionContainer = styled.div`
@@ -226,7 +228,7 @@ const ConditionContainer = styled.div`
   width: 100%;
   height: 12%;
   display: flex;
-  margin-bottom: 20px;
+  margin-bottom: 60px;
 `;
 
 const TimeContainer = styled.div`
@@ -234,7 +236,7 @@ const TimeContainer = styled.div`
   width: 100%;
   height: 10%;
   display: flex;
-  margin-bottom: 20px;
+  margin-bottom: 60px;
 `;
 
 const TagContainer = styled.div`
@@ -242,7 +244,7 @@ const TagContainer = styled.div`
   width: 100%;
   height: 12%;
   display: flex;
-  margin-bottom: 20px;
+  margin-bottom: 60px;
 `;
 
 const LeftHeader = styled.div`
@@ -252,6 +254,7 @@ const LeftHeader = styled.div`
   height: 100%;
   border: none;
   // background-color: white;
+ 
 `;
 
 const MoveDButton = styled.button`
@@ -268,18 +271,22 @@ const MoveDButton = styled.button`
 `;
 const DText = styled.div`
   font-weight: bold;
-  font-size: 18px;
+  font-size: 3vh;
   color: black;
   width: 80%;
   border: none;
   text-align: center;
+  box-shadow: rgb(82 82 82/ 20%) 0px 5px 8px 0px;
+  
 `;
 const RightHeader = styled.div`
   background-color: white;
   display: flex;
+  // text-align: right;
   justify-content: space-between;
   width: 30%;
   height: 100%;
+  margin-bottom: 10px;
 `;
 
 const AddButton = styled.button`

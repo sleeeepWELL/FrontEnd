@@ -13,10 +13,16 @@ const Table = (props) => {
   return (
     <React.Fragment>
       <CContainer>
+        <TitleContainer>
+        <Text className="TimeText"> 월간 태그 빈도수</Text>
+        <Text className="TimeText"> 월간 컨디션 빈도수</Text>
+        <Text className="TimeText"> 주간 수면시간 평균</Text>{" "}
+        </TitleContainer>
+
         <BoxContainer>
       
             <Box1>
-              <Text className="TimeText"> 월간 태그 빈도수</Text>
+              
               <Text className="Contents">
                 <div>운동 {monthly_tag[0]}</div>
                 <div> 음주 {monthly_tag[1]}</div>
@@ -28,7 +34,7 @@ const Table = (props) => {
 
      
             <Box2>
-              <Text className="TimeText"> 월간 컨디션 빈도수</Text>
+             
               <Text className="Contents">
               <div>매우 나쁨 {monthly_condition[0]}</div>
               <div>나쁨 {monthly_condition[1]}</div>
@@ -41,9 +47,9 @@ const Table = (props) => {
    
 
           <Box3>
-            <Text className="TimeText"> 주간 평균 수면시간</Text>{" "}
-            <Text className="TimeText">
-              { weekly_s_average[0]}H { weekly_s_average[1]}M
+          
+            <Text className="BigTimeText">
+              { weekly_s_average[0]}시간 { weekly_s_average[1]}분
             </Text>
           </Box3>
           
@@ -54,11 +60,12 @@ const Table = (props) => {
 };
 
 const CContainer = styled.div`
-  width: 80%;
+  width: 90%;
   height: 100%;
   display: flex;
   flex-direction: column;
   color: black;
+  align-items: center;
 `;
 
 const Text = styled.div`
@@ -79,47 +86,65 @@ const boxFade = keyframes`
  `;
 
 const Box1 = styled.div`
-  width: 25%;
-  height: 100%;
-  border: 5px black solid;
-  border-radius: 15px;
-
+display:flex;
+  width: 30%;
+  height: 95%;
+  border-radius: 60%;
   text-align: center;
+  border: 1px grey solid;
   align-items: center;
   animation: ${boxFade} 1s;
+  box-shadow: rgb(82 82 82/ 40%) 0px 5px 8px 0px;
+  background-color:white;
 `;
 
 const Box2 = styled.div`
-  width: 25%;
-  height: 100%;
-  border: 5px black solid;
-  border-radius: 15px;
-
+display:flex;
+width: 30%;
+  height: 95%;
+  background-color:white;
+  border-radius: 60%;
+  border: 1px grey solid;
   text-align: center;
   align-items: center;
   animation: ${boxFade} 2s alternate;
+  box-shadow: rgb(82 82 82/ 40%) 0px 5px 8px 0px;
 `;
 
 const Box3 = styled.div`
-  width: 25%;
-  height: 100%;
-  border: 5px black solid;
-  border-radius: 15px;
- 
+display:flex;
+  width: 30%;
+  height: 95%;
+  background-color:white;
+  border-radius: 60%;
+  border: 1px grey solid;
   text-align: center;
   align-items: center;
   animation: ${boxFade} 3s alternate;
+  box-shadow: rgb(82 82 82/ 40%) 0px 5px 8px 0px;
 `;
 
 
 
 const BoxContainer = styled.div`
-  width: 100%;
-  height: 100%;
- 
+  width: 66%;
+ height: 90%;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 2%;
+  align-items: center;
+`;
+const TitleContainer = styled.div`
+  width: 70%;
+ height: 5%;
   display: flex;
   justify-content: space-between;
   margin-top: 5%;
+  text-align: center;
+ 
+  align-items: center;
 `;
+
+
 
 export default Table;

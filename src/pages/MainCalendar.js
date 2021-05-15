@@ -55,7 +55,7 @@ const AllContainer = styled.div`
   display: flex;
   flex-direction: row;
   width: 95%;
-  margin: auto;
+  margin-top: 40px;
   animation: ${slidein} 1s ;
   // ease-in infinite alternate
 `;
@@ -63,12 +63,15 @@ const AllContainer = styled.div`
 
  
 const CalendarContainer = styled.div`
-  width: 75%;
+  width: 65%;
   height: 130%;
   background-color: white;
   margin-top: 20px;
+  margin-right: 40px;
+  margin-left: 105px;
   border-radius: 15px;
   padding-bottom: 20px;
+  box-shadow: rgb(82 82 82/ 40%) 0px 5px 8px 0px;
 `;
 
 // 카드와 검색 
@@ -78,6 +81,7 @@ const RightContainer = styled.div`
   height: 100%;
   flex-direction: column;
   margin-top: 10px;
+  
 `;
 
 const PostContainer = styled.div`
@@ -90,6 +94,7 @@ const PostContainer = styled.div`
   background-color: white;
   flex-direction: column;
   border-radius: 20px;
+  box-shadow: rgb(82 82 82/ 40%) 0px 5px 8px 0px;
 `;
 const SearchContainer = styled.div`
   display: flex;
@@ -99,6 +104,7 @@ const SearchContainer = styled.div`
   margin-top: 10px;
   align-content: center;
   border-radius: 20px;
+  // box-shadow: rgb(82 82 82/ 40%) 0px 5px 8px 0px;
 `;
 
 
@@ -108,6 +114,7 @@ const Background = styled.div`
   left: 0;
   top: 0;
   background-color: #f2f2f2;
+ 
   
 `;
 

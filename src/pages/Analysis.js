@@ -128,7 +128,7 @@ const InfoContainer = styled.div`
 //전체 프레임을 위해서 100vh > 87vh로 수정했습니다
 const Container = styled.div`
   width: 100%;
-  height: 87vh;
+  height: 108vh;
   border: none;
   justify-content: center;
   animation: ${FadeIn} 2s;
@@ -142,6 +142,7 @@ const BtnContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-top:5%;
 `;
 
 const ChartBtn = styled.div`

@@ -2,14 +2,17 @@ import React from "react";
 import styled from "styled-components";
 import { history } from "../redux/configureStore";
 import { actionCreators as userActions } from "../redux/modules/user";
-import { useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import "../shared/App.css";
 import "./Font.css";
 import Swal from "sweetalert2";
-import { current } from "immer";
 
 const Navigator = () => {
   const dispatch = useDispatch();
+
+  // 로그인 상태
+  const status = useSelector((state) => state.user.is_login);
+  console.log(status);
 
   const [currentClick, setCurrentClick] = React.useState(null);
   const [prevClick, setPrevClick] = React.useState(null);
@@ -34,11 +37,18 @@ const Navigator = () => {
     });
   };
 
+  React.useEffect(() => {
+    if (status) {
+      dispatch(userActions.getUserSV());
+    } else {
+      dispatch(userActions.extensionAccess());
+    }
+  }, [status]);
+
   React.useEffect(
     (e) => {
       if (currentClick !== null) {
         let current = document.getElementById(currentClick);
-        console.log(current);
         current.style.color = "black";
         current.style.borderBottom = "2px solid";
         current.style.borderBottomColor = "#1c28f4";
@@ -47,17 +57,6 @@ const Navigator = () => {
         let prev = document.getElementById(prevClick);
         prev.style.color = "#bebcbc";
         prev.style.borderBottom = "none";
-
-        // 이벤트로 hover같은 기능 구현
-        prev.onmouseenter = () => {
-          prev.style.color = "black";
-          prev.style.borderBottom = "2px solid #bebcbc";
-          prev.style.transition = "all 0.1s ease-out";
-        };
-        prev.onmouseout = () => {
-          prev.style.color = "#bebcbc";
-          prev.style.borderBottom = "none";
-        };
       }
       setPrevClick(currentClick);
     },
@@ -121,11 +120,11 @@ const CategoryBox = styled.div`
   color: #bebcbc;
   letter-spacing: -1px;
   cursor: pointer;
-  :hover {
+  /* :hover {
     color: black;
     border-bottom: 2px solid #bebcbc;
     transition: all 0.1s ease-out;
-  }
+  } */
 `;
 
 const Logo = styled.button`

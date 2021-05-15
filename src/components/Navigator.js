@@ -123,7 +123,7 @@ const CategoryBox = styled.div`
 
 const LogoImg = styled.div`
   width: 10rem;
-  height: 6.5vh;
+  height: 7vh;
   display: flex;
   cursor: pointer;
   justify-content: center;
@@ -145,7 +145,7 @@ const LogoutBox = styled.div`
   color: black;
   & > span {
     background-color: rgba(56, 56, 56, 1);
-    padding: 1vw;
+    padding: 0.6rem;
     border-radius: 4px;
     color: white;
   }

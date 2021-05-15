@@ -12,13 +12,17 @@ const Search = (props) => {
   const [month, setMonth] = React.useState("");
   const [day, setDay] = React.useState("");
 
+
+   const search=()=>{
+    let myDate = new Date(`${year}-${month}-${day}`);
+    props._showModify(false);
+    dispatch(todoActions.getOnePostAX(moment(myDate).format("YYYY-MM-DD")));
+    dispatch(todoActions.changeToday(moment(myDate).format("YYYY-MM-DD")));
+   }
+
   const onSearch = (e) => {
     if (e.key == "Enter") {
-      let myDate = new Date(`${year}-${month}-${day}`);
-
-      props._showModify(false);
-      dispatch(todoActions.getOnePostAX(moment(myDate).format("YYYY-MM-DD")));
-      dispatch(todoActions.changeToday(moment(myDate).format("YYYY-MM-DD")));
+      search()
     }
   };
 
@@ -56,17 +60,9 @@ const Search = (props) => {
           id="third"
           onKeyPress={onSearch}
         />
-        
+        {/* className 수정해야함 */}
         <SearchBtn className="ReturnBtn"
-          onClick={() => {
-            props._showModify(false);
-            dispatch(
-              todoActions.getOnePostAX(moment(today).format("YYYY-MM-DD"))
-            );
-            dispatch(
-              todoActions.changeToday(moment(today).format("YYYY-MM-DD"))
-            );
-          }}
+          onClick={search}
         >
          검색
         </SearchBtn>

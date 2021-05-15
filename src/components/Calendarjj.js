@@ -189,7 +189,6 @@ const AllContainer = styled.div`
   flex-direction: column;
   width: 85%;
   min-width: 50px;
-  height: 100%;
   margin: auto;
   align-items: center;
   justify-content: flex-start;

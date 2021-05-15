@@ -16,18 +16,16 @@
 /* Calendar */
 .TitleText {
   text-align: center;
-  font-size: 30px;
+  font-size: 6vh;
   font-family: "HattonLight";
   color: #000000;
-  border-bottom: 2px solid black;
+  width: 74%;
 }
 
 .MText {
   font-weight: bold;
-  margin: 0px 3px 0px 3px;
   font-family: "HattonLight";
-  border-bottom: 2px solid #6c6969;
-  color: #000000;
+  color: grey;
 }
 .WEEK {
   font-family: "HattonLight";
@@ -40,16 +38,15 @@
   min-width: 50px;
   align-items: center;
   justify-content: flex-start;
-  font-size: 20px;
+  font-size: 2.8vh;
 }
 
 .DayText {
   font-family: "HattonLight";
-  font-size: 10px;
-  margin: 3px 3px 0px 0px;
+  font-size: 1.3vh;
+  margin: 3% 3% 0px 0px;
 
   font-weight: bold;
-  border-bottom: 1px solid black;
 }
 
 /* ToDo */
@@ -108,4 +105,10 @@
 .ReturnBtn{
   font-family: "NanumSquareB";
   
+}
+
+/* Table */
+.Contents{
+  display: flex;
+  flex-direction: column;
 }

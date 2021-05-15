@@ -119,10 +119,9 @@ const getTableAX = (today) => {
       .get(`${config.api}/chart/table/${today}`, token)
       .then((res) => {
         let data = {
-          week_stimeaverage: res.data[0],
-          week_wakeaverage: res.data[1],
+          monthly_tag: res.data[0],
+          monthly_condition: res.data[1],
           week_sleepaverage: res.data[2],
-          good_stime: res.data[3],
         };
 
         dispatch(getTable(data));

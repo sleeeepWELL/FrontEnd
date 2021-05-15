@@ -33,8 +33,7 @@ const DetailPost = (props) => {
   const today = useSelector((state) => state.todo.today);
   const _today = moment();
 
-  console.log(moment(props.date.slice(14, 24)));
-  console.log(_today);
+
 
   const deletePost = () => {
     Swal.fire({

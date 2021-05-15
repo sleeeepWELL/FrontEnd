@@ -108,7 +108,7 @@ const Calendar = (props) => {
   });
 
   // 요일이 나올 배열도 만들어주기!
-  const nomal_week = ["mon", "tue", "wed", "thu", "fri"];
+  const nomal_week = ["Mon", "Tue", "Wed", "Thu", "Fri"];
   const move_month = parseInt(moment(today).format("M"));
   return (
     <AllContainer>
@@ -153,11 +153,12 @@ const Calendar = (props) => {
           <MMText>▶</MMText>
         </MoveMButton>
       </TopContainer>
-
+      
+      <Container>
       <WeekGrid>
         <div className="WEEK">
           <Text bold type="sun">
-            sun
+            Sun
           </Text>
         </div>
         {nomal_week.map((_d, idx) => {
@@ -171,12 +172,13 @@ const Calendar = (props) => {
         })}
         <div className="WEEK">
           <Text bold type="sat">
-            sat
+            Sat
           </Text>
         </div>
       </WeekGrid>
 
       {week_arr}
+      </Container>
     </AllContainer>
   );
 };
@@ -185,7 +187,7 @@ const AllContainer = styled.div`
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  width: 100%;
+  width: 95%;
   min-width: 50px;
   height: 100%;
   margin: auto;
@@ -193,35 +195,45 @@ const AllContainer = styled.div`
   justify-content: flex-start;
 `;
 
-const CalendarContainer = styled.div`
-  box-sizing: border-box;
-  flex-direction: row;
-  display: flex;
-  width: 95%;
-  height: 80%;
-  align-items: center;
-`;
-
 const TopContainer = styled.div`
   box-sizing: border-box;
   display: flex;
   flex-direction: row;
   width: 100%;
-  min-width: 50px;
-  height: 16%;
+
+  height: 12vh;
   align-items: center;
   justify-content: space-between;
-  margin: 15px 0px 5px 0px;
+  margin-top: 10px;
+`;
+
+
+const Container = styled.div`
+  box-sizing: border-box;
+  width: 100%;
+  height: 95%;
+  // margin: 20px 0px 20px 0px;
+`;
+
+//선 얇게하려고 나눠둠
+const CalendarContainer = styled.div`
+  box-sizing: border-box;
+  flex-direction: row;
+  display: flex;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  border-right: 1px solid grey;
 `;
 
 const WeekGrid = styled.div`
   box-sizing: border-box;
   display: flex;
   flex-direction: row;
-  width: 95%;
+  width: 100%;
   min-width: 50px;
-  height: 10%;
-  align-items: center;
+  height: 4.5vh;
+  align-items: flex-end;
   justify-content: flex-start;
   // border-bottom: 3px solid #746d6d;
   background-color: #000000;
@@ -245,7 +257,9 @@ const DayGrid = styled.div`
 
   height: 15.5vh;
 
-  border: 1px #000000 solid;
+  border-left: 0.1px grey solid;
+  border-bottom: 0.1px grey solid;
+  
   align-items: flex-end;
   :hover {
     box-shadow: rgb(10 50 10 / 100%) 0px 4px 10px 0px;
@@ -260,30 +274,30 @@ const DayText = styled.div`
   background-color: ${(props) => props.bg};
   border-radius: ${(props) => props.br};
   padding: 2px 4px 0px 4px;
-  border-bottom: ${(props) => props.bb};
+ 
+
 `;
 
 const MoveMButton = styled.button`
-  width: 15%;
+  width:10.5%;
+  font-size: 1.2vw;
   background-color: #ffffff;
-  display: flex;
-  flex-direction: row;
-  border: none;
+ border:none;
+  display:flex;
   border-radius: 10px;
   cursor: pointer;
-  margin: 0px 0px 0px 70px;
+ align-items: center;
+
+
 `;
 
-const MText = styled.div`
-  margin: 0px 3px 0px 3px;
-  border-bottom: 2px solid black;
-`;
 
 const MMText = styled.div`
+ display: flex;
+  
   font-weight: bold;
-  margin: 0px 3px 0px 3px;
-  font-size: 12px;
   color: #6c6969;
+  margin: 0vh 0.4vh 1.2vh 0.4vh;
 `;
 
 export default Calendar;

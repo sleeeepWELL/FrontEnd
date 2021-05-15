@@ -48,6 +48,7 @@ const MainCalendar = () => {
 const slidein = keyframes`
 from {opacity:0}
 to {opacity: 1;}
+
 `;
 
 const AllContainer = styled.div`
@@ -55,8 +56,11 @@ const AllContainer = styled.div`
   flex-direction: row;
   width: 95%;
   margin: auto;
-  animation: ${slidein} 1s;
+  animation: ${slidein} 1s ;
+  // ease-in infinite alternate
 `;
+
+
  
 const CalendarContainer = styled.div`
   width: 75%;

@@ -17,7 +17,6 @@ import three from "../image/3-condition.png";
 import four from "../image/4-condition.png";
 import five from "../image/5-condition.png";
 
-
 import Swal from "sweetalert2";
 
 //글씨 이미지로 바꾸기
@@ -32,9 +31,6 @@ const DetailPost = (props) => {
   const dispatch = useDispatch();
   const today = useSelector((state) => state.todo.today);
   const _today = moment();
-
-  // console.log(moment(props.date.slice(14, 24)));
-  console.log(_today);
 
   const deletePost = () => {
     Swal.fire({

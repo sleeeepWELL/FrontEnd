@@ -43,7 +43,6 @@ const Write = (props) => {
   const [start, setStart] = React.useState(new Date("2021-01-01T23:00"));
   const startSleep = moment(start).format("HH:mm");
   const [end, setEnd] = React.useState(new Date("2021-01-01T09:00"));
- 
 
   const endSleep = moment(end).format("HH:mm");
   const startMinute =
@@ -192,7 +191,6 @@ const Write = (props) => {
         <TopContainer>
           <Text className="Date">{props.props.date.slice(14, 24)}</Text>
 
-         
           <AddButton
             className="TimeText"
             onClick={() => {

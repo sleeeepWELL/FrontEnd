@@ -73,34 +73,37 @@ ToDo.defaultProps = {};
 
 const ConImg = styled.div`
   background-image: url(${(props) => props.img});
-  background-size: cover;
-  width: 60px;
-  height: 60px;
+  background-size: contain;
+  width: 41%;
+  height: 100%;
   background-repeat: no-repeat;
+  display: flex;
+  position: relative;
+  background-position: center;
 `;
 
 const TagImg = styled.div`
   background-image: url(${(props) => props.img});
-  background-size: cover;
-  width: 20px;
-  height: 20px;
+  background-size: contain;
   background-repeat: no-repeat;
+  width: 12%;
+  height: 100%;
+
   display: flex;
+  justify-content: center;
+  margin: 0px 2px 0px 2px;
 `;
 
 const SleepTime = styled.h4`
   position: absolute;
   margin-left: auto;
   margin-right: auto;
-  left: 0;
   right: 0;
   text-align: center;
 
-  top: -20%;
-  padding: 5% 0%;
-  /* transform: translate(-3%, -3%); */
-  /* margin: auto; */
-  /* display: flex; */
+  top: -5%;
+  left: 8%;
+  transform: translate(-5%, -8%);
 
   font-weight: 700;
   color: white;
@@ -110,15 +113,12 @@ const SleepMin = styled.h5`
   position: absolute;
   margin-left: auto;
   margin-right: auto;
-  left: 0;
   right: 0;
   text-align: center;
 
-  top: 12%;
-  padding: 5% 0%;
-  /* transform: translate(-3%, -3%); */
-  /* margin: auto; */
-  /* display: flex; */
+  top: 24%;
+  left: 10%;
+  transform: translate(-5%, -10%);
 
   font-weight: 700;
   color: white;
@@ -133,8 +133,8 @@ const Container = styled.div`
   border-radius: 8px;
   /* box-shadow: rgb(0 0 0 / 10%) 0px 4px 10px 0px; */
 
-  justify-content: center;
-
+  /* justify-content: center; */
+  align-items: center;
   cursor: pointer;
   position: relative;
 `;
@@ -147,6 +147,8 @@ const TopInfo = styled.div`
   flex-direction: row;
   position: relative;
   justify-content: center;
+  /* align-items: center; */
+  margin: 0px 0px 5px 0px;
 `;
 
 const BottomInfo = styled.div`
@@ -157,7 +159,7 @@ const BottomInfo = styled.div`
   height: 30%;
   justify-content: center;
 
-  margin: 0px 0px 7px 0px;
+  margin: 0px 0px 9px 0px;
   /* font-size: 2px; */
 `;
 

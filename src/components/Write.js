@@ -208,7 +208,6 @@ const Write = (props) => {
             Complete
           </AddButton>
         </TopContainer>
-
         <TimeContainer>
           <LocalizationProvider dateAdapter={AdapterDateFns}>
             <div style={{ width: "45%", margin: "auto" }}>
@@ -239,8 +238,8 @@ const Write = (props) => {
             </div>
           </LocalizationProvider>
         </TimeContainer>
-
         <TagContainer>
+          태그
           <TotalImgGrid>
             <ImgGrid>
               <input
@@ -300,7 +299,7 @@ const Write = (props) => {
             </ImgGrid>
           </TotalImgGrid>
         </TagContainer>
-
+        컨디션
         <ConditionContainer>
           <TotalImgGrid>
             <ImgGrid>
@@ -360,20 +359,32 @@ const Write = (props) => {
             </ImgGrid>
           </TotalImgGrid>
         </ConditionContainer>
-
         <BottomContainer>
-          <textarea
+          메모
+          <TextArea
             className="TimeText2"
-            rows="7"
-            cols="45"
+            minRows={9}
+            cols={20}
             placeholder="메모를 입력하세요"
             onChange={changeMemo}
-          ></textarea>
+          ></TextArea>
         </BottomContainer>
       </ModalComponent>
     </React.Fragment>
   );
 };
+
+const TextArea = styled.textarea`
+  width: 85%;
+  height: 100px;
+  border: none;
+  border-radius: 6px;
+  outline: none;
+  font-weight: 300;
+  font-size: 0.9rem;
+  resize: none;
+  background-color: #dcdcdc;
+`;
 
 const Container = styled.div`
   background-color: grey;
@@ -458,12 +469,14 @@ const ConditionContainer = styled.div`
 
 const BottomContainer = styled.div`
   /* background-color: grey; */
-  margin: 20px 0px;
   width: 100%;
-  height: 30%;
+  height: 100%;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  /* align-items: center; */
+  margin: 20px;
+
+  justify-content: flex-start;
 `;
 
 const ModalComponent = styled.div`

@@ -4,20 +4,15 @@ import { history } from "../redux/configureStore";
 import kakaologo from "../images/kakao.png";
 import { actionCreators as userActions } from "../redux/modules/user";
 import { useDispatch } from "react-redux";
-import { debounce } from "lodash";
-
-import Graphic from "../components/Graphic";
 import "../components/Font.css";
-import MLogin from "../mobile/MLogin";
-
 import { KAKAO_AUTH_URL } from "../shared/OAuth";
+import background from "../images/background_A.png";
 
 //로그인
-const Login = (props) => {
+const MLogin = (props) => {
   const dispatch = useDispatch();
   const [id, setId] = React.useState(null);
   const [password, setPw] = React.useState(null);
-  const [windowSize, setWindowSize] = React.useState(window.innerWidth);
 
   const Swal = require("sweetalert2");
 
@@ -43,80 +38,76 @@ const Login = (props) => {
     }
   };
 
-  const handleResize = debounce(() => {
-    setWindowSize(window.innerWidth);
-  }, 100);
-
-  React.useEffect(() => {
-    window.addEventListener("resize", handleResize);
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, [handleResize]);
-
-  if (windowSize < 415) {
-    return <MLogin />;
-  } else {
-    return (
-      <React.Fragment>
-        <Wrap>
-          <Graphic />
-          <LoginWrap>
-            <LoginContainer>
-              <SemiContainer className="TimeText">
-                <LoGin className="TimeText">로그인</LoGin>
-                <IdBox
-                  className="TimeText"
-                  onChange={(e) => {
-                    setId(e.target.value);
+  return (
+    <React.Fragment>
+      <Wrap>
+        <Background>
+          <LoginContainer>
+            <SemiContainer className="TimeText">
+              <LoGin className="TimeText">로그인</LoGin>
+              <IdBox
+                className="TimeText"
+                onChange={(e) => {
+                  setId(e.target.value);
+                }}
+                placeholder="이메일   ex) sleep@gmail.com"
+              />
+              <PwBox
+                className="TimeText"
+                onChange={(e) => {
+                  setPw(e.target.value);
+                }}
+                placeholder="비밀번호"
+                type="password"
+                onKeyPress={onKeyPress}
+              />
+              <LoginButton onClick={onClick}>
+                <span>로그인</span>
+              </LoginButton>
+              <Or>혹은</Or>
+              <KaKaoBtn href={KAKAO_AUTH_URL}>
+                <KaKaoWrap>
+                  <KaKaoImg src={kakaologo}></KaKaoImg>
+                  <span>카카오계정 로그인</span>
+                </KaKaoWrap>
+              </KaKaoBtn>
+              <InfoBox>
+                <div
+                  style={{ cursor: "pointer", fontSize: "13px" }}
+                  onClick={() => {
+                    history.replace("/signup");
                   }}
-                  placeholder="이메일   ex) sleep@gmail.com"
-                />
-                <PwBox
-                  className="TimeText"
-                  onChange={(e) => {
-                    setPw(e.target.value);
+                >
+                  회원가입
+                </div>
+                <div
+                  style={{ cursor: "pointer", fontSize: "13px" }}
+                  onClick={() => {
+                    history.replace("/findpwd");
                   }}
-                  placeholder="비밀번호"
-                  type="password"
-                  onKeyPress={onKeyPress}
-                />
-                <LoginButton onClick={onClick}>
-                  <span>로그인</span>
-                </LoginButton>
-                <Or>혹은</Or>
-                <KaKaoBtn href={KAKAO_AUTH_URL}>
-                  <KaKaoWrap>
-                    <KaKaoImg src={kakaologo}></KaKaoImg>
-                    <span>카카오계정 로그인</span>
-                  </KaKaoWrap>
-                </KaKaoBtn>
-                <InfoBox>
-                  <div
-                    style={{ cursor: "pointer", fontSize: "13px" }}
-                    onClick={() => {
-                      history.replace("/signup");
-                    }}
-                  >
-                    회원가입
-                  </div>
-                  <div
-                    style={{ cursor: "pointer", fontSize: "13px" }}
-                    onClick={() => {
-                      history.replace("/findpwd");
-                    }}
-                  >
-                    비밀번호 찾기
-                  </div>
-                </InfoBox>
-              </SemiContainer>
-            </LoginContainer>
-          </LoginWrap>
-        </Wrap>
-      </React.Fragment>
-    );
-  }
+                >
+                  비밀번호 찾기
+                </div>
+              </InfoBox>
+            </SemiContainer>
+          </LoginContainer>
+        </Background>
+      </Wrap>
+    </React.Fragment>
+  );
 };
+
+const Background = styled.div`
+  background: url(${background});
+  background-size: 100% 100%;
+  width: 100vw;
+  height: 100vh;
+  background-repeat: no-repeat;
+  z-index: 999;
+  border: none;
+  display: flex;
+  justify-content: center;
+`;
 
 const LoGin = styled.div`
   font-size: 30px;
@@ -147,19 +138,22 @@ const KaKaoWrap = styled.div`
 `;
 
 const SemiContainer = styled.div`
-  width: 36%;
-  height: 70%;
   display: flex;
+  padding: 2rem 2rem;
+  width: 60%;
+  height: 70%;
   position: absolute;
   flex-direction: column;
   justify-content: center;
+  border-radius: 20px;
+  background-color: white;
+  box-shadow: rgb(0 0 0 / 20%) 0px 10px 20px 0px;
 `;
 
 const InfoBox = styled.div`
   width: 100%;
   height: 40px;
   align-items: center;
-  background-color: white;
   margin: 20px 0px;
   padding: 0px;
   display: flex;
@@ -177,25 +171,14 @@ const Wrap = styled.div`
   justify-content: flex-start;
 `;
 
-const LoginWrap = styled.div`
-  display: flex;
-  width: 40vw;
-  height: 100vh;
-  justify-content: center;
-  box-sizing: border-box;
-  align-items: flex-start;
-  flex-direction: column;
-`;
-
 const LoginContainer = styled.div`
   display: flex;
   margin: 0px;
-  padding: 1rem;
-  width: 100%;
+  width: 70vw;
   height: 100%;
   border: none;
   box-sizing: border-box;
-  align-content: center;
+  align-items: center;
   justify-content: center;
   flex-direction: column;
 `;
@@ -239,13 +222,14 @@ const PwBox = styled.input`
 
 const LoginButton = styled.a`
   display: flex;
+  border-radius: 10px;
   width: auto;
   height: 50px;
   margin-top: 10px;
   background-color: rgba(1, 0, 1, 1);
   border: none;
   text-align: center;
-  border-radius: 4px;
+  border-radius: 10px;
   align-items: center;
   justify-content: center;
   cursor: pointer;
@@ -258,7 +242,7 @@ const KaKaoBtn = styled.a`
   height: 50px;
   background-color: #ffe500;
   text-align: center;
-  border-radius: 4px;
+  border-radius: 10px;
   align-items: center;
   cursor: pointer;
   text-decoration: none;
@@ -271,4 +255,4 @@ const KaKaoImg = styled.img`
   margin-right: 10px;
 `;
 
-export default Login;
+export default MLogin;

@@ -3,22 +3,18 @@ import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
 import { actionCreators as userActions } from "../redux/modules/user";
 import { history } from "../redux/configureStore";
-import Graphic from "../components/Graphic";
 import Swal from "sweetalert2";
-import { debounce } from "lodash";
-
 import { passwordCheck } from "../shared/common";
-import MFindPassword from "../mobile/MFindPassword";
+import background from "../images/background_A.png";
 
 //회원가입
-const FindPassword = () => {
+const MFindPassword = () => {
   const dispatch = useDispatch();
 
   const [email, setEmail] = React.useState(null);
   const [pwd, setPwd] = React.useState(null);
   const [pwdCheck, setPwdCheck] = React.useState(null);
   const [authNum, setAuthNum] = React.useState(null); //인증번호
-  const [windowSize, setWindowSize] = React.useState(window.innerWidth);
 
   //인증완료 성공 여부 (true면 완료, false면 미완료)
   const authCheck = useSelector((state) => state.user.auth_check);
@@ -84,102 +80,101 @@ const FindPassword = () => {
     dispatch(userActions.changePwd(email, pwd, pwdCheck));
   };
 
-  const handleResize = debounce(() => {
-    setWindowSize(window.innerWidth);
-  }, 100);
-
-  React.useEffect(() => {
-    window.addEventListener("resize", handleResize);
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, [handleResize]);
-
-  if (windowSize < 415) {
-    return <MFindPassword />;
-  } else {
-    return (
-      <React.Fragment>
-        <Wrap>
-          <Graphic />
-          <LoginWrap>
-            <SignUpContainer>
-              <SemiContainer>
-                <div style={{ fontSize: "30px", fontWeight: "600" }}>
-                  비밀번호 찾기
+  return (
+    <React.Fragment>
+      <Wrap>
+        <Background>
+          <SignUpContainer>
+            <SemiContainer>
+              <div style={{ fontSize: "30px", fontWeight: "600" }}>
+                비밀번호 찾기
+              </div>
+              <InputContainer>
+                <InputBox
+                  onChange={(e) => {
+                    setEmail(e.target.value);
+                  }}
+                  placeholder="가입한 이메일을 입력해주세요"
+                />
+                <CheckBnt id="auth" disabled="" onClick={sendPwdAuth}>
+                  인증번호발송
+                </CheckBnt>
+              </InputContainer>
+              <InputContainer>
+                <InputBox
+                  onChange={(e) => {
+                    setAuthNum(e.target.value);
+                  }}
+                  placeholder="인증번호를 입력해주세요"
+                />
+                <CheckBnt onClick={confirmAuth}>인증완료</CheckBnt>
+              </InputContainer>
+              <PwBox
+                onChange={(e) => {
+                  setPwd(e.target.value);
+                }}
+                placeholder="새로운 비밀번호를 입력해주세요"
+                type="password"
+              />
+              <PwBox
+                onChange={(e) => {
+                  setPwdCheck(e.target.value);
+                }}
+                placeholder="비밀번호를 한번 더 입력해주세요"
+                type="password"
+              />
+              <InfoBox>
+                <div
+                  style={{ cursor: "pointer", fontSize: "13px" }}
+                  onClick={() => {
+                    history.replace("/login");
+                  }}
+                >
+                  로그인
                 </div>
-                <InputContainer>
-                  <InputBox
-                    onChange={(e) => {
-                      setEmail(e.target.value);
-                    }}
-                    placeholder="가입한 이메일을 입력해주세요"
-                  />
-                  <CheckBnt id="auth" disabled="" onClick={sendPwdAuth}>
-                    인증번호발송
-                  </CheckBnt>
-                </InputContainer>
-                <InputContainer>
-                  <InputBox
-                    onChange={(e) => {
-                      setAuthNum(e.target.value);
-                    }}
-                    placeholder="인증번호를 입력해주세요"
-                  />
-                  <CheckBnt onClick={confirmAuth}>인증완료</CheckBnt>
-                </InputContainer>
-                <PwBox
-                  onChange={(e) => {
-                    setPwd(e.target.value);
+                <div
+                  style={{ cursor: "pointer", fontSize: "13px" }}
+                  onClick={() => {
+                    history.replace("/signup");
                   }}
-                  placeholder="새로운 비밀번호를 입력해주세요"
-                  type="password"
-                />
-                <PwBox
-                  onChange={(e) => {
-                    setPwdCheck(e.target.value);
-                  }}
-                  placeholder="비밀번호를 한번 더 입력해주세요"
-                  type="password"
-                />
-                <InfoBox>
-                  <div
-                    style={{ cursor: "pointer", fontSize: "13px" }}
-                    onClick={() => {
-                      history.replace("/login");
-                    }}
-                  >
-                    로그인
-                  </div>
-                  <div
-                    style={{ cursor: "pointer", fontSize: "13px" }}
-                    onClick={() => {
-                      history.replace("/signup");
-                    }}
-                  >
-                    회원가입
-                  </div>
-                </InfoBox>
+                >
+                  회원가입
+                </div>
+              </InfoBox>
 
-                <SignUpButton onClick={changePwd}>
-                  <span>완료</span>
-                </SignUpButton>
-              </SemiContainer>
-            </SignUpContainer>
-          </LoginWrap>
-        </Wrap>
-      </React.Fragment>
-    );
-  }
+              <SignUpButton onClick={changePwd}>
+                <span>완료</span>
+              </SignUpButton>
+            </SemiContainer>
+          </SignUpContainer>
+        </Background>
+      </Wrap>
+    </React.Fragment>
+  );
 };
+const Background = styled.div`
+  background: url(${background});
+  background-size: 100% 100%;
+  width: 100vw;
+  height: 100vh;
+  background-repeat: no-repeat;
+  z-index: 999;
+  border: none;
+  display: flex;
+  justify-content: center;
+`;
 
 const SemiContainer = styled.div`
-  width: 36%;
-  height: 90%;
   display: flex;
+  padding: 2rem 2rem;
+  width: 60%;
+  height: 70%;
   position: absolute;
   flex-direction: column;
   justify-content: center;
+  border-radius: 20px;
+  background-color: white;
+  box-shadow: rgb(0 0 0 / 20%) 0px 10px 20px 0px;
 `;
 
 const InputContainer = styled.div`
@@ -209,6 +204,7 @@ const CheckBnt = styled.button`
   font-size: 0.7rem;
   cursor: pointer;
   width: 27%;
+  box-shadow: rgb(0 0 0 / 15%) 0px 2px 3px 0px;
   :hover {
     background-color: gray;
     color: white;
@@ -224,32 +220,15 @@ const Wrap = styled.div`
   justify-content: flex-start;
 `;
 
-const LoginWrap = styled.div`
-  display: flex;
-  width: 40vw;
-  height: 100vh;
-  justify-content: center;
-  box-sizing: border-box;
-  align-items: flex-start;
-  flex-direction: column;
-`;
-
 const SignUpContainer = styled.div`
   display: flex;
   margin: 0px;
-  padding: 1rem;
   width: 100%;
   height: 100%;
   border: none;
   box-sizing: border-box;
-  align-content: center;
+  align-items: center;
   justify-content: center;
-`;
-
-const LogoContainer = styled.div`
-  width: auto;
-  height: 10vh;
-  display: flex;
 `;
 
 const Logo = styled.div`
@@ -313,6 +292,7 @@ const PwBox = styled.input`
 
 const SignUpButton = styled.a`
   margin-top: 30px;
+  border-radius: 10px;
   display: block;
   height: 60px;
   margin-top: 10px;
@@ -321,6 +301,7 @@ const SignUpButton = styled.a`
   text-align: center;
   align-content: center;
   cursor: pointer;
+  box-shadow: rgb(0 0 0 / 15%) 0px 2px 3px 0px;
   & > span {
     display: inline-block;
     padding-top: 17px;
@@ -364,15 +345,4 @@ const KaKaoBtn = styled.a`
   }
 `;
 
-const SLoginButton = styled.button`
-  width: 360px;
-  height: 30px;
-  background-color: #ffd700;
-  margin-top: 10px;
-  border: #fee500;
-  font-weight: bold;
-  border-radius: 5px;
-  outline: none;
-  cursor: pointer;
-`;
-export default FindPassword;
+export default MFindPassword;

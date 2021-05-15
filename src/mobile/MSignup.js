@@ -7,11 +7,10 @@ import Graphic from "../components/Graphic";
 import "../components/Font.css";
 import Swal from "sweetalert2";
 import { passwordCheck, nicknameCheck } from "../shared/common";
-import MSignup from "../mobile/MSignup";
-import { debounce } from "lodash";
+import background from "../images/background_A.png";
 
 //회원가입
-const Signup = () => {
+const MSignup = () => {
   const dispatch = useDispatch();
 
   const [email, setEmail] = React.useState(null);
@@ -19,7 +18,6 @@ const Signup = () => {
   const [pwd, setPwd] = React.useState(null);
   const [pwdCheck, setPwdCheck] = React.useState(null);
   const [authNum, setAuthNum] = React.useState(null);
-  const [windowSize, setWindowSize] = React.useState(window.innerWidth);
 
   //닉네임 중복검사 통과 여부 (true면 중복, false면 통과)
   const nameCheck = useSelector((state) => state.user.name_check);
@@ -115,126 +113,123 @@ const Signup = () => {
     dispatch(userActions.signUpSV(email, nickname, pwd, pwdCheck));
   };
 
-  // 반응형
-  const handleResize = debounce(() => {
-    setWindowSize(window.innerWidth);
-  }, 100);
+  return (
+    <React.Fragment>
+      <Wrap>
+        <Background>
+          <SignUpContainer>
+            <SemiContainer className="TimeText">
+              <div style={{ fontSize: "30px", fontWeight: "600" }}>
+                회원가입
+              </div>
+              <InputContainer>
+                <InputBox
+                  className="TimeText"
+                  onChange={(e) => {
+                    setEmail(e.target.value);
+                  }}
+                  placeholder="이메일을 입력해주세요"
+                />
+                <CheckBnt
+                  className="TimeText"
+                  id="userauth"
+                  disabled=""
+                  onClick={sendAuth}
+                >
+                  인증번호발송
+                </CheckBnt>
+              </InputContainer>
+              <InputContainer>
+                <InputBox
+                  className="TimeText"
+                  onChange={(e) => {
+                    setAuthNum(e.target.value);
+                  }}
+                  placeholder="인증번호를 입력해주세요"
+                />
+                <CheckBnt className="TimeText" onClick={confirmAuth}>
+                  인증완료
+                </CheckBnt>
+              </InputContainer>
+              <InputContainer>
+                <InputBox
+                  className="TimeText"
+                  onChange={(e) => {
+                    setNickname(e.target.value);
+                  }}
+                  placeholder="닉네임을 입력해주세요"
+                />
+                <CheckBnt className="TimeText" onClick={userNameCheck}>
+                  중복확인
+                </CheckBnt>
+              </InputContainer>
+              <PwBox
+                className="TimeText"
+                onChange={(e) => {
+                  setPwd(e.target.value);
+                }}
+                placeholder="비밀번호를 입력해주세요"
+                type="password"
+              />
+              <PwBox
+                className="TimeText"
+                onChange={(e) => {
+                  setPwdCheck(e.target.value);
+                }}
+                placeholder="비밀번호를 확인해주세요"
+                type="password"
+              />
 
-  React.useEffect(() => {
-    window.addEventListener("resize", handleResize);
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, [handleResize]);
-
-  if (windowSize < 415) {
-    return <MSignup />;
-  } else {
-    return (
-      <React.Fragment>
-        <Wrap>
-          <Graphic />
-          <LoginWrap>
-            <SignUpContainer>
-              <SemiContainer className="TimeText">
-                <div style={{ fontSize: "30px", fontWeight: "600" }}>
-                  회원가입
+              <InfoBox>
+                <div
+                  style={{ cursor: "pointer", fontSize: "13px" }}
+                  onClick={() => {
+                    history.replace("/login");
+                  }}
+                >
+                  로그인
                 </div>
-                <InputContainer>
-                  <InputBox
-                    className="TimeText"
-                    onChange={(e) => {
-                      setEmail(e.target.value);
-                    }}
-                    placeholder="이메일을 입력해주세요"
-                  />
-                  <CheckBnt
-                    className="TimeText"
-                    id="userauth"
-                    disabled=""
-                    onClick={sendAuth}
-                  >
-                    인증번호발송
-                  </CheckBnt>
-                </InputContainer>
-                <InputContainer>
-                  <InputBox
-                    className="TimeText"
-                    onChange={(e) => {
-                      setAuthNum(e.target.value);
-                    }}
-                    placeholder="인증번호를 입력해주세요"
-                  />
-                  <CheckBnt className="TimeText" onClick={confirmAuth}>
-                    인증완료
-                  </CheckBnt>
-                </InputContainer>
-                <InputContainer>
-                  <InputBox
-                    className="TimeText"
-                    onChange={(e) => {
-                      setNickname(e.target.value);
-                    }}
-                    placeholder="닉네임을 입력해주세요"
-                  />
-                  <CheckBnt className="TimeText" onClick={userNameCheck}>
-                    중복확인
-                  </CheckBnt>
-                </InputContainer>
-                <PwBox
-                  className="TimeText"
-                  onChange={(e) => {
-                    setPwd(e.target.value);
+                <div
+                  style={{ cursor: "pointer", fontSize: "13px" }}
+                  onClick={() => {
+                    history.replace("/findpwd");
                   }}
-                  placeholder="비밀번호를 입력해주세요"
-                  type="password"
-                />
-                <PwBox
-                  className="TimeText"
-                  onChange={(e) => {
-                    setPwdCheck(e.target.value);
-                  }}
-                  placeholder="비밀번호를 확인해주세요"
-                  type="password"
-                />
-
-                <InfoBox>
-                  <div
-                    style={{ cursor: "pointer", fontSize: "13px" }}
-                    onClick={() => {
-                      history.replace("/login");
-                    }}
-                  >
-                    로그인
-                  </div>
-                  <div
-                    style={{ cursor: "pointer", fontSize: "13px" }}
-                    onClick={() => {
-                      history.replace("/findpwd");
-                    }}
-                  >
-                    비밀번호 찾기
-                  </div>
-                </InfoBox>
-                <SignUpButton onClick={signup}>
-                  <span>가입완료</span>
-                </SignUpButton>
-              </SemiContainer>
-            </SignUpContainer>
-          </LoginWrap>
-        </Wrap>
-      </React.Fragment>
-    );
-  }
+                >
+                  비밀번호 찾기
+                </div>
+              </InfoBox>
+              <SignUpButton onClick={signup}>
+                <span>가입완료</span>
+              </SignUpButton>
+            </SemiContainer>
+          </SignUpContainer>
+        </Background>
+      </Wrap>
+    </React.Fragment>
+  );
 };
-
-const SemiContainer = styled.div`
-  width: 36%;
-  height: 90%;
+const Background = styled.div`
+  background: url(${background});
+  background-size: 100% 100%;
+  width: 100vw;
+  height: 100vh;
+  background-repeat: no-repeat;
+  z-index: 999;
+  border: none;
   display: flex;
+  justify-content: center;
+`;
+const SemiContainer = styled.div`
+  display: flex;
+  padding: 2rem 2rem;
+  width: 60%;
+  height: 70%;
   position: absolute;
   flex-direction: column;
   justify-content: center;
+  border-radius: 20px;
+  background-color: white;
+  box-shadow: rgb(0 0 0 / 20%) 0px 10px 20px 0px;
 `;
 
 const InputContainer = styled.div`
@@ -246,7 +241,6 @@ const InfoBox = styled.div`
   width: 100%;
   height: 40px;
   align-items: center;
-  background-color: white;
   margin: 20px 0px;
   padding: 0px;
   display: flex;
@@ -279,20 +273,10 @@ const Wrap = styled.div`
   justify-content: flex-start;
 `;
 
-const LoginWrap = styled.div`
-  display: flex;
-  width: 40vw;
-  height: 100vh;
-  justify-content: center;
-  box-sizing: border-box;
-  align-items: center;
-  flex-direction: column;
-`;
-
 const SignUpContainer = styled.div`
   display: flex;
   margin: 0px;
-  width: 100%;
+  width: 70vw;
   height: 100%;
   border: none;
   box-sizing: border-box;
@@ -337,6 +321,7 @@ const PwBox = styled.input`
 const SignUpButton = styled.a`
   display: flex;
   height: 50px;
+  border-radius: 10px;
   margin-top: 10px;
   background-color: rgba(1, 0, 1, 1);
   border: none;
@@ -391,4 +376,4 @@ const SLoginButton = styled.button`
   outline: none;
   cursor: pointer;
 `;
-export default Signup;
+export default MSignup;

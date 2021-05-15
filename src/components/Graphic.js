@@ -1,7 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import graphic from "../images/graphic.png";
-import background from "../images/background.png";
+import background from "../images/background2.png";
 import "./Font.css";
 
 const Graphic = () => {
@@ -9,20 +8,20 @@ const Graphic = () => {
     <>
       <Background>
         <TopContainer>
-          <TitleWrap>
-            <Title className="TimeText">DO YOU</Title>
-            <Title className="TimeText">SLEEP WELL?</Title>
+          <TitleWrap className="TimeText">
+            <Title>DO YOU</Title>
+            <Title>SLEEP WELL?</Title>
           </TitleWrap>
         </TopContainer>
         <MiddleContainer>
-          <MadeByWrap>
+          {/* <MadeByWrap>
             <MadeByInfo className="TimeText2">develped by</MadeByInfo>
-            <div style={{ width: "120%" }}></div>
+            <div style={{ width: "250%" }}></div>
             <MadeByInfo className="TimeText2">sleepwell</MadeByInfo>
-          </MadeByWrap>
+          </MadeByWrap> */}
         </MiddleContainer>
         <BottomContainer>
-          <BottomInfoBox className="TimeText2">
+          <BottomInfoBox className="BottomInfo">
             <BottomInfo>
               sleepwell은 수면 시간을 기록하여 정확한 분석을 바탕으로 가장
               최적의 수면시간을 제안하는 웹사이트 입니다.
@@ -47,12 +46,14 @@ const Background = styled.div`
   height: 100vh;
   background-repeat: no-repeat;
   z-index: 999;
+  border: none;
 `;
 
 const TopContainer = styled.div`
   display: flex;
   width: 100%;
   height: 25vh;
+  border: none;
 `;
 
 const MiddleContainer = styled.div`
@@ -73,7 +74,7 @@ const Title = styled.div`
   display: flex;
   width: auto;
   height: auto;
-  color: white;
+  color: black;
   font-size: 2.5rem;
   border: none;
   margin: 0px;
@@ -101,13 +102,13 @@ const MadeByInfo = styled.div`
   display: flex;
   width: 100%;
   align-items: center;
-  color: white;
+  color: black;
   font-size: 0.5rem;
   justify-content: center;
 `;
 
 const BottomInfoBox = styled.div`
-  width: 50%;
+  width: 80%;
   height: 50%;
   margin-left: 1rem;
   margin-bottom: 2rem;
@@ -118,7 +119,7 @@ const BottomInfoBox = styled.div`
 
 const BottomInfo = styled.div`
   font-size: 0.4rem;
-  color: white;
+  color: black;
   display: flex;
 `;
 

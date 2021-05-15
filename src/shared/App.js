@@ -17,24 +17,10 @@ import { ConnectedRouter } from "connected-react-router";
 import { history } from "../redux/configureStore";
 import OAuth2RedirectHandler from "./OAuth2RedirectHandler";
 import { useDispatch, useSelector } from "react-redux";
-import { getCookie } from "./Cookie";
 import LoginCheck from "../pages/LoginCheck";
-import { actionCreators as userActions } from "../redux/modules/user";
 
 function App() {
   const dispatch = useDispatch();
-
-  // 로그인 상태
-  const status = useSelector((state) => state.user.is_login);
-  console.log(status);
-
-  React.useEffect(() => {
-    if (status) {
-      dispatch(userActions.getUserSV());
-    } else {
-      dispatch(userActions.extensionAccess());
-    }
-  }, [status]);
 
   return (
     <React.Fragment>

@@ -13,6 +13,21 @@
   src: url("../fonts/NanumSquareB.ttf") format("truetype");
 }
 
+@font-face {
+  font-family: "NanumSquareL";
+  src: url("../fonts/NanumSquareL.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "NanumSquare_acB";
+  src: url("../fonts/NanumSquare_acB.ttf") format("truetype");
+}
+
+/* 로그인 */
+.BottomInfo {
+  font-family: "NanumSquareB";
+}
+
 /* Calendar */
 .TitleText {
   text-align: center;

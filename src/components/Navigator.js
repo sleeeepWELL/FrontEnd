@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { history } from "../redux/configureStore";
 import { actionCreators as userActions } from "../redux/modules/user";
-import { useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import "../shared/App.css";
 import "./Font.css";
 import Swal from "sweetalert2";
@@ -10,8 +10,17 @@ import Swal from "sweetalert2";
 const Navigator = () => {
   const dispatch = useDispatch();
 
+  // 로그인 상태
+  const status = useSelector((state) => state.user.is_login);
+  console.log(status);
+
   const [currentClick, setCurrentClick] = React.useState(null);
   const [prevClick, setPrevClick] = React.useState(null);
+
+  const LogoClick = () => {
+    setCurrentClick(null);
+    history.replace("/main");
+  };
 
   const GetClick = (e) => {
     setCurrentClick(e.target.id);
@@ -28,11 +37,18 @@ const Navigator = () => {
     });
   };
 
+  React.useEffect(() => {
+    if (status) {
+      dispatch(userActions.getUserSV());
+    } else {
+      dispatch(userActions.extensionAccess());
+    }
+  }, [status]);
+
   React.useEffect(
     (e) => {
       if (currentClick !== null) {
         let current = document.getElementById(currentClick);
-        console.log(current);
         current.style.color = "black";
         current.style.borderBottom = "2px solid";
         current.style.borderBottomColor = "#1c28f4";
@@ -41,9 +57,6 @@ const Navigator = () => {
         let prev = document.getElementById(prevClick);
         prev.style.color = "#bebcbc";
         prev.style.borderBottom = "none";
-        // prev.addEventListener("mouseover", function () {
-        //   prev.setAttribute("class", "hover");
-        // });
       }
       setPrevClick(currentClick);
     },
@@ -57,12 +70,7 @@ const Navigator = () => {
   return (
     <React.Fragment>
       <Wrap>
-        <Logo
-          className="Logo"
-          onClick={() => {
-            history.go(0);
-          }}
-        >
+        <Logo className="Logo" id="logo" onClick={LogoClick}>
           SLEEPWELL
         </Logo>
         <CategoryContainer>
@@ -97,9 +105,7 @@ const Wrap = styled.div`
   display: flex;
   background-color: rgba(242, 242, 242, 1);
   width: 100%;
-  // height: 2.5rem;
   height: 7vh;
-  /* justify-content: center; */
   align-items: center;
   border-bottom: 0.8px solid #bebcbc;
   position: sticky;

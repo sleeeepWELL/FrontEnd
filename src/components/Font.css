@@ -17,20 +17,19 @@
 .TitleText {
   text-align: center;
   font-size: 30px;
-  font-family: "HattonLight";
+  font-family: "NanumSquare_acEB";
   color: #000000;
-  border-bottom: 2px solid black;
 }
 
 .MText {
   font-weight: bold;
   margin: 0px 3px 0px 3px;
-  font-family: "HattonLight";
-  border-bottom: 2px solid #6c6969;
+  font-family: "NanumSquare_acEB";
+
   color: #000000;
 }
 .WEEK {
-  font-family: "HattonLight";
+  font-family: "NanumSquare_acEB";
   width: 100%;
   flex-direction: column;
   background-color: #000000;
@@ -44,24 +43,23 @@
 }
 
 .DayText {
-  font-family: "HattonLight";
+  font-family: "NanumSquare_acEB";
   font-size: 10px;
   margin: 3px 3px 0px 0px;
 
   font-weight: bold;
-  border-bottom: 1px solid black;
 }
 
 /* ToDo */
 .SleepTime {
-  font-family: "HattonLight";
-  font-size: 14px;
+  font-family: "NanumSquare_acEB";
+  font-size: 15px;
   font-weight: bold;
 }
 
 .SleepMin {
-  font-family: "HattonLight";
-  font-size: 11px;
+  font-family: "NanumSquare_acEB";
+  font-size: 12px;
   font-weight: bold;
 }
 
@@ -92,20 +90,18 @@
 
 /* Modify . Write */
 .Date {
-  font-family: "HattonLight";
+  font-family: "NanumSquare_acEB";
   font-size: 10px;
   margin: 3px 3px 0px 0px;
 
   font-weight: bold;
 }
 
-.Search{
+.Search {
   font-family: "NanumSquareB";
   margin-left: 2px;
-
 }
 
-.ReturnBtn{
+.ReturnBtn {
   font-family: "NanumSquareB";
-  
 }

@@ -91,7 +91,7 @@ const Calendar = (props) => {
               >
                 <DayText
                   className="DayText"
-                  bg={is_today ? "black" : "white"}
+                  bg={is_today ? "black" : null}
                   font_c={is_today ? "white" : "black"}
                   br={is_today ? "9px" : "null"}
                 >
@@ -234,6 +234,7 @@ const DailyGrid = styled.div`
   margin: 1px 0px;
   flex-wrap: nowrap;
   // border: 1px solid black;
+  width: 100%;
 `;
 
 //현재는 6월 기준

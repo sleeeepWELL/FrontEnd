@@ -30,11 +30,11 @@ const ToDo = (props) => {
     <React.Fragment>
       <Container>
         <TopInfo>
-          {myCon === "1" && <ConImg src={one}></ConImg>}
-          {myCon === "2" && <ConImg src={two}></ConImg>}
-          {myCon === "3" && <ConImg src={three}></ConImg>}
-          {myCon === "4" && <ConImg src={four}></ConImg>}
-          {myCon === "5" && <ConImg src={five}></ConImg>}
+          {myCon === "1" && <ConImg img={one}> </ConImg>}
+          {myCon === "2" && <ConImg img={two}></ConImg>}
+          {myCon === "3" && <ConImg img={three}></ConImg>}
+          {myCon === "4" && <ConImg img={four}></ConImg>}
+          {myCon === "5" && <ConImg img={five}></ConImg>}
 
           <SleepTime className="SleepTime">{`${props.totalSleepHour}h`}</SleepTime>
 
@@ -43,24 +43,24 @@ const ToDo = (props) => {
         <BottomInfo>
           <>
             {myTags.find((p) => p === "음주") ? (
-              <TagImg src={beer}></TagImg>
+              <TagImg img={beer}></TagImg>
             ) : (
-              <TagImg src={beer_gray}></TagImg>
+              <TagImg img={beer_gray}></TagImg>
             )}
             {myTags.find((p) => p === "야식") ? (
-              <TagImg src={snack}></TagImg>
+              <TagImg img={snack}></TagImg>
             ) : (
-              <TagImg src={snack_gray}></TagImg>
+              <TagImg img={snack_gray}></TagImg>
             )}
             {myTags.find((p) => p === "야근") ? (
-              <TagImg src={work}></TagImg>
+              <TagImg img={work}></TagImg>
             ) : (
-              <TagImg src={work_gray}></TagImg>
+              <TagImg img={work_gray}></TagImg>
             )}
             {myTags.find((p) => p === "운동") ? (
-              <TagImg src={workout}></TagImg>
+              <TagImg img={workout}></TagImg>
             ) : (
-              <TagImg src={workout_gray}></TagImg>
+              <TagImg img={workout_gray}></TagImg>
             )}
           </>
         </BottomInfo>
@@ -71,14 +71,20 @@ const ToDo = (props) => {
 
 ToDo.defaultProps = {};
 
-const ConImg = styled.img`
-  width: 42%;
-  height: 92%;
+const ConImg = styled.div`
+  background-image: url(${(props) => props.img});
+  background-size: cover;
+  width: 60px;
+  height: 60px;
+  background-repeat: no-repeat;
 `;
 
-const TagImg = styled.img`
-  width: 20%;
-  height: 82%;
+const TagImg = styled.div`
+  background-image: url(${(props) => props.img});
+  background-size: cover;
+  width: 20px;
+  height: 20px;
+  background-repeat: no-repeat;
   display: flex;
 `;
 

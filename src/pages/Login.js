@@ -147,12 +147,13 @@ const KaKaoWrap = styled.div`
 `;
 
 const SemiContainer = styled.div`
-  width: 36%;
+  width: 35%;
   height: 70%;
   display: flex;
   position: absolute;
   flex-direction: column;
   justify-content: center;
+  margin: 0px;
 `;
 
 const InfoBox = styled.div`
@@ -169,17 +170,18 @@ const InfoBox = styled.div`
 `;
 
 const Wrap = styled.div`
-  width: 100%;
+  width: 80vw;
   height: 100%;
   display: flex;
   box-sizing: border-box;
   flex-direction: row;
-  justify-content: flex-start;
+  justify-content: center;
+  margin: auto;
 `;
 
 const LoginWrap = styled.div`
   display: flex;
-  width: 40vw;
+  width: 35vw;
   height: 100vh;
   justify-content: center;
   box-sizing: border-box;
@@ -190,12 +192,11 @@ const LoginWrap = styled.div`
 const LoginContainer = styled.div`
   display: flex;
   margin: 0px;
-  padding: 1rem;
   width: 100%;
   height: 100%;
   border: none;
   box-sizing: border-box;
-  align-content: center;
+  align-items: flex-start;
   justify-content: center;
   flex-direction: column;
 `;

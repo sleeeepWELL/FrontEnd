@@ -9,6 +9,7 @@ import { debounce } from "lodash";
 
 import { passwordCheck } from "../shared/common";
 import MFindPassword from "../mobile/MFindPassword";
+import "../components/Font.css";
 
 //회원가입
 const FindPassword = () => {
@@ -104,7 +105,7 @@ const FindPassword = () => {
           <Graphic />
           <LoginWrap>
             <SignUpContainer>
-              <SemiContainer>
+              <SemiContainer className="TimeText">
                 <div style={{ fontSize: "30px", fontWeight: "600" }}>
                   비밀번호 찾기
                 </div>
@@ -113,10 +114,10 @@ const FindPassword = () => {
                     onChange={(e) => {
                       setEmail(e.target.value);
                     }}
-                    placeholder="가입한 이메일을 입력해주세요"
+                    placeholder="가입한 이메일 입력"
                   />
                   <CheckBnt id="auth" disabled="" onClick={sendPwdAuth}>
-                    인증번호발송
+                    인증 번호 발송
                   </CheckBnt>
                 </InputContainer>
                 <InputContainer>
@@ -124,22 +125,22 @@ const FindPassword = () => {
                     onChange={(e) => {
                       setAuthNum(e.target.value);
                     }}
-                    placeholder="인증번호를 입력해주세요"
+                    placeholder="인증번호를 입력"
                   />
-                  <CheckBnt onClick={confirmAuth}>인증완료</CheckBnt>
+                  <CheckBnt onClick={confirmAuth}>인증 완료</CheckBnt>
                 </InputContainer>
                 <PwBox
                   onChange={(e) => {
                     setPwd(e.target.value);
                   }}
-                  placeholder="새로운 비밀번호를 입력해주세요"
+                  placeholder="새로운 비밀번호 입력"
                   type="password"
                 />
                 <PwBox
                   onChange={(e) => {
                     setPwdCheck(e.target.value);
                   }}
-                  placeholder="비밀번호를 한번 더 입력해주세요"
+                  placeholder="새로운 비밀번호 재입력"
                   type="password"
                 />
                 <InfoBox>
@@ -192,7 +193,7 @@ const InfoBox = styled.div`
   height: 40px;
   align-items: center;
   background-color: white;
-  margin: 20px 0px;
+  margin: 10px 0px;
   padding: 0px;
   display: flex;
   justify-content: space-between;
@@ -201,14 +202,17 @@ const InfoBox = styled.div`
 `;
 
 const CheckBnt = styled.button`
+  word-break: keep-all;
   background-color: rgba(238, 238, 238, 1);
   border-radius: 10px;
   border: none;
   height: 3rem;
   align-items: flex-end;
-  font-size: 0.7rem;
   cursor: pointer;
   width: 27%;
+  border: 0.5px solid lightgray;
+  box-shadow: rgb(0 0 0 / 15%) 0px 2px 3px 0px;
+  font-family: inherit;
   :hover {
     background-color: gray;
     color: white;
@@ -216,12 +220,13 @@ const CheckBnt = styled.button`
 `;
 
 const Wrap = styled.div`
-  width: 100%;
+  width: 80vw;
   height: 100%;
   display: flex;
   box-sizing: border-box;
   flex-direction: row;
   justify-content: flex-start;
+  margin: auto;
 `;
 
 const LoginWrap = styled.div`
@@ -312,25 +317,18 @@ const PwBox = styled.input`
 `;
 
 const SignUpButton = styled.a`
-  margin-top: 30px;
-  display: block;
-  height: 60px;
+  margin-top: 10px;
+  display: flex;
+  height: 50px;
   margin-top: 10px;
   background-color: rgba(1, 0, 1, 1);
   border: none;
   text-align: center;
-  align-content: center;
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
-  & > span {
-    display: inline-block;
-    padding-top: 17px;
-    font-size: 16px;
-    line-height: 24px;
-    color: white;
-    vertical-align: top;
-    font-family: sans-serif;
-    font-weight: bold;
-  }
+  border-radius: 4px;
+  color: white;
 `;
 
 const KaKaoBtn = styled.a`

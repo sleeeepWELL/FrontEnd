@@ -6,6 +6,7 @@ import { history } from "../redux/configureStore";
 import Swal from "sweetalert2";
 import { passwordCheck } from "../shared/common";
 import background from "../images/background_A.png";
+import "../components/Font.css";
 
 //회원가입
 const MFindPassword = () => {
@@ -85,8 +86,8 @@ const MFindPassword = () => {
       <Wrap>
         <Background>
           <SignUpContainer>
-            <SemiContainer>
-              <div style={{ fontSize: "30px", fontWeight: "600" }}>
+            <SemiContainer className="TimeText">
+              <div className="TimeText" style={{ fontSize: "25px" }}>
                 비밀번호 찾기
               </div>
               <InputContainer>
@@ -94,10 +95,15 @@ const MFindPassword = () => {
                   onChange={(e) => {
                     setEmail(e.target.value);
                   }}
-                  placeholder="가입한 이메일을 입력해주세요"
+                  placeholder="가입한 이메일 입력"
                 />
-                <CheckBnt id="auth" disabled="" onClick={sendPwdAuth}>
-                  인증번호발송
+                <CheckBnt
+                  className="TimeText"
+                  id="auth"
+                  disabled=""
+                  onClick={sendPwdAuth}
+                >
+                  인증번호 발송
                 </CheckBnt>
               </InputContainer>
               <InputContainer>
@@ -105,27 +111,29 @@ const MFindPassword = () => {
                   onChange={(e) => {
                     setAuthNum(e.target.value);
                   }}
-                  placeholder="인증번호를 입력해주세요"
+                  placeholder="인증번호 입력"
                 />
-                <CheckBnt onClick={confirmAuth}>인증완료</CheckBnt>
+                <CheckBnt className="TimeText" onClick={confirmAuth}>
+                  인증 완료
+                </CheckBnt>
               </InputContainer>
               <PwBox
                 onChange={(e) => {
                   setPwd(e.target.value);
                 }}
-                placeholder="새로운 비밀번호를 입력해주세요"
+                placeholder="새로운 비밀번호 입력"
                 type="password"
               />
               <PwBox
                 onChange={(e) => {
                   setPwdCheck(e.target.value);
                 }}
-                placeholder="비밀번호를 한번 더 입력해주세요"
+                placeholder="새로운 비밀번호 재입력"
                 type="password"
               />
               <InfoBox>
                 <div
-                  style={{ cursor: "pointer", fontSize: "13px" }}
+                  style={{ cursor: "pointer" }}
                   onClick={() => {
                     history.replace("/login");
                   }}
@@ -133,7 +141,7 @@ const MFindPassword = () => {
                   로그인
                 </div>
                 <div
-                  style={{ cursor: "pointer", fontSize: "13px" }}
+                  style={{ cursor: "pointer" }}
                   onClick={() => {
                     history.replace("/signup");
                   }}
@@ -179,7 +187,7 @@ const SemiContainer = styled.div`
 
 const InputContainer = styled.div`
   display: flex;
-  margin-top: 2rem;
+  margin-top: 8%;
 `;
 
 const InfoBox = styled.div`
@@ -187,23 +195,25 @@ const InfoBox = styled.div`
   height: 40px;
   align-items: center;
   background-color: white;
-  margin: 20px 0px;
+  margin: 5px 0px;
   padding: 0px;
   display: flex;
   justify-content: space-between;
   color: gray;
-  font-size: 15px;
+  & > div {
+    font-size: 0.7rem;
+  }
 `;
 
 const CheckBnt = styled.button`
+  word-break: keep-all;
   background-color: rgba(238, 238, 238, 1);
   border-radius: 10px;
-  border: none;
-  height: 3rem;
   align-items: flex-end;
-  font-size: 0.7rem;
+  font-size: 0.6rem;
   cursor: pointer;
   width: 27%;
+  border: 0.5px solid lightgray;
   box-shadow: rgb(0 0 0 / 15%) 0px 2px 3px 0px;
   :hover {
     background-color: gray;
@@ -263,14 +273,14 @@ const InputBox = styled.input`
   border: 0.5px solid rgba(76, 76, 76, 0.3);
   border-radius: 10px;
   outline: none;
-  font-size: 15px;
+  font-size: 0.7rem;
   font-weight: bold;
   color: black;
   margin-right: 0.5rem;
   width: 70%;
   opacity: 0.7;
   ::placeholder {
-    font-size: 13px;
+    font-size: 0.7rem;
   }
 `;
 
@@ -279,39 +289,29 @@ const PwBox = styled.input`
   padding: 15px;
   border: 0.5px solid rgba(76, 76, 76, 0.3);
   border-radius: 10px;
-  margin-top: 2rem;
+  margin-top: 8%;
   outline: none;
-  font-size: 15px;
+  font-size: 0.7rem;
   font-weight: bold;
   color: black;
   opacity: 0.7;
   ::placeholder {
-    font-size: 13px;
+    font-size: 0.7rem;
   }
 `;
 
 const SignUpButton = styled.a`
-  margin-top: 30px;
+  display: flex;
   border-radius: 10px;
-  display: block;
-  height: 60px;
-  margin-top: 10px;
+  height: 50px;
   background-color: rgba(1, 0, 1, 1);
   border: none;
   text-align: center;
-  align-content: center;
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
+  color: white;
   box-shadow: rgb(0 0 0 / 15%) 0px 2px 3px 0px;
-  & > span {
-    display: inline-block;
-    padding-top: 17px;
-    font-size: 16px;
-    line-height: 24px;
-    color: white;
-    vertical-align: top;
-    font-family: sans-serif;
-    font-weight: bold;
-  }
 `;
 
 const KaKaoBtn = styled.a`

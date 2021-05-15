@@ -42,7 +42,7 @@ const Background = styled.div`
   flex-direction: column;
   background: url(${background});
   background-size: 100% 100%;
-  width: 60vw;
+  width: 45vw;
   height: 100vh;
   background-repeat: no-repeat;
   z-index: 999;

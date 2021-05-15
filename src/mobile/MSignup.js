@@ -3,7 +3,6 @@ import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
 import { actionCreators as userActions } from "../redux/modules/user";
 import { history } from "../redux/configureStore";
-import Graphic from "../components/Graphic";
 import "../components/Font.css";
 import Swal from "sweetalert2";
 import { passwordCheck, nicknameCheck } from "../shared/common";
@@ -119,7 +118,7 @@ const MSignup = () => {
         <Background>
           <SignUpContainer>
             <SemiContainer className="TimeText">
-              <div style={{ fontSize: "30px", fontWeight: "600" }}>
+              <div className="TimeText" style={{ fontSize: "25px" }}>
                 회원가입
               </div>
               <InputContainer>
@@ -128,7 +127,7 @@ const MSignup = () => {
                   onChange={(e) => {
                     setEmail(e.target.value);
                   }}
-                  placeholder="이메일을 입력해주세요"
+                  placeholder="이메일 입력"
                 />
                 <CheckBnt
                   className="TimeText"
@@ -136,7 +135,7 @@ const MSignup = () => {
                   disabled=""
                   onClick={sendAuth}
                 >
-                  인증번호발송
+                  인증번호 발송
                 </CheckBnt>
               </InputContainer>
               <InputContainer>
@@ -145,10 +144,10 @@ const MSignup = () => {
                   onChange={(e) => {
                     setAuthNum(e.target.value);
                   }}
-                  placeholder="인증번호를 입력해주세요"
+                  placeholder="인증번호 입력"
                 />
                 <CheckBnt className="TimeText" onClick={confirmAuth}>
-                  인증완료
+                  인증 완료
                 </CheckBnt>
               </InputContainer>
               <InputContainer>
@@ -157,10 +156,10 @@ const MSignup = () => {
                   onChange={(e) => {
                     setNickname(e.target.value);
                   }}
-                  placeholder="닉네임을 입력해주세요"
+                  placeholder="닉네임 입력"
                 />
                 <CheckBnt className="TimeText" onClick={userNameCheck}>
-                  중복확인
+                  중복 확인
                 </CheckBnt>
               </InputContainer>
               <PwBox
@@ -168,7 +167,7 @@ const MSignup = () => {
                 onChange={(e) => {
                   setPwd(e.target.value);
                 }}
-                placeholder="비밀번호를 입력해주세요"
+                placeholder="비밀번호 입력"
                 type="password"
               />
               <PwBox
@@ -176,13 +175,12 @@ const MSignup = () => {
                 onChange={(e) => {
                   setPwdCheck(e.target.value);
                 }}
-                placeholder="비밀번호를 확인해주세요"
+                placeholder="비밀번호 재입력"
                 type="password"
               />
-
               <InfoBox>
                 <div
-                  style={{ cursor: "pointer", fontSize: "13px" }}
+                  style={{ cursor: "pointer" }}
                   onClick={() => {
                     history.replace("/login");
                   }}
@@ -190,7 +188,7 @@ const MSignup = () => {
                   로그인
                 </div>
                 <div
-                  style={{ cursor: "pointer", fontSize: "13px" }}
+                  style={{ cursor: "pointer" }}
                   onClick={() => {
                     history.replace("/findpwd");
                   }}
@@ -234,28 +232,31 @@ const SemiContainer = styled.div`
 
 const InputContainer = styled.div`
   display: flex;
-  margin-top: 2rem;
+  margin-top: 8%;
 `;
 
 const InfoBox = styled.div`
   width: 100%;
   height: 40px;
   align-items: center;
-  margin: 20px 0px;
+  margin: 5px 0px;
   padding: 0px;
   display: flex;
   justify-content: space-between;
   color: gray;
-  font-size: 15px;
+  & div {
+    font-size: 0.7rem;
+  }
 `;
 
 const CheckBnt = styled.button`
+  word-break: keep-all;
   background-color: rgba(238, 238, 238, 1);
   border-radius: 10px;
-  border: none;
-  height: 3rem;
+  border: 0.5px solid lightgray;
+  box-shadow: rgb(0 0 0 / 15%) 0px 2px 3px 0px;
   align-items: flex-end;
-  font-size: 0.8rem;
+  font-size: 0.6rem;
   cursor: pointer;
   width: 27%;
   :hover {
@@ -291,14 +292,14 @@ const InputBox = styled.input`
   border: 0.5px solid rgba(76, 76, 76, 0.3);
   border-radius: 10px;
   outline: none;
-  font-size: 15px;
+  font-size: 0.7rem;
   font-weight: bold;
   color: black;
   margin-right: 0.5rem;
   width: 70%;
   opacity: 0.7;
   ::placeholder {
-    font-size: 13px;
+    font-size: 0.7rem;
   }
 `;
 
@@ -307,14 +308,14 @@ const PwBox = styled.input`
   padding: 15px;
   border: 0.5px solid rgba(76, 76, 76, 0.3);
   border-radius: 10px;
-  margin-top: 2rem;
+  margin-top: 8%;
   outline: none;
-  font-size: 15px;
+  font-size: 0.7rem;
   font-weight: bold;
   color: black;
   opacity: 0.7;
   ::placeholder {
-    font-size: 13px;
+    font-size: 0.7rem;
   }
 `;
 
@@ -322,16 +323,14 @@ const SignUpButton = styled.a`
   display: flex;
   height: 50px;
   border-radius: 10px;
-  margin-top: 10px;
   background-color: rgba(1, 0, 1, 1);
   border: none;
   text-align: center;
-  border-radius: 4px;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   color: white;
-  font-weight: 600;
+  box-shadow: rgb(0 0 0 / 15%) 0px 2px 3px 0px;
 `;
 
 const KaKaoBtn = styled.a`

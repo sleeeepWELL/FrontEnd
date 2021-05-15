@@ -137,24 +137,17 @@ const Signup = () => {
           <LoginWrap>
             <SignUpContainer>
               <SemiContainer className="TimeText">
-                <div style={{ fontSize: "30px", fontWeight: "600" }}>
-                  회원가입
-                </div>
+                <div style={{ fontSize: "30px" }}>회원가입</div>
                 <InputContainer>
                   <InputBox
                     className="TimeText"
                     onChange={(e) => {
                       setEmail(e.target.value);
                     }}
-                    placeholder="이메일을 입력해주세요"
+                    placeholder="이메일 입력"
                   />
-                  <CheckBnt
-                    className="TimeText"
-                    id="userauth"
-                    disabled=""
-                    onClick={sendAuth}
-                  >
-                    인증번호발송
+                  <CheckBnt id="userauth" disabled="" onClick={sendAuth}>
+                    인증 번호 발송
                   </CheckBnt>
                 </InputContainer>
                 <InputContainer>
@@ -163,11 +156,9 @@ const Signup = () => {
                     onChange={(e) => {
                       setAuthNum(e.target.value);
                     }}
-                    placeholder="인증번호를 입력해주세요"
+                    placeholder="인증번호 입력"
                   />
-                  <CheckBnt className="TimeText" onClick={confirmAuth}>
-                    인증완료
-                  </CheckBnt>
+                  <CheckBnt onClick={confirmAuth}>인증 완료</CheckBnt>
                 </InputContainer>
                 <InputContainer>
                   <InputBox
@@ -175,18 +166,16 @@ const Signup = () => {
                     onChange={(e) => {
                       setNickname(e.target.value);
                     }}
-                    placeholder="닉네임을 입력해주세요"
+                    placeholder="닉네임 입력"
                   />
-                  <CheckBnt className="TimeText" onClick={userNameCheck}>
-                    중복확인
-                  </CheckBnt>
+                  <CheckBnt onClick={userNameCheck}>중복 확인</CheckBnt>
                 </InputContainer>
                 <PwBox
                   className="TimeText"
                   onChange={(e) => {
                     setPwd(e.target.value);
                   }}
-                  placeholder="비밀번호를 입력해주세요"
+                  placeholder="비밀번호 입력"
                   type="password"
                 />
                 <PwBox
@@ -194,7 +183,7 @@ const Signup = () => {
                   onChange={(e) => {
                     setPwdCheck(e.target.value);
                   }}
-                  placeholder="비밀번호를 확인해주세요"
+                  placeholder="비밀번호 재입력"
                   type="password"
                 />
 
@@ -256,6 +245,7 @@ const InfoBox = styled.div`
 `;
 
 const CheckBnt = styled.button`
+  word-break: keep-all;
   background-color: rgba(238, 238, 238, 1);
   border-radius: 10px;
   border: none;
@@ -264,6 +254,9 @@ const CheckBnt = styled.button`
   font-size: 0.8rem;
   cursor: pointer;
   width: 27%;
+  font-family: inherit;
+  border: 0.5px solid lightgray;
+  box-shadow: rgb(0 0 0 / 15%) 0px 2px 3px 0px;
   :hover {
     background-color: gray;
     color: white;
@@ -271,12 +264,13 @@ const CheckBnt = styled.button`
 `;
 
 const Wrap = styled.div`
-  width: 100%;
+  width: 80vw;
   height: 100%;
   display: flex;
   box-sizing: border-box;
   flex-direction: row;
   justify-content: flex-start;
+  margin: auto;
 `;
 
 const LoginWrap = styled.div`
@@ -346,7 +340,6 @@ const SignUpButton = styled.a`
   justify-content: center;
   cursor: pointer;
   color: white;
-  font-weight: 600;
 `;
 
 const KaKaoBtn = styled.a`

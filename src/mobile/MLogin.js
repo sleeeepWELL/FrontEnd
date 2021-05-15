@@ -61,19 +61,19 @@ const MLogin = (props) => {
                 type="password"
                 onKeyPress={onKeyPress}
               />
-              <LoginButton onClick={onClick}>
+              <LoginButton className="TimeText" onClick={onClick}>
                 <span>로그인</span>
               </LoginButton>
               <Or>혹은</Or>
               <KaKaoBtn href={KAKAO_AUTH_URL}>
                 <KaKaoWrap>
-                  <KaKaoImg src={kakaologo}></KaKaoImg>
+                  <KaKaoImg className="TimeText" src={kakaologo}></KaKaoImg>
                   <span>카카오계정 로그인</span>
                 </KaKaoWrap>
               </KaKaoBtn>
               <InfoBox>
                 <div
-                  style={{ cursor: "pointer", fontSize: "13px" }}
+                  style={{ cursor: "pointer", fontSize: "0.7rem" }}
                   onClick={() => {
                     history.replace("/signup");
                   }}
@@ -81,7 +81,7 @@ const MLogin = (props) => {
                   회원가입
                 </div>
                 <div
-                  style={{ cursor: "pointer", fontSize: "13px" }}
+                  style={{ cursor: "pointer", fontSize: "0.7rem" }}
                   onClick={() => {
                     history.replace("/findpwd");
                   }}
@@ -110,7 +110,7 @@ const Background = styled.div`
 `;
 
 const LoGin = styled.div`
-  font-size: 30px;
+  font-size: 25px;
 `;
 
 const Or = styled.div`
@@ -154,12 +154,11 @@ const InfoBox = styled.div`
   width: 100%;
   height: 40px;
   align-items: center;
-  margin: 20px 0px;
+  margin: 10px 0px;
   padding: 0px;
   display: flex;
   justify-content: space-between;
   color: gray;
-  font-size: 15px;
 `;
 
 const Wrap = styled.div`
@@ -191,13 +190,13 @@ const IdBox = styled.input`
   border-radius: 10px;
   padding: 15px;
   outline: none;
-  font-size: 15px;
+  font-size: 0.7rem;
   margin-top: 15%;
   font-weight: bold;
   color: black;
   opacity: 0.7;
   ::placeholder {
-    font-size: 13px;
+    font-size: 0.7rem;
   }
 `;
 
@@ -208,15 +207,12 @@ const PwBox = styled.input`
   border-radius: 10px;
   margin: 2rem 0px;
   outline: none;
-  font-size: 15px;
+  font-size: 0.7rem;
   font-weight: bold;
   color: black;
   opacity: 0.7;
   ::placeholder {
-    font-size: 13px;
-  }
-  @media (max-width: 975px) {
-    width: auto;
+    font-size: 0.7rem;
   }
 `;
 
@@ -234,7 +230,9 @@ const LoginButton = styled.a`
   justify-content: center;
   cursor: pointer;
   color: white;
-  font-weight: 600;
+  & > span {
+    font-family: inherit;
+  }
 `;
 
 const KaKaoBtn = styled.a`
@@ -253,6 +251,9 @@ const KaKaoImg = styled.img`
   width: 17px;
   height: 17px;
   margin-right: 10px;
+  & > span {
+    font-family: inherit;
+  }
 `;
 
 export default MLogin;

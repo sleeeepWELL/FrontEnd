@@ -95,14 +95,14 @@ const InputContainer = styled.div`
 const InputBox = styled.input`
   background-color: white;
   border: 0.5px solid rgba(76, 76, 76, 0.3);
-  border-radius: 10px;
+  border-radius: 5px;
   outline: none;
   font-size: 3%;
   font-weight: bold;
   color: black;
   margin-right: 0.5rem;
-  width: 15%;
-  height: 100%;
+  width: 18%;
+  height: 90%;
   opacity: 0.5;
   ::placeholder {
     font-size: 13px;
@@ -110,19 +110,19 @@ const InputBox = styled.input`
 `;
 
 const SearchBtn = styled.button`
-  background-color:grey;
+  background-color:#4A5566;
   color: white;
-  border-radius: 10px;
+  border-radius: 5px;
   width: 15%;
-  height:100%;
+  height:4vh;
 `;
 
 
 const ReturnBtn = styled.button`
-  background-color:grey;
+  background-color:#4A5566;
 
   color: white;
-  border-radius: 10px;
+  border-radius: 5px;
   width: 15%;
   height:100%;
   margin-left:1%;

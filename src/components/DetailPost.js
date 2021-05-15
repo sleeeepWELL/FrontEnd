@@ -56,12 +56,12 @@ const DetailPost = (props) => {
     let _day = props.date.slice(14, 24);
     return (
       <React.Fragment>
-        <ModalComponent>
+     
           <DayHeader>
             <RightHeader>
               {moment(props.date.slice(14, 24)) <= _today && (
                 <AddButton
-                  className="TimeText"
+                
                   onClick={() => {
                     props._showModify(true);
                   }}
@@ -70,7 +70,10 @@ const DetailPost = (props) => {
                 </AddButton>
               )}
             </RightHeader>
-            <LeftHeader>
+          
+          </DayHeader>
+          <ModalComponent>
+          <LeftHeader>
               <MoveDButton
                 onClick={() => {
                   let tDate = new Date(_day);
@@ -83,7 +86,7 @@ const DetailPost = (props) => {
                 ◀{/* <ChevronLeftIcon /> */}
               </MoveDButton>
 
-              <DText className="DayText">{_day}</DText>
+              <DText >{_day}</DText>
 
               <MoveDButton
                 onClick={() => {
@@ -97,12 +100,11 @@ const DetailPost = (props) => {
                 ▶{/* <ChevronRightIcon /> */}
               </MoveDButton>
             </LeftHeader>
-          </DayHeader>
 
-          <ConditionContainer style={{ height: "30%" }}>
+          <ConditionContainer>
             <EmptyText className="TimeText">수면기록을 입력해주세요!</EmptyText>
           </ConditionContainer>
-        </ModalComponent>
+          </ModalComponent>
         {props.date[0].conditions == "First_View"
           ? dispatch(
               todoActions.getOnePostAX(moment(today).format("YYYY-MM-DD"))
@@ -113,9 +115,9 @@ const DetailPost = (props) => {
   } else {
     return (
       <React.Fragment>
-        <ModalComponent>
           <DayHeader>
-            <RightHeader>
+            
+          <RightHeader>
               <ModifyButton
                 className="TimeText"
                 onClick={() => {
@@ -128,6 +130,9 @@ const DetailPost = (props) => {
                 삭제
               </ModifyButton>
             </RightHeader>
+          </DayHeader>
+        <ModalComponent>
+        
             <LeftHeader>
               <MoveDButton
                 onClick={() => {
@@ -141,7 +146,7 @@ const DetailPost = (props) => {
                 ◀{/* <ChevronLeftIcon/> */}
               </MoveDButton>
 
-              <DText className="DayText">{props.date.selectedAt}</DText>
+              <DText>{props.date.selectedAt}</DText>
 
               <MoveDButton
                 onClick={() => {
@@ -155,7 +160,7 @@ const DetailPost = (props) => {
                 ▶{/* <ChevronRightIcon /> */}
               </MoveDButton>
             </LeftHeader>
-          </DayHeader>
+        
 
           <ConditionContainer>
             <ConditionText className="ConditionText">컨디션</ConditionText>
@@ -198,6 +203,7 @@ const ModalComponent = styled.div`
   flex-direction: column;
   box-sizing: border-box;
   // border-radius: 20px;
+
 `;
 
 //컨디션
@@ -207,8 +213,8 @@ const ConditionContainer = styled.div`
   height: 20%;
   display: flex;
   flex-direction: row;
-
   margin: 0px 20px 20px 20px;
+
   box-sizing: border-box;
   align-items: center;
 `;
@@ -251,12 +257,13 @@ const TimeText = styled.div`
   font-size: 17px;
   margin: 5px 0px 0px 10px;
   font-weight: bold;
+  
 `;
 
 const TimeText2 = styled.div`
   width: 65%;
   color: black;
-  font-size: 16px;
+  font-size: 80%;
   /* margin: 5px 0px 0px 10px; */
   font-weight: bold;
 `;
@@ -291,22 +298,23 @@ const DayHeader = styled.div`
   flex-direction: column;
 
   width: 100%;
-  height: 30%;
-  margin: 10px 0px 50px 0px;
+  height: 5%;
+  margin: 10px 0px 0px 0px;
   box-sizing: border-box;
   /* background-color: red; */
 `;
 
 const LeftHeader = styled.div`
-  /* background-color: pink; */
   display: flex;
   flex-direction: row;
   width: 60%;
-  height: 100%;
-  border: none;
-  justify-content: center;
-  margin: 10px auto auto auto;
+  height: 10%;
+
+  margin: 1% auto;
+  
+  text-align:center;
   box-sizing: border-box;
+  
 `;
 
 const RightHeader = styled.div`
@@ -314,56 +322,52 @@ const RightHeader = styled.div`
   display: flex;
   flex-direction: row;
   text-align: center;
+
   justify-content: flex-end;
   width: 100%;
   height: 100%;
-  margin-bottom: 10px;
   box-sizing: border-box;
+  
 `;
 
-// const ModifyButton = styled.button`
-//   width: 20%;
-//   height: 100%;
-//   background-color: black;
-//   border: 2px solid black;
-//   font-weight: bold;
-//   border-radius: 5px;
-//   outline: none;
-//   cursor: pointer;
-//   color: white;
-//   display: flex;
-//   justify-content: flex-end;
-//   font-size: 3px;
-//   text-align: center;
-//   margin: 0px 10px 0px 0px;
-//   box-sizing: border-box;
-// `;
 
 const MoveDButton = styled.button`
-  width: 15%;
-  height: 25%;
+  width: 10%;
+  height: 100%;
   font-weight: bold;
   border-radius: 5px;
   outline: none;
   border: none;
   cursor: pointer;
-  color: black;
+  color:#4A5566;
   background-color: white;
   text-align: center;
+ 
+
 `;
 const DText = styled.div`
+display:flex;
   font-weight: bold;
-  font-size: 3vh;
-  color: black;
+  font-size: 3.5vh;
+  color: #4A5566;
   width: 80%;
-  border: none;
   text-align: center;
-  box-shadow: rgb(82 82 82/ 20%) 0px 5px 8px 0px;
+  justify-content: center;
+  height: 100%;
+ 
+  align-items: center;
+  border-radius: 10px;
+  
+  
+ 
+  box-shadow: rgb(82 82 82/ 20%) 0px 5px 5px 0px;
+  
+ 
 `;
 
 const ModifyButton = styled.button`
-  width: 20%;
-  height: 80%;
+  width: 13%;
+  height: 100%;
   background-color: #4a5566;
   border: 2px solid white;
   font-weight: bold;
@@ -371,23 +375,24 @@ const ModifyButton = styled.button`
   outline: none;
   cursor: pointer;
   color: white;
-
+  box-shadow: rgb(82 82 82/ 20%) 0px 5px 8px 0px;
   font-size: 3px;
   margin: 0px 10px 0px 0px;
 `;
 
 const AddButton = styled.button`
-  width: 20%;
-  height: 50%;
-  background-color: black;
-  border: 2px solid white;
-  font-weight: bold;
-  border-radius: 5px;
-  outline: none;
-  cursor: pointer;
-  color: white;
-
-  font-size: 3px;
+width: 14%;
+height: 100%;
+background-color: #4a5566;
+border: 2px solid white;
+font-weight: bold;
+border-radius: 5px;
+outline: none;
+cursor: pointer;
+color: white;
+box-shadow: rgb(82 82 82/ 20%) 0px 5px 8px 0px;
+font-size: 3px;
+margin: 0px 10px 0px 0px;
 `;
 
 const EmptyText = styled.div`

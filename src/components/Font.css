@@ -72,8 +72,8 @@
 .DayText {
   font-family: "NanumSquare_acEB";
   font-size: 1.6vh;
-  margin: 3% 3% 0px 0px;
-
+  margin-right: 0.5vh;
+  margin-top: 0.5vh;
   font-weight: bold;
 }
 
@@ -109,6 +109,7 @@
 }
 .TimeText {
   font-family: "NanumSquare_acEB";
+  color:#4A5566;
 }
 
 .TimeText2 {

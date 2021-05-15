@@ -179,7 +179,7 @@ const Title = styled.div`
 const Background = styled.div`
   width: 100vw;
   height: 100vh;
-  background-color: #f2f2f2;
+  background-color: rgba(219, 219, 219, 1);
 `;
 
 const Wrap = styled.div`
@@ -206,8 +206,9 @@ const CheckBnt = styled.button`
   border-radius: 10px;
   border: none;
   height: 3rem;
-  font-size: 0.7rem;
+  font-size: 13px;
   cursor: pointer;
+  box-shadow: rgb(0 0 0 / 25%) 0px 3px 2px 1px;
   width: 20%;
   :hover {
     background-color: gray;
@@ -219,10 +220,11 @@ const CheckBnt = styled.button`
 const CheckBnt2 = styled.button`
   color: rgba(238, 238, 238, 1);
   background-color: rgba(56, 56, 56, 1);
+  box-shadow: rgb(0 0 0 / 25%) 0px 3px 2px 1px;
   border-radius: 10px;
   border: none;
   height: 3rem;
-  font-size: 0.7rem;
+  font-size: 13px;
   cursor: pointer;
   width: 100%;
   :hover {

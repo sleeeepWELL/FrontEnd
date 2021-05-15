@@ -69,7 +69,7 @@ const Calendar = (props) => {
                 key={`${moment(today).format(
                   "MM"
                 )}_week_${week_index}_day_${day_index}`}
-                bg={"#FFFFFF"}
+                bg={"#F3F3F3"}
               ></DayGrid>
             );
           } else {
@@ -123,7 +123,7 @@ const Calendar = (props) => {
           }}
         >
           <MMText>◀</MMText>
-          <div className="MText">
+          <div className="MText1">
             {move_month - 1 === 0
               ? parseInt(moment(today).format("YYYY")) - 1 + "." + 12
               : moment(today).format("YYYY") +
@@ -143,7 +143,7 @@ const Calendar = (props) => {
             );
           }}
         >
-          <div className="MText">
+          <div className="MText2">
             {move_month + 1 === 13
               ? parseInt(moment(today).format("YYYY")) + 1 + "." + "01"
               : moment(today).format("YYYY") +
@@ -187,7 +187,7 @@ const AllContainer = styled.div`
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  width: 95%;
+  width: 85%;
   min-width: 50px;
   height: 100%;
   margin: auto;
@@ -201,19 +201,17 @@ const TopContainer = styled.div`
   display: flex;
   flex-direction: row;
   width: 100%;
-
-  height: 12vh;
-  align-items: center;
+  align-items: bottom;
+  height: 10vh;
   justify-content: space-between;
-  margin-top: 10px;
+  margin-top: 3%;
 `;
 
 
 const Container = styled.div`
   box-sizing: border-box;
   width: 100%;
-  height: 95%;
-  // margin: 20px 0px 20px 0px;
+
  
 `;
 
@@ -229,18 +227,17 @@ const CalendarContainer = styled.div`
   
 `;
 
+
 const WeekGrid = styled.div`
   box-sizing: border-box;
   display: flex;
   flex-direction: row;
   width: 100%;
   min-width: 50px;
-  height: 4.0vh;
+  height: 4vh;
   align-items: flex-end;
   justify-content: flex-start;
-  // border-bottom: 3px solid #746d6d;
-  background-color: #000000;
-  // border-radius: 5px;
+
 `;
 
 const DailyGrid = styled.div`
@@ -258,15 +255,12 @@ const DayGrid = styled.div`
   flex-direction: column;
   display: flex;
   width: 100%;
-
-  height: 15.5vh;
-
+  height: 11.5vh;
   border-left: 0.1px #AAAAAA solid;
   border-bottom: 0.1px #AAAAAA solid;
-  
   align-items: flex-end;
   :hover {
-    box-shadow: rgb(10 50 10 / 100%) 0px 4px 10px 0px;
+    box-shadow: rgb(82 82 82/ 60%)  0px 4px 10px 0px;
     transition: box-shadow 0.2s ease-in 0s;
   }
 
@@ -280,29 +274,28 @@ const DayText = styled.div`
   padding: 2px 4px 0px 4px;
   text-shadow: 0.5px 0.5px 0.5px gray;
  
-
 `;
 
 const MoveMButton = styled.button`
-  width:10.5%;
-  font-size: 1.4vw;
-  background-color: #ffffff;
+  width: 8vw;
+
+  font-size: 1.2vw;
+  background-color:#F3F3F3;
  border:none;
-  display:flex;
-  border-radius: 10px;
+ display:flex;
+ flex-direction: row;
   cursor: pointer;
  align-items: center;
-
-
 `;
 
 
 const MMText = styled.div`
  display: flex;
-  
+ align-items: center;
   font-weight: bold;
   color: #6c6969;
-  margin: 0vh 0.4vh 0.8vh 0.4vh;
+  margin: 0vw 0.5vw 0.3vw 0.5vw;
+  
 `;
 
 export default Calendar;

@@ -26,8 +26,8 @@ const Search = (props) => {
     <React.Fragment>
       {year.length == 4 ? document.getElementById("second").focus() : null}
       {month.length == 2 ? document.getElementById("third").focus() : null}
-      <ModalComponent>
-       <div className="Search">날짜 검색하기</div> 
+  
+       {/* <div className="Search">날짜 검색하기</div>  */}
         <InputContainer>
         <InputBox
           id="first"
@@ -56,7 +56,20 @@ const Search = (props) => {
           id="third"
           onKeyPress={onSearch}
         />
-        </InputContainer>
+        
+        <SearchBtn className="ReturnBtn"
+          onClick={() => {
+            props._showModify(false);
+            dispatch(
+              todoActions.getOnePostAX(moment(today).format("YYYY-MM-DD"))
+            );
+            dispatch(
+              todoActions.changeToday(moment(today).format("YYYY-MM-DD"))
+            );
+          }}
+        >
+         검색
+        </SearchBtn>
         <ReturnBtn className="ReturnBtn"
           onClick={() => {
             props._showModify(false);
@@ -68,9 +81,10 @@ const Search = (props) => {
             );
           }}
         >
-         오늘로 이동하기
+         오늘
         </ReturnBtn>
-      </ModalComponent>
+        </InputContainer>
+ 
     </React.Fragment>
   );
 };
@@ -79,44 +93,47 @@ const InputContainer = styled.div`
  display: flex;
  flex-direction:row;
  margin-top: 10px;
- height:30%;
+ width:100%;
 `
 
 const InputBox = styled.input`
   background-color: white;
-  padding: 15px;
   border: 0.5px solid rgba(76, 76, 76, 0.3);
   border-radius: 10px;
   outline: none;
-  font-size: 12px;
+  font-size: 3%;
   font-weight: bold;
   color: black;
   margin-right: 0.5rem;
   width: 15%;
-  height: 20%;
+  height: 100%;
   opacity: 0.5;
   ::placeholder {
     font-size: 13px;
   }
 `;
 
-const ReturnBtn = styled.button`
+const SearchBtn = styled.button`
   background-color:grey;
-  margin-top:20px;
   color: white;
   border-radius: 10px;
-  width: 40%;
-  height:50%;
+  width: 15%;
+  height:100%;
+`;
+
+
+const ReturnBtn = styled.button`
+  background-color:grey;
+
+  color: white;
+  border-radius: 10px;
+  width: 15%;
+  height:100%;
+  margin-left:1%;
 `;
 
 
 
-const ModalComponent = styled.div`
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  
-`;
+
 
 export default Search;

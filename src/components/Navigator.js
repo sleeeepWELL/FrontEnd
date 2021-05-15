@@ -56,7 +56,7 @@ const Navigator = () => {
       }
       if (prevClick !== null) {
         let prev = document.getElementById(prevClick);
-        prev.style.color = "#bebcbc";
+        prev.style.color = "#8b8a8a";
         prev.style.borderBottom = "none";
       }
       setPrevClick(currentClick);
@@ -71,9 +71,10 @@ const Navigator = () => {
   return (
     <React.Fragment>
       <Wrap>
-        <LogoImg className="Logo" id="logo" onClick={LogoClick} />
+        <FstContainer>
+          <LogoImg className="Logo" id="logo" onClick={LogoClick} />
+        </FstContainer>
         <CategoryContainer>
-          <div></div>
           <CategoryBox className="TimeText" id="main" onClick={GetClick}>
             캘린더
           </CategoryBox>
@@ -90,7 +91,6 @@ const Navigator = () => {
           <CategoryBox className="TimeText" id="main/mypage" onClick={GetClick}>
             마이페이지
           </CategoryBox>
-          <div></div>
         </CategoryContainer>
         <LogoutBox className="TimeText" onClick={LOGOUT}>
           <span>로그아웃</span>
@@ -100,14 +100,25 @@ const Navigator = () => {
   );
 };
 
+const FstContainer = styled.div`
+  display: flex;
+  width: 15%;
+  height: 7vh;
+  justify-content: center;
+  align-items: center;
+`;
+
 const Wrap = styled.div`
   display: flex;
+  flex-direction: row;
+  justify-content: center;
   background-color: rgba(219, 219, 219, 1);
-  width: 100%;
+  width: 100vw;
   height: 7vh;
   align-items: center;
   border-bottom: 0.8px solid #bebcbc;
   position: sticky;
+  box-sizing: border-box;
   top: 0%;
   z-index: 9999;
 `;
@@ -116,15 +127,19 @@ const CategoryBox = styled.div`
   display: flex;
   height: 7vh;
   align-items: center;
-  color: #bebcbc;
+  color: #8b8a8a;
   letter-spacing: -1px;
   cursor: pointer;
+
+  @media (max-width: 414px) {
+  }
 `;
 
 const LogoImg = styled.div`
-  width: 10rem;
+  width: 80%;
   height: 7vh;
   display: flex;
+  margin: 0px;
   cursor: pointer;
   justify-content: center;
   outline: none;
@@ -135,9 +150,7 @@ const LogoImg = styled.div`
 `;
 
 const LogoutBox = styled.div`
-  position: absolute;
   width: 15%;
-  right: 0%;
   display: flex;
   font-size: 1rem;
   justify-content: center;
@@ -155,8 +168,6 @@ const CategoryContainer = styled.div`
   display: flex;
   width: 70%;
   justify-content: space-around;
-  align-items: center;
-  position: relative;
   font-weight: 600;
 `;
 

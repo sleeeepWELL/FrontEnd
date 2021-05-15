@@ -31,17 +31,16 @@
 /* Calendar */
 .TitleText {
   text-align: center;
-  font-size: 30px;
+  font-size: 6vh;
   font-family: "NanumSquare_acEB";
   color: #000000;
+  width: 74%;
 }
 
 .MText {
   font-weight: bold;
-  margin: 0px 3px 0px 3px;
-  font-family: "NanumSquare_acEB";
-
-  color: #000000;
+  font-family: "HattonLight";
+  color: grey;
 }
 .WEEK {
   font-family: "NanumSquare_acEB";
@@ -54,13 +53,13 @@
   min-width: 50px;
   align-items: center;
   justify-content: flex-start;
-  font-size: 20px;
+  font-size: 2.8vh;
 }
 
 .DayText {
   font-family: "NanumSquare_acEB";
-  font-size: 10px;
-  margin: 3px 3px 0px 0px;
+  font-size: 1.3vh;
+  margin: 3% 3% 0px 0px;
 
   font-weight: bold;
 }
@@ -119,4 +118,11 @@
 
 .ReturnBtn {
   font-family: "NanumSquareB";
+  
+}
+
+/* Table */
+.Contents{
+  display: flex;
+  flex-direction: column;
 }

@@ -32,6 +32,8 @@ const DetailPost = (props) => {
   const today = useSelector((state) => state.todo.today);
   const _today = moment();
 
+
+
   const deletePost = () => {
     Swal.fire({
       title: "삭제 하시겠습니까?",

@@ -102,14 +102,14 @@ const Sun = styled.span`
   margin: 0px;
   font-size: 0.9em;
   font-weight: bold;
-  color: #CD1039;
+  color: #E35454;
 `;
 
 const Sat = styled.span`
   margin: 0px;
   font-size: 0.9em;
   font-weight: bold;
-  color: #2828CD;
+  color: #3967E5;
 `;
 
 const Week = styled.span`

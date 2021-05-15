@@ -64,7 +64,7 @@ const AllContainer = styled.div`
  //캘린더 배경
 const CalendarContainer = styled.div`
   width: 66%;
-  height: 100%;
+  height: 90vh;
   background-color: #F3F3F3;
   margin-top: 1%;
   margin-right: 2%;
@@ -78,7 +78,7 @@ const CalendarContainer = styled.div`
 const RightContainer = styled.div`
   display: flex;
   width: 25%;
-  height: 117vh;
+  height: 121vh;
   flex-direction: column;
   
 `;

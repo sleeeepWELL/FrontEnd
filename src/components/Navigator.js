@@ -6,12 +6,18 @@ import { useDispatch } from "react-redux";
 import "../shared/App.css";
 import "./Font.css";
 import Swal from "sweetalert2";
+import { current } from "immer";
 
 const Navigator = () => {
   const dispatch = useDispatch();
 
   const [currentClick, setCurrentClick] = React.useState(null);
   const [prevClick, setPrevClick] = React.useState(null);
+
+  const LogoClick = () => {
+    setCurrentClick(null);
+    history.replace("/main");
+  };
 
   const GetClick = (e) => {
     setCurrentClick(e.target.id);
@@ -41,9 +47,17 @@ const Navigator = () => {
         let prev = document.getElementById(prevClick);
         prev.style.color = "#bebcbc";
         prev.style.borderBottom = "none";
-        // prev.addEventListener("mouseover", function () {
-        //   prev.setAttribute("class", "hover");
-        // });
+
+        // 이벤트로 hover같은 기능 구현
+        prev.onmouseenter = () => {
+          prev.style.color = "black";
+          prev.style.borderBottom = "2px solid #bebcbc";
+          prev.style.transition = "all 0.1s ease-out";
+        };
+        prev.onmouseout = () => {
+          prev.style.color = "#bebcbc";
+          prev.style.borderBottom = "none";
+        };
       }
       setPrevClick(currentClick);
     },
@@ -57,12 +71,7 @@ const Navigator = () => {
   return (
     <React.Fragment>
       <Wrap>
-        <Logo
-          className="Logo"
-          onClick={() => {
-            history.go(0);
-          }}
-        >
+        <Logo className="Logo" id="logo" onClick={LogoClick}>
           SLEEPWELL
         </Logo>
         <CategoryContainer>
@@ -97,9 +106,7 @@ const Wrap = styled.div`
   display: flex;
   background-color: rgba(242, 242, 242, 1);
   width: 100%;
-  // height: 2.5rem;
   height: 7vh;
-  /* justify-content: center; */
   align-items: center;
   border-bottom: 0.8px solid #bebcbc;
   position: sticky;
@@ -114,11 +121,11 @@ const CategoryBox = styled.div`
   color: #bebcbc;
   letter-spacing: -1px;
   cursor: pointer;
-  /* :hover {
+  :hover {
     color: black;
     border-bottom: 2px solid #bebcbc;
     transition: all 0.1s ease-out;
-  } */
+  }
 `;
 
 const Logo = styled.button`

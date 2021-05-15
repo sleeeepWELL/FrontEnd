@@ -23,6 +23,11 @@
   src: url("../fonts/NanumSquare_acB.ttf") format("truetype");
 }
 
+@font-face {
+  font-family: "Helvetica";
+  src: url("../fonts/Helvetica\ Black.ttf") format("truetype");
+}
+
 /* 로그인 */
 .BottomInfo {
   font-family: "NanumSquareB";
@@ -32,7 +37,7 @@
 .TitleText {
   text-align: center;
   font-size: 6vh;
-  font-family: "NanumSquare_acEB";
+  font-family: "Helvetica";
   color: #495465;
   width: 70%;
 
@@ -41,7 +46,7 @@
 
 .MText1 {
   font-weight: bold;
-  font-family: "NanumSquare_acEB";
+  font-family: "Helvetica";
   color: #000000;
   text-align:left;
   border-bottom: 1.5px solid #000000;
@@ -49,7 +54,7 @@
 }
 .MText2 {
   font-weight: bold;
-  font-family: "NanumSquare_acEB";
+  font-family: "Helvetica";
   color: #000000;
   text-align:right;
   border-bottom: 1.5px solid #000000;
@@ -70,7 +75,7 @@
 }
 
 .DayText {
-  font-family: "NanumSquare_acEB";
+  font-family: "Helvetica";
   font-size: 1.6vh;
   margin-right: 0.5vh;
   margin-top: 0.5vh;
@@ -79,13 +84,13 @@
 
 /* ToDo */
 .SleepTime {
-  font-family: "NanumSquare_acEB";
+  font-family: "Helvetica";
   font-size: 15px;
   font-weight: bold;
 }
 
 .SleepMin {
-  font-family: "NanumSquare_acEB";
+  font-family: "Helvetica";
   font-size: 12px;
   font-weight: bold;
 }

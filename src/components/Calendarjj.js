@@ -270,7 +270,6 @@ const DayText = styled.div`
   color: ${(props) => props.font_c};
   background-color: ${(props) => props.bg};
   border-radius: ${(props) => props.br};
-  padding: 2px 4px 0px 4px;
   text-shadow: 0.5px 0.5px 0.5px gray;
  
 `;

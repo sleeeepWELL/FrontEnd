@@ -2,15 +2,17 @@ import React from "react";
 import styled from "styled-components";
 
 import Navigator from "../components/Navigator";
-import Login from "../pages/Login";
-import Signup from "../pages/Signup";
-import MainCalendar from "../pages/MainCalendar";
-import Analysis from "../pages/Analysis";
-import PracAnalysis from "../pages/PracAnalysis";
-import FindPassword from "../pages/FindPassword";
-import Ready from "../pages/Ready";
-import MyPage from "../pages/MyPage";
-import NotFound from "../pages/NotFound";
+import {
+  Login,
+  Signup,
+  MainCalendar,
+  Analysis,
+  FindPassword,
+  Ready,
+  MyPage,
+  NotFound,
+} from "../pages/index";
+import MFindPassword from "../mobile/MFindPassword";
 
 import { Switch, Route } from "react-router-dom";
 import { ConnectedRouter } from "connected-react-router";

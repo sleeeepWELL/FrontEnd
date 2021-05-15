@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import background from "../images/background2.png";
+import background from "../images/background_B.png";
 import "./Font.css";
 
 const Graphic = () => {
@@ -8,10 +8,10 @@ const Graphic = () => {
     <>
       <Background>
         <TopContainer>
-          <TitleWrap className="TimeText">
+          {/* <TitleWrap className="TimeText">
             <Title>DO YOU</Title>
             <Title>SLEEP WELL?</Title>
-          </TitleWrap>
+          </TitleWrap> */}
         </TopContainer>
         <MiddleContainer>
           {/* <MadeByWrap>

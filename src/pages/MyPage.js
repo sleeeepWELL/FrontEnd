@@ -121,9 +121,19 @@ const MyPage = () => {
                     type="password"
                   />
                 </SemiContainer>
-                <CheckBnt onClick={changePwd} className="TimeText">
-                  변경
-                </CheckBnt>
+                <div
+                  style={{
+                    width: "20%",
+                    display: "flex",
+                    flexDirection: "column",
+                    justifyContent: "space-between",
+                  }}
+                >
+                  <div></div>
+                  <CheckBnt2 onClick={changePwd} className="TimeText">
+                    변경
+                  </CheckBnt2>
+                </div>
               </PwdContainer>
             </Container>
             <Container>
@@ -199,6 +209,22 @@ const CheckBnt = styled.button`
   font-size: 0.7rem;
   cursor: pointer;
   width: 20%;
+  :hover {
+    background-color: gray;
+    color: white;
+    transition: ease 0.5s;
+  }
+`;
+
+const CheckBnt2 = styled.button`
+  color: rgba(238, 238, 238, 1);
+  background-color: rgba(56, 56, 56, 1);
+  border-radius: 10px;
+  border: none;
+  height: 3rem;
+  font-size: 0.7rem;
+  cursor: pointer;
+  width: 100%;
   :hover {
     background-color: gray;
     color: white;

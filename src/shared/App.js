@@ -11,6 +11,7 @@ import {
   Ready,
   MyPage,
   NotFound,
+  Intro,
 } from "../pages/index";
 import MFindPassword from "../mobile/MFindPassword";
 
@@ -27,10 +28,10 @@ function App() {
   return (
     <React.Fragment>
       <ConnectedRouter history={history}>
+        
         <Route path="/login" exact component={Login} />
         <Switch>
           <Route path="/signup" exact component={Signup} />
-
           <Route path="/findpwd" exact component={FindPassword} />
           <Wrap>
             <Route
@@ -42,7 +43,9 @@ function App() {
             <Route path="/main/analysis" exact component={Analysis} />
             <Route path="/main/prac" exact component={Ready} />
             <Route path="/main/mypage" exact component={MyPage} />
+            <Route path="/main/intro" exact component={Intro}/>
             <Route path="/" component={LoginCheck} />
+            
           </Wrap>
           <Route component={NotFound} />
         </Switch>

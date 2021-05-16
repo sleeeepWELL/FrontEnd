@@ -186,6 +186,7 @@ const ChartContainer1 = styled.div`
   display: flex;
   width: 100%;
   height: 40%;
+  margin-bottom: 12%;
   justify-content: center;
   align-content: center;
 `;
@@ -197,7 +198,7 @@ const ResultContainer2 = styled.div`
   justify-content: center;
 `;
 
-//여기도 height 수정했습니다(배경이 짧지않게)
+
 const Background = styled.div`
   display: flex;
   justify-content: center;

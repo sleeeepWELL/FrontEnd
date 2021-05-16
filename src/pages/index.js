@@ -7,6 +7,7 @@ import MyPage from "./MyPage";
 import NotFound from "./NotFound";
 import Ready from "./Ready";
 import Signup from "./Signup";
+import Intro from "./Intro";
 
 export {
   Analysis,
@@ -18,4 +19,5 @@ export {
   NotFound,
   Ready,
   Signup,
+  Intro,
 };

@@ -86,7 +86,7 @@ const DetailPost = (props) => {
                 ◀{/* <ChevronLeftIcon /> */}
               </MoveDButton>
 
-              <DText >{_day}</DText>
+              <DText className="Helvetica" >{_day}</DText>
 
               <MoveDButton
                 onClick={() => {
@@ -146,7 +146,7 @@ const DetailPost = (props) => {
                 ◀{/* <ChevronLeftIcon/> */}
               </MoveDButton>
 
-              <DText>{props.date.selectedAt}</DText>
+              <DText className="Helvetica">{props.date.selectedAt}</DText>
 
               <MoveDButton
                 onClick={() => {

@@ -113,63 +113,96 @@ const boxFade = keyframes`
   }
  `;
 
+ const slidein = keyframes`
+  0% {
+    margin-top: 2%;
+    background-color: yellow;
+  }
+  // 50%{
+  //   margin-top: 1%;
+  // }
+  100% {
+    margin-top: 0%;
+    background-color: gold;
+  }
+ `;
 const Box1 = styled.div`
-  display: flex;
-  width: 30%;
-  height: 95%;
-  border-radius: 60%;
+
+  position: absolute;
+  top:0;
+  left:0;
+  width: 31%;
+  height: 99%;
+  border-radius: 23vh;
   text-align: center;
   border: 1px grey solid;
   align-items: center;
-  animation: ${boxFade} 1s;
+  animation: ${slidein} 1.3s  infinite alternate;
   box-shadow: rgb(82 82 82/ 40%) 0px 5px 8px 0px;
-  background-color: white;
-  background-size: contain;
+ 
+  margin-left:1.5%;
 `;
 
 const Box2 = styled.div`
-  display: flex;
-  width: 30%;
-  height: 95%;
-  background-color: white;
-  border-radius: 60%;
+  
+  position: absolute;
+  top:0;
+  left:33%;
+  width: 31%;
+  height: 99%;
+ 
+  border-radius: 23vh;
   border: 1px grey solid;
   text-align: center;
   align-items: center;
-  animation: ${boxFade} 2s alternate;
+  animation: ${slidein} 1s  infinite alternate;
   box-shadow: rgb(82 82 82/ 40%) 0px 5px 8px 0px;
+  margin-left:1.5%;
 `;
 
 const Box3 = styled.div`
-  display: flex;
-  width: 30%;
-  height: 95%;
-  background-color: white;
-  border-radius: 60%;
-  border: 1px grey solid;
-  text-align: center;
+
+  position: absolute;
+  top:0;
+  left:66%;
+  width: 31%;
+  height: 99%;
+  
+  border-radius: 23vh;
+
+ 
   align-items: center;
-  animation: ${boxFade} 3s alternate;
+  animation: ${slidein} 1.5s  infinite alternate;
   box-shadow: rgb(82 82 82/ 40%) 0px 5px 8px 0px;
+  margin-left:1.5%;
 `;
 
 const BoxContainer = styled.div`
-  width: 66%;
-  height: 90%;
+position: relative;
+width: 97%;
+height: 0;
+padding-bottom: 30%;
+
   display: flex;
-  justify-content: space-between;
-  margin-top: 2%;
+ 
   align-items: center;
+  
+  
+  
 `;
 const TitleContainer = styled.div`
-  width: 69%;
-  height: 5%;
+position: relative;
+width: 97%;
+height: 0;
+padding-bottom: 5%;
   display: flex;
   justify-content: space-between;
   margin-top: 5%;
+  
   text-align: center;
 
   align-items: center;
+
 `;
 
 export default Table;

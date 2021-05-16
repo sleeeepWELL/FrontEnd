@@ -1,68 +1,62 @@
-import React from 'react';
+import React, { useState, useRef } from 'react';
 import * as THREE from 'three';
 import styled from "styled-components";
 import './Font.css';
 
 
-class Cube extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
-  componentDidMount() {
-    const width = 80
-    const height = 80
-
-    const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(30, 1, 1, 1000);
-
-    const renderer = new THREE.WebGLRenderer();
-    renderer.setSize(width, height);
-
-    this.element.appendChild(renderer.domElement);
-
-    const geometry = new THREE.BoxGeometry(1, 1, 1);
-    const material = new THREE.MeshBasicMaterial({ color:"yellow"});
-    const color = new THREE.Color("rgba(242, 242, 242, 1)")
-    const cube = new THREE.Mesh(geometry, material);
-   
-    scene.add(cube);
-
-   
-    camera.position.z = 4;
-
-    this.scene = scene;
-    this.camera = camera;
-    this.renderer = renderer;
-    this.cube = cube;
-    this.animate();
-    scene.background =color;
+const Cube =()=> {
     
-  }
 
-  animate = () => {
-    this.renderer.render(this.scene, this.camera);
-    this.cube.rotation.x += 0.02;
-    this.cube.rotation.y += 0.02;
-    requestAnimationFrame(this.animate);
-  }
+  
+  React.useEffect(() => {
+      animate();
+    }, []);
+    
+  const element= useRef();
+  const width = 100
+  const height = 100
+  const scene = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(30, 1, 1, 1000);
 
-  render() {
-    return (
-      <CubeContainer>
-    <div className="Cube" ref={el => this.element = el}>
-    </div>
-      </CubeContainer>
-    );
-  }
+  const renderer = new THREE.WebGLRenderer();
+  renderer.setSize(width, height);
+
+  console.log(element.current);
+  element.current.appendChild(renderer.domElement);
+
+  const geometry = new THREE.BoxGeometry(1, 1, 1);
+  const material = new THREE.MeshBasicMaterial({ color:"green"});
+  const color = new THREE.Color("rgba(242, 242, 242, 1)")
+  const cube = new THREE.Mesh(geometry, material);
+ 
+  scene.add(cube);
+
+  scene.background =color;
+  camera.position.z = 4;
+ 
+
+const animate = () => {
+  renderer.render(scene, camera);
+  cube.rotation.x += 0.01;
+  cube.rotation.y += 0.01;
+  requestAnimationFrame(animate);
+}
+
+  return (
+    <CubeContainer>
+  <div className="Cube" ref={el => element = el}>
+  </div>
+    </CubeContainer>
+  );
+
 }
 
 
-	
+
 const CubeContainer = styled.div`
- width:10%;
- color: blue;
- 
-  
+width:10%;
+color: blue;
+
+
 `;
 export default Cube;

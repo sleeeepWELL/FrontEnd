@@ -50,10 +50,10 @@ const loginSV = (email, pwd) => {
         const REFRESH_TOKEN = res.data.refreshToken;
 
         // 쿠키에 RefreshToken 저장(아직 httpOnly 설정 못함)
-        setCookie("is_login", REFRESH_TOKEN);
+        await setCookie("is_login", REFRESH_TOKEN);
 
         // 로컬에 AccessToken 저장
-        localStorage.setItem("token", ACCESS_TOKEN);
+        await localStorage.setItem("token", ACCESS_TOKEN);
 
         // accessToken 디폴트 설정
         axios.defaults.headers.common[

@@ -31,12 +31,7 @@ const MainCalendar = () => {
             <SearchContainer>
               <Search _showModify={setModify} />
             </SearchContainer>
-            <SearchContainer>
-              {/* <CubeButton onClick={()=>{console.log("하이")}}>
-            <Cube />
-            <Text>날짜 검색</Text>
-          </CubeButton> */}
-            </SearchContainer>
+           
           </RightContainer>
         </AllContainer>
       </Background>
@@ -45,7 +40,7 @@ const MainCalendar = () => {
 };
 
 
-const slidein = keyframes`
+const fadein = keyframes`
 from {opacity:0}
 to {opacity: 1;}
 
@@ -55,8 +50,10 @@ const AllContainer = styled.div`
   display: flex;
   flex-direction: row;
   width: 97%;
-  margin-top: 40px;
-  animation: ${slidein} 1s ;
+  height: 90%;
+
+  margin-top: 2%;
+  animation: ${fadein} 1s ;
   // ease-in infinite alternate
 `;
 
@@ -70,7 +67,7 @@ const CalendarContainer = styled.div`
   margin-right: 2%;
   margin-left: 5%;
   border-radius: 15px;
-  padding-bottom: 20px;
+  padding-bottom: 1.5%;
   box-shadow: rgb(82 82 82/ 40%) 0px 5px 8px 0px;
 `;
 
@@ -103,33 +100,18 @@ const SearchContainer = styled.div`
   align-content: center;
   border-radius: 20px;
   // box-shadow: rgb(82 82 82/ 40%) 0px 5px 8px 0px;
+ 
 `;
 
 
 const Background = styled.div`
   width: 100%;
-  height: 111vh;
+  height: 115vh;
   left: 0;
   top: 0;
   background-color: #DBDBDB;
  
   
-`;
-
-const CubeButton = styled.div`
-  width: 20%;
-  display: flex;
-  border: 1px solid black;
-  border: none;
-`;
-const Text = styled.div`
-  font-weight: bold;
-  z-index: 2;
-  color: #121212;
-  :hover {
-    color: white;
-  }
-  margin-top: 24px;
 `;
 
 

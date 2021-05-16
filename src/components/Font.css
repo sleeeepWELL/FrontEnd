@@ -28,6 +28,9 @@
   src: url("../fonts/Helvetica\ Black.ttf") format("truetype");
 }
 
+.Helvetica{
+    font-family: "Helvetica";
+}
 /* 로그인 */
 .BottomInfo {
   font-family: "NanumSquareB";
@@ -60,7 +63,7 @@
   border-bottom: 1.5px solid #000000;
 }
 .WEEK {
-  font-family: "NanumSquare_acEB";
+  font-family: "Helvetica";
   width: 80%;
   flex-direction: column;
   background-color: #4A5566;
@@ -146,14 +149,18 @@
   display: flex;
   flex-direction: row;
   font-family: "NanumSquare_acEB";
+  font-size: 1vw;
   
 }
 
 .BigTimeText{
-  font-size: 5vh;
+  font-size: 3vw;
   display: flex;
   align-items: center;
-  margin-left: 18%
+  
+  justify-content: center;
+  /* text-align: center; */
+
   
   
 }

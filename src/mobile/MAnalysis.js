@@ -176,13 +176,8 @@ const BtnContainer = styled.div`
   margin-bottom: 1rem;
   justify-content: center;
   align-items: center;
-  @media (max-width: 700px) {
-    width: 100%;
-    height: 15%;
-    margin-top: 3rem;
-  }
+
   box-sizing: border-box;
-  /* background-color: pink; */
 `;
 
 const ChartBtn = styled.div`
@@ -193,13 +188,15 @@ const ChartBtn = styled.div`
   align-items: center;
   background-color: lightgray;
   justify-content: center;
+  text-align: center;
   border-radius: 7px;
-  font-size: 1rem;
+  font-size: 0.7rem;
   cursor: pointer;
   padding: 0px 13px;
   box-shadow: rgb(0 0 0 / 10%) 0px 2px 2px 1px;
+  border: 1px solid black;
   @media (max-width: 700px) {
-    width: 5rem;
+    width: 10rem;
     height: 3rem;
     margin-top: 2rem;
   }

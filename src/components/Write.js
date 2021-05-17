@@ -188,37 +188,35 @@ const Write = (props) => {
 
   return (
     <React.Fragment>
+      <DayHeader>
+        <BtnDiv>
+          <AddButton
+            className="TimeText"
+            onClick={() => {
+              if (startSleep === "" || endSleep === "" || mycondition === 0) {
+                window.alert(
+                  "정확한 수면분석을 위해 취침시간, 기상시간, 컨디션을 모두 입력해주세요!"
+                );
+                return;
+              } else {
+                addPost();
+                props.props._showModify(false);
+              }
+            }}
+          >
+            저장
+          </AddButton>
+        </BtnDiv>
+      </DayHeader>
+
       <ModalComponent>
-        <TopContainer>
-          <BtnDiv>
-            <AddButton
-              className="TimeText"
-              onClick={() => {
-                if (startSleep === "" || endSleep === "" || mycondition === 0) {
-                  Swal.fire({
-                    title: "빠진부분이 있어요!",
-                    icon: "정확한 수면분석을 위해 취침시간, 기상시간, 컨디션, 태그를 모두 입력해주세요!",
-                    showCancelButton: false,
-                    focusConfirm: false,
-                    confirmButtonText: "확인",
-                  });
-                  return;
-                } else {
-                  addPost();
-                  props.props._showModify(false);
-                }
-              }}
-            >
-              Complete
-            </AddButton>
-          </BtnDiv>
-          <DateContainer>
-            <Text className="Date">{props.props.date.slice(14, 24)}</Text>
-          </DateContainer>
-        </TopContainer>
+        <DateContainer>
+          <Text className="Date">{props.props.date.slice(14, 24)}</Text>
+        </DateContainer>
+
         <TimeContainer>
           <LocalizationProvider dateAdapter={AdapterDateFns}>
-            <div style={{ width: "45%", margin: "20px 40px 10px 40px" }}>
+            <CheckTime>
               <MobileTimePicker
                 label="취침 시간 선택"
                 value={start}
@@ -229,10 +227,10 @@ const Write = (props) => {
                   <TextField {...params} margin="normal" />
                 )}
               />
-            </div>
+            </CheckTime>
           </LocalizationProvider>
           <LocalizationProvider dateAdapter={AdapterDateFns}>
-            <div style={{ width: "45%", margin: "20px 40px 10px 40px" }}>
+            <CheckTime>
               <MobileTimePicker
                 label="기상 시간 선택"
                 value={end}
@@ -243,7 +241,7 @@ const Write = (props) => {
                   <TextField {...params} margin="normal" />
                 )}
               />
-            </div>
+            </CheckTime>
           </LocalizationProvider>
         </TimeContainer>
         <TagContainer>
@@ -393,28 +391,39 @@ const TimeContainer = styled.div`
   justify-content: space-between;
   box-sizing: border-box;
   /* background-color: pink; */
-  margin: 0px 0px 0px 0px;
+`;
+
+const CheckTime = styled.div`
+  height: 100%;
+  width: 100%;
+  margin: 0px 20px 10px 20px;
+  padding: 1%;
+
+  box-sizing: border-box;
 `;
 
 //헤더
 const TopContainer = styled.div`
-  background-color: white;
+  background-color: blue;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   width: 100%;
-  height: 15%;
+  height: 50%;
   margin: 20px 0px 0px 0px;
+  box-sizing: border-box;
 
   /* background-color: red; */
 `;
 
 const DateContainer = styled.div`
   width: 100%;
-  height: 100%;
+  height: 30%;
   margin: 10px 0px 10px 0px;
   justify-content: center;
+  align-items: center;
   display: flex;
+  /* background-color: blue; */
 `;
 
 const Text = styled.div`
@@ -424,22 +433,39 @@ const Text = styled.div`
 `;
 
 const AddButton = styled.button`
-  width: 30%;
+  width: 14%;
   height: 100%;
-  background-color: black;
+  background-color: #4a5566;
+  border: 2px solid white;
   font-weight: bold;
   border-radius: 5px;
   outline: none;
   cursor: pointer;
   color: white;
-  margin: 0px 9px 9px 0px;
+  box-shadow: rgb(82 82 82/ 20%) 0px 5px 8px 0px;
   font-size: 3px;
+  margin: 0px 10px 0px 0px;
 `;
 
 const BtnDiv = styled.div`
   display: flex;
+  width: 100%;
+  height: 100%;
   justify-content: flex-end;
-  margin: 3px 0px 0px 0px;
+
+  box-sizing: border-box;
+
+  /* background-color: red; */
+`;
+
+const DayHeader = styled.div`
+  display: flex;
+  flex-direction: column;
+
+  width: 100%;
+  height: 5%;
+  margin: 10px 0px 0px 0px;
+  box-sizing: border-box;
   /* background-color: red; */
 `;
 

@@ -106,43 +106,66 @@ const FindPassword = () => {
           <LoginWrap>
             <SignUpContainer>
               <SemiContainer className="TimeText">
-                <div style={{ fontSize: "30px", fontWeight: "600" }}>
+                <div
+                  style={{
+                    color: "black",
+                    fontSize: "30px",
+                    fontWeight: "600",
+                  }}
+                >
                   비밀번호 찾기
                 </div>
                 <InputContainer>
-                  <InputBox
-                    onChange={(e) => {
-                      setEmail(e.target.value);
-                    }}
-                    placeholder="가입한 이메일 입력"
-                  />
-                  <CheckBnt id="auth" disabled="" onClick={sendPwdAuth}>
-                    인증 번호 발송
-                  </CheckBnt>
+                  <InfoTitle>이메일</InfoTitle>
+                  <div style={{ display: "flex", flexDirection: "row" }}>
+                    <InputBox
+                      onChange={(e) => {
+                        setEmail(e.target.value);
+                      }}
+                      placeholder="가입한 이메일 입력"
+                    />
+                    <CheckBnt id="auth" disabled="" onClick={sendPwdAuth}>
+                      인증 번호 발송
+                    </CheckBnt>
+                  </div>
                 </InputContainer>
                 <InputContainer>
-                  <InputBox
-                    onChange={(e) => {
-                      setAuthNum(e.target.value);
-                    }}
-                    placeholder="인증번호를 입력"
-                  />
-                  <CheckBnt onClick={confirmAuth}>인증 완료</CheckBnt>
+                  <InfoTitle>인증번호</InfoTitle>
+                  <div style={{ display: "flex", flexDirection: "row" }}>
+                    <InputBox
+                      onChange={(e) => {
+                        setAuthNum(e.target.value);
+                      }}
+                      placeholder="인증번호 입력"
+                    />
+                    <CheckBnt onClick={confirmAuth}>인증 완료</CheckBnt>
+                  </div>
                 </InputContainer>
-                <PwBox
-                  onChange={(e) => {
-                    setPwd(e.target.value);
+                <div
+                  style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    marginTop: "2rem",
                   }}
-                  placeholder="새로운 비밀번호 입력"
-                  type="password"
-                />
-                <PwBox
-                  onChange={(e) => {
-                    setPwdCheck(e.target.value);
-                  }}
-                  placeholder="새로운 비밀번호 재입력"
-                  type="password"
-                />
+                >
+                  <InfoTitle>새로운 비밀번호 설정</InfoTitle>
+                  <PwBox
+                    onChange={(e) => {
+                      setPwd(e.target.value);
+                    }}
+                    placeholder="영문/숫자/특수문자 포함 8글자 이상"
+                    type="password"
+                  />
+                  <div style={{ height: "2rem" }}></div>
+                  <InfoTitle>새로운 비밀번호 재입력</InfoTitle>
+                  <PwBox
+                    onChange={(e) => {
+                      setPwdCheck(e.target.value);
+                    }}
+                    placeholder="영문/숫자/특수문자 포함 8글자 이상"
+                    type="password"
+                  />
+                </div>
                 <InfoBox>
                   <div
                     style={{ cursor: "pointer", fontSize: "13px" }}
@@ -174,18 +197,26 @@ const FindPassword = () => {
   }
 };
 
+const InfoTitle = styled.div`
+  display: flex;
+  margin-bottom: 5px;
+  font-size: 14px;
+`;
+
 const SemiContainer = styled.div`
-  width: 36%;
+  width: 35%;
   height: 90%;
   display: flex;
   position: absolute;
   flex-direction: column;
   justify-content: center;
+  margin: 0px;
 `;
 
 const InputContainer = styled.div`
   display: flex;
   margin-top: 2rem;
+  flex-direction: column;
 `;
 
 const InfoBox = styled.div`
@@ -203,7 +234,9 @@ const InfoBox = styled.div`
 
 const CheckBnt = styled.button`
   word-break: keep-all;
-  background-color: rgba(238, 238, 238, 1);
+  font-weight: 400;
+  line-height: 16px;
+  background-color: rgba(74, 85, 102, 1);
   border-radius: 10px;
   border: none;
   height: 3rem;
@@ -213,6 +246,7 @@ const CheckBnt = styled.button`
   border: 0.5px solid lightgray;
   box-shadow: rgb(0 0 0 / 15%) 0px 2px 3px 0px;
   font-family: inherit;
+  color: white;
   :hover {
     background-color: gray;
     color: white;
@@ -220,7 +254,7 @@ const CheckBnt = styled.button`
 `;
 
 const Wrap = styled.div`
-  width: 80vw;
+  width: 100vw;
   height: 100%;
   display: flex;
   box-sizing: border-box;
@@ -241,14 +275,14 @@ const LoginWrap = styled.div`
 
 const SignUpContainer = styled.div`
   display: flex;
-  margin: 0px;
-  padding: 1rem;
-  width: 100%;
+  margin-left: 0.7rem;
+  width: 90%;
   height: 100%;
   border: none;
   box-sizing: border-box;
-  align-content: center;
+  align-items: flex-start;
   justify-content: center;
+  flex-direction: column;
 `;
 
 const LogoContainer = styled.div`
@@ -305,7 +339,6 @@ const PwBox = styled.input`
   padding: 15px;
   border: 0.5px solid rgba(76, 76, 76, 0.3);
   border-radius: 10px;
-  margin-top: 2rem;
   outline: none;
   font-size: 15px;
   font-weight: bold;
@@ -321,7 +354,7 @@ const SignUpButton = styled.a`
   display: flex;
   height: 50px;
   margin-top: 10px;
-  background-color: rgba(1, 0, 1, 1);
+  background-color: rgba(74, 85, 102, 1);
   border: none;
   text-align: center;
   align-items: center;

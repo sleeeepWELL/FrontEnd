@@ -403,7 +403,7 @@ const AddButton = styled.button`
   cursor: pointer;
   color: white;
   box-shadow: rgb(82 82 82/ 20%) 0px 5px 8px 0px;
-  font-size: 0.1vh;
+  font-size: 0.1vw;
   margin: 0px 1% 0px 0px;
 `;
 

@@ -25,7 +25,7 @@ const deleteUser = createAction(DELETE_USER, () => ({}));
 
 // 초기값
 const initialState = {
-  user: "",
+  user: "hi",
   is_login: false,
   name_check: false,
   auth_check: false,
@@ -61,7 +61,7 @@ const loginSV = (email, pwd) => {
         ] = `Bearer ${ACCESS_TOKEN}`;
 
         const Current_time = new Date().getTime();
-        dispatch(setUser());
+        
 
         // ACCESS토큰 만료 1분전마다 연장함수 실행
         setTimeout(extensionAccess(), ACCESS_TOKEN_EXP - Current_time - 60000);
@@ -75,6 +75,8 @@ const loginSV = (email, pwd) => {
           imageHeight: 200,
           imageAlt: "welcome",
         });
+        
+        dispatch(setUser());
         await history.replace("/main");
       })
       .catch((err) => {

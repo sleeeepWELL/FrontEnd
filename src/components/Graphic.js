@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import background from "../images/background_B.png";
+import background from "../images/background_A.png";
 import "./Font.css";
 
 const Graphic = () => {

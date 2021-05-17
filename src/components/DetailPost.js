@@ -204,7 +204,7 @@ const ModalComponent = styled.div`
 const MainContainer = styled.div`
   width: 100%;
   height: 100%;
-  padding: 10% 0% 10% 13%;
+  padding: 10% 5% 10% 10%;
   box-sizing: border-box;
   /* background-color: green; */
 `;

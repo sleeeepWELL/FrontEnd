@@ -29,30 +29,7 @@ const MToDo = (props) => {
   return (
     <React.Fragment>
       <Container>
-      <BottomInfo>
-          <TagContainer>
-            {myTags.find((p) => p === "음주") ? (
-              <TagImg img={beer}></TagImg>
-            ) : (
-              <TagImg img={beer_gray}></TagImg>
-            )}
-            {myTags.find((p) => p === "야식") ? (
-              <TagImg img={snack}></TagImg>
-            ) : (
-              <TagImg img={snack_gray}></TagImg>
-            )}
-            {myTags.find((p) => p === "야근") ? (
-              <TagImg img={work}></TagImg>
-            ) : (
-              <TagImg img={work_gray}></TagImg>
-            )}
-            {myTags.find((p) => p === "운동") ? (
-              <TagImg img={workout}></TagImg>
-            ) : (
-              <TagImg img={workout_gray}></TagImg>
-            )}
-          </TagContainer>
-        </BottomInfo>
+      
         <TopInfo>
           <SleepTime>
             <Total className="SleepTime">{`${props.totalSleepHour}h`}</Total>
@@ -87,9 +64,9 @@ const ConImg = styled.div`
 `;
 
 const TopInfo = styled.div`
-  width: 65%;
-  height: 74%;
-  margin: 0% 4% 5% 0%;
+  width: 80%;
+  height: 100%;
+  
  
   display: flex;
   flex-direction: column;

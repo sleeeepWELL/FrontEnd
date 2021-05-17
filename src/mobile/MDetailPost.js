@@ -4,7 +4,7 @@ import moment from "moment";
 import styled, { keyframes } from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
 import { actionCreators as todoActions } from "../redux/modules/todo";
-import "./Font.css";
+import "../components/Font.css";
 
 import beer from "../image/beer.png";
 import snack from "../image/snack.png";
@@ -27,7 +27,7 @@ const mapKeywordToImg = {
   운동: workout,
 };
 
-const DetailPost = (props) => {
+const MDetailPost = (props) => {
   const dispatch = useDispatch();
   const today = useSelector((state) => state.todo.today);
   const _today = moment();
@@ -56,7 +56,7 @@ const DetailPost = (props) => {
     let _day = props.date.slice(14, 24);
     return (
       <React.Fragment>
-        <DayHeader>
+       
           <RightHeader>
             {moment(props.date.slice(14, 24)) <= _today && (
               <AddButton
@@ -68,7 +68,7 @@ const DetailPost = (props) => {
               </AddButton>
             )}
           </RightHeader>
-        </DayHeader>
+      
         <ModalComponent>
           <LeftHeader>
             <MoveDButton
@@ -112,21 +112,21 @@ const DetailPost = (props) => {
   } else {
     return (
       <React.Fragment>
-        <DayHeader>
+     
           <RightHeader>
             <ModifyButton
-              className="TimeText"
+             
               onClick={() => {
                 props._showModify(true);
               }}
             >
               수정
             </ModifyButton>
-            <ModifyButton className="TimeText" onClick={deletePost}>
+            <ModifyButton  onClick={deletePost}>
               삭제
             </ModifyButton>
           </RightHeader>
-        </DayHeader>
+        
         <ModalComponent>
           <LeftHeader>
             <MoveDButton
@@ -204,9 +204,10 @@ const ModalComponent = styled.div`
 const MainContainer = styled.div`
   width: 100%;
   height: 100%;
-  padding: 10% 5% 10% 10%;
+  padding: 0% 5% 5% 4%;
   box-sizing: border-box;
   /* background-color: green; */
+  
 `;
 
 //비어있을 때
@@ -215,8 +216,7 @@ const EmptyTextContainer = styled.div`
   height: 20%;
   display: flex;
   flex-direction: row;
-  margin-top: 35%;
-  border: 1px solid red;
+  margin-top:15%;
   box-sizing: border-box;
   align-items: center;
   justify-content: center;
@@ -226,11 +226,12 @@ const EmptyTextContainer = styled.div`
 const ConditionContainer = styled.div`
   /* background-color: yellow; */
   width: 100%;
-  height: 20%;
+  height: 28%;
   display: flex;
   flex-direction: row;
-  margin-bottom: 5%;
-
+  margin-bottom: 3.5%;
+ 
+  
   box-sizing: border-box;
   align-items: center;
 `;
@@ -249,7 +250,7 @@ const ConImg = styled.div`
   background-image: url(${(props) => props.img});
   background-size: contain;
   width: 15%;
-  height: 70%;
+  height: 110%;
   background-repeat: no-repeat;
   background-position: center;
   display: flex;
@@ -259,9 +260,9 @@ const ConImg = styled.div`
 const TimeContainer = styled.div`
   /* background-color: blue; */
   width: 90%;
-  height: 10%;
+  height: 7%;
   display: flex;
-  margin-bottom: 5%;
+  margin-bottom: 3%;
   box-sizing: border-box;
   align-items: center;
 `;
@@ -288,10 +289,10 @@ const TimeText2 = styled.div`
 const TagContainer = styled.div`
   /* background-color: pink; */
   width: 100%;
-  height: 20%;
+  height: 28%;
   display: flex;
+  margin-bottom: 3%;
 
-  margin-bottom: 5%;
   box-sizing: border-box;
   align-items: center;
 `;
@@ -301,7 +302,7 @@ const TagImg = styled.div`
   background-size: contain;
   background-repeat: no-repeat;
   width: 15%;
-  height: 60%;
+  height: 110%;
 
   display: flex;
   background-position: center;
@@ -315,21 +316,22 @@ const DayHeader = styled.div`
 
   width: 100%;
   height: 5%;
-  margin: 10px 0px 0px 0px;
+  margin: 5% 0px 0px 0px;
   box-sizing: border-box;
-  /* background-color: red; */
+
 `;
 
 const LeftHeader = styled.div`
   display: flex;
   flex-direction: row;
   width: 60%;
-  height: 10%;
+  height: 13%;
 
-  margin: 1% auto;
-
+  margin: 2% auto;
   text-align: center;
   box-sizing: border-box;
+
+  
 `;
 
 const RightHeader = styled.div`
@@ -337,11 +339,14 @@ const RightHeader = styled.div`
   display: flex;
   flex-direction: row;
   text-align: center;
-
+  margin-top: 3%;
   justify-content: flex-end;
   width: 100%;
-  height: 100%;
+  height: 15%;
+  padding-right:3%;
   box-sizing: border-box;
+  
+ 
 `;
 
 const MoveDButton = styled.button`
@@ -360,7 +365,7 @@ const MoveDButton = styled.button`
 const DText = styled.div`
   display: flex;
   font-weight: bold;
-  font-size: 3.5vh;
+  font-size: 2.2vh;
   color: #4a5566;
   width: 80%;
   text-align: center;
@@ -373,8 +378,8 @@ const DText = styled.div`
 `;
 
 const ModifyButton = styled.button`
-  width: 13%;
-  height: 100%;
+  width: 14%;
+  height: 130%;
   background-color: #4a5566;
   border: 2px solid white;
   font-weight: bold;
@@ -383,8 +388,8 @@ const ModifyButton = styled.button`
   cursor: pointer;
   color: white;
   box-shadow: rgb(82 82 82/ 20%) 0px 5px 8px 0px;
-  font-size: 3px;
-  margin: 0px 10px 0px 0px;
+  font-size: 0.1vh;
+  margin: 0px 1% 0px 0px;
 `;
 
 const AddButton = styled.button`
@@ -398,8 +403,8 @@ const AddButton = styled.button`
   cursor: pointer;
   color: white;
   box-shadow: rgb(82 82 82/ 20%) 0px 5px 8px 0px;
-  font-size: 3px;
-  margin: 0px 10px 0px 0px;
+  font-size: 0.1vh;
+  margin: 0px 1% 0px 0px;
 `;
 
 const EmptyText = styled.div`
@@ -421,6 +426,7 @@ const Contents = styled.div`
   margin-bottom: 5%;
   box-sizing: border-box;
   align-items: baseline;
+  overflow: scroll;
 `;
 
-export default DetailPost;
+export default MDetailPost;

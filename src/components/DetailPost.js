@@ -56,55 +56,52 @@ const DetailPost = (props) => {
     let _day = props.date.slice(14, 24);
     return (
       <React.Fragment>
-     
-          <DayHeader>
-            <RightHeader>
-              {moment(props.date.slice(14, 24)) <= _today && (
-                <AddButton
-                
-                  onClick={() => {
-                    props._showModify(true);
-                  }}
-                >
-                  기록
-                </AddButton>
-              )}
-            </RightHeader>
-          
-          </DayHeader>
-          <ModalComponent>
+        <DayHeader>
+          <RightHeader>
+            {moment(props.date.slice(14, 24)) <= _today && (
+              <AddButton
+                onClick={() => {
+                  props._showModify(true);
+                }}
+              >
+                기록
+              </AddButton>
+            )}
+          </RightHeader>
+        </DayHeader>
+        <ModalComponent>
           <LeftHeader>
-              <MoveDButton
-                onClick={() => {
-                  let tDate = new Date(_day);
-                  tDate.setDate(tDate.getDate() - 1);
-                  dispatch(
-                    todoActions.getOnePostAX(moment(tDate).format("YYYY-MM-DD"))
-                  );
-                }}
-              >
-                ◀{/* <ChevronLeftIcon /> */}
-              </MoveDButton>
+            <MoveDButton
+              onClick={() => {
+                let tDate = new Date(_day);
+                tDate.setDate(tDate.getDate() - 1);
+                dispatch(
+                  todoActions.getOnePostAX(moment(tDate).format("YYYY-MM-DD"))
+                );
+              }}
+            >
+              ◀{/* <ChevronLeftIcon /> */}
+            </MoveDButton>
 
-              <DText >{_day}</DText>
+            <DText>{_day}</DText>
 
-              <MoveDButton
-                onClick={() => {
-                  let tDate = new Date(_day);
-                  tDate.setDate(tDate.getDate() + 1);
-                  dispatch(
-                    todoActions.getOnePostAX(moment(tDate).format("YYYY-MM-DD"))
-                  );
-                }}
-              >
-                ▶{/* <ChevronRightIcon /> */}
-              </MoveDButton>
-            </LeftHeader>
+            <MoveDButton
+              onClick={() => {
+                let tDate = new Date(_day);
+                tDate.setDate(tDate.getDate() + 1);
+                dispatch(
+                  todoActions.getOnePostAX(moment(tDate).format("YYYY-MM-DD"))
+                );
+              }}
+            >
+              ▶{/* <ChevronRightIcon /> */}
+            </MoveDButton>
+          </LeftHeader>
 
-          <ConditionContainer>
+          <EmptyTextContainer>
             <EmptyText className="TimeText">수면기록을 입력해주세요!</EmptyText>
-          </ConditionContainer>
-          </ModalComponent>
+          </EmptyTextContainer>
+        </ModalComponent>
         {props.date[0].conditions == "First_View"
           ? dispatch(
               todoActions.getOnePostAX(moment(today).format("YYYY-MM-DD"))
@@ -115,52 +112,49 @@ const DetailPost = (props) => {
   } else {
     return (
       <React.Fragment>
-          <DayHeader>
-            
+        <DayHeader>
           <RightHeader>
-              <ModifyButton
-                className="TimeText"
-                onClick={() => {
-                  props._showModify(true);
-                }}
-              >
-                수정
-              </ModifyButton>
-              <ModifyButton className="TimeText" onClick={deletePost}>
-                삭제
-              </ModifyButton>
-            </RightHeader>
-          </DayHeader>
+            <ModifyButton
+              className="TimeText"
+              onClick={() => {
+                props._showModify(true);
+              }}
+            >
+              수정
+            </ModifyButton>
+            <ModifyButton className="TimeText" onClick={deletePost}>
+              삭제
+            </ModifyButton>
+          </RightHeader>
+        </DayHeader>
         <ModalComponent>
-        
-            <LeftHeader>
-              <MoveDButton
-                onClick={() => {
-                  let tDate = new Date(props.date.selectedAt);
-                  tDate.setDate(tDate.getDate() - 1);
-                  dispatch(
-                    todoActions.getOnePostAX(moment(tDate).format("YYYY-MM-DD"))
-                  );
-                }}
-              >
-                ◀{/* <ChevronLeftIcon/> */}
-              </MoveDButton>
+          <LeftHeader>
+            <MoveDButton
+              onClick={() => {
+                let tDate = new Date(props.date.selectedAt);
+                tDate.setDate(tDate.getDate() - 1);
+                dispatch(
+                  todoActions.getOnePostAX(moment(tDate).format("YYYY-MM-DD"))
+                );
+              }}
+            >
+              ◀{/* <ChevronLeftIcon/> */}
+            </MoveDButton>
 
-              <DText>{props.date.selectedAt}</DText>
+            <DText>{props.date.selectedAt}</DText>
 
-              <MoveDButton
-                onClick={() => {
-                  let tDate = new Date(props.date.selectedAt);
-                  tDate.setDate(tDate.getDate() + 1);
-                  dispatch(
-                    todoActions.getOnePostAX(moment(tDate).format("YYYY-MM-DD"))
-                  );
-                }}
-              >
-                ▶{/* <ChevronRightIcon /> */}
-              </MoveDButton>
-            </LeftHeader>
-        
+            <MoveDButton
+              onClick={() => {
+                let tDate = new Date(props.date.selectedAt);
+                tDate.setDate(tDate.getDate() + 1);
+                dispatch(
+                  todoActions.getOnePostAX(moment(tDate).format("YYYY-MM-DD"))
+                );
+              }}
+            >
+              ▶{/* <ChevronRightIcon /> */}
+            </MoveDButton>
+          </LeftHeader>
 
           <ConditionContainer>
             <ConditionText className="ConditionText">컨디션</ConditionText>
@@ -203,7 +197,19 @@ const ModalComponent = styled.div`
   flex-direction: column;
   box-sizing: border-box;
   // border-radius: 20px;
+`;
 
+//비어있을 때
+const EmptyTextContainer = styled.div`
+  width: 100%;
+  height: 20%;
+  display: flex;
+  flex-direction: row;
+  /* margin: 0px 20px 20px 20px; */
+
+  box-sizing: border-box;
+  align-items: center;
+  justify-content: center;
 `;
 
 //컨디션
@@ -257,7 +263,6 @@ const TimeText = styled.div`
   font-size: 17px;
   margin: 5px 0px 0px 10px;
   font-weight: bold;
-  
 `;
 
 const TimeText2 = styled.div`
@@ -311,10 +316,9 @@ const LeftHeader = styled.div`
   height: 10%;
 
   margin: 1% auto;
-  
-  text-align:center;
+
+  text-align: center;
   box-sizing: border-box;
-  
 `;
 
 const RightHeader = styled.div`
@@ -327,9 +331,7 @@ const RightHeader = styled.div`
   width: 100%;
   height: 100%;
   box-sizing: border-box;
-  
 `;
-
 
 const MoveDButton = styled.button`
   width: 10%;
@@ -339,30 +341,24 @@ const MoveDButton = styled.button`
   outline: none;
   border: none;
   cursor: pointer;
-  color:#4A5566;
+  color: #4a5566;
   background-color: white;
   text-align: center;
- 
-
 `;
 const DText = styled.div`
-display:flex;
+  display: flex;
   font-weight: bold;
   font-size: 3.5vh;
-  color: #4A5566;
+  color: #4a5566;
   width: 80%;
   text-align: center;
   justify-content: center;
   height: 100%;
- 
+
   align-items: center;
   border-radius: 10px;
-  
-  
- 
+
   box-shadow: rgb(82 82 82/ 20%) 0px 5px 5px 0px;
-  
- 
 `;
 
 const ModifyButton = styled.button`
@@ -381,18 +377,18 @@ const ModifyButton = styled.button`
 `;
 
 const AddButton = styled.button`
-width: 14%;
-height: 100%;
-background-color: #4a5566;
-border: 2px solid white;
-font-weight: bold;
-border-radius: 5px;
-outline: none;
-cursor: pointer;
-color: white;
-box-shadow: rgb(82 82 82/ 20%) 0px 5px 8px 0px;
-font-size: 3px;
-margin: 0px 10px 0px 0px;
+  width: 14%;
+  height: 100%;
+  background-color: #4a5566;
+  border: 2px solid white;
+  font-weight: bold;
+  border-radius: 5px;
+  outline: none;
+  cursor: pointer;
+  color: white;
+  box-shadow: rgb(82 82 82/ 20%) 0px 5px 8px 0px;
+  font-size: 3px;
+  margin: 0px 10px 0px 0px;
 `;
 
 const EmptyText = styled.div`

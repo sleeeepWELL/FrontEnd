@@ -30,10 +30,9 @@ const initialState = {
   },
   condition: [{}, {}],
   table: {
-    week_stimeaverage: [],
-    week_wakeaverage: [],
-    week_sleepaverage: [],
-    good_stime: [],
+    monthly_tag: [[]],
+    monthly_condition: [[]],
+    week_sleepaverage: [[]],
   },
   compareSleepData: [],
 };

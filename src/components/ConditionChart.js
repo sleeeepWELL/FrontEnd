@@ -17,6 +17,7 @@ const ConditionChart = (props) => {
   return (
     <Container>
       <ResponsiveCalendar
+        id="yearCalendar"
         data={condition}
         from="2021-01-01"
         to="2021-12-31"
@@ -112,5 +113,8 @@ const ColorBox = styled.div`
 const Text = styled.div`
   font-size: 0.8rem;
   margin: 0px 0.5rem;
+  @media (max-width: 700px) {
+    font-size: 0.6rem;
+  }
 `;
 export default ConditionChart;

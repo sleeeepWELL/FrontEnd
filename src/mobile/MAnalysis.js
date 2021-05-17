@@ -179,7 +179,7 @@ const BtnContainer = styled.div`
   @media (max-width: 700px) {
     width: 100%;
     height: 15%;
-    margin-top: 8rem;
+    margin-top: 3rem;
   }
   box-sizing: border-box;
   /* background-color: pink; */
@@ -198,6 +198,11 @@ const ChartBtn = styled.div`
   cursor: pointer;
   padding: 0px 13px;
   box-shadow: rgb(0 0 0 / 10%) 0px 2px 2px 1px;
+  @media (max-width: 700px) {
+    width: 5rem;
+    height: 3rem;
+    margin-top: 2rem;
+  }
 `;
 
 const ChartContainer1 = styled.div`

@@ -509,7 +509,7 @@ const MemoText = styled.div`
 `;
 const TextArea = styled.textarea`
   width: 87%;
-  height: 100px;
+  height: 50%;
   border: none;
   border-radius: 6px;
   outline: none;

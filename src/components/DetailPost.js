@@ -281,6 +281,9 @@ const TimeText2 = styled.div`
   font-weight: bold;
   display: flex;
   justify-content: flex-start;
+  @media (max-width: 975px) {
+    height: 40%;
+  }
 `;
 
 //태그
@@ -411,15 +414,18 @@ const EmptyText = styled.div`
 `;
 
 const Contents = styled.div`
-  /* background-color: green; */
+  background-color: green;
   width: 90%;
-  height: 55%;
+  height: 30%;
   color: black;
   font-weight: bold;
   display: flex;
   margin-bottom: 5%;
   box-sizing: border-box;
   align-items: baseline;
+  @media (max-width: 975px) {
+    height: 30%;
+  }
 `;
 
 export default DetailPost;

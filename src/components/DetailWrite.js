@@ -13,24 +13,19 @@ const DetailWrite = (props) => {
   if (props.date.selectedAt !== undefined) {
    return (
    <React.Fragment>
-     <Container>
+
     <Modify props={props}/>
-    </Container>
+
    </React.Fragment>)
   }else{
     return(
     <React.Fragment>
-       <Container>
+
       <Write props={props}/>
-      </Container>
+
     </React.Fragment>);
   }
 };
 
-const Container = styled.div`
-  display: flex;
-  width: 100%;
-  height: 100%;
-  border: 1px solid red;
-`;
+
 export default DetailWrite;

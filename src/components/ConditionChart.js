@@ -31,13 +31,15 @@ const ConditionChart = (props) => {
         monthBorderColor="#ffffff"
         dayBorderWidth={2}
         dayBorderColor="#ffffff"
+        // width={1100}
+        // height={200}
         legends={[
           {
             anchor: "bottom-right",
             direction: "row",
             translateY: 36,
             itemCount: 4,
-            itemWidth: 420,
+            itemWidth: 30,
             itemHeight: 36,
             itemsSpacing: 14,
             itemDirection: "right-to-left",

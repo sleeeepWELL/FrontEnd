@@ -69,7 +69,6 @@ const Calendar = (props) => {
                 key={`${moment(today).format(
                   "MM"
                 )}_week_${week_index}_day_${day_index}`}
-               
               ></DayGrid>
             );
           } else {
@@ -152,29 +151,27 @@ const Calendar = (props) => {
                 "." +
                 (move_month < 9 ? "0" + (move_month + 1) : move_month + 1)}
           </div>
-          
         </MoveRButton>
       </TopContainer>
-      
+
       <Container>
-
-      <WeekGrid>
-        <div className="WEEK" style={{color:"#C7A2A2"}}>
+        <WeekGrid>
+          <div className="WEEK" style={{ color: "#C7A2A2" }}>
             Sun
-        </div>
-        {nomal_week.map((_d, idx) =>{
-          return (
-            <div className="WEEK" key={idx} style={{color:"white"}}>
-                {_d}    
-            </div>);
-        })}
-        <div className="WEEK"  style={{color:"#B8C5E9"}}>
+          </div>
+          {nomal_week.map((_d, idx) => {
+            return (
+              <div className="WEEK" key={idx} style={{ color: "white" }}>
+                {_d}
+              </div>
+            );
+          })}
+          <div className="WEEK" style={{ color: "#B8C5E9" }}>
             Sat
-        </div>
-      </WeekGrid>
+          </div>
+        </WeekGrid>
 
-      {week_arr}
-
+        {week_arr}
       </Container>
     </AllContainer>
   );
@@ -189,7 +186,6 @@ const AllContainer = styled.div`
   margin: auto;
   align-items: center;
   justify-content: flex-start;
-  
 `;
 
 const TopContainer = styled.div`
@@ -203,12 +199,9 @@ const TopContainer = styled.div`
   margin-top: 3%;
 `;
 
-
 const Container = styled.div`
   box-sizing: border-box;
   width: 100%;
-
- 
 `;
 
 //선 얇게하려고 나눠둠
@@ -219,8 +212,7 @@ const CalendarContainer = styled.div`
   width: 100%;
   height: 100%;
   align-items: center;
-  border-right: 1px solid #AAAAAA;
-  
+  border-right: 1px solid #aaaaaa;
 `;
 
 //요일 Box
@@ -235,9 +227,9 @@ const WeekGrid = styled.div`
 const DailyGrid = styled.div`
   flex-direction: row;
   height: 100%;
-  margin: 1px 0px;
   flex-wrap: nowrap;
-  // border: 1px solid black;
+  box-sizing: border-box;
+  /* border: 1px solid black; */
   width: 100%;
 `;
 
@@ -247,12 +239,12 @@ const DayGrid = styled.div`
   flex-direction: column;
   display: flex;
   width: 100%;
-  height: 11.5vh;
-  border-left: 0.1px #AAAAAA solid;
-  border-bottom: 0.1px #AAAAAA solid;
+  height: 12.5vh;
+  border-left: 0.1px #aaaaaa solid;
+  border-bottom: 0.1px #aaaaaa solid;
   align-items: flex-end;
   :hover {
-    box-shadow: rgb(82 82 82/ 60%)  0px 4px 10px 0px;
+    box-shadow: rgb(82 82 82/ 60%) 0px 4px 10px 0px;
     transition: box-shadow 0.2s ease-in 0s;
   }
 
@@ -264,43 +256,41 @@ const DayText = styled.div`
   color: ${(props) => props.font_c};
   background-color: ${(props) => props.bg};
   border-radius: ${(props) => props.br};
- 
 `;
 
 const MoveLButton = styled.button`
- width: 15%;
- font-size: 1.2vw;
- background-color:#F3F3F3;
- border: none;
- display:flex;
- flex-direction: row;
- align-items: center;
+  width: 15%;
+  font-size: 1.2vw;
+  background-color: #f3f3f3;
+  border: none;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 
- cursor: pointer;
+  cursor: pointer;
 `;
 
 const MoveRButton = styled.button`
- width: 15%;
- font-size: 1.2vw;
- background-color:#F3F3F3;
- display:flex;
- border: none;
- flex-direction: row-reverse;
- align-items: center;
- text-align: right;
+  width: 15%;
+  font-size: 1.2vw;
+  background-color: #f3f3f3;
+  display: flex;
+  border: none;
+  flex-direction: row-reverse;
+  align-items: center;
+  text-align: right;
 
- cursor: pointer;
+  cursor: pointer;
 `;
 
-
 const MMText = styled.div`
- display: flex;
- align-items: center;
+  display: flex;
+  align-items: center;
 
   font-weight: bold;
-  color: #000000 ;
+  color: #000000;
   opacity: 60%;
-  margin-bottom:  0.3vw;
+  margin-bottom: 0.3vw;
   text-shadow: rgb(10 50 10 / 40%) 0.5px 0.5px 0.5px;
 `;
 

@@ -30,18 +30,20 @@ const ToDo = (props) => {
     <React.Fragment>
       <Container>
         <TopInfo>
-          {myCon === "1" && <ConImg img={one}> </ConImg>}
+          <SleepTime>
+            <Total className="SleepTime">{`${props.totalSleepHour}h`}</Total>
+            <TotalMin className="SleepMin">
+              {`${props.totalSleepMinute}m`}
+            </TotalMin>
+          </SleepTime>
+          {myCon === "1" && <ConImg img={one}></ConImg>}
           {myCon === "2" && <ConImg img={two}></ConImg>}
           {myCon === "3" && <ConImg img={three}></ConImg>}
           {myCon === "4" && <ConImg img={four}></ConImg>}
           {myCon === "5" && <ConImg img={five}></ConImg>}
-
-          <SleepTime className="SleepTime">{`${props.totalSleepHour}h`}</SleepTime>
-
-          <SleepMin className="SleepMin">{`${props.totalSleepMinute}m`}</SleepMin>
         </TopInfo>
         <BottomInfo>
-          <>
+          <TagContainer>
             {myTags.find((p) => p === "음주") ? (
               <TagImg img={beer}></TagImg>
             ) : (
@@ -62,7 +64,7 @@ const ToDo = (props) => {
             ) : (
               <TagImg img={workout_gray}></TagImg>
             )}
-          </>
+          </TagContainer>
         </BottomInfo>
       </Container>
     </React.Fragment>
@@ -78,50 +80,78 @@ const ConImg = styled.div`
   height: 100%;
   background-repeat: no-repeat;
   display: flex;
-  position: relative;
+  position: absolute;
   background-position: center;
+  padding: 2px;
+`;
+
+const TopInfo = styled.div`
+  width: 100%;
+  height: 74%;
+
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  /* background-color: blue; */
+`;
+
+const SleepTime = styled.div`
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+
+  color: black;
+  z-index: 1;
+
+  /* border: 1px solid black; */
+`;
+
+const Total = styled.div`
+  display: flex;
+  font-weight: 700;
+  margin-top: 0.5vh;
+`;
+
+const TotalMin = styled.div`
+  display: flex;
+  font-weight: 600;
+  margin-bottom: 0.5vh;
+  /* border: 1px solid black; */
 `;
 
 const TagImg = styled.div`
   background-image: url(${(props) => props.img});
   background-size: contain;
   background-repeat: no-repeat;
-  width: 12%;
-  height: 100%;
+  width: 20%;
+  height: 80%;
 
   display: flex;
+  background-position: center;
+`;
+
+const TagContainer = styled.div`
+  width: 100%;
+  height: 100%;
+  margin: auto;
+  display: flex;
+  flex-direction: row;
   justify-content: center;
-  margin: 0px 2px 0px 2px;
+  align-items: center;
+  box-sizing: border-box;
+  /* border: 1px solid black; */
 `;
 
-const SleepTime = styled.h6`
-  position: absolute;
-  margin-left: auto;
-  margin-right: auto;
-  right: 0;
-  text-align: center;
-
-  top: -70%;
-  left: 8%;
-  transform: translate(-5%, -8%);
-
-  font-weight: 700;
-  color: white;
-`;
-
-const SleepMin = styled.h6`
-  position: absolute;
-  margin-left: auto;
-  margin-right: auto;
-  right: 0;
-  text-align: center;
-
-  top: -20%;
-  left: 10%;
-  transform: translate(-5%, -10%);
-
-  font-weight: 700;
-  color: white;
+const BottomInfo = styled.div`
+  display: flex;
+  width: 100%;
+  height: 40%;
+  margin: 2px 0px 7px 0px;
+  box-sizing: border-box;
+  /* background-color: yellow; */
 `;
 
 const Container = styled.div`
@@ -133,34 +163,11 @@ const Container = styled.div`
   border-radius: 8px;
   /* box-shadow: rgb(0 0 0 / 10%) 0px 4px 10px 0px; */
 
-  /* justify-content: center; */
+  justify-content: center;
   align-items: center;
   cursor: pointer;
   position: relative;
-`;
-
-const TopInfo = styled.div`
-  width: 100%;
-  height: 70%;
-
-  display: flex;
-  flex-direction: row;
-  position: relative;
-  justify-content: center;
-  /* align-items: center; */
-  margin: 0px 0px 5px 0px;
-`;
-
-const BottomInfo = styled.div`
-  display: flex;
-  flex-direction: row;
-
-  width: 100%;
-  height: 30%;
-  justify-content: center;
-
-  margin: 0px 0px 9px 0px;
-  /* font-size: 2px; */
+  /* background-color: pink; */
 `;
 
 export default ToDo;

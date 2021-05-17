@@ -403,19 +403,6 @@ const CheckTime = styled.div`
 `;
 
 //헤더
-const TopContainer = styled.div`
-  background-color: blue;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  width: 100%;
-  height: 50%;
-  margin: 20px 0px 0px 0px;
-  box-sizing: border-box;
-
-  /* background-color: red; */
-`;
-
 const DateContainer = styled.div`
   width: 100%;
   height: 30%;

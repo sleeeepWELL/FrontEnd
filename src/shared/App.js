@@ -34,10 +34,7 @@ function App() {
           <Route path="/signup" exact component={Signup} />
           <Route path="/findpwd" exact component={FindPassword} />
           <Wrap>
-            <Route
-              path="/oauth/callback/kakao"
-              component={OAuth2RedirectHandler}
-            ></Route>
+            <Route path="/oauth/callback/kakao" component={OAuth2RedirectHandler}></Route>
             <Route path="/main" component={Navigator} />
             <Route path="/main" exact component={MainCalendar} />
             <Route path="/main/analysis" exact component={Analysis} />

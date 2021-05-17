@@ -15,9 +15,10 @@ const Search = (props) => {
 
    const search=()=>{
     let myDate = new Date(`${year}-${month}-${day}`);
-    props._showModify(false);
+    
     dispatch(todoActions.getOnePostAX(moment(myDate).format("YYYY-MM-DD")));
     dispatch(todoActions.changeToday(moment(myDate).format("YYYY-MM-DD")));
+    window.scrollTo({top:0, left:0, behavior:'smooth'});
    }
 
   const onSearch = (e) => {
@@ -75,6 +76,7 @@ const Search = (props) => {
             dispatch(
               todoActions.changeToday(moment(today).format("YYYY-MM-DD"))
             );
+            window.scrollTo({top:0, left:0, behavior:'smooth'});
           }}
         >
          오늘

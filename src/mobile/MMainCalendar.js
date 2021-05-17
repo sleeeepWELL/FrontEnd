@@ -1,40 +1,22 @@
 import React from "react";
 import styled, { keyframes } from "styled-components";
 import { useSelector } from "react-redux";
-import Calendarjj from "../components/Calendarjj";
+import MCalendar from "../mobile/MCalendar";
 import DetailPost from "../components/DetailPost";
 import DetailWrite from "../components/DetailWrite";
 import Search from "../components/Search";
-import Cube from "../components/Cube";
-import MMainCalendar from "../mobile/MMainCalendar";
 
-import { debounce } from "lodash";
 
-const MainCalendar = () => {
+const MMainCalendar = () => {
   const [is_modify, setModify] = React.useState(false);
   const day_list = useSelector((state) => state.todo.day_list);
-  const [windowSize, setWindowSize] = React.useState(window.innerWidth);
  
-  const handleResize = debounce(() => {
-    setWindowSize(window.innerWidth);
-  }, 100);
-
-  React.useEffect(() => {
-    window.addEventListener("resize", handleResize);
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, [handleResize]);
-
-  if (windowSize < 970) {
-    return <MMainCalendar />;
-  }else{
   return (
     <React.Fragment>
       <Background>
         <AllContainer>
           <CalendarContainer>
-            <Calendarjj _showModify={setModify}/>
+            <MCalendar _showModify={setModify}/>
           </CalendarContainer>
           <RightContainer>
             <PostContainer>
@@ -53,7 +35,7 @@ const MainCalendar = () => {
       </Background>
     </React.Fragment>
   );
-}};
+};
 
 
 const fadein = keyframes`
@@ -64,10 +46,10 @@ to {opacity: 1;}
 
 const AllContainer = styled.div`
   display: flex;
-  flex-direction: row;
-  width: 97%;
+  flex-direction: column;
+  width: 95%;
   height: 90%;
-
+  margin:auto;
   margin-top: 2%;
   animation: ${fadein} 1s ;
   // ease-in infinite alternate
@@ -76,12 +58,11 @@ const AllContainer = styled.div`
 
  //캘린더 배경
 const CalendarContainer = styled.div`
-  width: 66%;
-  height: 90vh;
+  width: 100%;
+  height: 60%;
   background-color: #F3F3F3;
   margin-top: 1%;
-  margin-right: 2%;
-  margin-left: 5%;
+  
   border-radius: 15px;
   padding-bottom: 1.5%;
   box-shadow: rgb(82 82 82/ 40%) 0px 5px 8px 0px;
@@ -90,17 +71,15 @@ const CalendarContainer = styled.div`
 // 카드와 검색 
 const RightContainer = styled.div`
   display: flex;
-  width: 25%;
-  height: 121vh;
+  width: 100%;
+  height: 70vh;
   flex-direction: column;
-  
 `;
 
 const PostContainer = styled.div`
   display: flex;
   width: 100%;
   height: 77%;
-  margin-left: 3%;
   margin-top: 10px;
   background-color: white;
   flex-direction: column;
@@ -111,7 +90,7 @@ const SearchContainer = styled.div`
   display: flex;
   width: 100%;
 
-  margin-left: 5%;
+
   margin-top: 10px;
   align-content: center;
   border-radius: 20px;
@@ -131,4 +110,4 @@ const Background = styled.div`
 `;
 
 
-export default MainCalendar;
+export default MMainCalendar;

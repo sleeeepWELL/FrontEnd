@@ -46,17 +46,20 @@
 
 /* Calendar */
 .TitleText {
-  margin-top: 0.5%;
+  display:flex;
+  margin-top:0.5%;
   text-align: center;
-  font-size: 6vh;
+  justify-content: center;
+  align-items: center;
+  font-size: 3vw;
+
   /* font-family: "NanumSquareB"; */
   font-family: "Helvetica";
   font-weight: bold;
   color: #495465;
-  width: 70%;
-
-  text-align: center;
-  align-items: center;
+  width: 60vw;
+  
+  border: 1px solid red;
   text-shadow: rgb(10 50 10 / 40%) 1px 1px 1px;
 }
 
@@ -68,6 +71,8 @@
   opacity: 60%;
   margin-left: 5%;
   text-shadow: rgb(10 50 10 / 40%) 0.5px 0.5px 0.5px;
+ 
+
 }
 .MText2 {
   font-weight: bold;
@@ -78,6 +83,8 @@
   opacity: 60%;
   margin-right: 5%;
   text-shadow: rgb(10 50 10 / 40%) 0.5px 0.5px 0.5px;
+  
+
 }
 .WEEK {
   font-family: "Helvetica";

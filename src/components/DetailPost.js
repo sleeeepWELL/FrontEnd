@@ -56,36 +56,38 @@ const DetailPost = (props) => {
     let _day = props.date.slice(14, 24);
     return (
       <React.Fragment>
-        <DayHeader>
-          <RightHeader>
-            {moment(props.date.slice(14, 24)) <= _today && (
-              <AddButton
+          <DayHeader>
+            <RightHeader>
+              {moment(props.date.slice(14, 24)) <= _today && (
+                <AddButton
+                
+                  onClick={() => {
+                    props._showModify(true);
+                  }}
+                >
+                  기록
+                </AddButton>
+              )}
+            </RightHeader>
+          
+          </DayHeader>
+          <ModalComponent>
+          <LeftHeader>
+              <MoveDButton
                 onClick={() => {
-                  props._showModify(true);
+                  let tDate = new Date(_day);
+                  tDate.setDate(tDate.getDate() - 1);
+                  dispatch(
+                    todoActions.getOnePostAX(moment(tDate).format("YYYY-MM-DD"))
+                  );
                 }}
               >
-                기록
-              </AddButton>
-            )}
-          </RightHeader>
-        </DayHeader>
-        <ModalComponent>
-          <LeftHeader>
-            <MoveDButton
-              onClick={() => {
-                let tDate = new Date(_day);
-                tDate.setDate(tDate.getDate() - 1);
-                dispatch(
-                  todoActions.getOnePostAX(moment(tDate).format("YYYY-MM-DD"))
-                );
-              }}
-            >
-              ◀{/* <ChevronLeftIcon /> */}
-            </MoveDButton>
+                ◀{/* <ChevronLeftIcon /> */}
+              </MoveDButton>
 
-            <DText>{_day}</DText>
+              <DText className="HelveticaB" >{_day}</DText>
 
-            <MoveDButton
+              <MoveDButton
               onClick={() => {
                 let tDate = new Date(_day);
                 tDate.setDate(tDate.getDate() + 1);
@@ -128,33 +130,35 @@ const DetailPost = (props) => {
           </RightHeader>
         </DayHeader>
         <ModalComponent>
-          <LeftHeader>
-            <MoveDButton
-              onClick={() => {
-                let tDate = new Date(props.date.selectedAt);
-                tDate.setDate(tDate.getDate() - 1);
-                dispatch(
-                  todoActions.getOnePostAX(moment(tDate).format("YYYY-MM-DD"))
-                );
-              }}
-            >
-              ◀{/* <ChevronLeftIcon/> */}
-            </MoveDButton>
+        
+            <LeftHeader>
+              <MoveDButton
+                onClick={() => {
+                  let tDate = new Date(props.date.selectedAt);
+                  tDate.setDate(tDate.getDate() - 1);
+                  dispatch(
+                    todoActions.getOnePostAX(moment(tDate).format("YYYY-MM-DD"))
+                  );
+                }}
+              >
+                ◀{/* <ChevronLeftIcon/> */}
+              </MoveDButton>
 
-            <DText>{props.date.selectedAt}</DText>
+              <DText className="HelveticaB">{props.date.selectedAt}</DText>
 
-            <MoveDButton
-              onClick={() => {
-                let tDate = new Date(props.date.selectedAt);
-                tDate.setDate(tDate.getDate() + 1);
-                dispatch(
-                  todoActions.getOnePostAX(moment(tDate).format("YYYY-MM-DD"))
-                );
-              }}
-            >
-              ▶{/* <ChevronRightIcon /> */}
-            </MoveDButton>
-          </LeftHeader>
+              <MoveDButton
+                onClick={() => {
+                  let tDate = new Date(props.date.selectedAt);
+                  tDate.setDate(tDate.getDate() + 1);
+                  dispatch(
+                    todoActions.getOnePostAX(moment(tDate).format("YYYY-MM-DD"))
+                  );
+                }}
+              >
+                ▶{/* <ChevronRightIcon /> */}
+              </MoveDButton>
+            </LeftHeader>
+        
 
           <ConditionContainer>
             <ConditionText className="ConditionText">컨디션</ConditionText>
@@ -344,6 +348,8 @@ const MoveDButton = styled.button`
   color: #4a5566;
   background-color: white;
   text-align: center;
+  text-shadow: rgb(10 50 10 / 40%) 0.7px 0.7px 0.7px;
+
 `;
 const DText = styled.div`
   display: flex;
@@ -357,8 +363,12 @@ const DText = styled.div`
 
   align-items: center;
   border-radius: 10px;
-
-  box-shadow: rgb(82 82 82/ 20%) 0px 5px 5px 0px;
+  text-shadow: rgb(10 50 10 / 40%) 0.7px 0.7px 0.7px;
+  
+  
+ 
+  
+ 
 `;
 
 const ModifyButton = styled.button`

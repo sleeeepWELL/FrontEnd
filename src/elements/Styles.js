@@ -74,13 +74,13 @@ const Text = (props) => {
     return <Span>{props.children}</Span>;
   }
 
-  if (props.type === "sun") {
-    return <Sun>{props.children}</Sun>;
-  }
+  // if (props.type === "sun") {
+  //   return <Sun>{props.children}</Sun>;
+  // }
 
-  if (props.type === "sat") {
-    return <Sat>{props.children}</Sat>;
-  }
+  // if (props.type === "sat") {
+  //   return <Sat>{props.children}</Sat>;
+  // }
 
   return <React.Fragment>{props.children}</React.Fragment>;
 };
@@ -98,19 +98,19 @@ const Span = styled.span`
   color: #888;
 `;
 
-const Sun = styled.span`
-  margin: 0px;
-  font-size: 0.9em;
-  font-weight: bold;
-  color: #C7A2A2;
-`;
+// const Sun = styled.span`
+//   margin: 0px;
+//   font-size: 0.9em;
+//   font-weight: bold;
+  
+// `;
 
-const Sat = styled.span`
-  margin: 0px;
-  font-size: 0.9em;
-  font-weight: bold;
-  color: #B8C5E9;
-`;
+// const Sat = styled.span`
+//   margin: 0px;
+//   font-size: 0.9em;
+//   font-weight: bold;
+//   color: #B8C5E9;
+// `;
 
 const Week = styled.span`
   margin: 0px;

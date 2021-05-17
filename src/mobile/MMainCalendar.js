@@ -47,7 +47,7 @@ to {opacity: 1;}
 const AllContainer = styled.div`
   display: flex;
   flex-direction: column;
-  width: 95%;
+  width: 96%;
   height: 90%;
   margin:auto;
   margin-top: 2%;
@@ -72,7 +72,7 @@ const CalendarContainer = styled.div`
 const RightContainer = styled.div`
   display: flex;
   width: 100%;
-  height: 70vh;
+  height: 80vh;
   flex-direction: column;
 `;
 

@@ -90,7 +90,7 @@ const Calendar = (props) => {
                 }}
               >
                 <DayText
-                  className="DayText"
+                  className="Helvetica"
                   bg={is_today ? "black" : null}
                   font_c={is_today ? "white" : "black"}
                   br={is_today ? "9px" : "null"}
@@ -123,18 +123,18 @@ const Calendar = (props) => {
           }}
         >
           <MMText>◀</MMText>
-          <div className="MText1">
+          <MText1 className="Helvetica">
             {move_month - 1 === 0
               ? parseInt(moment(today).format("YYYY")) - 1 + "." + 12
               : moment(today).format("YYYY") +
                 "." +
                 (move_month <= 10 ? "0" + (move_month - 1) : move_month - 1)}
-          </div>
+          </MText1>
         </MoveLButton>
 
-        <div className="TitleText">
+        <TitleText className="Helvetica">
           {moment(today).format("YYYY")}. {moment(today).format("MM")}
-        </div>
+        </TitleText>
 
         <MoveRButton
           onClick={() => {
@@ -144,31 +144,31 @@ const Calendar = (props) => {
           }}
         >
           <MMText>▶</MMText>
-          <div className="MText2">
+          <MText2 className="Helvetica">
             {move_month + 1 === 13
               ? parseInt(moment(today).format("YYYY")) + 1 + "." + "01"
               : moment(today).format("YYYY") +
                 "." +
                 (move_month < 9 ? "0" + (move_month + 1) : move_month + 1)}
-          </div>
+          </MText2>
         </MoveRButton>
       </TopContainer>
 
       <Container>
         <WeekGrid>
-          <div className="WEEK" style={{ color: "#C7A2A2" }}>
+          <WEEK className="Helvetica" style={{ color: "#C7A2A2" }}>
             Sun
-          </div>
+          </WEEK>
           {nomal_week.map((_d, idx) => {
             return (
-              <div className="WEEK" key={idx} style={{ color: "white" }}>
+              <WEEK className="Helvetica" key={idx} style={{ color: "white" }}>
                 {_d}
-              </div>
+              </WEEK>
             );
           })}
-          <div className="WEEK" style={{ color: "#B8C5E9" }}>
+          <WEEK className="Helvetica" style={{ color: "#B8C5E9" }}>
             Sat
-          </div>
+          </WEEK>
         </WeekGrid>
 
         {week_arr}
@@ -176,6 +176,7 @@ const Calendar = (props) => {
     </AllContainer>
   );
 };
+
 
 const AllContainer = styled.div`
   box-sizing: border-box;
@@ -186,6 +187,7 @@ const AllContainer = styled.div`
   margin: auto;
   align-items: center;
   justify-content: flex-start;
+  
 `;
 
 const TopContainer = styled.div`
@@ -199,12 +201,96 @@ const TopContainer = styled.div`
   margin-top: 3%;
 `;
 
+//TopContainer 내부
+const TitleText= styled.div`
+  display:flex;
+  margin-top:0.5%;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  font-size: 3vw;
+  font-weight: bold;
+  color: #495465;
+  width: 30vw;
+  
+  border: 1px solid red;
+  text-shadow: rgb(10 50 10 / 40%) 1px 1px 1px;
+`
+
+const MText1 =styled.div`
+  font-weight: bold;
+  color: #121212;
+  border-bottom: 2px solid #121212;
+  opacity: 60%;
+  margin-left: 5%;
+  text-shadow: rgb(10 50 10 / 40%) 0.5px 0.5px 0.5px;
+ `
+ const MText2 =styled.div`
+  font-weight: bold;
+  font-family: "Helvetica";
+  color: #121212;
+  border-bottom: 2px solid #121212;
+  opacity: 60%;
+  margin-right: 5%;
+  text-shadow: rgb(10 50 10 / 40%) 0.5px 0.5px 0.5px;
+` 
+
+const MoveLButton = styled.button`
+ width: 15%;
+ font-size: 1.2vw;
+ background-color:#F3F3F3;
+ border: none;
+ display:flex;
+ flex-direction: row;
+ align-items: center;
+ cursor: pointer;
+`;
+
+const MoveRButton = styled.button`
+ width: 15%;
+ font-size: 1.2vw;
+ background-color:#F3F3F3;
+ display:flex;
+ border: none;
+ flex-direction: row-reverse;
+ align-items: center;
+ text-align: right;
+ cursor: pointer;
+`;
+
+const MMText = styled.div`
+ display: flex;
+ align-items: center;
+
+  font-weight: bold;
+  color: #000000 ;
+  opacity: 60%;
+  margin-bottom:  0.3vw;
+  text-shadow: rgb(10 50 10 / 40%) 0.5px 0.5px 0.5px;
+`;
+//
+
+
 const Container = styled.div`
   box-sizing: border-box;
   width: 100%;
+  
 `;
 
-//선 얇게하려고 나눠둠
+//Container 내부
+const WEEK = styled.div`
+  background-color: #4a5566;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 80%;
+  padding-top: 1%;
+  font-size: 2vh;
+  font-weight: bold;
+`
+
+//캘린더 내부의 선을 최대한 얇게하려고 있는 Con
 const CalendarContainer = styled.div`
   box-sizing: border-box;
   flex-direction: row;
@@ -212,10 +298,10 @@ const CalendarContainer = styled.div`
   width: 100%;
   height: 100%;
   align-items: center;
-  border-right: 1px solid #aaaaaa;
+  border-right: 1px solid #AAAAAA;
 `;
 
-//요일 Box
+//요일묶음 Grid
 const WeekGrid = styled.div`
   display: flex;
   flex-direction: row;
@@ -224,74 +310,43 @@ const WeekGrid = styled.div`
   height: 4vh;
 `;
 
-const DailyGrid = styled.div`
-  flex-direction: row;
-  height: 100%;
-  flex-wrap: nowrap;
-  box-sizing: border-box;
-  /* border: 1px solid black; */
-  width: 100%;
-`;
-
-//현재는 6월 기준
+//날짜 묶음 Grid
 const DayGrid = styled.div`
   box-sizing: border-box;
   flex-direction: column;
   display: flex;
   width: 100%;
   height: 12.5vh;
-  border-left: 0.1px #aaaaaa solid;
-  border-bottom: 0.1px #aaaaaa solid;
+  border-left: 0.1px #AAAAAA solid;
+  border-bottom: 0.1px #AAAAAA solid;
   align-items: flex-end;
   :hover {
-    box-shadow: rgb(82 82 82/ 60%) 0px 4px 10px 0px;
+    box-shadow: rgb(82 82 82/ 60%)  0px 4px 10px 0px;
     transition: box-shadow 0.2s ease-in 0s;
   }
-
   ${(props) => (props.bg ? `background-color: ${props.bg};` : "")}
 `;
 
-//연도 + 월
+//날짜 텍스트
 const DayText = styled.div`
+ display:flex;
   color: ${(props) => props.font_c};
   background-color: ${(props) => props.bg};
   border-radius: ${(props) => props.br};
+  font-size: 1.4vh;
+  margin-right: 0.5vh;
+  margin-top: 0.5vh;
+  font-weight: 550;
 `;
 
-const MoveLButton = styled.button`
-  width: 15%;
-  font-size: 1.2vw;
-  background-color: #f3f3f3;
-  border: none;
-  display: flex;
+//Todo들어가는 부분
+const DailyGrid = styled.div`
   flex-direction: row;
-  align-items: center;
-
-  cursor: pointer;
+  height: 100%;
+  margin: 1px 0px;
+  flex-wrap: nowrap;
+  width: 100%;
 `;
 
-const MoveRButton = styled.button`
-  width: 15%;
-  font-size: 1.2vw;
-  background-color: #f3f3f3;
-  display: flex;
-  border: none;
-  flex-direction: row-reverse;
-  align-items: center;
-  text-align: right;
-
-  cursor: pointer;
-`;
-
-const MMText = styled.div`
-  display: flex;
-  align-items: center;
-
-  font-weight: bold;
-  color: #000000;
-  opacity: 60%;
-  margin-bottom: 0.3vw;
-  text-shadow: rgb(10 50 10 / 40%) 0.5px 0.5px 0.5px;
-`;
 
 export default Calendar;

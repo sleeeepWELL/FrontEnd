@@ -216,7 +216,6 @@ const EmptyTextContainer = styled.div`
   display: flex;
   flex-direction: row;
   margin-top: 35%;
-  border: 1px solid red;
   box-sizing: border-box;
   align-items: center;
   justify-content: center;
@@ -270,7 +269,6 @@ const TimeText = styled.div`
   width: 40%;
   color: black;
   font-size: 17px;
-
   font-weight: bold;
 `;
 
@@ -293,7 +291,6 @@ const TagContainer = styled.div`
   width: 100%;
   height: 20%;
   display: flex;
-
   margin-bottom: 5%;
   box-sizing: border-box;
   align-items: center;
@@ -305,7 +302,6 @@ const TagImg = styled.div`
   background-repeat: no-repeat;
   width: 15%;
   height: 60%;
-
   display: flex;
   background-position: center;
   margin: 0px 2px 0px 2px;
@@ -315,7 +311,6 @@ const TagImg = styled.div`
 const DayHeader = styled.div`
   display: flex;
   flex-direction: column;
-
   width: 100%;
   height: 5%;
   margin: 10px 0px 0px 0px;
@@ -328,9 +323,7 @@ const LeftHeader = styled.div`
   flex-direction: row;
   width: 60%;
   height: 10%;
-
   margin: 1% auto;
-
   text-align: center;
   box-sizing: border-box;
 `;
@@ -415,7 +408,7 @@ const EmptyText = styled.div`
 `;
 
 const Contents = styled.div`
-  background-color: green;
+  /* background-color: green; */
   width: 90%;
   height: 30%;
   color: black;

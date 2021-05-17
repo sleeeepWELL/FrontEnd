@@ -177,7 +177,6 @@ const Calendar = (props) => {
   );
 };
 
-
 const AllContainer = styled.div`
   box-sizing: border-box;
   display: flex;
@@ -187,7 +186,6 @@ const AllContainer = styled.div`
   margin: auto;
   align-items: center;
   justify-content: flex-start;
-  
 `;
 
 const TopContainer = styled.div`
@@ -202,9 +200,9 @@ const TopContainer = styled.div`
 `;
 
 //TopContainer 내부
-const TitleText= styled.div`
-  display:flex;
-  margin-top:0.5%;
+const TitleText = styled.div`
+  display: flex;
+  margin-top: 0.5%;
   text-align: center;
   justify-content: center;
   align-items: center;
@@ -212,20 +210,18 @@ const TitleText= styled.div`
   font-weight: bold;
   color: #495465;
   width: 30vw;
-  
-  border: 1px solid red;
   text-shadow: rgb(10 50 10 / 40%) 1px 1px 1px;
-`
+`;
 
-const MText1 =styled.div`
+const MText1 = styled.div`
   font-weight: bold;
   color: #121212;
   border-bottom: 2px solid #121212;
   opacity: 60%;
   margin-left: 5%;
   text-shadow: rgb(10 50 10 / 40%) 0.5px 0.5px 0.5px;
- `
- const MText2 =styled.div`
+`;
+const MText2 = styled.div`
   font-weight: bold;
   font-family: "Helvetica";
   color: #121212;
@@ -233,48 +229,46 @@ const MText1 =styled.div`
   opacity: 60%;
   margin-right: 5%;
   text-shadow: rgb(10 50 10 / 40%) 0.5px 0.5px 0.5px;
-` 
+`;
 
 const MoveLButton = styled.button`
- width: 15%;
- font-size: 1.2vw;
- background-color:#F3F3F3;
- border: none;
- display:flex;
- flex-direction: row;
- align-items: center;
- cursor: pointer;
+  width: 15%;
+  font-size: 1.2vw;
+  background-color: #f3f3f3;
+  border: none;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  cursor: pointer;
 `;
 
 const MoveRButton = styled.button`
- width: 15%;
- font-size: 1.2vw;
- background-color:#F3F3F3;
- display:flex;
- border: none;
- flex-direction: row-reverse;
- align-items: center;
- text-align: right;
- cursor: pointer;
+  width: 15%;
+  font-size: 1.2vw;
+  background-color: #f3f3f3;
+  display: flex;
+  border: none;
+  flex-direction: row-reverse;
+  align-items: center;
+  text-align: right;
+  cursor: pointer;
 `;
 
 const MMText = styled.div`
- display: flex;
- align-items: center;
+  display: flex;
+  align-items: center;
 
   font-weight: bold;
-  color: #000000 ;
+  color: #000000;
   opacity: 60%;
-  margin-bottom:  0.3vw;
+  margin-bottom: 0.3vw;
   text-shadow: rgb(10 50 10 / 40%) 0.5px 0.5px 0.5px;
 `;
 //
 
-
 const Container = styled.div`
   box-sizing: border-box;
   width: 100%;
-  
 `;
 
 //Container 내부
@@ -288,7 +282,7 @@ const WEEK = styled.div`
   padding-top: 1%;
   font-size: 2vh;
   font-weight: bold;
-`
+`;
 
 //캘린더 내부의 선을 최대한 얇게하려고 있는 Con
 const CalendarContainer = styled.div`
@@ -298,7 +292,7 @@ const CalendarContainer = styled.div`
   width: 100%;
   height: 100%;
   align-items: center;
-  border-right: 1px solid #AAAAAA;
+  border-right: 1px solid #aaaaaa;
 `;
 
 //요일묶음 Grid
@@ -317,11 +311,11 @@ const DayGrid = styled.div`
   display: flex;
   width: 100%;
   height: 12.5vh;
-  border-left: 0.1px #AAAAAA solid;
-  border-bottom: 0.1px #AAAAAA solid;
+  border-left: 0.1px #aaaaaa solid;
+  border-bottom: 0.1px #aaaaaa solid;
   align-items: flex-end;
   :hover {
-    box-shadow: rgb(82 82 82/ 60%)  0px 4px 10px 0px;
+    box-shadow: rgb(82 82 82/ 60%) 0px 4px 10px 0px;
     transition: box-shadow 0.2s ease-in 0s;
   }
   ${(props) => (props.bg ? `background-color: ${props.bg};` : "")}
@@ -329,7 +323,7 @@ const DayGrid = styled.div`
 
 //날짜 텍스트
 const DayText = styled.div`
- display:flex;
+  display: flex;
   color: ${(props) => props.font_c};
   background-color: ${(props) => props.bg};
   border-radius: ${(props) => props.br};
@@ -347,6 +341,5 @@ const DailyGrid = styled.div`
   flex-wrap: nowrap;
   width: 100%;
 `;
-
 
 export default Calendar;

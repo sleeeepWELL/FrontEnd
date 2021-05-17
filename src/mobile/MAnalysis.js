@@ -194,7 +194,6 @@ const ChartBtn = styled.div`
   cursor: pointer;
   padding: 0px 13px;
   box-shadow: rgb(0 0 0 / 10%) 0px 2px 2px 1px;
-  border: 1px solid black;
   @media (max-width: 700px) {
     width: 10rem;
     height: 3rem;

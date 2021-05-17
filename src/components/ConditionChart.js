@@ -36,7 +36,7 @@ const ConditionChart = (props) => {
             direction: "row",
             translateY: 36,
             itemCount: 4,
-            itemWidth: 42,
+            itemWidth: 420,
             itemHeight: 36,
             itemsSpacing: 14,
             itemDirection: "right-to-left",

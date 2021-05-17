@@ -27,7 +27,7 @@ const MainCalendar = () => {
   }, [handleResize]);
 
   if (windowSize < 970) {
-    return <MMainCalendar />;
+    return <MMainCalendar/>;
   }else{
   return (
     <React.Fragment>
@@ -77,7 +77,7 @@ const AllContainer = styled.div`
  //캘린더 배경
 const CalendarContainer = styled.div`
   width: 66%;
-  height: 90vh;
+  height: 94vh;
   background-color: #F3F3F3;
   margin-top: 1%;
   margin-right: 2%;
@@ -91,7 +91,8 @@ const CalendarContainer = styled.div`
 const RightContainer = styled.div`
   display: flex;
   width: 25%;
-  height: 121vh;
+  height: 126vh;
+  margin-top: 0.3%;
   flex-direction: column;
   
 `;

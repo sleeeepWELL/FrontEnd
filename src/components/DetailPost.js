@@ -56,38 +56,36 @@ const DetailPost = (props) => {
     let _day = props.date.slice(14, 24);
     return (
       <React.Fragment>
-          <DayHeader>
-            <RightHeader>
-              {moment(props.date.slice(14, 24)) <= _today && (
-                <AddButton
-                
-                  onClick={() => {
-                    props._showModify(true);
-                  }}
-                >
-                  기록
-                </AddButton>
-              )}
-            </RightHeader>
-          
-          </DayHeader>
-          <ModalComponent>
-          <LeftHeader>
-              <MoveDButton
+        <DayHeader>
+          <RightHeader>
+            {moment(props.date.slice(14, 24)) <= _today && (
+              <AddButton
                 onClick={() => {
-                  let tDate = new Date(_day);
-                  tDate.setDate(tDate.getDate() - 1);
-                  dispatch(
-                    todoActions.getOnePostAX(moment(tDate).format("YYYY-MM-DD"))
-                  );
+                  props._showModify(true);
                 }}
               >
-                ◀{/* <ChevronLeftIcon /> */}
-              </MoveDButton>
+                기록
+              </AddButton>
+            )}
+          </RightHeader>
+        </DayHeader>
+        <ModalComponent>
+          <LeftHeader>
+            <MoveDButton
+              onClick={() => {
+                let tDate = new Date(_day);
+                tDate.setDate(tDate.getDate() - 1);
+                dispatch(
+                  todoActions.getOnePostAX(moment(tDate).format("YYYY-MM-DD"))
+                );
+              }}
+            >
+              ◀{/* <ChevronLeftIcon /> */}
+            </MoveDButton>
 
-              <DText className="HelveticaB" >{_day}</DText>
+            <DText className="HelveticaB">{_day}</DText>
 
-              <MoveDButton
+            <MoveDButton
               onClick={() => {
                 let tDate = new Date(_day);
                 tDate.setDate(tDate.getDate() + 1);
@@ -130,64 +128,64 @@ const DetailPost = (props) => {
           </RightHeader>
         </DayHeader>
         <ModalComponent>
-        
-            <LeftHeader>
-              <MoveDButton
-                onClick={() => {
-                  let tDate = new Date(props.date.selectedAt);
-                  tDate.setDate(tDate.getDate() - 1);
-                  dispatch(
-                    todoActions.getOnePostAX(moment(tDate).format("YYYY-MM-DD"))
-                  );
-                }}
-              >
-                ◀{/* <ChevronLeftIcon/> */}
-              </MoveDButton>
+          <LeftHeader>
+            <MoveDButton
+              onClick={() => {
+                let tDate = new Date(props.date.selectedAt);
+                tDate.setDate(tDate.getDate() - 1);
+                dispatch(
+                  todoActions.getOnePostAX(moment(tDate).format("YYYY-MM-DD"))
+                );
+              }}
+            >
+              ◀{/* <ChevronLeftIcon/> */}
+            </MoveDButton>
 
-              <DText className="HelveticaB">{props.date.selectedAt}</DText>
+            <DText className="HelveticaB">{props.date.selectedAt}</DText>
 
-              <MoveDButton
-                onClick={() => {
-                  let tDate = new Date(props.date.selectedAt);
-                  tDate.setDate(tDate.getDate() + 1);
-                  dispatch(
-                    todoActions.getOnePostAX(moment(tDate).format("YYYY-MM-DD"))
-                  );
-                }}
-              >
-                ▶{/* <ChevronRightIcon /> */}
-              </MoveDButton>
-            </LeftHeader>
-        
+            <MoveDButton
+              onClick={() => {
+                let tDate = new Date(props.date.selectedAt);
+                tDate.setDate(tDate.getDate() + 1);
+                dispatch(
+                  todoActions.getOnePostAX(moment(tDate).format("YYYY-MM-DD"))
+                );
+              }}
+            >
+              ▶{/* <ChevronRightIcon /> */}
+            </MoveDButton>
+          </LeftHeader>
 
-          <ConditionContainer>
-            <ConditionText className="ConditionText">컨디션</ConditionText>
-            {myCon === "1" && <ConImg img={one}></ConImg>}
-            {myCon === "2" && <ConImg img={two}> </ConImg>}
-            {myCon === "3" && <ConImg img={three}></ConImg>}
-            {myCon === "4" && <ConImg img={four}></ConImg>}
-            {myCon === "5" && <ConImg img={five}></ConImg>}
-          </ConditionContainer>
+          <MainContainer>
+            <ConditionContainer>
+              <ConditionText className="ConditionText">컨디션</ConditionText>
+              {myCon === "1" && <ConImg img={one}></ConImg>}
+              {myCon === "2" && <ConImg img={two}> </ConImg>}
+              {myCon === "3" && <ConImg img={three}></ConImg>}
+              {myCon === "4" && <ConImg img={four}></ConImg>}
+              {myCon === "5" && <ConImg img={five}></ConImg>}
+            </ConditionContainer>
 
-          <TimeContainer>
-            <TimeText className="ConditionText">수면 시간</TimeText>
-            <TimeText2 className="TimeText2">
-              {`${props.date.totalSleepHour} 시간 ${props.date.totalSleepMinute} 분`}
-              ({props.date.startSleep} ~ {props.date.endSleep})
-            </TimeText2>
-          </TimeContainer>
+            <TimeContainer>
+              <TimeText className="ConditionText">수면 시간</TimeText>
+              <TimeText2 className="TimeText">
+                {`${props.date.totalSleepHour} 시간 ${props.date.totalSleepMinute} 분`}
+                ({props.date.startSleep} ~ {props.date.endSleep})
+              </TimeText2>
+            </TimeContainer>
 
-          <TagContainer>
-            <ConditionText className="ConditionText">태그</ConditionText>
-            {props.date.tag.map((currentTag, idx) => {
-              return <TagImg img={mapKeywordToImg[currentTag]}></TagImg>;
-            })}
-          </TagContainer>
+            <TagContainer>
+              <ConditionText className="ConditionText">태그</ConditionText>
+              {props.date.tag.map((currentTag, idx) => {
+                return <TagImg img={mapKeywordToImg[currentTag]}></TagImg>;
+              })}
+            </TagContainer>
 
-          <Contents>
-            <TimeText className="ConditionText">메모</TimeText>
-            <TimeText2 className="TimeText2">{props.date.memo}</TimeText2>
-          </Contents>
+            <Contents>
+              <TimeText className="ConditionText">메모</TimeText>
+              <TimeText2 className="TimeText">{props.date.memo}</TimeText2>
+            </Contents>
+          </MainContainer>
         </ModalComponent>
       </React.Fragment>
     );
@@ -203,13 +201,20 @@ const ModalComponent = styled.div`
   // border-radius: 20px;
 `;
 
+const MainContainer = styled.div`
+  width: 100%;
+  height: 100%;
+  padding: 10% 0% 10% 13%;
+  box-sizing: border-box;
+  /* background-color: green; */
+`;
+
 //비어있을 때
 const EmptyTextContainer = styled.div`
   width: 100%;
   height: 20%;
   display: flex;
   flex-direction: row;
-  /* margin: 0px 20px 20px 20px; */
 
   box-sizing: border-box;
   align-items: center;
@@ -223,18 +228,17 @@ const ConditionContainer = styled.div`
   height: 20%;
   display: flex;
   flex-direction: row;
-  margin: 0px 20px 20px 20px;
+  margin-bottom: 5%;
 
   box-sizing: border-box;
   align-items: center;
 `;
 
 const ConditionText = styled.div`
-  width: 25%;
+  width: 30%;
   height: 100%;
   color: black;
   font-size: 17px;
-  margin: 5px 0px 0px 10px;
   font-weight: bold;
   display: flex;
   align-items: center;
@@ -256,25 +260,27 @@ const TimeContainer = styled.div`
   width: 90%;
   height: 10%;
   display: flex;
-  margin: 0px 20px 20px 20px;
+  margin-bottom: 5%;
   box-sizing: border-box;
   align-items: center;
 `;
 
 const TimeText = styled.div`
-  width: 29%;
+  width: 40%;
   color: black;
   font-size: 17px;
-  margin: 5px 0px 0px 10px;
+
   font-weight: bold;
 `;
 
 const TimeText2 = styled.div`
-  width: 65%;
+  width: 75%;
   color: black;
-  font-size: 80%;
+  font-size: 14px;
   /* margin: 5px 0px 0px 10px; */
   font-weight: bold;
+  display: flex;
+  justify-content: flex-start;
 `;
 
 //태그
@@ -284,7 +290,7 @@ const TagContainer = styled.div`
   height: 20%;
   display: flex;
 
-  margin: 0px 20px 20px 20px;
+  margin-bottom: 5%;
   box-sizing: border-box;
   align-items: center;
 `;
@@ -349,7 +355,6 @@ const MoveDButton = styled.button`
   background-color: white;
   text-align: center;
   text-shadow: rgb(10 50 10 / 40%) 0.7px 0.7px 0.7px;
-
 `;
 const DText = styled.div`
   display: flex;
@@ -364,11 +369,6 @@ const DText = styled.div`
   align-items: center;
   border-radius: 10px;
   text-shadow: rgb(10 50 10 / 40%) 0.7px 0.7px 0.7px;
-  
-  
- 
-  
- 
 `;
 
 const ModifyButton = styled.button`
@@ -417,7 +417,7 @@ const Contents = styled.div`
   color: black;
   font-weight: bold;
   display: flex;
-  margin: 0px 20px 20px 20px;
+  margin-bottom: 5%;
   box-sizing: border-box;
   align-items: baseline;
 `;

@@ -137,56 +137,76 @@ const Signup = () => {
           <LoginWrap>
             <SignUpContainer>
               <SemiContainer className="TimeText">
-                <div style={{ fontSize: "30px" }}>회원가입</div>
-                <InputContainer>
-                  <InputBox
-                    className="TimeText"
-                    onChange={(e) => {
-                      setEmail(e.target.value);
-                    }}
-                    placeholder="이메일 입력"
-                  />
-                  <CheckBnt id="userauth" disabled="" onClick={sendAuth}>
-                    인증 번호 발송
-                  </CheckBnt>
-                </InputContainer>
-                <InputContainer>
-                  <InputBox
-                    className="TimeText"
-                    onChange={(e) => {
-                      setAuthNum(e.target.value);
-                    }}
-                    placeholder="인증번호 입력"
-                  />
-                  <CheckBnt onClick={confirmAuth}>인증 완료</CheckBnt>
-                </InputContainer>
-                <InputContainer>
-                  <InputBox
-                    className="TimeText"
-                    onChange={(e) => {
-                      setNickname(e.target.value);
-                    }}
-                    placeholder="닉네임 입력"
-                  />
-                  <CheckBnt onClick={userNameCheck}>중복 확인</CheckBnt>
-                </InputContainer>
-                <PwBox
-                  className="TimeText"
-                  onChange={(e) => {
-                    setPwd(e.target.value);
-                  }}
-                  placeholder="비밀번호 입력"
-                  type="password"
-                />
-                <PwBox
-                  className="TimeText"
-                  onChange={(e) => {
-                    setPwdCheck(e.target.value);
-                  }}
-                  placeholder="비밀번호 재입력"
-                  type="password"
-                />
+                <div style={{ color: "black", fontSize: "30px" }}>회원가입</div>
 
+                <InputContainer>
+                  <InfoTitle>이메일</InfoTitle>
+                  <div style={{ display: "flex", flexDirection: "row" }}>
+                    <InputBox
+                      className="TimeText"
+                      onChange={(e) => {
+                        setEmail(e.target.value);
+                      }}
+                      placeholder="Sleep@well.com"
+                    />
+                    <CheckBnt id="userauth" disabled="" onClick={sendAuth}>
+                      인증 번호 발송
+                    </CheckBnt>
+                  </div>
+                </InputContainer>
+                <InputContainer>
+                  <InfoTitle>인증번호</InfoTitle>
+                  <div style={{ display: "flex", flexDirection: "row" }}>
+                    <InputBox
+                      className="TimeText"
+                      onChange={(e) => {
+                        setAuthNum(e.target.value);
+                      }}
+                      placeholder="인증번호 입력"
+                    />
+                    <CheckBnt onClick={confirmAuth}>인증 완료</CheckBnt>
+                  </div>
+                </InputContainer>
+                <InputContainer>
+                  <InfoTitle>닉네임</InfoTitle>
+                  <div style={{ display: "flex", flexDirection: "row" }}>
+                    <InputBox
+                      className="TimeText"
+                      onChange={(e) => {
+                        setNickname(e.target.value);
+                      }}
+                      placeholder="1글자 이상 9글자 이하"
+                    />
+                    <CheckBnt onClick={userNameCheck}>중복 확인</CheckBnt>
+                  </div>
+                </InputContainer>
+                <div
+                  style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    marginTop: "2rem",
+                  }}
+                >
+                  <InfoTitle>비밀번호</InfoTitle>
+                  <PwBox
+                    className="TimeText"
+                    onChange={(e) => {
+                      setPwd(e.target.value);
+                    }}
+                    placeholder="영문/숫자/특수문자 포함 8글자 이상"
+                    type="password"
+                  />
+                  <div style={{ height: "2rem" }}></div>
+                  <InfoTitle>비밀번호 재입력</InfoTitle>
+                  <PwBox
+                    className="TimeText"
+                    onChange={(e) => {
+                      setPwdCheck(e.target.value);
+                    }}
+                    placeholder="영문/숫자/특수문자 포함 8글자 이상"
+                    type="password"
+                  />
+                </div>
                 <InfoBox>
                   <div
                     style={{ cursor: "pointer", fontSize: "13px" }}
@@ -217,18 +237,27 @@ const Signup = () => {
   }
 };
 
+const InfoTitle = styled.div`
+  display: flex;
+  margin-bottom: 5px;
+  font-size: 14px;
+`;
+
 const SemiContainer = styled.div`
-  width: 36%;
+  width: 35%;
   height: 90%;
   display: flex;
   position: absolute;
   flex-direction: column;
   justify-content: center;
+  margin: 0px;
+  box-sizing: border-box;
 `;
 
 const InputContainer = styled.div`
   display: flex;
   margin-top: 2rem;
+  flex-direction: column;
 `;
 
 const InfoBox = styled.div`
@@ -245,8 +274,10 @@ const InfoBox = styled.div`
 `;
 
 const CheckBnt = styled.button`
+  font-weight: 400;
   word-break: keep-all;
-  background-color: rgba(238, 238, 238, 1);
+  line-height: 16px;
+  background-color: rgba(74, 85, 102, 1);
   border-radius: 10px;
   border: none;
   height: 3rem;
@@ -257,6 +288,7 @@ const CheckBnt = styled.button`
   font-family: inherit;
   border: 0.5px solid lightgray;
   box-shadow: rgb(0 0 0 / 15%) 0px 2px 3px 0px;
+  color: white;
   :hover {
     background-color: gray;
     color: white;
@@ -264,7 +296,7 @@ const CheckBnt = styled.button`
 `;
 
 const Wrap = styled.div`
-  width: 80vw;
+  width: 100vw;
   height: 100%;
   display: flex;
   box-sizing: border-box;
@@ -279,18 +311,18 @@ const LoginWrap = styled.div`
   height: 100vh;
   justify-content: center;
   box-sizing: border-box;
-  align-items: center;
+  align-items: flex-start;
   flex-direction: column;
 `;
 
 const SignUpContainer = styled.div`
   display: flex;
-  margin: 0px;
-  width: 100%;
+  margin-left: 0.7rem;
+  width: 90%;
   height: 100%;
   border: none;
   box-sizing: border-box;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
   flex-direction: column;
 `;
@@ -317,7 +349,6 @@ const PwBox = styled.input`
   padding: 15px;
   border: 0.5px solid rgba(76, 76, 76, 0.3);
   border-radius: 10px;
-  margin-top: 2rem;
   outline: none;
   font-size: 15px;
   font-weight: bold;
@@ -331,8 +362,7 @@ const PwBox = styled.input`
 const SignUpButton = styled.a`
   display: flex;
   height: 50px;
-  margin-top: 10px;
-  background-color: rgba(1, 0, 1, 1);
+  background-color: rgba(74, 85, 102, 1);
   border: none;
   text-align: center;
   border-radius: 4px;
@@ -342,46 +372,4 @@ const SignUpButton = styled.a`
   color: white;
 `;
 
-const KaKaoBtn = styled.a`
-  margin-top: 30px;
-  display: block;
-  height: 60px;
-  margin-top: 15px;
-  background-color: #ffe500;
-  text-align: center;
-  border-radius: 4px;
-  align-content: center;
-  cursor: pointer;
-  & > img {
-    width: 17px;
-    height: 17px;
-    background-position: -50px -110px;
-    display: inline-block;
-    margin-top: 22px;
-    margin-right: 12px;
-    vertical-align: top;
-  }
-  & > span {
-    display: inline-block;
-    padding-top: 17px;
-    font-size: 16px !important;
-    line-height: 24px;
-    color: #191919;
-    vertical-align: top;
-    font-family: sans-serif;
-    font-weight: bold;
-  }
-`;
-
-const SLoginButton = styled.button`
-  width: 360px;
-  height: 30px;
-  background-color: #ffd700;
-  margin-top: 10px;
-  border: #fee500;
-  font-weight: bold;
-  border-radius: 5px;
-  outline: none;
-  cursor: pointer;
-`;
 export default Signup;

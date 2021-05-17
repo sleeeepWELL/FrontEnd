@@ -98,7 +98,6 @@ const extensionAccess = () => {
     axios({
       method: "POST",
       url: `${config.api}/reissue`,
-      // url: `${config.api}/reissue`,
       data: {
         accessToken: accessToken,
         refreshToken: refreshToken,

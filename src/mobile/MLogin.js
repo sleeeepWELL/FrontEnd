@@ -6,7 +6,7 @@ import { actionCreators as userActions } from "../redux/modules/user";
 import { useDispatch } from "react-redux";
 import "../components/Font.css";
 import { KAKAO_AUTH_URL } from "../shared/OAuth";
-import background from "../images/background_A.png";
+import Logo from "../images/Logo.png";
 
 //로그인
 const MLogin = (props) => {
@@ -42,76 +42,99 @@ const MLogin = (props) => {
   return (
     <React.Fragment>
       <Wrap>
-        <Background>
-          <LoginContainer>
-            <SemiContainer className="TimeText">
-              <LoGin className="TimeText">로그인</LoGin>
-              <IdBox
-                className="TimeText"
-                onChange={(e) => {
-                  setId(e.target.value);
+        <TotalContainer>
+          <LogoContainer>
+            <LogoImg src={Logo} />
+          </LogoContainer>
+          <SemiContainer className="TimeText">
+            <LoGin className="TimeText">로그인</LoGin>
+            <div style={{ height: "2rem" }}></div>
+            <IdBox
+              className="TimeText"
+              onChange={(e) => {
+                setId(e.target.value);
+              }}
+              placeholder="이메일   ex) sleep@gmail.com"
+            />
+            <PwBox
+              className="TimeText"
+              onChange={(e) => {
+                setPw(e.target.value);
+              }}
+              placeholder="비밀번호"
+              type="password"
+              onKeyPress={onKeyPress}
+            />
+            <InfoBox>
+              <div
+                style={{ cursor: "pointer", fontSize: "0.7rem" }}
+                onClick={() => {
+                  history.replace("/signup");
                 }}
-                placeholder="이메일   ex) sleep@gmail.com"
-              />
-              <PwBox
-                className="TimeText"
-                onChange={(e) => {
-                  setPw(e.target.value);
+              >
+                회원가입
+              </div>
+              <div
+                style={{ cursor: "pointer", fontSize: "0.7rem" }}
+                onClick={() => {
+                  history.replace("/findpwd");
                 }}
-                placeholder="비밀번호"
-                type="password"
-                onKeyPress={onKeyPress}
-              />
-              <LoginButton className="TimeText" onClick={onClick}>
-                <span>로그인</span>
-              </LoginButton>
-              <Or>혹은</Or>
-              <KaKaoBtn href={KAKAO_AUTH_URL}>
-                <KaKaoWrap>
-                  <KaKaoImg className="TimeText" src={kakaologo}></KaKaoImg>
-                  <span>카카오계정 로그인</span>
-                </KaKaoWrap>
-              </KaKaoBtn>
-              <InfoBox>
-                <div
-                  style={{ cursor: "pointer", fontSize: "0.7rem" }}
-                  onClick={() => {
-                    history.replace("/signup");
-                  }}
-                >
-                  회원가입
-                </div>
-                <div
-                  style={{ cursor: "pointer", fontSize: "0.7rem" }}
-                  onClick={() => {
-                    history.replace("/findpwd");
-                  }}
-                >
-                  비밀번호 찾기
-                </div>
-              </InfoBox>
-            </SemiContainer>
-          </LoginContainer>
-        </Background>
+              >
+                비밀번호 찾기
+              </div>
+            </InfoBox>
+            <div style={{ height: "1rem" }}></div>
+            <LoginButton className="TimeText" onClick={onClick}>
+              <span>로그인</span>
+            </LoginButton>
+            <Or>혹은</Or>
+            <KaKaoBtn href={KAKAO_AUTH_URL}>
+              <KaKaoWrap>
+                <KaKaoImg className="TimeText" src={kakaologo}></KaKaoImg>
+                <span>카카오계정 로그인</span>
+              </KaKaoWrap>
+            </KaKaoBtn>
+          </SemiContainer>
+          <BottomContainer />
+        </TotalContainer>
       </Wrap>
     </React.Fragment>
   );
 };
 
-const Background = styled.div`
-  background: url(${background});
-  background-size: 100% 100%;
-  width: 100vw;
-  height: 100vh;
-  background-repeat: no-repeat;
-  z-index: 999;
-  border: none;
+const LogoContainer = styled.div`
   display: flex;
+  width: 100%;
+  height: 15%;
+  align-items: flex-end;
+  justify-content: center;
+`;
+
+const BottomContainer = styled.div`
+  display: flex;
+  width: 100%;
+  height: 15%;
+`;
+
+const TotalContainer = styled.div`
+  width: 92%;
+  padding: 0 8%;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+`;
+
+const LogoImg = styled.img`
+  display: flex;
+  position: absolute;
+  width: 100px;
+  height: 13vh;
   justify-content: center;
 `;
 
 const LoGin = styled.div`
   font-size: 25px;
+  color: black;
 `;
 
 const Or = styled.div`
@@ -123,6 +146,7 @@ const Or = styled.div`
   font-size: 12px;
   font-family: inherit;
   font-weight: 550;
+  color: gray;
 `;
 
 const KaKaoWrap = styled.div`
@@ -140,22 +164,17 @@ const KaKaoWrap = styled.div`
 
 const SemiContainer = styled.div`
   display: flex;
-  padding: 2rem 2rem;
-  width: 60%;
+  width: 100%;
   height: 70%;
-  position: absolute;
   flex-direction: column;
   justify-content: center;
-  border-radius: 20px;
   background-color: white;
-  box-shadow: rgb(0 0 0 / 20%) 0px 10px 20px 0px;
 `;
 
 const InfoBox = styled.div`
   width: 100%;
   height: 40px;
   align-items: center;
-  margin: 10px 0px;
   padding: 0px;
   display: flex;
   justify-content: space-between;
@@ -163,24 +182,10 @@ const InfoBox = styled.div`
 `;
 
 const Wrap = styled.div`
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  height: 100vh;
   display: flex;
   box-sizing: border-box;
-  flex-direction: row;
-  justify-content: flex-start;
-`;
-
-const LoginContainer = styled.div`
-  display: flex;
-  margin: 0px;
-  width: 70vw;
-  height: 100%;
-  border: none;
-  box-sizing: border-box;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
 `;
 
 const IdBox = styled.input`
@@ -192,10 +197,8 @@ const IdBox = styled.input`
   padding: 15px;
   outline: none;
   font-size: 0.7rem;
-  margin-top: 15%;
   font-weight: bold;
   color: black;
-  opacity: 0.7;
   ::placeholder {
     font-size: 0.7rem;
   }
@@ -206,12 +209,11 @@ const PwBox = styled.input`
   padding: 15px;
   border: 0.5px solid rgba(76, 76, 76, 0.3);
   border-radius: 10px;
-  margin: 2rem 0px;
+  margin-top: 2rem;
   outline: none;
   font-size: 0.7rem;
   font-weight: bold;
   color: black;
-  opacity: 0.7;
   ::placeholder {
     font-size: 0.7rem;
   }
@@ -223,7 +225,7 @@ const LoginButton = styled.a`
   width: auto;
   height: 50px;
   margin-top: 10px;
-  background-color: rgba(1, 0, 1, 1);
+  background-color: rgba(74, 85, 102, 1);
   border: none;
   text-align: center;
   border-radius: 10px;

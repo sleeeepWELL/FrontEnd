@@ -7,6 +7,7 @@ import Swal from "sweetalert2";
 import { passwordCheck } from "../shared/common";
 import background from "../images/background_A.png";
 import "../components/Font.css";
+import Logo from "../images/Logo.png";
 
 //회원가입
 const MFindPassword = () => {
@@ -84,13 +85,24 @@ const MFindPassword = () => {
   return (
     <React.Fragment>
       <Wrap>
-        <Background>
-          <SignUpContainer>
-            <SemiContainer className="TimeText">
-              <div className="TimeText" style={{ fontSize: "25px" }}>
-                비밀번호 찾기
-              </div>
-              <InputContainer>
+        <TotalContainer>
+          <LogoContainer>
+            <LogoImg src={Logo} />
+          </LogoContainer>
+          <SemiContainer className="TimeText">
+            <div
+              className="TimeText"
+              style={{ color: "black", fontSize: "25px" }}
+            >
+              비밀번호 찾기
+            </div>
+            <Between />
+            <Between />
+            <InputContainer>
+              <InfoTitle>이메일</InfoTitle>
+              <div
+                style={{ display: "flex", flexDirection: "row", width: "100%" }}
+              >
                 <InputBox
                   onChange={(e) => {
                     setEmail(e.target.value);
@@ -105,8 +117,14 @@ const MFindPassword = () => {
                 >
                   인증번호 발송
                 </CheckBnt>
-              </InputContainer>
-              <InputContainer>
+              </div>
+            </InputContainer>
+            <InputContainer>
+              <Between />
+              <InfoTitle>인증번호</InfoTitle>
+              <div
+                style={{ display: "flex", flexDirection: "row", width: "100%" }}
+              >
                 <InputBox
                   onChange={(e) => {
                     setAuthNum(e.target.value);
@@ -116,78 +134,100 @@ const MFindPassword = () => {
                 <CheckBnt className="TimeText" onClick={confirmAuth}>
                   인증 완료
                 </CheckBnt>
-              </InputContainer>
-              <PwBox
-                onChange={(e) => {
-                  setPwd(e.target.value);
+              </div>
+            </InputContainer>
+            <Between />
+            <InfoTitle>새 비밀번호</InfoTitle>
+            <PwBox
+              onChange={(e) => {
+                setPwd(e.target.value);
+              }}
+              placeholder="영문/숫자/특수문자 포함 8글자 이상"
+              type="password"
+            />
+            <Between />
+            <InfoTitle>새 비밀번호 확인</InfoTitle>
+            <PwBox
+              onChange={(e) => {
+                setPwdCheck(e.target.value);
+              }}
+              placeholder="영문/숫자/특수문자 포함 8글자 이상"
+              type="password"
+            />
+            <InfoBox>
+              <div
+                style={{ cursor: "pointer" }}
+                onClick={() => {
+                  history.replace("/login");
                 }}
-                placeholder="새로운 비밀번호 입력"
-                type="password"
-              />
-              <PwBox
-                onChange={(e) => {
-                  setPwdCheck(e.target.value);
+              >
+                로그인
+              </div>
+              <div
+                style={{ cursor: "pointer" }}
+                onClick={() => {
+                  history.replace("/signup");
                 }}
-                placeholder="새로운 비밀번호 재입력"
-                type="password"
-              />
-              <InfoBox>
-                <div
-                  style={{ cursor: "pointer" }}
-                  onClick={() => {
-                    history.replace("/login");
-                  }}
-                >
-                  로그인
-                </div>
-                <div
-                  style={{ cursor: "pointer" }}
-                  onClick={() => {
-                    history.replace("/signup");
-                  }}
-                >
-                  회원가입
-                </div>
-              </InfoBox>
+              >
+                회원가입
+              </div>
+            </InfoBox>
 
-              <SignUpButton onClick={changePwd}>
-                <span>완료</span>
-              </SignUpButton>
-            </SemiContainer>
-          </SignUpContainer>
-        </Background>
+            <SignUpButton onClick={changePwd}>
+              <span>완료</span>
+            </SignUpButton>
+          </SemiContainer>
+        </TotalContainer>
       </Wrap>
     </React.Fragment>
   );
 };
-const Background = styled.div`
-  background: url(${background});
-  background-size: 100% 100%;
-  width: 100vw;
-  height: 100vh;
-  background-repeat: no-repeat;
-  z-index: 999;
-  border: none;
+
+const Between = styled.div`
   display: flex;
+  height: 1rem;
+`;
+
+const InfoTitle = styled.div`
+  display: flex;
+  margin-bottom: 8px;
+  font-size: 12px;
+`;
+
+const LogoImg = styled.img`
+  display: flex;
+  position: absolute;
+  width: 100px;
+  height: 13vh;
   justify-content: center;
+`;
+const LogoContainer = styled.div`
+  display: flex;
+  width: 100%;
+  height: 15%;
+  align-items: flex-end;
+  justify-content: center;
+`;
+
+const TotalContainer = styled.div`
+  width: 92%;
+  padding: 0 8%;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 `;
 
 const SemiContainer = styled.div`
   display: flex;
-  padding: 2rem 2rem;
-  width: 60%;
-  height: 70%;
-  position: absolute;
+  width: 100%;
+  height: 80%;
   flex-direction: column;
-  justify-content: center;
-  border-radius: 20px;
-  background-color: white;
-  box-shadow: rgb(0 0 0 / 20%) 0px 10px 20px 0px;
+  justify-content: flex-start;
 `;
 
 const InputContainer = styled.div`
   display: flex;
-  margin-top: 8%;
+  flex-direction: column;
 `;
 
 const InfoBox = styled.div`
@@ -195,7 +235,6 @@ const InfoBox = styled.div`
   height: 40px;
   align-items: center;
   background-color: white;
-  margin: 5px 0px;
   padding: 0px;
   display: flex;
   justify-content: space-between;
@@ -207,12 +246,14 @@ const InfoBox = styled.div`
 
 const CheckBnt = styled.button`
   word-break: keep-all;
-  background-color: rgba(238, 238, 238, 1);
+  background-color: rgba(74, 85, 102, 1);
+  line-height: 15px;
   border-radius: 10px;
   align-items: flex-end;
   font-size: 0.6rem;
   cursor: pointer;
   width: 27%;
+  color: white;
   border: 0.5px solid lightgray;
   box-shadow: rgb(0 0 0 / 15%) 0px 2px 3px 0px;
   :hover {
@@ -222,49 +263,12 @@ const CheckBnt = styled.button`
 `;
 
 const Wrap = styled.div`
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  height: 100vh;
   display: flex;
   box-sizing: border-box;
   flex-direction: row;
   justify-content: flex-start;
-`;
-
-const SignUpContainer = styled.div`
-  display: flex;
-  margin: 0px;
-  width: 100%;
-  height: 100%;
-  border: none;
-  box-sizing: border-box;
-  align-items: center;
-  justify-content: center;
-`;
-
-const Logo = styled.div`
-  width: auto;
-  height: 2rem;
-  font-weight: 650;
-  color: black;
-  margin-left: 1rem;
-  margin-top: 0.5rem;
-  display: flex;
-  align-items: center;
-`;
-const IdBox = styled.input`
-  width: auto;
-  height: 20px;
-  background-color: white;
-  border-top: none;
-  border-right: none;
-  border-left: none;
-  border-bottom: 1px solid gray;
-  border-radius: 1px;
-  padding: 15px;
-  outline: none;
-  font-size: 15px;
-  font-weight: bold;
-  color: black;
 `;
 
 const InputBox = styled.input`
@@ -289,7 +293,6 @@ const PwBox = styled.input`
   padding: 15px;
   border: 0.5px solid rgba(76, 76, 76, 0.3);
   border-radius: 10px;
-  margin-top: 8%;
   outline: none;
   font-size: 0.7rem;
   font-weight: bold;
@@ -304,7 +307,7 @@ const SignUpButton = styled.a`
   display: flex;
   border-radius: 10px;
   height: 50px;
-  background-color: rgba(1, 0, 1, 1);
+  background-color: rgba(74, 85, 102, 1);
   border: none;
   text-align: center;
   align-items: center;
@@ -312,37 +315,6 @@ const SignUpButton = styled.a`
   cursor: pointer;
   color: white;
   box-shadow: rgb(0 0 0 / 15%) 0px 2px 3px 0px;
-`;
-
-const KaKaoBtn = styled.a`
-  margin-top: 30px;
-  display: block;
-  height: 60px;
-  margin-top: 15px;
-  background-color: #ffe500;
-  text-align: center;
-  border-radius: 4px;
-  align-content: center;
-  cursor: pointer;
-  & > img {
-    width: 17px;
-    height: 17px;
-    background-position: -50px -110px;
-    display: inline-block;
-    margin-top: 22px;
-    margin-right: 12px;
-    vertical-align: top;
-  }
-  & > span {
-    display: inline-block;
-    padding-top: 17px;
-    font-size: 16px !important;
-    line-height: 24px;
-    color: #191919;
-    vertical-align: top;
-    font-family: sans-serif;
-    font-weight: bold;
-  }
 `;
 
 export default MFindPassword;

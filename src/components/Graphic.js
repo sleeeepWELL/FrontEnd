@@ -42,7 +42,7 @@ const Background = styled.div`
   flex-direction: column;
   background: url(${background});
   background-size: 100% 100%;
-  width: 45vw;
+  width: 60vw;
   height: 100vh;
   background-repeat: no-repeat;
   z-index: 999;
@@ -108,7 +108,7 @@ const MadeByInfo = styled.div`
 `;
 
 const BottomInfoBox = styled.div`
-  width: 80%;
+  width: 100%;
   height: 50%;
   margin-left: 1rem;
   margin-bottom: 2rem;
@@ -119,8 +119,9 @@ const BottomInfoBox = styled.div`
 
 const BottomInfo = styled.div`
   font-size: 0.4rem;
-  color: black;
+  color: white;
   display: flex;
+  word-break: keep-all;
 `;
 
 export default Graphic;

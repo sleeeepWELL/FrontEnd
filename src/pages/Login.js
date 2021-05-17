@@ -65,13 +65,19 @@ const Login = (props) => {
             <LoginContainer>
               <SemiContainer className="TimeText">
                 <LoGin className="TimeText">로그인</LoGin>
-                <IdBox
-                  className="TimeText"
-                  onChange={(e) => {
-                    setId(e.target.value);
-                  }}
-                  placeholder="이메일   ex) sleep@gmail.com"
-                />
+                <div style={{ height: "2rem" }}></div>
+                <InfoTitle>이메일</InfoTitle>
+                <div style={{ display: "flex", flexDirection: "row" }}>
+                  <IdBox
+                    className="TimeText"
+                    onChange={(e) => {
+                      setId(e.target.value);
+                    }}
+                    placeholder="이메일   ex) sleep@gmail.com"
+                  />
+                </div>
+                <div style={{ height: "2rem" }}></div>
+                <InfoTitle>인증번호</InfoTitle>
                 <PwBox
                   className="TimeText"
                   onChange={(e) => {
@@ -81,6 +87,7 @@ const Login = (props) => {
                   type="password"
                   onKeyPress={onKeyPress}
                 />
+                <div style={{ height: "2rem" }}></div>
                 <LoginButton onClick={onClick}>
                   <span>로그인</span>
                 </LoginButton>
@@ -118,7 +125,14 @@ const Login = (props) => {
   }
 };
 
+const InfoTitle = styled.div`
+  display: flex;
+  margin-bottom: 5px;
+  font-size: 14px;
+`;
+
 const LoGin = styled.div`
+  color: black;
   font-size: 30px;
 `;
 
@@ -154,6 +168,7 @@ const SemiContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   margin: 0px;
+  box-sizing: border-box;
 `;
 
 const InfoBox = styled.div`
@@ -170,7 +185,7 @@ const InfoBox = styled.div`
 `;
 
 const Wrap = styled.div`
-  width: 80vw;
+  width: 100vw;
   height: 100%;
   display: flex;
   box-sizing: border-box;
@@ -181,7 +196,7 @@ const Wrap = styled.div`
 
 const LoginWrap = styled.div`
   display: flex;
-  width: 35vw;
+  width: 40vw;
   height: 100vh;
   justify-content: center;
   box-sizing: border-box;
@@ -191,8 +206,8 @@ const LoginWrap = styled.div`
 
 const LoginContainer = styled.div`
   display: flex;
-  margin: 0px;
-  width: 100%;
+  margin-left: 0.7rem;
+  width: 90%;
   height: 100%;
   border: none;
   box-sizing: border-box;
@@ -202,18 +217,16 @@ const LoginContainer = styled.div`
 `;
 
 const IdBox = styled.input`
-  width: auto;
-  height: 20px;
   background-color: white;
+  padding: 15px;
   border: 0.5px solid rgba(76, 76, 76, 0.3);
   border-radius: 10px;
-  padding: 15px;
   outline: none;
   font-size: 15px;
-  margin-top: 15%;
   font-weight: bold;
   color: black;
   opacity: 0.7;
+  width: 100%;
   ::placeholder {
     font-size: 13px;
   }
@@ -224,12 +237,12 @@ const PwBox = styled.input`
   padding: 15px;
   border: 0.5px solid rgba(76, 76, 76, 0.3);
   border-radius: 10px;
-  margin: 2rem 0px;
   outline: none;
   font-size: 15px;
   font-weight: bold;
   color: black;
   opacity: 0.7;
+  width: 100%;
   ::placeholder {
     font-size: 13px;
   }
@@ -243,7 +256,7 @@ const LoginButton = styled.a`
   width: auto;
   height: 50px;
   margin-top: 10px;
-  background-color: rgba(1, 0, 1, 1);
+  background-color: rgba(74, 85, 102, 1);
   border: none;
   text-align: center;
   border-radius: 4px;

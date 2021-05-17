@@ -77,7 +77,7 @@ const Login = (props) => {
                   />
                 </div>
                 <div style={{ height: "2rem" }}></div>
-                <InfoTitle>인증번호</InfoTitle>
+                <InfoTitle>비밀번호</InfoTitle>
                 <PwBox
                   className="TimeText"
                   onChange={(e) => {
@@ -242,7 +242,6 @@ const PwBox = styled.input`
   font-weight: bold;
   color: black;
   opacity: 0.7;
-  width: 100%;
   ::placeholder {
     font-size: 13px;
   }

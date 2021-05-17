@@ -28,8 +28,8 @@
   src: url("../fonts/Helvetica\ Black.ttf") format("truetype");
 }
 
-.Helvetica{
-    font-family: "Helvetica";
+.Helvetica {
+  font-family: "Helvetica";
 }
 /* 로그인 */
 .BottomInfo {
@@ -51,23 +51,22 @@
   font-weight: bold;
   font-family: "Helvetica";
   color: #000000;
-  text-align:left;
+  text-align: left;
   border-bottom: 1.5px solid #000000;
-
 }
 .MText2 {
   font-weight: bold;
   font-family: "Helvetica";
   color: #000000;
-  text-align:right;
+  text-align: right;
   border-bottom: 1.5px solid #000000;
 }
 .WEEK {
   font-family: "Helvetica";
   width: 80%;
   flex-direction: column;
-  background-color: #4A5566;
- height: 100%;
+  background-color: #4a5566;
+  height: 100%;
   box-sizing: border-box;
   display: flex;
   min-width: 50px;
@@ -88,14 +87,16 @@
 /* ToDo */
 .SleepTime {
   font-family: "Helvetica";
-  font-size: 15px;
+  font-size: 2vh;
   font-weight: bold;
+  /* margin-top: 0.5vh; */
 }
 
 .SleepMin {
   font-family: "Helvetica";
-  font-size: 12px;
+  font-size: 1.5vh;
   font-weight: bold;
+  /* margin-bottom: 0.5vh; */
 }
 
 /* Navigator */
@@ -117,7 +118,7 @@
 }
 .TimeText {
   font-family: "NanumSquare_acEB";
-  color:#4A5566;
+  color: #4a5566;
 }
 
 .TimeText2 {
@@ -136,7 +137,7 @@
 .Search {
   font-family: "NanumSquareB";
   margin-left: 2px;
-  font-size:0.1vw;
+  font-size: 0.1vw;
 }
 
 /* Search */
@@ -145,22 +146,18 @@
 }
 
 /* Table */
-.Contents{
+.Contents {
   display: flex;
   flex-direction: row;
   font-family: "NanumSquare_acEB";
   font-size: 1vw;
-  
 }
 
-.BigTimeText{
+.BigTimeText {
   font-size: 3vw;
   display: flex;
   align-items: center;
-  
+
   justify-content: center;
   /* text-align: center; */
-
-  
-  
 }

@@ -29,6 +29,7 @@ function App() {
     <React.Fragment>
       <ConnectedRouter history={history}>
         <Switch>
+          <Route path="/intro" exact component={Intro} />
           <Route path="/login" exact component={Login} />
           <Route path="/signup" exact component={Signup} />
           <Route path="/findpwd" exact component={FindPassword} />
@@ -42,7 +43,6 @@ function App() {
             <Route path="/main/analysis" exact component={Analysis} />
             <Route path="/main/prac" exact component={Ready} />
             <Route path="/main/mypage" exact component={MyPage} />
-            <Route path="/main/intro" exact component={Intro} />
             <Route path="/" component={LoginCheck} />
           </Wrap>
           <Route component={NotFound} />

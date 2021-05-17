@@ -69,6 +69,7 @@ const loginSV = (email, pwd) => {
         await Swal.fire({
           title: "환영합니다!",
           text: "수면시간을 기록해보세요.",
+          confirmButtonText: "확인",
           imageUrl: welcome,
           imageWidth: 400,
           imageHeight: 200,
@@ -162,7 +163,7 @@ const signUpSV = (email, nickname, pwd, pwdCheck) => {
         Swal.fire({
           icon: "success",
           title: "회원가입이 완료되었습니다",
-          showConfirmButton: false,
+          confirmButtonText: "확인",
         });
         history.replace("/login");
       })
@@ -207,6 +208,7 @@ const kakaoLogin = (code) => {
         await Swal.fire({
           title: "환영합니다!",
           text: "수면시간을 기록해보세요.",
+          confirmButtonText: "확인",
           imageUrl: welcome,
           imageWidth: 400,
           imageHeight: 200,
@@ -260,7 +262,8 @@ const SendAuth = (email) => {
           Swal.fire({
             icon: "success",
             title: "입력하신 이메일로 인증번호가 발송되었습니다.",
-            showConfirmButton: false,
+            showConfirmButton: true,
+            confirmButtonText: "확인",
           });
         }
       })
@@ -285,7 +288,8 @@ const ConfirmAuth = (email, AuthNum) => {
         Swal.fire({
           icon: "success",
           title: "인증되었습니다.",
-          showConfirmButton: false,
+          showConfirmButton: true,
+          confirmButtonText: "확인",
         });
         let check = true;
         dispatch(authCheck(check));
@@ -379,7 +383,7 @@ const sendPwdAuth = (email) => {
           Swal.fire({
             icon: "success",
             title: "입력하신 이메일로 인증번호가 발송되었습니다.",
-            showConfirmButton: false,
+            confirmButtonText: "확인",
           });
         }
       })
@@ -399,7 +403,7 @@ const changePwd = (email, pwd, pwdCheck) => {
         Swal.fire({
           icon: "success",
           title: "비밀번호가 변경되었습니다.",
-          showConfirmButton: false,
+          confirmButtonText: "확인",
         });
         history.replace("/login");
       })

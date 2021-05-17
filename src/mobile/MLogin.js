@@ -22,6 +22,7 @@ const MLogin = (props) => {
         title: "이메일 & 패스워드",
         text: "모두 입력해주세요",
         icon: "info",
+        confirmButtonText: "확인",
       });
       return;
     }

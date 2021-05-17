@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { actionCreators as todoActions } from "../redux/modules/todo";
 import { history } from "../redux/configureStore";
 import "./Font.css";
+import Swal from "sweetalert2";
 
 import TextField from "@material-ui/core/TextField";
 import MobileTimePicker from "@material-ui/lab/MobileTimePicker";
@@ -194,9 +195,13 @@ const Write = (props) => {
               className="TimeText"
               onClick={() => {
                 if (startSleep === "" || endSleep === "" || mycondition === 0) {
-                  window.alert(
-                    "정확한 수면분석을 위해 취침시간, 기상시간, 컨디션을 모두 입력해주세요!"
-                  );
+                  Swal.fire({
+                    title: "빠진부분이 있어요!",
+                    icon: "정확한 수면분석을 위해 취침시간, 기상시간, 컨디션, 태그를 모두 입력해주세요!",
+                    showCancelButton: false,
+                    focusConfirm: false,
+                    confirmButtonText: "확인",
+                  });
                   return;
                 } else {
                   addPost();

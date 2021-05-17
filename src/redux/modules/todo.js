@@ -125,7 +125,8 @@ const addPostAX = (post) => {
         Swal.fire({
           icon: "success",
           title: "기록이 추가되었습니다.",
-          showConfirmButton: false,
+          showConfirmButton: true,
+          confirmButtonText: "확인",
         });
       })
       .catch((err) => {
@@ -167,7 +168,8 @@ const editPostAX = (post) => {
         Swal.fire({
           icon: "success",
           title: "기록이 수정되었습니다.",
-          showConfirmButton: false,
+          showConfirmButton: true,
+          confirmButtonText: "확인",
         });
       })
       .catch((err) => {

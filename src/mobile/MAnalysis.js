@@ -6,7 +6,6 @@ import MonthBarChart from "../components/MonthBarChart";
 import WeekMixedChart from "../components/WeekMixedChart";
 import Table from "../components/Table";
 import { actionCreators as userActions } from "../redux/modules/user";
-import { debounce } from "lodash";
 
 import { actionCreators as todoActions } from "../redux/modules/result";
 
@@ -14,9 +13,7 @@ import moment from "moment";
 import ConditionChart from "../components/ConditionChart";
 import "../components/Font.css";
 
-import MAnalysis from "../mobile/MAnalysis";
-
-const Analysis = () => {
+const MAnalysis = () => {
   const dispatch = useDispatch();
   const resulttime = useSelector((state) => state.result.result_sleeptime);
   const tags = useSelector((state) => state.result.tags);
@@ -28,8 +25,6 @@ const Analysis = () => {
   const [prevClick, setPrevClick] = React.useState(null);
 
   const [Click, setClick] = React.useState("Condition");
-
-  const [windowSize, setWindowSize] = React.useState(window.innerWidth);
 
   const GetClick = (e) => {
     setClick(e.target.id);
@@ -61,95 +56,84 @@ const Analysis = () => {
     [currentClick]
   );
 
-  const handleResize = debounce(() => {
-    setWindowSize(window.innerWidth);
-  }, 100);
-
-  React.useEffect(() => {
-    window.addEventListener("resize", handleResize);
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, [handleResize]);
-
-  if (windowSize < 415) {
-    return <MAnalysis />;
-  } else {
-    return (
-      <React.Fragment>
-        <Background>
-          <Container>
-            <ChartContainer1>
-              {Click === "Condition" && (
+  return (
+    <React.Fragment>
+      <Background>
+        <Container>
+          <ChartContainer1>
+            {Click === "Condition" && (
+              <>
+                <ConditionChart />
+              </>
+            )}
+            {Click === "weekTag" && (
+              <>
+                <WeekBarChart tags={tags} />
+              </>
+            )}
+            {Click === "monthTag" && (
+              <>
+                <MonthBarChart tags={tags} />
+              </>
+            )}
+            {Click === "weekSleep" && (
+              <>
+                <WeekMixedChart data={MixedData} />
+              </>
+            )}
+            {Click === "table" && (
+              <>
+                <Table table={table} />
+              </>
+            )}
+          </ChartContainer1>
+          <BtnContainer>
+            <ChartBtn className="TimeText" id="Condition" onClick={GetClick}>
+              연간컨디션
+            </ChartBtn>
+            <div style={{ width: "2rem" }}></div>
+            <ChartBtn className="TimeText" id="weekTag" onClick={GetClick}>
+              주간태그현황
+            </ChartBtn>
+            <div style={{ width: "2rem" }}></div>
+            <ChartBtn className="TimeText" id="monthTag" onClick={GetClick}>
+              월간태그현황
+            </ChartBtn>
+            <div style={{ width: "2rem" }}></div>
+            <ChartBtn className="TimeText" id="weekSleep" onClick={GetClick}>
+              주간수면시간
+            </ChartBtn>
+            <div style={{ width: "2rem" }}></div>
+            <ChartBtn className="TimeText" id="table" onClick={GetClick}>
+              요약
+            </ChartBtn>
+          </BtnContainer>
+          <ResultContainer2>
+            <InfoContainer>
+              {resulttime.hour == undefined ? (
+                <Text className="TimeText">
+                  데이터가 부족하여 현재 측정 불가합니다
+                </Text>
+              ) : (
                 <>
-                  <ConditionChart />
-                </>
-              )}
-              {Click === "weekTag" && (
-                <>
-                  <WeekBarChart tags={tags} />
-                </>
-              )}
-              {Click === "monthTag" && (
-                <>
-                  <MonthBarChart tags={tags} />
-                </>
-              )}
-              {Click === "weekSleep" && (
-                <>
-                  <WeekMixedChart data={MixedData} />
-                </>
-              )}
-              {Click === "table" && (
-                <>
-                  <Table table={table} />
-                </>
-              )}
-            </ChartContainer1>
-            <BtnContainer>
-              <ChartBtn className="TimeText" id="Condition" onClick={GetClick}>
-                연간컨디션
-              </ChartBtn>
-              <div style={{ width: "2rem" }}></div>
-              <ChartBtn className="TimeText" id="weekTag" onClick={GetClick}>
-                주간태그현황
-              </ChartBtn>
-              <div style={{ width: "2rem" }}></div>
-              <ChartBtn className="TimeText" id="monthTag" onClick={GetClick}>
-                월간태그현황
-              </ChartBtn>
-              <div style={{ width: "2rem" }}></div>
-              <ChartBtn className="TimeText" id="weekSleep" onClick={GetClick}>
-                주간수면시간
-              </ChartBtn>
-              <div style={{ width: "2rem" }}></div>
-              <ChartBtn className="TimeText" id="table" onClick={GetClick}>
-                요약
-              </ChartBtn>
-            </BtnContainer>
-            <ResultContainer2>
-              <InfoContainer>
-                {resulttime.hour == undefined ? (
                   <Text className="TimeText">
-                    데이터가 부족하여 현재 측정 불가합니다
+                    {username}님의&nbsp; 적정수면시간은&nbsp;
                   </Text>
-                ) : (
                   <Text className="TimeText">
-                    {username}님의&nbsp; 적정수면시간은&nbsp;{" "}
                     <span>
                       {resulttime.hour}
                       시간 &nbsp;{resulttime.minute}분
                     </span>
                     &nbsp; 입니다.
                   </Text>
-                )}
-              </InfoContainer>
-            </ResultContainer2>
-          </Container>
-        </Background>
-      </React.Fragment>
-    );
-  }
+                </>
+              )}
+            </InfoContainer>
+          </ResultContainer2>
+        </Container>
+      </Background>
+    </React.Fragment>
+  );
 };
 
 const FadeIn = keyframes`
@@ -164,14 +148,18 @@ to {
 const InfoContainer = styled.div`
   display: flex;
   width: 100%;
+  height: 50%;
   justify-content: center;
   text-align: center;
-  padding-top: 2rem;
+  align-items: center;
+
+  /* background-color: green; */
+  flex-direction: column;
 `;
 
 //전체 프레임을 위해서 100vh > 87vh로 수정했습니다
 const Container = styled.div`
-  width: 70%;
+  width: 80%;
   height: 100%;
   border: none;
   justify-content: flex-start;
@@ -182,21 +170,31 @@ const Container = styled.div`
 
 const BtnContainer = styled.div`
   width: 100%;
-  height: 10%;
+  height: 15%;
   display: flex;
+  flex-direction: row;
+  margin-bottom: 1rem;
   justify-content: center;
   align-items: center;
+  @media (max-width: 700px) {
+    width: 100%;
+    height: 15%;
+    margin-top: 8rem;
+  }
+  box-sizing: border-box;
+  /* background-color: pink; */
 `;
 
 const ChartBtn = styled.div`
   display: flex;
   width: auto;
-  height: 2.5rem;
+  height: 3rem;
+  margin-bottom: 1rem;
   align-items: center;
   background-color: lightgray;
   justify-content: center;
   border-radius: 7px;
-  font-size: 14px;
+  font-size: 1rem;
   cursor: pointer;
   padding: 0px 13px;
   box-shadow: rgb(0 0 0 / 10%) 0px 2px 2px 1px;
@@ -205,8 +203,8 @@ const ChartBtn = styled.div`
 const ChartContainer1 = styled.div`
   display: flex;
   width: 100%;
-  height: 40%;
-  margin-bottom: 12%;
+  height: 30%;
+  margin-top: 20px;
   justify-content: center;
   align-content: center;
 `;
@@ -214,7 +212,7 @@ const ChartContainer1 = styled.div`
 const ResultContainer2 = styled.div`
   display: flex;
   width: 100%;
-  height: 35%;
+  height: 20%;
   justify-content: center;
 `;
 
@@ -232,10 +230,11 @@ const Background = styled.div`
 const Text = styled.div`
   word-break: keep-all;
   width: 100%;
-  height: 50px;
+  height: 30px;
   margin-left: 20px;
+  margin-top: 5px;
   font-weight: bold;
-  font-size: 20px;
+  font-size: 18px;
   color: black;
   & > span {
     background-color: rgba(254, 233, 133, 1);
@@ -246,4 +245,4 @@ const Text = styled.div`
   }
 `;
 
-export default Analysis;
+export default MAnalysis;

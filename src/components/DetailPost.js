@@ -86,7 +86,7 @@ const DetailPost = (props) => {
                 ◀{/* <ChevronLeftIcon /> */}
               </MoveDButton>
 
-              <DText className="Helvetica" >{_day}</DText>
+              <DText className="HelveticaB" >{_day}</DText>
 
               <MoveDButton
                 onClick={() => {
@@ -146,7 +146,7 @@ const DetailPost = (props) => {
                 ◀{/* <ChevronLeftIcon/> */}
               </MoveDButton>
 
-              <DText className="Helvetica">{props.date.selectedAt}</DText>
+              <DText className="HelveticaB">{props.date.selectedAt}</DText>
 
               <MoveDButton
                 onClick={() => {
@@ -342,7 +342,7 @@ const MoveDButton = styled.button`
   color:#4A5566;
   background-color: white;
   text-align: center;
- 
+  text-shadow: rgb(10 50 10 / 40%) 0.7px 0.7px 0.7px;
 
 `;
 const DText = styled.div`
@@ -357,10 +357,10 @@ display:flex;
  
   align-items: center;
   border-radius: 10px;
+  text-shadow: rgb(10 50 10 / 40%) 0.7px 0.7px 0.7px;
   
   
  
-  box-shadow: rgb(82 82 82/ 20%) 0px 5px 5px 0px;
   
  
 `;

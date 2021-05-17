@@ -69,7 +69,7 @@ const Calendar = (props) => {
                 key={`${moment(today).format(
                   "MM"
                 )}_week_${week_index}_day_${day_index}`}
-                bg={"#F3F3F3"}
+               
               ></DayGrid>
             );
           } else {
@@ -78,6 +78,7 @@ const Calendar = (props) => {
                 key={`${moment(today).format(
                   "MM"
                 )}_week_${week_index}_day_${day_index}`}
+                bg={"#FFFFFF"}
                 // bg={
                 //   is_today && moment(today).format("MM") === _day.format("MM")
                 //     ? "gray"
@@ -113,7 +114,7 @@ const Calendar = (props) => {
   return (
     <AllContainer>
       <TopContainer>
-        <MoveMButton
+        <MoveLButton
           onClick={() => {
             dispatch(
               todoActions.changeToday(
@@ -130,19 +131,20 @@ const Calendar = (props) => {
                 "." +
                 (move_month <= 10 ? "0" + (move_month - 1) : move_month - 1)}
           </div>
-        </MoveMButton>
+        </MoveLButton>
 
         <div className="TitleText">
           {moment(today).format("YYYY")}. {moment(today).format("MM")}
         </div>
 
-        <MoveMButton
+        <MoveRButton
           onClick={() => {
             dispatch(
               todoActions.changeToday(moment(today).clone().add(1, "month"))
             );
           }}
         >
+          <MMText>▶</MMText>
           <div className="MText2">
             {move_month + 1 === 13
               ? parseInt(moment(today).format("YYYY")) + 1 + "." + "01"
@@ -150,34 +152,29 @@ const Calendar = (props) => {
                 "." +
                 (move_month < 9 ? "0" + (move_month + 1) : move_month + 1)}
           </div>
-          <MMText>▶</MMText>
-        </MoveMButton>
+          
+        </MoveRButton>
       </TopContainer>
       
       <Container>
+
       <WeekGrid>
-        <div className="WEEK">
-          <Text bold type="sun">
+        <div className="WEEK" style={{color:"#C7A2A2"}}>
             Sun
-          </Text>
         </div>
-        {nomal_week.map((_d, idx) => {
+        {nomal_week.map((_d, idx) =>{
           return (
-            <div className="WEEK" key={idx}>
-              <Text bold type="week">
-                {_d}
-              </Text>
-            </div>
-          );
+            <div className="WEEK" key={idx} style={{color:"white"}}>
+                {_d}    
+            </div>);
         })}
-        <div className="WEEK">
-          <Text bold type="sat">
+        <div className="WEEK"  style={{color:"#B8C5E9"}}>
             Sat
-          </Text>
         </div>
       </WeekGrid>
 
       {week_arr}
+
       </Container>
     </AllContainer>
   );
@@ -199,7 +196,7 @@ const TopContainer = styled.div`
   box-sizing: border-box;
   display: flex;
   flex-direction: row;
-  width: 100%;
+  width: 102%;
   align-items: bottom;
   height: 10vh;
   justify-content: space-between;
@@ -226,17 +223,13 @@ const CalendarContainer = styled.div`
   
 `;
 
-
+//요일 Box
 const WeekGrid = styled.div`
-  box-sizing: border-box;
   display: flex;
   flex-direction: row;
   width: 100%;
   min-width: 50px;
   height: 4vh;
-  align-items: flex-end;
-  justify-content: flex-start;
-
 `;
 
 const DailyGrid = styled.div`
@@ -266,34 +259,49 @@ const DayGrid = styled.div`
   ${(props) => (props.bg ? `background-color: ${props.bg};` : "")}
 `;
 
+//연도 + 월
 const DayText = styled.div`
   color: ${(props) => props.font_c};
   background-color: ${(props) => props.bg};
   border-radius: ${(props) => props.br};
-  text-shadow: 0.5px 0.5px 0.5px gray;
  
 `;
 
-const MoveMButton = styled.button`
-  width: 8vw;
-
-  font-size: 1.2vw;
-  background-color:#F3F3F3;
- border:none;
+const MoveLButton = styled.button`
+ width: 15%;
+ font-size: 1.2vw;
+ background-color:#F3F3F3;
+ border: none;
  display:flex;
  flex-direction: row;
-  cursor: pointer;
  align-items: center;
+
+ cursor: pointer;
+`;
+
+const MoveRButton = styled.button`
+ width: 15%;
+ font-size: 1.2vw;
+ background-color:#F3F3F3;
+ display:flex;
+ border: none;
+ flex-direction: row-reverse;
+ align-items: center;
+ text-align: right;
+
+ cursor: pointer;
 `;
 
 
 const MMText = styled.div`
  display: flex;
  align-items: center;
+
   font-weight: bold;
-  color: #6c6969;
-  margin: 0vw 0.5vw 0.3vw 0.5vw;
-  
+  color: #000000 ;
+  opacity: 60%;
+  margin-bottom:  0.3vw;
+  text-shadow: rgb(10 50 10 / 40%) 0.5px 0.5px 0.5px;
 `;
 
 export default Calendar;

@@ -22,7 +22,7 @@ const Cube =()=> {
   renderer.setSize(width, height);
 
   console.log(element.current);
-  element.current.appendChild(renderer.domElement);
+  // element.current.appendChild(renderer.domElement);
 
   const geometry = new THREE.BoxGeometry(1, 1, 1);
   const material = new THREE.MeshBasicMaterial({ color:"green"});

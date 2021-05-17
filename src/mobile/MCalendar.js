@@ -225,7 +225,7 @@ const TitleText= styled.div`
 const MText1 =styled.div`
   font-weight: bold;
   color: #121212;
-  border-bottom: 2px solid #121212;
+  border-bottom: 1px solid #121212;
   opacity: 60%;
   margin-left: 5%;
   text-shadow: rgb(10 50 10 / 40%) 0.5px 0.5px 0.5px;
@@ -234,7 +234,7 @@ const MText1 =styled.div`
   font-weight: bold;
   font-family: "Helvetica";
   color: #121212;
-  border-bottom: 2px solid #121212;
+  border-bottom: 1px solid #121212;
   opacity: 60%;
   margin-right: 5%;
   text-shadow: rgb(10 50 10 / 40%) 0.5px 0.5px 0.5px;

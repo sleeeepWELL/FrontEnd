@@ -2,7 +2,7 @@ import React from "react";
 import styled, { keyframes } from "styled-components";
 import { useSelector } from "react-redux";
 import MCalendar from "../mobile/MCalendar";
-import DetailPost from "../components/DetailPost";
+import MDetailPost from "../mobile/MDetailPost";
 import DetailWrite from "../components/DetailWrite";
 import Search from "../components/Search";
 
@@ -23,7 +23,7 @@ const MMainCalendar = () => {
               {is_modify ? (
                 <DetailWrite date={day_list} _showModify={setModify} />
               ) : (
-                <DetailPost date={day_list} _showModify={setModify} />
+                <MDetailPost date={day_list} _showModify={setModify} />
               )}
             </PostContainer>
             <SearchContainer>
@@ -59,7 +59,7 @@ const AllContainer = styled.div`
  //캘린더 배경
 const CalendarContainer = styled.div`
   width: 100%;
-  height: 60%;
+  height: 55vh;
   background-color: #F3F3F3;
   margin-top: 1%;
   
@@ -72,7 +72,7 @@ const CalendarContainer = styled.div`
 const RightContainer = styled.div`
   display: flex;
   width: 100%;
-  height: 80vh;
+  height: 42vh;
   flex-direction: column;
 `;
 
@@ -80,7 +80,7 @@ const PostContainer = styled.div`
   display: flex;
   width: 100%;
   height: 77%;
-  margin-top: 10px;
+  margin-top: 6%;
   background-color: white;
   flex-direction: column;
   border-radius: 20px;
@@ -91,7 +91,7 @@ const SearchContainer = styled.div`
   width: 100%;
 
 
-  margin-top: 10px;
+  margin-top: 2%;
   align-content: center;
   border-radius: 20px;
   // box-shadow: rgb(82 82 82/ 40%) 0px 5px 8px 0px;
@@ -101,7 +101,7 @@ const SearchContainer = styled.div`
 
 const Background = styled.div`
   width: 100%;
-  height: 100%;
+  height: 99vh;
   left: 0;
   top: 0;
   background-color: #DBDBDB;

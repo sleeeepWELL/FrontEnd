@@ -18,6 +18,8 @@ import four from "../image/4-condition.png";
 import five from "../image/5-condition.png";
 
 import Swal from "sweetalert2";
+import ChevronRightIcon from '@material-ui/icons/ChevronRight';
+import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 
 //글씨 이미지로 바꾸기
 const mapKeywordToImg = {
@@ -80,7 +82,7 @@ const MDetailPost = (props) => {
                 );
               }}
             >
-              ◀{/* <ChevronLeftIcon /> */}
+              <ChevronLeftIcon/>
             </MoveDButton>
 
             <DText className="HelveticaB">{_day}</DText>
@@ -94,7 +96,7 @@ const MDetailPost = (props) => {
                 );
               }}
             >
-              ▶{/* <ChevronRightIcon /> */}
+             <ChevronRightIcon/>
             </MoveDButton>
           </LeftHeader>
 
@@ -138,7 +140,7 @@ const MDetailPost = (props) => {
                 );
               }}
             >
-              ◀{/* <ChevronLeftIcon/> */}
+              <ChevronLeftIcon/> 
             </MoveDButton>
 
             <DText className="HelveticaB">{props.date.selectedAt}</DText>
@@ -152,7 +154,7 @@ const MDetailPost = (props) => {
                 );
               }}
             >
-              ▶{/* <ChevronRightIcon /> */}
+            <ChevronRightIcon />
             </MoveDButton>
           </LeftHeader>
 

@@ -45,8 +45,8 @@ function App() {
             <Route path="/main/prac" exact component={UseInfo} />
             <Route path="/main/mypage" exact component={MyPage} />
             {/* <Route path="/" component={LoginCheck} /> */}
+            <Route component={NotFound} />
           </Wrap>
-          <Route component={NotFound} />
         </Switch>
       </ConnectedRouter>
     </React.Fragment>

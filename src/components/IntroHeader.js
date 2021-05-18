@@ -9,6 +9,7 @@ const IntroHeader = () => {
     <React.Fragment>
       <Wrap>
         <FstContainer>
+          <div style={{ width: "15px" }}></div>
           <LogoImg src={Logo} className="Logo" id="logo" />
         </FstContainer>
         <CategoryContainer />
@@ -43,7 +44,7 @@ const BtnContainer = styled.div`
 
 const FstContainer = styled.div`
   display: flex;
-  width: 15%;
+  width: 25%;
   height: 7vh;
   justify-content: center;
   align-items: center;
@@ -65,12 +66,15 @@ const Wrap = styled.div`
   border: none;
 `;
 
-const LogoImg = styled.img`
-  width: 80%;
+const LogoImg = styled.div`
+  width: 100%;
   height: 7vh;
   display: flex;
   margin: 0px;
   cursor: pointer;
+  background: url("${Logo}");
+  background-size: auto 100%;
+  background-repeat: no-repeat;
   outline: none;
   border: none;
 `;
@@ -189,7 +193,7 @@ const SignUpBox = styled.div`
 
 const CategoryContainer = styled.div`
   display: flex;
-  width: 45%;
+  width: 35%;
   justify-content: space-around;
   font-weight: 600;
 `;

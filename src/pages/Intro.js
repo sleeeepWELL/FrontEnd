@@ -6,8 +6,7 @@ import IntroA from "../images/Intro_A.jpg";
 import IntroB from "../images/Intro_B.jpg";
 import IntroC from "../images/Intro_C.jpg";
 import IntroD from "../images/Intro_D.jpg";
-import IntroE from "../images/Intro_E.jpg";
-import IntroF from "../images/Intro_F.jpg";
+import IntroEE from "../images/Intro_EE.jpg";
 import IntroG from "../images/Intro_G.jpg";
 import IntroH from "../images/Intro_H.jpg";
 import IntroHeader from "../components/IntroHeader";
@@ -31,10 +30,7 @@ const Intro = () => {
           <BackImg src={IntroD} />
         </Backgroud>
         <Backgroud bg={"#4A5666"}>
-          <BackImg src={IntroE} />
-        </Backgroud>
-        <Backgroud bg={"#4A5666"}>
-          <BackImg src={IntroF} />
+          <BackImg src={IntroEE} />
         </Backgroud>
         <Backgroud bg={"#DBDBDB"}>
           <BackImg src={IntroG}></BackImg>
@@ -112,11 +108,12 @@ const Wrap = styled.div`
   height: 100vh;
   flex-direction: column;
   align-items: center;
-  background-color: #dbdbdb;
+  /* background-color: #dbdbdb; */
 `;
 
 const Backgroud = styled.div`
   display: flex;
+  border: none;
   justify-content: center;
   flex-direction: column;
   align-items: center;
@@ -126,7 +123,14 @@ const Backgroud = styled.div`
 
 const BackImg = styled.img`
   width: 70%;
+  border: none;
+  margin: 0px;
+  background-color: none;
   z-index: 1;
+
+  @media (max-width: 414px) {
+    width: 100%;
+  }
 `;
 
 const CubeButton = styled.div`

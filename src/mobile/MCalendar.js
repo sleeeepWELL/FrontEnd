@@ -293,7 +293,7 @@ const WEEK = styled.div`
   align-items: center;
   width: 80%;
   height:2.4vh;
-  padding-top: 1%;
+  padding-top: 2%;
   font-size: 1vh;
   font-weight: bold;
 `
@@ -316,6 +316,8 @@ const WeekGrid = styled.div`
   width: 100%;
   min-width: 50px;
   height: 10%;
+ 
+  margin-top:3%;
 `;
 
 //날짜 묶음 Grid
@@ -355,7 +357,7 @@ const DayText = styled.div`
   color: ${(props) => props.font_c};
   background-color: ${(props) => props.bg};
   border-radius: ${(props) => props.br};
-  height:90%;
+  height:95%;
   width:28%;
 
   margin-right: 1.5%;

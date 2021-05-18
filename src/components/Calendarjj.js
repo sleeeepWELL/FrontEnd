@@ -7,7 +7,8 @@ import { setCookie, deleteCookie, getCookie } from "../shared/Cookie";
 import { useSelector, useDispatch } from "react-redux";
 import { actionCreators as todoActions } from "../redux/modules/todo";
 import styled, { keyframes } from "styled-components";
-
+import ChevronRightIcon from '@material-ui/icons/ChevronRight';
+import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import "./Font.css";
 
 // import HattonLight from "../fonts/Hatton-Light.ttf";
@@ -122,7 +123,7 @@ const Calendar = (props) => {
             );
           }}
         >
-          <MMText>◀</MMText>
+          <MMText><ChevronLeftIcon/></MMText>
           <MText1 className="Helvetica">
             {move_month - 1 === 0
               ? parseInt(moment(today).format("YYYY")) - 1 + "." + 12
@@ -143,7 +144,7 @@ const Calendar = (props) => {
             );
           }}
         >
-          <MMText>▶</MMText>
+          <MMText><ChevronRightIcon/></MMText>
           <MText2 className="Helvetica">
             {move_month + 1 === 13
               ? parseInt(moment(today).format("YYYY")) + 1 + "." + "01"

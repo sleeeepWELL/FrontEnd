@@ -4,6 +4,8 @@ import moment from "moment";
 import styled, { keyframes } from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
 import { actionCreators as todoActions } from "../redux/modules/todo";
+import ChevronRightIcon from '@material-ui/icons/ChevronRight';
+import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import "./Font.css";
 
 import beer from "../image/beer.png";
@@ -80,7 +82,7 @@ const DetailPost = (props) => {
                 );
               }}
             >
-              ◀{/* <ChevronLeftIcon /> */}
+              <ChevronLeftIcon />
             </MoveDButton>
 
             <DText className="HelveticaB">{_day}</DText>
@@ -94,7 +96,7 @@ const DetailPost = (props) => {
                 );
               }}
             >
-              ▶{/* <ChevronRightIcon /> */}
+            <ChevronRightIcon />
             </MoveDButton>
           </LeftHeader>
 
@@ -138,7 +140,7 @@ const DetailPost = (props) => {
                 );
               }}
             >
-              ◀{/* <ChevronLeftIcon/> */}
+             <ChevronLeftIcon/> 
             </MoveDButton>
 
             <DText className="HelveticaB">{props.date.selectedAt}</DText>
@@ -152,7 +154,7 @@ const DetailPost = (props) => {
                 );
               }}
             >
-              ▶{/* <ChevronRightIcon /> */}
+             <ChevronRightIcon /> 
             </MoveDButton>
           </LeftHeader>
 

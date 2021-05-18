@@ -7,6 +7,8 @@ import { setCookie, deleteCookie, getCookie } from "../shared/Cookie";
 import { useSelector, useDispatch } from "react-redux";
 import { actionCreators as todoActions } from "../redux/modules/todo";
 import styled, { keyframes } from "styled-components";
+import ChevronRightIcon from '@material-ui/icons/ChevronRight';
+import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 
 import "../components/Font.css";
 
@@ -90,16 +92,19 @@ const MCalendar = (props) => {
                   dispatch(todoActions.getOnePostAX(_day.format("YYYY-MM-DD")));
                 }}
               >
+                <TextBox>
                 <DayText
                   className="Helvetica"
                   bg={is_today ? "black" : null}
                   font_c={is_today ? "white" : "black"}
-                  br={is_today ? "9px" : "null"}
+                  br={is_today ? "50%" : "null"}
                 >
                   {_day.format("DD")}
                 </DayText>
-
+                </TextBox>
+                <ListBox>
                 {_list && list}
+                </ListBox>
               </DayGrid>
             );
           }
@@ -123,7 +128,7 @@ const MCalendar = (props) => {
             );
           }}
         >
-          <MMText>◀</MMText>
+          <MMText><ChevronLeftIcon/></MMText>
           <MText1 className="Helvetica">
             {move_month - 1 === 0
               ? parseInt(moment(today).format("YYYY")) - 1 + "." + 12
@@ -144,7 +149,7 @@ const MCalendar = (props) => {
             );
           }}
         >
-          <MMText>▶</MMText>
+          <MMText><ChevronRightIcon/></MMText>
           <MText2 className="Helvetica">
             {move_month + 1 === 13
               ? parseInt(moment(today).format("YYYY")) + 1 + "." + "01"
@@ -330,16 +335,34 @@ const DayGrid = styled.div`
   ${(props) => (props.bg ? `background-color: ${props.bg};` : "")}
 `;
 
+const TextBox = styled.div`
+ display:flex;
+ width:100%;
+ height:23%;
+ justify-content: flex-end;
+ 
+
+`;
+
+const ListBox = styled.div`
+ width:100%;
+ height:75%;
+`;
+
+
 //날짜 텍스트
 const DayText = styled.div`
-  display:flex;
   color: ${(props) => props.font_c};
   background-color: ${(props) => props.bg};
   border-radius: ${(props) => props.br};
-  font-size: 0.3vh;
-  margin-right: 0.5vh;
-  margin-top: 0.5vh;
+  height:90%;
+  width:28%;
+
+  margin-right: 4%;
+  margin-top: 4%;
+  font-size: 60%;
   font-weight: 550;
+  opacity:90%;
 `;
 
 //Todo들어가는 부분

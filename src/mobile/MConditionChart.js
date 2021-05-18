@@ -40,8 +40,8 @@ const MConditionChart = (props) => {
         colors={["#F27153", "#F29846", "#EAE35E", "#81D3A2", "#309EB7"]}
         minValue={1}
         maxValue={5}
-        yearLegendOffset={30}
-        margin={{ top: 8, left: 1, right: 2 }}
+        // yearLegendOffset={30}
+        margin={{ top: 8, left: 3, right: 3 }}
         monthBorderColor="#ffffff"
         dayBorderWidth={2}
         dayBorderColor="#ffffff"

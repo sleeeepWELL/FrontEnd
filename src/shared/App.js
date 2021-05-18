@@ -12,6 +12,7 @@ import {
   MyPage,
   NotFound,
   Intro,
+  UseInfo,
 } from "../pages/index";
 import MFindPassword from "../mobile/MFindPassword";
 
@@ -29,18 +30,21 @@ function App() {
     <React.Fragment>
       <ConnectedRouter history={history}>
         <Switch>
-          <Route path="/intro" exact component={Intro} />
+          <Route path="/" exact component={Intro} />
           <Route path="/login" exact component={Login} />
           <Route path="/signup" exact component={Signup} />
           <Route path="/findpwd" exact component={FindPassword} />
           <Wrap>
-            <Route path="/oauth/callback/kakao" component={OAuth2RedirectHandler}></Route>
+            <Route
+              path="/oauth/callback/kakao"
+              component={OAuth2RedirectHandler}
+            ></Route>
             <Route path="/main" component={Navigator} />
             <Route path="/main" exact component={MainCalendar} />
             <Route path="/main/analysis" exact component={Analysis} />
-            <Route path="/main/prac" exact component={Ready} />
+            <Route path="/main/prac" exact component={UseInfo} />
             <Route path="/main/mypage" exact component={MyPage} />
-            <Route path="/" component={LoginCheck} />
+            {/* <Route path="/" component={LoginCheck} /> */}
           </Wrap>
           <Route component={NotFound} />
         </Switch>

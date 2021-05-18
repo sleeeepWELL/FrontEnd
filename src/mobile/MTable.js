@@ -135,24 +135,24 @@ const Value = styled.div`
 const Title2 = styled.div`
   display: flex;
   flex-direction: column;
-  width: 60%;
+  width: 80%;
   height: 50%;
   justify-content: space-between;
   text-align: left;
-  margin: 16% 0% 0% 12%;
-  border: 1px solid black;
+  margin: 16% 0% 0% 13%;
+  /* border: 1px solid black; */
 `;
 
 const Value2 = styled.div`
   display: flex;
   flex-direction: column;
-  width: 40%;
+  width: 20%;
   height: 50%;
   justify-content: space-between;
-  margin: 16% 0% 0% 7%;
+  margin: 16% 7% 0% 0%;
   color: black;
   text-align: left;
-  border: 1px solid blue;
+  /* border: 1px solid blue; */
 `;
 
 const boxFade = keyframes`

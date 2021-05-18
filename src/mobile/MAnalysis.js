@@ -3,14 +3,14 @@ import { useSelector, useDispatch } from "react-redux";
 import styled, { keyframes } from "styled-components";
 import WeekBarChart from "../components/WeekBarChart";
 import MonthBarChart from "../components/MonthBarChart";
-import WeekMixedChart from "../components/WeekMixedChart";
-import Table from "../components/Table";
+import MWeekMixedChart from "../mobile/MWeekMixedChart";
+import MTable from "../mobile/MTable";
 import { actionCreators as userActions } from "../redux/modules/user";
 
 import { actionCreators as todoActions } from "../redux/modules/result";
 
 import moment from "moment";
-import ConditionChart from "../components/ConditionChart";
+import MConditionChart from "../mobile/MConditionChart";
 import "../components/Font.css";
 
 const MAnalysis = () => {
@@ -63,7 +63,7 @@ const MAnalysis = () => {
           <ChartContainer1>
             {Click === "Condition" && (
               <>
-                <ConditionChart />
+                <MConditionChart />
               </>
             )}
             {Click === "weekTag" && (
@@ -78,30 +78,44 @@ const MAnalysis = () => {
             )}
             {Click === "weekSleep" && (
               <>
-                <WeekMixedChart data={MixedData} />
+                <MWeekMixedChart data={MixedData} />
               </>
             )}
             {Click === "table" && (
               <>
-                <Table table={table} />
+                <MTable table={table} />
               </>
             )}
           </ChartContainer1>
           <BtnContainer>
             <ChartBtn className="TimeText" id="Condition" onClick={GetClick}>
-              연간컨디션
+              연간
+              <br />
+              컨디션
             </ChartBtn>
             <div style={{ width: "2rem" }}></div>
             <ChartBtn className="TimeText" id="weekTag" onClick={GetClick}>
-              주간태그현황
+              주간
+              <br />
+              태그
+              <br />
+              현황
             </ChartBtn>
             <div style={{ width: "2rem" }}></div>
             <ChartBtn className="TimeText" id="monthTag" onClick={GetClick}>
-              월간태그현황
+              월간
+              <br />
+              태그
+              <br />
+              현황
             </ChartBtn>
             <div style={{ width: "2rem" }}></div>
             <ChartBtn className="TimeText" id="weekSleep" onClick={GetClick}>
-              주간수면시간
+              주간
+              <br />
+              수면
+              <br />
+              시간
             </ChartBtn>
             <div style={{ width: "2rem" }}></div>
             <ChartBtn className="TimeText" id="table" onClick={GetClick}>
@@ -160,12 +174,13 @@ const InfoContainer = styled.div`
 //전체 프레임을 위해서 100vh > 87vh로 수정했습니다
 const Container = styled.div`
   width: 80%;
-  height: 100%;
+  height: 90%;
   border: none;
   justify-content: flex-start;
   animation: ${FadeIn} 2s;
   display: flex;
   flex-direction: column;
+  /* border: 1px solid blue; */
 `;
 
 const BtnContainer = styled.div`
@@ -174,10 +189,12 @@ const BtnContainer = styled.div`
   display: flex;
   flex-direction: row;
   margin-bottom: 1rem;
+
   justify-content: center;
   align-items: center;
 
   box-sizing: border-box;
+  /* border: 1px solid black; */
 `;
 
 const ChartBtn = styled.div`
@@ -205,9 +222,10 @@ const ChartContainer1 = styled.div`
   display: flex;
   width: 100%;
   height: 30%;
-  margin-top: 20px;
+  margin-top: 18%;
   justify-content: center;
   align-content: center;
+  /* border: 1px solid blue; */
 `;
 
 const ResultContainer2 = styled.div`
@@ -215,6 +233,8 @@ const ResultContainer2 = styled.div`
   width: 100%;
   height: 20%;
   justify-content: center;
+  margin-top: 20%;
+  /* border: 1px solid red; */
 `;
 
 const Background = styled.div`

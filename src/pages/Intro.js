@@ -17,6 +17,17 @@ const Intro = () => {
     <React.Fragment>
       <Wrap>
         <IntroHeader />
+        {/* <div
+          style={{
+            display: "flex",
+            width: "100%",
+            height: "27vh",
+            backgroundColor: "green",
+            zIndex: "9",
+          }}
+        >
+          .
+        </div> */}
         <Backgroud bg={"#DBDBDB"}>
           <BackImg src={IntroA} />
         </Backgroud>
@@ -46,14 +57,6 @@ const Intro = () => {
         <Backgroud bg={"#494949"}>
           <BackImg src={IntroH} />
         </Backgroud>
-        {/* <CubeButton
-          onClick={() => {
-            console.log("hi");
-          }}
-        >
-          <Cube />
-          <Text>로그인하러 가기</Text>
-        </CubeButton> */}
       </Wrap>
     </React.Fragment>
   );
@@ -108,7 +111,6 @@ const Wrap = styled.div`
   height: 100vh;
   flex-direction: column;
   align-items: center;
-  /* background-color: #dbdbdb; */
 `;
 
 const Backgroud = styled.div`
@@ -131,23 +133,6 @@ const BackImg = styled.img`
   @media (max-width: 414px) {
     width: 100%;
   }
-`;
-
-const CubeButton = styled.div`
-  width: 20rem;
-  display: flex;
-  border: 1px solid black;
-  border: none;
-  background-color: yellow;
-`;
-const Text = styled.div`
-  font-weight: bold;
-  z-index: 2;
-  color: #121212;
-  :hover {
-    color: white;
-  }
-  margin-top: 24px;
 `;
 
 export default Intro;

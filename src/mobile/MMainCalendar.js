@@ -3,7 +3,7 @@ import styled, { keyframes } from "styled-components";
 import { useSelector } from "react-redux";
 import MCalendar from "../mobile/MCalendar";
 import MDetailPost from "../mobile/MDetailPost";
-import DetailWrite from "../components/DetailWrite";
+import MDetailWrite from "../mobile/MDetailWrite";
 import Search from "../components/Search";
 
 
@@ -21,7 +21,7 @@ const MMainCalendar = () => {
           <RightContainer>
             <PostContainer>
               {is_modify ? (
-                <DetailWrite date={day_list} _showModify={setModify} />
+                <MDetailWrite date={day_list} _showModify={setModify} />
               ) : (
                 <MDetailPost date={day_list} _showModify={setModify} />
               )}
@@ -79,7 +79,7 @@ const RightContainer = styled.div`
 const PostContainer = styled.div`
   display: flex;
   width: 100%;
-  height: 77%;
+  height: 190%;
   margin-top: 6%;
   background-color: white;
   flex-direction: column;
@@ -99,7 +99,7 @@ const SearchContainer = styled.div`
 
 const Background = styled.div`
   width: 100%;
-  height: 99vh;
+  height: 125vh;
   left: 0;
   top: 0;
   background-color: #DBDBDB;

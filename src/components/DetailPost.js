@@ -424,6 +424,7 @@ const Contents = styled.div`
   margin-bottom: 5%;
   box-sizing: border-box;
   align-items: baseline;
+  overflow: scroll;
   @media (max-width: 975px) {
     height: 30%;
   }

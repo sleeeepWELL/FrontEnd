@@ -194,7 +194,7 @@ const MDetailPost = (props) => {
 
 const ModalComponent = styled.div`
   width: 100%;
-  height: 100%;
+  height: 90%;
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
@@ -342,7 +342,7 @@ const RightHeader = styled.div`
   margin-top: 3%;
   justify-content: flex-end;
   width: 100%;
-  height: 15%;
+  height: 10%;
   padding-right:3%;
   box-sizing: border-box;
   

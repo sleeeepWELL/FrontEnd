@@ -29,7 +29,7 @@ const Wrap = styled.div`
   height: 100vh;
   flex-direction: column;
   align-items: center;
-  background-color: #dbdbdb;
+  background-color: #f6f6f6;
 `;
 
 const Backgroud = styled.div`
@@ -38,6 +38,7 @@ const Backgroud = styled.div`
   flex-direction: column;
   align-items: center;
   width: 100%;
+  margin-bottom: 5rem;
   ${(props) => (props.bg ? `background-color: ${props.bg};` : "")}
 `;
 

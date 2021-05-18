@@ -45,7 +45,7 @@ function App() {
             <Route path="/main/prac" exact component={UseInfo} />
             <Route path="/main/mypage" exact component={MyPage} />
             {/* <Route path="/" component={LoginCheck} /> */}
-            <Route component={NotFound} />
+            {/* <Route component={NotFound} /> */}
           </Wrap>
         </Switch>
       </ConnectedRouter>

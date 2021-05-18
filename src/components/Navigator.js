@@ -80,7 +80,7 @@ const Navigator = () => {
             캘린더
           </CategoryBox>
           <CategoryBox className="TimeText" id="main/prac" onClick={GetClick}>
-            내 컨디션
+            가이드
           </CategoryBox>
           <CategoryBox
             className="TimeText"

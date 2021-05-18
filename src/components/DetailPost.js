@@ -183,7 +183,7 @@ const DetailPost = (props) => {
 
             <Contents>
               <TimeText className="ConditionText">메모</TimeText>
-              <TimeText2 className="TimeText">{props.date.memo}</TimeText2>
+              <MemoText className="TimeText">{props.date.memo}</MemoText>
             </Contents>
           </MainContainer>
         </ModalComponent>
@@ -284,6 +284,20 @@ const TimeText2 = styled.div`
     height: 40%;
   }
 `;
+const MemoText = styled.div`
+  width: 75%;
+  color: black;
+  font-size: 14px;
+  /* margin: 5px 0px 0px 10px; */
+  font-weight: bold;
+  display: flex;
+  justify-content: flex-start;
+  @media (max-width: 975px) {
+    height: 40%;
+  }
+  overflow: scroll;
+`;
+
 
 //태그
 const TagContainer = styled.div`
@@ -417,7 +431,7 @@ const Contents = styled.div`
   margin-bottom: 5%;
   box-sizing: border-box;
   align-items: baseline;
-  overflow: scroll;
+  
   @media (max-width: 975px) {
     height: 30%;
   }

@@ -327,7 +327,7 @@ const DayText = styled.div`
   color: ${(props) => props.font_c};
   background-color: ${(props) => props.bg};
   border-radius: ${(props) => props.br};
-  font-size: 0.4vw;
+  font-size: 0.9vw;
   margin-right: 0.5vh;
   margin-top: 0.5vh;
   font-weight: 550;

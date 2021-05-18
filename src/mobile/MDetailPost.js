@@ -56,7 +56,7 @@ const MDetailPost = (props) => {
     let _day = props.date.slice(14, 24);
     return (
       <React.Fragment>
-       
+      
           <RightHeader>
             {moment(props.date.slice(14, 24)) <= _today && (
               <AddButton
@@ -68,7 +68,7 @@ const MDetailPost = (props) => {
               </AddButton>
             )}
           </RightHeader>
-      
+     
         <ModalComponent>
           <LeftHeader>
             <MoveDButton
@@ -112,7 +112,7 @@ const MDetailPost = (props) => {
   } else {
     return (
       <React.Fragment>
-     
+   
           <RightHeader>
             <ModifyButton
              
@@ -126,7 +126,7 @@ const MDetailPost = (props) => {
               삭제
             </ModifyButton>
           </RightHeader>
-        
+      
         <ModalComponent>
           <LeftHeader>
             <MoveDButton
@@ -192,6 +192,19 @@ const MDetailPost = (props) => {
   }
 };
 
+const RightHeader = styled.div`
+  /* background-color: blue; */
+  display: flex;
+  flex-direction: row;
+  text-align: center;
+  margin-top: 3%;
+  justify-content: flex-end;
+  width: 100%;
+  height: 10%;
+  padding-right:3%;
+  box-sizing: border-box;
+  
+`;
 const ModalComponent = styled.div`
   width: 100%;
   height: 90%;
@@ -199,7 +212,10 @@ const ModalComponent = styled.div`
   flex-direction: column;
   box-sizing: border-box;
   // border-radius: 20px;
+ 
 `;
+
+
 
 const MainContainer = styled.div`
   width: 100%;
@@ -309,17 +325,8 @@ const TagImg = styled.div`
   margin: 0px 2px 0px 2px;
 `;
 
-//카드 헤더
-const DayHeader = styled.div`
-  display: flex;
-  flex-direction: column;
 
-  width: 100%;
-  height: 5%;
-  margin: 5% 0px 0px 0px;
-  box-sizing: border-box;
 
-`;
 
 const LeftHeader = styled.div`
   display: flex;
@@ -334,20 +341,7 @@ const LeftHeader = styled.div`
   
 `;
 
-const RightHeader = styled.div`
-  /* background-color: blue; */
-  display: flex;
-  flex-direction: row;
-  text-align: center;
-  margin-top: 3%;
-  justify-content: flex-end;
-  width: 100%;
-  height: 10%;
-  padding-right:3%;
-  box-sizing: border-box;
-  
- 
-`;
+
 
 const MoveDButton = styled.button`
   width: 10%;
@@ -379,16 +373,15 @@ const DText = styled.div`
 
 const ModifyButton = styled.button`
   width: 14%;
-  height: 130%;
+  height: 100%;
   background-color: #4a5566;
-  border: 2px solid white;
   font-weight: bold;
   border-radius: 5px;
   outline: none;
   cursor: pointer;
   color: white;
   box-shadow: rgb(82 82 82/ 20%) 0px 5px 8px 0px;
-  font-size: 0.1vh;
+  font-size: 80%;
   margin: 0px 1% 0px 0px;
 `;
 
@@ -396,14 +389,13 @@ const AddButton = styled.button`
   width: 14%;
   height: 100%;
   background-color: #4a5566;
-  border: 2px solid white;
   font-weight: bold;
   border-radius: 5px;
   outline: none;
   cursor: pointer;
   color: white;
   box-shadow: rgb(82 82 82/ 20%) 0px 5px 8px 0px;
-  font-size: 0.1vw;
+  font-size: 80%;
   margin: 0px 1% 0px 0px;
 `;
 

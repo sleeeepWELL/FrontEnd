@@ -267,13 +267,14 @@ const ConditionText = styled.div`
 
 const MemoText = styled.div`
   width: 75%;
+  height: 50%;
   color: black;
   font-size: 14px;
   /* margin: 5px 0px 0px 10px; */
   font-weight: bold;
   display: flex;
   justify-content: flex-start;
-  overflow: scroll;
+  overflow-y: scroll;
 `;
 
 const ConImg = styled.div`
@@ -381,7 +382,7 @@ const DText = styled.div`
   text-align: center;
   justify-content: center;
   height: 100%;
-
+  margin-bottom:2%;
   align-items: center;
   border-radius: 10px;
   text-shadow: rgb(10 50 10 / 40%) 0.7px 0.7px 0.7px;
@@ -427,14 +428,14 @@ const EmptyText = styled.div`
 const Contents = styled.div`
   /* background-color: green; */
   width: 90%;
-  height: 55%;
+  height: 30%;
   color: black;
   font-weight: bold;
   display: flex;
   margin-bottom: 5%;
   box-sizing: border-box;
   align-items: baseline;
-  overflow: scroll;
+  
 `;
 
 export default MDetailPost;

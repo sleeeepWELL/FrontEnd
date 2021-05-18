@@ -297,7 +297,7 @@ const MemoText = styled.div`
   @media (max-width: 975px) {
     height: 40%;
   }
-  overflow: scroll;
+  overflow-y: scroll;
 `;
 
 

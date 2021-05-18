@@ -38,12 +38,11 @@ const Backgroud = styled.div`
   flex-direction: column;
   align-items: center;
   width: 100%;
-  margin-bottom: 5rem;
   ${(props) => (props.bg ? `background-color: ${props.bg};` : "")}
 `;
 
 const BackImg = styled.img`
-  width: 70%;
+  width: 50%;
   z-index: 1;
   @media (max-width: 414px) {
     width: 100%;

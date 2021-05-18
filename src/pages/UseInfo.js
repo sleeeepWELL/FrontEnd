@@ -45,6 +45,9 @@ const Backgroud = styled.div`
 const BackImg = styled.img`
   width: 70%;
   z-index: 1;
+  @media (max-width: 414px) {
+    width: 100%;
+  }
 `;
 
 export default UseInfo;

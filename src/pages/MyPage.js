@@ -194,10 +194,17 @@ const TotalContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  width: 50%;
+  width: 40%;
   height: 75%;
   background-color: none;
   border-radius: 20px;
+
+  @media (max-width: 1024px) {
+    width: 50%;
+  }
+  @media (max-width: 320px) {
+    width: 70%;
+  }
 `;
 
 const CheckBnt = styled.button`

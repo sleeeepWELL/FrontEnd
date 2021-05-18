@@ -72,6 +72,7 @@ const Navigator = () => {
     <React.Fragment>
       <Wrap>
         <FstContainer>
+          <Between></Between>
           <LogoImg className="Logo" id="logo" onClick={LogoClick} />
         </FstContainer>
         <CategoryContainer>
@@ -99,6 +100,23 @@ const Navigator = () => {
     </React.Fragment>
   );
 };
+
+const Between = styled.div`
+  display: flex;
+  width: 15px;
+  box-sizing: border-box;
+  @media (max-width: 411px) {
+    width: 5px;
+  }
+
+  @media (max-width: 320px) {
+    width: 5px;
+  }
+
+  @media (max-width: 280px) {
+    width: 1px;
+  }
+`;
 
 const FstContainer = styled.div`
   display: flex;

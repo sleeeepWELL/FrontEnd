@@ -61,9 +61,10 @@ const Wrap = styled.div`
   border-bottom: 0.8px solid #bebcbc;
   position: fixed;
   box-sizing: border-box;
-  top: 0%;
+  top: 0;
   z-index: 9999;
   border: none;
+  /* opacity: 0.5; */
 `;
 
 const LogoImg = styled.div`

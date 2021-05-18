@@ -128,7 +128,7 @@ const MCalendar = (props) => {
             );
           }}
         >
-          <MMText><ChevronLeftIcon/></MMText>
+          <ChevronLeftIcon style={{width:"50%", height:"40%", color:"grey"}}/>
           <MText1 className="Helvetica">
             {move_month - 1 === 0
               ? parseInt(moment(today).format("YYYY")) - 1 + "." + 12
@@ -148,8 +148,7 @@ const MCalendar = (props) => {
               todoActions.changeToday(moment(today).clone().add(1, "month"))
             );
           }}
-        >
-          <MMText><ChevronRightIcon/></MMText>
+        ><ChevronRightIcon style={{width:"50%", height:"40%", color:"grey"}}/>
           <MText2 className="Helvetica">
             {move_month + 1 === 13
               ? parseInt(moment(today).format("YYYY")) + 1 + "." + "01"
@@ -235,6 +234,8 @@ const MText1 =styled.div`
   margin-left: 5%;
   text-shadow: rgb(10 50 10 / 40%) 0.5px 0.5px 0.5px;
  `
+
+ 
  const MText2 =styled.div`
   font-weight: bold;
   font-family: "Helvetica";
@@ -247,7 +248,7 @@ const MText1 =styled.div`
 
 const MoveLButton = styled.button`
  width: 15%;
- font-size: 2.5vw;
+ font-size: 70%;
  background-color:#F3F3F3;
  border: none;
  display:flex;
@@ -269,14 +270,13 @@ const MoveRButton = styled.button`
 `;
 
 const MMText = styled.div`
- display: flex;
- align-items: center;
-
-  font-weight: bold;
+ text-align: center;
+ border: 1px solid red;
+ width: 55%;
+ height: 50%;
   color: #000000 ;
   opacity: 60%;
-  margin-bottom:  0.3vw;
-  text-shadow: rgb(10 50 10 / 40%) 0.5px 0.5px 0.5px;
+  text-shadow: rgb(10 50 10 / 40%) 0.1% 0.1% 0.1%;
 `;
 //
 
@@ -358,7 +358,7 @@ const DayText = styled.div`
   height:90%;
   width:28%;
 
-  margin-right: 4%;
+  margin-right: 1.5%;
   margin-top: 4%;
   font-size: 60%;
   font-weight: 550;

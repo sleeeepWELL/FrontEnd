@@ -60,7 +60,8 @@ const ConImg = styled.div`
   display: flex;
   position: absolute;
   background-position: center;
-  padding: 2px;
+  padding: 1.3%;
+  margin-bottom:4%;
 `;
 
 const TopInfo = styled.div`

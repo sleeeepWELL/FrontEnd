@@ -185,7 +185,7 @@ const MDetailPost = (props) => {
 
             <Contents>
               <TimeText className="ConditionText">메모</TimeText>
-              <TimeText2 className="TimeText">{props.date.memo}</TimeText2>
+              <MemoText className="TimeText">{props.date.memo}</MemoText>
             </Contents>
           </MainContainer>
         </ModalComponent>
@@ -222,7 +222,8 @@ const ModalComponent = styled.div`
 const MainContainer = styled.div`
   width: 100%;
   height: 100%;
-  padding: 0% 5% 5% 4%;
+  margin-left:8%;
+  margin-bottom:5%;
   box-sizing: border-box;
   /* background-color: green; */
   
@@ -262,6 +263,17 @@ const ConditionText = styled.div`
   font-weight: bold;
   display: flex;
   align-items: center;
+`;
+
+const MemoText = styled.div`
+  width: 75%;
+  color: black;
+  font-size: 14px;
+  /* margin: 5px 0px 0px 10px; */
+  font-weight: bold;
+  display: flex;
+  justify-content: flex-start;
+  overflow: scroll;
 `;
 
 const ConImg = styled.div`
@@ -335,23 +347,24 @@ const LeftHeader = styled.div`
   flex-direction: row;
   width: 60%;
   height: 13%;
-
+  
   margin: 2% auto;
   text-align: center;
   box-sizing: border-box;
-
-  
+  align-items:center;
+  justify-content: center;
 `;
 
 
 
 const MoveDButton = styled.button`
-  width: 10%;
+  width: 15%;
   height: 100%;
   font-weight: bold;
   border-radius: 5px;
+  border:none;
   outline: none;
-  border: none;
+
   cursor: pointer;
   color: #4a5566;
   background-color: white;
@@ -359,11 +372,12 @@ const MoveDButton = styled.button`
   text-shadow: rgb(10 50 10 / 40%) 0.7px 0.7px 0.7px;
 `;
 const DText = styled.div`
+
   display: flex;
   font-weight: bold;
   font-size: 2.2vh;
   color: #4a5566;
-  width: 80%;
+  width: 56%;
   text-align: center;
   justify-content: center;
   height: 100%;

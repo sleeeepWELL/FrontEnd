@@ -3,7 +3,6 @@ import styled, { keyframes } from "styled-components";
 import "../components/Font.css";
 
 const MTable = (props) => {
-  console.log(props);
   const monthly_tag = props.table.monthly_tag;
   const monthly_condition = props.table.monthly_condition;
   const weekly_s_average = props.table.week_sleepaverage;
@@ -51,7 +50,7 @@ const MTable = (props) => {
                 <div>{monthly_condition[3]}</div>
                 <div>{monthly_condition[4]}</div>
               </Value2>
-            </Text>{" "}
+            </Text>
           </Box2>
 
           <Box3>
@@ -74,7 +73,7 @@ const CContainer = styled.div`
   flex-direction: column;
   color: black;
   align-items: center;
-  /* border: 1px solid black; */
+  justify-content: center;
 `;
 
 const Text = styled.div`
@@ -82,6 +81,9 @@ const Text = styled.div`
   height: 100%;
   font-weight: 700;
   font-size: 0.4rem;
+  @media (max-width: 320px) {
+    font-size: 0.2rem;
+  }
 `;
 
 const TText = styled.div`
@@ -92,23 +94,18 @@ const TText = styled.div`
 
   text-align: center;
   align-items: center;
-  /* border: 1px solid black; */
+  @media (max-width: 320px) {
+    font-size: 0.5rem;
+  }
 `;
 
 const TitleContainer = styled.div`
   position: relative;
   width: 100%;
   height: 10%;
-  /* padding-bottom: 5%; */
   display: flex;
   justify-content: space-between;
-  margin: 20% 0 -5% 0;
-
-  /* text-align: center; */
-  /* text-align: justify; */
-
-  /* align-items: center; */
-  /* border: 1px solid red; */
+  align-items: center;
 `;
 
 const Title = styled.div`
@@ -117,7 +114,7 @@ const Title = styled.div`
   width: 60%;
   height: 50%;
   justify-content: space-between;
-  text-align: left;
+  text-align: center;
   margin: auto 14%;
 `;
 
@@ -135,24 +132,29 @@ const Value = styled.div`
 const Title2 = styled.div`
   display: flex;
   flex-direction: column;
-  width: 80%;
-  height: 50%;
+  width: 60%;
+  height: 60%;
   justify-content: space-between;
   text-align: left;
-  margin: 16% 0% 0% 13%;
-  /* border: 1px solid black; */
+  margin: 17% 0% 0% 12%;
+  padding-left: 4px;
+  @media (max-width: 320px) {
+    width: 70%;
+    font-size: 0.2rem;
+    padding-left: 5px;
+    padding-bottom: 2px;
+  }
 `;
 
 const Value2 = styled.div`
   display: flex;
   flex-direction: column;
-  width: 20%;
-  height: 50%;
+  width: 40%;
+  height: 60%;
   justify-content: space-between;
-  margin: 16% 7% 0% 0%;
+  margin: 17% 0% 0% 7%;
   color: black;
   text-align: left;
-  /* border: 1px solid blue; */
 `;
 
 const boxFade = keyframes`
@@ -180,17 +182,15 @@ const slidein = keyframes`
 const Box1 = styled.div`
   position: absolute;
   display: flex;
+  height: 100%;
   top: 0;
   left: 0;
   width: 31%;
-  height: 99%;
-  border-radius: 23vh;
+  border-radius: 50%;
   text-align: center;
-
   align-items: center;
   animation: ${slidein} 1.3s infinite alternate;
   box-shadow: rgb(82 82 82/ 40%) 0px 5px 8px 0px;
-
   margin-left: 1.5%;
 `;
 
@@ -200,9 +200,9 @@ const Box2 = styled.div`
   top: 0;
   left: 33%;
   width: 31%;
-  height: 99%;
+  height: 100%;
 
-  border-radius: 23vh;
+  border-radius: 50%;
   text-align: center;
   align-items: center;
   animation: ${slidein} 1s infinite alternate;
@@ -216,10 +216,8 @@ const Box3 = styled.div`
   top: 0;
   left: 66%;
   width: 31%;
-  height: 99%;
-
-  border-radius: 23vh;
-
+  height: 100%;
+  border-radius: 50%;
   align-items: center;
   animation: ${slidein} 1.5s infinite alternate;
   box-shadow: rgb(82 82 82/ 40%) 0px 5px 8px 0px;
@@ -229,15 +227,9 @@ const Box3 = styled.div`
 const BoxContainer = styled.div`
   position: relative;
   width: 100%;
-  height: 0;
   padding-bottom: 30%;
-  top: 10%;
-  justify-content: space-between;
-
   display: flex;
-
   align-items: center;
-  /* border: 1px solid blue; */
 `;
 
 export default MTable;

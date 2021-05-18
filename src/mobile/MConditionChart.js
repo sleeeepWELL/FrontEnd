@@ -80,7 +80,7 @@ const Container = styled.div`
   height: 60%;
   font-size: 14px;
   background-color: #ffffff;
-  border-radius: 45px;
+  border-radius: 20px;
   border: 0.5px solid black;
   box-shadow: rgb(0, 0, 0, 15%) 0px 5px 5px 0px;
 `;
@@ -130,6 +130,7 @@ const ColorBox = styled.div`
 `;
 
 const Text = styled.div`
+  word-break: keep-all;
   font-size: 0.8rem;
   margin: 0px 0.5rem;
   @media (max-width: 700px) {

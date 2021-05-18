@@ -1,8 +1,8 @@
 import React from "react";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import background from "../images/background_A.png";
 import "./Font.css";
-
+import Star from "../image/star.png";
 const Graphic = () => {
   return (
     <>
@@ -21,6 +21,7 @@ const Graphic = () => {
           </MadeByWrap> */}
         </MiddleContainer>
         <BottomContainer>
+        <StarImg src={Star} />
           <BottomInfoBox className="BottomInfo">
             <BottomInfo>
               sleepwell은 수면 시간을 기록하여 정확한 분석을 바탕으로 가장
@@ -68,6 +69,27 @@ const BottomContainer = styled.div`
   width: 100%;
   height: 20vh;
   align-items: flex-end;
+`;
+
+const boxFade = keyframes`
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+ `;
+
+const StarImg = styled.img`
+  display: flex;
+  position: absolute;
+  width: 100px;
+  height: 13vh;
+  justify-content: center;
+ animation: ${boxFade} 1.5s infinite alternate;
+  top:3%;
+  left:29%;
+  z-index:1;
 `;
 
 const Title = styled.div`

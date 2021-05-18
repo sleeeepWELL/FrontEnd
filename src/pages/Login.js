@@ -1,5 +1,5 @@
 import React from "react";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import { history } from "../redux/configureStore";
 import kakaologo from "../images/kakao.png";
 import { actionCreators as userActions } from "../redux/modules/user";
@@ -9,6 +9,8 @@ import { debounce } from "lodash";
 import Graphic from "../components/Graphic";
 import "../components/Font.css";
 import MLogin from "../mobile/MLogin";
+
+
 
 import { KAKAO_AUTH_URL } from "../shared/OAuth";
 
@@ -61,6 +63,7 @@ const Login = (props) => {
       <React.Fragment>
         <Wrap>
           <Graphic />
+         
           <LoginWrap>
             <LoginContainer>
               <SemiContainer className="TimeText">
@@ -135,6 +138,7 @@ const LoGin = styled.div`
   color: black;
   font-size: 30px;
 `;
+
 
 const Or = styled.div`
   display: flex;

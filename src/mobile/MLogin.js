@@ -1,5 +1,5 @@
 import React from "react";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import { history } from "../redux/configureStore";
 import kakaologo from "../images/kakao.png";
 import { actionCreators as userActions } from "../redux/modules/user";
@@ -123,6 +123,14 @@ const TotalContainer = styled.div`
   flex-direction: column;
   height: 100%;
 `;
+const boxFade = keyframes`
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+ `;
 
 const LogoImg = styled.img`
   display: flex;
@@ -130,6 +138,7 @@ const LogoImg = styled.img`
   width: 100px;
   height: 13vh;
   justify-content: center;
+ animation: ${boxFade} 2s;
 `;
 
 const LoGin = styled.div`

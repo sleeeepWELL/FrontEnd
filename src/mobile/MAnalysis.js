@@ -171,11 +171,15 @@ const Container = styled.div`
 
 const BtnContainer = styled.div`
   word-break: keep-all;
-  display: flex;
   width: 100%;
-  height: 12%;
+  height: 15%;
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 1rem;
+
   justify-content: center;
   align-items: center;
+
   box-sizing: border-box;
 `;
 
@@ -210,6 +214,7 @@ const ChartContainer1 = styled.div`
   display: flex;
   width: 100%;
   height: 30%;
+  margin-top: 15%;
   justify-content: center;
   align-content: center;
 
@@ -224,6 +229,7 @@ const ResultContainer2 = styled.div`
   height: 20%;
   justify-content: center;
   padding-top: 5%;
+  margin-top: 20%;
 `;
 
 const Background = styled.div`

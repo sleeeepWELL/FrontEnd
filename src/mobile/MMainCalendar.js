@@ -89,8 +89,6 @@ const PostContainer = styled.div`
 const SearchContainer = styled.div`
   display: flex;
   width: 100%;
-
-
   margin-top: 2%;
   align-content: center;
   border-radius: 20px;

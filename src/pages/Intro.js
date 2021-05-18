@@ -1,5 +1,4 @@
 import React from "react";
-import Cube from "../components/Cube";
 import styled, { keyframes } from "styled-components";
 import { history } from "../redux/configureStore";
 import IntroA from "../images/Intro_A.jpg";
@@ -17,17 +16,6 @@ const Intro = () => {
     <React.Fragment>
       <Wrap>
         <IntroHeader />
-        {/* <div
-          style={{
-            display: "flex",
-            width: "100%",
-            height: "27vh",
-            backgroundColor: "green",
-            zIndex: "9",
-          }}
-        >
-          .
-        </div> */}
         <Backgroud bg={"#DBDBDB"}>
           <BackImg src={IntroA} />
         </Backgroud>

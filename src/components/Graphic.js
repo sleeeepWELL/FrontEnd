@@ -21,7 +21,7 @@ const Graphic = () => {
           </MadeByWrap> */}
         </MiddleContainer>
         <BottomContainer>
-        <StarImg src={Star} />
+        <StarImg src={Star}/>
           <BottomInfoBox className="BottomInfo">
             <BottomInfo>
               sleepwell은 수면 시간을 기록하여 정확한 분석을 바탕으로 가장

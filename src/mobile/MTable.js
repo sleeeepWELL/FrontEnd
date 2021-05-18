@@ -12,9 +12,9 @@ const MTable = (props) => {
     <React.Fragment>
       <CContainer>
         <TitleContainer>
-          <TText className="TimeText"> 월간 태그 빈도수&nbsp;</TText>
-          <TText className="TimeText"> 월간 컨디션 빈도수&nbsp;</TText>
-          <TText className="TimeText"> &nbsp;주간 수면시간 평균 </TText>{" "}
+          <TText className="TimeText"> 월간 태그 빈도수</TText>
+          <TText className="TimeText"> 월간 컨디션 빈도수</TText>
+          <TText className="TimeText"> 주간 수면시간 평균 </TText>{" "}
         </TitleContainer>
 
         <BoxContainer>
@@ -81,14 +81,14 @@ const Text = styled.div`
   width: 100%;
   height: 100%;
   font-weight: 700;
-  font-size: 0.5rem;
+  font-size: 0.4rem;
 `;
 
 const TText = styled.div`
   width: 33%;
   height: 100%;
   font-weight: 700;
-  font-size: 0.8rem;
+  font-size: 0.7rem;
 
   text-align: center;
   align-items: center;
@@ -118,7 +118,7 @@ const Title = styled.div`
   height: 50%;
   justify-content: space-between;
   text-align: left;
-  margin: auto 10%;
+  margin: auto 14%;
 `;
 
 const Value = styled.div`
@@ -127,7 +127,7 @@ const Value = styled.div`
   width: 40%;
   height: 50%;
   justify-content: space-between;
-  margin: auto;
+  margin: auto 10%;
   color: black;
   text-align: left;
 `;
@@ -139,7 +139,8 @@ const Title2 = styled.div`
   height: 50%;
   justify-content: space-between;
   text-align: left;
-  margin: 16%;
+  margin: 16% 0% 0% 12%;
+  border: 1px solid black;
 `;
 
 const Value2 = styled.div`
@@ -148,9 +149,10 @@ const Value2 = styled.div`
   width: 40%;
   height: 50%;
   justify-content: space-between;
-  margin: 16% 0% 0% 0%;
+  margin: 16% 0% 0% 7%;
   color: black;
   text-align: left;
+  border: 1px solid blue;
 `;
 
 const boxFade = keyframes`

@@ -81,6 +81,7 @@ const Text = styled.div`
   height: 100%;
   padding-top: 3px;
   font-weight: bold;
+  font-size: 1vw;
 `;
 
 const Title = styled.div`
@@ -100,7 +101,7 @@ const Value = styled.div`
   height: 50%;
   justify-content: space-between;
   margin: auto;
-  color: lightgrey;
+  color: black;
   text-align: left;
 `;
 
@@ -113,7 +114,7 @@ const boxFade = keyframes`
   }
  `;
 
- const slidein = keyframes`
+const slidein = keyframes`
   0% {
     margin-top: 2%;
     background-color: yellow;
@@ -127,82 +128,74 @@ const boxFade = keyframes`
   }
  `;
 const Box1 = styled.div`
-
   position: absolute;
-  top:0;
-  left:0;
+  top: 0;
+  left: 0;
   width: 31%;
   height: 99%;
   border-radius: 23vh;
   text-align: center;
   border: 1px grey solid;
   align-items: center;
-  animation: ${slidein} 1.3s  infinite alternate;
+  animation: ${slidein} 1.3s infinite alternate;
   box-shadow: rgb(82 82 82/ 40%) 0px 5px 8px 0px;
- 
-  margin-left:1.5%;
+
+  margin-left: 1.5%;
 `;
 
 const Box2 = styled.div`
-  
   position: absolute;
-  top:0;
-  left:33%;
+  top: 0;
+  left: 33%;
   width: 31%;
   height: 99%;
- 
+
   border-radius: 23vh;
   border: 1px grey solid;
   text-align: center;
   align-items: center;
-  animation: ${slidein} 1s  infinite alternate;
+  animation: ${slidein} 1s infinite alternate;
   box-shadow: rgb(82 82 82/ 40%) 0px 5px 8px 0px;
-  margin-left:1.5%;
+  margin-left: 1.5%;
 `;
 
 const Box3 = styled.div`
-
   position: absolute;
-  top:0;
-  left:66%;
+  top: 0;
+  left: 66%;
   width: 31%;
   height: 99%;
-  
+
   border-radius: 23vh;
 
- 
   align-items: center;
-  animation: ${slidein} 1.5s  infinite alternate;
+  animation: ${slidein} 1.5s infinite alternate;
   box-shadow: rgb(82 82 82/ 40%) 0px 5px 8px 0px;
-  margin-left:1.5%;
+  margin-left: 1.5%;
 `;
 
 const BoxContainer = styled.div`
-position: relative;
-width: 97%;
-height: 0;
-padding-bottom: 30%;
+  position: relative;
+  width: 97%;
+  height: 0;
+  padding-bottom: 30%;
 
   display: flex;
- 
+
   align-items: center;
-  
-  
-  
 `;
 const TitleContainer = styled.div`
-position: relative;
-width: 97%;
-height: 0;
-padding-bottom: 5%;
+  position: relative;
+  width: 97%;
+  height: 0;
+  padding-bottom: 5%;
   display: flex;
   justify-content: space-between;
   margin-top: 5%;
-  
+
   text-align: center;
 
   align-items: center;
-
 `;
 
 export default Table;

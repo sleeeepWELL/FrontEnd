@@ -139,6 +139,7 @@ const Container = styled.div`
   border-radius: 20px;
   width: 99%;
   height: 80%;
+  /* margin: 5%; */
   background-color: white;
   position: relative;
   align-items: center;

@@ -14,9 +14,8 @@ const Table = (props) => {
         <TitleContainer>
           <Text className="TimeText"> 월간 태그 빈도수</Text>
           <Text className="TimeText"> 월간 컨디션 빈도수</Text>
-          <Text className="TimeText"> 주간 수면시간 평균</Text>{" "}
+          <Text className="TimeText"> 주간 수면시간 평균</Text>
         </TitleContainer>
-
         <BoxContainer>
           <Box1>
             <Text className="Contents">
@@ -68,11 +67,11 @@ const Table = (props) => {
 };
 
 const CContainer = styled.div`
-  width: 90%;
+  width: 100%;
   height: 100%;
   display: flex;
   flex-direction: column;
-  color: black;
+  justify-content: center;
   align-items: center;
 `;
 
@@ -132,14 +131,13 @@ const Box1 = styled.div`
   top: 0;
   left: 0;
   width: 31%;
-  height: 99%;
-  border-radius: 23vh;
+  height: 100%;
+  border-radius: 50%;
   text-align: center;
   border: 1px grey solid;
   align-items: center;
   animation: ${slidein} 1.3s infinite alternate;
   box-shadow: rgb(82 82 82/ 40%) 0px 5px 8px 0px;
-
   margin-left: 1.5%;
 `;
 
@@ -150,7 +148,7 @@ const Box2 = styled.div`
   width: 31%;
   height: 99%;
 
-  border-radius: 23vh;
+  border-radius: 50%;
   border: 1px grey solid;
   text-align: center;
   align-items: center;
@@ -166,7 +164,7 @@ const Box3 = styled.div`
   width: 31%;
   height: 99%;
 
-  border-radius: 23vh;
+  border-radius: 50%;
 
   align-items: center;
   animation: ${slidein} 1.5s infinite alternate;
@@ -175,27 +173,19 @@ const Box3 = styled.div`
 `;
 
 const BoxContainer = styled.div`
-  position: relative;
-  width: 97%;
-  height: 0;
-  padding-bottom: 30%;
-
   display: flex;
-
   align-items: center;
+  position: relative;
+  width: 100%;
+  padding-bottom: 30%;
 `;
 const TitleContainer = styled.div`
-  position: relative;
-  width: 97%;
-  height: 0;
-  padding-bottom: 5%;
   display: flex;
+  width: 100%;
   justify-content: space-between;
-  margin-top: 5%;
-
   text-align: center;
-
   align-items: center;
+  padding: 1rem 0px;
 `;
 
 export default Table;

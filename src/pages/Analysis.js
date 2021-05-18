@@ -178,6 +178,9 @@ const Container = styled.div`
   animation: ${FadeIn} 2s;
   display: flex;
   flex-direction: column;
+  @media (max-width: 768px) {
+    width: 80%;
+  }
 `;
 
 const BtnContainer = styled.div`
@@ -189,6 +192,8 @@ const BtnContainer = styled.div`
 `;
 
 const ChartBtn = styled.div`
+  word-break: break-all;
+  text-align: center;
   display: flex;
   width: auto;
   height: 2.5rem;
@@ -199,16 +204,19 @@ const ChartBtn = styled.div`
   font-size: 14px;
   cursor: pointer;
   padding: 0px 13px;
+  color: black;
   box-shadow: rgb(0 0 0 / 10%) 0px 2px 2px 1px;
 `;
 
 const ChartContainer1 = styled.div`
   display: flex;
   width: 100%;
-  height: 40%;
-  margin-bottom: 12%;
+  height: 35%;
   justify-content: center;
   align-content: center;
+  @media (max-width: 1024px) {
+    height: 30%;
+  }
 `;
 
 const ResultContainer2 = styled.div`

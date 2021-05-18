@@ -89,33 +89,19 @@ const MAnalysis = () => {
           </ChartContainer1>
           <BtnContainer>
             <ChartBtn className="TimeText" id="Condition" onClick={GetClick}>
-              연간
-              <br />
-              컨디션
+              연간 컨디션
             </ChartBtn>
             <div style={{ width: "2rem" }}></div>
             <ChartBtn className="TimeText" id="weekTag" onClick={GetClick}>
-              주간
-              <br />
-              태그
-              <br />
-              현황
+              주간 태그 현황
             </ChartBtn>
             <div style={{ width: "2rem" }}></div>
             <ChartBtn className="TimeText" id="monthTag" onClick={GetClick}>
-              월간
-              <br />
-              태그
-              <br />
-              현황
+              월간 태그 현황
             </ChartBtn>
             <div style={{ width: "2rem" }}></div>
             <ChartBtn className="TimeText" id="weekSleep" onClick={GetClick}>
-              주간
-              <br />
-              수면
-              <br />
-              시간
+              주간 수면 시간
             </ChartBtn>
             <div style={{ width: "2rem" }}></div>
             <ChartBtn className="TimeText" id="table" onClick={GetClick}>
@@ -184,24 +170,21 @@ const Container = styled.div`
 `;
 
 const BtnContainer = styled.div`
-  width: 100%;
-  height: 15%;
+  word-break: keep-all;
   display: flex;
-  flex-direction: row;
-  margin-bottom: 1rem;
-
+  width: 100%;
+  height: 12%;
   justify-content: center;
   align-items: center;
-
   box-sizing: border-box;
-  /* border: 1px solid black; */
 `;
 
 const ChartBtn = styled.div`
   display: flex;
-  width: auto;
+  width: 24%;
+  margin: 0px;
   height: 3rem;
-  margin-bottom: 1rem;
+  color: black;
   align-items: center;
   background-color: lightgray;
   justify-content: center;
@@ -209,12 +192,17 @@ const ChartBtn = styled.div`
   border-radius: 7px;
   font-size: 0.7rem;
   cursor: pointer;
-  padding: 0px 13px;
   box-shadow: rgb(0 0 0 / 10%) 0px 2px 2px 1px;
-  @media (max-width: 700px) {
-    width: 10rem;
-    height: 3rem;
-    margin-top: 2rem;
+  @media (max-width: 375px) {
+    font-size: 0.5rem;
+  }
+  @media (max-width: 320px) {
+    font-size: 0.4rem;
+  }
+
+  @media (max-width: 280px) {
+    font-size: 0.3rem;
+    width: 8rem;
   }
 `;
 
@@ -222,10 +210,12 @@ const ChartContainer1 = styled.div`
   display: flex;
   width: 100%;
   height: 30%;
-  margin-top: 18%;
   justify-content: center;
   align-content: center;
-  /* border: 1px solid blue; */
+
+  @media (max-width: 320px) {
+    height: 40%;
+  }
 `;
 
 const ResultContainer2 = styled.div`
@@ -233,8 +223,7 @@ const ResultContainer2 = styled.div`
   width: 100%;
   height: 20%;
   justify-content: center;
-  margin-top: 20%;
-  /* border: 1px solid red; */
+  padding-top: 5%;
 `;
 
 const Background = styled.div`
@@ -255,14 +244,20 @@ const Text = styled.div`
   margin-left: 20px;
   margin-top: 5px;
   font-weight: bold;
-  font-size: 18px;
+  font-size: 1rem;
   color: black;
   & > span {
     background-color: rgba(254, 233, 133, 1);
-    padding: 7px;
+    padding: 6px;
     border-radius: 8px;
     box-shadow: rgb(0 0 0 / 10%) 0px 2px 2px 1px;
     cursor: pointer;
+  }
+  @media (max-width: 320px) {
+    font-size: 0.9rem;
+    & > span {
+      padding: 5px;
+    }
   }
 `;
 

@@ -2,19 +2,25 @@ import React from "react";
 import styled from "styled-components";
 import notfound from "../images/notfound.png";
 import { history } from "../redux/configureStore";
+import "../components/Font.css";
 
 const NotFound = () => {
   return (
     <>
       <Wrap>
         <MainImg src={notfound} />
-        <MainInfo>페이지를 찾을 수 없습니다.</MainInfo>
-        <SubInfo>주소가 잘못 입력되었거나, 변경 혹은 삭제되어</SubInfo>
-        <SubInfo>요청하신 페이지를 찾을 수 없습니다.</SubInfo>
-        <SubInfo>입력하신 주소가 정확한지 다시 한번 확인해 주세요.</SubInfo>
+        <MainInfo className="TimeText">페이지를 찾을 수 없습니다.</MainInfo>
+        <SubInfo className="Text">
+          주소가 잘못 입력되었거나, 변경 혹은 삭제되어
+        </SubInfo>
+        <SubInfo className="Text">요청하신 페이지를 찾을 수 없습니다.</SubInfo>
+        <SubInfo className="Text">
+          입력하신 주소가 정확한지 다시 한번 확인해 주세요.
+        </SubInfo>
         <MainBtn
+          className="TimeText"
           onClick={() => {
-            history.replace("/main");
+            history.replace("/");
           }}
         >
           메인으로 이동

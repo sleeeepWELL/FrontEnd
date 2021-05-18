@@ -1,4 +1,3 @@
-
 @font-face {
   font-family: "NanumSquare_acEB";
   src: url("../fonts/NanumSquare_acEB.ttf") format("truetype");
@@ -42,10 +41,9 @@
 
 /* Calendar */
 
-
-
-
-
+.Text {
+  font-family: "NanumSquareL";
+}
 
 /* ToDo */
 .SleepTime {

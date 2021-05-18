@@ -72,7 +72,7 @@ const Navigator = () => {
     <React.Fragment>
       <Wrap>
         <FstContainer>
-          <LogoImg src={Logo} className="Logo" id="logo" onClick={LogoClick} />
+          <LogoImg className="Logo" id="logo" onClick={LogoClick} />
         </FstContainer>
         <CategoryContainer>
           <CategoryBox className="TimeText" id="main" onClick={GetClick}>
@@ -151,14 +151,17 @@ const CategoryBox = styled.div`
   }
 `;
 
-const LogoImg = styled.img`
-  width: 80%;
+const LogoImg = styled.div`
+  width: 100%;
   height: 7vh;
   display: flex;
   margin: 0px;
   cursor: pointer;
   outline: none;
   border: none;
+  background: url("${Logo}");
+  background-size: auto 100%;
+  background-repeat: no-repeat;
 `;
 
 const LogoutBox = styled.div`

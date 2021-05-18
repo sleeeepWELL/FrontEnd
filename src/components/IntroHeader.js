@@ -11,27 +11,35 @@ const IntroHeader = () => {
         <FstContainer>
           <LogoImg src={Logo} className="Logo" id="logo" />
         </FstContainer>
-        <CategoryContainer></CategoryContainer>
-        <LogInBox
-          className="TimeText"
-          onClick={() => {
-            history.replace("/login");
-          }}
-        >
-          <span>로그인</span>
-        </LogInBox>
-        <SignUpBox
-          className="TimeText"
-          onClick={() => {
-            history.replace("/signup");
-          }}
-        >
-          <span>회원가입</span>
-        </SignUpBox>
+        <CategoryContainer />
+        <BtnContainer>
+          <LogInBox
+            className="TimeText"
+            onClick={() => {
+              history.replace("/login");
+            }}
+          >
+            <span>로그인</span>
+          </LogInBox>
+          <SignUpBox
+            className="TimeText"
+            onClick={() => {
+              history.replace("/signup");
+            }}
+          >
+            <span>회원가입</span>
+          </SignUpBox>
+        </BtnContainer>
       </Wrap>
     </React.Fragment>
   );
 };
+
+const BtnContainer = styled.div`
+  display: flex;
+  width: 40%;
+  justify-content: flex-end;
+`;
 
 const FstContainer = styled.div`
   display: flex;
@@ -50,7 +58,7 @@ const Wrap = styled.div`
   height: 7vh;
   align-items: center;
   border-bottom: 0.8px solid #bebcbc;
-  position: sticky;
+  position: fixed;
   box-sizing: border-box;
   top: 0%;
   z-index: 9999;
@@ -68,9 +76,9 @@ const LogoImg = styled.img`
 `;
 
 const LogInBox = styled.div`
-  width: 10%;
   display: flex;
   font-size: 1.3rem;
+  margin-right: 1rem;
   justify-content: flex-end;
   cursor: pointer;
   color: black;
@@ -123,9 +131,9 @@ const LogInBox = styled.div`
 `;
 
 const SignUpBox = styled.div`
-  width: 15%;
   display: flex;
   font-size: 1.3rem;
+  margin-right: 1rem;
   justify-content: center;
   cursor: pointer;
   color: black;
@@ -144,6 +152,7 @@ const SignUpBox = styled.div`
 
   @media (max-width: 768px) {
     font-size: 1rem;
+    margin-right: 0.8rem;
     & > span {
       padding: 0.6rem;
     }
@@ -158,6 +167,7 @@ const SignUpBox = styled.div`
 
   @media (max-width: 414px) {
     font-size: 0.7rem;
+    margin-right: 0.5rem;
     & > span {
       padding: 0.3rem;
     }
@@ -179,7 +189,7 @@ const SignUpBox = styled.div`
 
 const CategoryContainer = styled.div`
   display: flex;
-  width: 70%;
+  width: 45%;
   justify-content: space-around;
   font-weight: 600;
 `;

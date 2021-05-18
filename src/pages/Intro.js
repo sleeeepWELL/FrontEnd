@@ -81,12 +81,35 @@ const GoBtn = styled.div`
     color: white;
     transition: ease 0.3s;
   }
+
+  @media (max-width: 768px) {
+    font-size: 1.5rem;
+    align-items: flex-start;
+  }
+
+  @media (max-width: 414px) {
+    font-size: 0.9rem;
+    align-items: flex-start;
+    height: 1.5rem;
+  }
+
+  @media (max-width: 360px) {
+    font-size: 0.8rem;
+    align-items: flex-start;
+    height: 1.5rem;
+  }
+
+  @media (max-width: 280px) {
+    font-size: 0.7rem;
+    align-items: center;
+    height: 1.5rem;
+  }
 `;
 
 const Wrap = styled.div`
   display: flex;
   width: 100vw;
-  height: 550vh;
+  height: 100vh;
   flex-direction: column;
   align-items: center;
   background-color: #dbdbdb;

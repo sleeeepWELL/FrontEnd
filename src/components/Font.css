@@ -20,7 +20,8 @@
 
 @font-face {
   font-family: "Helvetica";
-  src: url("../fonts/Helvetica95-Black.woff") format("woff");
+  src: url("../fonts/Helvetica95-Black.woff") format("woff"),
+    url("../fonts/Helvetica\ Black.ttf") format("truetype");
 }
 
 /* @font-face {
@@ -35,7 +36,8 @@
 
 @font-face {
   font-family: "Helvetica B";
-  src: url("../fonts/Helvetica75-Bold.woff") format("woff");
+  src: url("../fonts/Helvetica75-Bold.woff") format("woff"),
+    url("../fonts/Helvetica\ Bold.ttf") format("truetype");
 }
 
 .Helvetica {
@@ -59,14 +61,14 @@
 .SleepTime {
   font-family: "Helvetica";
   font-size: 2vh;
-  font-weight: bold;
+
   /* margin-top: 0.5vh; */
 }
 
 .SleepMin {
   font-family: "Helvetica";
   font-size: 1.5vh;
-  font-weight: bold;
+
   /* margin-bottom: 0.5vh; */
 }
 

@@ -92,13 +92,12 @@ const SleepTime = styled.div`
 
 const Total = styled.div`
   display: flex;
-  font-weight: 700;
   margin-top: 0.5vh;
 `;
 
 const TotalMin = styled.div`
   display: flex;
-  font-weight: 600;
+
   margin-bottom: 0.5vh;
   /* border: 1px solid black; */
 `;

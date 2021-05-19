@@ -541,7 +541,7 @@ const DText = styled.div`
 `;
 
 const AddButton = styled.button`
-  width: 14%;
+  width: 16%;
   height: 100%;
   background-color: #4a5566;
   font-weight: bold;

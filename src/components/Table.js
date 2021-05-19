@@ -116,14 +116,14 @@ const boxFade = keyframes`
 const slidein = keyframes`
   0% {
     margin-top: 2%;
-    background-color: yellow;
+    background-color:  #FFF9DF;
   }
   // 50%{
   //   margin-top: 1%;
   // }
   100% {
     margin-top: 0%;
-    background-color: gold;
+    background-color: #FEFOAE ;
   }
  `;
 const Box1 = styled.div`
@@ -134,9 +134,10 @@ const Box1 = styled.div`
   height: 100%;
   border-radius: 50%;
   text-align: center;
-  border: 1px grey solid;
+  background-color:  #FFF9DF;
   align-items: center;
   animation: ${slidein} 1.3s infinite alternate;
+  animation-iteration-count: 3;
   box-shadow: rgb(82 82 82/ 40%) 0px 5px 8px 0px;
   margin-left: 1.5%;
 `;
@@ -149,10 +150,11 @@ const Box2 = styled.div`
   height: 99%;
 
   border-radius: 50%;
-  border: 1px grey solid;
+  background-color:  #FFF9DF;
   text-align: center;
   align-items: center;
   animation: ${slidein} 1s infinite alternate;
+  animation-iteration-count: 3;
   box-shadow: rgb(82 82 82/ 40%) 0px 5px 8px 0px;
   margin-left: 1.5%;
 `;
@@ -165,9 +167,11 @@ const Box3 = styled.div`
   height: 99%;
 
   border-radius: 50%;
-
+  background-color:  #FFF9DF;
   align-items: center;
-  animation: ${slidein} 1.5s infinite alternate;
+  animation: ${slidein} 1.5s alternate;
+  animation-iteration-count: 3;
+
   box-shadow: rgb(82 82 82/ 40%) 0px 5px 8px 0px;
   margin-left: 1.5%;
 `;
@@ -176,12 +180,13 @@ const BoxContainer = styled.div`
   display: flex;
   align-items: center;
   position: relative;
-  width: 100%;
-  padding-bottom: 30%;
+  width: 76%;
+  padding-bottom: 23%;
+  margin-top:1%;
 `;
 const TitleContainer = styled.div`
   display: flex;
-  width: 100%;
+  width: 76%;
   justify-content: space-between;
   text-align: center;
   align-items: center;

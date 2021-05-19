@@ -59,11 +59,10 @@ const ConditionChart = (props) => {
 
 const Container = styled.div`
   width: 100%;
-  margin-top: 8%;
-  height: 60%;
+  height: 92%;
   font-size: 14px;
   background-color: white;
-  border-radius: 45px;
+  border-radius: 20px;
   border: 0.5px solid black;
   box-shadow: rgb(0, 0, 0, 15%) 0px 5px 5px 0px;
 `;

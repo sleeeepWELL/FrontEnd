@@ -74,12 +74,18 @@ const CContainer1 = styled.div`
   display: flex;
   border-radius: 20px;
   width: 99%;
-  height: 80%;
+  height: 88%;
   background-color: white;
   position: relative;
   align-items: center;
   border: 0.5px solid black;
   box-shadow: rgb(0, 0, 0, 15%) 0px 5px 5px 0px;
+  padding: 1% 5%;
+  @media (max-width: 375px) {
+    width: 92%;
+    height: 80%;
+    padding: 1% 3%;
+  };
 `;
 
 export default WeekBarChart;

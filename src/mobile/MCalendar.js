@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect,useState } from "react";
 import { Grid, Button, Text } from "../elements/Styles";
 import MToDo from "../mobile/MToDo";
 import moment from "moment";
@@ -18,6 +18,7 @@ const MCalendar = (props) => {
   const dispatch = useDispatch();
   const today = useSelector((state) => state.todo.today);
   const todo_list = useSelector((state) => state.todo.todo_list);
+  const [selectday,_changeColor]= useState(today.format("DD"));
 
   React.useEffect(() => {
     dispatch(todoActions.getAllPostAX());
@@ -80,23 +81,24 @@ const MCalendar = (props) => {
                 key={`${moment(today).format(
                   "MM"
                 )}_week_${week_index}_day_${day_index}`}
-                bg={"#FFFFFF"}
-                // bg={
-                //   is_today && moment(today).format("MM") === _day.format("MM")
-                //     ? "gray"
-                //     : "#FFFFFF"
-                // }
+             // bg={"#FFFFFF"}
+             bg={selectday ===_day.format("DD")
+             ? "#4a5566"
+             : "#FFFFFF"
+         }
 
-                onClick={() => {
-                  props._showModify(false);
-                  dispatch(todoActions.getOnePostAX(_day.format("YYYY-MM-DD")));
-                }}
-              >
+
+         onClick={() => {
+          props._showModify(false);
+          _changeColor(_day.format("DD"));
+          dispatch(todoActions.getOnePostAX(_day.format("YYYY-MM-DD")));
+        }}
+      >
                 <TextBox>
                 <DayText
                   className="Helvetica"
                   bg={is_today ? "black" : null}
-                  font_c={is_today ? "white" : "black"}
+                  font_c={is_today||selectday ===_day.format("DD")? "white" : "black"}
                   br={is_today ? "50%" : "null"}
                 >
                   {_day.format("DD")}
@@ -293,7 +295,7 @@ const WEEK = styled.div`
   align-items: center;
   width: 80%;
   height:2.4vh;
-  padding-top: 2%;
+  padding-top: 1%;
   font-size: 1vh;
   font-weight: bold;
 `

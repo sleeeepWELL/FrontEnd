@@ -8,6 +8,8 @@ import IntroD from "../images/Intro_D.jpg";
 import IntroEE from "../images/Intro_EE.jpg";
 import IntroG from "../images/Intro_G.jpg";
 import IntroH from "../images/Intro_H.jpg";
+import Title3 from "../images/Title3.png";
+
 import IntroHeader from "../components/IntroHeader";
 import "../components/Font.css";
 
@@ -17,6 +19,7 @@ const Intro = () => {
       <Wrap>
         <IntroHeader />
         <Backgroud bg={"#DBDBDB"}>
+          {/* <Title3Img src={Title3}/> */}
           <BackImg src={IntroA} />
         </Backgroud>
         <Backgroud bg={"white"}>
@@ -93,6 +96,34 @@ const GoBtn = styled.div`
   }
 `;
 
+
+
+// const slidein = keyframes`
+// 0% {
+//   margin-left: 30%;
+//   background-color: yellow;
+// }
+
+// 100% {
+//   margin: 0%;
+//   background-color: gold;
+// }
+// `;
+
+// const Title3Img = styled.img`
+// display: flex;
+//   position: absolute;
+// width: 60%;
+// height: 18%;
+// top:45%;
+// left:20%;
+// z-index:1;
+//   white-space: nowrap;
+
+//   animation:${slidein}  1s steps(30, end); 
+//`
+
+
 const Wrap = styled.div`
   display: flex;
   width: 100vw;
@@ -116,8 +147,6 @@ const BackImg = styled.img`
   border: none;
   margin: 0px;
   background-color: none;
-  z-index: 1;
-
   @media (max-width: 414px) {
     width: 100%;
   }

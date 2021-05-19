@@ -2,7 +2,15 @@ import React from "react";
 import styled, { keyframes } from "styled-components";
 import background from "../images/background_A.png";
 import "./Font.css";
-import Star from "../image/star.png";
+
+import Astronaut from "../image/astronaut.png";
+import Star1 from "../image/star1.png";
+import Star2 from "../image/star2.PNG";
+import Star3 from "../image/star.png";
+import Moon from "../image/moon.png";
+import Planet from "../image/planet.png";
+import Spaceship from "../image/spaceship.PNG";
+
 const Graphic = () => {
   return (
     <>
@@ -21,7 +29,14 @@ const Graphic = () => {
           </MadeByWrap> */}
         </MiddleContainer>
         <BottomContainer>
-        <StarImg src={Star}/>
+        <AstroImg src={Astronaut}/>
+        {/* <Star3Img src={Star3}/> */}
+        {/* <Star1Img src={Star1}/> */}
+        {/* <Star2Img src={Star2}/> */}
+        <MoonImg src={Moon}/>
+        <PlanetImg src={Planet}/>
+        <SpaceshipImg src={Spaceship}/>
+
           <BottomInfoBox className="BottomInfo">
             <BottomInfo>
               sleepwell은 수면 시간을 기록하여 정확한 분석을 바탕으로 가장
@@ -80,15 +95,103 @@ const boxFade = keyframes`
   }
  `;
 
-const StarImg = styled.img`
+ const slidein = keyframes`
+  0% {
+    margin-top: 1%;
+    background-color: yellow;
+  }
+
+  100% {
+    margin-top: 0%;
+    background-color: gold;
+  }
+  `;
+
+  //
+  const Star1Img = styled.img`
+  display: flex;
+  position: absolute;
+  width: 5.5%;
+  height: 7%;
+  justify-content: center;
+ animation: ${boxFade} 1.5s infinite alternate;
+  top:20.5%;
+  left:22.3%;
+  z-index:1;
+`;
+const Star2Img = styled.img`
   display: flex;
   position: absolute;
   width: 100px;
   height: 13vh;
   justify-content: center;
  animation: ${boxFade} 1.5s infinite alternate;
-  top:3%;
+  top:43%;
   left:29%;
+  z-index:1;
+`;
+
+const Star3Img = styled.img`
+  display: flex;
+  position: absolute;
+  width: 5%;
+  height: 10%;
+  justify-content: center;
+ animation: ${boxFade} 1.5s infinite alternate;
+  top:63%;
+  left:38%;
+  z-index:1;
+`;
+
+const AstroImg = styled.img`
+  display: flex;
+  position: absolute;
+  width: 13%;
+  height: 28%;
+  background-color: white;
+  justify-content: center;
+ animation: ${slidein} 1.3s infinite alternate;
+  top:59%;
+  left:42%;
+  z-index:1;
+`;
+
+const MoonImg = styled.img`
+  display: flex;
+  position: absolute;
+  width: 14%;
+  height: 20%;
+  background-color: white;
+  justify-content: center;
+ animation: ${slidein} 2s infinite alternate;
+  top:6%;
+  left:6%;
+  z-index:1;
+`;
+
+const PlanetImg = styled.img`
+  display: flex;
+  position: absolute;
+  width: 12%;
+  height: 15.5%;
+  background-color: white;
+  justify-content: center;
+ animation: ${slidein} 1.7s infinite alternate;
+  top:8%;
+  left:45%;
+  z-index:1;
+`;
+
+const SpaceshipImg = styled.img`
+  display: flex;
+  position: absolute;
+  width: 8%;
+  height: 12%;
+  background-color: white;
+  justify-content: center;
+ animation: ${slidein} 2.2s infinite alternate;
+  top:30%;
+  left:42.5%;
   z-index:1;
 `;
 

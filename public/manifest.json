@@ -1,22 +1,21 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Sleepwell",
+  "name": "Sleepwell",
   "manifest_version": 2,
   "version": "1.0",
 
-  "description": "A plain text description",
+  "description": "당신의 수면을 위해",
 
 
   "browser_action": {
     "default_icon": {
-        "32": "logo512.png"
+      "32": "favicon.ico",
+      "src": "favicon.ico",
+      "sizes": "64x64 32x32 24x24 16x16",
+      "type": "image/x-icon"
+        
     },
     "default_title": "Sleepwell",
     "default_popup": "index.html"
-  },
-
-  "start_url": ".",
-  "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+  }
 }

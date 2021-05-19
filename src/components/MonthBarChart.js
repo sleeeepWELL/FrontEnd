@@ -75,10 +75,10 @@ const CContainer1 = styled.div`
   border: 0.5px solid black;
   box-shadow: rgb(0, 0, 0, 15%) 0px 5px 5px 0px;
   padding: 1% 5%;
-  @media (max-width: 375px) {
+  @media (max-width: 500px) {
     width: 92%;
     height: 80%;
-    padding: 1% 1%;
+    padding: 1% 2%;
   };
   `;
 

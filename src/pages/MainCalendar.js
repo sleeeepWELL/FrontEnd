@@ -69,10 +69,8 @@ const AllContainer = styled.div`
   flex-direction: row;
   width: 97%;
   height: 90%;
-
   margin-top: 2%;
   animation: ${fadein} 1s;
-  // ease-in infinite alternate
 `;
 
 //캘린더 배경
@@ -122,8 +120,6 @@ const SearchContainer = styled.div`
 const Background = styled.div`
   width: 100%;
   height: 100%;
-  left: 0;
-  top: 0;
   background-color: #dbdbdb;
 `;
 

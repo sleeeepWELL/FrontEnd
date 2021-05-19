@@ -358,8 +358,8 @@ const LeftHeader = styled.div`
 `;
 
 const MoveDButton = styled.button`
-display:flex;  
-width: 15%;
+  display: flex;
+  width: 15%;
   height: 100%;
   font-weight: bold;
   border-radius: 5px;
@@ -381,11 +381,10 @@ const DText = styled.div`
   text-align: center;
   justify-content: center;
   height: 100%;
-  margin-bottom:1.5%;
+  margin-bottom: 1.5%;
   align-items: center;
   border-radius: 10px;
   text-shadow: rgb(10 50 10 / 40%) 0.7px 0.7px 0.7px;
-  
 `;
 
 const ModifyButton = styled.button`
@@ -407,8 +406,11 @@ const ModifyButton = styled.button`
 `;
 
 const AddButton = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 16%;
-  height: 103%;
+  height: 4vh;
   background-color: #4a5566;
   font-weight: bold;
   border-radius: 5px;
@@ -418,6 +420,9 @@ const AddButton = styled.button`
   box-shadow: rgb(82 82 82/ 20%) 0px 5px 8px 0px;
   font-size: 80%;
   margin: 0px 1% 0px 0px;
+  @media (max-width: 320px) {
+    font-size: 0.7rem;
+  }
 `;
 
 const EmptyText = styled.div`
@@ -439,10 +444,9 @@ const Contents = styled.div`
   margin-bottom: 5%;
   box-sizing: border-box;
   align-items: baseline;
-  overflow:auto;
-  white-space:pre-wrap;
-  word-break:break-all;
-  
+  overflow: auto;
+  white-space: pre-wrap;
+  word-break: break-all;
 `;
 
 export default MDetailPost;

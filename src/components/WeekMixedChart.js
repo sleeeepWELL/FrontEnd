@@ -145,6 +145,6 @@ const Container = styled.div`
   border: 0.5px solid black;
   box-shadow: rgb(0, 0, 0, 15%) 0px 5px 5px 0px;
   padding: 1% 5%;
-  `;
+`;
 
 export default WeekMixedChart;

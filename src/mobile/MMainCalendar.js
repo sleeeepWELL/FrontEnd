@@ -88,9 +88,10 @@ const PostContainer = styled.div`
 const SearchContainer = styled.div`
   display: flex;
   width: 100%;
-  margin-top: 2%;
-  align-content: center;
-  border-radius: 20px;
+  margin-top: 5%;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
   // box-shadow: rgb(82 82 82/ 40%) 0px 5px 8px 0px;
 `;
 

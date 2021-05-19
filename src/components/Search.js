@@ -14,8 +14,15 @@ const Search = (props) => {
 
   const Swal = require("sweetalert2");
 
-   const search=()=>{
-    if (year === null||year.length!==4 || month >12 || month=== null || day>31 || day===null) {
+  const search = () => {
+    if (
+      year === null ||
+      year.length !== 4 ||
+      month > 12 ||
+      month === null ||
+      day > 31 ||
+      day === null
+    ) {
       Swal.fire({
         title: "연도와 월과 일",
         text: "모두 예시와 같은 올바른 형식으로 입력해주세요",
@@ -26,12 +33,12 @@ const Search = (props) => {
     let myDate = new Date(`${year}-${month}-${day}`);
     dispatch(todoActions.getOnePostAX(moment(myDate).format("YYYY-MM-DD")));
     dispatch(todoActions.changeToday(moment(myDate).format("YYYY-MM-DD")));
-    window.scrollTo({top:0, left:0, behavior:'smooth'});
-   }
+    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+  };
 
   const onSearch = (e) => {
     if (e.key == "Enter") {
-      search()
+      search();
     }
   };
 
@@ -39,17 +46,18 @@ const Search = (props) => {
     <React.Fragment>
       {year.length == 4 ? document.getElementById("second").focus() : null}
       {month.length == 2 ? document.getElementById("third").focus() : null}
-      {year.length == 4 && month.length == 2 &&  day.length == 2 
-      ? document.getElementById("ReturnBtn").focus() : null}
-       {/* <div className="Search">날짜 검색하기</div>  */}
-        <InputContainer>
-          <InputBox
-            id="first"
-            onChange={(e) => {
-              setYear(e.target.value);
-            }}
-            placeholder={moment(today).format("YYYY")}
-          />
+      {year.length == 4 && month.length == 2 && day.length == 2
+        ? document.getElementById("ReturnBtn").focus()
+        : null}
+      {/* <div className="Search">날짜 검색하기</div>  */}
+      <InputContainer>
+        <InputBox
+          id="first"
+          onChange={(e) => {
+            setYear(e.target.value);
+          }}
+          placeholder={moment(today).format("YYYY")}
+        />
 
         <InputBox
           onChange={(e) => {
@@ -71,12 +79,11 @@ const Search = (props) => {
           onKeyPress={onSearch}
         />
         {/* className 수정해야함 */}
-        <SearchBtn className="ReturnBtn" id="ReturnBtn"
-          onClick={search}
-        >
-         검색
+        <SearchBtn className="ReturnBtn" id="ReturnBtn" onClick={search}>
+          검색
         </SearchBtn>
-        <ReturnBtn className="ReturnBtn"
+        <ReturnBtn
+          className="ReturnBtn"
           onClick={() => {
             props._showModify(false);
             dispatch(
@@ -85,62 +92,75 @@ const Search = (props) => {
             dispatch(
               todoActions.changeToday(moment(today).format("YYYY-MM-DD"))
             );
-            window.scrollTo({top:0, left:0, behavior:'smooth'});
+            window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
           }}
         >
-         오늘
+          오늘
         </ReturnBtn>
-        </InputContainer>
- 
+      </InputContainer>
     </React.Fragment>
   );
 };
 
 const InputContainer = styled.div`
- display: flex;
- flex-direction:row;
- margin-top: 10px;
- width:100%;
-`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+`;
 
 const InputBox = styled.input`
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background-color: white;
   border: 0.5px solid rgba(76, 76, 76, 0.3);
   border-radius: 5px;
   outline: none;
-  font-size: 3%;
+  font-size: 13px;
   font-weight: bold;
   color: black;
-  margin-right: 0.5rem;
+  margin-right: 0.3rem;
   width: 18%;
-  height: 90%;
+  height: 4vh;
   opacity: 0.5;
   ::placeholder {
     font-size: 13px;
   }
+  @media (max-width: 280px) {
+    margin-right: 0.2rem;
+    width: 15%;
+  }
 `;
 
 const SearchBtn = styled.button`
-  background-color:#4A5566;
+  display: flex;
+  background-color: #4a5566;
+  justify-content: center;
+  align-items: center;
   color: white;
   border-radius: 5px;
   width: 15%;
-  height:4vh;
+  height: 4vh;
+  @media (max-width: 320px) {
+    font-size: 0.7rem;
+  }
 `;
-
 
 const ReturnBtn = styled.button`
-  background-color:#4A5566;
-
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #4a5566;
   color: white;
   border-radius: 5px;
   width: 15%;
-  height:100%;
-  margin-left:1%;
+  height: 4vh;
+  margin-left: 1%;
+  @media (max-width: 320px) {
+    font-size: 0.7rem;
+  }
 `;
-
-
-
-
 
 export default Search;

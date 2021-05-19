@@ -1,4 +1,4 @@
-import React, { useEffect,useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Grid, Button, Text } from "../elements/Styles";
 import ToDo from "../elements/ToDo";
 import moment from "moment";
@@ -17,7 +17,7 @@ const Calendar = (props) => {
   const dispatch = useDispatch();
   const today = useSelector((state) => state.todo.today);
   const todo_list = useSelector((state) => state.todo.todo_list);
-  const [selectday,_changeColor]= useState(today.format("DD"));
+  const [selectday, _changeColor] = useState(today.format("DD"));
 
   React.useEffect(() => {
     dispatch(todoActions.getAllPostAX());
@@ -79,12 +79,8 @@ const Calendar = (props) => {
                 key={`${moment(today).format(
                   "MM"
                 )}_week_${week_index}_day_${day_index}`}
-               // bg={"#FFFFFF"}
-                bg={selectday ===_day.format("DD")
-                    ? "#4a5566"
-                    : "#FFFFFF"
-                }
- 
+                // bg={"#FFFFFF"}
+                bg={selectday === _day.format("DD") ? "#4a5566" : "#FFFFFF"}
                 onClick={() => {
                   props._showModify(false);
                   _changeColor(_day.format("DD"));
@@ -94,8 +90,11 @@ const Calendar = (props) => {
                 <DayText
                   className="Helvetica Black2"
                   bg={is_today ? "black" : null}
-                  font_c={is_today || selectday ===_day.format("DD") ? "white" : "black" }
-              
+                  font_c={
+                    is_today || selectday === _day.format("DD")
+                      ? "white"
+                      : "black"
+                  }
                   br={is_today ? "50%" : "null"}
                 >
                   {_day.format("DD")}
@@ -325,7 +324,7 @@ const DayGrid = styled.div`
     box-shadow: rgb(82 82 82/ 60%) 0px 4px 10px 0px;
     transition: box-shadow 0.2s ease-in 0s;
   }
-  
+
   ${(props) => (props.bg ? `background-color: ${props.bg};` : "")}
 `;
 
@@ -335,14 +334,13 @@ const DayText = styled.div`
   color: ${(props) => props.font_c};
   background-color: ${(props) => props.bg};
   border-radius: ${(props) => props.br};
-  width:13%;
+  width: 13%;
   font-size: 0.8vw;
   margin-right: 0.5vh;
   margin-top: 0.5vh;
   font-weight: 550;
-  opacity:85%;
+  opacity: 85%;
 `;
-
 
 //Todo들어가는 부분
 const DailyGrid = styled.div`

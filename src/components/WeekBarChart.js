@@ -84,7 +84,7 @@ const CContainer1 = styled.div`
   @media (max-width: 375px) {
     width: 92%;
     height: 80%;
-    padding: 1% 3%;
+    padding: 1% 2%;
   };
 `;
 

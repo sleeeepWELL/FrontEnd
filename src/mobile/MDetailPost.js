@@ -18,8 +18,8 @@ import four from "../image/4-condition.png";
 import five from "../image/5-condition.png";
 
 import Swal from "sweetalert2";
-import ChevronRightIcon from '@material-ui/icons/ChevronRight';
-import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
+import ChevronRightIcon from "@material-ui/icons/ChevronRight";
+import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 
 //글씨 이미지로 바꾸기
 const mapKeywordToImg = {
@@ -58,19 +58,18 @@ const MDetailPost = (props) => {
     let _day = props.date.slice(14, 24);
     return (
       <React.Fragment>
-      
-          <RightHeader>
-            {moment(props.date.slice(14, 24)) <= _today && (
-              <AddButton
-                onClick={() => {
-                  props._showModify(true);
-                }}
-              >
-                기록
-              </AddButton>
-            )}
-          </RightHeader>
-     
+        <RightHeader>
+          {moment(props.date.slice(14, 24)) <= _today && (
+            <AddButton
+              onClick={() => {
+                props._showModify(true);
+              }}
+            >
+              기록
+            </AddButton>
+          )}
+        </RightHeader>
+
         <ModalComponent>
           <LeftHeader>
             <MoveDButton
@@ -82,7 +81,7 @@ const MDetailPost = (props) => {
                 );
               }}
             >
-              <ChevronLeftIcon/>
+              <ChevronLeftIcon />
             </MoveDButton>
 
             <DText className="HelveticaB">{_day}</DText>
@@ -96,7 +95,7 @@ const MDetailPost = (props) => {
                 );
               }}
             >
-             <ChevronRightIcon/>
+              <ChevronRightIcon />
             </MoveDButton>
           </LeftHeader>
 
@@ -114,21 +113,17 @@ const MDetailPost = (props) => {
   } else {
     return (
       <React.Fragment>
-   
-          <RightHeader>
-            <ModifyButton
-             
-              onClick={() => {
-                props._showModify(true);
-              }}
-            >
-              수정
-            </ModifyButton>
-            <ModifyButton  onClick={deletePost}>
-              삭제
-            </ModifyButton>
-          </RightHeader>
-      
+        <RightHeader>
+          <ModifyButton
+            onClick={() => {
+              props._showModify(true);
+            }}
+          >
+            수정
+          </ModifyButton>
+          <ModifyButton onClick={deletePost}>삭제</ModifyButton>
+        </RightHeader>
+
         <ModalComponent>
           <LeftHeader>
             <MoveDButton
@@ -140,7 +135,7 @@ const MDetailPost = (props) => {
                 );
               }}
             >
-              <ChevronLeftIcon/> 
+              <ChevronLeftIcon />
             </MoveDButton>
 
             <DText className="HelveticaB">{props.date.selectedAt}</DText>
@@ -154,7 +149,7 @@ const MDetailPost = (props) => {
                 );
               }}
             >
-            <ChevronRightIcon />
+              <ChevronRightIcon />
             </MoveDButton>
           </LeftHeader>
 
@@ -169,7 +164,7 @@ const MDetailPost = (props) => {
             </ConditionContainer>
 
             <TimeContainer>
-              <TimeText className="ConditionText">수면 시간</TimeText>
+              <TimeText className="ConditionText">수면시간</TimeText>
               <TimeText2 className="TimeText">
                 {`${props.date.totalSleepHour} 시간 ${props.date.totalSleepMinute} 분`}
                 ({props.date.startSleep} ~ {props.date.endSleep})
@@ -203,9 +198,8 @@ const RightHeader = styled.div`
   justify-content: flex-end;
   width: 100%;
   height: 10%;
-  padding-right:3%;
+  padding-right: 3%;
   box-sizing: border-box;
-  
 `;
 const ModalComponent = styled.div`
   width: 100%;
@@ -214,19 +208,16 @@ const ModalComponent = styled.div`
   flex-direction: column;
   box-sizing: border-box;
   // border-radius: 20px;
- 
+  /* background-color: green; */
 `;
-
-
 
 const MainContainer = styled.div`
   width: 100%;
   height: 100%;
-  margin-left:8%;
-  margin-bottom:5%;
+  margin-left: 8%;
+  margin-bottom: 5%;
   box-sizing: border-box;
   /* background-color: green; */
-  
 `;
 
 //비어있을 때
@@ -235,7 +226,7 @@ const EmptyTextContainer = styled.div`
   height: 20%;
   display: flex;
   flex-direction: row;
-  margin-top:15%;
+  margin-top: 15%;
   box-sizing: border-box;
   align-items: center;
   justify-content: center;
@@ -249,14 +240,15 @@ const ConditionContainer = styled.div`
   display: flex;
   flex-direction: row;
   margin-bottom: 3.5%;
- 
-  
   box-sizing: border-box;
   align-items: center;
+  @media (max-width: 280px) {
+    margin-bottom: 1.5rem;
+  }
 `;
 
 const ConditionText = styled.div`
-  width: 30%;
+  width: 25%;
   height: 100%;
   color: black;
   font-size: 17px;
@@ -285,6 +277,9 @@ const ConImg = styled.div`
   background-repeat: no-repeat;
   background-position: center;
   display: flex;
+  @media (max-width: 280px) {
+    width: 13%;
+  }
 `;
 
 //수면시간
@@ -296,13 +291,15 @@ const TimeContainer = styled.div`
   margin-bottom: 3%;
   box-sizing: border-box;
   align-items: center;
+  @media (max-width: 280px) {
+    margin-bottom: 1.5rem;
+  }
 `;
 
 const TimeText = styled.div`
-  width: 40%;
+  width: 30%;
   color: black;
   font-size: 17px;
-
   font-weight: bold;
 `;
 
@@ -314,6 +311,9 @@ const TimeText2 = styled.div`
   font-weight: bold;
   display: flex;
   justify-content: flex-start;
+  @media (max-width: 280px) {
+    font-size: 0.7rem;
+  }
 `;
 
 //태그
@@ -323,9 +323,11 @@ const TagContainer = styled.div`
   height: 28%;
   display: flex;
   margin-bottom: 3%;
-
   box-sizing: border-box;
   align-items: center;
+  @media (max-width: 280px) {
+    margin-bottom: 0.8rem;
+  }
 `;
 
 const TagImg = styled.div`
@@ -338,32 +340,30 @@ const TagImg = styled.div`
   display: flex;
   background-position: center;
   margin: 0px 2px 0px 2px;
+  @media (max-width: 280px) {
+    width: 13%;
+  }
 `;
-
-
-
 
 const LeftHeader = styled.div`
   display: flex;
   flex-direction: row;
   width: 60%;
   height: 13%;
-  
+
   margin: 2% auto;
   text-align: center;
   box-sizing: border-box;
-  align-items:center;
+  align-items: center;
   justify-content: center;
 `;
-
-
 
 const MoveDButton = styled.button`
   width: 15%;
   height: 100%;
   font-weight: bold;
   border-radius: 5px;
-  border:none;
+  border: none;
   outline: none;
 
   cursor: pointer;
@@ -373,7 +373,6 @@ const MoveDButton = styled.button`
   text-shadow: rgb(10 50 10 / 40%) 0.7px 0.7px 0.7px;
 `;
 const DText = styled.div`
-
   display: flex;
   font-weight: bold;
   font-size: 2.2vh;
@@ -382,7 +381,7 @@ const DText = styled.div`
   text-align: center;
   justify-content: center;
   height: 100%;
-  margin-bottom:2%;
+  margin-bottom: 2%;
   align-items: center;
   border-radius: 10px;
   text-shadow: rgb(10 50 10 / 40%) 0.7px 0.7px 0.7px;
@@ -400,6 +399,10 @@ const ModifyButton = styled.button`
   box-shadow: rgb(82 82 82/ 20%) 0px 5px 8px 0px;
   font-size: 80%;
   margin: 0px 1% 0px 0px;
+  @media (max-width: 280px) {
+    font-size: 0.5rem;
+    padding: 3px 0;
+  }
 `;
 
 const AddButton = styled.button`
@@ -435,7 +438,6 @@ const Contents = styled.div`
   margin-bottom: 5%;
   box-sizing: border-box;
   align-items: baseline;
-  
 `;
 
 export default MDetailPost;

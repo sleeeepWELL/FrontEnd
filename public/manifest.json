@@ -9,8 +9,8 @@
 
   "browser_action": {
     "default_icon": {
-      "32": "favicon.ico",
-      "src": "favicon.ico"
+      "32": "favicon.ico"
+  
     },
     "default_title": "Sleepwell",
     "default_popup": "index.html"

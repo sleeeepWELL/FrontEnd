@@ -410,7 +410,7 @@ const DateContainer = styled.div`
   align-items: center;
   display: flex;
   /* background-color: blue; */
-  border: 1px red solid;
+ 
 
 `;
 

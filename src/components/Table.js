@@ -86,7 +86,7 @@ const Text = styled.div`
 const Title = styled.div`
   display: flex;
   flex-direction: column;
-  width: 60%;
+  width: 40%;
   height: 50%;
   justify-content: space-between;
   text-align: left;
@@ -183,6 +183,7 @@ const BoxContainer = styled.div`
   width: 76%;
   padding-bottom: 23%;
   margin-top:1%;
+  
 `;
 const TitleContainer = styled.div`
   display: flex;

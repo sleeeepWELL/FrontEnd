@@ -165,13 +165,13 @@ const KaKaoWrap = styled.div`
 `;
 
 const SemiContainer = styled.div`
-  width: 35%;
+  width: 30%;
   height: 70%;
   display: flex;
   position: absolute;
   flex-direction: column;
   justify-content: center;
-  margin: 0px;
+  margin-left: 3%;
   box-sizing: border-box;
 `;
 

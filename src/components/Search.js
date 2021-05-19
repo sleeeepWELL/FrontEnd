@@ -12,10 +12,18 @@ const Search = (props) => {
   const [month, setMonth] = React.useState("");
   const [day, setDay] = React.useState("");
 
+  const Swal = require("sweetalert2");
 
    const search=()=>{
+    if (year === null||year.length!==4 || month >12 || month=== null || day>31 || day===null) {
+      Swal.fire({
+        title: "연도와 월과 일",
+        text: "모두 예시와 같은 올바른 형식으로 입력해주세요",
+        icon: "info",
+      });
+      return;
+    }
     let myDate = new Date(`${year}-${month}-${day}`);
-    
     dispatch(todoActions.getOnePostAX(moment(myDate).format("YYYY-MM-DD")));
     dispatch(todoActions.changeToday(moment(myDate).format("YYYY-MM-DD")));
     window.scrollTo({top:0, left:0, behavior:'smooth'});
@@ -31,7 +39,8 @@ const Search = (props) => {
     <React.Fragment>
       {year.length == 4 ? document.getElementById("second").focus() : null}
       {month.length == 2 ? document.getElementById("third").focus() : null}
-  
+      {year.length == 4 && month.length == 2 &&  day.length == 2 
+      ? document.getElementById("ReturnBtn").focus() : null}
        {/* <div className="Search">날짜 검색하기</div>  */}
         <InputContainer>
           <InputBox
@@ -62,7 +71,7 @@ const Search = (props) => {
           onKeyPress={onSearch}
         />
         {/* className 수정해야함 */}
-        <SearchBtn className="ReturnBtn"
+        <SearchBtn className="ReturnBtn" id="ReturnBtn"
           onClick={search}
         >
          검색

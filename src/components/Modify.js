@@ -534,9 +534,10 @@ const CheckTime = styled.div`
 `;
 
 const Text = styled.div`
-  font-size: 25px;
   font-weight: bold;
-  color: black;
+  font-size:220%;
+  color: #4a5566;
+  
 `;
 
 const AddButton = styled.button`
@@ -550,7 +551,7 @@ const AddButton = styled.button`
   cursor: pointer;
   color: white;
   box-shadow: rgb(82 82 82/ 20%) 0px 5px 8px 0px;
-  font-size: 3px;
+  font-size: 90%;
   margin: 0px 10px 0px 0px;
 `;
 

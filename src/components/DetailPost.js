@@ -288,6 +288,7 @@ const TimeText2 = styled.div`
 `;
 const MemoText = styled.div`
   width: 75%;
+  height:60%;
   color: black;
   font-size: 14px;
   /* margin: 5px 0px 0px 10px; */
@@ -297,7 +298,9 @@ const MemoText = styled.div`
   @media (max-width: 975px) {
     height: 40%;
   }
-  overflow-y: scroll;
+  overflow:auto;
+  white-space:pre-wrap;
+  word-break:break-all;
 `;
 
 
@@ -378,6 +381,7 @@ const DText = styled.div`
   text-align: center;
   justify-content: center;
   height: 100%;
+  
 
   align-items: center;
   border-radius: 10px;
@@ -388,14 +392,14 @@ const ModifyButton = styled.button`
   width: 13%;
   height: 100%;
   background-color: #4a5566;
-  border: 2px solid white;
+  border: 1px solid white;
   font-weight: bold;
   border-radius: 5px;
   outline: none;
   cursor: pointer;
   color: white;
   box-shadow: rgb(82 82 82/ 20%) 0px 5px 8px 0px;
-  font-size: 3px;
+  font-size: 90%;
   margin: 0px 10px 0px 0px;
 `;
 
@@ -403,14 +407,14 @@ const AddButton = styled.button`
   width: 14%;
   height: 100%;
   background-color: #4a5566;
-  border: 2px solid white;
+  border: 1px solid white;
   font-weight: bold;
   border-radius: 5px;
   outline: none;
   cursor: pointer;
   color: white;
   box-shadow: rgb(82 82 82/ 20%) 0px 5px 8px 0px;
-  font-size: 3px;
+  font-size: 90%;
   margin: 0px 10px 0px 0px;
 `;
 

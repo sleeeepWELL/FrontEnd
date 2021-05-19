@@ -348,7 +348,6 @@ const LeftHeader = styled.div`
   flex-direction: row;
   width: 60%;
   height: 13%;
-  
   margin: 2% auto;
   text-align: center;
   box-sizing: border-box;
@@ -359,13 +358,14 @@ const LeftHeader = styled.div`
 
 
 const MoveDButton = styled.button`
-  width: 15%;
+display:flex;  
+width: 15%;
   height: 100%;
   font-weight: bold;
   border-radius: 5px;
   border:none;
   outline: none;
-
+  justify-content: center;
   cursor: pointer;
   color: #4a5566;
   background-color: white;
@@ -376,20 +376,21 @@ const DText = styled.div`
 
   display: flex;
   font-weight: bold;
-  font-size: 2.2vh;
+  font-size: 100%;
   color: #4a5566;
-  width: 56%;
+  width: 68%;
   text-align: center;
   justify-content: center;
   height: 100%;
-  margin-bottom:2%;
+  margin-bottom:1.5%;
   align-items: center;
   border-radius: 10px;
   text-shadow: rgb(10 50 10 / 40%) 0.7px 0.7px 0.7px;
+  
 `;
 
 const ModifyButton = styled.button`
-  width: 14%;
+  width: 16%;
   height: 100%;
   background-color: #4a5566;
   font-weight: bold;
@@ -403,8 +404,8 @@ const ModifyButton = styled.button`
 `;
 
 const AddButton = styled.button`
-  width: 14%;
-  height: 100%;
+  width: 16%;
+  height: 103%;
   background-color: #4a5566;
   font-weight: bold;
   border-radius: 5px;
@@ -427,14 +428,17 @@ const EmptyText = styled.div`
 
 const Contents = styled.div`
   /* background-color: green; */
-  width: 90%;
-  height: 30%;
+  width: 85%;
+  height: 38%;
   color: black;
   font-weight: bold;
   display: flex;
   margin-bottom: 5%;
   box-sizing: border-box;
   align-items: baseline;
+  overflow:auto;
+  white-space:pre-wrap;
+  word-break:break-all;
   
 `;
 

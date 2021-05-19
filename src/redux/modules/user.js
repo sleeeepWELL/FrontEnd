@@ -446,10 +446,11 @@ const changeUsernameSV = (username) => {
       .then(() => {
         Swal.fire({
           title: "닉네임이 변경되었습니다.",
-          text: "새로고침 이후 변경된 닉네임이 적용됩니다.",
           icon: "success",
           confirmButtonText: "확인",
         });
+        // 닉네임 변경 적용을 위해 새로고침
+        history.go(0);
       })
       .catch((err) => {
         console.log("닉네임변경 에러", err);

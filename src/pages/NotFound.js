@@ -8,34 +8,49 @@ const NotFound = () => {
   return (
     <>
       <Wrap>
-        <MainImg src={notfound} />
-        <MainInfo className="TimeText">페이지를 찾을 수 없습니다.</MainInfo>
-        <SubInfo className="Text">
-          주소가 잘못 입력되었거나, 변경 혹은 삭제되어
-        </SubInfo>
-        <SubInfo className="Text">요청하신 페이지를 찾을 수 없습니다.</SubInfo>
-        <SubInfo className="Text">
-          입력하신 주소가 정확한지 다시 한번 확인해 주세요.
-        </SubInfo>
-        <MainBtn
-          className="TimeText"
-          onClick={() => {
-            history.replace("/");
-          }}
-        >
-          메인으로 이동
-        </MainBtn>
+        <Container>
+          <MainImg src={notfound} />
+          <MainInfo className="TimeText">페이지를 찾을 수 없습니다.</MainInfo>
+          <SubInfo className="Text">
+            주소가 잘못 입력되었거나, 변경 혹은 삭제되어
+          </SubInfo>
+          <SubInfo className="Text">
+            요청하신 페이지를 찾을 수 없습니다.
+          </SubInfo>
+          <SubInfo className="Text">
+            입력하신 주소가 정확한지 다시 한번 확인해 주세요.
+          </SubInfo>
+          <MainBtn
+            className="TimeText"
+            onClick={() => {
+              history.replace("/");
+            }}
+          >
+            메인으로 이동
+          </MainBtn>
+        </Container>
       </Wrap>
     </>
   );
 };
 
 const Wrap = styled.div`
+  width: 100%;
+  position: fixed;
+  z-index: -1;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   height: 80vh;
+`;
+
+const Container = styled.div`
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
 `;
 
 const MainImg = styled.img`

@@ -5,16 +5,15 @@ import Calendarjj from "../components/Calendarjj";
 import DetailPost from "../components/DetailPost";
 import DetailWrite from "../components/DetailWrite";
 import Search from "../components/Search";
-import Cube from "../components/Cube";
 import MMainCalendar from "../mobile/MMainCalendar";
 
 import { debounce } from "lodash";
 
-const MainCalendar = () => {
+const MainCalendar = (props) => {
   const [is_modify, setModify] = React.useState(false);
   const day_list = useSelector((state) => state.todo.day_list);
   const [windowSize, setWindowSize] = React.useState(window.innerWidth);
- 
+
   const handleResize = debounce(() => {
     setWindowSize(window.innerWidth);
   }, 100);
@@ -27,34 +26,37 @@ const MainCalendar = () => {
   }, [handleResize]);
 
   if (windowSize < 970) {
-    return <MMainCalendar/>;
-  }else{
-  return (
-    <React.Fragment>
-      <Background>
-        <AllContainer>
-          <CalendarContainer>
-            <Calendarjj _showModify={setModify}/>
-          </CalendarContainer>
-          <RightContainer>
-            <PostContainer>
-              {is_modify ? (
-                <DetailWrite date={day_list} _showModify={setModify} />
-              ) : (
-                <DetailPost date={day_list} _showModify={setModify} />
-              )}
-            </PostContainer>
-            <SearchContainer>
-              <Search _showModify={setModify} />
-            </SearchContainer>
-           
-          </RightContainer>
-        </AllContainer>
-      </Background>
-    </React.Fragment>
-  );
-}};
-
+    return (
+      <>
+        <MMainCalendar />
+      </>
+    );
+  } else {
+    return (
+      <>
+        <Background>
+          <AllContainer>
+            <CalendarContainer>
+              <Calendarjj _showModify={setModify} />
+            </CalendarContainer>
+            <RightContainer>
+              <PostContainer>
+                {is_modify ? (
+                  <DetailWrite date={day_list} _showModify={setModify} />
+                ) : (
+                  <DetailPost date={day_list} _showModify={setModify} />
+                )}
+              </PostContainer>
+              <SearchContainer>
+                <Search _showModify={setModify} />
+              </SearchContainer>
+            </RightContainer>
+          </AllContainer>
+        </Background>
+      </>
+    );
+  }
+};
 
 const fadein = keyframes`
 from {opacity:0}
@@ -69,16 +71,15 @@ const AllContainer = styled.div`
   height: 90%;
 
   margin-top: 2%;
-  animation: ${fadein} 1s ;
+  animation: ${fadein} 1s;
   // ease-in infinite alternate
 `;
 
-
- //캘린더 배경
+//캘린더 배경
 const CalendarContainer = styled.div`
   width: 66%;
   height: 94vh;
-  background-color: #F3F3F3;
+  background-color: #f3f3f3;
   margin-top: 1%;
   margin-right: 2%;
   margin-left: 5%;
@@ -87,14 +88,13 @@ const CalendarContainer = styled.div`
   box-shadow: rgb(82 82 82/ 40%) 0px 5px 8px 0px;
 `;
 
-// 카드와 검색 
+// 카드와 검색
 const RightContainer = styled.div`
   display: flex;
   width: 25%;
   height: 126vh;
   margin-top: 0.3%;
   flex-direction: column;
-  
 `;
 
 const PostContainer = styled.div`
@@ -117,19 +117,14 @@ const SearchContainer = styled.div`
   align-content: center;
   border-radius: 20px;
   // box-shadow: rgb(82 82 82/ 40%) 0px 5px 8px 0px;
- 
 `;
-
 
 const Background = styled.div`
   width: 100%;
   height: 100%;
   left: 0;
   top: 0;
-  background-color: #DBDBDB;
- 
-  
+  background-color: #dbdbdb;
 `;
-
 
 export default MainCalendar;

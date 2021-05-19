@@ -20,19 +20,29 @@
 
 @font-face {
   font-family: "Helvetica";
-  src: url("../fonts/Helvetica\ Black.ttf") format("truetype");
+  src: url("../fonts/Helvetica95-Black.woff") format("woff");
+}
+
+/* @font-face {
+  font-family: "Helvetica Black2";
+  src: url("../fonts/Helvetica\ Black.woff2") format("woff2");
 }
 
 @font-face {
-  font-family: "HelveticaB";
+  font-family: "Helvetica Bold";
   src: url("../fonts/Helvetica\ Bold.ttf") format("truetype");
+} */
+
+@font-face {
+  font-family: "Helvetica B";
+  src: url("../fonts/Helvetica75-Bold.woff") format("woff");
 }
 
 .Helvetica {
-  font-family: "Helvetica";
+  font-family: "Helvetica B";
 }
 .HelveticaB {
-  font-family: "HelveticaB";
+  font-family: "Helvetica B";
 }
 /* 로그인 */
 .BottomInfo {
@@ -87,7 +97,6 @@
 }
 
 /* Modify . Write */
-
 
 .Search {
   font-family: "NanumSquareB";

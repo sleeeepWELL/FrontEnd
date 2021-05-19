@@ -16,7 +16,7 @@ const AUTH_CHECK = "AUTH_CHECK"; // 인증완료 실시여부
 const DELETE_USER = "DELETE_USER"; // 회원탈퇴
 
 // 액션 생성함수
-const setUser = createAction(SET_USER, (user) => ({ user }));
+const setUser = createAction(SET_USER, () => ({}));
 const getUser = createAction(GET_USER, (username) => ({ username }));
 const logOut = createAction(LOG_OUT, () => ({}));
 const nameCheck = createAction(NAME_CHECK, (name_check) => ({ name_check }));
@@ -61,7 +61,6 @@ const loginSV = (email, pwd) => {
         ] = `Bearer ${ACCESS_TOKEN}`;
 
         const Current_time = new Date().getTime();
-        
 
         // ACCESS토큰 만료 1분전마다 연장함수 실행
         setTimeout(extensionAccess(), ACCESS_TOKEN_EXP - Current_time - 60000);
@@ -75,7 +74,7 @@ const loginSV = (email, pwd) => {
           imageHeight: 200,
           imageAlt: "welcome",
         });
-        
+
         dispatch(setUser());
         await history.replace("/main");
       })
@@ -129,7 +128,7 @@ const extensionAccess = () => {
         ] = `Bearer ${ACCESS_TOKEN}`;
 
         // 로그인상태 true 로 바꿔주기
-        dispatch(setUser());
+        await dispatch(setUser());
 
         setTimeout(extensionAccess(), ACCESS_TOKEN_EXP - Current_time - 60000);
         // 1000 * 60 * 29 - 1000 * 56
@@ -216,7 +215,7 @@ const kakaoLogin = (code) => {
           imageAlt: "welcome",
         });
 
-        dispatch(setUser());
+        await dispatch(setUser());
 
         // 메인화면 이동
         await history.replace("/main");
@@ -486,7 +485,8 @@ export default handleActions(
   {
     [SET_USER]: (state, action) =>
       produce(state, (draft) => {
-        draft.user = action.payload.user;
+        // console.log(action.payload);
+        // draft.user = action.payload.user;
         draft.is_login = true;
       }),
 
@@ -497,9 +497,9 @@ export default handleActions(
       }),
 
     [LOG_OUT]: (state, action) =>
-      produce(state, async (draft) => {
+      produce(state, (draft) => {
         // 쿠키삭제
-        await deleteCookie("is_login");
+        deleteCookie("is_login");
         // 로컬 삭제
         localStorage.clear();
         draft.is_login = false;
@@ -516,9 +516,9 @@ export default handleActions(
       }),
 
     [DELETE_USER]: (state, action) =>
-      produce(state, async (draft) => {
+      produce(state, (draft) => {
         // 쿠키삭제
-        await deleteCookie("is_login");
+        deleteCookie("is_login");
         // 로컬 삭제
         localStorage.clear();
         draft.is_login = false;

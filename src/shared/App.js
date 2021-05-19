@@ -8,24 +8,19 @@ import {
   MainCalendar,
   Analysis,
   FindPassword,
-  Ready,
   MyPage,
   NotFound,
   Intro,
   UseInfo,
 } from "../pages/index";
-import MFindPassword from "../mobile/MFindPassword";
 
 import { Switch, Route } from "react-router-dom";
 import { ConnectedRouter } from "connected-react-router";
 import { history } from "../redux/configureStore";
 import OAuth2RedirectHandler from "./OAuth2RedirectHandler";
-import { useDispatch, useSelector } from "react-redux";
-import LoginCheck from "../pages/LoginCheck";
+import PrivateRoute from "./PrivateRoute";
 
-function App() {
-  const dispatch = useDispatch();
-
+function App(props) {
   return (
     <React.Fragment>
       <ConnectedRouter history={history}>
@@ -34,18 +29,17 @@ function App() {
           <Route path="/login" exact component={Login} />
           <Route path="/signup" exact component={Signup} />
           <Route path="/findpwd" exact component={FindPassword} />
+          <Route
+            path="/oauth/callback/kakao"
+            component={OAuth2RedirectHandler}
+          ></Route>
           <Wrap>
-            <Route
-              path="/oauth/callback/kakao"
-              component={OAuth2RedirectHandler}
-            ></Route>
-            <Route path="/main" component={Navigator} />
-            <Route path="/main" exact component={MainCalendar} />
-            <Route path="/main/analysis" exact component={Analysis} />
-            <Route path="/main/prac" exact component={UseInfo} />
-            <Route path="/main/mypage" exact component={MyPage} />
-            {/* <Route path="/" component={LoginCheck} /> */}
-            {/* <Route component={NotFound} /> */}
+            <PrivateRoute path="/main" eaxct component={Navigator} />
+            <PrivateRoute path="/main" exact component={MainCalendar} />
+            <PrivateRoute path="/main/analysis" exact component={Analysis} />
+            <PrivateRoute path="/main/prac" exact component={UseInfo} />
+            <PrivateRoute path="/main/mypage" exact component={MyPage} />
+            <Route component={NotFound} />
           </Wrap>
         </Switch>
       </ConnectedRouter>

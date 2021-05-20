@@ -78,7 +78,7 @@ const RightContainer = styled.div`
 const PostContainer = styled.div`
   display: flex;
   width: 100%;
-  height: 190%;
+  height: 60rem;
   margin-top: 6%;
   background-color: white;
   flex-direction: column;
@@ -97,7 +97,7 @@ const SearchContainer = styled.div`
 
 const Background = styled.div`
   width: 100%;
-  height: 125vh;
+  height: 83rem;
   left: 0;
   top: 0;
   background-color: #dbdbdb;

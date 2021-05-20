@@ -35,7 +35,7 @@ const Graphic = () => {
         {/* <Star2Img src={Star2}/> */}
         <MoonImg src={Moon}/>
         <PlanetImg src={Planet}/>
-        <SpaceshipImg src={Spaceship}/>
+        {/* <SpaceshipImg src={Spaceship}/> */}
 
           <BottomInfoBox className="BottomInfo">
             <BottomInfo>
@@ -151,7 +151,7 @@ const AstroImg = styled.img`
   background-color: white;
   justify-content: center;
  animation: ${slidein} 1.3s infinite alternate;
-  top:59%;
+  top:60%;
   left:42%;
   z-index:1;
 `;
@@ -159,13 +159,13 @@ const AstroImg = styled.img`
 const MoonImg = styled.img`
   display: flex;
   position: absolute;
-  width: 14%;
-  height: 20%;
+  width: 15.5%;
+  height: 21.5%;
   background-color: white;
   justify-content: center;
  animation: ${slidein} 2s infinite alternate;
-  top:6%;
-  left:6%;
+  top:7%;
+  left:5.5%;
   z-index:1;
 `;
 

@@ -290,7 +290,7 @@ const WEEK = styled.div`
   align-items: center;
   width: 80%;
   height: 2.4vh;
-  padding-top: 1%;
+  padding-top: 1.5%;
   font-size: 1vh;
   font-weight: bold;
 `;

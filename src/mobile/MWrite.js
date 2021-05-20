@@ -382,24 +382,30 @@ const MWrite = (props) => {
   );
 };
 
-//취침 기상
-
-const Container = styled.div`
-  background-color: grey;
-  display: flex;
+//크게 ModalComponent와 ButtonHeader로 나누어져있습니다
+const ModalComponent = styled.div`
   width: 100%;
-  height: 15%;
-  margin: 5px 0px 5px 0px;
-  justify-content: space-between;
+  height: 35rem;
+  display: flex;
+  flex-direction: column;
+  margin-top:2rem;
 `;
 
-//취침 기상
+const DateContainer = styled.div`
+  display: flex;  
+  width: 100%;
+  height: 10%;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid red;
+`;
+
 const TimeContainer = styled.div`
   background-color: white;
   display: flex;
   width: 100%;
   height: 27%;
-
+  border: 1px solid red;
   flex-direction: row;
   justify-content: space-between;
   box-sizing: border-box;
@@ -411,14 +417,15 @@ const CheckTime = styled.div`
   width: 80%;
   margin: 0px 5% 0% 5%;
   padding: 1%;
-
   box-sizing: border-box;
+  border: 1px solid red;
 `;
 
 const DText = styled.div`
   font-size: 140%;
   color: #4A5566;
   font-weight: bold;
+  border: 1px solid red;
 `;
 
 const AddButton = styled.button`
@@ -434,33 +441,15 @@ const AddButton = styled.button`
   color: white;
   box-shadow: rgb(82 82 82/ 20%) 0px 5px 8px 0px;
   font-size: 90%;
+  border: 1px solid red;
  
 `;
 
-const BtnDiv = styled.div`
-  display: flex;
-  width: 14%;
-  height: 100%;
-  justify-content: flex-end;
-  box-sizing: border-box;
- 
-`;
 
-const ButtonHeader = styled.div`
-  display: flex;
-  
-  
-  
-  width: 90%;
-  height: 2rem;
-  margin:1rem auto;
- 
-  box-sizing: border-box;
- 
-`;
 
 const ImgGrid = styled.div`
   display: flex;
+  border: 1px solid red;
 `;
 
 const TotalImgGrid = styled.div`
@@ -470,6 +459,7 @@ const TotalImgGrid = styled.div`
   margin: auto;
   justify-content: space-between;
   background-color: white;
+  border: 1px solid red;
 `;
 
 const TotalTagGrid = styled.div`
@@ -479,10 +469,12 @@ const TotalTagGrid = styled.div`
   margin: auto;
   justify-content: space-between;
   background-color: white;
+  border: 1px solid red;
 `;
 
 const TagGrid = styled.div`
   display: flex;
+  border: 1px solid red;
 `;
 
 //메모
@@ -490,6 +482,7 @@ const MemoText = styled.div`
   font-size: 16px;
   font-weight: bold;
   color: black;
+  border: 1px solid red;
 `;
 const TextArea = styled.textarea`
   width: 100%;
@@ -503,29 +496,12 @@ const TextArea = styled.textarea`
   background-color: #dcdcdc;
   margin-top:3%;
   margin-bottom: 10%;
+  border: 1px solid red;
 `;
 
 //헤더
-const TopContainer = styled.div`
-  background-color: white;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  width: 100%;
-  height: 15%;
-  margin: 20px 0px 0px 0px;
 
-`;
 
-const DateContainer = styled.div`
-  display: flex;  
-  width: 100%;
-  height: 10%;
-  justify-content: center;
-  align-items: center;
- 
-  
-`;
 
 //태그
 const TagText = styled.div`
@@ -533,6 +509,7 @@ const TagText = styled.div`
   font-weight: bold;
   color: black;
   margin: 0px 0px 5px 0px;
+  border: 1px solid red;
 `;
 
 const TagContainer = styled.div`
@@ -545,6 +522,7 @@ const TagContainer = styled.div`
   box-sizing: border-box;
   padding: 0px 7% 0px 7%;
   margin-bottom:4%;
+  border: 1px solid red;
  
 `;
 
@@ -558,6 +536,7 @@ const ConditionContainer = styled.div`
   box-sizing: border-box;
   padding: 0px 7% 0px 7%;
   margin-bottom:4%;
+  border: 1px solid red;
 `;
 
 const BottomContainer = styled.div`
@@ -568,16 +547,21 @@ const BottomContainer = styled.div`
   height: 40%;
   display: flex;
   flex-direction: column;
-
+  border: 1px solid red;
   box-sizing: border-box;
   padding: 0px 7% 0px 7%;
 `;
 
-const ModalComponent = styled.div`
-  width: 100%;
-  height: 35rem;
+
+const ButtonHeader = styled.div`
   display: flex;
-  flex-direction: column;
-  margin-top:2rem;
+  width: 90%;
+  height: 2rem;
+  margin:1rem auto;
+  box-sizing: border-box;
+  border: 1px solid red;
 `;
+
+
+
 export default MWrite;

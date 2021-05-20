@@ -67,11 +67,11 @@ const CalendarContainer = styled.div`
 // 카드와 검색
 const RightContainer = styled.div`
   display: flex;
-  width: auto;
-  height: 42vh;
+  width: 100%;
+  height: auto;
   flex-direction: column;
   @media (max-width: 280px) {
-    height: 80vh;
+    height: auto;
   }
 `;
 

@@ -16,15 +16,13 @@ const Search = (props) => {
 
   const search = () => {
     if (
-      year === null ||
-      year.length !== 4 ||
-      month > 12 ||
-      month === null ||
-      day > 31 ||
-      day === null
+      year === null || month === null ||  day === null||
+      year.length !== 4 || month.length !==2 ||day.length !==2||
+      month > 12 ||  day > 31 ||
+      year !== Number || month !== Number || day !== Number  
     ) {
       Swal.fire({
-        title: "연도와 월과 일",
+        title: "",
         text: "모두 예시와 같은 올바른 형식으로 입력해주세요",
         icon: "info",
       });
@@ -34,6 +32,7 @@ const Search = (props) => {
     dispatch(todoActions.getOnePostAX(moment(myDate).format("YYYY-MM-DD")));
     dispatch(todoActions.changeToday(moment(myDate).format("YYYY-MM-DD")));
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+    
   };
 
   const onSearch = (e) => {
@@ -42,13 +41,22 @@ const Search = (props) => {
     }
   };
 
+
+  // const third = document.getElementById("third")
+
+  // third.addEventListener('focusout', (event) => {
+  //   event.target.style.background = '';
+  // });
+
   return (
     <React.Fragment>
       {year.length == 4 ? document.getElementById("second").focus() : null}
       {month.length == 2 ? document.getElementById("third").focus() : null}
-      {/* {year.length == 4 && month.length == 2 && day.length == 2
-        ? 
-        : null} */}
+      {day.length == 2? document.getElementById("third").focus(): null}
+      {day.length == 2? document.getElementById("third").blur(): null}
+     
+
+ 
       {/* <div className="Search">날짜 검색하기</div>  */}
       <InputContainer>
         <InputBox
@@ -79,7 +87,7 @@ const Search = (props) => {
           onKeyPress={onSearch}
         />
         {/* className 수정해야함 */}
-        <SearchBtn className="ReturnBtn" onClick={search}>
+        <SearchBtn className="ReturnBtn" id="ReturnBtn"  onClick={search}>
           검색
         </SearchBtn>
         <ReturnBtn

@@ -188,26 +188,7 @@ const Write = (props) => {
 
   return (
     <React.Fragment>
-      <DayHeader>
-        <BtnDiv>
-          <AddButton
-            className="TimeText"
-            onClick={() => {
-              if (startSleep === "" || endSleep === "" || mycondition === 0) {
-                window.alert(
-                  "정확한 수면분석을 위해 취침시간, 기상시간, 컨디션을 모두 입력해주세요!"
-                );
-                return;
-              } else {
-                addPost();
-                props.props._showModify(false);
-              }
-            }}
-          >
-            저장
-          </AddButton>
-        </BtnDiv>
-      </DayHeader>
+    
 
       <ModalComponent>
         <DateContainer>
@@ -375,6 +356,27 @@ const Write = (props) => {
           ></TextArea>
         </BottomContainer>
       </ModalComponent>
+
+      <ButtonHeader>
+        <BtnDiv>
+          <AddButton
+            className="TimeText"
+            onClick={() => {
+              if (startSleep === "" || endSleep === "" || mycondition === 0) {
+                window.alert(
+                  "정확한 수면분석을 위해 취침시간, 기상시간, 컨디션을 모두 입력해주세요!"
+                );
+                return;
+              } else {
+                addPost();
+                props.props._showModify(false);
+              }
+            }}
+          >
+            저장
+          </AddButton>
+        </BtnDiv>
+      </ButtonHeader>
     </React.Fragment>
   );
 };
@@ -418,7 +420,7 @@ const Text = styled.div`
 `;
 
 const AddButton = styled.button`
-  width: 14%;
+  width: 100%;
   height: 100%;
   background-color: #4a5566;
   border: 2px solid white;
@@ -429,7 +431,6 @@ const AddButton = styled.button`
   color: white;
   box-shadow: rgb(82 82 82/ 20%) 0px 5px 8px 0px;
   font-size: 90%;
-  margin: 0px 10px 0px 0px;
 `;
 
 const BtnDiv = styled.div`
@@ -443,13 +444,13 @@ const BtnDiv = styled.div`
   /* background-color: red; */
 `;
 
-const DayHeader = styled.div`
+const ButtonHeader = styled.div`
   display: flex;
-  flex-direction: column;
-
-  width: 100%;
+  margin: 1rem auto;
+  justify-content: center;
+  
+  width: 90%;
   height: 5%;
-  margin: 10px 0px 0px 0px;
   box-sizing: border-box;
   /* background-color: red; */
 `;
@@ -524,7 +525,7 @@ const BottomContainer = styled.div`
   height: 100%;
   display: flex;
   flex-direction: column;
-  margin: 0px 0px 20px 20px;
+  margin: 0px 0px 0px 20px;
   box-sizing: border-box;
   padding: 20px;
 `;

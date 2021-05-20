@@ -46,9 +46,9 @@ const Search = (props) => {
     <React.Fragment>
       {year.length == 4 ? document.getElementById("second").focus() : null}
       {month.length == 2 ? document.getElementById("third").focus() : null}
-      {year.length == 4 && month.length == 2 && day.length == 2
-        ? document.getElementById("ReturnBtn").focus()
-        : null}
+      {/* {year.length == 4 && month.length == 2 && day.length == 2
+        ? 
+        : null} */}
       {/* <div className="Search">날짜 검색하기</div>  */}
       <InputContainer>
         <InputBox
@@ -79,7 +79,7 @@ const Search = (props) => {
           onKeyPress={onSearch}
         />
         {/* className 수정해야함 */}
-        <SearchBtn className="ReturnBtn" id="ReturnBtn" onClick={search}>
+        <SearchBtn className="ReturnBtn" onClick={search}>
           검색
         </SearchBtn>
         <ReturnBtn

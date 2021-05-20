@@ -1,8 +1,8 @@
 import React from "react";
 import styled from "styled-components";
-import InfoA from "../images/fin_Info_1.png";
-import InfoB from "../images/fin_Info_2.png";
-import InfoC from "../images/fin_Info_3.png";
+import InfoA from "../images/UseInfo_A.png";
+import InfoB from "../images/UseInfo_B.png";
+import InfoC from "../images/UseInfo_C.png";
 import "../components/Font.css";
 
 const UseInfo = () => {

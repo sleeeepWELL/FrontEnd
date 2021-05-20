@@ -174,7 +174,9 @@ const MDetailPost = (props) => {
             <TagContainer>
               <ConditionText className="ConditionText">태그</ConditionText>
               {props.date.tag.map((currentTag, idx) => {
-                return <TagImg img={mapKeywordToImg[currentTag]}></TagImg>;
+                return (
+                  <TagImg key={idx} img={mapKeywordToImg[currentTag]}></TagImg>
+                );
               })}
             </TagContainer>
 
@@ -234,7 +236,6 @@ const EmptyTextContainer = styled.div`
 
 //컨디션
 const ConditionContainer = styled.div`
-
   width: 100%;
   height: 28%;
   display: flex;

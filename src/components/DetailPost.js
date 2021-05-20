@@ -4,8 +4,8 @@ import moment from "moment";
 import styled, { keyframes } from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
 import { actionCreators as todoActions } from "../redux/modules/todo";
-import ChevronRightIcon from '@material-ui/icons/ChevronRight';
-import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
+import ChevronRightIcon from "@material-ui/icons/ChevronRight";
+import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import "./Font.css";
 
 import beer from "../image/beer.png";
@@ -96,7 +96,7 @@ const DetailPost = (props) => {
                 );
               }}
             >
-            <ChevronRightIcon />
+              <ChevronRightIcon />
             </MoveDButton>
           </LeftHeader>
 
@@ -140,7 +140,7 @@ const DetailPost = (props) => {
                 );
               }}
             >
-             <ChevronLeftIcon/> 
+              <ChevronLeftIcon />
             </MoveDButton>
 
             <DText className="HelveticaB">{props.date.selectedAt}</DText>
@@ -154,7 +154,7 @@ const DetailPost = (props) => {
                 );
               }}
             >
-             <ChevronRightIcon /> 
+              <ChevronRightIcon />
             </MoveDButton>
           </LeftHeader>
 
@@ -179,7 +179,9 @@ const DetailPost = (props) => {
             <TagContainer>
               <ConditionText className="ConditionText">태그</ConditionText>
               {props.date.tag.map((currentTag, idx) => {
-                return <TagImg img={mapKeywordToImg[currentTag]}></TagImg>;
+                return (
+                  <TagImg key={idx} img={mapKeywordToImg[currentTag]}></TagImg>
+                );
               })}
             </TagContainer>
 
@@ -288,7 +290,7 @@ const TimeText2 = styled.div`
 `;
 const MemoText = styled.div`
   width: 75%;
-  height:60%;
+  height: 60%;
   color: black;
   font-size: 14px;
   /* margin: 5px 0px 0px 10px; */
@@ -298,11 +300,10 @@ const MemoText = styled.div`
   @media (max-width: 975px) {
     height: 40%;
   }
-  overflow:auto;
-  white-space:pre-wrap;
-  word-break:break-all;
+  overflow: auto;
+  white-space: pre-wrap;
+  word-break: break-all;
 `;
-
 
 //태그
 const TagContainer = styled.div`
@@ -381,7 +382,6 @@ const DText = styled.div`
   text-align: center;
   justify-content: center;
   height: 100%;
-  
 
   align-items: center;
   border-radius: 10px;
@@ -437,7 +437,7 @@ const Contents = styled.div`
   margin-bottom: 5%;
   box-sizing: border-box;
   align-items: baseline;
-  
+
   @media (max-width: 975px) {
     height: 30%;
   }

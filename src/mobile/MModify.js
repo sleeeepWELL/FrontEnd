@@ -248,26 +248,7 @@ const MModify = (props) => {
   if (props.props.date.selectedAt !== undefined) {
     return (
       <React.Fragment>
-        <DayHeader>
-        
-            <AddButton
-              className="TimeText"
-              onClick={() => {
-                if (startSleep === "" || endSleep === "" || sendCon === 0) {
-                  window.alert(
-                    "정확한 수면분석을 위해 취침시간, 기상시간, 컨디션을 모두 입력해주세요!"
-                  );
-                  return;
-                } else {
-                  editPost();
-                  props.props._showModify(false);
-                }
-              }}
-            >
-              저장
-            </AddButton>
        
-        </DayHeader>
         <ModalComponent>
           <DateContainer>
             <DText className="Helvetica">{props.props.date.selectedAt}</DText>
@@ -498,19 +479,31 @@ const MModify = (props) => {
             ></TextArea>
           </BottomContainer>
         </ModalComponent>
+        <ButtonHeader>
+        
+        <AddButton
+          className="TimeText"
+          onClick={() => {
+            if (startSleep === "" || endSleep === "" || sendCon === 0) {
+              window.alert(
+                "정확한 수면분석을 위해 취침시간, 기상시간, 컨디션을 모두 입력해주세요!"
+              );
+              return;
+            } else {
+              editPost();
+              props.props._showModify(false);
+            }
+          }}
+        >
+          저장
+        </AddButton>
+   
+    </ButtonHeader>
       </React.Fragment>
     );
   }
 };
 
-const Container = styled.div`
-  background-color: grey;
-  display: flex;
-  width: 100%;
-  height: 15%;
-  margin: 5px 0px 5px 0px;
-  justify-content: space-between;
-`;
 
 //취침 기상
 const TimeContainer = styled.div`
@@ -535,15 +528,18 @@ const CheckTime = styled.div`
 `;
 
 const DText = styled.div`
- font-size: 170%;
+ font-size: 140%;
   color: #4A5566;
   font-weight: bold;
 `;
 
+
 const AddButton = styled.button`
-  width: 16%;
+  width: 100%;
   height: 100%;
   background-color: #4a5566;
+
+
   font-weight: bold;
   border-radius: 5px;
   outline: none;
@@ -551,7 +547,7 @@ const AddButton = styled.button`
   color: white;
   box-shadow: rgb(82 82 82/ 20%) 0px 5px 8px 0px;
   font-size: 90%;
-  margin: 1% 5% 0px 0px;
+ 
 `;
 
 const BtnDiv = styled.div`
@@ -563,13 +559,15 @@ const BtnDiv = styled.div`
  
 `;
 
-const DayHeader = styled.div`
+const ButtonHeader = styled.div`
   display: flex;
-  justify-content: flex-end;
-
-  width: 100%;
-  height: 7%;
-  margin-top:2%;
+  
+  
+  
+  width: 90%;
+  height: 2rem;
+  margin:1rem auto;
+ 
   box-sizing: border-box;
  
 `;
@@ -689,9 +687,10 @@ const BottomContainer = styled.div`
 
 const ModalComponent = styled.div`
   width: 100%;
-  height: 90%;
+  height: 35rem;
   display: flex;
   flex-direction: column;
+  margin-top:2rem;
 `;
 
 export default MModify;

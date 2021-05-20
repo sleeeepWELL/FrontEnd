@@ -197,13 +197,13 @@ const RightHeader = styled.div`
   margin-top: 3%;
   justify-content: flex-end;
   width: 100%;
-  height: 10%;
+  height: 2rem;
   padding-right: 3%;
   box-sizing: border-box;
 `;
 const ModalComponent = styled.div`
   width: 100%;
-  height: 90%;
+  height: 20rem;
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
@@ -234,7 +234,7 @@ const EmptyTextContainer = styled.div`
 
 //컨디션
 const ConditionContainer = styled.div`
-  /* background-color: yellow; */
+
   width: 100%;
   height: 28%;
   display: flex;
@@ -375,7 +375,7 @@ const MoveDButton = styled.button`
 const DText = styled.div`
   display: flex;
   font-weight: bold;
-  font-size: 100%;
+  font-size: 110%;
   color: #4a5566;
   width: 68%;
   text-align: center;

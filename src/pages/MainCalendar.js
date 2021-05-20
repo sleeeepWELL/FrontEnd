@@ -20,6 +20,7 @@ const MainCalendar = (props) => {
 
   React.useEffect(() => {
     window.addEventListener("resize", handleResize);
+ 
     return () => {
       window.removeEventListener("resize", handleResize);
     };
@@ -35,7 +36,7 @@ const MainCalendar = (props) => {
     return (
       <>
         <Background>
-          <AllContainer>
+          <AllContainer >
             <CalendarContainer>
               <Calendarjj _showModify={setModify} />
             </CalendarContainer>

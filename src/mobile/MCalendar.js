@@ -319,7 +319,7 @@ const WeekGrid = styled.div`
   min-width: 50px;
   height: 10%;
  
-  margin-top:1.5%;
+  margin-top:2%;
 `;
 
 //날짜 묶음 Grid

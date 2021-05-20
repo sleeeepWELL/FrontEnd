@@ -16,15 +16,13 @@ const Search = (props) => {
 
   const search = () => {
     if (
-      year === null ||
-      year.length !== 4 ||
-      month > 12 ||
-      month === null ||
-      day > 31 ||
-      day === null
+      year === null || month === null ||  day === null||
+      year.length !== 4 || month.length !==2 ||day.length !==2||
+      month > 12 ||  day > 31 ||
+      year !== Number || month !== Number || day !== Number  
     ) {
       Swal.fire({
-        title: "연도와 월과 일",
+        title: "",
         text: "모두 예시와 같은 올바른 형식으로 입력해주세요",
         icon: "info",
       });

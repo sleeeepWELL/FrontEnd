@@ -20,7 +20,7 @@ const MainCalendar = (props) => {
 
   React.useEffect(() => {
     window.addEventListener("resize", handleResize);
- 
+
     return () => {
       window.removeEventListener("resize", handleResize);
     };
@@ -36,7 +36,7 @@ const MainCalendar = (props) => {
     return (
       <>
         <Background>
-          <AllContainer >
+          <AllContainer>
             <CalendarContainer>
               <Calendarjj _showModify={setModify} />
             </CalendarContainer>
@@ -102,7 +102,7 @@ const PostContainer = styled.div`
   height: 77%;
   margin-left: 3%;
   margin-top: 10px;
-  background-color: white;
+  background-color: #f3f3f3;
   flex-direction: column;
   border-radius: 20px;
   box-shadow: rgb(82 82 82/ 40%) 0px 5px 8px 0px;

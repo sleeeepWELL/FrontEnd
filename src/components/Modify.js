@@ -248,41 +248,36 @@ const Modify = (props) => {
   if (props.props.date.selectedAt !== undefined) {
     return (
       <React.Fragment>
-       
         <ModalComponent>
           <DateContainer>
             <Text className="Date">{props.props.date.selectedAt}</Text>
           </DateContainer>
 
           <TimeContainer>
-            <LocalizationProvider dateAdapter={AdapterDateFns}>
-              <CheckTime>
+            <CheckTimeL>
+              <LocalizationProvider dateAdapter={AdapterDateFns}>
                 <MobileTimePicker
                   label="취침 시간 선택"
                   value={start}
                   onChange={(newStart) => {
                     setStart(newStart);
                   }}
-                  renderInput={(params) => (
-                    <TextField {...params} margin="normal" />
-                  )}
+                  renderInput={(params) => <TextField {...params} />}
                 />
-              </CheckTime>
-            </LocalizationProvider>
-            <LocalizationProvider dateAdapter={AdapterDateFns}>
-              <CheckTime>
+              </LocalizationProvider>
+            </CheckTimeL>
+            <CheckTimeR>
+              <LocalizationProvider dateAdapter={AdapterDateFns}>
                 <MobileTimePicker
                   label="기상 시간 선택"
                   value={end}
                   onChange={(newEnd) => {
                     setEnd(newEnd);
                   }}
-                  renderInput={(params) => (
-                    <TextField {...params} margin="normal" />
-                  )}
+                  renderInput={(params) => <TextField {...params} />}
                 />
-              </CheckTime>
-            </LocalizationProvider>
+              </LocalizationProvider>
+            </CheckTimeR>
           </TimeContainer>
 
           <TagContainer>
@@ -478,28 +473,28 @@ const Modify = (props) => {
               value={memo}
             ></TextArea>
           </BottomContainer>
-        </ModalComponent>
 
-        <ButtonHeader>
-          <BtnDiv>
-            <AddButton
-              className="TimeText"
-              onClick={() => {
-                if (startSleep === "" || endSleep === "" || sendCon === 0) {
-                  window.alert(
-                    "정확한 수면분석을 위해 취침시간, 기상시간, 컨디션을 모두 입력해주세요!"
-                  );
-                  return;
-                } else {
-                  editPost();
-                  props.props._showModify(false);
-                }
-              }}
-            >
-              저장
-            </AddButton>
-          </BtnDiv>
-        </ButtonHeader>
+          <ButtonHeader>
+            <BtnDiv>
+              <AddButton
+                className="TimeText"
+                onClick={() => {
+                  if (startSleep === "" || endSleep === "" || sendCon === 0) {
+                    window.alert(
+                      "정확한 수면분석을 위해 취침시간, 기상시간, 컨디션을 모두 입력해주세요!"
+                    );
+                    return;
+                  } else {
+                    editPost();
+                    props.props._showModify(false);
+                  }
+                }}
+              >
+                저장
+              </AddButton>
+            </BtnDiv>
+          </ButtonHeader>
+        </ModalComponent>
       </React.Fragment>
     );
   }
@@ -519,27 +514,34 @@ const TimeContainer = styled.div`
   background-color: white;
   display: flex;
   width: 100%;
-  height: 20%;
+  height: 12%;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: space-around;
   box-sizing: border-box;
-  /* background-color: pink; */
+  /* background-color: lime; */
 `;
 
-const CheckTime = styled.div`
+const CheckTimeL = styled.div`
+  display: flex;
+  align-items: center;
   height: 100%;
-  width: 100%;
-  margin: 0px 20px 10px 20px;
-  padding: 1%;
-
+  width: 40%;
+  box-sizing: border-box;
+  justify-content: center;
+`;
+const CheckTimeR = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 40%;
   box-sizing: border-box;
 `;
 
 const Text = styled.div`
   font-weight: bold;
-  font-size:220%;
+  font-size: 220%;
   color: #4a5566;
-  
 `;
 
 const AddButton = styled.button`
@@ -558,24 +560,23 @@ const AddButton = styled.button`
 
 const BtnDiv = styled.div`
   display: flex;
-  width: 100%;
-  height: 100%;
-  justify-content: flex-end;
-
+  width: 90%;
+  height: 50%;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  outline: none;
   box-sizing: border-box;
-
-  /* background-color: red; */
 `;
 
 const ButtonHeader = styled.div`
   display: flex;
-  margin: 1rem auto;
   justify-content: center;
-  
-  width: 90%;
-  height: 5%;
+  align-items: center;
+  width: 100%;
+  height: 10%;
   box-sizing: border-box;
-  /* background-color: red; */
+  /* background-color: lightskyblue; */
 `;
 
 const ImgGrid = styled.div`
@@ -584,20 +585,16 @@ const ImgGrid = styled.div`
 
 const TotalImgGrid = styled.div`
   display: flex;
-  width: 100%;
+  width: 90%;
   flex-direction: row;
-  margin: auto;
   justify-content: space-between;
-  background-color: white;
 `;
 
 const TotalTagGrid = styled.div`
   display: flex;
-  width: 100%;
+  width: 90%;
   flex-direction: row;
-  margin: auto;
   justify-content: space-between;
-  background-color: white;
 `;
 
 const TagGrid = styled.div`
@@ -606,18 +603,23 @@ const TagGrid = styled.div`
 
 //메모
 const MemoText = styled.div`
+  display: flex;
+  width: 90%;
   font-size: 16px;
   font-weight: bold;
   color: black;
+  justify-content: flex-start;
+  padding: 0.6rem 0;
 `;
 const TextArea = styled.textarea`
-  width: 87%;
-  height: 100px;
+  width: 80%;
+  padding: 5%;
   border: none;
   border-radius: 6px;
   outline: none;
   font-weight: 300;
   font-size: 0.9rem;
+  height: 85%;
   resize: none;
   background-color: #dcdcdc;
 `;
@@ -637,58 +639,61 @@ const TopContainer = styled.div`
 
 const DateContainer = styled.div`
   width: 100%;
-  height: 30%;
-  margin: 10px 0px 10px 0px;
+  height: 9%;
+  padding-top: 10%;
   justify-content: center;
   align-items: center;
   display: flex;
+  /* background-color: maroon; */
 `;
 
 //태그
 const TagText = styled.div`
+  display: flex;
   font-size: 16px;
   font-weight: bold;
   color: black;
-  margin: 0px 0px 5px 0px;
+  width: 90%;
+  padding-bottom: 0.6rem;
 `;
 
 const TagContainer = styled.div`
-  /* background-color: blue; */
   width: 100%;
-  height: 20%;
+  height: 12%;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: center;
+  align-items: center;
   box-sizing: border-box;
-  padding: 25px 40px 40px 40px;
+  /* background-color: lightsteelblue; */
 `;
 
 const ConditionContainer = styled.div`
-  /* background-color: grey; */
-  width: 100%;
-  height: 20%;
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 12%;
   box-sizing: border-box;
-  padding: 25px 40px 40px 40px;
+  /* background-color: lightslategray; */
 `;
 
 const BottomContainer = styled.div`
-  /* background-color: green; */
   width: 100%;
-  height: 100%;
+  height: 40%;
   display: flex;
   flex-direction: column;
-  margin: 0px 0px 20px 20px;
+  align-items: center;
   box-sizing: border-box;
-  padding: 20px;
+  /* background-color: lightpink; */
 `;
 
 const ModalComponent = styled.div`
   width: 100%;
   height: 100%;
   display: flex;
-  flex-direction: column;
+  flex-direction: column; ;
 `;
 
 export default Modify;

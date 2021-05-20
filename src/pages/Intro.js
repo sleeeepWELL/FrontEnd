@@ -111,6 +111,7 @@ const Backgroud = styled.div`
   flex-direction: column;
   align-items: center;
   width: 100%;
+  height: auto;
   ${(props) => (props.bg ? `background-color: ${props.bg};` : "")}
 `;
 

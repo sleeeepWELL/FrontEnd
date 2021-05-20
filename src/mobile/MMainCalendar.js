@@ -97,7 +97,7 @@ const SearchContainer = styled.div`
 
 const Background = styled.div`
   width: 100%;
-  height: 83rem;
+  height: auto;
   left: 0;
   top: 0;
   background-color: #dbdbdb;

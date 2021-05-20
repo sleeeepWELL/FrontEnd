@@ -147,11 +147,11 @@ const AstroImg = styled.img`
   display: flex;
   position: absolute;
   width: 13%;
-  height: 28%;
+  height: 29%;
   background-color: white;
   justify-content: center;
  animation: ${slidein} 1.3s infinite alternate;
-  top:60%;
+  top:61%;
   left:42%;
   z-index:1;
 `;

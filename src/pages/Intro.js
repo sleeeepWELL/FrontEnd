@@ -1,13 +1,13 @@
 import React from "react";
 import styled, { keyframes } from "styled-components";
 import { history } from "../redux/configureStore";
-import IntroA from "../images/Intro_A.jpg";
-import IntroB from "../images/Intro_B.jpg";
-import IntroC from "../images/Intro_C.jpg";
-import IntroD from "../images/Intro_D.jpg";
-import IntroEE from "../images/Intro_EE.jpg";
-import IntroG from "../images/Intro_G.jpg";
-import IntroH from "../images/Intro_H.jpg";
+import IntroA from "../images/Intro_A.png";
+import IntroB from "../images/Intro_B.png";
+import IntroC from "../images/Intro_C.png";
+import IntroD from "../images/Intro_D.png";
+import IntroE from "../images/Intro_E.png";
+import IntroF from "../images/Intro_F.png";
+import IntroG from "../images/Intro_G.png";
 import Title3 from "../images/Title3.png";
 
 import IntroHeader from "../components/IntroHeader";
@@ -32,10 +32,10 @@ const Intro = () => {
           <BackImg src={IntroD} />
         </Backgroud>
         <Backgroud bg={"#4A5666"}>
-          <BackImg src={IntroEE} />
+          <BackImg src={IntroE} />
         </Backgroud>
         <Backgroud bg={"#DBDBDB"}>
-          <BackImg src={IntroG}></BackImg>
+          <BackImg src={IntroF}></BackImg>
           <GoBtn
             className="TimeText"
             onClick={() => {
@@ -46,7 +46,7 @@ const Intro = () => {
           </GoBtn>
         </Backgroud>
         <Backgroud bg={"#494949"}>
-          <BackImg src={IntroH} />
+          <BackImg src={IntroG} />
         </Backgroud>
       </Wrap>
     </React.Fragment>
@@ -54,13 +54,13 @@ const Intro = () => {
 };
 
 const GoBtn = styled.div`
+  word-break: keep-all;
   width: 50%;
   height: 4rem;
   display: flex;
   justify-content: center;
   align-items: flex-start;
   font-size: 2rem;
-  /* background-color: green; */
   cursor: pointer;
   text-decoration: underline;
   text-underline-position: under;
@@ -96,34 +96,6 @@ const GoBtn = styled.div`
   }
 `;
 
-
-
-// const slidein = keyframes`
-// 0% {
-//   margin-left: 30%;
-//   background-color: yellow;
-// }
-
-// 100% {
-//   margin: 0%;
-//   background-color: gold;
-// }
-// `;
-
-// const Title3Img = styled.img`
-// display: flex;
-//   position: absolute;
-// width: 60%;
-// height: 18%;
-// top:45%;
-// left:20%;
-// z-index:1;
-//   white-space: nowrap;
-
-//   animation:${slidein}  1s steps(30, end); 
-//`
-
-
 const Wrap = styled.div`
   display: flex;
   width: 100vw;
@@ -153,3 +125,28 @@ const BackImg = styled.img`
 `;
 
 export default Intro;
+
+// const slidein = keyframes`
+// 0% {
+//   margin-left: 30%;
+//   background-color: yellow;
+// }
+
+// 100% {
+//   margin: 0%;
+//   background-color: gold;
+// }
+// `;
+
+// const Title3Img = styled.img`
+// display: flex;
+//   position: absolute;
+// width: 60%;
+// height: 18%;
+// top:45%;
+// left:20%;
+// z-index:1;
+//   white-space: nowrap;
+
+//   animation:${slidein}  1s steps(30, end);
+//`;

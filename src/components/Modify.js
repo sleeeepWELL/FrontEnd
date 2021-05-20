@@ -511,7 +511,7 @@ const Container = styled.div`
 
 //취침 기상
 const TimeContainer = styled.div`
-  background-color: white;
+  background-color: #f3f3f3;
   display: flex;
   width: 100%;
   height: 12%;

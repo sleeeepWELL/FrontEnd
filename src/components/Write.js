@@ -211,7 +211,7 @@ const Write = (props) => {
 
       <ModalComponent>
         <DateContainer>
-          <Text >{props.props.date.slice(14, 24)}</Text>
+          <Text>{props.props.date.slice(14, 24)}</Text>
         </DateContainer>
 
         <TimeContainer>
@@ -370,7 +370,6 @@ const Write = (props) => {
           <MemoText>메모</MemoText>
           <TextArea
             className="TimeText2"
-            
             placeholder="메모를 입력하세요"
             onChange={changeMemo}
           ></TextArea>
@@ -410,15 +409,12 @@ const DateContainer = styled.div`
   align-items: center;
   display: flex;
   /* background-color: blue; */
- 
-
 `;
 
 const Text = styled.div`
   font-weight: bold;
-  font-size:220%;
+  font-size: 220%;
   color: #4a5566;
-  
 `;
 
 const AddButton = styled.button`
@@ -508,9 +504,10 @@ const MemoText = styled.div`
   font-size: 16px;
   font-weight: bold;
   color: black;
+  margin-bottom: 10px;
 `;
 const TextArea = styled.textarea`
-  width: 87%;
+  width: 80%;
   height: 50%;
   border: none;
   border-radius: 6px;
@@ -519,12 +516,10 @@ const TextArea = styled.textarea`
   font-size: 0.9rem;
   resize: none;
   background-color: #dcdcdc;
-  rows=2;
-  cols=2;
+  padding: 15px;
 `;
 
 const BottomContainer = styled.div`
-  /* background-color: green; */
   width: 100%;
   height: 100%;
   display: flex;

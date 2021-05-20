@@ -88,7 +88,7 @@ const Calendar = (props) => {
                 }}
               >
                 <DayText
-                  className="Helvetica Black2"
+                  className="Helvetica"
                   bg={is_today ? "black" : null}
                   font_c={
                     is_today || selectday === _day.format("DD")

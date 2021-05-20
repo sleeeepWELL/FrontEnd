@@ -166,7 +166,6 @@ const Container = styled.div`
   animation: ${FadeIn} 2s;
   display: flex;
   flex-direction: column;
-  /* border: 1px solid blue; */
 `;
 
 const BtnContainer = styled.div`

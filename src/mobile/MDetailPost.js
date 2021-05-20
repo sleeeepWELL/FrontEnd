@@ -356,6 +356,7 @@ const LeftHeader = styled.div`
   box-sizing: border-box;
   align-items: center;
   justify-content: center;
+  
 `;
 
 const MoveDButton = styled.button`
@@ -370,8 +371,9 @@ const MoveDButton = styled.button`
   cursor: pointer;
   color: #4a5566;
   background-color: white;
-  text-align: center;
+  align-items: center;
   text-shadow: rgb(10 50 10 / 40%) 0.7px 0.7px 0.7px;
+  
 `;
 const DText = styled.div`
   display: flex;
@@ -382,10 +384,11 @@ const DText = styled.div`
   text-align: center;
   justify-content: center;
   height: 100%;
-  margin-bottom: 1.5%;
+
   align-items: center;
   border-radius: 10px;
   text-shadow: rgb(10 50 10 / 40%) 0.7px 0.7px 0.7px;
+
 `;
 
 const ModifyButton = styled.button`

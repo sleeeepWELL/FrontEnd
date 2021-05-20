@@ -288,9 +288,10 @@ const WEEK = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: flex-end;
   width: 80%;
   height: 2.4vh;
-  padding-top: 1.5%;
+  padding-bottom:0.5%;
   font-size: 1vh;
   font-weight: bold;
 `;

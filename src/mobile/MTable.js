@@ -78,7 +78,7 @@ const CContainer = styled.div`
 
 const Text = styled.div`
   width: 100%;
-  height: 100%;
+  height: 95%;
   font-weight: 700;
   font-size: 0.4rem;
   @media (max-width: 320px) {

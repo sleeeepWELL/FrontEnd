@@ -34,6 +34,7 @@ const Search = (props) => {
     dispatch(todoActions.getOnePostAX(moment(myDate).format("YYYY-MM-DD")));
     dispatch(todoActions.changeToday(moment(myDate).format("YYYY-MM-DD")));
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+    
   };
 
   const onSearch = (e) => {
@@ -42,13 +43,22 @@ const Search = (props) => {
     }
   };
 
+
+  // const third = document.getElementById("third")
+
+  // third.addEventListener('focusout', (event) => {
+  //   event.target.style.background = '';
+  // });
+
   return (
     <React.Fragment>
       {year.length == 4 ? document.getElementById("second").focus() : null}
       {month.length == 2 ? document.getElementById("third").focus() : null}
-      {/* {year.length == 4 && month.length == 2 && day.length == 2
-        ? 
-        : null} */}
+      {day.length == 2? document.getElementById("third").focus(): null}
+      {day.length == 2? document.getElementById("third").blur(): null}
+     
+
+ 
       {/* <div className="Search">날짜 검색하기</div>  */}
       <InputContainer>
         <InputBox
@@ -79,7 +89,7 @@ const Search = (props) => {
           onKeyPress={onSearch}
         />
         {/* className 수정해야함 */}
-        <SearchBtn className="ReturnBtn" onClick={search}>
+        <SearchBtn className="ReturnBtn" id="ReturnBtn"  onClick={search}>
           검색
         </SearchBtn>
         <ReturnBtn

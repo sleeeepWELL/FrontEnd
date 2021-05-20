@@ -72,7 +72,7 @@ const Analysis = () => {
     };
   }, [handleResize]);
 
-  if (windowSize < 415) {
+  if (windowSize < 450) {
     return <MAnalysis />;
   } else {
     return (
@@ -171,7 +171,7 @@ const InfoContainer = styled.div`
 
 //전체 프레임을 위해서 100vh > 87vh로 수정했습니다
 const Container = styled.div`
-margin-top:5%;
+  margin-top: 5%;
   width: 70%;
   height: 100%;
   border: none;
@@ -190,7 +190,7 @@ const BtnContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top:5%;
+  margin-top: 5%;
 `;
 
 const ChartBtn = styled.div`

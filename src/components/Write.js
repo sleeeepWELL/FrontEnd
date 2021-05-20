@@ -359,8 +359,15 @@ const Write = (props) => {
               onClick={() => {
                 if (startSleep === "" || endSleep === "" || mycondition === 0) {
                   window.alert(
-                    "정확한 수면분석을 위해 취침시간, 기상시간, 컨디션을 모두 입력해주세요!"
+                    ""
                   );
+                  Swal.fire({
+                    title: "가입되지 않은 이메일입니다.",
+                    icon: "정확한 수면분석을 위해 취침시간, 기상시간, 컨디션을 모두 입력해주세요!",
+                    showCancelButton: false,
+                    focusConfirm: false,
+                    confirmButtonText: "확인",
+                  });
                   return;
                 } else {
                   addPost();

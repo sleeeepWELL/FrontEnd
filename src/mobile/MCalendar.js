@@ -313,13 +313,8 @@ const WeekGrid = styled.div`
   width: 100%;
   min-width: 50px;
   height: 10%;
-<<<<<<< HEAD
-
-  margin-top: 1.5%;
-=======
  
   margin-top:2%;
->>>>>>> kyu0520
 `;
 
 //날짜 묶음 Grid

@@ -67,7 +67,7 @@ const CalendarContainer = styled.div`
 // 카드와 검색
 const RightContainer = styled.div`
   display: flex;
-  width: 100%;
+  width: auto;
   height: 42vh;
   flex-direction: column;
   @media (max-width: 280px) {
@@ -78,7 +78,7 @@ const RightContainer = styled.div`
 const PostContainer = styled.div`
   display: flex;
   width: 100%;
-  height: 60rem;
+  height: auto;
   margin-top: 6%;
   background-color: white;
   flex-direction: column;

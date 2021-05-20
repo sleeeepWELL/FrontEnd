@@ -248,7 +248,6 @@ const MModify = (props) => {
   if (props.props.date.selectedAt !== undefined) {
     return (
       <React.Fragment>
-       
         <ModalComponent>
           <DateContainer>
             <DText className="Helvetica">{props.props.date.selectedAt}</DText>
@@ -263,9 +262,7 @@ const MModify = (props) => {
                   onChange={(newStart) => {
                     setStart(newStart);
                   }}
-                  renderInput={(params) => (
-                    <TextField {...params} margin="normal" />
-                  )}
+                  renderInput={(params) => <TextField {...params} />}
                 />
               </CheckTime>
             </LocalizationProvider>
@@ -277,9 +274,7 @@ const MModify = (props) => {
                   onChange={(newEnd) => {
                     setEnd(newEnd);
                   }}
-                  renderInput={(params) => (
-                    <TextField {...params} margin="normal" />
-                  )}
+                  renderInput={(params) => <TextField {...params} />}
                 />
               </CheckTime>
             </LocalizationProvider>
@@ -480,30 +475,27 @@ const MModify = (props) => {
           </BottomContainer>
         </ModalComponent>
         <ButtonHeader>
-        
-        <AddButton
-          className="TimeText"
-          onClick={() => {
-            if (startSleep === "" || endSleep === "" || sendCon === 0) {
-              window.alert(
-                "정확한 수면분석을 위해 취침시간, 기상시간, 컨디션을 모두 입력해주세요!"
-              );
-              return;
-            } else {
-              editPost();
-              props.props._showModify(false);
-            }
-          }}
-        >
-          저장
-        </AddButton>
-   
-    </ButtonHeader>
+          <AddButton
+            className="TimeText"
+            onClick={() => {
+              if (startSleep === "" || endSleep === "" || sendCon === 0) {
+                window.alert(
+                  "정확한 수면분석을 위해 취침시간, 기상시간, 컨디션을 모두 입력해주세요!"
+                );
+                return;
+              } else {
+                editPost();
+                props.props._showModify(false);
+              }
+            }}
+          >
+            저장
+          </AddButton>
+        </ButtonHeader>
       </React.Fragment>
     );
   }
 };
-
 
 //취침 기상
 const TimeContainer = styled.div`
@@ -519,26 +511,25 @@ const TimeContainer = styled.div`
 `;
 
 const CheckTime = styled.div`
+  display: flex;
+  align-items: center;
   height: 100%;
   width: 80%;
   margin: 0px 5% 0% 5%;
-  padding: 1%;
-
+  /* padding: 1%; */
   box-sizing: border-box;
 `;
 
 const DText = styled.div`
- font-size: 140%;
-  color: #4A5566;
+  font-size: 140%;
+  color: #4a5566;
   font-weight: bold;
 `;
-
 
 const AddButton = styled.button`
   width: 100%;
   height: 100%;
   background-color: #4a5566;
-
 
   font-weight: bold;
   border-radius: 5px;
@@ -547,7 +538,6 @@ const AddButton = styled.button`
   color: white;
   box-shadow: rgb(82 82 82/ 20%) 0px 5px 8px 0px;
   font-size: 90%;
- 
 `;
 
 const BtnDiv = styled.div`
@@ -556,20 +546,16 @@ const BtnDiv = styled.div`
   height: 100%;
   justify-content: flex-end;
   box-sizing: border-box;
- 
 `;
 
 const ButtonHeader = styled.div`
   display: flex;
-  
-  
-  
+
   width: 90%;
   height: 2rem;
-  margin:1rem auto;
- 
+  margin: 1rem auto;
+
   box-sizing: border-box;
- 
 `;
 
 const ImgGrid = styled.div`
@@ -614,7 +600,7 @@ const TextArea = styled.textarea`
   font-size: 0.9rem;
   resize: none;
   background-color: #dcdcdc;
-  margin-top:3%;
+  margin-top: 3%;
   margin-bottom: 10%;
 `;
 
@@ -627,7 +613,6 @@ const TopContainer = styled.div`
   width: 100%;
   height: 15%;
   margin: 20px 0px 0px 0px;
-
 `;
 
 const DateContainer = styled.div`
@@ -636,7 +621,6 @@ const DateContainer = styled.div`
   justify-content: center;
   align-items: center;
   display: flex;
-  
 `;
 
 //태그
@@ -656,8 +640,7 @@ const TagContainer = styled.div`
   justify-content: space-between;
   box-sizing: border-box;
   padding: 0px 7% 0px 7%;
-  margin-bottom:4%;
- 
+  margin-bottom: 4%;
 `;
 
 const ConditionContainer = styled.div`
@@ -666,16 +649,15 @@ const ConditionContainer = styled.div`
   height: 20%;
   display: flex;
   flex-direction: column;
- 
+
   box-sizing: border-box;
   padding: 0px 7% 0px 7%;
-  margin-bottom:4%;
+  margin-bottom: 4%;
 `;
 
 const BottomContainer = styled.div`
   /* background-color: green; */
 
-  
   width: 100%;
   height: 40%;
   display: flex;
@@ -690,7 +672,7 @@ const ModalComponent = styled.div`
   height: 35rem;
   display: flex;
   flex-direction: column;
-  margin-top:2rem;
+  margin-top: 2rem;
 `;
 
 export default MModify;

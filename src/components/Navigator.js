@@ -52,7 +52,7 @@ const Navigator = () => {
         let current = document.getElementById(currentClick);
         current.style.color = "black";
         current.style.borderBottom = "2px solid";
-        current.style.borderBottomColor = "#1c28f4";
+        current.style.borderBottomColor = "#4a5566";
       }
       if (prevClick !== null) {
         let prev = document.getElementById(prevClick);

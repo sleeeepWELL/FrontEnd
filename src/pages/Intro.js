@@ -9,7 +9,7 @@ import IntroE from "../images/Intro_E.png";
 import IntroF from "../images/Intro_F.png";
 import IntroG from "../images/Intro_G.png";
 import Title3 from "../images/Title3.png";
-import IntroA1 from "../images/in1.png";
+
 
 import IntroHeader from "../components/IntroHeader";
 import "../components/Font.css";
@@ -20,7 +20,6 @@ const Intro = () => {
       <Wrap>
         <IntroHeader />
         <Backgroud bg={"#DBDBDB"}>
-          <PlusImg1 src={IntroA1}/>
           <BackImg src={IntroA} />
         </Backgroud>
         <Backgroud bg={"white"}>

@@ -83,7 +83,7 @@ const SleepTime = styled.div`
   color: black;
   z-index: 1;
 
-  border: 1px solid black;
+
 `;
 
 const Total = styled.div`

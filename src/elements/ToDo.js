@@ -1,3 +1,4 @@
+  
 import React from "react";
 import styled from "styled-components";
 import { actionCreators as todoActions } from "../redux/modules/todo";
@@ -82,70 +83,38 @@ const ConImg = styled.div`
   display: flex;
   position: absolute;
   background-position: center;
-  padding: 3px;
+  padding: 2px;
 `;
 
 const TopInfo = styled.div`
-
-    width: 100%;
-    height: 65%;
-  
-    display: flex;
-    flex-direction: column;
-    position: relative;
-    justify-content: center;
-    align-items: center;
-  
-
-
-
+  width: 100%;
+  height: 74%;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  /* background-color: blue; */
 `;
 
 const SleepTime = styled.div`
-
-
-
- 
-    display: flex;
+  display: flex;
   flex-direction: column;
-
   align-items: center;
-  width:60%;
-  height:98%;
-  color: #121212;
+  color: black;
   z-index: 1;
-  
-
-
-  
+  /* border: 1px solid black; */
 `;
 
 const Total = styled.div`
- 
-
-    display: flex;
-    width:80%;
-    height: 42%;
-    margin-top:5%;
-    font-size:75%;
-    justify-content: center;
-  
-  
-
+  display: flex;
+  margin-top: 0.5vh;
 `;
 
 const TotalMin = styled.div`
-  
-
-    display: flex;
-    margin-top:2.5%;
-    height: 52%;
-    width: 80%;
-    font-size: 50%;
-    justify-content: center;
-    /* border: 1px solid black; */
-  
-  
+  display: flex;
+  margin-bottom: 0.5vh;
+  /* border: 1px solid black; */
 `;
 
 const TagImg = styled.div`
@@ -154,11 +123,8 @@ const TagImg = styled.div`
   background-repeat: no-repeat;
   width: 20%;
   height: 80%;
-  
-
   display: flex;
   background-position: center;
-
 `;
 
 const TagContainer = styled.div`
@@ -170,19 +136,16 @@ const TagContainer = styled.div`
   justify-content: center;
   align-items: center;
   box-sizing: border-box;
-
+  /* border: 1px solid black; */
 `;
 
 const BottomInfo = styled.div`
- 
-
-    display: flex;
+  display: flex;
   width: 100%;
-  height: 35%;
-  margin: 2px 0px 2% 0px;
+  height: 40%;
+  margin: 2px 0px 7px 0px;
   box-sizing: border-box;
-  
-  
+  /* background-color: yellow; */
 `;
 
 const Container = styled.div`
@@ -190,18 +153,13 @@ const Container = styled.div`
   flex-direction: column;
   width: 100%;
   height: 100%;
-
   border-radius: 8px;
   /* box-shadow: rgb(0 0 0 / 10%) 0px 4px 10px 0px; */
-
   justify-content: center;
   align-items: center;
   cursor: pointer;
   position: relative;
   /* background-color: pink; */
 `;
-
-
-
 
 export default ToDo;

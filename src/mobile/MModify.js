@@ -254,30 +254,34 @@ const MModify = (props) => {
           </DateContainer>
 
           <TimeContainer>
-            <LocalizationProvider dateAdapter={AdapterDateFns}>
-              <CheckTimeL>
+            <CheckTimeL>
+              <LocalizationProvider dateAdapter={AdapterDateFns}>
                 <MobileTimePicker
                   label="취침 시간 선택"
                   value={start}
                   onChange={(newStart) => {
                     setStart(newStart);
                   }}
-                  renderInput={(params) => <TextField {...params} />}
+                  renderInput={(params) => (
+                    <TextField {...params} margin={"dense"} />
+                  )}
                 />
-              </CheckTimeL>
-            </LocalizationProvider>
-            <LocalizationProvider dateAdapter={AdapterDateFns}>
-              <CheckTimeR>
+              </LocalizationProvider>
+            </CheckTimeL>
+            <CheckTimeR>
+              <LocalizationProvider dateAdapter={AdapterDateFns}>
                 <MobileTimePicker
                   label="기상 시간 선택"
                   value={end}
                   onChange={(newEnd) => {
                     setEnd(newEnd);
                   }}
-                  renderInput={(params) => <TextField {...params} />}
+                  renderInput={(params) => (
+                    <TextField {...params} margin={"dense"} />
+                  )}
                 />
-              </CheckTimeR>
-            </LocalizationProvider>
+              </LocalizationProvider>
+            </CheckTimeR>
           </TimeContainer>
 
           <TagContainer>

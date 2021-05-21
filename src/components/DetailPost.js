@@ -462,8 +462,11 @@ const LeftHeader = styled.div`
   width: 80%;
   height: 60%;
   text-align: center;
+  align-items: center;
   box-sizing: border-box;
   justify-content: center;
+ 
+  
 `;
 
 const RightHeader = styled.div`
@@ -494,52 +497,51 @@ const MoveDButton = styled.button`
 `;
 const DText = styled.div`
   display: flex;
-  font-weight: bold;
-  font-size: 3.5vh;
+
+  // font-size: 40%;
+  font-size: 150%;
   color: #4a5566;
   width: 80%;
   text-align: center;
   justify-content: center;
-  height: 100%;
+  height: 60%;
   align-items: center;
   border-radius: 10px;
-  text-shadow: rgb(10 50 10 / 40%) 0.7px 0.7px 0.7px;
 
-  @media (max-width: 1400px) {
-    font-size: 1.5rem;
+  @media (max-width: 1200px) {
+    font-size: 130%;
   }
-  @media (max-width: 1782px) {
-    font-size: 2rem;
-  }
+
+ 
 `;
 
 const ModifyButton = styled.button`
-  width: 13%;
+  width: 20%;
   height: 100%;
   background-color: #4a5566;
-  border: 1px solid white;
+
   font-weight: bold;
   border-radius: 5px;
   outline: none;
   cursor: pointer;
   color: white;
   box-shadow: rgb(82 82 82/ 20%) 0px 5px 8px 0px;
-  font-size: 90%;
+  font-size: 80%;
   margin-right: 10px;
 `;
 
 const AddButton = styled.button`
-  width: 14%;
+  width: 20%;
   height: 100%;
   background-color: #4a5566;
-  border: 1px solid white;
+
   font-weight: bold;
   border-radius: 5px;
   outline: none;
   cursor: pointer;
   color: white;
   box-shadow: rgb(82 82 82/ 20%) 0px 5px 8px 0px;
-  font-size: 90%;
+  font-size: 85%;
   margin: 0px 10px 0px 0px;
 `;
 

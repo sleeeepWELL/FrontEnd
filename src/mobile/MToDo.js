@@ -29,7 +29,6 @@ const MToDo = (props) => {
   return (
     <React.Fragment>
       <Container>
-      
         <TopInfo>
           <SleepTime>
             <Total className="SleepTime">{`${props.totalSleepHour}h`}</Total>
@@ -43,7 +42,6 @@ const MToDo = (props) => {
           {myCon === "4" && <ConImg img={four}></ConImg>}
           {myCon === "5" && <ConImg img={five}></ConImg>}
         </TopInfo>
-        
       </Container>
     </React.Fragment>
   );
@@ -61,21 +59,19 @@ const ConImg = styled.div`
   position: absolute;
   background-position: center;
   padding: 1.3%;
-  margin-bottom:4%;
+  margin-bottom: 4%;
 `;
 
 const TopInfo = styled.div`
   width: 80%;
   height: 100%;
-  
- 
+
   display: flex;
   flex-direction: column;
   position: relative;
   justify-content: center;
   align-items: center;
   /* background-color: blue; */
-
 `;
 
 const SleepTime = styled.div`
@@ -92,13 +88,16 @@ const SleepTime = styled.div`
 
 const Total = styled.div`
   display: flex;
+  font-size: 1.7vh;
   margin-top: 0.5vh;
+  margin-bottom: 0.1vh;
 `;
 
 const TotalMin = styled.div`
   display: flex;
-
-  margin-bottom: 0.5vh;
+  font-size: 1.2vh;
+  margin-bottom: 0.7vh;
+  margin-top: 0.1vh;
   /* border: 1px solid black; */
 `;
 
@@ -127,7 +126,7 @@ const TagContainer = styled.div`
 
 const BottomInfo = styled.div`
   display: flex;
-  
+
   width: 30%;
   height: 90%;
   margin: 0% 4% 15% 0%;
@@ -151,4 +150,4 @@ const Container = styled.div`
   /* background-color: pink; */
 `;
 
-export default MToDo ;
+export default MToDo;

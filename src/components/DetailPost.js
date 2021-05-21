@@ -206,7 +206,12 @@ const DetailPost = (props) => {
               <TagImgBox>
                 <InnerBox>
                   {props.date.tag.map((currentTag, idx) => {
-                    return <TagImg img={mapKeywordToImg[currentTag]}></TagImg>;
+                    return (
+                      <TagImg
+                        key={idx}
+                        img={mapKeywordToImg[currentTag]}
+                      ></TagImg>
+                    );
                   })}
                 </InnerBox>
               </TagImgBox>

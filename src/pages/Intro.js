@@ -99,7 +99,7 @@ const GoBtn = styled.div`
 const Wrap = styled.div`
   display: flex;
   width: 100vw;
-  height: 100vh;
+  height: 100%;
   flex-direction: column;
   align-items: center;
 `;

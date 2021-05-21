@@ -94,7 +94,7 @@ const Calendar = (props) => {
                 <DayText
                   className="Helvetica"
                   bg={is_today ? "black" : null}
-                  font_c={(today.format("YYYY-MM-DD")===_day.format("YYYY-MM-DD"))  ? "white" : "black"}
+                  font_c={(today.format("YYYY-MM-DD")===_day.format("YYYY-MM-DD")) || is_today ? "white" : "black"}
                   br={is_today ? "50%" : "null"}
                 >
                   {_day.format("DD")}

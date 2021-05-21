@@ -83,22 +83,23 @@ const SleepTime = styled.div`
   color: black;
   z-index: 1;
 
-  /* border: 1px solid black; */
+  border: 1px solid black;
 `;
 
 const Total = styled.div`
   display: flex;
   font-size: 1.7vh;
   margin-top: 0.5vh;
-  margin-bottom: 0.1vh;
+  margin-bottom: 0.15vh;
+  /* border: 1px solid blue; */
 `;
 
 const TotalMin = styled.div`
   display: flex;
   font-size: 1.2vh;
   margin-bottom: 0.7vh;
-  margin-top: 0.1vh;
-  /* border: 1px solid black; */
+  margin-top: 0.15vh;
+  /* border: 1px solid blue; */
 `;
 
 const TagImg = styled.div`

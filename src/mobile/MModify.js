@@ -491,6 +491,7 @@ const CheckTimeL = styled.div`
   width: 40%;
   box-sizing: border-box;
   justify-content: center;
+  margin: 0px;
   /* background-color: lightblue; */
 `;
 const CheckTimeR = styled.div`
@@ -500,6 +501,7 @@ const CheckTimeR = styled.div`
   height: 100%;
   width: 40%;
   box-sizing: border-box;
+  margin: 0px;
   /* background-color: lightsalmon; */
 `;
 

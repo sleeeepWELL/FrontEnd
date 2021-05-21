@@ -18,10 +18,11 @@ const Search = (props) => {
     if (
       year === null || month === null ||  day === null||
       year.length !== 4 || month.length !==2 ||day.length !==2||
-      month > 12 ||  day > 31
+      month > 12 || month < 1 ||  day > 31 || day <1 ||
+      year % 1 !==0 || month % 1 !==0 || day % 1 !==0  
     ) {
       Swal.fire({
-        title: "이런...",
+        title: "다시 입력해주세요",
         text: "모두 예시와 같은 올바른 형식으로 입력해주세요",
         icon: "info",
       });
@@ -49,10 +50,9 @@ const Search = (props) => {
 
   return (
     <React.Fragment>
-      {year.length == 4 ? document.getElementById("second").focus() : null}
-      {month.length == 2 ? document.getElementById("third").focus() : null}
-      {day.length == 2? document.getElementById("third").focus(): null}
-      {day.length == 2? document.getElementById("third").blur(): null}
+      {year.length == 4 && month.length == 0? document.getElementById("second").focus() : null}
+      {month.length == 2 && day.length == 0 ? document.getElementById("third").focus() : null}
+      {day.length == 2 ? document.getElementById("third").blur() : null}
      
 
  

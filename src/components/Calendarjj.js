@@ -17,9 +17,9 @@ const Calendar = (props) => {
   const dispatch = useDispatch();
   const today = useSelector((state) => state.todo.today);
   const todo_list = useSelector((state) => state.todo.todo_list);
-  // const [selectday, _changeColor] = useState(today.format("DD"));
-  // const _today = moment();
+  const [selectday, _changeColor] = useState(today.format("DD"));
 
+ console.log(today)
   
   React.useEffect(() => {
     dispatch(todoActions.getAllPostAX());
@@ -82,19 +82,23 @@ const Calendar = (props) => {
                   "MM"
                 )}_week_${week_index}_day_${day_index}`}
                 // bg={"#FFFFFF"}
-                bg={(today.format("YYYY-MM-DD")===_day.format("YYYY-MM-DD"))  ? "#4a5566" : "#FFFFFF"}
+                bg={(selectday === _day.format("DD"))  ? "#4a5566" : "#FFFFFF"}
                 
                 
                 onClick={() => {
                   props._showModify(false);
-                  dispatch(todoActions.changeToday(_day.format("YYYY-MM-DD")));
+                  _changeColor(_day.format("DD"));
                   dispatch(todoActions.getOnePostAX(_day.format("YYYY-MM-DD")));
                 }}
               >
                 <DayText
                   className="Helvetica"
                   bg={is_today ? "black" : null}
-                  font_c={(today.format("YYYY-MM-DD")===_day.format("YYYY-MM-DD"))  ? "white" : "black"}
+                  font_c={
+                    is_today || selectday === _day.format("DD")
+                      ? "white"
+                      : "black"
+                  }
                   br={is_today ? "50%" : "null"}
                 >
                   {_day.format("DD")}
@@ -213,6 +217,7 @@ const TitleText = styled.div`
   justify-content: center;
   align-items: center;
   font-size: 3vw;
+  font-weight: bold;
   color: #495465;
   width: 30vw;
   text-shadow: rgb(10 50 10 / 40%) 1px 1px 1px;

@@ -281,29 +281,25 @@ const Modify = (props) => {
           </TimeContainer>
 
           <TagContainer>
-            <TagText>태그 </TagText>
+            <TagText className="BottomInfo">태그 </TagText>
             <TotalTagGrid>
               <TagGrid>
                 {editTags.find((p) => p === "음주") ? (
-                  <input
-                    width="50"
-                    height="50"
-                    type="image"
+                  <IconInput
                     src={icon_beer}
                     alt="beer"
                     value={"음주"}
+                    type= "image"
                     onClick={(e) => {
                       setEditTags(editTags.filter((p) => p !== "음주"));
                     }}
                   />
                 ) : (
-                  <input
-                    width="50"
-                    height="50"
-                    type="image"
+                  <IconInput
                     src={beer_icon}
                     alt="beer"
                     value={"음주"}
+                    type= "image"
                     onClick={(e) => {
                       checkbeer ? setTags1(null) : setTags1(e.target.value);
                       checkbeer ? setCheckBeer(false) : setCheckBeer(true);
@@ -313,25 +309,21 @@ const Modify = (props) => {
               </TagGrid>
               <TagGrid>
                 {editTags.find((p) => p === "야식") ? (
-                  <input
-                    width="50"
-                    height="50"
-                    type="image"
+                  <IconInput
                     src={icon_snack}
                     alt="snack"
                     value={"야식"}
+                    type= "image"
                     onClick={(e) => {
                       setEditTags(editTags.filter((p) => p !== "야식"));
                     }}
                   />
                 ) : (
-                  <input
-                    width="50"
-                    height="50"
-                    type="image"
+                  <IconInput
                     src={snack_icon}
                     alt="snack"
                     value={"야식"}
+                    type= "image"
                     onClick={(e) => {
                       checksnack ? setTags2(null) : setTags2(e.target.value);
 
@@ -342,25 +334,21 @@ const Modify = (props) => {
               </TagGrid>
               <TagGrid>
                 {editTags.find((p) => p === "야근") ? (
-                  <input
-                    width="50"
-                    height="50"
-                    type="image"
+                  <IconInput
                     src={icon_work}
                     alt="work"
                     value={"야근"}
+                    type= "image"
                     onClick={(e) => {
                       setEditTags(editTags.filter((p) => p !== "야근"));
                     }}
                   />
                 ) : (
-                  <input
-                    width="50"
-                    height="50"
-                    type="image"
+                  <IconInput
                     src={work_icon}
                     alt="work"
                     value={"야근"}
+                    type= "image"
                     onClick={(e) => {
                       checkwork ? setTags3(null) : setTags3(e.target.value);
                       checkwork ? setCheckWork(false) : setCheckWork(true);
@@ -370,25 +358,21 @@ const Modify = (props) => {
               </TagGrid>
               <TagGrid>
                 {editTags.find((p) => p === "운동") ? (
-                  <input
-                    width="50"
-                    height="50"
-                    type="image"
+                  <IconInput
                     src={icon_workout}
                     alt="workout"
                     value={"운동"}
+                    type= "image"
                     onClick={(e) => {
                       setEditTags(editTags.filter((p) => p !== "운동"));
                     }}
                   />
                 ) : (
-                  <input
-                    width="50"
-                    height="50"
-                    type="image"
+                  <IconInput
                     src={workout_icon}
                     alt="workout"
                     value={"운동"}
+                    type= "image"
                     onClick={(e) => {
                       checkworkout ? setTags4(null) : setTags4(e.target.value);
                       checkworkout
@@ -402,12 +386,11 @@ const Modify = (props) => {
           </TagContainer>
 
           <ConditionContainer>
-            <TagText>컨디션</TagText>
+            <TagText className="BottomInfo">컨디션</TagText>
             <TotalImgGrid>
               <ImgGrid>
-                <input
-                  width="45"
-                  height="45"
+                <ConInput
+                 
                   type="image"
                   src={one_icon}
                   alt="매우나쁨"
@@ -416,9 +399,7 @@ const Modify = (props) => {
                 />
               </ImgGrid>
               <ImgGrid>
-                <input
-                  width="45"
-                  height="45"
+              <ConInput
                   type="image"
                   src={two_icon}
                   alt="나쁨"
@@ -427,9 +408,7 @@ const Modify = (props) => {
                 />
               </ImgGrid>
               <ImgGrid>
-                <input
-                  width="45"
-                  height="45"
+              <ConInput
                   type="image"
                   src={three_icon}
                   alt="보통"
@@ -438,9 +417,7 @@ const Modify = (props) => {
                 />
               </ImgGrid>
               <ImgGrid>
-                <input
-                  width="45"
-                  height="45"
+              <ConInput
                   type="image"
                   src={four_icon}
                   alt="좋음"
@@ -449,9 +426,7 @@ const Modify = (props) => {
                 />
               </ImgGrid>
               <ImgGrid>
-                <input
-                  width="45"
-                  height="45"
+              <ConInput
                   type="image"
                   src={five_icon}
                   alt="매우 좋음"
@@ -463,7 +438,7 @@ const Modify = (props) => {
           </ConditionContainer>
 
           <BottomContainer>
-            <MemoText>메모</MemoText>
+            <MemoText className="BottomInfo">메모</MemoText>
             <TextArea
               className="TimeText2"
               minRows={9}
@@ -540,8 +515,11 @@ const CheckTimeR = styled.div`
 
 const Text = styled.div`
   font-weight: bold;
-  font-size: 220%;
+  font-size: 175%;
   color: #4a5566;
+  @media ( max-width: 1300px) {
+   font-size:125%;
+  }
 `;
 
 const AddButton = styled.button`
@@ -588,13 +566,18 @@ const TotalImgGrid = styled.div`
   width: 90%;
   flex-direction: row;
   justify-content: space-between;
+  margin-top:2%;
+  margin-bottom:1%;
 `;
 
 const TotalTagGrid = styled.div`
   display: flex;
   width: 90%;
+  height:100%;
   flex-direction: row;
   justify-content: space-between;
+  margin-top:1%;
+  margin-bottom:1%;
 `;
 
 const TagGrid = styled.div`
@@ -640,21 +623,24 @@ const TopContainer = styled.div`
 const DateContainer = styled.div`
   width: 100%;
   height: 9%;
-  padding-top: 10%;
+  margin-top: 3%;
+  margin-bottom: 3%;
   justify-content: center;
   align-items: center;
   display: flex;
   /* background-color: maroon; */
+ 
 `;
 
 //태그
 const TagText = styled.div`
   display: flex;
-  font-size: 16px;
+  font-size: 100%;
   font-weight: bold;
-  color: black;
+  color: #121212;
   width: 90%;
-  padding-bottom: 0.6rem;
+
+  
 `;
 
 const TagContainer = styled.div`
@@ -665,6 +651,7 @@ const TagContainer = styled.div`
   justify-content: center;
   align-items: center;
   box-sizing: border-box;
+  margin-top:7%;
   /* background-color: lightsteelblue; */
 `;
 
@@ -676,6 +663,8 @@ const ConditionContainer = styled.div`
   width: 100%;
   height: 12%;
   box-sizing: border-box;
+  margin-top:7%;
+  margin-bottom:1%;
   /* background-color: lightslategray; */
 `;
 
@@ -695,5 +684,29 @@ const ModalComponent = styled.div`
   display: flex;
   flex-direction: column; ;
 `;
+
+
+const IconInput =styled.input`
+width: 80%;
+height: 100%;
+margin: 0% auto;
+border-radius: 50%;
+:hover {
+  box-shadow:  lightgrey 0px 3px 7px 0px;
+  transition: box-shadow 0.2s ease-in 0s;
+}
+
+`
+const ConInput =styled.input`
+width: 80%;
+height: 100%;
+margin: 0% auto;
+border-radius: 50%;
+:hover {
+  box-shadow:  lightgrey 0px 3px 7px 0px;
+  transition: box-shadow 0.2s ease-in 0s;
+}
+
+`
 
 export default Modify;

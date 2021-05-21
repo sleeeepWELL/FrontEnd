@@ -139,6 +139,7 @@ const DetailPost = (props) => {
               </ModifyButton>
             </RightHeader>
           </DayHeader>
+
           <ModalComponent>
             <DateContainer>
               <LeftHeader>
@@ -171,6 +172,7 @@ const DetailPost = (props) => {
                 </MoveDButton>
               </LeftHeader>
             </DateContainer>
+
             <ConditContainer>
               <ConditionContainer>
                 <ConditionText className="ConditionText">
@@ -187,6 +189,7 @@ const DetailPost = (props) => {
                 </ConditionImgBox>
               </ConditionContainer>
             </ConditContainer>
+
             <TimeContainer>
               <ConditionText className="ConditionText">
                 <SideTextBox>수면 시간</SideTextBox>
@@ -241,6 +244,9 @@ const SideTextBox = styled.div`
   color: black;
   font-size: 17px;
   font-weight: bold;
+  word-break: keep-all;
+  justify-content: center;
+  text-align: center;
 `;
 
 const InnerBox = styled.div`
@@ -254,6 +260,8 @@ const InnerBox = styled.div`
   color: black;
   font-size: 1rem;
   font-weight: bold;
+  word-break: keep-all;
+  text-align: center;
 `;
 const MemoInfoBox = styled.div`
   display: flex;

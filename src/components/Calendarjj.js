@@ -19,10 +19,12 @@ const Calendar = (props) => {
   const todo_list = useSelector((state) => state.todo.todo_list);
   const [selectday, _changeColor] = useState(today.format("DD"));
 
+ console.log(today)
+  
   React.useEffect(() => {
     dispatch(todoActions.getAllPostAX());
   }, []);
-
+  
   const start_week = moment(today).startOf("month").week();
   const end_week = moment(today).endOf("month").week();
   const week_num =
@@ -80,7 +82,9 @@ const Calendar = (props) => {
                   "MM"
                 )}_week_${week_index}_day_${day_index}`}
                 // bg={"#FFFFFF"}
-                bg={selectday === _day.format("DD") ? "#4a5566" : "#FFFFFF"}
+                bg={(selectday === _day.format("DD"))  ? "#4a5566" : "#FFFFFF"}
+                
+                
                 onClick={() => {
                   props._showModify(false);
                   _changeColor(_day.format("DD"));

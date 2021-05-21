@@ -14,6 +14,7 @@ const LOG_OUT = "LOG_OUT"; // 로그아웃
 const NAME_CHECK = "NAME_CHECK"; //닉네임 중복검사 완료유무
 const AUTH_CHECK = "AUTH_CHECK"; // 인증완료 실시여부
 const DELETE_USER = "DELETE_USER"; // 회원탈퇴
+const NAME_CHANGE = "NAME_CHANGE";
 
 // 액션 생성함수
 const setUser = createAction(SET_USER, () => ({}));
@@ -22,10 +23,12 @@ const logOut = createAction(LOG_OUT, () => ({}));
 const nameCheck = createAction(NAME_CHECK, (name_check) => ({ name_check }));
 const authCheck = createAction(AUTH_CHECK, (auth_check) => ({ auth_check }));
 const deleteUser = createAction(DELETE_USER, () => ({}));
+const changeName = createAction(NAME_CHANGE, (name)=>({name}));
+
 
 // 초기값
 const initialState = {
-  user: "hi",
+  user: " ",
   is_login: false,
   name_check: false,
   auth_check: false,
@@ -449,8 +452,9 @@ const changeUsernameSV = (username) => {
           icon: "success",
           confirmButtonText: "확인",
         });
+        dispatch(changeName(username));
         // 닉네임 변경 적용을 위해 새로고침
-        history.go(0);
+        // history.go(0);
       })
       .catch((err) => {
         console.log("닉네임변경 에러", err);
@@ -511,6 +515,12 @@ export default handleActions(
         draft.name_check = action.payload.name_check;
       }),
 
+    [NAME_CHANGE]: (state, action) =>
+    produce(state, (draft) => {
+      draft.user= action.payload.name;
+    }),
+
+
     [AUTH_CHECK]: (state, action) =>
       produce(state, (draft) => {
         draft.auth_check = action.payload.auth_check;
@@ -546,6 +556,7 @@ const actionCreators = {
   deleteUser,
   changeUsernameSV,
   changePwdSV,
+  changeName,
 };
 
 export { actionCreators };

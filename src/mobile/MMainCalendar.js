@@ -45,8 +45,7 @@ const AllContainer = styled.div`
   display: flex;
   flex-direction: column;
   width: 96%;
-  height: 90%;
-  margin: auto;
+  height: 98%;
   margin-top: 2%;
   animation: ${fadein} 1s;
   // ease-in infinite alternate
@@ -57,8 +56,6 @@ const CalendarContainer = styled.div`
   width: 100%;
   height: 60vh;
   background-color: #f3f3f3;
-  margin-top: 1%;
-
   border-radius: 15px;
   padding-bottom: 1.5%;
   box-shadow: rgb(82 82 82/ 40%) 0px 5px 8px 0px;
@@ -78,9 +75,9 @@ const RightContainer = styled.div`
 const PostContainer = styled.div`
   display: flex;
   width: 100%;
-  height: auto;
-  margin-top: 6%;
-  background-color: white;
+  height: 50vh;
+  margin-top: 4%;
+  background-color: #f3f3f3;
   flex-direction: column;
   border-radius: 20px;
   box-shadow: rgb(82 82 82/ 40%) 0px 5px 8px 0px;
@@ -93,10 +90,14 @@ const SearchContainer = styled.div`
   align-items: center;
   justify-content: center;
   border-radius: 10px;
+  background-color: #dbdbdb;
   // box-shadow: rgb(82 82 82/ 40%) 0px 5px 8px 0px;
 `;
 
 const Background = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   width: 100%;
   height: auto;
   left: 0;

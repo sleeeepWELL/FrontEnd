@@ -72,7 +72,7 @@ const Analysis = () => {
     };
   }, [handleResize]);
 
-  if (windowSize < 450) {
+  if (windowSize < 500) {
     return <MAnalysis />;
   } else {
     return (
@@ -173,7 +173,7 @@ const InfoContainer = styled.div`
 const Container = styled.div`
   margin-top: 5%;
   width: 70%;
-  height: 100%;
+  height: 95%;
   border: none;
   justify-content: flex-start;
   animation: ${FadeIn} 2s;
@@ -231,10 +231,9 @@ const ResultContainer2 = styled.div`
 const Background = styled.div`
   display: flex;
   justify-content: center;
-  width: 100vw;
-  height: 110vh;
+  width: 100%;
+  height: 100vh;
   background-color: rgba(219, 219, 219, 1);
-  z-index: 999;
   margin: 0px;
   box-sizing: border-box;
 `;

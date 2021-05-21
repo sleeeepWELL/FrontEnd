@@ -255,7 +255,7 @@ const MModify = (props) => {
 
           <TimeContainer>
             <LocalizationProvider dateAdapter={AdapterDateFns}>
-              <CheckTime>
+              <CheckTimeL>
                 <MobileTimePicker
                   label="취침 시간 선택"
                   value={start}
@@ -264,10 +264,10 @@ const MModify = (props) => {
                   }}
                   renderInput={(params) => <TextField {...params} />}
                 />
-              </CheckTime>
+              </CheckTimeL>
             </LocalizationProvider>
             <LocalizationProvider dateAdapter={AdapterDateFns}>
-              <CheckTime>
+              <CheckTimeR>
                 <MobileTimePicker
                   label="기상 시간 선택"
                   value={end}
@@ -276,189 +276,122 @@ const MModify = (props) => {
                   }}
                   renderInput={(params) => <TextField {...params} />}
                 />
-              </CheckTime>
+              </CheckTimeR>
             </LocalizationProvider>
           </TimeContainer>
 
           <TagContainer>
             <TagText>태그 </TagText>
             <TotalTagGrid>
-              <TagGrid>
-                {editTags.find((p) => p === "음주") ? (
-                  <input
-                    width="50"
-                    height="50"
-                    type="image"
-                    src={icon_beer}
-                    alt="beer"
-                    value={"음주"}
-                    onClick={(e) => {
-                      setEditTags(editTags.filter((p) => p !== "음주"));
-                    }}
-                  />
-                ) : (
-                  <input
-                    width="50"
-                    height="50"
-                    type="image"
-                    src={beer_icon}
-                    alt="beer"
-                    value={"음주"}
-                    onClick={(e) => {
-                      checkbeer ? setTags1(null) : setTags1(e.target.value);
-                      checkbeer ? setCheckBeer(false) : setCheckBeer(true);
-                    }}
-                  />
-                )}
-              </TagGrid>
-              <TagGrid>
-                {editTags.find((p) => p === "야식") ? (
-                  <input
-                    width="50"
-                    height="50"
-                    type="image"
-                    src={icon_snack}
-                    alt="snack"
-                    value={"야식"}
-                    onClick={(e) => {
-                      setEditTags(editTags.filter((p) => p !== "야식"));
-                    }}
-                  />
-                ) : (
-                  <input
-                    width="50"
-                    height="50"
-                    type="image"
-                    src={snack_icon}
-                    alt="snack"
-                    value={"야식"}
-                    onClick={(e) => {
-                      checksnack ? setTags2(null) : setTags2(e.target.value);
+              {editTags.find((p) => p === "음주") ? (
+                <TagImg
+                  src={icon_beer}
+                  alt="beer"
+                  value={"음주"}
+                  onClick={(e) => {
+                    setEditTags(editTags.filter((p) => p !== "음주"));
+                  }}
+                />
+              ) : (
+                <TagImg
+                  src={beer_icon}
+                  alt="beer"
+                  value={"음주"}
+                  onClick={(e) => {
+                    checkbeer ? setTags1(null) : setTags1(e.target.value);
+                    checkbeer ? setCheckBeer(false) : setCheckBeer(true);
+                  }}
+                />
+              )}
+              {editTags.find((p) => p === "야식") ? (
+                <TagImg
+                  src={icon_snack}
+                  alt="snack"
+                  value={"야식"}
+                  onClick={(e) => {
+                    setEditTags(editTags.filter((p) => p !== "야식"));
+                  }}
+                />
+              ) : (
+                <TagImg
+                  src={snack_icon}
+                  alt="snack"
+                  value={"야식"}
+                  onClick={(e) => {
+                    checksnack ? setTags2(null) : setTags2(e.target.value);
 
-                      checksnack ? setCheckSnack(false) : setCheckSnack(true);
-                    }}
-                  />
-                )}
-              </TagGrid>
-              <TagGrid>
-                {editTags.find((p) => p === "야근") ? (
-                  <input
-                    width="50"
-                    height="50"
-                    type="image"
-                    src={icon_work}
-                    alt="work"
-                    value={"야근"}
-                    onClick={(e) => {
-                      setEditTags(editTags.filter((p) => p !== "야근"));
-                    }}
-                  />
-                ) : (
-                  <input
-                    width="50"
-                    height="50"
-                    type="image"
-                    src={work_icon}
-                    alt="work"
-                    value={"야근"}
-                    onClick={(e) => {
-                      checkwork ? setTags3(null) : setTags3(e.target.value);
-                      checkwork ? setCheckWork(false) : setCheckWork(true);
-                    }}
-                  />
-                )}
-              </TagGrid>
-              <TagGrid>
-                {editTags.find((p) => p === "운동") ? (
-                  <input
-                    width="50"
-                    height="50"
-                    type="image"
-                    src={icon_workout}
-                    alt="workout"
-                    value={"운동"}
-                    onClick={(e) => {
-                      setEditTags(editTags.filter((p) => p !== "운동"));
-                    }}
-                  />
-                ) : (
-                  <input
-                    width="50"
-                    height="50"
-                    type="image"
-                    src={workout_icon}
-                    alt="workout"
-                    value={"운동"}
-                    onClick={(e) => {
-                      checkworkout ? setTags4(null) : setTags4(e.target.value);
-                      checkworkout
-                        ? setCheckWorkOut(false)
-                        : setCheckWorkOut(true);
-                    }}
-                  />
-                )}
-              </TagGrid>
+                    checksnack ? setCheckSnack(false) : setCheckSnack(true);
+                  }}
+                />
+              )}
+              {editTags.find((p) => p === "야근") ? (
+                <TagImg
+                  src={icon_work}
+                  alt="work"
+                  value={"야근"}
+                  onClick={(e) => {
+                    setEditTags(editTags.filter((p) => p !== "야근"));
+                  }}
+                />
+              ) : (
+                <TagImg
+                  src={work_icon}
+                  alt="work"
+                  value={"야근"}
+                  onClick={(e) => {
+                    checkwork ? setTags3(null) : setTags3(e.target.value);
+                    checkwork ? setCheckWork(false) : setCheckWork(true);
+                  }}
+                />
+              )}
+              {editTags.find((p) => p === "운동") ? (
+                <TagImg
+                  src={icon_workout}
+                  alt="workout"
+                  value={"운동"}
+                  onClick={(e) => {
+                    setEditTags(editTags.filter((p) => p !== "운동"));
+                  }}
+                />
+              ) : (
+                <TagImg
+                  src={workout_icon}
+                  alt="workout"
+                  value={"운동"}
+                  onClick={(e) => {
+                    checkworkout ? setTags4(null) : setTags4(e.target.value);
+                    checkworkout
+                      ? setCheckWorkOut(false)
+                      : setCheckWorkOut(true);
+                  }}
+                />
+              )}
             </TotalTagGrid>
           </TagContainer>
 
           <ConditionContainer>
             <TagText>컨디션</TagText>
             <TotalImgGrid>
-              <ImgGrid>
-                <input
-                  width="45"
-                  height="45"
-                  type="image"
-                  src={one_icon}
-                  alt="매우나쁨"
-                  value={1}
-                  onClick={getClick}
-                />
-              </ImgGrid>
-              <ImgGrid>
-                <input
-                  width="45"
-                  height="45"
-                  type="image"
-                  src={two_icon}
-                  alt="나쁨"
-                  value={2}
-                  onClick={getClick}
-                />
-              </ImgGrid>
-              <ImgGrid>
-                <input
-                  width="45"
-                  height="45"
-                  type="image"
-                  src={three_icon}
-                  alt="보통"
-                  value={3}
-                  onClick={getClick}
-                />
-              </ImgGrid>
-              <ImgGrid>
-                <input
-                  width="45"
-                  height="45"
-                  type="image"
-                  src={four_icon}
-                  alt="좋음"
-                  value={4}
-                  onClick={getClick}
-                />
-              </ImgGrid>
-              <ImgGrid>
-                <input
-                  width="45"
-                  height="45"
-                  type="image"
-                  src={five_icon}
-                  alt="매우 좋음"
-                  value={5}
-                  onClick={getClick}
-                />
-              </ImgGrid>
+              <ConImg
+                src={one_icon}
+                alt="매우나쁨"
+                value={1}
+                onClick={getClick}
+              />
+              <ConImg src={two_icon} alt="나쁨" value={2} onClick={getClick} />
+              <ConImg
+                src={three_icon}
+                alt="보통"
+                value={3}
+                onClick={getClick}
+              />
+              <ConImg src={four_icon} alt="좋음" value={4} onClick={getClick} />
+              <ConImg
+                src={five_icon}
+                alt="매우 좋음"
+                value={5}
+                onClick={getClick}
+              />
             </TotalImgGrid>
           </ConditionContainer>
 
@@ -473,51 +406,101 @@ const MModify = (props) => {
               value={memo}
             ></TextArea>
           </BottomContainer>
+
+          <ButtonHeader>
+            <BtnDivSemi>
+              <AddButton
+                className="TimeText"
+                onClick={() => {
+                  if (startSleep === "" || endSleep === "" || sendCon === 0) {
+                    window.alert(
+                      "정확한 수면분석을 위해 취침시간, 기상시간, 컨디션을 모두 입력해주세요!"
+                    );
+                    return;
+                  } else {
+                    editPost();
+                    props.props._showModify(false);
+                  }
+                }}
+              >
+                저장
+              </AddButton>
+            </BtnDivSemi>
+          </ButtonHeader>
         </ModalComponent>
-        <ButtonHeader>
-          <AddButton
-            className="TimeText"
-            onClick={() => {
-              if (startSleep === "" || endSleep === "" || sendCon === 0) {
-                window.alert(
-                  "정확한 수면분석을 위해 취침시간, 기상시간, 컨디션을 모두 입력해주세요!"
-                );
-                return;
-              } else {
-                editPost();
-                props.props._showModify(false);
-              }
-            }}
-          >
-            저장
-          </AddButton>
-        </ButtonHeader>
       </React.Fragment>
     );
   }
 };
 
-//취침 기상
-const TimeContainer = styled.div`
-  background-color: white;
+const TagImg = styled.button`
   display: flex;
-  width: 100%;
-  height: 27%;
-
-  flex-direction: row;
-  justify-content: space-between;
-  box-sizing: border-box;
-  /* background-color: pink; */
+  justify-content: center;
+  align-items: center;
+  background-image: url(${(props) => props.src});
+  outline: none;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-color: #f3f3f3;
+  border: none;
+  width: 20%;
+  height: 90%;
 `;
 
-const CheckTime = styled.div`
+const ConImg = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 15%;
+  height: 90%;
+  background-image: url(${(props) => props.src});
+  outline: none;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-color: #f3f3f3;
+  border: none;
+`;
+
+const BtnDivSemi = styled.div`
+  display: flex;
+  width: 85%;
+  height: 85%;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  outline: none;
+  box-sizing: border-box;
+`;
+
+//취침 기상
+const TimeContainer = styled.div`
+  background-color: #f3f3f3;
+  display: flex;
+  width: 100%;
+  height: 17%;
+  flex-direction: row;
+  justify-content: space-around;
+  box-sizing: border-box;
+  /* background-color: lightpink; */
+`;
+
+const CheckTimeL = styled.div`
   display: flex;
   align-items: center;
   height: 100%;
-  width: 80%;
-  margin: 0px 5% 0% 5%;
-  /* padding: 1%; */
+  width: 40%;
   box-sizing: border-box;
+  justify-content: center;
+  /* background-color: lightblue; */
+`;
+const CheckTimeR = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 40%;
+  box-sizing: border-box;
+  /* background-color: lightsalmon; */
 `;
 
 const DText = styled.div`
@@ -530,7 +513,7 @@ const AddButton = styled.button`
   width: 100%;
   height: 100%;
   background-color: #4a5566;
-
+  border: 1px solid white;
   font-weight: bold;
   border-radius: 5px;
   outline: none;
@@ -540,139 +523,117 @@ const AddButton = styled.button`
   font-size: 90%;
 `;
 
-const BtnDiv = styled.div`
-  display: flex;
-  width: 14%;
-  height: 100%;
-  justify-content: flex-end;
-  box-sizing: border-box;
-`;
-
 const ButtonHeader = styled.div`
   display: flex;
-
-  width: 90%;
-  height: 2rem;
-  margin: 1rem auto;
-
+  justify-content: center;
+  align-items: flex-start;
+  width: 100%;
+  height: 10%;
   box-sizing: border-box;
-`;
-
-const ImgGrid = styled.div`
-  display: flex;
+  /* background-color: lightskyblue; */
 `;
 
 const TotalImgGrid = styled.div`
   display: flex;
-  width: 100%;
+  width: 90%;
+  height: 70%;
   flex-direction: row;
-  margin: auto;
   justify-content: space-between;
-  background-color: white;
+  /* background-color: lightgreen; */
+  align-items: center;
 `;
 
 const TotalTagGrid = styled.div`
   display: flex;
-  width: 100%;
+  width: 90%;
+  height: 70%;
   flex-direction: row;
-  margin: auto;
   justify-content: space-between;
-  background-color: white;
-`;
-
-const TagGrid = styled.div`
-  display: flex;
+  align-items: center;
 `;
 
 //메모
 const MemoText = styled.div`
-  font-size: 16px;
+  display: flex;
+  width: 90%;
+  height: 25%;
+  font-size: 0.8rem;
   font-weight: bold;
   color: black;
+  justify-content: flex-start;
+  align-items: center;
 `;
 const TextArea = styled.textarea`
-  width: 100%;
-  height: 100%;
+  width: 80%;
+  padding: 3%;
   border: none;
   border-radius: 6px;
   outline: none;
   font-weight: 300;
   font-size: 0.9rem;
+  height: 50%;
   resize: none;
   background-color: #dcdcdc;
-  margin-top: 3%;
-  margin-bottom: 10%;
-`;
-
-//헤더
-const TopContainer = styled.div`
-  background-color: white;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  width: 100%;
-  height: 15%;
-  margin: 20px 0px 0px 0px;
 `;
 
 const DateContainer = styled.div`
   width: 100%;
-  height: 10%;
+  height: 9%;
+  padding-bottom: 3%;
   justify-content: center;
   align-items: center;
   display: flex;
+  /* background-color: lightyellow; */
 `;
 
 //태그
 const TagText = styled.div`
-  font-size: 16px;
+  display: flex;
+  font-size: 0.8rem;
   font-weight: bold;
   color: black;
-  margin: 0px 0px 5px 0px;
+  width: 90%;
+  height: 30%;
 `;
 
 const TagContainer = styled.div`
-  /* background-color: blue; */
   width: 100%;
-  height: 20%;
+  height: 17%;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: center;
+  align-items: center;
   box-sizing: border-box;
-  padding: 0px 7% 0px 7%;
-  margin-bottom: 4%;
+  /* background-color: lightsteelblue; */
 `;
 
 const ConditionContainer = styled.div`
-  /* background-color: grey; */
-  width: 100%;
-  height: 20%;
   display: flex;
   flex-direction: column;
-
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 17%;
   box-sizing: border-box;
-  padding: 0px 7% 0px 7%;
-  margin-bottom: 4%;
+  /* background-color: lightslategray; */
 `;
 
 const BottomContainer = styled.div`
-  /* background-color: green; */
-
   width: 100%;
-  height: 40%;
+  height: 27%;
   display: flex;
   flex-direction: column;
-
+  align-items: center;
   box-sizing: border-box;
-  padding: 0px 7% 0px 7%;
+  /* background-color: lightpink; */
 `;
 
 const ModalComponent = styled.div`
   width: 100%;
-  height: 35rem;
+  height: 100%;
   display: flex;
   flex-direction: column;
-  margin-top: 2rem;
+  /* background-color: lightgreen; */
 `;
 
 export default MModify;

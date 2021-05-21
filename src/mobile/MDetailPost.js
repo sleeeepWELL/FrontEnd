@@ -20,6 +20,7 @@ import five from "../image/5-condition.png";
 import Swal from "sweetalert2";
 import ChevronRightIcon from "@material-ui/icons/ChevronRight";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
+import { MemoryTwoTone } from "@material-ui/icons";
 
 //글씨 이미지로 바꾸기
 const mapKeywordToImg = {
@@ -57,178 +58,322 @@ const MDetailPost = (props) => {
   if (props.date.selectedAt == undefined) {
     let _day = props.date.slice(14, 24);
     return (
-      <React.Fragment>
-        <RightHeader>
-          {moment(props.date.slice(14, 24)) <= _today && (
-            <AddButton
-              onClick={() => {
-                props._showModify(true);
-              }}
-            >
-              기록
-            </AddButton>
-          )}
-        </RightHeader>
+      <>
+        <Wrap>
+          <DayHeader>
+            <RightHeader>
+              {moment(props.date.slice(14, 24)) <= _today && (
+                <AddButton
+                  onClick={() => {
+                    props._showModify(true);
+                  }}
+                >
+                  기록
+                </AddButton>
+              )}
+            </RightHeader>
+          </DayHeader>
+          <ModalComponent>
+            <DateContainer>
+              <LeftHeader>
+                <MoveDButton
+                  onClick={() => {
+                    let tDate = new Date(_day);
+                    tDate.setDate(tDate.getDate() - 1);
+                    dispatch(
+                      todoActions.getOnePostAX(
+                        moment(tDate).format("YYYY-MM-DD")
+                      )
+                    );
+                  }}
+                >
+                  <ChevronLeftIcon />
+                </MoveDButton>
 
-        <ModalComponent>
-          <LeftHeader>
-            <MoveDButton
-              onClick={() => {
-                let tDate = new Date(_day);
-                tDate.setDate(tDate.getDate() - 1);
-                dispatch(
-                  todoActions.getOnePostAX(moment(tDate).format("YYYY-MM-DD"))
-                );
-              }}
-            >
-              <ChevronLeftIcon />
-            </MoveDButton>
+                <DText className="HelveticaB">{_day}</DText>
 
-            <DText className="HelveticaB">{_day}</DText>
-
-            <MoveDButton
-              onClick={() => {
-                let tDate = new Date(_day);
-                tDate.setDate(tDate.getDate() + 1);
-                dispatch(
-                  todoActions.getOnePostAX(moment(tDate).format("YYYY-MM-DD"))
-                );
-              }}
-            >
-              <ChevronRightIcon />
-            </MoveDButton>
-          </LeftHeader>
-
-          <EmptyTextContainer>
-            <EmptyText className="TimeText">수면기록을 입력해주세요!</EmptyText>
-          </EmptyTextContainer>
-        </ModalComponent>
-        {props.date[0].conditions == "First_View"
-          ? dispatch(
-              todoActions.getOnePostAX(moment(today).format("YYYY-MM-DD"))
-            )
-          : null}
-      </React.Fragment>
+                <MoveDButton
+                  onClick={() => {
+                    let tDate = new Date(_day);
+                    tDate.setDate(tDate.getDate() + 1);
+                    dispatch(
+                      todoActions.getOnePostAX(
+                        moment(tDate).format("YYYY-MM-DD")
+                      )
+                    );
+                  }}
+                >
+                  <ChevronRightIcon />
+                </MoveDButton>
+              </LeftHeader>
+            </DateContainer>
+            <EmptyTextContainer>
+              <EmptyText className="TimeText">
+                수면기록을 입력해주세요!
+              </EmptyText>
+            </EmptyTextContainer>
+          </ModalComponent>
+          {props.date[0].conditions == "First_View"
+            ? dispatch(
+                todoActions.getOnePostAX(moment(today).format("YYYY-MM-DD"))
+              )
+            : null}
+        </Wrap>
+      </>
     );
   } else {
     return (
-      <React.Fragment>
-        <RightHeader>
-          <ModifyButton
-            onClick={() => {
-              props._showModify(true);
-            }}
-          >
-            수정
-          </ModifyButton>
-          <ModifyButton onClick={deletePost}>삭제</ModifyButton>
-        </RightHeader>
+      <>
+        <Wrap>
+          <DayHeader>
+            <RightHeader>
+              <ModifyButton
+                onClick={() => {
+                  props._showModify(true);
+                }}
+              >
+                수정
+              </ModifyButton>
+              <ModifyButton onClick={deletePost}>삭제</ModifyButton>
+            </RightHeader>
+          </DayHeader>
 
-        <ModalComponent>
-          <LeftHeader>
-            <MoveDButton
-              onClick={() => {
-                let tDate = new Date(props.date.selectedAt);
-                tDate.setDate(tDate.getDate() - 1);
-                dispatch(
-                  todoActions.getOnePostAX(moment(tDate).format("YYYY-MM-DD"))
-                );
-              }}
-            >
-              <ChevronLeftIcon />
-            </MoveDButton>
+          <ModalComponent>
+            <DateContainer>
+              <LeftHeader>
+                <MoveDButton
+                  onClick={() => {
+                    let tDate = new Date(props.date.selectedAt);
+                    tDate.setDate(tDate.getDate() - 1);
+                    dispatch(
+                      todoActions.getOnePostAX(
+                        moment(tDate).format("YYYY-MM-DD")
+                      )
+                    );
+                  }}
+                >
+                  <ChevronLeftIcon />
+                </MoveDButton>
 
-            <DText className="HelveticaB">{props.date.selectedAt}</DText>
+                <DText className="HelveticaB">{props.date.selectedAt}</DText>
 
-            <MoveDButton
-              onClick={() => {
-                let tDate = new Date(props.date.selectedAt);
-                tDate.setDate(tDate.getDate() + 1);
-                dispatch(
-                  todoActions.getOnePostAX(moment(tDate).format("YYYY-MM-DD"))
-                );
-              }}
-            >
-              <ChevronRightIcon />
-            </MoveDButton>
-          </LeftHeader>
+                <MoveDButton
+                  onClick={() => {
+                    let tDate = new Date(props.date.selectedAt);
+                    tDate.setDate(tDate.getDate() + 1);
+                    dispatch(
+                      todoActions.getOnePostAX(
+                        moment(tDate).format("YYYY-MM-DD")
+                      )
+                    );
+                  }}
+                >
+                  <ChevronRightIcon />
+                </MoveDButton>
+              </LeftHeader>
+            </DateContainer>
 
-          <MainContainer>
-            <ConditionContainer>
-              <ConditionText className="ConditionText">컨디션</ConditionText>
-              {myCon === "1" && <ConImg img={one}></ConImg>}
-              {myCon === "2" && <ConImg img={two}> </ConImg>}
-              {myCon === "3" && <ConImg img={three}></ConImg>}
-              {myCon === "4" && <ConImg img={four}></ConImg>}
-              {myCon === "5" && <ConImg img={five}></ConImg>}
-            </ConditionContainer>
+            <ConditContainer>
+              <ConditionContainer>
+                <ConditionText className="ConditionText">
+                  <SideTextBox>컨디션</SideTextBox>
+                </ConditionText>
+                <ConditionImgBox>
+                  <InnerBox>
+                    {myCon === "1" && <ConImg img={one}></ConImg>}
+                    {myCon === "2" && <ConImg img={two}> </ConImg>}
+                    {myCon === "3" && <ConImg img={three}></ConImg>}
+                    {myCon === "4" && <ConImg img={four}></ConImg>}
+                    {myCon === "5" && <ConImg img={five}></ConImg>}
+                  </InnerBox>
+                </ConditionImgBox>
+              </ConditionContainer>
+            </ConditContainer>
 
             <TimeContainer>
-              <TimeText className="ConditionText">수면시간</TimeText>
-              <TimeText2 className="TimeText">
-                {`${props.date.totalSleepHour} 시간 ${props.date.totalSleepMinute} 분`}
-                ({props.date.startSleep} ~ {props.date.endSleep})
+              <ConditionText className="ConditionText">
+                <SideTextBox>수면시간</SideTextBox>
+              </ConditionText>
+              <TimeText2>
+                <InnerBox className="TimeText">
+                  {`${props.date.totalSleepHour} 시간 ${props.date.totalSleepMinute} 분`}
+                  ({props.date.startSleep} ~ {props.date.endSleep})
+                </InnerBox>
               </TimeText2>
             </TimeContainer>
 
             <TagContainer>
-              <ConditionText className="ConditionText">태그</ConditionText>
-              {props.date.tag.map((currentTag, idx) => {
-                return (
-                  <TagImg key={idx} img={mapKeywordToImg[currentTag]}></TagImg>
-                );
-              })}
+              <ConditionText className="ConditionText">
+                <SideTextBox>태그</SideTextBox>
+              </ConditionText>
+              <TagImgBox>
+                <InnerBox>
+                  {props.date.tag.map((currentTag, idx) => {
+                    return (
+                      <TagImg
+                        key={idx}
+                        img={mapKeywordToImg[currentTag]}
+                      ></TagImg>
+                    );
+                  })}
+                </InnerBox>
+              </TagImgBox>
             </TagContainer>
 
             <Contents>
-              <TimeText className="ConditionText">메모</TimeText>
-              <MemoText className="TimeText">{props.date.memo}</MemoText>
+              <MemoInfoBox>
+                <TimeText className="ConditionText">
+                  <SideTextBox style={{ paddingTop: "2%" }}>메모</SideTextBox>
+                </TimeText>
+              </MemoInfoBox>
+              <MemoTextBox>
+                <MemoTextArea className="TimeText">
+                  {props.date.memo}
+                </MemoTextArea>
+              </MemoTextBox>
             </Contents>
-          </MainContainer>
-        </ModalComponent>
-      </React.Fragment>
+          </ModalComponent>
+        </Wrap>
+      </>
     );
   }
 };
 
+const MemoTextArea = styled.div`
+  width: 86%;
+  height: 60%;
+  padding: 2%;
+  border-radius: 10px;
+  color: black;
+  font-size: 1rem;
+  font-weight: bold;
+  display: flex;
+  background-color: #ffffff;
+  overflow: auto;
+  white-space: pre-wrap;
+  word-break: break-all;
+  @media (max-width: 280px) {
+    font-size: 0.8rem;
+  }
+`;
+
+const MemoTextBox = styled.div`
+  display: flex;
+  width: 75%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+`;
+
+const MemoInfoBox = styled.div`
+  display: flex;
+  width: 25%;
+  height: 100%;
+  align-items: center;
+`;
+const TagImgBox = styled.div`
+  display: flex;
+  width: 75%;
+  height: 100%;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+`;
+
+const InnerBox = styled.div`
+  display: flex;
+  width: 90%;
+  height: 80%;
+  border-radius: 10px;
+  background-color: #ffffff;
+  justify-content: space-around;
+  align-items: center;
+  color: black;
+  font-size: 1rem;
+  font-weight: bold;
+  word-break: keep-all;
+  text-align: center;
+  @media (max-width: 280px) {
+    font-size: 0.8rem;
+  }
+`;
+const ConditionImgBox = styled.div`
+  display: flex;
+  width: 75%;
+  height: 100%;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+`;
+const ConditContainer = styled.div`
+  display: flex;
+  width: 100%;
+  height: 18%;
+  justify-content: center;
+`;
+const SideTextBox = styled.div`
+  display: flex;
+  height: 15px;
+  border-bottom: 4px solid #ffdf48;
+  color: black;
+  font-size: 17px;
+  font-weight: bold;
+  word-break: keep-all;
+  justify-content: center;
+  text-align: center;
+  @media (max-width: 280px) {
+    font-size: 0.8rem;
+  }
+`;
+const DateContainer = styled.div`
+  display: flex;
+  width: 100%;
+  height: 18%;
+  justify-content: center;
+  align-items: center;
+`;
+
+const DayHeader = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  width: 100%;
+  height: 8%;
+  box-sizing: border-box;
+`;
+
+const Wrap = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+`;
+
 const RightHeader = styled.div`
-  /* background-color: blue; */
   display: flex;
   flex-direction: row;
   text-align: center;
-  margin-top: 3%;
   justify-content: flex-end;
-  width: 100%;
-  height: 2rem;
-  padding-right: 3%;
+  width: 98%;
+  height: 80%;
+  padding-right: 2%;
   box-sizing: border-box;
 `;
 const ModalComponent = styled.div`
   width: 100%;
-  height: 20rem;
+  height: 92%;
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
-  // border-radius: 20px;
-  /* background-color: green; */
-`;
-
-const MainContainer = styled.div`
-  width: 100%;
-  height: 100%;
-  margin-left: 8%;
-  margin-bottom: 5%;
-  box-sizing: border-box;
-  /* background-color: green; */
 `;
 
 //비어있을 때
 const EmptyTextContainer = styled.div`
   width: 100%;
-  height: 20%;
+  height: 80%;
+  padding-bottom: 20%;
   display: flex;
-  flex-direction: row;
-  margin-top: 15%;
+  flex-direction: column;
   box-sizing: border-box;
   align-items: center;
   justify-content: center;
@@ -237,25 +382,19 @@ const EmptyTextContainer = styled.div`
 //컨디션
 const ConditionContainer = styled.div`
   width: 100%;
-  height: 28%;
+  height: 100%;
   display: flex;
   flex-direction: row;
-  margin-bottom: 3.5%;
   box-sizing: border-box;
   align-items: center;
-  @media (max-width: 280px) {
-    margin-bottom: 1.5rem;
-  }
 `;
 
 const ConditionText = styled.div`
   width: 25%;
   height: 100%;
-  color: black;
-  font-size: 17px;
-  font-weight: bold;
   display: flex;
   align-items: center;
+  justify-content: center;
 `;
 
 const MemoText = styled.div`
@@ -263,7 +402,6 @@ const MemoText = styled.div`
   height: 50%;
   color: black;
   font-size: 14px;
-  /* margin: 5px 0px 0px 10px; */
   font-weight: bold;
   display: flex;
   justify-content: flex-start;
@@ -273,95 +411,72 @@ const MemoText = styled.div`
 const ConImg = styled.div`
   background-image: url(${(props) => props.img});
   background-size: contain;
-  width: 15%;
-  height: 110%;
+  width: 30%;
+  height: 90%;
   background-repeat: no-repeat;
   background-position: center;
   display: flex;
-  @media (max-width: 280px) {
-    width: 13%;
-  }
 `;
 
 //수면시간
 const TimeContainer = styled.div`
-  /* background-color: blue; */
-  width: 90%;
-  height: 7%;
+  width: 100%;
+  height: 18%;
   display: flex;
-  margin-bottom: 3%;
   box-sizing: border-box;
   align-items: center;
-  @media (max-width: 280px) {
-    margin-bottom: 1.5rem;
-  }
+  justify-content: center;
 `;
 
 const TimeText = styled.div`
-  width: 30%;
+  display: flex;
+  width: 100%;
   color: black;
-  font-size: 17px;
-  font-weight: bold;
+  justify-content: center;
 `;
 
 const TimeText2 = styled.div`
   width: 75%;
-  color: black;
-  font-size: 14px;
-  /* margin: 5px 0px 0px 10px; */
-  font-weight: bold;
+  height: 100%;
   display: flex;
-  justify-content: flex-start;
-  @media (max-width: 280px) {
-    font-size: 0.7rem;
-  }
+  justify-content: center;
+  align-items: center;
 `;
 
 //태그
 const TagContainer = styled.div`
-  /* background-color: pink; */
   width: 100%;
-  height: 28%;
+  height: 18%;
   display: flex;
-  margin-bottom: 3%;
   box-sizing: border-box;
   align-items: center;
-  @media (max-width: 280px) {
-    margin-bottom: 0.8rem;
-  }
+  justify-content: center;
 `;
 
 const TagImg = styled.div`
   background-image: url(${(props) => props.img});
   background-size: contain;
   background-repeat: no-repeat;
-  width: 15%;
-  height: 110%;
-
+  width: 30%;
+  height: 90%;
   display: flex;
   background-position: center;
-  margin: 0px 2px 0px 2px;
-  @media (max-width: 280px) {
-    width: 13%;
-  }
 `;
 
 const LeftHeader = styled.div`
   display: flex;
   flex-direction: row;
-  width: 60%;
-  height: 13%;
-  margin: 2% auto;
+  width: 70%;
+  height: 60%;
   text-align: center;
   box-sizing: border-box;
   align-items: center;
   justify-content: center;
-  
 `;
 
 const MoveDButton = styled.button`
   display: flex;
-  width: 15%;
+  width: 10%;
   height: 100%;
   font-weight: bold;
   border-radius: 5px;
@@ -370,10 +485,9 @@ const MoveDButton = styled.button`
   justify-content: center;
   cursor: pointer;
   color: #4a5566;
-  background-color: white;
+  background-color: #f3f3f3;
   align-items: center;
   text-shadow: rgb(10 50 10 / 40%) 0.7px 0.7px 0.7px;
-  
 `;
 const DText = styled.div`
   display: flex;
@@ -388,7 +502,6 @@ const DText = styled.div`
   align-items: center;
   border-radius: 10px;
   text-shadow: rgb(10 50 10 / 40%) 0.7px 0.7px 0.7px;
-
 `;
 
 const ModifyButton = styled.button`
@@ -402,10 +515,9 @@ const ModifyButton = styled.button`
   color: white;
   box-shadow: rgb(82 82 82/ 20%) 0px 5px 8px 0px;
   font-size: 80%;
-  margin: 0px 1% 0px 0px;
+  margin-right: 1%;
   @media (max-width: 280px) {
-    font-size: 0.5rem;
-    padding: 3px 0;
+    font-size: 0.7rem;
   }
 `;
 
@@ -430,7 +542,11 @@ const AddButton = styled.button`
 `;
 
 const EmptyText = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 100%;
+  height: 30%;
   color: black;
   font-size: 18px;
   font-weight: bold;
@@ -439,18 +555,13 @@ const EmptyText = styled.div`
 `;
 
 const Contents = styled.div`
-  /* background-color: green; */
-  width: 85%;
-  height: 38%;
+  width: 100%;
+  height: 28%;
   color: black;
   font-weight: bold;
   display: flex;
-  margin-bottom: 5%;
   box-sizing: border-box;
-  align-items: baseline;
-  overflow: auto;
-  white-space: pre-wrap;
-  word-break: break-all;
+  flex-direction: row;
 `;
 
 export default MDetailPost;

@@ -58,58 +58,68 @@ const MDetailPost = (props) => {
   if (props.date.selectedAt == undefined) {
     let _day = props.date.slice(14, 24);
     return (
-      <React.Fragment>
-        <RightHeader>
-          {moment(props.date.slice(14, 24)) <= _today && (
-            <AddButton
-              onClick={() => {
-                props._showModify(true);
-              }}
-            >
-              기록
-            </AddButton>
-          )}
-        </RightHeader>
+      <>
+        <Wrap>
+          <DayHeader>
+            <RightHeader>
+              {moment(props.date.slice(14, 24)) <= _today && (
+                <AddButton
+                  onClick={() => {
+                    props._showModify(true);
+                  }}
+                >
+                  기록
+                </AddButton>
+              )}
+            </RightHeader>
+          </DayHeader>
+          <ModalComponent>
+            <DateContainer>
+              <LeftHeader>
+                <MoveDButton
+                  onClick={() => {
+                    let tDate = new Date(_day);
+                    tDate.setDate(tDate.getDate() - 1);
+                    dispatch(
+                      todoActions.getOnePostAX(
+                        moment(tDate).format("YYYY-MM-DD")
+                      )
+                    );
+                  }}
+                >
+                  <ChevronLeftIcon />
+                </MoveDButton>
 
-        <ModalComponent>
-          <LeftHeader>
-            <MoveDButton
-              onClick={() => {
-                let tDate = new Date(_day);
-                tDate.setDate(tDate.getDate() - 1);
-                dispatch(
-                  todoActions.getOnePostAX(moment(tDate).format("YYYY-MM-DD"))
-                );
-              }}
-            >
-              <ChevronLeftIcon />
-            </MoveDButton>
+                <DText className="HelveticaB">{_day}</DText>
 
-            <DText className="HelveticaB">{_day}</DText>
-
-            <MoveDButton
-              onClick={() => {
-                let tDate = new Date(_day);
-                tDate.setDate(tDate.getDate() + 1);
-                dispatch(
-                  todoActions.getOnePostAX(moment(tDate).format("YYYY-MM-DD"))
-                );
-              }}
-            >
-              <ChevronRightIcon />
-            </MoveDButton>
-          </LeftHeader>
-
-          <EmptyTextContainer>
-            <EmptyText className="TimeText">수면기록을 입력해주세요!</EmptyText>
-          </EmptyTextContainer>
-        </ModalComponent>
-        {props.date[0].conditions == "First_View"
-          ? dispatch(
-              todoActions.getOnePostAX(moment(today).format("YYYY-MM-DD"))
-            )
-          : null}
-      </React.Fragment>
+                <MoveDButton
+                  onClick={() => {
+                    let tDate = new Date(_day);
+                    tDate.setDate(tDate.getDate() + 1);
+                    dispatch(
+                      todoActions.getOnePostAX(
+                        moment(tDate).format("YYYY-MM-DD")
+                      )
+                    );
+                  }}
+                >
+                  <ChevronRightIcon />
+                </MoveDButton>
+              </LeftHeader>
+            </DateContainer>
+            <EmptyTextContainer>
+              <EmptyText className="TimeText">
+                수면기록을 입력해주세요!
+              </EmptyText>
+            </EmptyTextContainer>
+          </ModalComponent>
+          {props.date[0].conditions == "First_View"
+            ? dispatch(
+                todoActions.getOnePostAX(moment(today).format("YYYY-MM-DD"))
+              )
+            : null}
+        </Wrap>
+      </>
     );
   } else {
     return (
@@ -360,10 +370,10 @@ const ModalComponent = styled.div`
 //비어있을 때
 const EmptyTextContainer = styled.div`
   width: 100%;
-  height: 20%;
+  height: 80%;
+  padding-bottom: 20%;
   display: flex;
-  flex-direction: row;
-  margin-top: 15%;
+  flex-direction: column;
   box-sizing: border-box;
   align-items: center;
   justify-content: center;
@@ -532,7 +542,11 @@ const AddButton = styled.button`
 `;
 
 const EmptyText = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 100%;
+  height: 30%;
   color: black;
   font-size: 18px;
   font-weight: bold;

@@ -122,7 +122,7 @@ const DetailPost = (props) => {
     );
   } else {
     return (
-      <React.Fragment>
+      <>
         <Wrap>
           <DayHeader>
             <RightHeader>
@@ -196,8 +196,15 @@ const DetailPost = (props) => {
               </ConditionText>
               <TimeText2>
                 <InnerBox className="TimeText">
-                  {`${props.date.totalSleepHour} 시간 ${props.date.totalSleepMinute} 분`}
-                  ({props.date.startSleep} ~ {props.date.endSleep})
+                  <TimeBox>
+                    <div>
+                      {props.date.totalSleepHour} 시간{" "}
+                      {props.date.totalSleepMinute} 분
+                    </div>
+                    <span>
+                      ({props.date.startSleep} ~ {props.date.endSleep})
+                    </span>
+                  </TimeBox>
                 </InnerBox>
               </TimeText2>
             </TimeContainer>
@@ -232,10 +239,21 @@ const DetailPost = (props) => {
             </Contents>
           </ModalComponent>
         </Wrap>
-      </React.Fragment>
+      </>
     );
   }
 };
+
+const TimeBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  & > div {
+    font-size: 1rem;
+  }
+  & > span {
+    font-size: 0.8rem;
+  }
+`;
 
 const SideTextBox = styled.div`
   display: flex;
@@ -441,10 +459,11 @@ const DayHeader = styled.div`
 const LeftHeader = styled.div`
   display: flex;
   flex-direction: row;
-  width: 70%;
+  width: 80%;
   height: 60%;
   text-align: center;
   box-sizing: border-box;
+  justify-content: center;
 `;
 
 const RightHeader = styled.div`
@@ -462,6 +481,9 @@ const MoveDButton = styled.button`
   height: 100%;
   font-weight: bold;
   border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   outline: none;
   border: none;
   cursor: pointer;
@@ -479,10 +501,16 @@ const DText = styled.div`
   text-align: center;
   justify-content: center;
   height: 100%;
-
   align-items: center;
   border-radius: 10px;
   text-shadow: rgb(10 50 10 / 40%) 0.7px 0.7px 0.7px;
+
+  @media (max-width: 1400px) {
+    font-size: 1.5rem;
+  }
+  @media (max-width: 1782px) {
+    font-size: 2rem;
+  }
 `;
 
 const ModifyButton = styled.button`

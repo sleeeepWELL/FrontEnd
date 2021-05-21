@@ -139,6 +139,7 @@ const Wrap = styled.div`
   box-sizing: border-box;
   top: 0%;
   z-index: 9999;
+  overflow: hidden;
 `;
 
 const CategoryBox = styled.div`
@@ -149,6 +150,10 @@ const CategoryBox = styled.div`
   letter-spacing: -1px;
   cursor: pointer;
   font-size: 1.6rem;
+  @media (max-width: 1024px) {
+    font-size: 1.3rem;
+  }
+
   @media (max-width: 768px) {
     font-size: 1.2rem;
   }
@@ -189,13 +194,16 @@ const LogoutBox = styled.div`
   justify-content: center;
   cursor: pointer;
   color: black;
+  overflow: hidden;
   & > span {
     background-color: rgba(56, 56, 56, 1);
     padding: 0.6rem;
     border-radius: 4px;
     color: white;
   }
-
+  @media (max-width: 1024px) {
+    font-size: 1.2rem;
+  }
   @media (max-width: 768px) {
     font-size: 1rem;
     & > span {

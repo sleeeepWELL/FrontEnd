@@ -90,7 +90,7 @@ const SearchContainer = styled.div`
   align-items: center;
   justify-content: center;
   border-radius: 10px;
-  background-color: lightgray;
+  background-color: #dbdbdb;
   // box-shadow: rgb(82 82 82/ 40%) 0px 5px 8px 0px;
 `;
 

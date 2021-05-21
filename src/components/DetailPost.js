@@ -59,19 +59,7 @@ const DetailPost = (props) => {
     return (
       <React.Fragment>
         <Wrap>
-          <DayHeader>
-            <RightHeader>
-              {moment(props.date.slice(14, 24)) <= _today && (
-                <AddButton
-                  onClick={() => {
-                    props._showModify(true);
-                  }}
-                >
-                  기록
-                </AddButton>
-              )}
-            </RightHeader>
-          </DayHeader>
+        
           <ModalComponent>
             <DateContainer>
               <LeftHeader>
@@ -110,7 +98,22 @@ const DetailPost = (props) => {
               <EmptyText className="TimeText">
                 수면기록을 입력해주세요!
               </EmptyText>
+              <DayHeader>
+            
+              {moment(props.date.slice(14, 24)) <= _today && (
+                <AddButton
+                  onClick={() => {
+                    props._showModify(true);
+                  }}
+                >
+                  수면 기록하기
+                </AddButton>
+              )}
+           
+          </DayHeader>
             </EmptyTextContainer>
+            
+           
           </ModalComponent>
           {props.date[0].conditions == "First_View"
             ? dispatch(
@@ -124,7 +127,7 @@ const DetailPost = (props) => {
     return (
       <>
         <Wrap>
-          <DayHeader>
+      
             <RightHeader>
               <ModifyButton
                 className="TimeText"
@@ -138,7 +141,7 @@ const DetailPost = (props) => {
                 삭제
               </ModifyButton>
             </RightHeader>
-          </DayHeader>
+       
 
           <ModalComponent>
             <DateContainer>
@@ -318,6 +321,7 @@ const DateContainer = styled.div`
   display: flex;
   width: 100%;
   height: 12%;
+  padding-top: 4%;
   padding-bottom: 4%;
   justify-content: center;
   align-items: center;
@@ -343,17 +347,22 @@ const ModalComponent = styled.div`
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
+ 
 `;
 
 //비어있을 때
 const EmptyTextContainer = styled.div`
-  width: 100%;
-  height: 83%;
+  width: 99%;
+  
+  height: 60%;
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
   align-items: center;
-  justify-content: center;
+  
+ 
+
+ 
 `;
 
 //컨디션
@@ -449,10 +458,12 @@ const TagImg = styled.div`
 //카드 헤더
 const DayHeader = styled.div`
   display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  width: 100%;
-  height: 5%;
+  width: 99%;
+  height: 10%;
+
+
+  justify-content: center;
+
   box-sizing: border-box;
 `;
 
@@ -474,8 +485,9 @@ const RightHeader = styled.div`
   flex-direction: row;
   text-align: center;
   justify-content: flex-end;
-  width: 100%;
-  height: 80%;
+  margin: 4% 6% 0% 0%;
+  width: 99%;
+  height: 5%;
   box-sizing: border-box;
 `;
 
@@ -531,18 +543,19 @@ const ModifyButton = styled.button`
 `;
 
 const AddButton = styled.button`
-  width: 20%;
+ 
+  width: 90%;
   height: 100%;
   background-color: #4a5566;
-
+  text-align: center;
   font-weight: bold;
   border-radius: 5px;
   outline: none;
   cursor: pointer;
   color: white;
   box-shadow: rgb(82 82 82/ 20%) 0px 5px 8px 0px;
-  font-size: 85%;
-  margin: 0px 10px 0px 0px;
+  font-size: 95%;
+ 
 `;
 
 const EmptyText = styled.div`
@@ -551,11 +564,13 @@ const EmptyText = styled.div`
   align-items: center;
   width: 100%;
   height: 30%;
+  margin: 0% auto;
   color: black;
   font-size: 1.5rem;
   font-weight: bold;
   text-align: center;
   opacity: 40%;
+  
 `;
 
 const Contents = styled.div`

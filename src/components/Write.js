@@ -224,9 +224,7 @@ const Write = (props) => {
           <TagText>태그 </TagText>
           <TotalTagGrid>
             <TagGrid>
-              <input
-                width="50"
-                height="50"
+            <IconInput
                 type="image"
                 src={beer_icon}
                 alt="beer"
@@ -238,9 +236,7 @@ const Write = (props) => {
               />
             </TagGrid>
             <TagGrid>
-              <input
-                width="50"
-                height="50"
+            <IconInput
                 type="image"
                 src={snack_icon}
                 alt="snack"
@@ -252,9 +248,7 @@ const Write = (props) => {
               />
             </TagGrid>
             <TagGrid>
-              <input
-                width="50"
-                height="50"
+            <IconInput
                 type="image"
                 src={work_icon}
                 alt="work"
@@ -266,9 +260,7 @@ const Write = (props) => {
               />
             </TagGrid>
             <TagGrid>
-              <input
-                width="50"
-                height="50"
+            <IconInput
                 type="image"
                 src={workout_icon}
                 alt="workout"
@@ -286,9 +278,7 @@ const Write = (props) => {
           <TagText>컨디션</TagText>
           <TotalImgGrid>
             <ImgGrid>
-              <input
-                width="45"
-                height="45"
+            <IconInput
                 type="image"
                 src={one_icon}
                 alt="매우나쁨"
@@ -297,9 +287,7 @@ const Write = (props) => {
               />
             </ImgGrid>
             <ImgGrid>
-              <input
-                width="45"
-                height="45"
+            <IconInput
                 type="image"
                 src={two_icon}
                 alt="나쁨"
@@ -308,9 +296,7 @@ const Write = (props) => {
               />
             </ImgGrid>
             <ImgGrid>
-              <input
-                width="45"
-                height="45"
+            <IconInput
                 type="image"
                 src={three_icon}
                 alt="보통"
@@ -319,9 +305,7 @@ const Write = (props) => {
               />
             </ImgGrid>
             <ImgGrid>
-              <input
-                width="45"
-                height="45"
+            <IconInput
                 type="image"
                 src={four_icon}
                 alt="좋음"
@@ -330,9 +314,7 @@ const Write = (props) => {
               />
             </ImgGrid>
             <ImgGrid>
-              <input
-                width="45"
-                height="45"
+            <IconInput
                 type="image"
                 src={five_icon}
                 alt="매우 좋음"
@@ -383,13 +365,14 @@ const Write = (props) => {
 
 //취침 기상
 const TimeContainer = styled.div`
-  background-color: white;
+  background-color: #f3f3f3;
   display: flex;
   width: 100%;
   height: 12%;
   flex-direction: row;
   justify-content: space-around;
   box-sizing: border-box;
+  /* background-color: lime; */
 `;
 
 const CheckTimeL = styled.div`
@@ -400,7 +383,6 @@ const CheckTimeL = styled.div`
   box-sizing: border-box;
   justify-content: center;
 `;
-
 const CheckTimeR = styled.div`
   display: flex;
   align-items: center;
@@ -410,20 +392,13 @@ const CheckTimeR = styled.div`
   box-sizing: border-box;
 `;
 
-//헤더
-const DateContainer = styled.div`
-  width: 100%;
-  height: 9%;
-  padding-top: 10%;
-  justify-content: center;
-  align-items: center;
-  display: flex;
-`;
-
 const Text = styled.div`
   font-weight: bold;
-  font-size: 220%;
+  font-size: 175%;
   color: #4a5566;
+  @media ( max-width: 1300px) {
+   font-size:125%;
+  }
 `;
 
 const AddButton = styled.button`
@@ -458,26 +433,11 @@ const ButtonHeader = styled.div`
   width: 100%;
   height: 10%;
   box-sizing: border-box;
+  /* background-color: lightskyblue; */
 `;
 
-//태그
-const TagText = styled.div`
+const ImgGrid = styled.div`
   display: flex;
-  font-size: 16px;
-  font-weight: bold;
-  color: black;
-  width: 90%;
-  padding-bottom: 0.6rem;
-`;
-
-const TagContainer = styled.div`
-  width: 100%;
-  height: 12%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  box-sizing: border-box;
 `;
 
 const TotalImgGrid = styled.div`
@@ -485,17 +445,18 @@ const TotalImgGrid = styled.div`
   width: 90%;
   flex-direction: row;
   justify-content: space-between;
-`;
-
-const ImgGrid = styled.div`
-  display: flex;
+  margin-top:2%;
+  margin-bottom:1%;
 `;
 
 const TotalTagGrid = styled.div`
   display: flex;
   width: 90%;
+  height:100%;
   flex-direction: row;
   justify-content: space-between;
+  margin-top:1%;
+  margin-bottom:1%;
 `;
 
 const TagGrid = styled.div`
@@ -525,13 +486,52 @@ const TextArea = styled.textarea`
   background-color: #dcdcdc;
 `;
 
-const BottomContainer = styled.div`
-  width: 100%;
-  height: 40%;
+//헤더
+const TopContainer = styled.div`
+  background-color: white;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+  height: 15%;
+  margin: 20px 0px 0px 0px;
+
+  /* background-color: red; */
+`;
+
+const DateContainer = styled.div`
+  width: 100%;
+  height: 9%;
+  margin-top: 3%;
+  margin-bottom: 3%;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  /* background-color: maroon; */
+ 
+`;
+
+//태그
+const TagText = styled.div`
+  display: flex;
+  font-size: 100%;
+  font-weight: bold;
+  color: #121212;
+  width: 90%;
+
+  
+`;
+
+const TagContainer = styled.div`
+  width: 100%;
+  height: 12%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   align-items: center;
   box-sizing: border-box;
+  margin-top:7%;
+  /* background-color: lightsteelblue; */
 `;
 
 const ConditionContainer = styled.div`
@@ -542,13 +542,50 @@ const ConditionContainer = styled.div`
   width: 100%;
   height: 12%;
   box-sizing: border-box;
+  margin-top:7%;
+  margin-bottom:1%;
+  /* background-color: lightslategray; */
+`;
+
+const BottomContainer = styled.div`
+  width: 100%;
+  height: 40%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
+  /* background-color: lightpink; */
 `;
 
 const ModalComponent = styled.div`
   width: 100%;
   height: 100%;
   display: flex;
-  flex-direction: column;
+  flex-direction: column; ;
 `;
+
+
+const IconInput =styled.input`
+width: 80%;
+height: 100%;
+margin: 0% auto;
+border-radius: 50%;
+:hover {
+  box-shadow:  lightgrey 0px 3px 7px 0px;
+  transition: box-shadow 0.2s ease-in 0s;
+}
+
+`
+const ConInput =styled.input`
+width: 80%;
+height: 100%;
+margin: 0% auto;
+border-radius: 50%;
+:hover {
+  box-shadow:  lightgrey 0px 3px 7px 0px;
+  transition: box-shadow 0.2s ease-in 0s;
+}
+
+`
 
 export default Write;

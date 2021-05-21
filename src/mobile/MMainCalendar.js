@@ -75,7 +75,7 @@ const RightContainer = styled.div`
 const PostContainer = styled.div`
   display: flex;
   width: 100%;
-  height: 50vh;
+  height: 60vh;
   margin-top: 4%;
   background-color: #f3f3f3;
   flex-direction: column;

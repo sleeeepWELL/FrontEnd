@@ -95,6 +95,7 @@ const TopInfo = styled.div`
   justify-content: center;
   align-items: center;
   /* background-color: blue; */
+ 
 `;
 
 const SleepTime = styled.div`
@@ -104,17 +105,34 @@ const SleepTime = styled.div`
   color: black;
   z-index: 1;
   /* border: 1px solid black; */
+  @media (max-height: 750px) {
+    width:60%;
+    height:98%;
+  }
 `;
 
 const Total = styled.div`
   display: flex;
   margin-top: 0.5vh;
+  @media ( max-height: 750px) {
+    width:80%;
+    height: 42%;
+    margin-top:5%;
+    font-size:75%;
+    justify-content: center;
+  }
 `;
 
 const TotalMin = styled.div`
   display: flex;
   margin-bottom: 0.5vh;
   /* border: 1px solid black; */
+  @media (max-height: 750px) {
+    height: 52%;
+    width: 80%;
+    font-size: 50%;
+    justify-content: center;
+  }
 `;
 
 const TagImg = styled.div`
@@ -146,6 +164,14 @@ const BottomInfo = styled.div`
   margin: 2px 0px 7px 0px;
   box-sizing: border-box;
   /* background-color: yellow; */
+  @media ( max-height: 750px) {
+   
+    width: 100%;
+    height: 35%;
+    margin: 2px 0px 2% 0px;
+    box-sizing: border-box;
+    
+  }
 `;
 
 const Container = styled.div`

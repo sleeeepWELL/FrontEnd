@@ -18,11 +18,10 @@ const Search = (props) => {
     if (
       year === null || month === null ||  day === null||
       year.length !== 4 || month.length !==2 ||day.length !==2||
-      month > 12 ||  day > 31 ||
-      year !== Number || month !== Number || day !== Number  
+      month > 12 ||  day > 31
     ) {
       Swal.fire({
-        title: "",
+        title: "이런...",
         text: "모두 예시와 같은 올바른 형식으로 입력해주세요",
         icon: "info",
       });

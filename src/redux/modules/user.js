@@ -69,7 +69,8 @@ const loginSV = (email, pwd, user) => {
         setTimeout(extensionAccess(), ACCESS_TOKEN_EXP - Current_time - 60000);
         console.log(user);
         await Swal.fire({
-          title: `${user}님 환영합니다!`,
+          // title: `${user}님 환영합니다!`,
+          title: "환영합니다!",
           text: "수면시간을 기록해보세요.",
           confirmButtonText: "확인",
           imageUrl: welcome,
@@ -177,7 +178,7 @@ const signUpSV = (email, nickname, pwd, pwdCheck) => {
 };
 
 // 소셜로그인
-const kakaoLogin = (code,user) => {
+const kakaoLogin = (code, user) => {
   return function (dispatch, getState, { history }) {
     axios({
       method: "GET",
@@ -198,7 +199,7 @@ const kakaoLogin = (code,user) => {
 
         // 현재시간
         const Current_time = new Date().getTime();
-
+        
         // 헤더 설정
         axios.defaults.headers.common[
           "Authorization"
@@ -207,9 +208,10 @@ const kakaoLogin = (code,user) => {
         // 토큰 만료 1분전 자동연장
         setTimeout(extensionAccess(), ACCESS_TOKEN_EXP - Current_time - 60000);
         console.log("연장성공");
-
+        console.log(user);
         await Swal.fire({
-          title: `${user}님 환영합니다!`,
+          // title: `${user}님 환영합니다!`,
+          title: "환영합니다!",
           text: "수면시간을 기록해보세요.",
           confirmButtonText: "확인",
           imageUrl: welcome,

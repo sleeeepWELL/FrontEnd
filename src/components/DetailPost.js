@@ -100,7 +100,7 @@ const DetailPost = (props) => {
             </DateContainer>
             <EmptyTextContainer>
               <EmptyText className="TimeText">
-                {0< hour && hour<6 ? <Text>당신의 새벽을 응원합니다!</Text>:null}
+                {0<= hour && hour<6 ? <Text>당신의 새벽을 응원합니다!</Text>:null}
                 {6<= hour && hour<11 ? <Text>Sleepwell과 시작하는 아침!</Text>:null}
                 {11<= hour && hour <18  ? <Text>Good Afternoon!</Text>:null}
                 {18<= hour && hour <24? <Text>좋은 하루를 보내셨나요?</Text>:null}

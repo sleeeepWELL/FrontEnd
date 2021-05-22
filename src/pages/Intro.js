@@ -78,7 +78,7 @@ const GoBtn = styled.div`
   }
 
   @media (max-width: 414px) {
-    font-size: 0.9rem;
+    font-size: 0.5rem;
     align-items: flex-start;
     height: 1.5rem;
   }

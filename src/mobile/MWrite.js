@@ -216,7 +216,7 @@ const MWrite = (props) => {
                 onChange={(newEnd) => {
                   setEnd(newEnd);
                 }}
-                renderInput={(params) => <TextField size="large" {...params} />}
+                renderInput={(params) => <TextField {...params} />}
               />
             </CheckTimeR>
           </LocalizationProvider>

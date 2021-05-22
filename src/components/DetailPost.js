@@ -33,6 +33,10 @@ const DetailPost = (props) => {
   const dispatch = useDispatch();
   const today = useSelector((state) => state.todo.today);
   const _today = moment();
+  
+  const hour = Number(_today.format("HH"))
+  
+
 
   const deletePost = () => {
     Swal.fire({
@@ -96,12 +100,16 @@ const DetailPost = (props) => {
             </DateContainer>
             <EmptyTextContainer>
               <EmptyText className="TimeText">
-                수면기록을 입력해주세요!
+                {0< hour && hour<6 ? <Text>당신의 시간을 응원합니다!</Text>:null}
+                {6<= hour && hour<11 ? <Text>Sleepwell과 시작하는 하루!</Text>:null}
+                {11<= hour && hour <18  ? <Text>Good Afternoon!</Text>:null}
+                {18<= hour && hour <24? <Text>좋은 하루를 보내셨나요?</Text>:null}
+                <Text2>수면기록을 입력해주세요! </Text2>
               </EmptyText>
               <DayHeader>
             
               {moment(props.date.slice(14, 24)) <= _today && (
-                <AddButton
+                <AddButton className="BottomInfo" 
                   onClick={() => {
                     props._showModify(true);
                   }}
@@ -458,7 +466,7 @@ const TagImg = styled.div`
 //카드 헤더
 const DayHeader = styled.div`
   display: flex;
-  width: 99%;
+  width: 90%;
   height: 10%;
 
 
@@ -538,13 +546,13 @@ const ModifyButton = styled.button`
   cursor: pointer;
   color: white;
   box-shadow: rgb(82 82 82/ 20%) 0px 5px 8px 0px;
-  font-size: 80%;
+  font-size: 90%;
   margin-right: 10px;
 `;
 
 const AddButton = styled.button`
  
-  width: 90%;
+  width: 85%;
   height: 100%;
   background-color: #4a5566;
   text-align: center;
@@ -554,25 +562,63 @@ const AddButton = styled.button`
   cursor: pointer;
   color: white;
   box-shadow: rgb(82 82 82/ 20%) 0px 5px 8px 0px;
-  font-size: 95%;
+  font-size: 100%;
  
 `;
 
+const boxFade = keyframes`
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+ `;
+ const boxFade2 = keyframes`
+ 0% {
+   opacity: 0; 
+ }
+ 50%{
+   opacity: 0;
+ }
+ 100% {
+   opacity: 1;
+   
+ }
+`;
 const EmptyText = styled.div`
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   width: 100%;
   height: 30%;
   margin: 0% auto;
-  color: black;
+  color: grey;
   font-size: 1.5rem;
   font-weight: bold;
   text-align: center;
-  opacity: 40%;
   
+ 
 `;
 
+
+const Text = styled.div`
+ font-size: 70%;
+ margin-bottom: 5%;
+ 
+ animation: ${boxFade} 1s;
+ color: grey;
+ 
+`;
+const Text2 = styled.div`
+ font-size: 70%;
+ margin-bottom: 5%;
+ 
+ animation: ${boxFade2} 2s;
+ color: grey;
+ 
+`;
 const Contents = styled.div`
   width: 100%;
   height: 50%;

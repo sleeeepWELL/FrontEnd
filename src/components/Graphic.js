@@ -30,7 +30,7 @@ const Graphic = () => {
         </MiddleContainer>
         <BottomContainer>
         <AstroImg src={Astronaut}/>
-        {/* <Star3Img src={Star3}/> */}
+        <Star3Img src={Star3}/>
         {/* <Star1Img src={Star1}/> */}
         {/* <Star2Img src={Star2}/> */}
         <MoonImg src={Moon}/>
@@ -115,7 +115,7 @@ const boxFade = keyframes`
   height: 7%;
   justify-content: center;
  animation: ${boxFade} 1.5s infinite alternate;
-  top:20.5%;
+  top:12.5%;
   left:22.3%;
   z-index:1;
 `;
@@ -134,12 +134,12 @@ const Star2Img = styled.img`
 const Star3Img = styled.img`
   display: flex;
   position: absolute;
-  width: 5%;
-  height: 10%;
+  width: 4%;
+  height: 5%;
   justify-content: center;
- animation: ${boxFade} 1.5s infinite alternate;
-  top:63%;
-  left:38%;
+ animation: ${boxFade} 2.5s infinite alternate;
+  top:5%;
+  left:32%;
   z-index:1;
 `;
 
@@ -160,11 +160,11 @@ const MoonImg = styled.img`
   display: flex;
   position: absolute;
   width: 15.5%;
-  height: 21.5%;
+  height: 22.0%;
   background-color: white;
   justify-content: center;
  animation: ${slidein} 2s infinite alternate;
-  top:7%;
+  top:6.9%;
   left:5.5%;
   z-index:1;
 `;

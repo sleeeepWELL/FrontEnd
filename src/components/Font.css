@@ -48,8 +48,8 @@
 }
 /* 로그인 */
 .BottomInfo {
-  font-family: "NanumSquareB";
-}
+  font-family: "";
+}NanumSquareB
 
 /* Calendar */
 
@@ -83,7 +83,7 @@
 
 /* DetailPost */
 .ConditionText {
-  font-family: "NanumSquare_acEB";
+  font-family: "NanumSquareB";
 }
 .TimeText {
   font-family: "NanumSquare_acEB";

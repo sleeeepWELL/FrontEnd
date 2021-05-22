@@ -77,13 +77,16 @@ ToDo.defaultProps = {};
 const ConImg = styled.div`
   background-image: url(${(props) => props.img});
   background-size: contain;
-  width: 100%;
+  width: 50%;
   height: 100%;
   background-repeat: no-repeat;
   display: flex;
   position: absolute;
   background-position: center;
   padding: 2px;
+  border-radius:50%;
+ 
+  
 `;
 
 const TopInfo = styled.div`
@@ -95,7 +98,7 @@ const TopInfo = styled.div`
   justify-content: center;
   align-items: center;
   /* background-color: blue; */
- 
+  
 `;
 
 const SleepTime = styled.div`
@@ -143,6 +146,7 @@ const TagImg = styled.div`
   height: 80%;
   display: flex;
   background-position: center;
+  
 `;
 
 const TagContainer = styled.div`

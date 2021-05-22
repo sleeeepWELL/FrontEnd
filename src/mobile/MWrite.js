@@ -199,9 +199,9 @@ const MWrite = (props) => {
           <DText className="Date">{props.props.date.slice(14, 24)}</DText>
         </DateContainer>
 
-        <TimeContainer>
+        <TimeContainer >
           <LocalizationProvider dateAdapter={AdapterDateFns}>
-            <CheckTimeL style={{width:"40%", height:"auto"}}>
+            <CheckTimeL>
               <MobileTimePicker 
                 
                 label="취침 시간 선택"
@@ -209,7 +209,7 @@ const MWrite = (props) => {
                 onChange={(newStart) => {
                   setStart(newStart);
                 }}
-                renderInput={(params) => <TextField style={{width:"100%", height:"auto"}} {...params} />}
+                renderInput={(params) => <TextField  {...params} />}
 
 
                

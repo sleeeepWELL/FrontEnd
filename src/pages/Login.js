@@ -3,7 +3,7 @@ import styled, { keyframes } from "styled-components";
 import { history } from "../redux/configureStore";
 import kakaologo from "../images/kakao.png";
 import { actionCreators as userActions } from "../redux/modules/user";
-import { useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { debounce } from "lodash";
 
 import Graphic from "../components/Graphic";
@@ -20,6 +20,7 @@ const Login = (props) => {
   const [id, setId] = React.useState(null);
   const [password, setPw] = React.useState(null);
   const [windowSize, setWindowSize] = React.useState(window.innerWidth);
+  const user = useSelector((state)=> state.user.user);
 
   const Swal = require("sweetalert2");
 
@@ -32,7 +33,7 @@ const Login = (props) => {
       });
       return;
     }
-    dispatch(userActions.loginSV(id, password));
+    dispatch(userActions.loginSV(id, password,user));
   };
 
   const onClick = () => {

@@ -29,6 +29,16 @@ const Signup = () => {
 
   // 인증번호 발송
   const sendAuth = (e) => {
+    if(email.search(/\s/) != -1){
+      Swal.fire({
+        title: "이런!!",
+        html: "이메일에 공백이 포함되어있습니다!",
+        icon: "info",
+        focusConfirm: false,
+        confirmButtonText: "확인",
+      });
+      return;
+    }
     document.getElementById(e.target.id).disabled = true;
     dispatch(userActions.SendAuth(email));
   };
@@ -111,6 +121,8 @@ const Signup = () => {
       });
       return;
     }
+
+   
 
     dispatch(userActions.signUpSV(email, nickname, pwd, pwdCheck));
   };
@@ -244,13 +256,13 @@ const InfoTitle = styled.div`
 `;
 
 const SemiContainer = styled.div`
-  width: 35%;
+  width: 30%;
   height: 90%;
   display: flex;
   position: absolute;
   flex-direction: column;
   justify-content: center;
-  margin: 0px;
+  margin-left: 3%;
   box-sizing: border-box;
 `;
 

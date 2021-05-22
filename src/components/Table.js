@@ -126,6 +126,20 @@ const slidein = keyframes`
     background-color: #FEFOAE ;
   }
  `;
+
+ const slidein2 = keyframes`
+  0% {
+    margin-top: 14%;
+    background-color:  #FFF9DF;
+  }
+  // 50%{
+  //   margin-top: 1%;
+  // }
+  100% {
+    margin-top: 24%;
+    background-color: #FEFOAE ;
+  }
+ `;
 const Box1 = styled.div`
   position: absolute;
   top: 0;
@@ -140,6 +154,11 @@ const Box1 = styled.div`
   animation-iteration-count: 3;
   box-shadow: rgb(82 82 82/ 40%) 0px 5px 8px 0px;
   margin-left: 1.5%;
+  :hover {
+    box-shadow:  rgb(255 212 0/ 60% ) 0px 4px 10px 0px;
+    transition: box-shadow 2s ease-in 0s;
+  }
+
 `;
 
 const Box2 = styled.div`
@@ -157,6 +176,11 @@ const Box2 = styled.div`
   animation-iteration-count: 3;
   box-shadow: rgb(82 82 82/ 40%) 0px 5px 8px 0px;
   margin-left: 1.5%;
+  :hover {
+    box-shadow:  rgb(255 212 0/ 60% ) 0px 4px 10px 0px;
+    transition: box-shadow 2s ease-in 0s;
+  }
+
 `;
 
 const Box3 = styled.div`
@@ -174,6 +198,12 @@ const Box3 = styled.div`
 
   box-shadow: rgb(82 82 82/ 40%) 0px 5px 8px 0px;
   margin-left: 1.5%;
+  &:hover {
+   
+    box-shadow:  rgb(255 212 0/ 60% ) 0px 4px 10px 0px;
+    transition: box-shadow 2s ease-in 0s;
+  }
+
 `;
 
 const BoxContainer = styled.div`

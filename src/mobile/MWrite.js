@@ -6,6 +6,7 @@ import { history } from "../redux/configureStore";
 import "../components/Font.css";
 import Swal from "sweetalert2";
 
+
 import TextField from "@material-ui/core/TextField";
 import MobileTimePicker from "@material-ui/lab/MobileTimePicker";
 import AdapterDateFns from "@material-ui/lab/AdapterDateFns";
@@ -50,6 +51,11 @@ const MWrite = (props) => {
     parseInt(startSleep.slice(0, 2) * 60) + parseInt(startSleep.slice(3, 5));
   const endMinute =
     parseInt(endSleep.slice(0, 2) * 60) + parseInt(endSleep.slice(3, 5));
+
+   
+    
+   
+   
 
   //초기값
   let totalSleepHour = 1;
@@ -195,15 +201,18 @@ const MWrite = (props) => {
 
         <TimeContainer>
           <LocalizationProvider dateAdapter={AdapterDateFns}>
-            <CheckTimeL>
-              <MobileTimePicker
+            <CheckTimeL style={{width:"40%", height:"auto"}}>
+              <MobileTimePicker 
                 
                 label="취침 시간 선택"
                 value={start}
                 onChange={(newStart) => {
                   setStart(newStart);
                 }}
-                renderInput={(params) => <TextField {...params} />}
+                renderInput={(params) => <TextField style={{width:"100%", height:"auto"}} {...params} />}
+
+
+               
               />
             </CheckTimeL>
           </LocalizationProvider>

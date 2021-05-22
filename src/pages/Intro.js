@@ -8,7 +8,7 @@ import IntroD from "../images/Intro_D.png";
 import IntroE from "../images/Intro_E.png";
 import IntroF from "../images/Intro_F.png";
 import IntroG from "../images/Intro_G.png";
-import Title3 from "../images/Title3.png";
+import InA from "../images/in1.png";
 
 
 import IntroHeader from "../components/IntroHeader";
@@ -20,6 +20,7 @@ const Intro = () => {
       <Wrap>
         <IntroHeader />
         <Backgroud bg={"#DBDBDB"}>
+          {/* <InAImg src={InA}/> */}
           <BackImg src={IntroA} />
         </Backgroud>
         <Backgroud bg={"white"}>
@@ -130,21 +131,25 @@ const BackImg = styled.img`
 
 const boxFade = keyframes`
   0% {
-    opacity: 0;
+    opacity: 1;
+    
   }
   100% {
-    opacity: 1;
+    opacity: 0;
+   
   }
  `;
-const PlusImg1 = styled.img`
-display: flex;
-position: absolute;
- width:65%;
+
+const InAImg= styled.img`
+ display: flex;
+ position: absolute;
+ width:63%;
  height: 22%;
- top:37%;
+ top:46%;
  left: 19%;
+ opacity:0%;
  z-index:1;
- animation: ${boxFade} 2.5s ease-in alternate;
+ animation: ${boxFade} 3.5s;
 `
 export default Intro;
 

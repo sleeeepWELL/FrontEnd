@@ -197,6 +197,7 @@ const MWrite = (props) => {
           <LocalizationProvider dateAdapter={AdapterDateFns}>
             <CheckTimeL>
               <MobileTimePicker
+                
                 label="취침 시간 선택"
                 value={start}
                 onChange={(newStart) => {
@@ -208,13 +209,14 @@ const MWrite = (props) => {
           </LocalizationProvider>
           <LocalizationProvider dateAdapter={AdapterDateFns}>
             <CheckTimeR>
-              <MobileTimePicker
+              <MobileTimePicker 
+             
                 label="기상 시간 선택"
                 value={end}
                 onChange={(newEnd) => {
                   setEnd(newEnd);
                 }}
-                renderInput={(params) => <TextField {...params} />}
+                renderInput={(params) => <TextField size="large" {...params} />}
               />
             </CheckTimeR>
           </LocalizationProvider>
@@ -388,7 +390,7 @@ const TimeContainer = styled.div`
   flex-direction: row;
   justify-content: space-around;
   box-sizing: border-box;
-  /* background-color: lightpink; */
+
 `;
 
 const CheckTimeL = styled.div`
@@ -396,6 +398,7 @@ const CheckTimeL = styled.div`
   align-items: center;
   height: 100%;
   width: 40%;
+  
   box-sizing: border-box;
   justify-content: center;
   /* background-color: lightblue; */

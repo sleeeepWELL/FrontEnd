@@ -118,10 +118,12 @@ const Backgroud = styled.div`
 const BackImg = styled.img`
   width: 70%;
   border: none;
-  margin: 0px;
+  margin: 5%;
   background-color: none;
   @media (max-width: 414px) {
     width: 100%;
+    height:100%;
+    
   }
 `;
 

@@ -192,11 +192,10 @@ const Write = (props) => {
   const Theme = {
     palette: {
       primary: {
-        // primary color
         contrastText: "#FFFFFF",
-        dark: "#000000",
-        main: "#000000", // black
-        light: "#000000",
+        dark: "#4a5566",
+        main: "#4a5566",
+        light: "#4a5566",
       },
     },
   };
@@ -242,7 +241,7 @@ const Write = (props) => {
         </TimeContainer>
 
         <TagContainer>
-          <TagText>태그 </TagText>
+          <TagText className="TimeText">태그 </TagText>
           <TotalTagGrid>
             <TagGrid>
               <IconInput
@@ -296,7 +295,7 @@ const Write = (props) => {
         </TagContainer>
 
         <ConditionContainer>
-          <TagText>컨디션</TagText>
+          <TagText className="TimeText">컨디션</TagText>
           <TotalImgGrid>
             <ImgGrid>
               <IconInput
@@ -347,7 +346,7 @@ const Write = (props) => {
         </ConditionContainer>
 
         <BottomContainer>
-          <MemoText>메모</MemoText>
+          <MemoText className="TimeText">메모</MemoText>
           <TextArea
             className="TimeText2"
             placeholder="메모를 입력하세요"
@@ -488,8 +487,7 @@ const TagGrid = styled.div`
 const MemoText = styled.div`
   display: flex;
   width: 90%;
-  font-size: 16px;
-  font-weight: bold;
+  font-size: 100%;
   color: black;
   justify-content: flex-start;
   padding: 0.6rem 0;
@@ -535,7 +533,6 @@ const DateContainer = styled.div`
 const TagText = styled.div`
   display: flex;
   font-size: 100%;
-  font-weight: bold;
   color: #121212;
   width: 90%;
 `;

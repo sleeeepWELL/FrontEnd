@@ -175,9 +175,14 @@ font-weight: bold;
 `
 const TopButton = styled. button`
 position: fixed; 
-  bottom: 80px; 
+display:flex;  
+bottom: 75px; 
+
   right: 15px;
   font-weight: bold;
+  align-items: center;
+  text-align:center;
+  justify-content:center;
   font-size: 100%;
   z-index: 1; 
   width: 50px; 

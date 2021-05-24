@@ -55,7 +55,8 @@
     />
     <title>Sleepwell</title>
   </head>
-  <body>
+ 
+  <body oncontextmenu='return false' ondragstart='return false' onselectstart='return false' >
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
     <!--
@@ -71,7 +72,8 @@
     <!-- Channel Plugin Scripts -->
 
     <!-- End Channel Plugin -->
-    <script>
+
+<script >
       (function () {
         var w = window;
         if (w.ChannelIO) {

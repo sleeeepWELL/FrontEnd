@@ -86,6 +86,7 @@ const MCalendar = (props) => {
                   props._showModify(false);
                   _changeColor(_day.format("DD"));
                   dispatch(todoActions.getOnePostAX(_day.format("YYYY-MM-DD")));
+                  window.scroll(0,400);
                 }}
               >
                 <TextBox>

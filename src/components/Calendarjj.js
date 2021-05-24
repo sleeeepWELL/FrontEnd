@@ -80,6 +80,7 @@ const Calendar = (props) => {
           } else {
             return (
               <DayGrid
+              
                 key={`${moment(today).format(
                   "MM"
                 )}_week_${week_index}_day_${day_index}`}
@@ -301,7 +302,6 @@ const CalendarContainer = styled.div`
   align-items: center;
   border-right: 1px solid #aaaaaa;
 `;
-
 //요일묶음 Grid
 const WeekGrid = styled.div`
   display: flex;

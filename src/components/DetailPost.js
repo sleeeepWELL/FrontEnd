@@ -557,7 +557,7 @@ const boxFade = keyframes`
   100% {
     opacity: 1;
   }
- `;
+`;
 
 const boxFade2 = keyframes`
  0% {

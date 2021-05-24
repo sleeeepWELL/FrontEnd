@@ -29,13 +29,13 @@ const Graphic = () => {
           </MadeByWrap> */}
         </MiddleContainer>
         <BottomContainer>
-        <AstroImg src={Astronaut}/>
-        <Star3Img src={Star3}/>
-        {/* <Star1Img src={Star1}/> */}
-        {/* <Star2Img src={Star2}/> */}
-        <MoonImg src={Moon}/>
-        <PlanetImg src={Planet}/>
-        {/* <SpaceshipImg src={Spaceship}/> */}
+          <AstroImg src={Astronaut} />
+          <Star3Img src={Star3} />
+          {/* <Star1Img src={Star1}/> */}
+          {/* <Star2Img src={Star2}/> */}
+          <MoonImg src={Moon} />
+          <PlanetImg src={Planet} />
+          {/* <SpaceshipImg src={Spaceship}/> */}
 
           <BottomInfoBox className="BottomInfo">
             <BottomInfo>
@@ -95,7 +95,7 @@ const boxFade = keyframes`
   }
  `;
 
- const slidein = keyframes`
+const slidein = keyframes`
   0% {
     margin-top: 1%;
     background-color: yellow;
@@ -107,17 +107,17 @@ const boxFade = keyframes`
   }
   `;
 
-  //
-  const Star1Img = styled.img`
+//
+const Star1Img = styled.img`
   display: flex;
   position: absolute;
   width: 5.5%;
   height: 7%;
   justify-content: center;
- animation: ${boxFade} 1.5s infinite alternate;
-  top:12.5%;
-  left:22.3%;
-  z-index:1;
+  animation: ${boxFade} 1.5s infinite alternate;
+  top: 12.5%;
+  left: 22.3%;
+  z-index: 1;
 `;
 const Star2Img = styled.img`
   display: flex;
@@ -125,10 +125,10 @@ const Star2Img = styled.img`
   width: 100px;
   height: 13vh;
   justify-content: center;
- animation: ${boxFade} 1.5s infinite alternate;
-  top:43%;
-  left:29%;
-  z-index:1;
+  animation: ${boxFade} 1.5s infinite alternate;
+  top: 43%;
+  left: 29%;
+  z-index: 1;
 `;
 
 const Star3Img = styled.img`
@@ -137,10 +137,10 @@ const Star3Img = styled.img`
   width: 4%;
   height: 5%;
   justify-content: center;
- animation: ${boxFade} 2.5s infinite alternate;
-  top:5%;
-  left:32%;
-  z-index:1;
+  animation: ${boxFade} 2.5s infinite alternate;
+  top: 5%;
+  left: 32%;
+  z-index: 1;
 `;
 
 const AstroImg = styled.img`
@@ -150,23 +150,23 @@ const AstroImg = styled.img`
   height: 29%;
   background-color: white;
   justify-content: center;
- animation: ${slidein} 1.3s infinite alternate;
-  top:61%;
-  left:42%;
-  z-index:1;
+  animation: ${slidein} 1.3s infinite alternate;
+  top: 58%;
+  left: 42%;
+  z-index: 1;
 `;
 
 const MoonImg = styled.img`
   display: flex;
   position: absolute;
   width: 15.5%;
-  height: 22.0%;
+  height: 22%;
   background-color: white;
   justify-content: center;
- animation: ${slidein} 2s infinite alternate;
-  top:6.9%;
-  left:5.5%;
-  z-index:1;
+  animation: ${slidein} 2s infinite alternate;
+  top: 6.9%;
+  left: 5.5%;
+  z-index: 1;
 `;
 
 const PlanetImg = styled.img`
@@ -176,10 +176,10 @@ const PlanetImg = styled.img`
   height: 15.5%;
   background-color: white;
   justify-content: center;
- animation: ${slidein} 1.7s infinite alternate;
-  top:8%;
-  left:45%;
-  z-index:1;
+  animation: ${slidein} 1.7s infinite alternate;
+  top: 8%;
+  left: 45%;
+  z-index: 1;
 `;
 
 const SpaceshipImg = styled.img`
@@ -189,10 +189,10 @@ const SpaceshipImg = styled.img`
   height: 12%;
   background-color: white;
   justify-content: center;
- animation: ${slidein} 2.2s infinite alternate;
-  top:30%;
-  left:42.5%;
-  z-index:1;
+  animation: ${slidein} 2.2s infinite alternate;
+  top: 30%;
+  left: 42.5%;
+  z-index: 1;
 `;
 
 const Title = styled.div`

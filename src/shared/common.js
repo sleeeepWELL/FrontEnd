@@ -1,3 +1,11 @@
+// 이메일 체크
+export const emailCheck = (email) => {
+  let _reg =
+    /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
+
+  return _reg.test(email);
+};
+
 // 비밀번호 체크
 //숫자, 특문 각 1회 이상, 영문은 2개 이상 사용하여 8자리 이상 입력
 export const passwordCheck = (pwd) => {

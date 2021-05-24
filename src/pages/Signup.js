@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
 import { actionCreators as userActions } from "../redux/modules/user";
@@ -6,7 +6,7 @@ import { history } from "../redux/configureStore";
 import Graphic from "../components/Graphic";
 import "../components/Font.css";
 import Swal from "sweetalert2";
-import { passwordCheck, nicknameCheck } from "../shared/common";
+import { emailCheck, passwordCheck, nicknameCheck } from "../shared/common";
 import MSignup from "../mobile/MSignup";
 import { debounce } from "lodash";
 
@@ -14,11 +14,22 @@ import { debounce } from "lodash";
 const Signup = () => {
   const dispatch = useDispatch();
 
+  const emailInfo = useRef();
+  const authNumInfo = useRef();
+  const nickNameInfo = useRef();
+  const pwdInfo = useRef();
+  const pwdCheckInfo = useRef();
+  const [emailMSG, setEmailMSG] = React.useState(null);
+  const [authMSG, setAuthMSG] = React.useState(null);
+  const [nicknameMSG, setNicknameMSG] = React.useState(null);
+  const [pwdMSG, setPwdMSG] = React.useState(null);
+  const [pwdCheckMSG, setPwdCheckMSG] = React.useState(null);
+
   const [email, setEmail] = React.useState(null);
+  const [authNum, setAuthNum] = React.useState(null);
   const [nickname, setNickname] = React.useState(null);
   const [pwd, setPwd] = React.useState(null);
   const [pwdCheck, setPwdCheck] = React.useState(null);
-  const [authNum, setAuthNum] = React.useState(null);
   const [windowSize, setWindowSize] = React.useState(window.innerWidth);
 
   //닉네임 중복검사 통과 여부 (true면 중복, false면 통과)
@@ -27,41 +38,160 @@ const Signup = () => {
   //인증완료 성공 여부 (true면 완료, false면 미완료)
   const authCheck = useSelector((state) => state.user.auth_check);
 
-  // 인증번호 발송
-  const sendAuth = (e) => {
-    if(email.search(/\s/) != -1){
-      Swal.fire({
-        title: "이런!!",
-        html: "이메일에 공백이 포함되어있습니다!",
-        icon: "info",
-        focusConfirm: false,
-        confirmButtonText: "확인",
-      });
+  // 이메일 관련 체크
+  const CheckEmail = () => {
+    // 이메일칸 미입력시
+    if (email === "") {
+      setEmailMSG("이메일을 입력해주세요.");
+      emailInfo.current.style.color = "red";
+      emailInfo.current.style.display = "flex";
       return;
     }
+
+    // 이메일 양식 체크
+    if (!emailCheck(email)) {
+      setEmailMSG("이메일 형식에 맞춰서 입력해주세요.");
+      emailInfo.current.style.color = "red";
+      emailInfo.current.style.display = "flex";
+      return;
+    }
+
+    // 이메일 공백여부
+    if (email.search(/\s/) != -1) {
+      setEmailMSG("이메일에 공백을 빼주세요.");
+      emailInfo.current.style.color = "red";
+      emailInfo.current.style.display = "flex";
+      return;
+    }
+
+    setEmailMSG("완료");
+    emailInfo.current.style.display = "flex";
+    emailInfo.current.style.color = "green";
+    return;
+  };
+
+  // 인증메일 발송 버튼
+  const sendAuth = (e) => {
+    if (emailMSG !== "완료") {
+      return;
+    }
+
+    // 발송시키면 버튼 계속못누르게 막기(인증메일 연속 발송 저지)
     document.getElementById(e.target.id).disabled = true;
     dispatch(userActions.SendAuth(email));
   };
 
-  // 인증완료
+  // 인증번호 관련 체크
+  const CheckAuth = () => {
+    if (authNum === "") {
+      setAuthMSG("인증번호를 입력해주세요.");
+      authNumInfo.current.style.color = "red";
+      authNumInfo.current.style.display = "flex";
+      return;
+    }
+
+    if (document.getElementById("Eauthinput").value.length < 6) {
+      setAuthMSG("인증번호를 모두 입력해주세요.");
+      authNumInfo.current.style.color = "red";
+      authNumInfo.current.style.display = "flex";
+      return;
+    }
+
+    // 이상없으면 메세지 초기화
+    setAuthMSG("완료");
+    authNumInfo.current.style.display = "flex";
+    authNumInfo.current.style.color = "green";
+    return;
+  };
+
+  // 인증번호 입력(인증번호 입력 글자수 확인)
+  const insertAuth = (e) => {
+    setAuthNum(e.target.value);
+    // 인증번호 6글자 입력 안하면 인증완료 버튼 비활성화
+    document.getElementById("Eauthinput").value.length > 5
+      ? (document.getElementById("Eauthcheck").disabled = false)
+      : (document.getElementById("Eauthcheck").disabled = true);
+  };
+
+  // 인증완료 버튼
   const confirmAuth = () => {
+    // 완료 메세지 없으면 체크 통과 못한것임
+    if (authMSG !== "완료") {
+      return;
+    }
     dispatch(userActions.ConfirmAuth(email, authNum));
   };
 
-  // 닉네임 중복검사
-  const userNameCheck = () => {
+  // 닉네임 관련 체크
+  const CheckNickName = () => {
+    if (nickname === "") {
+      setNicknameMSG("닉네임을 입력해주세요.");
+      nickNameInfo.current.style.color = "red";
+      nickNameInfo.current.style.display = "flex";
+      return;
+    }
+
     if (!nicknameCheck(nickname)) {
-      Swal.fire({
-        title: "닉네임을 다시 정해주세요",
-        html: "닉네임은 1글자 이상 9글자 이하로 정해주세요!",
-        icon: "info",
-        showCancelButton: false,
-        focusConfirm: false,
-        confirmButtonText: "확인",
-      });
+      setNicknameMSG("1글자 이상 9글자 이하로 정해주세요.");
+      nickNameInfo.current.style.color = "red";
+      nickNameInfo.current.style.display = "flex";
+      return;
+    }
+    // 이상없으면 완료 메세지
+    setNicknameMSG("완료");
+    nickNameInfo.current.style.display = "flex";
+    nickNameInfo.current.style.color = "green";
+    return;
+  };
+
+  // 닉네임 중복확인 버튼
+  const userNameCheck = () => {
+    if (nicknameMSG !== "완료") {
       return;
     }
     dispatch(userActions.userNameCheck(nickname));
+  };
+
+  // 비밀번호 관련 체크
+  const CheckPwd = () => {
+    if (pwd === "") {
+      setPwdMSG("비밀번호를 입력하세요.");
+      pwdInfo.current.style.color = "red";
+      pwdInfo.current.style.display = "flex";
+      return;
+    }
+    if (!passwordCheck(pwd)) {
+      setPwdMSG("비밀번호는 8글자 이상, 영문+숫자+특수문자로 구성해야합니다.");
+      pwdInfo.current.style.color = "red";
+      pwdInfo.current.style.display = "flex";
+      return;
+    }
+    // 이상없으면 메세지 초기화
+    setPwdMSG("완료");
+    pwdInfo.current.style.display = "flex";
+    pwdInfo.current.style.color = "green";
+    return;
+  };
+
+  // 비밀번호 재입력 관련 체크
+  const CheckPwdCheck = () => {
+    if (pwdCheck === "") {
+      setPwdCheckMSG("비밀번호를 입력하세요.");
+      pwdCheckInfo.current.style.color = "red";
+      pwdCheckInfo.current.style.display = "flex";
+      return;
+    }
+    if (pwd !== pwdCheck) {
+      setPwdCheckMSG("비밀번호가 다릅니다. 다시 입력하세요.");
+      pwdCheckInfo.current.style.color = "red";
+      pwdCheckInfo.current.style.display = "flex";
+      return;
+    }
+    // 이상없으면 메세지 초기화
+    setPwdCheckMSG("완료");
+    pwdCheckInfo.current.style.display = "flex";
+    pwdCheckInfo.current.style.color = "green";
+    return;
   };
 
   //회원가입 버튼
@@ -78,6 +208,7 @@ const Signup = () => {
     }
 
     if (nameCheck) {
+      setNicknameMSG("닉네임 중복확인이 완료되지 않았습니다.");
       Swal.fire({
         title: "닉네임 중복확인이 완료되지 않았습니다.",
         icon: "info",
@@ -99,30 +230,15 @@ const Signup = () => {
       return;
     }
 
-    if (pwd !== pwdCheck) {
-      Swal.fire({
-        title: "비밀번호가 다르게 입력되었습니다.",
-        icon: "info",
-        showCancelButton: false,
-        focusConfirm: false,
-        confirmButtonText: "확인",
-      });
+    if (
+      emailMSG !== "완료" ||
+      authMSG !== "완료" ||
+      nicknameMSG !== "완료" ||
+      pwdMSG !== "완료" ||
+      pwdCheckMSG !== "완료"
+    ) {
       return;
     }
-
-    if (!passwordCheck(pwd)) {
-      Swal.fire({
-        title: "비밀번호를 재설정해주세요.",
-        html: "비밀번호는 8글자 이상, 영문+숫자+특수문자로 구성해야합니다.",
-        icon: "info",
-        showCancelButton: false,
-        focusConfirm: false,
-        confirmButtonText: "확인",
-      });
-      return;
-    }
-
-   
 
     dispatch(userActions.signUpSV(email, nickname, pwd, pwdCheck));
   };
@@ -159,26 +275,37 @@ const Signup = () => {
                       onChange={(e) => {
                         setEmail(e.target.value);
                       }}
+                      onBlur={CheckEmail}
                       placeholder="Sleep@well.com"
                     />
                     <CheckBnt id="userauth" disabled="" onClick={sendAuth}>
-                      인증 번호 발송
+                      인증 메일 발송
                     </CheckBnt>
                   </div>
+                  <InfoDiv>
+                    <Info ref={emailInfo}>{emailMSG}</Info>
+                  </InfoDiv>
                 </InputContainer>
+
                 <InputContainer>
                   <InfoTitle>인증번호</InfoTitle>
                   <div style={{ display: "flex", flexDirection: "row" }}>
                     <InputBox
+                      id="Eauthinput"
                       className="TimeText"
-                      onChange={(e) => {
-                        setAuthNum(e.target.value);
-                      }}
+                      onChange={insertAuth}
+                      onBlur={CheckAuth}
                       placeholder="인증번호 입력"
                     />
-                    <CheckBnt onClick={confirmAuth}>인증 완료</CheckBnt>
+                    <CheckBnt id="Eauthcheck" onClick={confirmAuth} disabled="">
+                      인증 완료
+                    </CheckBnt>
                   </div>
+                  <InfoDiv>
+                    <Info ref={authNumInfo}>{authMSG}</Info>
+                  </InfoDiv>
                 </InputContainer>
+
                 <InputContainer>
                   <InfoTitle>닉네임</InfoTitle>
                   <div style={{ display: "flex", flexDirection: "row" }}>
@@ -188,15 +315,20 @@ const Signup = () => {
                         setNickname(e.target.value);
                       }}
                       placeholder="1글자 이상 9글자 이하"
+                      onBlur={CheckNickName}
                     />
                     <CheckBnt onClick={userNameCheck}>중복 확인</CheckBnt>
                   </div>
+                  <InfoDiv>
+                    <Info ref={nickNameInfo}>{nicknameMSG}</Info>
+                  </InfoDiv>
                 </InputContainer>
+
                 <div
                   style={{
                     display: "flex",
                     flexDirection: "column",
-                    marginTop: "2rem",
+                    marginTop: "1rem",
                   }}
                 >
                   <InfoTitle>비밀번호</InfoTitle>
@@ -207,9 +339,14 @@ const Signup = () => {
                     }}
                     placeholder="영문/숫자/특수문자 포함 8글자 이상"
                     type="password"
+                    onBlur={CheckPwd}
                   />
-                  <div style={{ height: "2rem" }}></div>
-                  <InfoTitle>비밀번호 재입력</InfoTitle>
+                  <InfoDiv>
+                    <Info ref={pwdInfo}>{pwdMSG}</Info>
+                  </InfoDiv>
+
+                  <div style={{ height: "1rem" }}></div>
+                  <InfoTitle>비밀번호 확인</InfoTitle>
                   <PwBox
                     className="TimeText"
                     onChange={(e) => {
@@ -217,7 +354,11 @@ const Signup = () => {
                     }}
                     placeholder="영문/숫자/특수문자 포함 8글자 이상"
                     type="password"
+                    onBlur={CheckPwdCheck}
                   />
+                  <InfoDiv>
+                    <Info ref={pwdCheckInfo}>{pwdCheckMSG}</Info>
+                  </InfoDiv>
                 </div>
                 <InfoBox>
                   <div
@@ -249,6 +390,21 @@ const Signup = () => {
   }
 };
 
+const InfoDiv = styled.div`
+  display: flex;
+  width: 100%;
+  font-weight: 500;
+  height: 12px;
+  /* background-color: green; */
+  padding: 4px 0px 0px 4px;
+`;
+
+const Info = styled.li`
+  display: none;
+  font-size: 12px;
+  color: #ee3a57;
+`;
+
 const InfoTitle = styled.div`
   display: flex;
   margin-bottom: 5px;
@@ -268,7 +424,7 @@ const SemiContainer = styled.div`
 
 const InputContainer = styled.div`
   display: flex;
-  margin-top: 2rem;
+  margin-top: 1rem;
   flex-direction: column;
 `;
 

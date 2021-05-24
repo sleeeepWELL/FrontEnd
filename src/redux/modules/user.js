@@ -250,30 +250,26 @@ const SendAuth = (email) => {
       },
     })
       .then((res) => {
-        console.log(res);
-        console.log(res.data);
-        if (res.data === "이메일 중복") {
-          Swal.fire({
-            title: "이미 가입된 이메일 입니다",
-            icon: "info",
-            showCancelButton: false,
-            focusConfirm: false,
-            confirmButtonText: "확인",
-          });
-
-          // 이미가입된 이메일이면 인증번호 전송 계속 해야하니 버튼 활성화
-          document.getElementById("userauth").disabled = false;
-        } else {
+      
           Swal.fire({
             icon: "success",
             title: "입력하신 이메일로 인증번호가 발송되었습니다.",
             showConfirmButton: true,
             confirmButtonText: "확인",
           });
-        }
+    
       })
       .catch((err) => {
         console.log("인증번호 발송 에러", err);
+        Swal.fire({
+          title: "이미 가입된 이메일 입니다",
+          icon: "info",
+          showCancelButton: false,
+          focusConfirm: false,
+          confirmButtonText: "확인",
+        });
+        document.getElementById("userauth").disabled = false;
+         // 이미가입된 이메일이면 인증번호 전송 계속 해야하니 버튼 활성화
       });
   };
 };

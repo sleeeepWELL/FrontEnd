@@ -33,7 +33,7 @@ const Login = (props) => {
       });
       return;
     }
-    dispatch(userActions.loginSV(id, password,user));
+    dispatch(userActions.loginSV(id, password));
   };
 
   const onClick = () => {

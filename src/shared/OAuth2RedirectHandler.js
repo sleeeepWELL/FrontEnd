@@ -11,7 +11,7 @@ const OAuth2RedirectHandler = (props) => {
   let code = new URL(window.location.href).searchParams.get("code");
    console.log(user);
   React.useEffect(async () => {
-    await dispatch(userActions.kakaoLogin(code, user));
+    await dispatch(userActions.kakaoLogin(code));
   }, []);
 
   return <Spinner />;

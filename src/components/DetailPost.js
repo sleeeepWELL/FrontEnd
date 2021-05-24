@@ -101,8 +101,8 @@ const DetailPost = (props) => {
             <EmptyTextContainer>
               <EmptyText className="TimeText">
                 {0<= hour && hour<6 ? <Text>당신의 새벽을 응원합니다!</Text>:null}
-                {6<= hour && hour<11 ? <Text>Sleepwell과 시작하는 아침!</Text>:null}
-                {11<= hour && hour <18  ? <Text>Good Afternoon!</Text>:null}
+                {6<= hour && hour<12 ? <Text>Sleepwell과 시작하는 하루!</Text>:null}
+                {12<= hour && hour <18  ? <Text>Good Afternoon!</Text>:null}
                 {18<= hour && hour <24? <Text>좋은 하루를 보내셨나요?</Text>:null}
                 <Text2>수면기록을 입력해주세요! </Text2>
               </EmptyText>
@@ -538,14 +538,14 @@ const DText = styled.div`
 const ModifyButton = styled.button`
   width: 20%;
   height: 100%;
-  background-color: #4a5566;
 
-  font-weight: bold;
+  background-color:#4a5566;
+ 
   border-radius: 5px;
   outline: none;
   cursor: pointer;
   color: white;
-  box-shadow: rgb(82 82 82/ 20%) 0px 5px 8px 0px;
+  border:none;
   font-size: 90%;
   margin-right: 10px;
 `;

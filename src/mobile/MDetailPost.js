@@ -34,6 +34,7 @@ const MDetailPost = (props) => {
   const dispatch = useDispatch();
   const today = useSelector((state) => state.todo.today);
   const _today = moment();
+  const hour = Number(_today.format("HH"))
 
   const deletePost = () => {
     Swal.fire({
@@ -108,8 +109,12 @@ const MDetailPost = (props) => {
               </LeftHeader>
             </DateContainer>
             <EmptyTextContainer>
-              <EmptyText className="TimeText">
-                수면기록을 입력해주세요!
+            <EmptyText className="TimeText">
+                {0<= hour && hour<6 ? <Text>당신의 새벽을 응원합니다!</Text>:null}
+                {6<= hour && hour<12 ? <Text>Sleepwell과 시작하는 하루!</Text>:null}
+                {12<= hour && hour <18  ? <Text>Good Afternoon!</Text>:null}
+                {18<= hour && hour <24? <Text>좋은 하루를 보내셨나요?</Text>:null}
+                <Text2>수면기록을 입력해주세요! </Text2>
               </EmptyText>
             </EmptyTextContainer>
           </ModalComponent>
@@ -513,7 +518,7 @@ const ModifyButton = styled.button`
   outline: none;
   cursor: pointer;
   color: white;
-  box-shadow: rgb(82 82 82/ 20%) 0px 5px 8px 0px;
+  border: none;
   font-size: 80%;
   margin-right: 1%;
   @media (max-width: 280px) {
@@ -543,6 +548,7 @@ const AddButton = styled.button`
 
 const EmptyText = styled.div`
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   width: 100%;
@@ -552,6 +558,44 @@ const EmptyText = styled.div`
   font-weight: bold;
   text-align: center;
   opacity: 40%;
+`;
+
+const boxFade = keyframes`
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+ `;
+ const boxFade2 = keyframes`
+ 0% {
+   opacity: 0; 
+ }
+ 50%{
+   opacity: 0;
+ }
+ 100% {
+   opacity: 1;
+   
+ }
+`;
+
+const Text = styled.div`
+ font-size: 70%;
+ margin-bottom: 5%;
+ 
+ animation: ${boxFade} 1s;
+ color: grey;
+ 
+`;
+const Text2 = styled.div`
+ font-size: 70%;
+ margin-bottom: 5%;
+ 
+ animation: ${boxFade2} 2s;
+ color: grey;
+ 
 `;
 
 const Contents = styled.div`

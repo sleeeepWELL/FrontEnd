@@ -6,6 +6,7 @@ import DetailPost from "../components/DetailPost";
 import DetailWrite from "../components/DetailWrite";
 import Search from "../components/Search";
 import MMainCalendar from "../mobile/MMainCalendar";
+import Cube from "../components/Cube";
 
 import { debounce } from "lodash";
 
@@ -50,7 +51,9 @@ const MainCalendar = (props) => {
               </PostContainer>
               <SearchContainer>
                 <Search _showModify={setModify} />
+               
               </SearchContainer>
+               {/* <Cube/> */}
             </RightContainer>
           </AllContainer>
         </Background>
@@ -111,7 +114,7 @@ const SearchContainer = styled.div`
   display: flex;
   width: 100%;
 
-  margin-left: 5%;
+  margin-left: 3%;
   margin-top: 10px;
   align-content: center;
   border-radius: 20px;

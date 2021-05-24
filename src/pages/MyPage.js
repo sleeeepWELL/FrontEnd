@@ -17,12 +17,13 @@ const MyPage = () => {
   const deleteUser = () => {
     Swal.fire({
       title: "정말 탈퇴 하시겠습니까?",
-      text: "탈퇴시 입력하신 수면정보를 모두 잃게됩니다.",
+      text: "입력하셨던 수면시간 및 기록정보는 즉시 삭제되며  이후 진료제출용으로도 복구불가합니다  .",
       icon: "warning",
       showCancelButton: true,
       confirmButtonColor: "#d33",
       cancelButtonColor: "#3085d6",
       confirmButtonText: "네, 탈퇴할래요.",
+      confirmButton : "10",
       cancelButtonText: "아니오",
     }).then((result) => {
       if (result.isConfirmed) {
@@ -136,13 +137,15 @@ const MyPage = () => {
                 </div>
               </PwdContainer>
             </Container>
-            <Container>
+          
+          </TotalContainer>
+          <OutContainer>
               <WithdrawBtn onClick={deleteUser} className="TimeText2">
                 회원탈퇴
               </WithdrawBtn>
-            </Container>
-          </TotalContainer>
+          </OutContainer>
         </Wrap>
+        
       </Background>
     </>
   );
@@ -152,6 +155,14 @@ const Container = styled.div`
   width: 100%;
   height: auto;
   margin: 0.7rem 0px;
+`;
+const OutContainer  = styled.div`
+ position: absolute;
+
+  width: 10%;
+  bottom: 0;
+  left: 5%;
+ 
 `;
 
 const SemiContainer = styled.div`

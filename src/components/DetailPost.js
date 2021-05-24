@@ -33,10 +33,8 @@ const DetailPost = (props) => {
   const dispatch = useDispatch();
   const today = useSelector((state) => state.todo.today);
   const _today = moment();
-  
-  const hour = Number(_today.format("HH"))
-  
 
+  const hour = Number(_today.format("HH"));
 
   const deletePost = () => {
     Swal.fire({
@@ -63,7 +61,6 @@ const DetailPost = (props) => {
     return (
       <React.Fragment>
         <Wrap>
-        
           <ModalComponent>
             <DateContainer>
               <LeftHeader>
@@ -100,28 +97,31 @@ const DetailPost = (props) => {
             </DateContainer>
             <EmptyTextContainer>
               <EmptyText className="TimeText">
-                {0<= hour && hour<6 ? <Text>당신의 새벽을 응원합니다!</Text>:null}
-                {6<= hour && hour<11 ? <Text>Sleepwell과 시작하는 아침!</Text>:null}
-                {11<= hour && hour <18  ? <Text>Good Afternoon!</Text>:null}
-                {18<= hour && hour <24? <Text>좋은 하루를 보내셨나요?</Text>:null}
+                {0 <= hour && hour < 6 ? (
+                  <Text>당신의 새벽을 응원합니다!</Text>
+                ) : null}
+                {6 <= hour && hour < 11 ? (
+                  <Text>Sleepwell과 시작하는 아침!</Text>
+                ) : null}
+                {11 <= hour && hour < 18 ? <Text>Good Afternoon!</Text> : null}
+                {18 <= hour && hour < 24 ? (
+                  <Text>좋은 하루를 보내셨나요?</Text>
+                ) : null}
                 <Text2>수면기록을 입력해주세요! </Text2>
               </EmptyText>
               <DayHeader>
-            
-              {moment(props.date.slice(14, 24)) <= _today && (
-                <AddButton className="BottomInfo" 
-                  onClick={() => {
-                    props._showModify(true);
-                  }}
-                >
-                  수면 기록하기
-                </AddButton>
-              )}
-           
-          </DayHeader>
+                {moment(props.date.slice(14, 24)) <= _today && (
+                  <AddButton
+                    className="BottomInfo"
+                    onClick={() => {
+                      props._showModify(true);
+                    }}
+                  >
+                    수면 기록하기
+                  </AddButton>
+                )}
+              </DayHeader>
             </EmptyTextContainer>
-            
-           
           </ModalComponent>
           {props.date[0].conditions == "First_View"
             ? dispatch(
@@ -135,21 +135,19 @@ const DetailPost = (props) => {
     return (
       <>
         <Wrap>
-      
-            <RightHeader>
-              <ModifyButton
-                className="TimeText"
-                onClick={() => {
-                  props._showModify(true);
-                }}
-              >
-                수정
-              </ModifyButton>
-              <ModifyButton className="TimeText" onClick={deletePost}>
-                삭제
-              </ModifyButton>
-            </RightHeader>
-       
+          <RightHeader>
+            <ModifyButton
+              className="TimeText"
+              onClick={() => {
+                props._showModify(true);
+              }}
+            >
+              수정
+            </ModifyButton>
+            <ModifyButton className="TimeText" onClick={deletePost}>
+              삭제
+            </ModifyButton>
+          </RightHeader>
 
           <ModalComponent>
             <DateContainer>
@@ -355,22 +353,17 @@ const ModalComponent = styled.div`
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
- 
 `;
 
 //비어있을 때
 const EmptyTextContainer = styled.div`
   width: 99%;
-  
+
   height: 60%;
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
   align-items: center;
-  
- 
-
- 
 `;
 
 //컨디션
@@ -469,7 +462,6 @@ const DayHeader = styled.div`
   width: 90%;
   height: 10%;
 
-
   justify-content: center;
 
   box-sizing: border-box;
@@ -484,8 +476,6 @@ const LeftHeader = styled.div`
   align-items: center;
   box-sizing: border-box;
   justify-content: center;
- 
-  
 `;
 
 const RightHeader = styled.div`
@@ -517,7 +507,6 @@ const MoveDButton = styled.button`
 `;
 const DText = styled.div`
   display: flex;
-
   // font-size: 40%;
   font-size: 150%;
   color: #4a5566;
@@ -531,15 +520,12 @@ const DText = styled.div`
   @media (max-width: 1200px) {
     font-size: 130%;
   }
-
- 
 `;
 
 const ModifyButton = styled.button`
   width: 20%;
   height: 100%;
   background-color: #4a5566;
-
   font-weight: bold;
   border-radius: 5px;
   outline: none;
@@ -551,7 +537,6 @@ const ModifyButton = styled.button`
 `;
 
 const AddButton = styled.button`
- 
   width: 85%;
   height: 100%;
   background-color: #4a5566;
@@ -563,7 +548,6 @@ const AddButton = styled.button`
   color: white;
   box-shadow: rgb(82 82 82/ 20%) 0px 5px 8px 0px;
   font-size: 100%;
- 
 `;
 
 const boxFade = keyframes`
@@ -574,7 +558,8 @@ const boxFade = keyframes`
     opacity: 1;
   }
  `;
- const boxFade2 = keyframes`
+
+const boxFade2 = keyframes`
  0% {
    opacity: 0; 
  }
@@ -583,9 +568,9 @@ const boxFade = keyframes`
  }
  100% {
    opacity: 1;
-   
  }
 `;
+
 const EmptyText = styled.div`
   display: flex;
   flex-direction: column;
@@ -598,26 +583,19 @@ const EmptyText = styled.div`
   font-size: 1.5rem;
   font-weight: bold;
   text-align: center;
-  
- 
 `;
-
 
 const Text = styled.div`
- font-size: 70%;
- margin-bottom: 5%;
- 
- animation: ${boxFade} 1s;
- color: grey;
- 
+  font-size: 70%;
+  margin-bottom: 5%;
+  animation: ${boxFade} 1s;
+  color: grey;
 `;
 const Text2 = styled.div`
- font-size: 70%;
- margin-bottom: 5%;
- 
- animation: ${boxFade2} 2s;
- color: grey;
- 
+  font-size: 70%;
+  margin-bottom: 5%;
+  animation: ${boxFade2} 2s;
+  color: grey;
 `;
 const Contents = styled.div`
   width: 100%;

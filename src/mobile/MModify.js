@@ -263,7 +263,7 @@ const MModify = (props) => {
                     setStart(newStart);
                   }}
                   renderInput={(params) => (
-                    <TextField {...params} margin={"dense"} />
+                    <TextField {...params} margin={"none"} />
                   )}
                 />
               </LocalizationProvider>
@@ -271,13 +271,14 @@ const MModify = (props) => {
             <CheckTimeR>
               <LocalizationProvider dateAdapter={AdapterDateFns}>
                 <MobileTimePicker
+                  style={{}}
                   label="기상 시간 선택"
                   value={end}
                   onChange={(newEnd) => {
                     setEnd(newEnd);
                   }}
                   renderInput={(params) => (
-                    <TextField {...params} margin={"dense"} />
+                    <TextField {...params} margin={"none"} />
                   )}
                 />
               </LocalizationProvider>

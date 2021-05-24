@@ -10,7 +10,6 @@ import IntroF from "../images/Intro_F.png";
 import IntroG from "../images/Intro_G.png";
 import InA from "../images/in1.png";
 
-
 import IntroHeader from "../components/IntroHeader";
 import "../components/Font.css";
 
@@ -56,7 +55,7 @@ const Intro = () => {
 
 const GoBtn = styled.div`
   word-break: keep-all;
-  width: 50%;
+  width: 100%;
   height: 4rem;
   display: flex;
   justify-content: center;
@@ -123,57 +122,28 @@ const BackImg = styled.img`
   background-color: none;
   @media (max-width: 414px) {
     width: 100%;
-    height:100%;
-    
+    height: 100%;
   }
 `;
-
 
 const boxFade = keyframes`
   0% {
     opacity: 1;
-    
   }
   100% {
     opacity: 0;
-   
   }
  `;
 
-const InAImg= styled.img`
- display: flex;
- position: absolute;
- width:63%;
- height: 22%;
- top:46%;
- left: 19%;
- opacity:0%;
- z-index:1;
- animation: ${boxFade} 3.5s;
-`
+const InAImg = styled.img`
+  display: flex;
+  position: absolute;
+  width: 63%;
+  height: 22%;
+  top: 46%;
+  left: 19%;
+  opacity: 0%;
+  z-index: 1;
+  animation: ${boxFade} 3.5s;
+`;
 export default Intro;
-
-// const slidein = keyframes`
-// 0% {
-//   margin-left: 30%;
-//   background-color: yellow;
-// }
-
-// 100% {
-//   margin: 0%;
-//   background-color: gold;
-// }
-// `;
-
-// const Title3Img = styled.img`
-// display: flex;
-//   position: absolute;
-// width: 60%;
-// height: 18%;
-// top:45%;
-// left:20%;
-// z-index:1;
-//   white-space: nowrap;
-
-//   animation:${slidein}  1s steps(30, end);
-//`;

@@ -171,14 +171,15 @@ const InfoContainer = styled.div`
 
 //전체 프레임을 위해서 100vh > 87vh로 수정했습니다
 const Container = styled.div`
-  margin-top: 5%;
+  margin-top: 10%;
   width: 70%;
-  height: 95%;
+  height: 80%;
   border: none;
   justify-content: flex-start;
   animation: ${FadeIn} 2s;
   display: flex;
   flex-direction: column;
+
   @media (max-width: 768px) {
     width: 80%;
   }
@@ -232,10 +233,11 @@ const Background = styled.div`
   display: flex;
   justify-content: center;
   width: 100%;
-  height: 100vh;
+  height: 95vh;
   background-color: rgba(219, 219, 219, 1);
-  margin: 0px;
   box-sizing: border-box;
+  overflow: hidden;
+  
 `;
 
 const Text = styled.div`

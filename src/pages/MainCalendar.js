@@ -37,7 +37,7 @@ const MainCalendar = (props) => {
   } else {
     return (
       <>
-        <Background>
+        <Background >
           <AllContainer>
             <CalendarContainer>
               <Calendarjj _showModify={setModify} />
@@ -156,7 +156,7 @@ font-size: 100%;
 font-weight: bold;
 
  z-index:1;
- color: #4a5566;
+ color: #121212;
  :hover {
   font-size: 100%;
 

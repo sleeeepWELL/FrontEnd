@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState,useEffect} from "react";
 import styled, { keyframes } from "styled-components";
 import { useSelector } from "react-redux";
 import MCalendar from "../mobile/MCalendar";
@@ -11,6 +11,43 @@ const MMainCalendar = () => {
   const [is_modify, setModify] = React.useState(false);
   const day_list = useSelector((state) => state.todo.day_list);
   const [is_search, setSearch] = React.useState(false);
+
+  const [ScrollY, setScrollY] = useState(0);
+  const [BtnStatus, setBtnStatus] = useState(false); // 버튼 상태
+  
+  const handleFollow = () => {
+    setScrollY(window.pageYOffset);
+    if(ScrollY > 10) {
+      // 100 이상이면 버튼이 보이게
+      setBtnStatus(true);
+    } else {
+      // 100 이하면 버튼이 사라지게
+      setBtnStatus(false);
+    }
+  }
+
+  const handleTop = () => {  // 클릭하면 스크롤이 위로 올라가는 함수
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
+    setScrollY(0);  // ScrollY 의 값을 초기화
+    setBtnStatus(false); // BtnStatus의 값을 false로 바꿈 => 버튼 숨김
+  }
+
+  useEffect(() => {
+    const watch = () => {
+      window.addEventListener('scroll', handleFollow);
+      handleFollow();
+    }
+    watch();
+    return () => {
+      window.removeEventListener('scroll', handleFollow);
+      handleFollow();
+    }
+  })
+
+
 
   return (
     <React.Fragment>
@@ -39,6 +76,7 @@ const MMainCalendar = () => {
         </AllContainer>
         
       </Background>
+     {BtnStatus?<TopButton className="Helvetica" onClick={handleTop}>TOP</TopButton>:null} 
     </React.Fragment>
   );
 };
@@ -129,13 +167,32 @@ font-size: 100%;
 font-weight: bold;
 
  z-index:1;
- color: #4a5566;
+ color: #121212;
  :hover {
   font-size: 100%;
 
 }
 `
+const TopButton = styled. button`
+position: fixed; 
+  bottom: 80px; 
+  right: 15px;
+  font-weight: bold;
+  font-size: 100%;
+  z-index: 1; 
+  width: 50px; 
+  height: 50px;
+  border-radius: 100%;
+  border: 0 none;
+  background: rgb(255,255,204);
+  border: #121212;
+  letter-spacing: -0.5px;
+  box-shadow: 1px 1px 3px 1px rgba(0,0,0,0.3);
+  cursor: pointer;
+  transition: opacity 2s ease-in;
 
+
+` 
 const Background = styled.div`
   display: flex;
   flex-direction: column;

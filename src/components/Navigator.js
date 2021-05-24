@@ -131,7 +131,7 @@ const Wrap = styled.div`
   flex-direction: row;
   justify-content: center;
   background-color: rgba(219, 219, 219, 1);
-  width: 100vw;
+  width: 100%;
   height: 7vh;
   align-items: center;
   border-bottom: 0.8px solid #bebcbc;
@@ -190,49 +190,51 @@ const LogoImg = styled.div`
 const LogoutBox = styled.div`
   width: 15%;
   display: flex;
-  font-size: 1.4rem;
+  font-size: 70%;
   justify-content: center;
   cursor: pointer;
-  color: black;
   overflow: hidden;
+  opacity: 80%;
+
+  
   & > span {
-    background-color: rgba(56, 56, 56, 1);
+    background-color: #4a5566;;
     padding: 0.6rem;
     border-radius: 4px;
     color: white;
   }
   @media (max-width: 1024px) {
-    font-size: 1.2rem;
+    font-size: 1.0rem;
   }
   @media (max-width: 768px) {
-    font-size: 1rem;
+    font-size: 70%;
     & > span {
-      padding: 0.6rem;
+      padding: 0.8rem;
     }
   }
 
   @media (max-width: 540px) {
-    font-size: 0.9rem;
+    font-size: 0.6rem;
     & > span {
       padding: 0.4rem;
     }
   }
 
   @media (max-width: 414px) {
-    font-size: 0.7rem;
+    font-size: 0.5rem;
     & > span {
       padding: 0.3rem;
     }
   }
   @media (max-width: 360px) {
-    font-size: 0.6rem;
+    font-size: 0.4rem;
     & > span {
       padding: 0.2rem;
     }
   }
 
   @media (max-width: 320px) {
-    font-size: 0.5rem;
+    font-size: 0.3rem;
     & > span {
       padding: 0.2rem;
     }

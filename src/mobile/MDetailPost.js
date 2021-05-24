@@ -61,19 +61,7 @@ const MDetailPost = (props) => {
     return (
       <>
         <Wrap>
-          <DayHeader>
-            <RightHeader>
-              {moment(props.date.slice(14, 24)) <= _today && (
-                <AddButton
-                  onClick={() => {
-                    props._showModify(true);
-                  }}
-                >
-                  기록
-                </AddButton>
-              )}
-            </RightHeader>
-          </DayHeader>
+        
           <ModalComponent>
             <DateContainer>
               <LeftHeader>
@@ -116,6 +104,19 @@ const MDetailPost = (props) => {
                 {18<= hour && hour <24? <Text>저녁식사는 잘 하셨나요?</Text>:null}
                 <Text2>수면기록을 입력해주세요! </Text2>
               </EmptyText>
+              <DayHeader>
+           
+              {moment(props.date.slice(14, 24)) <= _today && (
+                <AddButton
+                  onClick={() => {
+                    props._showModify(true);
+                  }}
+                >
+                  수면 기록하기
+                </AddButton>
+              )}
+         
+          </DayHeader>
             </EmptyTextContainer>
           </ModalComponent>
           {props.date[0].conditions == "First_View"
@@ -340,10 +341,11 @@ const DateContainer = styled.div`
 
 const DayHeader = styled.div`
   display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  width: 100%;
-  height: 8%;
+  width: 90%;
+  height: 13%;
+
+  justify-content: center;
+
   box-sizing: border-box;
 `;
 
@@ -527,20 +529,19 @@ const ModifyButton = styled.button`
 `;
 
 const AddButton = styled.button`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 16%;
-  height: 4vh;
+  
+  width: 85%;
+  height: 100%;
   background-color: #4a5566;
+  text-align: center;
+  
   font-weight: bold;
   border-radius: 5px;
   outline: none;
   cursor: pointer;
   color: white;
   box-shadow: rgb(82 82 82/ 20%) 0px 5px 8px 0px;
-  font-size: 80%;
-  margin: 0px 1% 0px 0px;
+  font-size: 100%;
   @media (max-width: 320px) {
     font-size: 0.7rem;
   }
@@ -551,7 +552,7 @@ const EmptyText = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 100%;
+  width: 105%;
   height: 30%;
   color: black;
   font-size: 18px;

@@ -5,10 +5,12 @@ import MCalendar from "../mobile/MCalendar";
 import MDetailPost from "../mobile/MDetailPost";
 import MDetailWrite from "../mobile/MDetailWrite";
 import Search from "../components/Search";
+import Cube from "../components/Cube";
 
 const MMainCalendar = () => {
   const [is_modify, setModify] = React.useState(false);
   const day_list = useSelector((state) => state.todo.day_list);
+  const [is_search, setSearch] = React.useState(false);
 
   return (
     <React.Fragment>
@@ -16,6 +18,7 @@ const MMainCalendar = () => {
         <AllContainer>
           <CalendarContainer>
             <MCalendar _showModify={setModify} />
+          
           </CalendarContainer>
           <RightContainer>
             <PostContainer>
@@ -26,10 +29,15 @@ const MMainCalendar = () => {
               )}
             </PostContainer>
             <SearchContainer>
-              <Search _showModify={setModify} />
+              {is_search? <Search _showModify={setModify} />:null}
             </SearchContainer>
           </RightContainer>
+          <CubeContainer>
+                
+                <CubeButton onClick={()=>{setSearch(true)}}><CubeText className="BottomInfo">날짜 검색</CubeText><Cube/></CubeButton>
+               </CubeContainer>
         </AllContainer>
+        
       </Background>
     </React.Fragment>
   );
@@ -86,20 +94,54 @@ const SearchContainer = styled.div`
   display: flex;
   width: 100%;
   margin-top: 5%;
-  margin-bottom: 7rem;
+  margin-bottom: 1rem;
   align-items: center;
   justify-content: center;
   border-radius: 10px;
   background-color: #dbdbdb;
   // box-shadow: rgb(82 82 82/ 40%) 0px 5px 8px 0px;
 `;
+const CubeContainer = styled.div`
+
+position:relative;
+
+  justify-content: flex-start;
+
+  width: 65%;
+  height: 10%;
+  
+`;
+
+const CubeButton = styled.button`
+position:absolute;
+  height: 100%;
+  background-color: #dbdbdb;
+  outline: none;
+  border: none;
+
+  
+`;
+
+const CubeText = styled.div`
+position:absolute;
+width: 70%;
+font-size: 100%;
+font-weight: bold;
+
+ z-index:1;
+ color: #4a5566;
+ :hover {
+  font-size: 100%;
+
+}
+`
 
 const Background = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 100%;
-  height: auto;
+  height: 150vh;
   left: 0;
   top: 0;
   background-color: #dbdbdb;

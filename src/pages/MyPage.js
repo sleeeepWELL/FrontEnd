@@ -159,7 +159,7 @@ const Container = styled.div`
 const OutContainer  = styled.div`
  position: absolute;
 
-  width: 10%;
+  width: 20%;
   bottom: 0;
   left: 5%;
  

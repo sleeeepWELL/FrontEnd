@@ -81,6 +81,7 @@ const Search = (props) => {
           }}
           placeholder={moment(today).format("DD")}
           value={day}
+          type="number"
           maxLength="2"
           id="third"
           onKeyPress={onSearch}

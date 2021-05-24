@@ -249,11 +249,10 @@ const Modify = (props) => {
   const Theme = {
     palette: {
       primary: {
-        // primary color
         contrastText: "#FFFFFF",
-        dark: "#000000",
-        main: "#000000", // black
-        light: "#000000",
+        dark: "#4a5566",
+        main: "#4a5566",
+        light: "#4a5566",
       },
     },
   };

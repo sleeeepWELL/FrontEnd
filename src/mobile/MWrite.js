@@ -12,8 +12,10 @@ import AdapterDateFns from "@material-ui/lab/AdapterDateFns";
 import LocalizationProvider from "@material-ui/lab/LocalizationProvider";
 import moment from "moment";
 import { createTheme } from "@material-ui/core/styles";
+import { createStyles } from "@material-ui/core/styles";
 import { ThemeProvider } from "@material-ui/styles";
 // import { styled } from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/core/styles";
 
 //태그
 import beer_word from "../image/beer_word.png";
@@ -190,17 +192,29 @@ const MWrite = (props) => {
   };
 
   const Theme = {
+    overrides: {
+      MuiOutlinedInput: {
+        input: {
+          padding: 2,
+        },
+      },
+    },
     palette: {
       primary: {
-        // primary color
         contrastText: "#FFFFFF",
-        dark: "#000000",
-        main: "#000000", // black
-        light: "#000000",
+        dark: "#4a5566",
+        main: "#4a5566",
+        light: "#4a5566",
       },
     },
     typography: {
-      fontSize: 14,
+      fontSize: 12,
+    },
+
+    MuiOutlinedInput: {
+      input: {
+        padding: 0,
+      },
     },
 
     // formcontrol: {
@@ -249,16 +263,27 @@ const MWrite = (props) => {
     //   //   },
     //   // },
     // },
-    overrides: {
-      MuiOutlinedInput: {
-        input: {
-          padding: "14px",
-        },
-      },
-    },
+    // overrides: {
+    //   MuiOutlinedInput: {
+    //     input: {
+    //         padding: "14px",
+    //     },
+    //   },
+    // },
   };
 
+  // const Style = {
+  //   overrides: {
+  //     MuiOutlinedInput: {
+  //       input: {
+  //         padding: "14px",
+  //       },
+  //     },
+  //   },
+  // };
+
   const theme = createTheme(Theme);
+  // // const style = createStyles(Style);
 
   return (
     <React.Fragment>
@@ -278,7 +303,7 @@ const MWrite = (props) => {
                     setStart(newStart);
                   }}
                   renderInput={(params) => (
-                    <TextField {...params} style={{ padding: "10px" }} />
+                    <TextField {...params} variant="filled" />
                   )}
                 />
               </ThemeProvider>
@@ -294,7 +319,7 @@ const MWrite = (props) => {
                     setEnd(newEnd);
                   }}
                   renderInput={(params) => (
-                    <TextField {...params} style={{ padding: "10px" }} />
+                    <TextField {...params} variant="filled" />
                   )}
                 />
               </ThemeProvider>
@@ -469,7 +494,7 @@ const TimeContainer = styled.div`
   height: 17%;
   flex-direction: row;
   justify-content: space-around;
-  box-sizing: border-box;
+  /* box-sizing: border-box; */
 `;
 
 const CheckTimeL = styled.div`
@@ -478,7 +503,7 @@ const CheckTimeL = styled.div`
   height: 100%;
   width: 40%;
 
-  box-sizing: border-box;
+  /* box-sizing: border-box; */
   justify-content: center;
   /* background-color: lightblue; */
 `;
@@ -489,7 +514,7 @@ const CheckTimeR = styled.div`
   justify-content: center;
   height: 100%;
   width: 40%;
-  box-sizing: border-box;
+  /* box-sizing: border-box; */
   /* background-color: lightsalmon; */
 `;
 

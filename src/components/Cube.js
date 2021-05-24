@@ -3,12 +3,12 @@ import * as THREE from "three";
 import styled from "styled-components";
 import "./Font.css";
 
-const Cube = () => {
-  React.useEffect(() => {
-    animate();
-  }, []);
+class Cube extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+  componentDidMount() {
 
-  const element = useRef();
   const width = 100;
   const height = 100;
   const scene = new THREE.Scene();
@@ -17,8 +17,8 @@ const Cube = () => {
   const renderer = new THREE.WebGLRenderer();
   renderer.setSize(width, height);
 
-  console.log(element.current);
-  // element.current.appendChild(renderer.domElement);
+
+  this.element.appendChild(renderer.domElement);
 
   const geometry = new THREE.BoxGeometry(1, 1, 1);
   const material = new THREE.MeshBasicMaterial({ color: "green" });
@@ -30,18 +30,27 @@ const Cube = () => {
   scene.background = color;
   camera.position.z = 4;
 
-  const animate = () => {
-    renderer.render(scene, camera);
-    cube.rotation.x += 0.01;
-    cube.rotation.y += 0.01;
-    requestAnimationFrame(animate);
+    this.scene = scene;
+    this.camera = camera;
+    this.renderer = renderer;
+    this.cube = cube;
+    this.animate();
+  }
+
+  animate = () => {
+    this.renderer.render(this.scene, this.camera);
+    this.cube.rotation.x += 0.01;
+    this.cube.rotation.y += 0.01;
+    requestAnimationFrame(this.animate);
   };
 
+  render(){
   return (
     <CubeContainer>
-      <div className="Cube" ref={(el) => (el = element)}></div>
+      <div ref={(el) => (el = this.element)}></div>
     </CubeContainer>
   );
+  }
 };
 
 const CubeContainer = styled.div`

@@ -113,8 +113,9 @@ const InputContainer = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   width: 100%;
+ 
 `;
 
 const InputBox = styled.input`
@@ -128,10 +129,11 @@ const InputBox = styled.input`
   font-size: 13px;
   font-weight: bold;
   color: black;
-  margin-right: 0.3rem;
-  width: 18%;
+  margin-right: 1%;
+  width: 17%;
   height: 4vh;
   opacity: 0.5;
+  
   ::placeholder {
     font-size: 13px;
   }
@@ -148,8 +150,9 @@ const SearchBtn = styled.button`
   align-items: center;
   color: white;
   border-radius: 5px;
-  width: 15%;
+  width: 15.5%;
   height: 4vh;
+  font-size:70%;
   @media (max-width: 320px) {
     font-size: 0.7rem;
   }
@@ -162,9 +165,10 @@ const ReturnBtn = styled.button`
   background-color: #4a5566;
   color: white;
   border-radius: 5px;
-  width: 15%;
+  width: 15.5%;
   height: 4vh;
   margin-left: 1%;
+  font-size:70%;
   @media (max-width: 320px) {
     font-size: 0.7rem;
   }

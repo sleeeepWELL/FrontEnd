@@ -38,7 +38,7 @@ const IntroHeader = () => {
 
 const BtnContainer = styled.div`
   display: flex;
-  width: 40%;
+  width: 50%;
   justify-content: flex-end;
 `;
 
@@ -101,36 +101,41 @@ const LogInBox = styled.div`
   }
 
   @media (max-width: 768px) {
-    font-size: 1rem;
-    & > span {
-      padding: 0.6rem;
-    }
+    font-size: 1.2rem;
+    // & > span {
+    //   padding: 0.6rem;
+    // }
   }
 
   @media (max-width: 540px) {
     font-size: 0.9rem;
-    & > span {
-      padding: 0.4rem;
-    }
+    padding: 1% 0%;
+    // & > span {
+    //   padding: 0.4rem;
+    // }
   }
 
   @media (max-width: 414px) {
-    font-size: 0.7rem;
-    & > span {
-      padding: 0.3rem;
-    }
+    
+    font-size: 0.6rem;
+    padding: 10% 0%;
+    // & > span {
+    //   padding: 0.3rem;
+    // }
   }
   @media (max-width: 360px) {
-    font-size: 0.6rem;
-    & > span {
-      padding: 0.2rem;
-    }
+    font-size: 0.35rem;
+    // & > span {
+    //   padding: 0.2rem;
+    // }
   }
 
   @media (max-width: 320px) {
-    font-size: 0.5rem;
+    width: 45%;
+    height:100%;
+    font-size: 30%;
     & > span {
-      padding: 0.2rem;
+      padding: 0.6rem;
     }
   }
 `;
@@ -156,38 +161,42 @@ const SignUpBox = styled.div`
   }
 
   @media (max-width: 768px) {
-    font-size: 1rem;
+    font-size: 1.2rem;
     margin-right: 0.8rem;
-    & > span {
-      padding: 0.6rem;
-    }
+    // & > span {
+    //   padding: 0.6rem;
+    // }
   }
 
   @media (max-width: 540px) {
     font-size: 0.9rem;
-    & > span {
-      padding: 0.4rem;
-    }
+    padding: 1% 0%;
+    // & > span {
+    //   padding: 0.4rem;
+    // }
   }
 
   @media (max-width: 414px) {
-    font-size: 0.7rem;
+    font-size: 0.6rem;
+    padding: 10% 0%;
     margin-right: 0.5rem;
-    & > span {
-      padding: 0.3rem;
-    }
+    // & > span {
+    //   padding: 0.3rem;
+    // }
   }
   @media (max-width: 360px) {
-    font-size: 0.6rem;
-    & > span {
-      padding: 0.2rem;
-    }
+    font-size: 0.35rem;
+    // & > span {
+    //   padding: 0.2rem;
+    // }
   }
 
   @media (max-width: 320px) {
-    font-size: 0.5rem;
+    width: 55%;
+    height:100%;
+    font-size: 30%;
     & > span {
-      padding: 0.2rem;
+      padding: 0.6rem;
     }
   }
 `;

@@ -98,10 +98,11 @@ const GoBtn = styled.div`
 
 const Wrap = styled.div`
   display: flex;
-  width: 100vw;
+  width: 100%;
   height: 100%;
   flex-direction: column;
   align-items: center;
+  
 `;
 
 const Backgroud = styled.div`
@@ -112,6 +113,7 @@ const Backgroud = styled.div`
   align-items: center;
   width: 100%;
   height: auto;
+  overflow: hidden;
   ${(props) => (props.bg ? `background-color: ${props.bg};` : "")}
 `;
 
@@ -120,6 +122,8 @@ const BackImg = styled.img`
   border: none;
   margin: 5%;
   background-color: none;
+  overflow: hidden;
+
   @media (max-width: 414px) {
     width: 100%;
     height: 100%;

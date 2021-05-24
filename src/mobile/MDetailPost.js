@@ -104,7 +104,7 @@ const MDetailPost = (props) => {
                 {18<= hour && hour <24? <Text>저녁식사는 잘 하셨나요?</Text>:null}
                 <Text2>수면기록을 입력해주세요! </Text2>
               </EmptyText>
-              <DayHeader>
+              <DayHeader1>
            
               {moment(props.date.slice(14, 24)) <= _today && (
                 <AddButton
@@ -116,7 +116,7 @@ const MDetailPost = (props) => {
                 </AddButton>
               )}
          
-          </DayHeader>
+          </DayHeader1>
             </EmptyTextContainer>
           </ModalComponent>
           {props.date[0].conditions == "First_View"
@@ -132,7 +132,7 @@ const MDetailPost = (props) => {
       <>
         <Wrap>
           <DayHeader>
-            <RightHeader>
+          
               <ModifyButton
                 onClick={() => {
                   props._showModify(true);
@@ -141,7 +141,7 @@ const MDetailPost = (props) => {
                 수정
               </ModifyButton>
               <ModifyButton onClick={deletePost}>삭제</ModifyButton>
-            </RightHeader>
+           
           </DayHeader>
 
           <ModalComponent>
@@ -341,7 +341,18 @@ const DateContainer = styled.div`
 
 const DayHeader = styled.div`
   display: flex;
-  width: 90%;
+  width: 100%;
+  height: 13%;
+
+  justify-content: flex-end;
+
+  box-sizing: border-box;
+`;
+
+
+const DayHeader1 = styled.div`
+  display: flex;
+  width: 100%;
   height: 13%;
 
   justify-content: center;
@@ -361,10 +372,11 @@ const RightHeader = styled.div`
   flex-direction: row;
   text-align: center;
   justify-content: flex-end;
-  width: 98%;
+  width: 100%;
   height: 80%;
   padding-right: 2%;
   box-sizing: border-box;
+  border: 1px solid red;
 `;
 const ModalComponent = styled.div`
   width: 100%;
@@ -499,7 +511,7 @@ const MoveDButton = styled.button`
 const DText = styled.div`
   display: flex;
   font-weight: bold;
-  font-size: 110%;
+  font-size: 120%;
   color: #4a5566;
   width: 68%;
   text-align: center;
@@ -513,7 +525,7 @@ const DText = styled.div`
 
 const ModifyButton = styled.button`
   width: 16%;
-  height: 100%;
+  height: 60%;
   background-color: #4a5566;
   font-weight: bold;
   border-radius: 5px;
@@ -522,7 +534,9 @@ const ModifyButton = styled.button`
   color: white;
   border: none;
   font-size: 80%;
-  margin-right: 1%;
+  margin-right:5%;
+  margin-top: 10%;
+ 
   @media (max-width: 280px) {
     font-size: 0.7rem;
   }

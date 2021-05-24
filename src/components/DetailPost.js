@@ -59,7 +59,6 @@ const DetailPost = (props) => {
     return (
       <React.Fragment>
         <Wrap>
-        
           <ModalComponent>
             <DateContainer>
               <LeftHeader>
@@ -99,21 +98,17 @@ const DetailPost = (props) => {
                 수면기록을 입력해주세요!
               </EmptyText>
               <DayHeader>
-            
-              {moment(props.date.slice(14, 24)) <= _today && (
-                <AddButton
-                  onClick={() => {
-                    props._showModify(true);
-                  }}
-                >
-                  수면 기록하기
-                </AddButton>
-              )}
-           
-          </DayHeader>
+                {moment(props.date.slice(14, 24)) <= _today && (
+                  <AddButton
+                    onClick={() => {
+                      props._showModify(true);
+                    }}
+                  >
+                    수면 기록하기
+                  </AddButton>
+                )}
+              </DayHeader>
             </EmptyTextContainer>
-            
-           
           </ModalComponent>
           {props.date[0].conditions == "First_View"
             ? dispatch(
@@ -127,21 +122,19 @@ const DetailPost = (props) => {
     return (
       <>
         <Wrap>
-      
-            <RightHeader>
-              <ModifyButton
-                className="TimeText"
-                onClick={() => {
-                  props._showModify(true);
-                }}
-              >
-                수정
-              </ModifyButton>
-              <ModifyButton className="TimeText" onClick={deletePost}>
-                삭제
-              </ModifyButton>
-            </RightHeader>
-       
+          <RightHeader>
+            <ModifyButton
+              className="TimeText"
+              onClick={() => {
+                props._showModify(true);
+              }}
+            >
+              수정
+            </ModifyButton>
+            <ModifyButton className="TimeText" onClick={deletePost}>
+              삭제
+            </ModifyButton>
+          </RightHeader>
 
           <ModalComponent>
             <DateContainer>
@@ -347,22 +340,17 @@ const ModalComponent = styled.div`
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
- 
 `;
 
 //비어있을 때
 const EmptyTextContainer = styled.div`
   width: 99%;
-  
+
   height: 60%;
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
   align-items: center;
-  
- 
-
- 
 `;
 
 //컨디션
@@ -461,7 +449,6 @@ const DayHeader = styled.div`
   width: 99%;
   height: 10%;
 
-
   justify-content: center;
 
   box-sizing: border-box;
@@ -476,8 +463,6 @@ const LeftHeader = styled.div`
   align-items: center;
   box-sizing: border-box;
   justify-content: center;
- 
-  
 `;
 
 const RightHeader = styled.div`
@@ -509,7 +494,6 @@ const MoveDButton = styled.button`
 `;
 const DText = styled.div`
   display: flex;
-
   // font-size: 40%;
   font-size: 150%;
   color: #4a5566;
@@ -523,15 +507,12 @@ const DText = styled.div`
   @media (max-width: 1200px) {
     font-size: 130%;
   }
-
- 
 `;
 
 const ModifyButton = styled.button`
   width: 20%;
   height: 100%;
   background-color: #4a5566;
-
   font-weight: bold;
   border-radius: 5px;
   outline: none;
@@ -543,7 +524,6 @@ const ModifyButton = styled.button`
 `;
 
 const AddButton = styled.button`
- 
   width: 90%;
   height: 100%;
   background-color: #4a5566;
@@ -555,7 +535,6 @@ const AddButton = styled.button`
   color: white;
   box-shadow: rgb(82 82 82/ 20%) 0px 5px 8px 0px;
   font-size: 95%;
- 
 `;
 
 const EmptyText = styled.div`
@@ -570,7 +549,6 @@ const EmptyText = styled.div`
   font-weight: bold;
   text-align: center;
   opacity: 40%;
-  
 `;
 
 const Contents = styled.div`

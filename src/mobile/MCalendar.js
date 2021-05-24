@@ -97,7 +97,7 @@ const MCalendar = (props) => {
                         ? "white"
                         : "black"
                     }
-                    br={is_today ? "50%" : "null"}
+                    br={is_today ? "10px" : "null"}
                   >
                     {_day.format("DD")}
                   </DayText>
@@ -353,8 +353,7 @@ const DayText = styled.div`
   background-color: ${(props) => props.bg};
   border-radius: ${(props) => props.br};
   height: 97%;
-  width: 25%;
-
+  width: 13px;
   margin-right: 1.5%;
   margin-top: 4%;
   font-size: 60%;

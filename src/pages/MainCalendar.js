@@ -12,6 +12,7 @@ import { debounce } from "lodash";
 
 const MainCalendar = (props) => {
   const [is_modify, setModify] = React.useState(false);
+  const [is_search, setSearch] = React.useState(false);
   const day_list = useSelector((state) => state.todo.day_list);
   const [windowSize, setWindowSize] = React.useState(window.innerWidth);
 
@@ -40,6 +41,10 @@ const MainCalendar = (props) => {
           <AllContainer>
             <CalendarContainer>
               <Calendarjj _showModify={setModify} />
+              <CubeContainer>
+                
+               <CubeButton onClick={()=>{setSearch(true)}}><CubeText className="BottomInfo">날짜 검색</CubeText><Cube/></CubeButton>
+              </CubeContainer>
             </CalendarContainer>
             <RightContainer>
               <PostContainer>
@@ -50,11 +55,11 @@ const MainCalendar = (props) => {
                 )}
               </PostContainer>
               <SearchContainer>
-                <Search _showModify={setModify} />
-               
+               {is_search?  <Search _showModify={setModify} /> : null}
               </SearchContainer>
-               {/* <Cube/> */}
+             
             </RightContainer>
+           
           </AllContainer>
         </Background>
       </>
@@ -115,11 +120,48 @@ const SearchContainer = styled.div`
   width: 100%;
 
   margin-left: 3%;
-  margin-top: 10px;
+  margin-top: 15%;
   align-content: center;
   border-radius: 20px;
   // box-shadow: rgb(82 82 82/ 40%) 0px 5px 8px 0px;
 `;
+const CubeContainer = styled.div`
+  position: absolute;
+  display:flex;
+
+  justify-content: flex-end;
+  margin-top:5%;
+  width: 65%;
+  height: 10%;
+
+ 
+
+  // box-shadow: rgb(82 82 82/ 40%) 0px 5px 8px 0px;
+
+
+`;
+const CubeButton = styled.button`
+position: absolute;
+  height: 100%;
+  background-color: #dbdbdb;
+  outline: none;
+  border: none;
+  
+`;
+
+const CubeText = styled.div`
+position: absolute;
+width: 70%;
+font-size: 100%;
+font-weight: bold;
+
+ z-index:1;
+ color: #4a5566;
+ :hover {
+  font-size: 100%;
+
+}
+`
 
 const Background = styled.div`
   width: 100%;

@@ -97,7 +97,7 @@ const Calendar = (props) => {
                   className="Helvetica"
                   bg={is_today ? "black" : null}
                   font_c={(today.format("YYYY-MM-DD")===_day.format("YYYY-MM-DD")) || is_today ? "white" : "black"}
-                  br={is_today ? "50%" : "null"}
+                  br={is_today ? "10px" : "null"}
                 >
                   {_day.format("DD")}
                 </DayText>
@@ -311,6 +311,23 @@ const WeekGrid = styled.div`
   height: 4vh;
 `;
 
+
+
+const sizeUp = keyframes`
+  0% {
+  margin: 0%;
+  
+  }
+  50% {
+    margin: 0.5%;
+    // width: 102%;
+    // height: 13vh;
+  }
+  100% {
+    margin: 0%;
+  }
+ `; 
+
 //날짜 묶음 Grid
 const DayGrid = styled.div`
   box-sizing: border-box;
@@ -322,8 +339,9 @@ const DayGrid = styled.div`
   border-bottom: 0.1px #aaaaaa solid;
   align-items: flex-end;
   :hover {
-    box-shadow: rgb(82 82 82/ 60%) 0px 4px 10px 0px;
+    box-shadow: rgb(82 82 82/ 60%) 2px 5px 12px 2px;
     transition: box-shadow 0.2s ease-in 0s;
+    // animation: ${sizeUp} 2s ;
   }
 
   ${(props) => (props.bg ? `background-color: ${props.bg};` : "")}
@@ -337,8 +355,8 @@ const DayText = styled.div`
   border-radius: ${(props) => props.br};
   width: 13%;
   font-size: 0.8vw;
-  margin-right: 0.5vh;
-  margin-top: 0.5vh;
+  margin-right: 1px;
+  margin-top: 1px;
   font-weight: 550;
   opacity: 85%;
 `;

@@ -11,6 +11,9 @@ import MobileTimePicker from "@material-ui/lab/MobileTimePicker";
 import AdapterDateFns from "@material-ui/lab/AdapterDateFns";
 import LocalizationProvider from "@material-ui/lab/LocalizationProvider";
 import moment from "moment";
+import { createTheme } from "@material-ui/core/styles";
+import { ThemeProvider } from "@material-ui/styles";
+// import { styled } from "@material-ui/core/styles";
 
 //태그
 import beer_word from "../image/beer_word.png";
@@ -186,6 +189,77 @@ const MWrite = (props) => {
     // dispatch(todoActions.getOnePostAX(props.date.slice(14,24)));
   };
 
+  const Theme = {
+    palette: {
+      primary: {
+        // primary color
+        contrastText: "#FFFFFF",
+        dark: "#000000",
+        main: "#000000", // black
+        light: "#000000",
+      },
+    },
+    typography: {
+      fontSize: 14,
+    },
+
+    // formcontrol: {
+    //   size: "large",
+    // },
+    // mixins: {
+    //   toolbar: {
+    //     minHeight: 80,
+    //   },
+    // },
+    // overrides: {
+    //   MuiIconButton: {
+    //     sizeSmall: {
+    //       // Adjust spacing to reach minimal touch target hitbox
+    //       marginLeft: 4,
+    //       marginRight: 4,
+    //       padding: 12,
+    //     },
+    //   },
+    // },
+    // MuiTextField: {
+    //   margin: "normal",
+    //   padding: 0,
+    // },
+    // MuiInputBase: {
+    //   input: { padding: "14px 14px" },
+    // },
+    // MuiOutlinedInput: {
+    //   input: {
+    //     padding: "14px 14px",
+    //   },
+    // },
+
+    // overrides: {
+    //   // MuiInputBase: {
+    //   //   input: { padding: "14px 14px" },
+    //   // },
+    //   MuiOutlinedInput: {
+    //     input: {
+    //       padding: "14px 14px",
+    //     },
+    //   },
+    //   // TextField: {
+    //   //   text: {
+    //   //     padding: "14px 14px",
+    //   //   },
+    //   // },
+    // },
+    overrides: {
+      MuiOutlinedInput: {
+        input: {
+          padding: "14px",
+        },
+      },
+    },
+  };
+
+  const theme = createTheme(Theme);
+
   return (
     <React.Fragment>
       <ModalComponent>
@@ -196,28 +270,34 @@ const MWrite = (props) => {
         <TimeContainer>
           <LocalizationProvider dateAdapter={AdapterDateFns}>
             <CheckTimeL>
-              <MobileTimePicker
-                
-                label="취침 시간 선택"
-                value={start}
-                onChange={(newStart) => {
-                  setStart(newStart);
-                }}
-                renderInput={(params) => <TextField {...params} />}
-              />
+              <ThemeProvider theme={theme}>
+                <MobileTimePicker
+                  label="취침 시간 선택"
+                  value={start}
+                  onChange={(newStart) => {
+                    setStart(newStart);
+                  }}
+                  renderInput={(params) => (
+                    <TextField {...params} style={{ padding: "10px" }} />
+                  )}
+                />
+              </ThemeProvider>
             </CheckTimeL>
           </LocalizationProvider>
           <LocalizationProvider dateAdapter={AdapterDateFns}>
             <CheckTimeR>
-              <MobileTimePicker 
-             
-                label="기상 시간 선택"
-                value={end}
-                onChange={(newEnd) => {
-                  setEnd(newEnd);
-                }}
-                renderInput={(params) => <TextField {...params} />}
-              />
+              <ThemeProvider theme={theme}>
+                <MobileTimePicker
+                  label="기상 시간 선택"
+                  value={end}
+                  onChange={(newEnd) => {
+                    setEnd(newEnd);
+                  }}
+                  renderInput={(params) => (
+                    <TextField {...params} style={{ padding: "10px" }} />
+                  )}
+                />
+              </ThemeProvider>
             </CheckTimeR>
           </LocalizationProvider>
         </TimeContainer>
@@ -390,7 +470,6 @@ const TimeContainer = styled.div`
   flex-direction: row;
   justify-content: space-around;
   box-sizing: border-box;
-
 `;
 
 const CheckTimeL = styled.div`
@@ -398,7 +477,7 @@ const CheckTimeL = styled.div`
   align-items: center;
   height: 100%;
   width: 40%;
-  
+
   box-sizing: border-box;
   justify-content: center;
   /* background-color: lightblue; */

@@ -60,6 +60,8 @@ const Search = (props) => {
       <InputContainer>
         <InputBox
           id="first"
+          type="number"
+          pattern="\d*"
           onChange={(e) => {
             setYear(e.target.value);
           }}
@@ -72,6 +74,8 @@ const Search = (props) => {
           }}
           placeholder={moment(today).format("MM")}
           value={month}
+          type="number"
+          pattern="\d*"
           maxLength="2"
           id="second"
         />

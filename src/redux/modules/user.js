@@ -23,8 +23,7 @@ const logOut = createAction(LOG_OUT, () => ({}));
 const nameCheck = createAction(NAME_CHECK, (name_check) => ({ name_check }));
 const authCheck = createAction(AUTH_CHECK, (auth_check) => ({ auth_check }));
 const deleteUser = createAction(DELETE_USER, () => ({}));
-const changeName = createAction(NAME_CHANGE, (name)=>({name}));
-
+const changeName = createAction(NAME_CHANGE, (name) => ({ name }));
 
 // 초기값
 const initialState = {
@@ -199,7 +198,7 @@ const kakaoLogin = (code, user) => {
 
         // 현재시간
         const Current_time = new Date().getTime();
-        
+
         // 헤더 설정
         axios.defaults.headers.common[
           "Authorization"
@@ -514,10 +513,9 @@ export default handleActions(
       }),
 
     [NAME_CHANGE]: (state, action) =>
-    produce(state, (draft) => {
-      draft.user= action.payload.name;
-    }),
-
+      produce(state, (draft) => {
+        draft.user = action.payload.name;
+      }),
 
     [AUTH_CHECK]: (state, action) =>
       produce(state, (draft) => {

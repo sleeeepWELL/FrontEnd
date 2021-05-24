@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
 import { actionCreators as userActions } from "../redux/modules/user";
@@ -7,7 +7,7 @@ import Graphic from "../components/Graphic";
 import Swal from "sweetalert2";
 import { debounce } from "lodash";
 
-import { passwordCheck } from "../shared/common";
+import { emailCheck, passwordCheck } from "../shared/common";
 import MFindPassword from "../mobile/MFindPassword";
 import "../components/Font.css";
 
@@ -15,27 +15,148 @@ import "../components/Font.css";
 const FindPassword = () => {
   const dispatch = useDispatch();
 
+  const emailInfo = useRef();
+  const authNumInfo = useRef();
+  const pwdInfo = useRef();
+  const pwdCheckInfo = useRef();
+  const [emailMSG, setEmailMSG] = React.useState(null);
+  const [authMSG, setAuthMSG] = React.useState(null);
+  const [pwdMSG, setPwdMSG] = React.useState(null);
+  const [pwdCheckMSG, setPwdCheckMSG] = React.useState(null);
+
   const [email, setEmail] = React.useState(null);
   const [pwd, setPwd] = React.useState(null);
   const [pwdCheck, setPwdCheck] = React.useState(null);
-  const [authNum, setAuthNum] = React.useState(null); //인증번호
+  const [authNum, setAuthNum] = React.useState(0); //인증번호
   const [windowSize, setWindowSize] = React.useState(window.innerWidth);
 
   //인증완료 성공 여부 (true면 완료, false면 미완료)
   const authCheck = useSelector((state) => state.user.auth_check);
 
-  // 인증번호 발송
+  // 이메일 관련 체크
+  const CheckEmail = () => {
+    // 이메일칸 미입력시
+    if (email === "") {
+      setEmailMSG("이메일을 입력해주세요.");
+      emailInfo.current.style.color = "red";
+      emailInfo.current.style.display = "flex";
+      return;
+    }
+
+    // 이메일 양식 체크
+    if (!emailCheck(email)) {
+      setEmailMSG("이메일 형식에 맞춰서 입력해주세요.");
+      emailInfo.current.style.color = "red";
+      emailInfo.current.style.display = "flex";
+      return;
+    }
+
+    // 이메일 공백여부
+    if (email.search(/\s/) != -1) {
+      setEmailMSG("이메일에 공백을 빼주세요.");
+      emailInfo.current.style.color = "red";
+      emailInfo.current.style.display = "flex";
+      return;
+    }
+
+    setEmailMSG("완료");
+    emailInfo.current.style.display = "flex";
+    emailInfo.current.style.color = "green";
+    return;
+  };
+
+  // 인증메일 발송
   const sendPwdAuth = (e) => {
+    if (emailMSG !== "완료") {
+      return;
+    }
     document.getElementById(e.target.id).disabled = true;
     dispatch(userActions.sendPwdAuth(email));
   };
 
-  // 인증완료
+  // 인증번호 관련 체크
+  const CheckAuth = () => {
+    if (authNum === "") {
+      setAuthMSG("인증번호를 입력해주세요.");
+      authNumInfo.current.style.color = "red";
+      authNumInfo.current.style.display = "flex";
+      return;
+    }
+
+    if (document.getElementById("Pauthinput").value.length < 6) {
+      setAuthMSG("인증번호를 모두 입력해주세요.");
+      authNumInfo.current.style.color = "red";
+      authNumInfo.current.style.display = "flex";
+      return;
+    }
+
+    // 이상없으면 메세지 완료 설정
+    setAuthMSG("완료");
+    authNumInfo.current.style.display = "flex";
+    authNumInfo.current.style.color = "green";
+    return;
+  };
+
+  // 인증번호 입력
+  const insertAuth = (e) => {
+    setAuthNum(e.target.value);
+    document.getElementById("Pauthinput").value.length > 5
+      ? (document.getElementById("Pauthcheck").disabled = false)
+      : (document.getElementById("Pauthcheck").disabled = true);
+  };
+
+  // 인증완료 버튼
   const confirmAuth = () => {
+    // 완료 메세지 없으면 체크 통과 못한것임
+    if (authMSG !== "완료") {
+      return;
+    }
     dispatch(userActions.ConfirmAuth(email, authNum));
   };
 
-  //표현식 함수사용 및 체크구문
+  // 비밀번호 관련 체크
+  const CheckPwd = () => {
+    if (pwd === "") {
+      setPwdMSG("비밀번호를 입력하세요.");
+      pwdInfo.current.style.color = "red";
+      pwdInfo.current.style.display = "flex";
+      return;
+    }
+    if (!passwordCheck(pwd)) {
+      setPwdMSG("비밀번호는 8글자 이상, 영문+숫자+특수문자로 구성해야합니다.");
+      pwdInfo.current.style.color = "red";
+      pwdInfo.current.style.display = "flex";
+      return;
+    }
+    // 이상없으면 메세지 완료 설정
+    setPwdMSG("완료");
+    pwdInfo.current.style.display = "flex";
+    pwdInfo.current.style.color = "green";
+    return;
+  };
+
+  // 비밀번호 재입력 관련 체크
+  const CheckPwdCheck = () => {
+    if (pwdCheck === "") {
+      setPwdCheckMSG("비밀번호를 입력하세요.");
+      pwdCheckInfo.current.style.color = "red";
+      pwdCheckInfo.current.style.display = "flex";
+      return;
+    }
+    if (pwd !== pwdCheck) {
+      setPwdCheckMSG("비밀번호가 다릅니다. 다시 입력하세요.");
+      pwdCheckInfo.current.style.color = "red";
+      pwdCheckInfo.current.style.display = "flex";
+      return;
+    }
+    // 이상없으면 메세지 초기화
+    setPwdCheckMSG("완료");
+    pwdCheckInfo.current.style.display = "flex";
+    pwdCheckInfo.current.style.color = "green";
+    return;
+  };
+
+  //최종 완료 버튼
   const changePwd = () => {
     if (email === "" || pwd === "" || pwdCheck === "") {
       Swal.fire({
@@ -59,26 +180,12 @@ const FindPassword = () => {
       return;
     }
 
-    if (pwd !== pwdCheck) {
-      Swal.fire({
-        title: "비밀번호가 다르게 입력되었습니다.",
-        icon: "info",
-        showCancelButton: false,
-        focusConfirm: false,
-        confirmButtonText: "확인",
-      });
-      return;
-    }
-
-    if (!passwordCheck(pwd)) {
-      Swal.fire({
-        title: "비밀번호를 재설정해주세요.",
-        html: "비밀번호는 8글자 이상, 영문+숫자+특수문자로 구성해야합니다.",
-        icon: "info",
-        showCancelButton: false,
-        focusConfirm: false,
-        confirmButtonText: "확인",
-      });
+    if (
+      emailMSG !== "완료" ||
+      authMSG !== "완료" ||
+      pwdMSG !== "완료" ||
+      pwdCheckMSG !== "완료"
+    ) {
       return;
     }
 
@@ -123,23 +230,32 @@ const FindPassword = () => {
                         setEmail(e.target.value);
                       }}
                       placeholder="가입한 이메일 입력"
+                      onBlur={CheckEmail}
                     />
                     <CheckBnt id="auth" disabled="" onClick={sendPwdAuth}>
-                      인증 번호 발송
+                      인증 메일 발송
                     </CheckBnt>
                   </div>
+                  <InfoDiv>
+                    <Info ref={emailInfo}>{emailMSG}</Info>
+                  </InfoDiv>
                 </InputContainer>
                 <InputContainer>
                   <InfoTitle>인증번호</InfoTitle>
                   <div style={{ display: "flex", flexDirection: "row" }}>
                     <InputBox
-                      onChange={(e) => {
-                        setAuthNum(e.target.value);
-                      }}
+                      id="Pauthinput"
+                      onChange={insertAuth}
                       placeholder="인증번호 입력"
+                      onBlur={CheckAuth}
                     />
-                    <CheckBnt onClick={confirmAuth}>인증 완료</CheckBnt>
+                    <CheckBnt id="Pauthcheck" disabled="" onClick={confirmAuth}>
+                      인증 완료
+                    </CheckBnt>
                   </div>
+                  <InfoDiv>
+                    <Info ref={authNumInfo}>{authMSG}</Info>
+                  </InfoDiv>
                 </InputContainer>
                 <div
                   style={{
@@ -155,7 +271,12 @@ const FindPassword = () => {
                     }}
                     placeholder="영문/숫자/특수문자 포함 8글자 이상"
                     type="password"
+                    onBlur={CheckPwd}
                   />
+                  <InfoDiv>
+                    <Info ref={pwdInfo}>{pwdMSG}</Info>
+                  </InfoDiv>
+
                   <div style={{ height: "2rem" }}></div>
                   <InfoTitle>새로운 비밀번호 재입력</InfoTitle>
                   <PwBox
@@ -164,7 +285,11 @@ const FindPassword = () => {
                     }}
                     placeholder="영문/숫자/특수문자 포함 8글자 이상"
                     type="password"
+                    onBlur={CheckPwdCheck}
                   />
+                  <InfoDiv>
+                    <Info ref={pwdCheckInfo}>{pwdCheckMSG}</Info>
+                  </InfoDiv>
                 </div>
                 <InfoBox>
                   <div
@@ -196,6 +321,20 @@ const FindPassword = () => {
     );
   }
 };
+
+const InfoDiv = styled.div`
+  display: flex;
+  width: 100%;
+  font-weight: 500;
+  height: 12px;
+  padding: 4px 0px 0px 4px;
+`;
+
+const Info = styled.li`
+  display: none;
+  font-size: 12px;
+  color: #ee3a57;
+`;
 
 const InfoTitle = styled.div`
   display: flex;

@@ -11,6 +11,8 @@ import MobileTimePicker from "@material-ui/lab/MobileTimePicker";
 import AdapterDateFns from "@material-ui/lab/AdapterDateFns";
 import LocalizationProvider from "@material-ui/lab/LocalizationProvider";
 import moment from "moment";
+import { createTheme } from "@material-ui/core/styles";
+import { ThemeProvider } from "@material-ui/styles";
 
 //태그
 import beer_word from "../image/beer_word.png";
@@ -243,6 +245,31 @@ const MModify = (props) => {
     dispatch(todoActions.editPostAX(post));
   };
 
+  //mobiletimepicker 색 변환
+  const Theme = {
+    palette: {
+      primary: {
+        // primary color
+        contrastText: "#FFFFFF",
+        dark: "#000000",
+        main: "#000000", // black
+        light: "#000000",
+      },
+    },
+    typography: {
+      fontSize: 14,
+    },
+    overrides: {
+      MuiOutlinedInput: {
+        input: {
+          padding: "14px",
+        },
+      },
+    },
+  };
+
+  const theme = createTheme(Theme);
+
   // console.log(props.date);
   //수정하는 경우
   if (props.props.date.selectedAt !== undefined) {
@@ -256,31 +283,35 @@ const MModify = (props) => {
           <TimeContainer>
             <CheckTimeL>
               <LocalizationProvider dateAdapter={AdapterDateFns}>
-                <MobileTimePicker
-                  label="취침 시간 선택"
-                  value={start}
-                  onChange={(newStart) => {
-                    setStart(newStart);
-                  }}
-                  renderInput={(params) => (
-                    <TextField {...params} margin={"none"} />
-                  )}
-                />
+                <ThemeProvider theme={theme}>
+                  <MobileTimePicker
+                    label="취침 시간 선택"
+                    value={start}
+                    onChange={(newStart) => {
+                      setStart(newStart);
+                    }}
+                    renderInput={(params) => (
+                      <TextField {...params} style={{ padding: "10px" }} />
+                    )}
+                  />
+                </ThemeProvider>
               </LocalizationProvider>
             </CheckTimeL>
             <CheckTimeR>
               <LocalizationProvider dateAdapter={AdapterDateFns}>
-                <MobileTimePicker
-                  style={{}}
-                  label="기상 시간 선택"
-                  value={end}
-                  onChange={(newEnd) => {
-                    setEnd(newEnd);
-                  }}
-                  renderInput={(params) => (
-                    <TextField {...params} margin={"none"} />
-                  )}
-                />
+                <ThemeProvider theme={theme}>
+                  <MobileTimePicker
+                    style={{ size: "large" }}
+                    label="기상 시간 선택"
+                    value={end}
+                    onChange={(newEnd) => {
+                      setEnd(newEnd);
+                    }}
+                    renderInput={(params) => (
+                      <TextField {...params} style={{ padding: "10px" }} />
+                    )}
+                  />
+                </ThemeProvider>
               </LocalizationProvider>
             </CheckTimeR>
           </TimeContainer>

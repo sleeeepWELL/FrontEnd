@@ -11,6 +11,8 @@ import MobileTimePicker from "@material-ui/lab/MobileTimePicker";
 import AdapterDateFns from "@material-ui/lab/AdapterDateFns";
 import LocalizationProvider from "@material-ui/lab/LocalizationProvider";
 import moment from "moment";
+import { createTheme } from "@material-ui/core/styles";
+import { ThemeProvider } from "@material-ui/styles";
 
 //태그
 import beer_word from "../image/beer_word.png";
@@ -243,6 +245,21 @@ const Modify = (props) => {
     dispatch(todoActions.editPostAX(post));
   };
 
+  //mobiletimepicker 색 변환
+  const Theme = {
+    palette: {
+      primary: {
+        // primary color
+        contrastText: "#FFFFFF",
+        dark: "#000000",
+        main: "#000000", // black
+        light: "#000000",
+      },
+    },
+  };
+
+  const theme = createTheme(Theme);
+
   // console.log(props.date);
   //수정하는 경우
   if (props.props.date.selectedAt !== undefined) {
@@ -256,26 +273,30 @@ const Modify = (props) => {
           <TimeContainer>
             <CheckTimeL>
               <LocalizationProvider dateAdapter={AdapterDateFns}>
-                <MobileTimePicker
-                  label="취침 시간 선택"
-                  value={start}
-                  onChange={(newStart) => {
-                    setStart(newStart);
-                  }}
-                  renderInput={(params) => <TextField {...params} />}
-                />
+                <ThemeProvider theme={theme}>
+                  <MobileTimePicker
+                    label="취침 시간 선택"
+                    value={start}
+                    onChange={(newStart) => {
+                      setStart(newStart);
+                    }}
+                    renderInput={(params) => <TextField {...params} />}
+                  />
+                </ThemeProvider>
               </LocalizationProvider>
             </CheckTimeL>
             <CheckTimeR>
               <LocalizationProvider dateAdapter={AdapterDateFns}>
-                <MobileTimePicker
-                  label="기상 시간 선택"
-                  value={end}
-                  onChange={(newEnd) => {
-                    setEnd(newEnd);
-                  }}
-                  renderInput={(params) => <TextField {...params} />}
-                />
+                <ThemeProvider theme={theme}>
+                  <MobileTimePicker
+                    label="기상 시간 선택"
+                    value={end}
+                    onChange={(newEnd) => {
+                      setEnd(newEnd);
+                    }}
+                    renderInput={(params) => <TextField {...params} />}
+                  />
+                </ThemeProvider>
               </LocalizationProvider>
             </CheckTimeR>
           </TimeContainer>
@@ -289,7 +310,7 @@ const Modify = (props) => {
                     src={icon_beer}
                     alt="beer"
                     value={"음주"}
-                    type= "image"
+                    type="image"
                     onClick={(e) => {
                       setEditTags(editTags.filter((p) => p !== "음주"));
                     }}
@@ -299,7 +320,7 @@ const Modify = (props) => {
                     src={beer_icon}
                     alt="beer"
                     value={"음주"}
-                    type= "image"
+                    type="image"
                     onClick={(e) => {
                       checkbeer ? setTags1(null) : setTags1(e.target.value);
                       checkbeer ? setCheckBeer(false) : setCheckBeer(true);
@@ -313,7 +334,7 @@ const Modify = (props) => {
                     src={icon_snack}
                     alt="snack"
                     value={"야식"}
-                    type= "image"
+                    type="image"
                     onClick={(e) => {
                       setEditTags(editTags.filter((p) => p !== "야식"));
                     }}
@@ -323,7 +344,7 @@ const Modify = (props) => {
                     src={snack_icon}
                     alt="snack"
                     value={"야식"}
-                    type= "image"
+                    type="image"
                     onClick={(e) => {
                       checksnack ? setTags2(null) : setTags2(e.target.value);
 
@@ -338,7 +359,7 @@ const Modify = (props) => {
                     src={icon_work}
                     alt="work"
                     value={"야근"}
-                    type= "image"
+                    type="image"
                     onClick={(e) => {
                       setEditTags(editTags.filter((p) => p !== "야근"));
                     }}
@@ -348,7 +369,7 @@ const Modify = (props) => {
                     src={work_icon}
                     alt="work"
                     value={"야근"}
-                    type= "image"
+                    type="image"
                     onClick={(e) => {
                       checkwork ? setTags3(null) : setTags3(e.target.value);
                       checkwork ? setCheckWork(false) : setCheckWork(true);
@@ -362,7 +383,7 @@ const Modify = (props) => {
                     src={icon_workout}
                     alt="workout"
                     value={"운동"}
-                    type= "image"
+                    type="image"
                     onClick={(e) => {
                       setEditTags(editTags.filter((p) => p !== "운동"));
                     }}
@@ -372,7 +393,7 @@ const Modify = (props) => {
                     src={workout_icon}
                     alt="workout"
                     value={"운동"}
-                    type= "image"
+                    type="image"
                     onClick={(e) => {
                       checkworkout ? setTags4(null) : setTags4(e.target.value);
                       checkworkout
@@ -390,7 +411,6 @@ const Modify = (props) => {
             <TotalImgGrid>
               <ImgGrid>
                 <ConInput
-                 
                   type="image"
                   src={one_icon}
                   alt="매우나쁨"
@@ -399,7 +419,7 @@ const Modify = (props) => {
                 />
               </ImgGrid>
               <ImgGrid>
-              <ConInput
+                <ConInput
                   type="image"
                   src={two_icon}
                   alt="나쁨"
@@ -408,7 +428,7 @@ const Modify = (props) => {
                 />
               </ImgGrid>
               <ImgGrid>
-              <ConInput
+                <ConInput
                   type="image"
                   src={three_icon}
                   alt="보통"
@@ -417,7 +437,7 @@ const Modify = (props) => {
                 />
               </ImgGrid>
               <ImgGrid>
-              <ConInput
+                <ConInput
                   type="image"
                   src={four_icon}
                   alt="좋음"
@@ -426,7 +446,7 @@ const Modify = (props) => {
                 />
               </ImgGrid>
               <ImgGrid>
-              <ConInput
+                <ConInput
                   type="image"
                   src={five_icon}
                   alt="매우 좋음"
@@ -517,8 +537,8 @@ const Text = styled.div`
   font-weight: bold;
   font-size: 175%;
   color: #4a5566;
-  @media ( max-width: 1300px) {
-   font-size:125%;
+  @media (max-width: 1300px) {
+    font-size: 125%;
   }
 `;
 
@@ -566,18 +586,18 @@ const TotalImgGrid = styled.div`
   width: 90%;
   flex-direction: row;
   justify-content: space-between;
-  margin-top:2%;
-  margin-bottom:1%;
+  margin-top: 2%;
+  margin-bottom: 1%;
 `;
 
 const TotalTagGrid = styled.div`
   display: flex;
   width: 90%;
-  height:100%;
+  height: 100%;
   flex-direction: row;
   justify-content: space-between;
-  margin-top:1%;
-  margin-bottom:1%;
+  margin-top: 1%;
+  margin-bottom: 1%;
 `;
 
 const TagGrid = styled.div`
@@ -629,7 +649,6 @@ const DateContainer = styled.div`
   align-items: center;
   display: flex;
   /* background-color: maroon; */
- 
 `;
 
 //태그
@@ -639,8 +658,6 @@ const TagText = styled.div`
   font-weight: bold;
   color: #121212;
   width: 90%;
-
-  
 `;
 
 const TagContainer = styled.div`
@@ -651,7 +668,7 @@ const TagContainer = styled.div`
   justify-content: center;
   align-items: center;
   box-sizing: border-box;
-  margin-top:7%;
+  margin-top: 7%;
   /* background-color: lightsteelblue; */
 `;
 
@@ -663,8 +680,8 @@ const ConditionContainer = styled.div`
   width: 100%;
   height: 12%;
   box-sizing: border-box;
-  margin-top:7%;
-  margin-bottom:1%;
+  margin-top: 7%;
+  margin-bottom: 1%;
   /* background-color: lightslategray; */
 `;
 
@@ -685,28 +702,25 @@ const ModalComponent = styled.div`
   flex-direction: column; ;
 `;
 
-
-const IconInput =styled.input`
-width: 80%;
-height: 100%;
-margin: 0% auto;
-border-radius: 50%;
-:hover {
-  box-shadow:  lightgrey 0px 3px 7px 0px;
-  transition: box-shadow 0.2s ease-in 0s;
-}
-
-`
-const ConInput =styled.input`
-width: 80%;
-height: 100%;
-margin: 0% auto;
-border-radius: 50%;
-:hover {
-  box-shadow:  lightgrey 0px 3px 7px 0px;
-  transition: box-shadow 0.2s ease-in 0s;
-}
-
-`
+const IconInput = styled.input`
+  width: 80%;
+  height: 100%;
+  margin: 0% auto;
+  border-radius: 50%;
+  :hover {
+    box-shadow: lightgrey 0px 3px 7px 0px;
+    transition: box-shadow 0.2s ease-in 0s;
+  }
+`;
+const ConInput = styled.input`
+  width: 80%;
+  height: 100%;
+  margin: 0% auto;
+  border-radius: 50%;
+  :hover {
+    box-shadow: lightgrey 0px 3px 7px 0px;
+    transition: box-shadow 0.2s ease-in 0s;
+  }
+`;
 
 export default Modify;

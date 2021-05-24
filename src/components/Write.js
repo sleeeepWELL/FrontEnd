@@ -241,7 +241,7 @@ const Write = (props) => {
         </TimeContainer>
 
         <TagContainer>
-          <TagText className="TimeText">태그 </TagText>
+          <TagText className="BottomInfo">태그 </TagText>
           <TotalTagGrid>
             <TagGrid>
               <IconInput
@@ -295,7 +295,7 @@ const Write = (props) => {
         </TagContainer>
 
         <ConditionContainer>
-          <TagText className="TimeText">컨디션</TagText>
+          <TagText className="BottomInfo">컨디션</TagText>
           <TotalImgGrid>
             <ImgGrid>
               <IconInput
@@ -346,7 +346,7 @@ const Write = (props) => {
         </ConditionContainer>
 
         <BottomContainer>
-          <MemoText className="TimeText">메모</MemoText>
+          <MemoText className="BottomInfo">메모</MemoText>
           <TextArea
             className="TimeText2"
             placeholder="메모를 입력하세요"
@@ -488,9 +488,9 @@ const MemoText = styled.div`
   display: flex;
   width: 90%;
   font-size: 100%;
-  color: black;
-  justify-content: flex-start;
-  padding: 0.6rem 0;
+  color: #121212;
+  /* justify-content: flex-start;
+  padding: 0.6rem 0; */
 `;
 const TextArea = styled.textarea`
   width: 80%;
@@ -558,7 +558,7 @@ const ConditionContainer = styled.div`
   height: 12%;
   box-sizing: border-box;
   margin-top: 7%;
-  margin-bottom: 1%;
+  margin-bottom: 7%;
   /* background-color: lightslategray; */
 `;
 

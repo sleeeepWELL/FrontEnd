@@ -97,10 +97,16 @@ const DetailPost = (props) => {
             </DateContainer>
             <EmptyTextContainer>
               <EmptyText className="TimeText">
-                {0<= hour && hour<6 ? <Text>당신의 새벽을 응원합니다!</Text>:null}
-                {6<= hour && hour<12 ? <Text>Sleepwell과 시작하는 하루!</Text>:null}
-                {12<= hour && hour <18  ? <Text>Good Afternoon!</Text>:null}
-                {18<= hour && hour <24? <Text>좋은 하루를 보내셨나요?</Text>:null}
+                {0 <= hour && hour < 6 ? (
+                  <Text>당신의 새벽을 응원합니다!</Text>
+                ) : null}
+                {6 <= hour && hour < 12 ? (
+                  <Text>Sleepwell과 시작하는 하루!</Text>
+                ) : null}
+                {12 <= hour && hour < 18 ? <Text>Good Afternoon!</Text> : null}
+                {18 <= hour && hour < 24 ? (
+                  <Text>좋은 하루를 보내셨나요?</Text>
+                ) : null}
                 <Text2>수면기록을 입력해주세요! </Text2>
               </EmptyText>
               <DayHeader>
@@ -289,6 +295,8 @@ const MemoInfoBox = styled.div`
   width: 25%;
   height: 100%;
   align-items: center;
+  justify-content: center;
+  text-align: center;
 `;
 
 const MemoTextBox = styled.div`
@@ -297,6 +305,7 @@ const MemoTextBox = styled.div`
   height: 100%;
   justify-content: center;
   align-items: center;
+  text-align: center;
 `;
 
 const TagImgBox = styled.div`
@@ -403,6 +412,7 @@ const TimeText = styled.div`
   width: 100%;
   height: 90%;
   justify-content: center;
+  margin-top: 17%;
 `;
 
 const TimeText2 = styled.div`
@@ -428,6 +438,7 @@ const MemoText = styled.div`
   overflow: auto;
   white-space: pre-wrap;
   word-break: break-all;
+  text-align: center;
 `;
 
 //태그
@@ -520,13 +531,13 @@ const ModifyButton = styled.button`
   width: 20%;
   height: 100%;
 
-  background-color:#4a5566;
- 
+  background-color: #4a5566;
+
   border-radius: 5px;
   outline: none;
   cursor: pointer;
   color: white;
-  border:none;
+  border: none;
   font-size: 90%;
   margin-right: 10px;
 `;

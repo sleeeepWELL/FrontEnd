@@ -607,11 +607,10 @@ const TagGrid = styled.div`
 const MemoText = styled.div`
   display: flex;
   width: 90%;
-  font-size: 16px;
-  font-weight: bold;
-  color: black;
-  justify-content: flex-start;
-  padding: 0.6rem 0;
+  font-size: 100%;
+  color: #121212;
+  /* justify-content: flex-start;
+  padding: 0.6rem 0; */
 `;
 const TextArea = styled.textarea`
   width: 80%;
@@ -680,7 +679,7 @@ const ConditionContainer = styled.div`
   height: 12%;
   box-sizing: border-box;
   margin-top: 7%;
-  margin-bottom: 1%;
+  margin-bottom: 7%;
   /* background-color: lightslategray; */
 `;
 

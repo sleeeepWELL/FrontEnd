@@ -74,6 +74,7 @@ const MDetailPost = (props) => {
                         moment(tDate).format("YYYY-MM-DD")
                       )
                     );
+                    dispatch(todoActions.changeToday(moment(tDate).format("YYYY-MM-DD")));
                   }}
                 >
                   <ChevronLeftIcon />
@@ -90,6 +91,7 @@ const MDetailPost = (props) => {
                         moment(tDate).format("YYYY-MM-DD")
                       )
                     );
+                    dispatch(todoActions.changeToday(moment(tDate).format("YYYY-MM-DD")));
                   }}
                 >
                   <ChevronRightIcon />
@@ -156,6 +158,7 @@ const MDetailPost = (props) => {
                         moment(tDate).format("YYYY-MM-DD")
                       )
                     );
+                    dispatch(todoActions.changeToday(moment(tDate).format("YYYY-MM-DD")));
                   }}
                 >
                   <ChevronLeftIcon />
@@ -172,6 +175,7 @@ const MDetailPost = (props) => {
                         moment(tDate).format("YYYY-MM-DD")
                       )
                     );
+                    dispatch(todoActions.changeToday(moment(tDate).format("YYYY-MM-DD")));
                   }}
                 >
                   <ChevronRightIcon />

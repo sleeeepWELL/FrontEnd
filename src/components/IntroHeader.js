@@ -45,9 +45,10 @@ const BtnContainer = styled.div`
 const FstContainer = styled.div`
   display: flex;
   width: 25%;
-  height: 7vh;
+  height: 100%;
   justify-content: center;
   align-items: center;
+  margin-left: 10%;
 `;
 
 const Wrap = styled.div`
@@ -56,7 +57,7 @@ const Wrap = styled.div`
   justify-content: center;
   background-color: rgba(219, 219, 219, 1);
   width: 100vw;
-  height: 7vh;
+  height: 10vh;
   align-items: center;
   border-bottom: 0.8px solid #bebcbc;
   position: fixed;
@@ -69,7 +70,7 @@ const Wrap = styled.div`
 
 const LogoImg = styled.div`
   width: 100%;
-  height: 7vh;
+  height: 100%;
   display: flex;
   margin: 0px;
   cursor: pointer;
@@ -143,7 +144,7 @@ const LogInBox = styled.div`
 const SignUpBox = styled.div`
   display: flex;
   font-size: 1.3rem;
-  margin-right: 1rem;
+  margin-right: 4rem;
   justify-content: center;
   cursor: pointer;
   color: black;

@@ -30,20 +30,20 @@ const MainCalendar = (props) => {
 
   if (windowSize < 970) {
     return (
-      <ToastProvider
-      autoDismiss
-      autoDismissTimeout={6000}
-      placement="bottom-right">
+      // <ToastProvider
+      // autoDismiss
+      // autoDismissTimeout={6000}
+      // placement="bottom-right">
         <MMainCalendar />
-        </ToastProvider>
+        // </ToastProvider>
     );
   } else {
     return (
-      <ToastProvider 
-      autoDismiss
-      autoDismissTimeout={6000}
-      placement="bottom-right"
-      >
+      // <ToastProvider 
+      // autoDismiss
+      // autoDismissTimeout={6000}
+      // placement="bottom-right"
+      // >
         <Background >
           <AllContainer>
             <CalendarContainer>
@@ -70,7 +70,7 @@ const MainCalendar = (props) => {
            
           </AllContainer>
         </Background>
-        </ToastProvider>
+        // </ToastProvider>
     );
   }
 };

@@ -199,35 +199,35 @@ const Signup = () => {
   const signup = () => {
     if (email === "" || nickname === "" || pwd === "" || pwdCheck === "") {
       Swal.fire({
-        title: "모든항목을 입력해주세요.",
-        icon: "info",
-        showCancelButton: false,
-        focusConfirm: false,
-        confirmButtonText: "확인",
-      });
+        position: 'center-right',
+        icon: 'info',
+        title: '모든 항목을 입력해주세요!',
+        showConfirmButton: false,
+        timer: 1400
+      })
       return;
     }
 
     if (nameCheck) {
       setNicknameMSG("닉네임 중복확인이 완료되지 않았습니다.");
       Swal.fire({
-        title: "닉네임 중복확인이 완료되지 않았습니다.",
-        icon: "info",
-        showCancelButton: false,
-        focusConfirm: false,
-        confirmButtonText: "확인",
-      });
+        position: 'center-right',
+        icon: 'info',
+        title: '닉네임 중복확인이 완료되지 않았습니다!',
+        showConfirmButton: false,
+        timer: 1400
+      })
       return;
     }
-
+   
     if (authCheck === false) {
       Swal.fire({
-        title: "이메일 인증이 완료되지 않았습니다.",
-        icon: "info",
-        showCancelButton: false,
-        focusConfirm: false,
-        confirmButtonText: "확인",
-      });
+        position: 'center-right',
+        icon: 'info',
+        title: ' 이메일 인증이 완료되지 않았습니다!',
+        showConfirmButton: false,
+        timer: 1400
+      })
       return;
     }
 

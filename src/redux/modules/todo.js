@@ -122,12 +122,13 @@ const addPostAX = (post) => {
       .post(`${config.api}/cards`, data, token)
       .then((response) => {
         dispatch(addTodo(post));
-        // Swal.fire({
-        //   icon: "success",
-        //   title: "기록이 추가되었습니다.",
-        //   showConfirmButton: true,
-        //   confirmButtonText: "확인",
-        // });
+        Swal.fire({
+          position: 'center-right',
+          icon: 'success',
+          title: '기록이 추가되었습니다',
+          showConfirmButton: false,
+          timer: 1200
+        })
       })
       .catch((err) => {
         console.log(err);
@@ -166,11 +167,12 @@ const editPostAX = (post) => {
         };
         dispatch(updateTodo(post.selectedAt, data2));
         Swal.fire({
-          icon: "success",
-          title: "기록이 수정되었습니다.",
-          showConfirmButton: true,
-          confirmButtonText: "확인",
-        });
+          position: 'center-right',
+          icon: 'success',
+          title: '기록이 수정되었습니다',
+          showConfirmButton: false,
+          timer: 1200
+        })
       })
       .catch((err) => {
         console.log(err);
@@ -192,10 +194,12 @@ const removePostAX = (selectedAt) => {
     axios.delete(`${config.api}/cards/${selectedAt}`, token).then(async () => {
       await dispatch(deleteTodo(selectedAt));
       await Swal.fire({
-        title: "삭제 되었습니다.",
-        icon: "success",
-        confirmButtonText: "확인",
-      });
+        position: 'center-right',
+        icon: 'success',
+        title: '기록이 삭제되었습니다',
+        showConfirmButton: false,
+        timer: 1200
+      })
     });
   };
 };

@@ -163,12 +163,10 @@ position: absolute;
 width: 70%;
 font-size: 100%;
 font-weight: bold;
-
  z-index:1;
  color: #121212;
  :hover {
   font-size: 100%;
-
 }
 `
 

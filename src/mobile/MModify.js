@@ -47,12 +47,10 @@ const MModify = (props) => {
 
   //받아온 취침시간
   const getStart = _post.startSleep;
-  // console.log("받아온 취침시간:::", getStart);
   const myStart = "2021-05-12T" + getStart;
 
   //받아온 기상시간
   const getEnd = _post.endSleep;
-  // console.log("받아온 기상시간:::", getEnd);
   const myEnd = "2021-05-12T" + getEnd;
 
   const [memo, setMemo] = React.useState(_post ? _post.memo : "");
@@ -141,9 +139,6 @@ const MModify = (props) => {
   }, []);
 
   const sendTags = TotalTags.concat(editTags);
-  // console.log("받아온배열:", editTags);
-  // console.log("수정한배열:", TotalTags);
-  // console.log("최종 보낼배열:", sendTags);
 
   //컨디션
   const [checkone, setCheckOne] = React.useState(false);
@@ -181,14 +176,10 @@ const MModify = (props) => {
   const bringConditions = String(props.props.date.conditions);
 
   const [editCon, setEditCon] = React.useState(bringConditions);
-  console.log("받아온 컨디션:", editCon);
-  console.log("수정된 컨디션:", mycondition);
 
   const sendCon = Number(TotalCon.concat(editCon)[0]);
-  console.log("보낼 컨디션:", sendCon);
 
   const getClick = (e) => {
-    console.log(e.target.value); // 1,2,3,4,5 로 넘어옴
     if (e.target.value == 1) {
       setCheckOne(true);
       setCheckTwo(false);
@@ -279,7 +270,7 @@ const MModify = (props) => {
       },
     },
   };
-  // console.log(props.date);
+
   //수정하는 경우
   if (props.props.date.selectedAt !== undefined) {
     return (

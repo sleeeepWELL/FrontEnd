@@ -3,7 +3,6 @@ import styled, { keyframes } from "styled-components";
 import "./Font.css";
 
 const Table = (props) => {
-  console.log(props);
   const monthly_tag = props.table.monthly_tag;
   const monthly_condition = props.table.monthly_condition;
   const weekly_s_average = props.table.week_sleepaverage;
@@ -127,7 +126,7 @@ const slidein = keyframes`
   }
  `;
 
- const slidein2 = keyframes`
+const slidein2 = keyframes`
   0% {
     margin-top: 14%;
     background-color:  #FFF9DF;
@@ -148,17 +147,16 @@ const Box1 = styled.div`
   height: 100%;
   border-radius: 50%;
   text-align: center;
-  background-color:  #FFF9DF;
+  background-color: #fff9df;
   align-items: center;
   animation: ${slidein} 1.3s infinite alternate;
   animation-iteration-count: 3;
   box-shadow: rgb(82 82 82/ 40%) 0px 5px 8px 0px;
   margin-left: 1.5%;
   :hover {
-    box-shadow:  rgb(255 212 0/ 60% ) 0px 4px 10px 0px;
+    box-shadow: rgb(255 212 0/ 60%) 0px 4px 10px 0px;
     transition: box-shadow 2s ease-in 0s;
   }
-
 `;
 
 const Box2 = styled.div`
@@ -169,7 +167,7 @@ const Box2 = styled.div`
   height: 99%;
 
   border-radius: 50%;
-  background-color:  #FFF9DF;
+  background-color: #fff9df;
   text-align: center;
   align-items: center;
   animation: ${slidein} 1s infinite alternate;
@@ -177,10 +175,9 @@ const Box2 = styled.div`
   box-shadow: rgb(82 82 82/ 40%) 0px 5px 8px 0px;
   margin-left: 1.5%;
   :hover {
-    box-shadow:  rgb(255 212 0/ 60% ) 0px 4px 10px 0px;
+    box-shadow: rgb(255 212 0/ 60%) 0px 4px 10px 0px;
     transition: box-shadow 2s ease-in 0s;
   }
-
 `;
 
 const Box3 = styled.div`
@@ -191,7 +188,7 @@ const Box3 = styled.div`
   height: 99%;
 
   border-radius: 50%;
-  background-color:  #FFF9DF;
+  background-color: #fff9df;
   align-items: center;
   animation: ${slidein} 1.5s alternate;
   animation-iteration-count: 3;
@@ -199,11 +196,9 @@ const Box3 = styled.div`
   box-shadow: rgb(82 82 82/ 40%) 0px 5px 8px 0px;
   margin-left: 1.5%;
   &:hover {
-   
-    box-shadow:  rgb(255 212 0/ 60% ) 0px 4px 10px 0px;
+    box-shadow: rgb(255 212 0/ 60%) 0px 4px 10px 0px;
     transition: box-shadow 2s ease-in 0s;
   }
-
 `;
 
 const BoxContainer = styled.div`
@@ -212,8 +207,7 @@ const BoxContainer = styled.div`
   position: relative;
   width: 76%;
   padding-bottom: 23%;
-  margin-top:1%;
-  
+  margin-top: 1%;
 `;
 const TitleContainer = styled.div`
   display: flex;

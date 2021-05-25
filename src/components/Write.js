@@ -133,10 +133,8 @@ const Write = (props) => {
   }
 
   const mycondition = Number(String(TrueCon));
-  console.log("추가할 컨디션:", mycondition);
 
   const getClick = (e) => {
-    console.log(e.target.value); // 1,2,3,4,5 로 넘어옴
     if (e.target.value == 1) {
       setCheckOne(true);
       setCheckTwo(false);
@@ -207,11 +205,8 @@ const Write = (props) => {
   const theme = createTheme(Theme);
 
   return (
-   
     <React.Fragment>
-    
       <ModalComponent>
-    
         <DateContainer>
           <Text>{props.props.date.slice(14, 24)}</Text>
         </DateContainer>
@@ -388,11 +383,8 @@ const Write = (props) => {
             </AddButton>
           </BtnDiv>
         </ButtonHeader>
-     
       </ModalComponent>
-    
     </React.Fragment>
-    
   );
 };
 

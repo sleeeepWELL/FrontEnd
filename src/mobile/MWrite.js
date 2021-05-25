@@ -145,10 +145,8 @@ const MWrite = (props) => {
   }
 
   const mycondition = Number(String(TrueCon));
-  console.log("추가할 컨디션:", mycondition);
 
   const getClick = (e) => {
-    console.log(e.target.value); // 1,2,3,4,5 로 넘어옴
     if (e.target.value == 1) {
       setCheckOne(true);
       setCheckTwo(false);
@@ -405,8 +403,7 @@ const MWrite = (props) => {
                   props.props._showModify(false);
                   // addToast(contents, {
                   //   appearance: 'success',
-        
-                  
+
                   // });
                 }
               }}

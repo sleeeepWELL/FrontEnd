@@ -24,10 +24,10 @@ const MSignup = () => {
   const [pwdCheckMSG, setPwdCheckMSG] = React.useState(null);
 
   const [email, setEmail] = React.useState("");
-  const [nickname, setNickname] =  React.useState("");
-  const [pwd, setPwd] =  React.useState("");
-  const [pwdCheck, setPwdCheck] =  React.useState("");
-  const [authNum, setAuthNum] =  React.useState("");
+  const [nickname, setNickname] = React.useState("");
+  const [pwd, setPwd] = React.useState("");
+  const [pwdCheck, setPwdCheck] = React.useState("");
+  const [authNum, setAuthNum] = React.useState("");
 
   //닉네임 중복검사 통과 여부 (true면 중복, false면 통과)
   const nameCheck = useSelector((state) => state.user.name_check);
@@ -116,7 +116,7 @@ const MSignup = () => {
     if (authMSG !== "완료") {
       return;
     }
-    // console.log("눌림");
+
     dispatch(userActions.ConfirmAuth(email, authNum));
   };
 
@@ -147,8 +147,8 @@ const MSignup = () => {
     if (nicknameMSG !== "완료") {
       return;
     }
-    console.log("눌림");
-    // dispatch(userActions.userNameCheck(nickname));
+
+    dispatch(userActions.userNameCheck(nickname));
   };
 
   // 비밀번호 관련 체크

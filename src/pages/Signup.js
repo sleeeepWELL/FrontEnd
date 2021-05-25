@@ -41,7 +41,7 @@ const Signup = () => {
   // 이메일 관련 체크
   const CheckEmail = () => {
     // 이메일칸 미입력시
-    if (email==="") {
+    if (email === "") {
       setEmailMSG("이메일을 입력해주세요.");
       emailInfo.current.style.color = "red";
       emailInfo.current.style.display = "flex";
@@ -122,7 +122,6 @@ const Signup = () => {
     dispatch(userActions.ConfirmAuth(email, authNum));
   };
 
-  console.log(nickname);
   // 닉네임 관련 체크
   const CheckNickName = () => {
     if (nickname == "") {
@@ -199,35 +198,35 @@ const Signup = () => {
   const signup = () => {
     if (email === "" || nickname === "" || pwd === "" || pwdCheck === "") {
       Swal.fire({
-        position: 'center-right',
-        icon: 'info',
-        title: '모든 항목을 입력해주세요!',
+        position: "center-right",
+        icon: "info",
+        title: "모든 항목을 입력해주세요!",
         showConfirmButton: false,
-        timer: 1400
-      })
+        timer: 1400,
+      });
       return;
     }
 
     if (nameCheck) {
       setNicknameMSG("닉네임 중복확인이 완료되지 않았습니다.");
       Swal.fire({
-        position: 'center-right',
-        icon: 'info',
-        title: '닉네임 중복확인이 완료되지 않았습니다!',
+        position: "center-right",
+        icon: "info",
+        title: "닉네임 중복확인이 완료되지 않았습니다!",
         showConfirmButton: false,
-        timer: 1400
-      })
+        timer: 1400,
+      });
       return;
     }
-   
+
     if (authCheck === false) {
       Swal.fire({
-        position: 'center-right',
-        icon: 'info',
-        title: ' 이메일 인증이 완료되지 않았습니다!',
+        position: "center-right",
+        icon: "info",
+        title: " 이메일 인증이 완료되지 않았습니다!",
         showConfirmButton: false,
-        timer: 1400
-      })
+        timer: 1400,
+      });
       return;
     }
 

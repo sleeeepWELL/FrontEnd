@@ -13,7 +13,6 @@ const Navigator = () => {
 
   // 로그인 상태
   const status = useSelector((state) => state.user.is_login);
-  console.log(status);
 
   const [currentClick, setCurrentClick] = React.useState(null);
   const [prevClick, setPrevClick] = React.useState(null);
@@ -196,15 +195,14 @@ const LogoutBox = styled.div`
   overflow: hidden;
   opacity: 80%;
 
-  
   & > span {
-    background-color: #4a5566;;
+    background-color: #4a5566;
     padding: 0.6rem;
     border-radius: 4px;
     color: white;
   }
   @media (max-width: 1024px) {
-    font-size: 1.0rem;
+    font-size: 1rem;
   }
   @media (max-width: 768px) {
     font-size: 70%;

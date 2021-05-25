@@ -39,14 +39,13 @@ const loginSV = (email, pwd) => {
     axios({
       method: "POST",
       url: `${config.api}/api/login`,
-      // url: `${config.api}/api/login`,
+
       data: {
         email: email,
         password: pwd,
       },
     })
       .then(async (res) => {
-        console.log(res);
         const ACCESS_TOKEN = res.data.accessToken;
         const ACCESS_TOKEN_EXP = res.data.accessTokenExpiresIn; // access토큰 만료시간
         const REFRESH_TOKEN = res.data.refreshToken;
@@ -134,12 +133,9 @@ const extensionAccess = () => {
         // 29분간격 자동실행
         setInterval(extensionAccess(), 60000 * 29);
 
-        // console.log(moment(Current_time).format("hh:mm:ss"));
-        // console.log("연장성공!");
         return;
       })
       .catch((err) => {
-        console.log(moment().format("hh:mm:ss"));
         console.log("연장실패!", err);
       });
   };
@@ -180,7 +176,6 @@ const kakaoLogin = (code, user) => {
     axios({
       method: "GET",
       url: `${config.api}/oauth/callback/kakao?code=${code}`,
-      // url: `${config.api}/oauth/callback/kakao?code=${code}`,
     })
       .then(async (res) => {
         const ACCESS_TOKEN = res.data.accessToken;
@@ -204,8 +199,7 @@ const kakaoLogin = (code, user) => {
 
         // 토큰 만료 1분전 자동연장
         setTimeout(extensionAccess(), ACCESS_TOKEN_EXP - Current_time - 60000);
-        console.log("연장성공");
-        console.log(user);
+
         await Swal.fire({
           // title: `${user}님 환영합니다!`,
           title: "환영합니다!",
@@ -334,7 +328,6 @@ const userNameCheck = (nickname) => {
       url: `${config.api}/username/${nickname}`,
     })
       .then((res) => {
-        console.log(res.data);
         res.data
           ? Swal.fire({
               icon: "error",
@@ -369,7 +362,6 @@ const sendPwdAuth = (email) => {
       },
     })
       .then((res) => {
-        console.log(res.data);
         if (res.data === "The email does not exist !") {
           Swal.fire({
             title: "가입되지 않은 이메일입니다.",
@@ -490,7 +482,6 @@ export default handleActions(
   {
     [SET_USER]: (state, action) =>
       produce(state, (draft) => {
-        // console.log(action.payload);
         // draft.user = action.payload.user;
         draft.is_login = true;
       }),

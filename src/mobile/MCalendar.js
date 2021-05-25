@@ -76,32 +76,30 @@ const MCalendar = (props) => {
             );
           } else {
             return (
-              <DayGrid
+             <DayGrid
+              
                 key={`${moment(today).format(
                   "MM"
                 )}_week_${week_index}_day_${day_index}`}
                 // bg={"#FFFFFF"}
-                bg={selectday === _day.format("DD") ? "#4a5566" : "#FFFFFF"}
+                bg={(today.format("YYYY-MM-DD")===_day.format("YYYY-MM-DD"))  ? "#4a5566" : "#FFFFFF"}
+                
+                
                 onClick={() => {
                   props._showModify(false);
-                  _changeColor(_day.format("DD"));
+                  dispatch(todoActions.changeToday(_day.format("YYYY-MM-DD")));
                   dispatch(todoActions.getOnePostAX(_day.format("YYYY-MM-DD")));
-                  window.scroll(0,400);
                 }}
               >
                 <TextBox>
-                  <DayText
-                    className="Helvetica"
-                    bg={is_today ? "black" : null}
-                    font_c={
-                      is_today || selectday === _day.format("DD")
-                        ? "white"
-                        : "black"
-                    }
-                    br={is_today ? "10px" : "null"}
-                  >
-                    {_day.format("DD")}
-                  </DayText>
+                 <DayText
+                  className="Helvetica"
+                  bg={is_today ? "black" : null}
+                  font_c={(today.format("YYYY-MM-DD")===_day.format("YYYY-MM-DD")) || is_today ? "white" : "black"}
+                  br={is_today ? "10px" : "null"}
+                >
+                  {_day.format("DD")}
+                </DayText>
                 </TextBox>
                 <ListBox>{_list && list}</ListBox>
               </DayGrid>
@@ -125,6 +123,7 @@ const MCalendar = (props) => {
                 moment(today).clone().subtract(1, "month")
               )
             );
+            dispatch(todoActions.getOnePostAX(moment(today).clone().subtract(1, "month").format("YYYY-MM-DD")));
           }}
         >
           <ChevronLeftIcon
@@ -145,9 +144,8 @@ const MCalendar = (props) => {
 
         <MoveRButton
           onClick={() => {
-            dispatch(
-              todoActions.changeToday(moment(today).clone().add(1, "month"))
-            );
+            dispatch(todoActions.changeToday(moment(today).clone().add(1, "month")));
+            dispatch(todoActions.getOnePostAX(moment(today).clone().add(1,"month").format("YYYY-MM-DD")));
           }}
         >
           <ChevronRightIcon

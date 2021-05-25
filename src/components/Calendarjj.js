@@ -125,6 +125,8 @@ const Calendar = (props) => {
                 moment(today).clone().subtract(1, "month")
               )
             );
+            dispatch(todoActions.getOnePostAX(moment(today).clone().subtract(1, "month").format("YYYY-MM-DD")));
+            
           }}
         >
           <MMText>
@@ -148,6 +150,7 @@ const Calendar = (props) => {
             dispatch(
               todoActions.changeToday(moment(today).clone().add(1, "month"))
             );
+            dispatch(todoActions.getOnePostAX(moment(today).clone().add(1, "month").format("YYYY-MM-DD")));
           }}
         >
           <MMText>

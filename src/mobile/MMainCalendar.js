@@ -149,6 +149,7 @@ position:relative;
 
   width: 65%;
   height: 10%;
+  margin-bottom:15%;
   
 `;
 
@@ -205,10 +206,13 @@ const Background = styled.div`
   flex-direction: column;
   align-items: center;
   width: 100%;
-  height: 150vh;
+  height: 162vh;
   left: 0;
   top: 0;
   background-color: #dbdbdb;
+  @media (max-width: 340px) {
+    height: 150vh;
+  }
 `;
 
 export default MMainCalendar;

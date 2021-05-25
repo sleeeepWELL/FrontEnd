@@ -54,8 +54,8 @@ const useStyles = makeStyles((theme) => ({
 
 const MWrite = (props) => {
   const dispatch = useDispatch();
-  const { addToast } = useToasts();
-  const contents ="기록이 추가되었습니다"
+  // const { addToast } = useToasts();
+  // const contents ="기록이 추가되었습니다"
 
   const [memo, setMemo] = React.useState("");
 
@@ -403,11 +403,11 @@ const MWrite = (props) => {
                 } else {
                   addPost();
                   props.props._showModify(false);
-                  addToast(contents, {
-                    appearance: 'success',
+                  // addToast(contents, {
+                  //   appearance: 'success',
         
                   
-                  });
+                  // });
                 }
               }}
             >

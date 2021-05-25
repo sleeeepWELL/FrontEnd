@@ -73,11 +73,9 @@ const DetailPost = (props) => {
                   onClick={() => {
                     let tDate = new Date(_day);
                     tDate.setDate(tDate.getDate() - 1);
-                    dispatch(
-                      todoActions.getOnePostAX(
-                        moment(tDate).format("YYYY-MM-DD")
-                      )
-                    );
+                    dispatch(todoActions.getOnePostAX(moment(tDate).format("YYYY-MM-DD")));
+                    dispatch(todoActions.changeToday(moment(tDate).format("YYYY-MM-DD")));
+                    
                   }}
                 >
                   <ChevronLeftIcon />
@@ -94,6 +92,7 @@ const DetailPost = (props) => {
                         moment(tDate).format("YYYY-MM-DD")
                       )
                     );
+                    dispatch(todoActions.changeToday(moment(tDate).format("YYYY-MM-DD")));
                   }}
                 >
                   <ChevronRightIcon />
@@ -169,6 +168,7 @@ const DetailPost = (props) => {
                         moment(tDate).format("YYYY-MM-DD")
                       )
                     );
+                    dispatch(todoActions.changeToday(moment(tDate).format("YYYY-MM-DD")));
                   }}
                 >
                   <ChevronLeftIcon />
@@ -183,6 +183,7 @@ const DetailPost = (props) => {
                         moment(tDate).format("YYYY-MM-DD")
                       )
                     );
+                    dispatch(todoActions.changeToday(moment(tDate).format("YYYY-MM-DD")));
                   }}
                 >
                   <ChevronRightIcon />

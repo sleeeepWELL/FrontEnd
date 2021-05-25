@@ -258,13 +258,13 @@ const MModify = (props) => {
     typography: {
       fontSize: 12,
     },
-    overrides: {
-      MuiOutlinedInput: {
-        input: {
-          padding: "14px",
-        },
-      },
-    },
+    // overrides: {
+    //   MuiOutlinedInput: {
+    //     input: {
+    //       padding: "14px",
+    //     },
+    //   },
+    // },
   };
 
   const theme = createTheme(Theme);
@@ -273,7 +273,7 @@ const MModify = (props) => {
     label: { style: { color: "blue" } },
     input: {
       style: {
-        paddingBottom: "8px",
+        // paddingBottom: "8px",
         // color: "red",
         // borderBottom: `1px solid green`,
       },
@@ -536,7 +536,7 @@ const TimeContainer = styled.div`
   background-color: #f3f3f3;
   display: flex;
   width: 100%;
-  height: 17%;
+  height: auto;
   flex-direction: row;
   justify-content: space-around;
   box-sizing: border-box;

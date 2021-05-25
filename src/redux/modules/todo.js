@@ -122,12 +122,12 @@ const addPostAX = (post) => {
       .post(`${config.api}/cards`, data, token)
       .then((response) => {
         dispatch(addTodo(post));
-        Swal.fire({
-          icon: "success",
-          title: "기록이 추가되었습니다.",
-          showConfirmButton: true,
-          confirmButtonText: "확인",
-        });
+        // Swal.fire({
+        //   icon: "success",
+        //   title: "기록이 추가되었습니다.",
+        //   showConfirmButton: true,
+        //   confirmButtonText: "확인",
+        // });
       })
       .catch((err) => {
         console.log(err);

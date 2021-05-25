@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import moment from "moment";
+import { useToasts,ToastProvider } from 'react-toast-notifications'
 
 import styled, { keyframes } from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
@@ -31,6 +32,7 @@ const mapKeywordToImg = {
 
 const DetailPost = (props) => {
   const dispatch = useDispatch();
+  
   const today = useSelector((state) => state.todo.today);
   const _today = moment();
 
@@ -59,8 +61,11 @@ const DetailPost = (props) => {
   if (props.date.selectedAt == undefined) {
     let _day = props.date.slice(14, 24);
     return (
+      
       <React.Fragment>
+       
         <Wrap>
+       
           <ModalComponent>
             <DateContainer>
               <LeftHeader>
@@ -128,8 +133,11 @@ const DetailPost = (props) => {
                 todoActions.getOnePostAX(moment(today).format("YYYY-MM-DD"))
               )
             : null}
+              
         </Wrap>
+     
       </React.Fragment>
+     
     );
   } else {
     return (

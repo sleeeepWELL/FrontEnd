@@ -342,10 +342,10 @@ const DateContainer = styled.div`
 const DayHeader = styled.div`
   display: flex;
   width: 100%;
-  height: 13%;
-
+  height: 10%;
+  
+  align-items: flex-end;
   justify-content: flex-end;
-
   box-sizing: border-box;
 `;
 
@@ -524,8 +524,8 @@ const DText = styled.div`
 `;
 
 const ModifyButton = styled.button`
-  width: 16%;
-  height: 60%;
+  width: 15%;
+  height: 70%;
   background-color: #4a5566;
   font-weight: bold;
   border-radius: 5px;
@@ -533,9 +533,8 @@ const ModifyButton = styled.button`
   cursor: pointer;
   color: white;
   border: none;
-  font-size: 80%;
+  font-size: 85%;
   margin-right:5%;
-  margin-top: 10%;
  
   @media (max-width: 280px) {
     font-size: 0.7rem;

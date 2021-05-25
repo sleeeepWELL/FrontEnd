@@ -16,6 +16,7 @@ import { createStyles } from "@material-ui/core/styles";
 import { ThemeProvider } from "@material-ui/styles";
 // import { styled } from "@material-ui/core/styles";
 import { makeStyles } from "@material-ui/core/styles";
+import { StylesProvider } from "@material-ui/core";
 
 //태그
 import beer_word from "../image/beer_word.png";
@@ -40,6 +41,15 @@ import two_gray from "../image/2-gray.png";
 import three_gray from "../image/3-gray.png";
 import four_gray from "../image/4-gray.png";
 import five_gray from "../image/5-gray.png";
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    "& .MuiFilledInput-input": {
+      backgroundColor: "lightblue",
+      border: "1px solid red",
+    },
+  },
+}));
 
 const MWrite = (props) => {
   const dispatch = useDispatch();
@@ -192,13 +202,22 @@ const MWrite = (props) => {
   };
 
   const Theme = {
-    overrides: {
-      MuiOutlinedInput: {
+    root: {
+      MuiFilledInput: {
         input: {
-          padding: 2,
+          backgroundColor: "lightblue",
+          border: "1px solid red",
         },
       },
     },
+
+    // overrides: {
+    //   MuiOutlinedInput: {
+    //     input: {
+    //       padding: 2,
+    //     },
+    //   },
+    // },
     palette: {
       primary: {
         contrastText: "#FFFFFF",
@@ -210,66 +229,6 @@ const MWrite = (props) => {
     typography: {
       fontSize: 12,
     },
-
-    MuiOutlinedInput: {
-      input: {
-        padding: 0,
-      },
-    },
-
-    // formcontrol: {
-    //   size: "large",
-    // },
-    // mixins: {
-    //   toolbar: {
-    //     minHeight: 80,
-    //   },
-    // },
-    // overrides: {
-    //   MuiIconButton: {
-    //     sizeSmall: {
-    //       // Adjust spacing to reach minimal touch target hitbox
-    //       marginLeft: 4,
-    //       marginRight: 4,
-    //       padding: 12,
-    //     },
-    //   },
-    // },
-    // MuiTextField: {
-    //   margin: "normal",
-    //   padding: 0,
-    // },
-    // MuiInputBase: {
-    //   input: { padding: "14px 14px" },
-    // },
-    // MuiOutlinedInput: {
-    //   input: {
-    //     padding: "14px 14px",
-    //   },
-    // },
-
-    // overrides: {
-    //   // MuiInputBase: {
-    //   //   input: { padding: "14px 14px" },
-    //   // },
-    //   MuiOutlinedInput: {
-    //     input: {
-    //       padding: "14px 14px",
-    //     },
-    //   },
-    //   // TextField: {
-    //   //   text: {
-    //   //     padding: "14px 14px",
-    //   //   },
-    //   // },
-    // },
-    // overrides: {
-    //   MuiOutlinedInput: {
-    //     input: {
-    //         padding: "14px",
-    //     },
-    //   },
-    // },
   };
 
   // const Style = {
@@ -281,6 +240,18 @@ const MWrite = (props) => {
   //     },
   //   },
   // };
+
+  const moreClasses = {
+    label: { style: { color: "blue" } },
+    input: {
+      style: {
+        paddingBottom: "8px",
+        paddingTop: "5px",
+        // color: "red",
+        // borderBottom: `1px solid green`,
+      },
+    },
+  };
 
   const theme = createTheme(Theme);
   // // const style = createStyles(Style);
@@ -303,7 +274,14 @@ const MWrite = (props) => {
                     setStart(newStart);
                   }}
                   renderInput={(params) => (
-                    <TextField {...params} variant="filled" />
+                    <TextField
+                      {...params}
+                      variant="filled"
+                      InputProps={{
+                        ...params.InputProps,
+                        ...moreClasses.input,
+                      }}
+                    />
                   )}
                 />
               </ThemeProvider>
@@ -319,7 +297,14 @@ const MWrite = (props) => {
                     setEnd(newEnd);
                   }}
                   renderInput={(params) => (
-                    <TextField {...params} variant="filled" />
+                    <TextField
+                      {...params}
+                      variant="filled"
+                      InputProps={{
+                        ...params.InputProps,
+                        ...moreClasses.input,
+                      }}
+                    />
                   )}
                 />
               </ThemeProvider>

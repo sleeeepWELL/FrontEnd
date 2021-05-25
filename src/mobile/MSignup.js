@@ -23,11 +23,11 @@ const MSignup = () => {
   const [pwdMSG, setPwdMSG] = React.useState(null);
   const [pwdCheckMSG, setPwdCheckMSG] = React.useState(null);
 
-  const [email, setEmail] = React.useState(null);
-  const [nickname, setNickname] = React.useState(null);
-  const [pwd, setPwd] = React.useState(null);
-  const [pwdCheck, setPwdCheck] = React.useState(null);
-  const [authNum, setAuthNum] = React.useState(null);
+  const [email, setEmail] = React.useState("");
+  const [nickname, setNickname] =  React.useState("");
+  const [pwd, setPwd] =  React.useState("");
+  const [pwdCheck, setPwdCheck] =  React.useState("");
+  const [authNum, setAuthNum] =  React.useState("");
 
   //닉네임 중복검사 통과 여부 (true면 중복, false면 통과)
   const nameCheck = useSelector((state) => state.user.name_check);

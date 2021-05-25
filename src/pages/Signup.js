@@ -25,11 +25,11 @@ const Signup = () => {
   const [pwdMSG, setPwdMSG] = React.useState(null);
   const [pwdCheckMSG, setPwdCheckMSG] = React.useState(null);
 
-  const [email, setEmail] = React.useState(null);
-  const [authNum, setAuthNum] = React.useState(null);
-  const [nickname, setNickname] = React.useState(null);
-  const [pwd, setPwd] = React.useState(null);
-  const [pwdCheck, setPwdCheck] = React.useState(null);
+  const [email, setEmail] = React.useState("");
+  const [authNum, setAuthNum] = React.useState("");
+  const [nickname, setNickname] = React.useState("");
+  const [pwd, setPwd] = React.useState("");
+  const [pwdCheck, setPwdCheck] = React.useState("");
   const [windowSize, setWindowSize] = React.useState(window.innerWidth);
 
   //닉네임 중복검사 통과 여부 (true면 중복, false면 통과)
@@ -41,7 +41,7 @@ const Signup = () => {
   // 이메일 관련 체크
   const CheckEmail = () => {
     // 이메일칸 미입력시
-    if (email === "") {
+    if (email==="") {
       setEmailMSG("이메일을 입력해주세요.");
       emailInfo.current.style.color = "red";
       emailInfo.current.style.display = "flex";
@@ -122,9 +122,10 @@ const Signup = () => {
     dispatch(userActions.ConfirmAuth(email, authNum));
   };
 
+  console.log(nickname);
   // 닉네임 관련 체크
   const CheckNickName = () => {
-    if (nickname === "") {
+    if (nickname == "") {
       setNicknameMSG("닉네임을 입력해주세요.");
       nickNameInfo.current.style.color = "red";
       nickNameInfo.current.style.display = "flex";

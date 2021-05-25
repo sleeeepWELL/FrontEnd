@@ -1,5 +1,4 @@
 import React from "react";
-import { getCookie } from "./Cookie";
 import { Redirect, Route } from "react-router-dom";
 
 // 로그인 없이 접근시 인트로화면으로 리다이렉트

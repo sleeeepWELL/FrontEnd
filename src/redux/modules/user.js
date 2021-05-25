@@ -34,7 +34,7 @@ const initialState = {
 };
 
 // 로그인
-const loginSV = (email, pwd, user) => {
+const loginSV = (email, pwd) => {
   return function (dispatch, getState, { history }) {
     axios({
       method: "POST",
@@ -66,7 +66,7 @@ const loginSV = (email, pwd, user) => {
 
         // ACCESS토큰 만료 1분전마다 연장함수 실행
         setTimeout(extensionAccess(), ACCESS_TOKEN_EXP - Current_time - 60000);
-        console.log(user);
+
         await Swal.fire({
           // title: `${user}님 환영합니다!`,
           title: "환영합니다!",
@@ -83,13 +83,13 @@ const loginSV = (email, pwd, user) => {
       })
       .catch((err) => {
         Swal.fire({
-          position: 'center-right',
+          position: "center-right",
           icon: "error",
           title: "로그인 실패",
           text: "회원정보를 정확히 입력해주세요.",
           showConfirmButton: false,
-          timer: 1400
-        })
+          timer: 1400,
+        });
         console.log("로그인 에러", err);
       });
   };
@@ -113,12 +113,8 @@ const extensionAccess = () => {
       },
     })
       .then(async (res) => {
-        const ACCESS_TOKEN_EXP = res.data.accessTokenExpiresIn;
         const ACCESS_TOKEN = res.data.accessToken;
         const REFRESH_TOKEN = res.data.refreshToken;
-
-        // 현재시간
-        const Current_time = new Date().getTime();
 
         // 새롭게 받은 리프레시 토큰도 쿠키에 다시 저장
         await setCookie("is_login", REFRESH_TOKEN);
@@ -132,16 +128,14 @@ const extensionAccess = () => {
           "Authorization"
         ] = `Bearer ${ACCESS_TOKEN}`;
 
-        // 로그인상태 true 로 바꿔주기
+        // 로그인상태 true 로 변경
         await dispatch(setUser());
 
-        setTimeout(extensionAccess(), ACCESS_TOKEN_EXP - Current_time - 60000);
-        // 1000 * 60 * 29 - 1000 * 56
+        // 29분간격 자동실행
+        setInterval(extensionAccess(), 60000 * 29);
 
-        console.log(moment(Current_time).format("hh:mm:ss"));
-        console.log("연장성공!");
-
-        console.log("토큰재생성~~");
+        // console.log(moment(Current_time).format("hh:mm:ss"));
+        // console.log("연장성공!");
         return;
       })
       .catch((err) => {
@@ -166,12 +160,12 @@ const signUpSV = (email, nickname, pwd, pwdCheck) => {
     })
       .then((res) => {
         Swal.fire({
-          position: 'center-right',
+          position: "center-right",
           icon: "success",
           title: "회원가입이 완료되었습니다",
           showConfirmButton: false,
-          timer: 1400
-        })
+          timer: 1400,
+        });
         history.replace("/login");
       })
       .catch((err) => {
@@ -235,8 +229,8 @@ const kakaoLogin = (code, user) => {
           title: "로그인 실패",
           text: "잠시후 다시 시도해주세요.",
           showConfirmButton: false,
-          timer: 1400
-        })
+          timer: 1400,
+        });
         history.replace("/login");
       });
   };
@@ -254,28 +248,25 @@ const SendAuth = (email) => {
       },
     })
       .then((res) => {
-      
-          Swal.fire({
-            icon: "success",
-            title: "입력하신 이메일로 인증번호가 발송되었습니다.",
-            showConfirmButton: false,
-            timer: 1400
-          })
-    
+        Swal.fire({
+          icon: "success",
+          title: "입력하신 이메일로 인증번호가 발송되었습니다.",
+          showConfirmButton: false,
+          timer: 1400,
+        });
       })
       .catch((err) => {
         console.log("인증번호 발송 에러", err);
-      
+
         Swal.fire({
           title: "이미 가입된 이메일 입니다",
           icon: "info",
           showConfirmButton: false,
-          timer: 1400
-        })
-  
+          timer: 1400,
+        });
 
         document.getElementById("userauth").disabled = false;
-         // 이미가입된 이메일이면 인증번호 전송 계속 해야하니 버튼 활성화
+        // 이미가입된 이메일이면 인증번호 전송 계속 해야하니 버튼 활성화
       });
   };
 };
@@ -292,13 +283,12 @@ const ConfirmAuth = (email, AuthNum) => {
       },
     })
       .then((res) => {
-
         Swal.fire({
           icon: "success",
           title: "인증되었습니다.",
           showConfirmButton: false,
-          timer: 1400
-        })
+          timer: 1400,
+        });
 
         let check = true;
         dispatch(authCheck(check));
@@ -346,20 +336,18 @@ const userNameCheck = (nickname) => {
       .then((res) => {
         console.log(res.data);
         res.data
-          ? 
-            Swal.fire({
+          ? Swal.fire({
               icon: "error",
               title: "중복된 닉네임 입니다.",
               showConfirmButton: false,
-              timer: 1400
+              timer: 1400,
             })
-          : 
-            Swal.fire({
+          : Swal.fire({
               icon: "success",
               title: "사용가능한 닉네임 입니다.",
               showConfirmButton: false,
-              timer: 1400
-            })
+              timer: 1400,
+            });
 
         dispatch(nameCheck(res.data));
       })
@@ -383,13 +371,12 @@ const sendPwdAuth = (email) => {
       .then((res) => {
         console.log(res.data);
         if (res.data === "The email does not exist !") {
-
-
           Swal.fire({
             title: "가입되지 않은 이메일입니다.",
             icon: "info",
             showConfirmButton: false,
-            timer: 1400})
+            timer: 1400,
+          });
           // 이미가입된 이메일이면 인증번호 전송 계속 해야하니 버튼 활성화
           document.getElementById("auth").disabled = false;
         } else {
@@ -397,8 +384,8 @@ const sendPwdAuth = (email) => {
             icon: "success",
             title: "입력하신 이메일로 인증번호가 발송되었습니다.",
             showConfirmButton: false,
-            timer: 1400
-          })
+            timer: 1400,
+          });
         }
       })
       .catch((err) => {
@@ -414,13 +401,12 @@ const changePwd = (email, pwd, pwdCheck) => {
     axios
       .put(`${config.api}/setting/password`, data)
       .then((res) => {
-     
         Swal.fire({
           icon: "success",
           title: "비밀번호가 변경되었습니다.",
           showConfirmButton: false,
-          timer: 1400
-        })
+          timer: 1400,
+        });
         history.replace("/login");
       })
       .catch((err) => {
@@ -460,14 +446,12 @@ const changeUsernameSV = (username) => {
     axios
       .put(`${config.api}/setting/username`, data)
       .then(() => {
-      
-
         Swal.fire({
           title: "닉네임이 변경되었습니다.",
           icon: "success",
           showConfirmButton: false,
-          timer: 1400
-        })
+          timer: 1400,
+        });
         dispatch(changeName(username));
         // 닉네임 변경 적용을 위해 새로고침
         // history.go(0);

@@ -19,8 +19,9 @@ import { ConnectedRouter } from "connected-react-router";
 import { history } from "../redux/configureStore";
 import OAuth2RedirectHandler from "./OAuth2RedirectHandler";
 import PrivateRoute from "./PrivateRoute";
+import Footer from "../components/Footer";
 
-function App(props) {
+function App() {
   return (
     <React.Fragment>
       <ConnectedRouter history={history}>
@@ -45,6 +46,7 @@ function App(props) {
           <Route component={NotFound} />
         </Switch>
       </ConnectedRouter>
+      <Footer />
     </React.Fragment>
   );
 }

@@ -1,7 +1,6 @@
 import React from "react";
 import styled from "styled-components";
 import { Bar } from "react-chartjs-2";
-import { AspectRatio } from "@material-ui/icons";
 
 const WeekBarChart = (props) => {
   const weeklydata = props.tags.weekly;
@@ -85,7 +84,7 @@ const CContainer1 = styled.div`
     width: 92%;
     height: 80%;
     padding: 1% 2%;
-  };
+  } ;
 `;
 
 export default WeekBarChart;

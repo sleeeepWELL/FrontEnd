@@ -1,8 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { actionCreators as todoActions } from "../redux/modules/todo";
-import { history } from "../redux/configureStore";
 import moment from "moment";
 
 const Search = (props) => {
@@ -16,10 +15,19 @@ const Search = (props) => {
 
   const search = () => {
     if (
-      year === null || month === null ||  day === null||
-      year.length !== 4 || month.length !==2 ||day.length !==2||
-      month > 12 || month < 1 ||  day > 31 || day <1 ||
-      year % 1 !==0 || month % 1 !==0 || day % 1 !==0  
+      year === null ||
+      month === null ||
+      day === null ||
+      year.length !== 4 ||
+      month.length !== 2 ||
+      day.length !== 2 ||
+      month > 12 ||
+      month < 1 ||
+      day > 31 ||
+      day < 1 ||
+      year % 1 !== 0 ||
+      month % 1 !== 0 ||
+      day % 1 !== 0
     ) {
       Swal.fire({
         title: "다시 입력해주세요",
@@ -32,7 +40,6 @@ const Search = (props) => {
     dispatch(todoActions.getOnePostAX(moment(myDate).format("YYYY-MM-DD")));
     dispatch(todoActions.changeToday(moment(myDate).format("YYYY-MM-DD")));
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
-    
   };
 
   const onSearch = (e) => {
@@ -41,22 +48,16 @@ const Search = (props) => {
     }
   };
 
-
-  // const third = document.getElementById("third")
-
-  // third.addEventListener('focusout', (event) => {
-  //   event.target.style.background = '';
-  // });
-
   return (
     <React.Fragment>
-      {year.length == 4 && month.length == 0? document.getElementById("second").focus() : null}
-      {month.length == 2 && day.length == 0 ? document.getElementById("third").focus() : null}
+      {year.length == 4 && month.length == 0
+        ? document.getElementById("second").focus()
+        : null}
+      {month.length == 2 && day.length == 0
+        ? document.getElementById("third").focus()
+        : null}
       {day.length == 2 ? document.getElementById("third").blur() : null}
-     
 
- 
-      {/* <div className="Search">날짜 검색하기</div>  */}
       <InputContainer>
         <InputBox
           id="first"
@@ -91,8 +92,13 @@ const Search = (props) => {
           id="third"
           onKeyPress={onSearch}
         />
-        {/* className 수정해야함 */}
-        <SearchBtn className="ReturnBtn" id="ReturnBtn"  onClick={()=>{search()}}>
+        <SearchBtn
+          className="ReturnBtn"
+          id="ReturnBtn"
+          onClick={() => {
+            search();
+          }}
+        >
           검색
         </SearchBtn>
         <ReturnBtn
@@ -121,7 +127,6 @@ const InputContainer = styled.div`
   align-items: center;
   justify-content: space-between;
   width: 100%;
- 
 `;
 
 const InputBox = styled.input`
@@ -139,7 +144,7 @@ const InputBox = styled.input`
   width: 17%;
   height: 4vh;
   opacity: 0.5;
-  
+
   ::placeholder {
     font-size: 13px;
   }
@@ -158,7 +163,7 @@ const SearchBtn = styled.button`
   border-radius: 5px;
   width: 15.5%;
   height: 4vh;
-  font-size:70%;
+  font-size: 70%;
   @media (max-width: 320px) {
     font-size: 0.7rem;
   }
@@ -174,7 +179,7 @@ const ReturnBtn = styled.button`
   width: 15.5%;
   height: 4vh;
   margin-left: 1%;
-  font-size:70%;
+  font-size: 70%;
   @media (max-width: 320px) {
     font-size: 0.7rem;
   }

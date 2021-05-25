@@ -1,8 +1,5 @@
-  
 import React from "react";
 import styled from "styled-components";
-import { actionCreators as todoActions } from "../redux/modules/todo";
-import { useDispatch, useSelector } from "react-redux";
 import "../components/Font.css";
 
 import beer from "../image/beer.png";
@@ -23,7 +20,6 @@ import five from "../image/5-conditions.png";
 
 const ToDo = (props) => {
   const myTags = props.tag;
-  const myTag = String(props.tag);
 
   const myCon = String(props.conditions);
 
@@ -84,9 +80,7 @@ const ConImg = styled.div`
   position: absolute;
   background-position: center;
   padding: 2px;
-  border-radius:50%;
- 
-  
+  border-radius: 50%;
 `;
 
 const TopInfo = styled.div`
@@ -98,7 +92,6 @@ const TopInfo = styled.div`
   justify-content: center;
   align-items: center;
   /* background-color: blue; */
-  
 `;
 
 const SleepTime = styled.div`
@@ -109,19 +102,19 @@ const SleepTime = styled.div`
   z-index: 1;
   /* border: 1px solid black; */
   @media (max-height: 750px) {
-    width:60%;
-    height:98%;
+    width: 60%;
+    height: 98%;
   }
 `;
 
 const Total = styled.div`
   display: flex;
   margin-top: 0.5vh;
-  @media ( max-height: 750px) {
-    width:80%;
+  @media (max-height: 750px) {
+    width: 80%;
     height: 42%;
-    margin-top:5%;
-    font-size:75%;
+    margin-top: 5%;
+    font-size: 75%;
     justify-content: center;
   }
 `;
@@ -146,7 +139,6 @@ const TagImg = styled.div`
   height: 80%;
   display: flex;
   background-position: center;
-  
 `;
 
 const TagContainer = styled.div`
@@ -168,13 +160,11 @@ const BottomInfo = styled.div`
   margin: 2px 0px 7px 0px;
   box-sizing: border-box;
   /* background-color: yellow; */
-  @media ( max-height: 750px) {
-   
+  @media (max-height: 750px) {
     width: 100%;
     height: 35%;
     margin: 2px 0px 2% 0px;
     box-sizing: border-box;
-    
   }
 `;
 

@@ -7,13 +7,26 @@ import IntroC from "../images/Intro_C.png";
 import IntroD from "../images/Intro_D.png";
 import IntroE from "../images/Intro_E.png";
 import IntroF from "../images/Intro_F.png";
-import IntroG from "../images/Intro_G.png";
 import InA from "../images/in1.png";
 
 import IntroHeader from "../components/IntroHeader";
 import "../components/Font.css";
 
 const Intro = () => {
+  const io = new IntersectionObserver((entries, observer) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("visible");
+      } else {
+        entry.target.classList.remove("visible");
+      }
+    });
+  });
+
+  document
+    .querySelectorAll(".wrapper")
+    .forEach((wrapper) => io.observe(wrapper));
+
   return (
     <>
       <Wrap>

@@ -1,9 +1,6 @@
-import React, { useEffect, useState } from "react";
-import { Grid, Button, Text } from "../elements/Styles";
+import React, { useEffect } from "react";
 import ToDo from "../elements/ToDo";
 import moment from "moment";
-import { setCookie, deleteCookie, getCookie } from "../shared/Cookie";
-
 import { useSelector, useDispatch } from "react-redux";
 import { actionCreators as todoActions } from "../redux/modules/todo";
 import styled, { keyframes } from "styled-components";
@@ -11,22 +8,15 @@ import ChevronRightIcon from "@material-ui/icons/ChevronRight";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import "./Font.css";
 
-// import HattonLight from "../fonts/Hatton-Light.ttf";
-
 const Calendar = (props) => {
   const dispatch = useDispatch();
   const today = useSelector((state) => state.todo.today);
   const todo_list = useSelector((state) => state.todo.todo_list);
- 
-  
-  // const [selectday, _changeColor] = useState(today.format("DD"));
-  // const _today = moment();
 
-  
-  React.useEffect(() => {
+  useEffect(() => {
     dispatch(todoActions.getAllPostAX());
   }, []);
-  
+
   const start_week = moment(today).startOf("month").week();
   const end_week = moment(today).endOf("month").week();
   const week_num =
@@ -50,7 +40,7 @@ const Calendar = (props) => {
             moment().format("YYYY-MM-DD") === _day.format("YYYY-MM-DD");
 
           const _list = todo_list.filter((item, idx) => {
-            if (item.selectedAt == _day.format("YYYY-MM-DD"))
+            if (item.selectedAt === _day.format("YYYY-MM-DD"))
               return item.selectedAt;
           });
 
@@ -80,14 +70,15 @@ const Calendar = (props) => {
           } else {
             return (
               <DayGrid
-              
                 key={`${moment(today).format(
                   "MM"
                 )}_week_${week_index}_day_${day_index}`}
                 // bg={"#FFFFFF"}
-                bg={(today.format("YYYY-MM-DD")===_day.format("YYYY-MM-DD"))  ? "#4a5566" : "#FFFFFF"}
-                
-                
+                bg={
+                  today.format("YYYY-MM-DD") === _day.format("YYYY-MM-DD")
+                    ? "#4a5566"
+                    : "#FFFFFF"
+                }
                 onClick={() => {
                   props._showModify(false);
                   dispatch(todoActions.changeToday(_day.format("YYYY-MM-DD")));
@@ -97,7 +88,12 @@ const Calendar = (props) => {
                 <DayText
                   className="Helvetica"
                   bg={is_today ? "black" : null}
-                  font_c={(today.format("YYYY-MM-DD")===_day.format("YYYY-MM-DD")) || is_today ? "white" : "black"}
+                  font_c={
+                    today.format("YYYY-MM-DD") === _day.format("YYYY-MM-DD") ||
+                    is_today
+                      ? "white"
+                      : "black"
+                  }
                   br={is_today ? "10px" : "null"}
                 >
                   {_day.format("DD")}
@@ -125,8 +121,11 @@ const Calendar = (props) => {
                 moment(today).clone().subtract(1, "month")
               )
             );
-            dispatch(todoActions.getOnePostAX(moment(today).clone().subtract(1, "month").format("YYYY-MM-DD")));
-            
+            dispatch(
+              todoActions.getOnePostAX(
+                moment(today).clone().subtract(1, "month").format("YYYY-MM-DD")
+              )
+            );
           }}
         >
           <MMText>
@@ -150,7 +149,11 @@ const Calendar = (props) => {
             dispatch(
               todoActions.changeToday(moment(today).clone().add(1, "month"))
             );
-            dispatch(todoActions.getOnePostAX(moment(today).clone().add(1, "month").format("YYYY-MM-DD")));
+            dispatch(
+              todoActions.getOnePostAX(
+                moment(today).clone().add(1, "month").format("YYYY-MM-DD")
+              )
+            );
           }}
         >
           <MMText>
@@ -314,8 +317,6 @@ const WeekGrid = styled.div`
   height: 4vh;
 `;
 
-
-
 const sizeUp = keyframes`
   0% {
   margin: 0%;
@@ -329,7 +330,7 @@ const sizeUp = keyframes`
   100% {
     margin: 0%;
   }
- `; 
+ `;
 
 //날짜 묶음 Grid
 const DayGrid = styled.div`

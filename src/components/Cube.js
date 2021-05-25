@@ -1,6 +1,5 @@
-import React, { useState, useRef } from "react";
+import React from "react";
 import * as THREE from "three";
-import styled from "styled-components";
 import "./Font.css";
 
 class Cube extends React.Component {
@@ -8,44 +7,39 @@ class Cube extends React.Component {
     super(props);
   }
   componentDidMount() {
+    const width = 80;
+    const height = 80;
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(30, 1, 1, 1000);
 
-  const width = 80;
-  const height = 80;
-  const scene = new THREE.Scene();
-  const camera = new THREE.PerspectiveCamera(30, 1, 1, 1000);
+    const renderer = new THREE.WebGLRenderer();
+    renderer.setSize(width, height);
 
-  const renderer = new THREE.WebGLRenderer();
-  renderer.setSize(width, height);
+    this.element.appendChild(renderer.domElement);
 
+    const geometry = new THREE.BoxGeometry(1, 1, 1);
+    const material = new THREE.MeshBasicMaterial({ color: "rgb(255,255,204)" });
+    const color = new THREE.Color("rgba(219,219,219,1)");
+    const cube = new THREE.Mesh(geometry, material);
 
-  this.element.appendChild(renderer.domElement);
+    scene.add(cube);
 
-  const geometry = new THREE.BoxGeometry(1, 1, 1);
-  const material = new THREE.MeshBasicMaterial({ color: "rgb(255,255,204)"});
-  const color = new THREE.Color("rgba(219,219,219,1)");
-  const cube = new THREE.Mesh(geometry, material);
-  
-  scene.add(cube);
+    const colorC = [
+      new THREE.MeshBasicMaterial({ color: "rgb(255,255,204)" }),
+      new THREE.MeshBasicMaterial({ color: "rgb(255,255,102)" }),
+      new THREE.MeshBasicMaterial({ color: "rgb(204,204,153)" }),
+      new THREE.MeshBasicMaterial({ color: "rgb(255,255,204)" }),
+      new THREE.MeshBasicMaterial({ color: "rgb(204,204,102)" }),
+      new THREE.MeshBasicMaterial({ color: "rgb(255,255,102)" }),
+    ];
 
-  const colorC = [
-    new THREE.MeshBasicMaterial({color: "rgb(255,255,204)"}),
-    new THREE.MeshBasicMaterial({color: "rgb(255,255,102)"}),
-    new THREE.MeshBasicMaterial({color: "rgb(204,204,153)"}),
-    new THREE.MeshBasicMaterial({color: "rgb(255,255,204)"}),
-    new THREE.MeshBasicMaterial({color: "rgb(204,204,102)"}),
-    new THREE.MeshBasicMaterial({color: "rgb(255,255,102)"}),
-  ]
+    var outlineMesh1 = new THREE.Mesh(geometry, colorC);
 
- 
-  var outlineMesh1 = new THREE.Mesh( geometry, colorC );
+    cube.add(outlineMesh1);
 
-  cube.add( outlineMesh1 );
+    scene.background = color;
 
-  scene.background = color;
-
-
-  camera.position.z = 4;
-  
+    camera.position.z = 4;
 
     this.scene = scene;
     this.camera = camera;
@@ -61,18 +55,14 @@ class Cube extends React.Component {
     requestAnimationFrame(this.animate);
   };
 
-
-
   render() {
     return (
-      <div ref={el => this.element = el} style={{ margin: "0% 0% 0% 0%"}} />
+      <div
+        ref={(el) => (this.element = el)}
+        style={{ margin: "0% 0% 0% 0%" }}
+      />
     );
   }
 }
 
-
-const CubeContainer = styled.div`
-  width: 10%;
-  color: blue;
-`;
 export default Cube;

@@ -90,7 +90,6 @@ const getOnePostAX = (selectedAt) => {
     };
     axios
       .get(`${config.api}/cards/${selectedAt}`, token)
-      // .get(`${config.api}/cards/${selectedAt}`)
       .then((response) => {
         dispatch(loadOneTodo(response.data));
       })
@@ -123,12 +122,12 @@ const addPostAX = (post) => {
       .then((response) => {
         dispatch(addTodo(post));
         Swal.fire({
-          position: 'center-right',
-          icon: 'success',
-          title: '기록이 추가되었습니다',
+          position: "center-right",
+          icon: "success",
+          title: "기록이 추가되었습니다",
           showConfirmButton: false,
-          timer: 1200
-        })
+          timer: 1200,
+        });
       })
       .catch((err) => {
         console.log(err);
@@ -167,12 +166,12 @@ const editPostAX = (post) => {
         };
         dispatch(updateTodo(post.selectedAt, data2));
         Swal.fire({
-          position: 'center-right',
-          icon: 'success',
-          title: '기록이 수정되었습니다',
+          position: "center-right",
+          icon: "success",
+          title: "기록이 수정되었습니다",
           showConfirmButton: false,
-          timer: 1200
-        })
+          timer: 1200,
+        });
       })
       .catch((err) => {
         console.log(err);
@@ -194,12 +193,12 @@ const removePostAX = (selectedAt) => {
     axios.delete(`${config.api}/cards/${selectedAt}`, token).then(async () => {
       await dispatch(deleteTodo(selectedAt));
       await Swal.fire({
-        position: 'center-right',
-        icon: 'success',
-        title: '기록이 삭제되었습니다',
+        position: "center-right",
+        icon: "success",
+        title: "기록이 삭제되었습니다",
         showConfirmButton: false,
-        timer: 1200
-      })
+        timer: 1200,
+      });
     });
   };
 };

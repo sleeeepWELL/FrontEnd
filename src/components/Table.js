@@ -103,42 +103,17 @@ const Value = styled.div`
   text-align: left;
 `;
 
-const boxFade = keyframes`
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
- `;
-
 const slidein = keyframes`
   0% {
     margin-top: 2%;
     background-color:  #FFF9DF;
   }
-  // 50%{
-  //   margin-top: 1%;
-  // }
   100% {
     margin-top: 0%;
     background-color: #FEFOAE ;
   }
  `;
 
-const slidein2 = keyframes`
-  0% {
-    margin-top: 14%;
-    background-color:  #FFF9DF;
-  }
-  // 50%{
-  //   margin-top: 1%;
-  // }
-  100% {
-    margin-top: 24%;
-    background-color: #FEFOAE ;
-  }
- `;
 const Box1 = styled.div`
   position: absolute;
   top: 0;

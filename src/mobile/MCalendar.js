@@ -1,18 +1,15 @@
-import React, { useEffect, useState } from "react";
-import { Grid, Button, Text } from "../elements/Styles";
+import React, { useState } from "react";
+
 import MToDo from "../mobile/MToDo";
 import moment from "moment";
-import { setCookie, deleteCookie, getCookie } from "../shared/Cookie";
 
 import { useSelector, useDispatch } from "react-redux";
 import { actionCreators as todoActions } from "../redux/modules/todo";
-import styled, { keyframes } from "styled-components";
+import styled from "styled-components";
 import ChevronRightIcon from "@material-ui/icons/ChevronRight";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 
 import "../components/Font.css";
-
-// import HattonLight from "../fonts/Hatton-Light.ttf";
 
 const MCalendar = (props) => {
   const dispatch = useDispatch();
@@ -76,15 +73,16 @@ const MCalendar = (props) => {
             );
           } else {
             return (
-             <DayGrid
-              
+              <DayGrid
                 key={`${moment(today).format(
                   "MM"
                 )}_week_${week_index}_day_${day_index}`}
                 // bg={"#FFFFFF"}
-                bg={(today.format("YYYY-MM-DD")===_day.format("YYYY-MM-DD"))  ? "#4a5566" : "#FFFFFF"}
-                
-                
+                bg={
+                  today.format("YYYY-MM-DD") === _day.format("YYYY-MM-DD")
+                    ? "#4a5566"
+                    : "#FFFFFF"
+                }
                 onClick={() => {
                   props._showModify(false);
                   dispatch(todoActions.changeToday(_day.format("YYYY-MM-DD")));
@@ -92,14 +90,19 @@ const MCalendar = (props) => {
                 }}
               >
                 <TextBox>
-                 <DayText
-                  className="Helvetica"
-                  bg={is_today ? "black" : null}
-                  font_c={(today.format("YYYY-MM-DD")===_day.format("YYYY-MM-DD")) || is_today ? "white" : "black"}
-                  br={is_today ? "10px" : "null"}
-                >
-                  {_day.format("DD")}
-                </DayText>
+                  <DayText
+                    className="Helvetica"
+                    bg={is_today ? "black" : null}
+                    font_c={
+                      today.format("YYYY-MM-DD") ===
+                        _day.format("YYYY-MM-DD") || is_today
+                        ? "white"
+                        : "black"
+                    }
+                    br={is_today ? "10px" : "null"}
+                  >
+                    {_day.format("DD")}
+                  </DayText>
                 </TextBox>
                 <ListBox>{_list && list}</ListBox>
               </DayGrid>
@@ -123,7 +126,11 @@ const MCalendar = (props) => {
                 moment(today).clone().subtract(1, "month")
               )
             );
-            dispatch(todoActions.getOnePostAX(moment(today).clone().subtract(1, "month").format("YYYY-MM-DD")));
+            dispatch(
+              todoActions.getOnePostAX(
+                moment(today).clone().subtract(1, "month").format("YYYY-MM-DD")
+              )
+            );
           }}
         >
           <ChevronLeftIcon
@@ -144,8 +151,14 @@ const MCalendar = (props) => {
 
         <MoveRButton
           onClick={() => {
-            dispatch(todoActions.changeToday(moment(today).clone().add(1, "month")));
-            dispatch(todoActions.getOnePostAX(moment(today).clone().add(1,"month").format("YYYY-MM-DD")));
+            dispatch(
+              todoActions.changeToday(moment(today).clone().add(1, "month"))
+            );
+            dispatch(
+              todoActions.getOnePostAX(
+                moment(today).clone().add(1, "month").format("YYYY-MM-DD")
+              )
+            );
           }}
         >
           <ChevronRightIcon
@@ -194,10 +207,6 @@ const AllContainer = styled.div`
   align-items: center;
   justify-content: flex-start;
 `;
-
-// @media (max-width: 975px) {
-//   width: auto;
-// }
 
 const TopContainer = styled.div`
   box-sizing: border-box;
@@ -265,17 +274,6 @@ const MoveRButton = styled.button`
   cursor: pointer;
 `;
 
-const MMText = styled.div`
-  text-align: center;
-  border: 1px solid red;
-  width: 55%;
-  height: 50%;
-  color: #000000;
-  opacity: 60%;
-  text-shadow: rgb(10 50 10 / 40%) 0.1% 0.1% 0.1%;
-`;
-//
-
 const Container = styled.div`
   box-sizing: border-box;
   width: 100%;
@@ -290,7 +288,7 @@ const WEEK = styled.div`
   justify-content: flex-end;
   width: 80%;
   height: 2.4vh;
-  padding-bottom:0.5%;
+  padding-bottom: 0.5%;
   font-size: 1vh;
   font-weight: bold;
 `;
@@ -313,8 +311,8 @@ const WeekGrid = styled.div`
   width: 100%;
   min-width: 50px;
   height: 10%;
- 
-  margin-top:2%;
+
+  margin-top: 2%;
 `;
 
 //날짜 묶음 Grid

@@ -5,7 +5,6 @@ import WeekBarChart from "../components/WeekBarChart";
 import MonthBarChart from "../components/MonthBarChart";
 import MWeekMixedChart from "../mobile/MWeekMixedChart";
 import MTable from "../mobile/MTable";
-import { actionCreators as userActions } from "../redux/modules/user";
 
 import { actionCreators as todoActions } from "../redux/modules/result";
 
@@ -31,7 +30,7 @@ const MAnalysis = () => {
     setCurrentClick(e.target.id);
   };
 
-  useEffect(async () => {
+  useEffect(() => {
     const _today = moment().format("YYYY-MM-DD");
     dispatch(todoActions.getTimeAX());
     dispatch(todoActions.getTags(_today));

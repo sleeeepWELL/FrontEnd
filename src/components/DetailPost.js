@@ -1,7 +1,5 @@
-import React, { useEffect } from "react";
+import React from "react";
 import moment from "moment";
-import { useToasts,ToastProvider } from 'react-toast-notifications'
-
 import styled, { keyframes } from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
 import { actionCreators as todoActions } from "../redux/modules/todo";
@@ -32,7 +30,7 @@ const mapKeywordToImg = {
 
 const DetailPost = (props) => {
   const dispatch = useDispatch();
-  
+
   const today = useSelector((state) => state.todo.today);
   const _today = moment();
 
@@ -58,14 +56,11 @@ const DetailPost = (props) => {
   const myCon = String(props.date.conditions);
   //조건식을 통해 분별한다
 
-  if (props.date.selectedAt == undefined) {
+  if (props.date.selectedAt === undefined) {
     let _day = props.date.slice(14, 24);
     return (
-      
       <React.Fragment>
-       
         <Wrap>
-       
           <ModalComponent>
             <DateContainer>
               <LeftHeader>
@@ -73,9 +68,16 @@ const DetailPost = (props) => {
                   onClick={() => {
                     let tDate = new Date(_day);
                     tDate.setDate(tDate.getDate() - 1);
-                    dispatch(todoActions.getOnePostAX(moment(tDate).format("YYYY-MM-DD")));
-                    dispatch(todoActions.changeToday(moment(tDate).format("YYYY-MM-DD")));
-                    
+                    dispatch(
+                      todoActions.getOnePostAX(
+                        moment(tDate).format("YYYY-MM-DD")
+                      )
+                    );
+                    dispatch(
+                      todoActions.changeToday(
+                        moment(tDate).format("YYYY-MM-DD")
+                      )
+                    );
                   }}
                 >
                   <ChevronLeftIcon />
@@ -92,7 +94,11 @@ const DetailPost = (props) => {
                         moment(tDate).format("YYYY-MM-DD")
                       )
                     );
-                    dispatch(todoActions.changeToday(moment(tDate).format("YYYY-MM-DD")));
+                    dispatch(
+                      todoActions.changeToday(
+                        moment(tDate).format("YYYY-MM-DD")
+                      )
+                    );
                   }}
                 >
                   <ChevronRightIcon />
@@ -127,16 +133,13 @@ const DetailPost = (props) => {
               </DayHeader>
             </EmptyTextContainer>
           </ModalComponent>
-          {props.date[0].conditions == "First_View"
+          {props.date[0].conditions === "First_View"
             ? dispatch(
                 todoActions.getOnePostAX(moment(today).format("YYYY-MM-DD"))
               )
             : null}
-              
         </Wrap>
-     
       </React.Fragment>
-     
     );
   } else {
     return (
@@ -168,7 +171,11 @@ const DetailPost = (props) => {
                         moment(tDate).format("YYYY-MM-DD")
                       )
                     );
-                    dispatch(todoActions.changeToday(moment(tDate).format("YYYY-MM-DD")));
+                    dispatch(
+                      todoActions.changeToday(
+                        moment(tDate).format("YYYY-MM-DD")
+                      )
+                    );
                   }}
                 >
                   <ChevronLeftIcon />
@@ -183,7 +190,11 @@ const DetailPost = (props) => {
                         moment(tDate).format("YYYY-MM-DD")
                       )
                     );
-                    dispatch(todoActions.changeToday(moment(tDate).format("YYYY-MM-DD")));
+                    dispatch(
+                      todoActions.changeToday(
+                        moment(tDate).format("YYYY-MM-DD")
+                      )
+                    );
                   }}
                 >
                   <ChevronRightIcon />

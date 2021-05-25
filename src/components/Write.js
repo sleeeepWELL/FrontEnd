@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
+
 import { actionCreators as todoActions } from "../redux/modules/todo";
-import { history } from "../redux/configureStore";
+
 import "./Font.css";
 import Swal from "sweetalert2";
-// import { useToasts,ToastProvider } from 'react-toast-notifications'
 
 import TextField from "@material-ui/core/TextField";
 import MobileTimePicker from "@material-ui/lab/MobileTimePicker";
@@ -38,12 +38,9 @@ import two_gray from "../image/2-gray.png";
 import three_gray from "../image/3-gray.png";
 import four_gray from "../image/4-gray.png";
 import five_gray from "../image/5-gray.png";
-import { LatheBufferGeometry } from "three";
 
 const Write = (props) => {
   const dispatch = useDispatch();
-  // const { addToast } = useToasts();
-  // const contents ="기록이 추가되었습니다"
 
   const [memo, setMemo] = React.useState("");
 
@@ -187,7 +184,6 @@ const Write = (props) => {
     };
 
     dispatch(todoActions.addPostAX(post));
-    // dispatch(todoActions.getOnePostAX(props.date.slice(14,24)));
   };
 
   //mobiletimepicker 색 변환
@@ -373,9 +369,6 @@ const Write = (props) => {
                 } else {
                   addPost();
                   props.props._showModify(false);
-                  // addToast(contents, {
-                  //   appearance: 'success',
-                  // });
                 }
               }}
             >
@@ -397,7 +390,6 @@ const TimeContainer = styled.div`
   flex-direction: row;
   justify-content: space-around;
   box-sizing: border-box;
-  /* background-color: lime; */
 `;
 
 const CheckTimeL = styled.div`
@@ -458,7 +450,6 @@ const ButtonHeader = styled.div`
   width: 100%;
   height: 10%;
   box-sizing: border-box;
-  /* background-color: lightskyblue; */
 `;
 
 const ImgGrid = styled.div`
@@ -494,8 +485,6 @@ const MemoText = styled.div`
   width: 90%;
   font-size: 100%;
   color: #121212;
-  /* justify-content: flex-start;
-  padding: 0.6rem 0; */
 `;
 const TextArea = styled.textarea`
   width: 80%;
@@ -510,19 +499,6 @@ const TextArea = styled.textarea`
   background-color: #dcdcdc;
 `;
 
-//헤더
-const TopContainer = styled.div`
-  background-color: white;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  width: 100%;
-  height: 15%;
-  margin: 20px 0px 0px 0px;
-
-  /* background-color: red; */
-`;
-
 const DateContainer = styled.div`
   width: 100%;
   height: 9%;
@@ -531,7 +507,6 @@ const DateContainer = styled.div`
   justify-content: center;
   align-items: center;
   display: flex;
-  /* background-color: maroon; */
 `;
 
 //태그
@@ -551,7 +526,6 @@ const TagContainer = styled.div`
   align-items: center;
   box-sizing: border-box;
   margin-top: 7%;
-  /* background-color: lightsteelblue; */
 `;
 
 const ConditionContainer = styled.div`
@@ -564,7 +538,6 @@ const ConditionContainer = styled.div`
   box-sizing: border-box;
   margin-top: 7%;
   margin-bottom: 7%;
-  /* background-color: lightslategray; */
 `;
 
 const BottomContainer = styled.div`
@@ -574,7 +547,6 @@ const BottomContainer = styled.div`
   flex-direction: column;
   align-items: center;
   box-sizing: border-box;
-  /* background-color: lightpink; */
 `;
 
 const ModalComponent = styled.div`
@@ -585,16 +557,6 @@ const ModalComponent = styled.div`
 `;
 
 const IconInput = styled.input`
-  width: 80%;
-  height: 100%;
-  margin: 0% auto;
-  border-radius: 50%;
-  :hover {
-    box-shadow: lightgrey 0px 3px 7px 0px;
-    transition: box-shadow 0.2s ease-in 0s;
-  }
-`;
-const ConInput = styled.input`
   width: 80%;
   height: 100%;
   margin: 0% auto;

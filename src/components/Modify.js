@@ -1,10 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
 import { actionCreators as todoActions } from "../redux/modules/todo";
-import { history } from "../redux/configureStore";
 import "./Font.css";
-import Swal from "sweetalert2";
 
 import TextField from "@material-ui/core/TextField";
 import MobileTimePicker from "@material-ui/lab/MobileTimePicker";
@@ -484,15 +482,6 @@ const Modify = (props) => {
   }
 };
 
-const Container = styled.div`
-  background-color: grey;
-  display: flex;
-  width: 100%;
-  height: 15%;
-  margin: 5px 0px 5px 0px;
-  justify-content: space-between;
-`;
-
 //취침 기상
 const TimeContainer = styled.div`
   background-color: #f3f3f3;
@@ -502,7 +491,6 @@ const TimeContainer = styled.div`
   flex-direction: row;
   justify-content: space-around;
   box-sizing: border-box;
-  /* background-color: lime; */
 `;
 
 const CheckTimeL = styled.div`
@@ -563,7 +551,6 @@ const ButtonHeader = styled.div`
   width: 100%;
   height: 10%;
   box-sizing: border-box;
-  /* background-color: lightskyblue; */
 `;
 
 const ImgGrid = styled.div`
@@ -599,9 +586,8 @@ const MemoText = styled.div`
   width: 90%;
   font-size: 100%;
   color: #121212;
-  /* justify-content: flex-start;
-  padding: 0.6rem 0; */
 `;
+
 const TextArea = styled.textarea`
   width: 80%;
   padding: 5%;
@@ -615,19 +601,6 @@ const TextArea = styled.textarea`
   background-color: #dcdcdc;
 `;
 
-//헤더
-const TopContainer = styled.div`
-  background-color: white;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  width: 100%;
-  height: 15%;
-  margin: 20px 0px 0px 0px;
-
-  /* background-color: red; */
-`;
-
 const DateContainer = styled.div`
   width: 100%;
   height: 9%;
@@ -636,7 +609,6 @@ const DateContainer = styled.div`
   justify-content: center;
   align-items: center;
   display: flex;
-  /* background-color: maroon; */
 `;
 
 //태그
@@ -657,7 +629,6 @@ const TagContainer = styled.div`
   align-items: center;
   box-sizing: border-box;
   margin-top: 7%;
-  /* background-color: lightsteelblue; */
 `;
 
 const ConditionContainer = styled.div`
@@ -670,7 +641,6 @@ const ConditionContainer = styled.div`
   box-sizing: border-box;
   margin-top: 7%;
   margin-bottom: 7%;
-  /* background-color: lightslategray; */
 `;
 
 const BottomContainer = styled.div`
@@ -680,7 +650,6 @@ const BottomContainer = styled.div`
   flex-direction: column;
   align-items: center;
   box-sizing: border-box;
-  /* background-color: lightpink; */
 `;
 
 const ModalComponent = styled.div`

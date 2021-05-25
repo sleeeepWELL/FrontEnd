@@ -473,10 +473,9 @@ const TimeContainer = styled.div`
   background-color: #f3f3f3;
   display: flex;
   width: 100%;
-  height: auto;
+  height: 25%;
   flex-direction: row;
   justify-content: space-around;
-  padding-bottom: 10px;
   /* box-sizing: border-box; */
 `;
 

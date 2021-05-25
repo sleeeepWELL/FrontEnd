@@ -246,7 +246,6 @@ const MWrite = (props) => {
     input: {
       style: {
         paddingBottom: "8px",
-        paddingTop: "5px",
         // color: "red",
         // borderBottom: `1px solid green`,
       },

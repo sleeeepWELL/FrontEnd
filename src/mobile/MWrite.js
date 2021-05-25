@@ -202,12 +202,9 @@ const MWrite = (props) => {
   };
 
   const Theme = {
-    root: {
-      MuiFilledInput: {
-        input: {
-          backgroundColor: "lightblue",
-          border: "1px solid red",
-        },
+    overrides: {
+      TextField: {
+        paddingBottom: "0px",
       },
     },
 
@@ -245,7 +242,7 @@ const MWrite = (props) => {
     label: { style: { color: "blue" } },
     input: {
       style: {
-        paddingBottom: "8px",
+        // paddingBottom: "2px",
         // color: "red",
         // borderBottom: `1px solid green`,
       },
@@ -414,6 +411,7 @@ const MWrite = (props) => {
     </React.Fragment>
   );
 };
+
 const TagImg = styled.button`
   display: flex;
   justify-content: center;
@@ -475,9 +473,10 @@ const TimeContainer = styled.div`
   background-color: #f3f3f3;
   display: flex;
   width: 100%;
-  height: 17%;
+  height: auto;
   flex-direction: row;
   justify-content: space-around;
+  padding-bottom: 10px;
   /* box-sizing: border-box; */
 `;
 

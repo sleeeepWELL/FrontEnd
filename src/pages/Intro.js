@@ -15,7 +15,7 @@ import "../components/Font.css";
 
 const Intro = () => {
   return (
-    <React.Fragment>
+    <>
       <Wrap>
         <IntroHeader />
         <Backgroud bg={"#DBDBDB"}>
@@ -45,11 +45,8 @@ const Intro = () => {
             수면기록하러 가기
           </GoBtn>
         </Backgroud>
-        <Backgroud bg={"#494949"}>
-          <BackImg src={IntroG} />
-        </Backgroud>
       </Wrap>
-    </React.Fragment>
+    </>
   );
 };
 
@@ -102,7 +99,6 @@ const Wrap = styled.div`
   height: 100%;
   flex-direction: column;
   align-items: center;
-  
 `;
 
 const Backgroud = styled.div`

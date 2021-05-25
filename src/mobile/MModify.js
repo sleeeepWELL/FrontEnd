@@ -269,6 +269,17 @@ const MModify = (props) => {
 
   const theme = createTheme(Theme);
 
+  const moreClasses = {
+    label: { style: { color: "blue" } },
+    input: {
+      style: {
+        paddingBottom: "8px",
+        paddingTop: "5px",
+        // color: "red",
+        // borderBottom: `1px solid green`,
+      },
+    },
+  };
   // console.log(props.date);
   //수정하는 경우
   if (props.props.date.selectedAt !== undefined) {
@@ -290,7 +301,14 @@ const MModify = (props) => {
                       setStart(newStart);
                     }}
                     renderInput={(params) => (
-                      <TextField {...params} variant="filled" />
+                      <TextField
+                        {...params}
+                        variant="filled"
+                        InputProps={{
+                          ...params.InputProps,
+                          ...moreClasses.input,
+                        }}
+                      />
                     )}
                   />
                 </ThemeProvider>
@@ -307,7 +325,14 @@ const MModify = (props) => {
                       setEnd(newEnd);
                     }}
                     renderInput={(params) => (
-                      <TextField {...params} variant="filled" />
+                      <TextField
+                        {...params}
+                        variant="filled"
+                        InputProps={{
+                          ...params.InputProps,
+                          ...moreClasses.input,
+                        }}
+                      />
                     )}
                   />
                 </ThemeProvider>

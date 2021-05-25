@@ -7,7 +7,7 @@ import DetailWrite from "../components/DetailWrite";
 import Search from "../components/Search";
 import MMainCalendar from "../mobile/MMainCalendar";
 import Cube from "../components/Cube";
-
+import { useToasts,ToastProvider } from 'react-toast-notifications'
 import { debounce } from "lodash";
 
 const MainCalendar = (props) => {
@@ -30,22 +30,30 @@ const MainCalendar = (props) => {
 
   if (windowSize < 970) {
     return (
-      <>
+      <ToastProvider
+      autoDismiss
+      autoDismissTimeout={6000}
+      placement="bottom-right">
         <MMainCalendar />
-      </>
+        </ToastProvider>
     );
   } else {
     return (
-      <>
+      <ToastProvider 
+      autoDismiss
+      autoDismissTimeout={6000}
+      placement="bottom-right"
+      >
         <Background >
           <AllContainer>
             <CalendarContainer>
               <Calendarjj _showModify={setModify} />
-              <CubeContainer>
-                
-               <CubeButton onClick={()=>{setSearch(true)}}><CubeText className="BottomInfo">날짜 검색</CubeText><Cube/></CubeButton>
-              </CubeContainer>
+             
             </CalendarContainer>
+            <CubeContainer>
+                
+                <CubeButton onClick={()=>{setSearch(true)}}><CubeText className="BottomInfo">날짜 검색</CubeText><Cube/></CubeButton>
+               </CubeContainer>
             <RightContainer>
               <PostContainer>
                 {is_modify ? (
@@ -62,7 +70,7 @@ const MainCalendar = (props) => {
            
           </AllContainer>
         </Background>
-      </>
+        </ToastProvider>
     );
   }
 };
@@ -130,7 +138,8 @@ const CubeContainer = styled.div`
   display:flex;
 
   justify-content: flex-end;
-  margin-top:5%;
+  margin-top:102vh;
+  margin-left:10vh;
   width: 65%;
   height: 10%;
 

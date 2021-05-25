@@ -9,8 +9,8 @@ class Cube extends React.Component {
   }
   componentDidMount() {
 
-  const width = 90;
-  const height = 90;
+  const width = 80;
+  const height = 80;
   const scene = new THREE.Scene();
   const camera = new THREE.PerspectiveCamera(30, 1, 1, 1000);
 

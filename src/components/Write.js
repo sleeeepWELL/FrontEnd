@@ -5,6 +5,7 @@ import { actionCreators as todoActions } from "../redux/modules/todo";
 import { history } from "../redux/configureStore";
 import "./Font.css";
 import Swal from "sweetalert2";
+import { useToasts,ToastProvider } from 'react-toast-notifications'
 
 import TextField from "@material-ui/core/TextField";
 import MobileTimePicker from "@material-ui/lab/MobileTimePicker";
@@ -37,9 +38,12 @@ import two_gray from "../image/2-gray.png";
 import three_gray from "../image/3-gray.png";
 import four_gray from "../image/4-gray.png";
 import five_gray from "../image/5-gray.png";
+import { LatheBufferGeometry } from "three";
 
 const Write = (props) => {
   const dispatch = useDispatch();
+  const { addToast } = useToasts();
+  const contents ="기록이 추가되었습니다"
 
   const [memo, setMemo] = React.useState("");
 
@@ -203,8 +207,11 @@ const Write = (props) => {
   const theme = createTheme(Theme);
 
   return (
+   
     <React.Fragment>
+    
       <ModalComponent>
+    
         <DateContainer>
           <Text>{props.props.date.slice(14, 24)}</Text>
         </DateContainer>
@@ -371,6 +378,11 @@ const Write = (props) => {
                 } else {
                   addPost();
                   props.props._showModify(false);
+                  addToast(contents, {
+                    appearance: 'success',
+        
+                  
+                  });
                 }
               }}
             >
@@ -378,8 +390,11 @@ const Write = (props) => {
             </AddButton>
           </BtnDiv>
         </ButtonHeader>
+     
       </ModalComponent>
+    
     </React.Fragment>
+    
   );
 };
 

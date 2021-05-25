@@ -92,7 +92,7 @@ const Search = (props) => {
           onKeyPress={onSearch}
         />
         {/* className 수정해야함 */}
-        <SearchBtn className="ReturnBtn" id="ReturnBtn"  onClick={search}>
+        <SearchBtn className="ReturnBtn" id="ReturnBtn"  onClick={()=>{search()}}>
           검색
         </SearchBtn>
         <ReturnBtn

@@ -16,6 +16,8 @@ import "../components/Font.css";
 
 import MAnalysis from "../mobile/MAnalysis";
 
+
+
 const Analysis = () => {
   const dispatch = useDispatch();
   const resulttime = useSelector((state) => state.result.result_sleeptime);
@@ -76,6 +78,7 @@ const Analysis = () => {
     return <MAnalysis />;
   } else {
     return (
+    
       <React.Fragment>
         <Background>
           <Container>
@@ -146,11 +149,15 @@ const Analysis = () => {
               </InfoContainer>
             </ResultContainer2>
           </Container>
+    
         </Background>
       </React.Fragment>
+   
     );
   }
 };
+
+
 
 const FadeIn = keyframes`
 from {

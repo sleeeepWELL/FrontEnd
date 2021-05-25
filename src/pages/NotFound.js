@@ -24,7 +24,7 @@ const NotFound = () => {
             className="TimeText"
             onClick={() => {
               history.replace("/");
-            }}
+              }}
           >
             메인으로 이동
           </MainBtn>

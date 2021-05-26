@@ -66,7 +66,8 @@ const Search = (props) => {
           onChange={(e) => {
             setYear(e.target.value);
           }}
-          placeholder={moment(today).format("YYYY")}
+          placeholder={`${moment(today).format("YYYY")}`}
+       
         />
 
         <InputBox

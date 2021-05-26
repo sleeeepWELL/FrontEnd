@@ -178,7 +178,7 @@ const InfoContainer = styled.div`
 
 //전체 프레임을 위해서 100vh > 87vh로 수정했습니다
 const Container = styled.div`
-  margin-top: 10%;
+  margin-top: 6%;
   width: 70%;
   height: 80%;
   border: none;
@@ -221,7 +221,7 @@ const ChartBtn = styled.div`
 const ChartContainer1 = styled.div`
   display: flex;
   width: 100%;
-  height: 35%;
+  height: 50%;
   justify-content: center;
   align-content: center;
   @media (max-width: 1024px) {

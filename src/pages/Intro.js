@@ -1,4 +1,4 @@
-import React from "react";
+import React, { createRef } from "react";
 import styled, { keyframes } from "styled-components";
 import { history } from "../redux/configureStore";
 import IntroA from "../images/Intro_A.png";

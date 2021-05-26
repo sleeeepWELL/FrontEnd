@@ -39,14 +39,7 @@ import three_gray from "../image/3-gray.png";
 import four_gray from "../image/4-gray.png";
 import five_gray from "../image/5-gray.png";
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    "& .MuiFilledInput-input": {
-      backgroundColor: "lightblue",
-      border: "1px solid red",
-    },
-  },
-}));
+
 
 const MWrite = (props) => {
   const dispatch = useDispatch();

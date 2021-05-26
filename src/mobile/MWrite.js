@@ -478,7 +478,7 @@ const TimeContainer = styled.div`
   background-color: #f3f3f3;
   display: flex;
   width: 100%;
-  min-height: 80px;
+  height: auto;
   flex-direction: row;
   justify-content: space-around;
   box-sizing: border-box;
@@ -487,7 +487,7 @@ const TimeContainer = styled.div`
 const CheckTimeL = styled.div`
   display: flex;
   align-items: center;
-  height: auto;
+  min-height: 80px;
   width: 40%;
 
   box-sizing: border-box;
@@ -499,7 +499,7 @@ const CheckTimeR = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  height: auto;
+  min-height: 80px;
   width: 40%;
   box-sizing: border-box;
   /* background-color: lightsalmon; */

@@ -65,7 +65,7 @@ const Intro = () => {
 
 const GoBtn = styled.div`
   word-break: keep-all;
-  width: 100%;
+  width: 44vw;
   height: 4rem;
   display: flex;
   justify-content: center;
@@ -88,7 +88,7 @@ const GoBtn = styled.div`
   }
 
   @media (max-width: 414px) {
-    font-size: 0.5rem;
+    font-size: 0.9rem;
     align-items: flex-start;
     height: 1.5rem;
   }

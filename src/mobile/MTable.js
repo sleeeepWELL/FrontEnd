@@ -113,18 +113,20 @@ const TitleContainer = styled.div`
 const Title = styled.div`
   display: flex;
   flex-direction: column;
-  width: 60%;
-  height: 50%;
+  width: 90%;
+  height: 70%;
   justify-content: space-between;
   text-align: center;
-  margin: auto 14%;
-`;
+  margin: auto;
+  margin-left:10%;
+  margin-right:2%;
+`
 
 const Value = styled.div`
   display: flex;
   flex-direction: column;
-  width: 40%;
-  height: 50%;
+  width: 55%;
+  height: 70%;
   justify-content: space-between;
   margin: auto 10%;
   color: black;

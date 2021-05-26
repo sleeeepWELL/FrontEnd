@@ -13,11 +13,7 @@ import AdapterDateFns from "@material-ui/lab/AdapterDateFns";
 import LocalizationProvider from "@material-ui/lab/LocalizationProvider";
 import moment from "moment";
 import { createTheme } from "@material-ui/core/styles";
-import { createStyles } from "@material-ui/core/styles";
 import { ThemeProvider } from "@material-ui/styles";
-// import { styled } from "@material-ui/core/styles";
-import { makeStyles } from "@material-ui/core/styles";
-import { StylesProvider } from "@material-ui/core";
 
 //태그
 import beer_word from "../image/beer_word.png";
@@ -225,7 +221,7 @@ const MWrite = (props) => {
       },
     },
     typography: {
-      fontSize: "2rem",
+      fontSize: 14,
     },
   };
 

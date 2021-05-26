@@ -192,7 +192,7 @@ bottom: 75px;
   height: 50px;
   border-radius: 100%;
   border: 0 none;
-  background: rgb(255,255,204);
+  background: #FEF1B2;
   border: #121212;
   letter-spacing: -0.5px;
   box-shadow: 1px 1px 3px 1px rgba(0,0,0,0.3);

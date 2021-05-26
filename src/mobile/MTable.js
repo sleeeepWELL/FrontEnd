@@ -17,9 +17,9 @@ const MTable = (props) => {
         </TitleContainer>
 
         <BoxContainer>
-          <Box1>
+        <Box1>
             <Text className="Contents">
-            <Title>
+              <Title>
               {monthly_tag[0]<19 ? monthly_tag[0]>9 ? <div style={{color: "orange"}}> 운동 </div> :<div> 운동</div> : <div style={{color: "red"}}> 운동</div> }
               {monthly_tag[1]<19 ? monthly_tag[1]>9 ? <div style={{color: "orange"}}> 음주 </div> :<div> 음주</div> : <div style={{color: "red"}}> 음주</div> }
               {monthly_tag[2]<19 ? monthly_tag[2]>9 ? <div style={{color: "orange"}}> 야식 </div> :<div> 야식</div> : <div style={{color: "red"}}> 야식</div> }
@@ -33,25 +33,26 @@ const MTable = (props) => {
               </Value>
             </Text>
           </Box1>
-
+   
           <Box2>
             <Text className="Contents">
-              <Title2>
-                <div>매우 나쁨</div>
-                <div>나쁨 </div>
-                <div>보통 </div>
-                <div>좋음 </div>
-                <div>매우 좋음</div>
-              </Title2>
-              <Value2>
-                <div>{monthly_condition[0]}</div>
-                <div>{monthly_condition[1]}</div>
-                <div>{monthly_condition[2]}</div>
-                <div>{monthly_condition[3]}</div>
-                <div>{monthly_condition[4]}</div>
-              </Value2>
-            </Text>
+              <Title>
+                {Math.max.apply(null, monthly_condition) === monthly_condition[0] ? <div style={{color:"orange"}}>매우 나쁨</div> :<div>매우 나쁨</div>}
+                {Math.max.apply(null, monthly_condition) === monthly_condition[1] ? <div style={{color:"orange"}}>나쁨</div> :<div>나쁨</div>}
+                {Math.max.apply(null, monthly_condition) === monthly_condition[2] ? <div style={{color:"orange"}}>보통</div> :<div>보통</div>}
+                {Math.max.apply(null, monthly_condition) === monthly_condition[3] ? <div style={{color:"orange"}}>좋음</div> :<div>좋음</div>}
+                {Math.max.apply(null, monthly_condition) === monthly_condition[4] ? <div style={{color:"orange"}}>매우 좋음</div> :<div>매우 좋음</div>}
+              </Title>
+              <Value>
+              {Math.max.apply(null, monthly_condition) === monthly_condition[0] ? <div style={{color:"orange"}}>{monthly_condition[0]}일</div> :<div>{monthly_condition[0]}일</div>}
+              {Math.max.apply(null, monthly_condition) === monthly_condition[1] ? <div style={{color:"orange"}}>{monthly_condition[1]}일</div> :<div>{monthly_condition[1]}일</div>}
+              {Math.max.apply(null, monthly_condition) === monthly_condition[2] ? <div style={{color:"orange"}}>{monthly_condition[2]}일</div> :<div>{monthly_condition[2]}일</div>}
+                {Math.max.apply(null, monthly_condition) === monthly_condition[3] ? <div style={{color:"orange"}}>{monthly_condition[3]}일</div> :<div>{monthly_condition[3]}일</div>}
+                {Math.max.apply(null, monthly_condition) === monthly_condition[4] ? <div style={{color:"orange"}}>{monthly_condition[4]}일</div> :<div>{monthly_condition[4]}일</div>}
+              </Value>
+            </Text>{" "}
           </Box2>
+
 
           <Box3>
             <Text className="Contents">

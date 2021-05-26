@@ -6,7 +6,8 @@ const Table = (props) => {
   const monthly_tag = props.table.monthly_tag;
   const monthly_condition = props.table.monthly_condition;
   const weekly_s_average = props.table.week_sleepaverage;
-
+ 
+ 
   return (
     <React.Fragment>
       <CContainer>
@@ -32,22 +33,22 @@ const Table = (props) => {
               </Value>
             </Text>
           </Box1>
-
+   
           <Box2>
             <Text className="Contents">
               <Title>
-                <div>매우 나쁨</div>
-                <div>나쁨 </div>
-                <div>보통 </div>
-                <div>좋음 </div>
-                <div>매우 좋음</div>
+                {Math.max.apply(null, monthly_condition) === monthly_condition[0] ? <div style={{color:"orange"}}>매우 나쁨</div> :<div>매우 나쁨</div>}
+                {Math.max.apply(null, monthly_condition) === monthly_condition[1] ? <div style={{color:"orange"}}>나쁨</div> :<div>나쁨</div>}
+                {Math.max.apply(null, monthly_condition) === monthly_condition[2] ? <div style={{color:"orange"}}>보통</div> :<div>보통</div>}
+                {Math.max.apply(null, monthly_condition) === monthly_condition[3] ? <div style={{color:"orange"}}>좋음</div> :<div>좋음</div>}
+                {Math.max.apply(null, monthly_condition) === monthly_condition[4] ? <div style={{color:"orange"}}>매우 좋음</div> :<div>매우 좋음</div>}
               </Title>
               <Value>
-                <div>{monthly_condition[0]}</div>
-                <div>{monthly_condition[1]}</div>
-                <div>{monthly_condition[2]}</div>
-                <div>{monthly_condition[3]}</div>
-                <div>{monthly_condition[4]}</div>
+              {Math.max.apply(null, monthly_condition) === monthly_condition[0] ? <div style={{color:"orange"}}>{monthly_condition[0]}일</div> :<div>{monthly_condition[0]}일</div>}
+              {Math.max.apply(null, monthly_condition) === monthly_condition[1] ? <div style={{color:"orange"}}>{monthly_condition[1]}일</div> :<div>{monthly_condition[1]}일</div>}
+              {Math.max.apply(null, monthly_condition) === monthly_condition[2] ? <div style={{color:"orange"}}>{monthly_condition[2]}일</div> :<div>{monthly_condition[2]}일</div>}
+                {Math.max.apply(null, monthly_condition) === monthly_condition[3] ? <div style={{color:"orange"}}>{monthly_condition[3]}일</div> :<div>{monthly_condition[3]}일</div>}
+                {Math.max.apply(null, monthly_condition) === monthly_condition[4] ? <div style={{color:"orange"}}>{monthly_condition[4]}일</div> :<div>{monthly_condition[4]}일</div>}
               </Value>
             </Text>{" "}
           </Box2>
@@ -147,7 +148,7 @@ const Box2 = styled.div`
   text-align: center;
   align-items: center;
   animation: ${slidein} 1s infinite alternate;
-  animation-iteration-count: 3;
+  animation-iteration-count: 5;
   box-shadow: rgb(82 82 82/ 40%) 0px 5px 8px 0px;
   margin-left: 1.5%;
   :hover {
@@ -167,7 +168,7 @@ const Box3 = styled.div`
   background-color: #fff9df;
   align-items: center;
   animation: ${slidein} 1.5s alternate;
-  animation-iteration-count: 3;
+  animation-iteration-count: 7;
 
   box-shadow: rgb(82 82 82/ 40%) 0px 5px 8px 0px;
   margin-left: 1.5%;

@@ -18,9 +18,7 @@ const Search = (props) => {
       year === null ||
       month === null ||
       day === null ||
-      year.length !== 4 ||
-      month.length !== 2 ||
-      day.length !== 2 ||
+     
       month > 12 ||
       month < 1 ||
       day > 31 ||
@@ -30,8 +28,8 @@ const Search = (props) => {
       day % 1 !== 0
     ) {
       Swal.fire({
-        title: "다시 입력해주세요",
-        text: "모두 예시와 같은 올바른 형식으로 입력해주세요",
+        title: "이런..!",
+        text: "올바른 형식으로 입력해주세요",
         icon: "info",
       });
       return;
@@ -40,6 +38,7 @@ const Search = (props) => {
     dispatch(todoActions.getOnePostAX(moment(myDate).format("YYYY-MM-DD")));
     dispatch(todoActions.changeToday(moment(myDate).format("YYYY-MM-DD")));
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+    document.getElementById("third").blur(); 
   };
 
   const onSearch = (e) => {
@@ -56,7 +55,7 @@ const Search = (props) => {
       {month.length == 2 && day.length == 0
         ? document.getElementById("third").focus()
         : null}
-      {day.length == 2 ? document.getElementById("third").blur() : null}
+      
 
       <InputContainer>
         <InputBox

@@ -7,8 +7,8 @@ class Cube extends React.Component {
     super(props);
   }
   componentDidMount() {
-    const width = 80;
-    const height = 80;
+    const width = 120;
+    const height = 120;
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(30, 1, 1, 1000);
 
@@ -17,20 +17,27 @@ class Cube extends React.Component {
 
     this.element.appendChild(renderer.domElement);
 
-    const geometry = new THREE.BoxGeometry(1, 1, 1);
-    const material = new THREE.MeshBasicMaterial({ color: "rgb(255,255,204)" });
-    const color = new THREE.Color("rgba(219,219,219,1)");
+    let loader;
+    loader = new THREE.TextureLoader();  
+    loader.crossOrigin = '';
+    const moonTexture = loader.load( 'https://images.unsplash.com/photo-1607513746994-51f730a44832?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80' );
+
+
+    const geometry =  new THREE.SphereGeometry( 25, 30, 30 );
+    const material = new THREE.MeshBasicMaterial({ map: moonTexture });
+    const color = new THREE.Color("#DBDBDB");
     const cube = new THREE.Mesh(geometry, material);
+  
 
     scene.add(cube);
 
     const colorC = [
-      new THREE.MeshBasicMaterial({ color: "rgb(255,255,204)" }),
-      new THREE.MeshBasicMaterial({ color: "rgb(255,255,102)" }),
-      new THREE.MeshBasicMaterial({ color: "rgb(204,204,153)" }),
-      new THREE.MeshBasicMaterial({ color: "rgb(255,255,204)" }),
-      new THREE.MeshBasicMaterial({ color: "rgb(204,204,102)" }),
-      new THREE.MeshBasicMaterial({ color: "rgb(255,255,102)" }),
+      new THREE.MeshBasicMaterial({ color: "#FAFAD2" }),
+      new THREE.MeshBasicMaterial({ color: "#FFFF96" }),
+      new THREE.MeshBasicMaterial({ color: "#FEF1B2" }),
+      new THREE.MeshBasicMaterial({ color: "#FFF978" }),
+      new THREE.MeshBasicMaterial({ color: "#FFE65A" }),
+      new THREE.MeshBasicMaterial({ color: "#FFEB46" }),
     ];
 
     var outlineMesh1 = new THREE.Mesh(geometry, colorC);
@@ -39,7 +46,7 @@ class Cube extends React.Component {
 
     scene.background = color;
 
-    camera.position.z = 4;
+    camera.position.z = 145;
 
     this.scene = scene;
     this.camera = camera;

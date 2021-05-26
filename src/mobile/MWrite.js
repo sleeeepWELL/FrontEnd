@@ -225,7 +225,7 @@ const MWrite = (props) => {
       },
     },
     typography: {
-      fontSize: 12,
+      fontSize: "2rem",
     },
   };
 
@@ -478,19 +478,19 @@ const TimeContainer = styled.div`
   background-color: #f3f3f3;
   display: flex;
   width: 100%;
-  height: auto;
+  min-height: 80px;
   flex-direction: row;
   justify-content: space-around;
-  /* box-sizing: border-box; */
+  box-sizing: border-box;
 `;
 
 const CheckTimeL = styled.div`
   display: flex;
   align-items: center;
-  min-height: 80px;
+  height: auto;
   width: 40%;
 
-  /* box-sizing: border-box; */
+  box-sizing: border-box;
   justify-content: center;
   /* background-color: lightblue; */
 `;
@@ -499,9 +499,9 @@ const CheckTimeR = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 80px;
+  height: auto;
   width: 40%;
-  /* box-sizing: border-box; */
+  box-sizing: border-box;
   /* background-color: lightsalmon; */
 `;
 

@@ -92,6 +92,7 @@ const Navigator = () => {
             마이페이지
           </CategoryBox>
         </CategoryContainer>
+        
         <LogoutBox className="TimeText" onClick={LOGOUT}>
           <span>로그아웃</span>
         </LogoutBox>

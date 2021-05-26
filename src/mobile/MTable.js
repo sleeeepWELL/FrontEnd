@@ -19,17 +19,17 @@ const MTable = (props) => {
         <BoxContainer>
           <Box1>
             <Text className="Contents">
-              <Title>
-                <div>운동 </div>
-                <div> 음주 </div>
-                <div> 야식 </div>
-                <div>야근 </div>
+            <Title>
+              {monthly_tag[0]<19 ? monthly_tag[0]>9 ? <div style={{color: "orange"}}> 운동 </div> :<div> 운동</div> : <div style={{color: "red"}}> 운동</div> }
+              {monthly_tag[1]<19 ? monthly_tag[1]>9 ? <div style={{color: "orange"}}> 음주 </div> :<div> 음주</div> : <div style={{color: "red"}}> 음주</div> }
+              {monthly_tag[2]<19 ? monthly_tag[2]>9 ? <div style={{color: "orange"}}> 야식 </div> :<div> 야식</div> : <div style={{color: "red"}}> 야식</div> }
+              {monthly_tag[3]<19 ? monthly_tag[3]>9 ? <div style={{color: "orange"}}> 야근 </div> :<div> 야근</div> : <div style={{color: "red"}}> 야근</div> }
               </Title>
               <Value>
-                <div> {monthly_tag[0]}</div>
-                <div> {monthly_tag[1]}</div>
-                <div> {monthly_tag[2]}</div>
-                <div> {monthly_tag[3]}</div>
+               {monthly_tag[0]<19 ? monthly_tag[0]>9 ? <div style={{color: "orange"}}> {monthly_tag[0]}회</div> :<div> {monthly_tag[0]}회</div> : <div style={{color: "red"}}> {monthly_tag[0]}회</div> }
+               {monthly_tag[1]<19 ? monthly_tag[1]>9 ? <div style={{color: "orange"}}> {monthly_tag[1]}회</div> :<div> {monthly_tag[1]}회</div> : <div style={{color: "red"}}> {monthly_tag[1]}회</div> }
+               {monthly_tag[2]<19 ? monthly_tag[2]>9 ? <div style={{color: "orange"}}> {monthly_tag[2]}회</div> :<div> {monthly_tag[2]}회</div> : <div style={{color: "red"}}> {monthly_tag[2]}회</div> }
+               {monthly_tag[3]<19 ? monthly_tag[3]>9 ? <div style={{color: "orange"}}> {monthly_tag[3]}회</div> :<div> {monthly_tag[3]}회</div> : <div style={{color: "red"}}> {monthly_tag[3]}회</div> }
               </Value>
             </Text>
           </Box1>

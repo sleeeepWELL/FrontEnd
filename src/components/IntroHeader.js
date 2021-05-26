@@ -57,7 +57,7 @@ const Wrap = styled.div`
   justify-content: center;
   background-color: rgba(219, 219, 219, 1);
   width: 100vw;
-  height: 10vh;
+  height: 7vh;
   align-items: center;
   border-bottom: 0.8px solid #bebcbc;
   position: fixed;

@@ -9,12 +9,14 @@ import MMainCalendar from "../mobile/MMainCalendar";
 import Cube from "../components/Cube";
 import { useToasts,ToastProvider } from 'react-toast-notifications'
 import { debounce } from "lodash";
+import Swal from "sweetalert2";
 
 const MainCalendar = (props) => {
   const [is_modify, setModify] = React.useState(false);
   const [is_search, setSearch] = React.useState(false);
   const day_list = useSelector((state) => state.todo.day_list);
   const [windowSize, setWindowSize] = React.useState(window.innerWidth);
+  // const tag_result = useSelector((state)=>state.result.table.monthly_tag);
 
   const handleResize = debounce(() => {
     setWindowSize(window.innerWidth);
@@ -27,6 +29,19 @@ const MainCalendar = (props) => {
       window.removeEventListener("resize", handleResize);
     };
   }, [handleResize]);
+
+  // React.useEffect(()=>{
+  //   if(tag_result[0]>12){
+  //     Swal.fire({
+  //       position: "center-right",
+  //       icon: "info",
+  //       title: "운동 13회 이상",
+  //       text: "상세한 내용은 분석을 참고하세요!",
+  //       showConfirmButton: false,
+  //       timer: 1400,
+  //     });
+  //   }
+  // })
 
   if (windowSize < 970) {
     return (

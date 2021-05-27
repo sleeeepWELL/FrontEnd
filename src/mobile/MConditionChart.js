@@ -8,6 +8,7 @@ import "../components/Font.css";
 const MConditionChart = (props) => {
   const dispatch = useDispatch();
 
+  //기록된 컨디션 정보를 받아온다
   const condition = useSelector((state) => state.result.condition);
 
   useEffect(() => {
@@ -40,7 +41,6 @@ const MConditionChart = (props) => {
         colors={["#F27153", "#F29846", "#EAE35E", "#81D3A2", "#309EB7"]}
         minValue={1}
         maxValue={5}
-        // yearLegendOffset={30}
         margin={{ top: 8, left: 3, right: 3 }}
         monthBorderColor="#ffffff"
         dayBorderWidth={2}

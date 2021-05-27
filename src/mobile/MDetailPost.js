@@ -22,7 +22,7 @@ import ChevronRightIcon from "@material-ui/icons/ChevronRight";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import { MemoryTwoTone } from "@material-ui/icons";
 
-//글씨 이미지로 바꾸기
+//태그 글씨 이미지로 바꾸기
 const mapKeywordToImg = {
   음주: beer,
   야식: snack,
@@ -34,7 +34,7 @@ const MDetailPost = (props) => {
   const dispatch = useDispatch();
   const today = useSelector((state) => state.todo.today);
   const _today = moment();
-  const hour = Number(_today.format("HH"))
+  const hour = Number(_today.format("HH"));
 
   const deletePost = () => {
     Swal.fire({
@@ -61,7 +61,6 @@ const MDetailPost = (props) => {
     return (
       <>
         <Wrap>
-        
           <ModalComponent>
             <DateContainer>
               <LeftHeader>
@@ -74,7 +73,11 @@ const MDetailPost = (props) => {
                         moment(tDate).format("YYYY-MM-DD")
                       )
                     );
-                    dispatch(todoActions.changeToday(moment(tDate).format("YYYY-MM-DD")));
+                    dispatch(
+                      todoActions.changeToday(
+                        moment(tDate).format("YYYY-MM-DD")
+                      )
+                    );
                   }}
                 >
                   <ChevronLeftIcon />
@@ -91,7 +94,11 @@ const MDetailPost = (props) => {
                         moment(tDate).format("YYYY-MM-DD")
                       )
                     );
-                    dispatch(todoActions.changeToday(moment(tDate).format("YYYY-MM-DD")));
+                    dispatch(
+                      todoActions.changeToday(
+                        moment(tDate).format("YYYY-MM-DD")
+                      )
+                    );
                   }}
                 >
                   <ChevronRightIcon />
@@ -99,26 +106,30 @@ const MDetailPost = (props) => {
               </LeftHeader>
             </DateContainer>
             <EmptyTextContainer>
-            <EmptyText className="TimeText">
-                {0<= hour && hour<6 ? <Text>당신의 새벽을 응원합니다!</Text>:null}
-                {6<= hour && hour<12 ? <Text>Sleepwell과 시작하는 하루!</Text>:null}
-                {12<= hour && hour <18  ? <Text>Good Afternoon!</Text>:null}
-                {18<= hour && hour <24? <Text>저녁식사는 잘 하셨나요?</Text>:null}
+              <EmptyText className="TimeText">
+                {0 <= hour && hour < 6 ? (
+                  <Text>당신의 새벽을 응원합니다!</Text>
+                ) : null}
+                {6 <= hour && hour < 12 ? (
+                  <Text>Sleepwell과 시작하는 하루!</Text>
+                ) : null}
+                {12 <= hour && hour < 18 ? <Text>Good Afternoon!</Text> : null}
+                {18 <= hour && hour < 24 ? (
+                  <Text>저녁식사는 잘 하셨나요?</Text>
+                ) : null}
                 <Text2>수면기록을 입력해주세요! </Text2>
               </EmptyText>
               <DayHeader1>
-           
-              {moment(props.date.slice(14, 24)) <= _today && (
-                <AddButton
-                  onClick={() => {
-                    props._showModify(true);
-                  }}
-                >
-                  수면 기록하기
-                </AddButton>
-              )}
-         
-          </DayHeader1>
+                {moment(props.date.slice(14, 24)) <= _today && (
+                  <AddButton
+                    onClick={() => {
+                      props._showModify(true);
+                    }}
+                  >
+                    수면 기록하기
+                  </AddButton>
+                )}
+              </DayHeader1>
             </EmptyTextContainer>
           </ModalComponent>
           {props.date[0].conditions == "First_View"
@@ -134,16 +145,14 @@ const MDetailPost = (props) => {
       <>
         <Wrap>
           <DayHeader>
-          
-              <ModifyButton
-                onClick={() => {
-                  props._showModify(true);
-                }}
-              >
-                수정
-              </ModifyButton>
-              <ModifyButton onClick={deletePost}>삭제</ModifyButton>
-           
+            <ModifyButton
+              onClick={() => {
+                props._showModify(true);
+              }}
+            >
+              수정
+            </ModifyButton>
+            <ModifyButton onClick={deletePost}>삭제</ModifyButton>
           </DayHeader>
 
           <ModalComponent>
@@ -158,7 +167,11 @@ const MDetailPost = (props) => {
                         moment(tDate).format("YYYY-MM-DD")
                       )
                     );
-                    dispatch(todoActions.changeToday(moment(tDate).format("YYYY-MM-DD")));
+                    dispatch(
+                      todoActions.changeToday(
+                        moment(tDate).format("YYYY-MM-DD")
+                      )
+                    );
                   }}
                 >
                   <ChevronLeftIcon />
@@ -175,7 +188,11 @@ const MDetailPost = (props) => {
                         moment(tDate).format("YYYY-MM-DD")
                       )
                     );
-                    dispatch(todoActions.changeToday(moment(tDate).format("YYYY-MM-DD")));
+                    dispatch(
+                      todoActions.changeToday(
+                        moment(tDate).format("YYYY-MM-DD")
+                      )
+                    );
                   }}
                 >
                   <ChevronRightIcon />
@@ -190,6 +207,7 @@ const MDetailPost = (props) => {
                 </ConditionText>
                 <ConditionImgBox>
                   <InnerBox>
+                    {/* 기록된 컨디션에 따라 이미지를 보여준다  */}
                     {myCon === "1" && <ConImg img={one}></ConImg>}
                     {myCon === "2" && <ConImg img={two}> </ConImg>}
                     {myCon === "3" && <ConImg img={three}></ConImg>}
@@ -219,6 +237,7 @@ const MDetailPost = (props) => {
               <TagImgBox>
                 <InnerBox>
                   {props.date.tag.map((currentTag, idx) => {
+                    //서버에서 태그를 string으로 받기 때문에 해당하는 이미지로 바꿔준다
                     return (
                       <TagImg
                         key={idx}
@@ -347,12 +366,11 @@ const DayHeader = styled.div`
   display: flex;
   width: 100%;
   height: 10%;
-  
+
   align-items: flex-end;
   justify-content: flex-end;
   box-sizing: border-box;
 `;
-
 
 const DayHeader1 = styled.div`
   display: flex;
@@ -538,20 +556,19 @@ const ModifyButton = styled.button`
   color: white;
   border: none;
   font-size: 85%;
-  margin-right:5%;
- 
+  margin-right: 5%;
+
   @media (max-width: 280px) {
     font-size: 0.7rem;
   }
 `;
 
 const AddButton = styled.button`
-  
   width: 85%;
   height: 100%;
   background-color: #4a5566;
   text-align: center;
-  
+
   font-weight: bold;
   border-radius: 5px;
   outline: none;
@@ -586,7 +603,7 @@ const boxFade = keyframes`
     opacity: 1;
   }
  `;
- const boxFade2 = keyframes`
+const boxFade2 = keyframes`
  0% {
    opacity: 0; 
  }
@@ -600,20 +617,18 @@ const boxFade = keyframes`
 `;
 
 const Text = styled.div`
- font-size: 70%;
- margin-bottom: 5%;
- 
- animation: ${boxFade} 1s;
- color: grey;
- 
+  font-size: 70%;
+  margin-bottom: 5%;
+
+  animation: ${boxFade} 1s;
+  color: grey;
 `;
 const Text2 = styled.div`
- font-size: 70%;
- margin-bottom: 5%;
- 
- animation: ${boxFade2} 2s;
- color: grey;
- 
+  font-size: 70%;
+  margin-bottom: 5%;
+
+  animation: ${boxFade2} 2s;
+  color: grey;
 `;
 
 const Contents = styled.div`

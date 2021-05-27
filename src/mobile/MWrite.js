@@ -6,7 +6,6 @@ import { history } from "../redux/configureStore";
 import "../components/Font.css";
 import Swal from "sweetalert2";
 
-
 import TextField from "@material-ui/core/TextField";
 import MobileTimePicker from "@material-ui/lab/MobileTimePicker";
 import AdapterDateFns from "@material-ui/lab/AdapterDateFns";
@@ -41,16 +40,18 @@ import five_gray from "../image/5-gray.png";
 
 const MWrite = (props) => {
   const dispatch = useDispatch();
-  // const { addToast } = useToasts();
-  // const contents ="기록이 추가되었습니다"
 
+  //메모
   const [memo, setMemo] = React.useState("");
 
+  //취침시간
   const [start, setStart] = React.useState(new Date("2021-01-01T23:00"));
   const startSleep = moment(start).format("HH:mm");
+  //기상시간
   const [end, setEnd] = React.useState(new Date("2021-01-01T09:00"));
-
   const endSleep = moment(end).format("HH:mm");
+
+  //총 수면시간 계산
   const startMinute =
     parseInt(startSleep.slice(0, 2) * 60) + parseInt(startSleep.slice(3, 5));
   const endMinute =
@@ -76,6 +77,7 @@ const MWrite = (props) => {
   const [tags3, setTags3] = React.useState("");
   const [tags4, setTags4] = React.useState("");
 
+  //태그 이미지 전환
   const [checkbeer, setCheckBeer] = React.useState(false);
   const [checksnack, setCheckSnack] = React.useState(false);
   const [checkwork, setCheckWork] = React.useState(false);
@@ -86,6 +88,7 @@ const MWrite = (props) => {
   const work_icon = checkwork ? work_word : work_word_gray;
   const workout_icon = checkworkout ? workout_word : workout_word_gray;
 
+  //태그를 선택하면 배열에 해당 태그를 담는다
   if (tags1) {
     TotalTags.push(tags1);
   }
@@ -100,7 +103,6 @@ const MWrite = (props) => {
   }
 
   //컨디션
-
   const [checkone, setCheckOne] = React.useState(false);
   const [checktwo, setCheckTwo] = React.useState(false);
   const [checkthree, setCheckThree] = React.useState(false);
@@ -113,7 +115,7 @@ const MWrite = (props) => {
   const four_icon = checkfour ? four : four_gray;
   const five_icon = checkfive ? five : five_gray;
 
-  //컨디션 배열에 넣고 빼기
+  //컨디션을 선택하면 배열에 해당 컨디션을 담는다
   const TrueCon = [];
   if (checkone) {
     TrueCon.push(1);
@@ -131,8 +133,10 @@ const MWrite = (props) => {
     TrueCon.push(5);
   }
 
+  //서버에는 Number로 보내야하기 때문에 형변환한다
   const mycondition = Number(String(TrueCon));
 
+  //하나의 컨디션만 선택될 수 있게 한다
   const getClick = (e) => {
     if (e.target.value == 1) {
       setCheckOne(true);
@@ -189,20 +193,8 @@ const MWrite = (props) => {
     // dispatch(todoActions.getOnePostAX(props.date.slice(14,24)));
   };
 
+  //MobileTimePicker Theme 변경
   const Theme = {
-    overrides: {
-      TextField: {
-        paddingBottom: "0px",
-      },
-    },
-
-    // overrides: {
-    //   MuiOutlinedInput: {
-    //     input: {
-    //       padding: 2,
-    //     },
-    //   },
-    // },
     palette: {
       primary: {
         contrastText: "#FFFFFF",
@@ -216,29 +208,7 @@ const MWrite = (props) => {
     },
   };
 
-  // const Style = {
-  //   overrides: {
-  //     MuiOutlinedInput: {
-  //       input: {
-  //         padding: "14px",
-  //       },
-  //     },
-  //   },
-  // };
-
-  const moreClasses = {
-    label: { style: { color: "blue" } },
-    input: {
-      style: {
-        // paddingBottom: "2px",
-        // color: "red",
-        // borderBottom: `1px solid green`,
-      },
-    },
-  };
-
   const theme = createTheme(Theme);
-  // // const style = createStyles(Style);
 
   return (
     <React.Fragment>
@@ -258,14 +228,7 @@ const MWrite = (props) => {
                     setStart(newStart);
                   }}
                   renderInput={(params) => (
-                    <TextField
-                      {...params}
-                      variant="filled"
-                      InputProps={{
-                        ...params.InputProps,
-                        ...moreClasses.input,
-                      }}
-                    />
+                    <TextField {...params} variant="filled" />
                   )}
                 />
               </ThemeProvider>
@@ -281,14 +244,7 @@ const MWrite = (props) => {
                     setEnd(newEnd);
                   }}
                   renderInput={(params) => (
-                    <TextField
-                      {...params}
-                      variant="filled"
-                      InputProps={{
-                        ...params.InputProps,
-                        ...moreClasses.input,
-                      }}
-                    />
+                    <TextField {...params} variant="filled" />
                   )}
                 />
               </ThemeProvider>
@@ -304,7 +260,9 @@ const MWrite = (props) => {
               alt="beer"
               value={"음주"}
               onClick={(e) => {
+                //선택된 태그가 배열에 담길 수 있게 한다
                 checkbeer ? setTags1(null) : setTags1(e.target.value);
+                //태그를 선택했을 때 false => true 불이 들어오게 한다
                 checkbeer ? setCheckBeer(false) : setCheckBeer(true);
               }}
             />
@@ -347,7 +305,6 @@ const MWrite = (props) => {
               value={1}
               onClick={getClick}
             />
-
             <ConImg src={two_icon} alt="나쁨" value={2} onClick={getClick} />
             <ConImg src={three_icon} alt="보통" value={3} onClick={getClick} />
             <ConImg src={four_icon} alt="좋음" value={4} onClick={getClick} />

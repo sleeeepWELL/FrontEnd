@@ -38,10 +38,16 @@ to {
 const Wrap = styled.div`
   display: flex;
   width: 100vw;
-  height: 100vh;
+  height:100%;
   flex-direction: column;
   align-items: center;
   background-color: #f6f6f6;
+
+  @media (max-width: 600px) {
+   
+    height:80vh;
+  }
+ 
 `;
 
 const Backgroud = styled.div`
@@ -50,18 +56,23 @@ const Backgroud = styled.div`
   flex-direction: column;
   align-items: center;
   width: 100%;
-  height:100%;
- 
- 
+  height:auto;
+  @media (max-width: 500px) {
+   
+    height:70vh;
+  }
+  
   ${(props) => (props.bg ? `background-color: ${props.bg};` : "")}
  
 `;
 
 const BackImg = styled.img`
-  width: 50%;
+  width: 70%;
+  
   z-index: 1;
-  @media (max-width: 414px) {
-    width: 100%;
+  @media (max-width: 500px) {
+    width:90%;
+    height:90%;
   }
 `;
 

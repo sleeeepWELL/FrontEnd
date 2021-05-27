@@ -45,7 +45,7 @@ const Calendar = (props) => {
           });
 
           const list = _list.map((_l, idx) => {
-            // 일정을 뿌려줘요!
+       
             return (
               <DailyGrid key={`${_l.selectedAt}_${_l.id}`}>
                 {/* 한 칸에 들어갈 것들 */}
@@ -58,7 +58,7 @@ const Calendar = (props) => {
             );
           });
 
-          //여기 코드 쓸모없는게 많음(다시 수정)
+  
           if (_day.format("MM") !== today.format("MM")) {
             return (
               <DayGrid

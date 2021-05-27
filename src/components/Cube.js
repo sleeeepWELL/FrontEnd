@@ -29,18 +29,6 @@ class Cube extends React.Component {
 
     scene.add(cube);
 
-    const colorC = [
-      new THREE.MeshBasicMaterial({ color: "#FAFAD2" }),
-      new THREE.MeshBasicMaterial({ color: "#FFFF96" }),
-      new THREE.MeshBasicMaterial({ color: "#FEF1B2" }),
-      new THREE.MeshBasicMaterial({ color: "#FFF978" }),
-      new THREE.MeshBasicMaterial({ color: "#FFE65A" }),
-      new THREE.MeshBasicMaterial({ color: "#FFEB46" }),
-    ];
-
-    var outlineMesh1 = new THREE.Mesh(geometry, colorC);
-
-    cube.add(outlineMesh1);
 
     scene.background = color;
 

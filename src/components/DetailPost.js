@@ -6,19 +6,8 @@ import { actionCreators as todoActions } from "../redux/modules/todo";
 import ChevronRightIcon from "@material-ui/icons/ChevronRight";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import "./Font.css";
-
-import beer from "../image/beer.png";
-import snack from "../image/snack.png";
-import work from "../image/work.png";
-import workout from "../image/workout.png";
-
-import one from "../image/1-condition.png";
-import two from "../image/2-condition.png";
-import three from "../image/3-condition.png";
-import four from "../image/4-condition.png";
-import five from "../image/5-condition.png";
-
 import Swal from "sweetalert2";
+import {beer,snack,work,workout,one,two,three,four,five } from "../image/imageA";
 
 //태그 글씨 이미지로 바꾸기
 const mapKeywordToImg = {
@@ -30,10 +19,8 @@ const mapKeywordToImg = {
 
 const DetailPost = (props) => {
   const dispatch = useDispatch();
-
   const today = useSelector((state) => state.todo.today);
   const _today = moment();
-
   const hour = Number(_today.format("HH"));
 
   const deletePost = () => {
@@ -54,33 +41,29 @@ const DetailPost = (props) => {
 
   //컨디션
   const myCon = String(props.date.conditions);
-  //조건식을 통해 분별한다
+  
 
+  //조건식을 통해 분별
   if (props.date.selectedAt === undefined) {
     let _day = props.date.slice(14, 24);
     return (
       <React.Fragment>
         <Wrap>
           <ModalComponent>
+
             <DateContainer>
               <LeftHeader>
                 <MoveDButton
                   onClick={() => {
                     let tDate = new Date(_day);
                     tDate.setDate(tDate.getDate() - 1);
-                    dispatch(
-                      todoActions.getOnePostAX(
-                        moment(tDate).format("YYYY-MM-DD")
-                      )
-                    );
+                    dispatch(todoActions.getOnePostAX(
+                        moment(tDate).format("YYYY-MM-DD")));
                     dispatch(
                       todoActions.changeToday(
-                        moment(tDate).format("YYYY-MM-DD")
-                      )
-                    );
-                  }}
-                >
-                  <ChevronLeftIcon />
+                        moment(tDate).format("YYYY-MM-DD")));
+                  }}>
+                  <ChevronLeftIcon/>
                 </MoveDButton>
 
                 <DText className="HelveticaB">{_day}</DText>
@@ -91,20 +74,16 @@ const DetailPost = (props) => {
                     tDate.setDate(tDate.getDate() + 1);
                     dispatch(
                       todoActions.getOnePostAX(
-                        moment(tDate).format("YYYY-MM-DD")
-                      )
-                    );
+                        moment(tDate).format("YYYY-MM-DD")));
                     dispatch(
                       todoActions.changeToday(
-                        moment(tDate).format("YYYY-MM-DD")
-                      )
-                    );
-                  }}
-                >
-                  <ChevronRightIcon />
+                        moment(tDate).format("YYYY-MM-DD")));
+                  }}>
+                  <ChevronRightIcon/>
                 </MoveDButton>
               </LeftHeader>
             </DateContainer>
+
             <EmptyTextContainer>
               <EmptyText className="TimeText">
                 {0 <= hour && hour < 6 ? (
@@ -119,20 +98,18 @@ const DetailPost = (props) => {
                 ) : null}
                 <Text2>수면기록을 입력해주세요! </Text2>
               </EmptyText>
+
               <DayHeader>
                 {moment(props.date.slice(14, 24)) <= _today && (
-                  <AddButton
-                    className="BottomInfo"
-                    onClick={() => {
-                      props._showModify(true);
-                    }}
-                  >
+                  <AddButton className="BottomInfo"
+                    onClick={() => {props._showModify(true);}}>
                     수면 기록하기
                   </AddButton>
                 )}
               </DayHeader>
             </EmptyTextContainer>
           </ModalComponent>
+
           {props.date[0].conditions === "First_View"
             ? dispatch(
                 todoActions.getOnePostAX(moment(today).format("YYYY-MM-DD"))
@@ -209,7 +186,6 @@ const DetailPost = (props) => {
                 </ConditionText>
                 <ConditionImgBox>
                   <InnerBox>
-                    {/* 기록된 컨디션에 따라 이미지를 보여준다  */}
                     {myCon === "1" && <ConImg img={one}></ConImg>}
                     {myCon === "2" && <ConImg img={two}> </ConImg>}
                     {myCon === "3" && <ConImg img={three}></ConImg>}

@@ -42,7 +42,7 @@ const Wrap = styled.div`
   flex-direction: column;
   align-items: center;
   background-color: #f6f6f6;
-
+  animation: ${FadeIn} 2s;
   @media (max-width: 600px) {
    
     height:80vh;

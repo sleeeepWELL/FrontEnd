@@ -30,12 +30,13 @@ function App() {
           <Route path="/login" exact component={Login} />
           <Route path="/signup" exact component={Signup} />
           <Route path="/findpwd" exact component={FindPassword} />
-          <Route path="/oauth/callback/kakao" component={OAuth2RedirectHandler}>
-          </Route>
-          
+          <Route
+            path="/oauth/callback/kakao"
+            component={OAuth2RedirectHandler}
+          ></Route>
           <Route path="/main">
-    
-              <PrivateRoute path="/main" component={Navigator} />
+           
+              <Navigator />
               <PrivateRoute path="/main" exact component={MainCalendar} />
               <PrivateRoute path="/main/analysis" exact component={Analysis} />
               <PrivateRoute path="/main/prac" exact component={UseInfo} />
@@ -43,11 +44,10 @@ function App() {
           
           </Route>
           <Route component={NotFound} />
-          <Footer />
         </Switch>
      
       </ConnectedRouter>
-     
+      <Footer />
     </>
   );
 }

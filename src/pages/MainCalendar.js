@@ -76,8 +76,8 @@ const AllContainer = styled.div`
   display: flex;
   flex-direction: row;
   width: 97%;
-  height: 90%;
-  margin-top: 2%;
+  height: 100%;
+  
   animation: ${fadein} 1s;
 `;
 
@@ -86,7 +86,7 @@ const CalendarContainer = styled.div`
   width: 66%;
   height: 94vh;
   background-color: #f3f3f3;
-  margin-top: 1%;
+  margin-top: 2%;
   margin-right: 2%;
   margin-left: 5%;
   border-radius: 15px;
@@ -99,7 +99,7 @@ const RightContainer = styled.div`
   display: flex;
   width: 25%;
   height: 126vh;
-  margin-top: 0.3%;
+  margin-top: 1.3%;
   flex-direction: column;
 `;
 
@@ -127,7 +127,7 @@ const CubeContainer = styled.div`
   position: absolute;
   display:flex;
   justify-content: flex-end;
-  margin-top:102vh;
+  margin-top:104vh;
   margin-left:10vh;
   width: 65%;
   height: 10%;
@@ -155,7 +155,7 @@ color: #121212;
 
 const Background = styled.div`
   width: 100%;
-  height: 100%;
+  height: auto;
   background-color: #dbdbdb;
 `;
 

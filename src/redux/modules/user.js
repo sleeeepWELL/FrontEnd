@@ -120,7 +120,6 @@ const extensionAccess = (state) => {
         const ACCESS_TOKEN = res.data.accessToken;
         const REFRESH_TOKEN = res.data.refreshToken;
         const ACCESS_TOKEN_EXP = res.data.accessTokenExpiresIn; // access토큰 만료시간
-        console.log(res);
 
         // 새롭게 받은 리프레시 토큰도 쿠키에 다시 저장
         await setCookie("is_login", REFRESH_TOKEN);
@@ -138,7 +137,6 @@ const extensionAccess = (state) => {
         const Current_time = new Date().getTime();
 
         // 로그인상태 true 로 변경
-        console.log(state);
         state = true;
 
         // 1분전 자동실행

@@ -7,16 +7,15 @@ import DetailWrite from "../components/DetailWrite";
 import Search from "../components/Search";
 import MMainCalendar from "../mobile/MMainCalendar";
 import Cube from "../components/Cube";
-import { useToasts,ToastProvider } from 'react-toast-notifications'
 import { debounce } from "lodash";
-import Swal from "sweetalert2";
 
-const MainCalendar = (props) => {
+
+const MainCalendar = () => {
+  const day_list = useSelector((state) => state.todo.day_list);
+
   const [is_modify, setModify] = React.useState(false);
   const [is_search, setSearch] = React.useState(false);
-  const day_list = useSelector((state) => state.todo.day_list);
   const [windowSize, setWindowSize] = React.useState(window.innerWidth);
-  // const tag_result = useSelector((state)=>state.result.table.monthly_tag);
 
   const handleResize = debounce(() => {
     setWindowSize(window.innerWidth);
@@ -24,68 +23,45 @@ const MainCalendar = (props) => {
 
   React.useEffect(() => {
     window.addEventListener("resize", handleResize);
-
     return () => {
       window.removeEventListener("resize", handleResize);
     };
   }, [handleResize]);
 
-  // React.useEffect(()=>{
-  //   if(tag_result[0]>12){
-  //     Swal.fire({
-  //       position: "center-right",
-  //       icon: "info",
-  //       title: "운동 13회 이상",
-  //       text: "상세한 내용은 분석을 참고하세요!",
-  //       showConfirmButton: false,
-  //       timer: 1400,
-  //     });
-  //   }
-  // })
 
+  //모바일의 경우와 뷰를 분리
   if (windowSize < 970) {
     return (
-      // <ToastProvider
-      // autoDismiss
-      // autoDismissTimeout={6000}
-      // placement="bottom-right">
-        <MMainCalendar />
-        // </ToastProvider>
+        <MMainCalendar/>
     );
+
+  //메인 화면 
   } else {
     return (
-      // <ToastProvider 
-      // autoDismiss
-      // autoDismissTimeout={6000}
-      // placement="bottom-right"
-      // >
         <Background >
           <AllContainer>
+            
             <CalendarContainer>
               <Calendarjj _showModify={setModify} />
-             
             </CalendarContainer>
+            
             <CubeContainer>
-                
-                <CubeButton onClick={()=>{setSearch(true)}}><CubeText className="BottomInfo">날짜 검색</CubeText><Cube/></CubeButton>
-               </CubeContainer>
+                <CubeButton onClick={()=>{setSearch(true)}}>
+                  <CubeText className="BottomInfo">날짜 검색</CubeText><Cube/>
+                </CubeButton>
+            </CubeContainer>
+
             <RightContainer>
               <PostContainer>
-                {is_modify ? (
-                  <DetailWrite date={day_list} _showModify={setModify} />
-                ) : (
-                  <DetailPost date={day_list} _showModify={setModify} />
-                )}
+                {is_modify ? (<DetailWrite date={day_list} _showModify={setModify}/>) : 
+                (<DetailPost date={day_list} _showModify={setModify} />)}
               </PostContainer>
               <SearchContainer>
                {is_search?  <Search _showModify={setModify} /> : null}
               </SearchContainer>
-             
             </RightContainer>
-           
           </AllContainer>
         </Background>
-        // </ToastProvider>
     );
   }
 };
@@ -141,7 +117,6 @@ const PostContainer = styled.div`
 const SearchContainer = styled.div`
   display: flex;
   width: 100%;
-
   margin-left: 3%;
   margin-top: 15%;
   align-content: center;
@@ -151,18 +126,11 @@ const SearchContainer = styled.div`
 const CubeContainer = styled.div`
   position: absolute;
   display:flex;
-
   justify-content: flex-end;
   margin-top:102vh;
   margin-left:10vh;
   width: 65%;
   height: 10%;
-
- 
-
-  // box-shadow: rgb(82 82 82/ 40%) 0px 5px 8px 0px;
-
-
 `;
 const CubeButton = styled.button`
 position: absolute;
@@ -178,9 +146,9 @@ position: absolute;
 width: 70%;
 font-size: 100%;
 font-weight: bold;
- z-index:1;
- color: #121212;
- :hover {
+z-index:1;
+color: #121212;
+:hover {
   font-size: 100%;
 }
 `

@@ -24,17 +24,15 @@ import work_word_gray from "../image/work_word_gray.png";
 import workout_word_gray from "../image/workout_word_gray.png";
 
 //컨디션
-import one from "../image/1-condition.png";
-import two from "../image/2-condition.png";
-import three from "../image/3-condition.png";
-import four from "../image/4-condition.png";
-import five from "../image/5-condition.png";
+
+import {one,two,three,four,five } from "../image/imageA";
 
 import one_gray from "../image/1-gray.png";
 import two_gray from "../image/2-gray.png";
 import three_gray from "../image/3-gray.png";
 import four_gray from "../image/4-gray.png";
 import five_gray from "../image/5-gray.png";
+
 
 const Modify = (props) => {
   const dispatch = useDispatch();
@@ -104,17 +102,13 @@ const Modify = (props) => {
 
   //태그를 선택하면 배열에 해당 태그를 담는다
   if (tags1) {
-    TotalTags.push(tags1);
-  }
+    TotalTags.push(tags1);}
   if (tags2) {
-    TotalTags.push(tags2);
-  }
+    TotalTags.push(tags2);}
   if (tags3) {
-    TotalTags.push(tags3);
-  }
+    TotalTags.push(tags3);}
   if (tags4) {
-    TotalTags.push(tags4);
-  }
+    TotalTags.push(tags4);}
 
   // 수정하기 태그 가져오기
   const bringTags = props.props.date.tag;
@@ -236,7 +230,6 @@ const Modify = (props) => {
       memo: memo,
     };
 
-    // dispatch(todoActions.getOnePostAX(props.date.selectedAt));
     dispatch(todoActions.editPostAX(post));
   };
 
@@ -254,7 +247,6 @@ const Modify = (props) => {
 
   const theme = createTheme(Theme);
 
-  //수정하는 경우
   if (props.props.date.selectedAt !== undefined) {
     return (
       <React.Fragment>

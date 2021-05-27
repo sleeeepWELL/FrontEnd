@@ -9,44 +9,6 @@ const UseInfo = () => {
 
   window.scrollTo(0,0);
 
-
-  const isElementUnderBottom = (elem, triggerDiff)=> {
-    const { top } = elem.getBoundingClientRect();
-    const { innerHeight } = window;
-    return top > innerHeight + (triggerDiff || 0);
-  }
-  
-  const handleScrollR=()=> {
-    const elems = document.querySelectorAll('.right');
-    elems.forEach(elem => {
-      if (isElementUnderBottom(elem, 20)) {
-        elem.style.opacity = "0";
-        elem.style.transform = 'translateX(40vh)';
-      } else {
-        elem.style.opacity = "1";
-        elem.style.transform = 'translateX(0px)';
-      }
-    })
-  }
-
-  const handleScrollL=()=> {
-    const elems = document.querySelectorAll('.left');
-    elems.forEach(elem => {
-      if (isElementUnderBottom(elem, -20)) {
-        elem.style.opacity = "0";
-        elem.style.transform = 'translateX(-40vh)';
-      } else {
-        elem.style.opacity = "1";
-        elem.style.transform = 'translateX(0px)';
-      }
-    })
-  }
-  
-
-  window.addEventListener('scroll', handleScrollR);
-  window.addEventListener('scroll', handleScrollL);
-
-
   return (
     <React.Fragment>
       <Wrap>
@@ -76,7 +38,7 @@ to {
 const Wrap = styled.div`
   display: flex;
   width: 100vw;
-  height: 100%;
+  height: 100vh;
   flex-direction: column;
   align-items: center;
   background-color: #f6f6f6;
@@ -88,10 +50,11 @@ const Backgroud = styled.div`
   flex-direction: column;
   align-items: center;
   width: 100%;
-  height:100vh;
-  transition: transform 7s, opacity 3s;
-  // animation: ${FadeIn} 2s;
+  height:100%;
+ 
+ 
   ${(props) => (props.bg ? `background-color: ${props.bg};` : "")}
+ 
 `;
 
 const BackImg = styled.img`

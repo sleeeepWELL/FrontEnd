@@ -7,47 +7,79 @@ import IntroC from "../images/Intro_C.png";
 import IntroD from "../images/Intro_D.png";
 import IntroE from "../images/Intro_E.png";
 import IntroF from "../images/Intro_F.png";
-import InA from "../images/in1.png";
+
+import "../shared/Intro.scss";
 
 import IntroHeader from "../components/IntroHeader";
 import "../components/Font.css";
+import { ExpandLessSharp } from "@material-ui/icons";
 
 const Intro = () => {
-  const io = new IntersectionObserver((entries, observer) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add("visible");
-      } else {
-        entry.target.classList.remove("visible");
-      }
-    });
-  });
+  // const lazyLoad = (target) => {
+  //   const io = new IntersectionObserver((e, o) => {
+  //     e.forEach((entry) => {
+  //       if (entry.isIntersecting) {
+  //         const img = entry.target;
+  //         const src = img.getAttribute("data-lazy");
+  //         img.setAttribute("src", src);
+  //         o.disconnect();
+  //       }
+  //     });
+  //   });
+  //   io.observe(target);
+  // };
 
-  document
-    .querySelectorAll(".wrapper")
-    .forEach((wrapper) => io.observe(wrapper));
+  // const parallax = (target) => {
+  //   const io = new IntersectionObserver((e, o) => {
+  //     e.forEach((entry) => {
+  //       if (entry.isIntersecting) {
+  //         const div = entry.target;
+  //         const arr = div.classList;
+
+  //         if (arr.contains("up")) {
+  //           div.classList.add("showUp");
+  //         } else if (arr.contains("left")) {
+  //           div.classList.add("showLeft");
+  //         } else if (arr.contains("in")) {
+  //           div.classList.add("showIn");
+  //         } else {
+  //           div.classList.add("showRight");
+  //         }
+  //         o.disconnect();
+  //       }
+  //     });
+  //   });
+  //   io.observe(target);
+  // };
+
+  // React.useEffect(() => {
+  //   const imgs = document.querySelectorAll("img");
+  //   imgs.forEach(lazyLoad);
+
+  //   const targets = document.querySelectorAll(".animate");
+  //   targets.forEach(parallax);
+  // });
 
   return (
     <>
       <Wrap>
         <IntroHeader />
-        <Backgroud bg={"#DBDBDB"}>
-          {/* <InAImg src={InA}/> */}
+        <Background bg={"#DBDBDB"}>
           <BackImg src={IntroA} />
-        </Backgroud>
-        <Backgroud bg={"white"}>
+        </Background>
+        <Background bg={"white"}>
           <BackImg src={IntroB} />
-        </Backgroud>
-        <Backgroud bg={"#4A5666"}>
+        </Background>
+        <Background bg={"#4A5666"}>
           <BackImg src={IntroC} />
-        </Backgroud>
-        <Backgroud bg={"#DBDBDB"}>
+        </Background>
+        <Background bg={"#DBDBDB"}>
           <BackImg src={IntroD} />
-        </Backgroud>
-        <Backgroud bg={"#4A5666"}>
+        </Background>
+        <Background bg={"#4A5666"}>
           <BackImg src={IntroE} />
-        </Backgroud>
-        <Backgroud bg={"#DBDBDB"}>
+        </Background>
+        <Background bg={"#DBDBDB"}>
           <BackImg src={IntroF}></BackImg>
           <GoBtn
             className="TimeText"
@@ -57,7 +89,7 @@ const Intro = () => {
           >
             수면기록하러 가기
           </GoBtn>
-        </Backgroud>
+        </Background>
       </Wrap>
     </>
   );
@@ -114,7 +146,7 @@ const Wrap = styled.div`
   align-items: center;
 `;
 
-const Backgroud = styled.div`
+const Background = styled.div`
   display: flex;
   border: none;
   justify-content: center;
@@ -127,6 +159,7 @@ const Backgroud = styled.div`
 `;
 
 const BackImg = styled.img`
+  position: relative;
   width: 70%;
   border: none;
   margin: 5%;
@@ -139,24 +172,4 @@ const BackImg = styled.img`
   }
 `;
 
-const boxFade = keyframes`
-  0% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
-  }
- `;
-
-const InAImg = styled.img`
-  display: flex;
-  position: absolute;
-  width: 63%;
-  height: 22%;
-  top: 46%;
-  left: 19%;
-  opacity: 0%;
-  z-index: 1;
-  animation: ${boxFade} 3.5s;
-`;
 export default Intro;

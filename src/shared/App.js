@@ -23,7 +23,7 @@ import Footer from "../components/Footer";
 
 function App() {
   return (
-    <React.Fragment>
+    <>
       <ConnectedRouter history={history}>
         <Switch>
           <Route path="/" exact component={Intro} />
@@ -45,9 +45,9 @@ function App() {
           </Route>
           <Route component={NotFound} />
         </Switch>
+        <Footer />
       </ConnectedRouter>
-      <Footer />
-    </React.Fragment>
+    </>
   );
 }
 

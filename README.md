@@ -50,7 +50,7 @@
 ## 사용 라이브러리
 
 라이브러리 | 설명
-----|:----:
+---|:---:
 
 
 axios | 서버 통신
@@ -59,6 +59,7 @@ material ui | 외부 ui 사용
 styled-components | 컴포넌트 스타일링
 chart/nivo | 차트
 three | 3D
+moment | 시간 및 
 
 
 ## 고객 반응 / 개선점

@@ -39,9 +39,9 @@ const Navigator = () => {
 
   React.useEffect(() => {
     if (status) {
-      dispatch(userActions.getUserSV());
     } else {
       dispatch(userActions.extensionAccess(status));
+      dispatch(userActions.getUserSV());
     }
   }, [status]);
 
@@ -92,7 +92,7 @@ const Navigator = () => {
             마이페이지
           </CategoryBox>
         </CategoryContainer>
-        
+
         <LogoutBox className="TimeText" onClick={LOGOUT}>
           <span>로그아웃</span>
         </LogoutBox>

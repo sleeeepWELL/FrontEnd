@@ -35,18 +35,19 @@ function App() {
             component={OAuth2RedirectHandler}
           ></Route>
           <Route path="/main">
-            <Wrap>
+    
               <PrivateRoute path="/main" component={Navigator} />
               <PrivateRoute path="/main" exact component={MainCalendar} />
               <PrivateRoute path="/main/analysis" exact component={Analysis} />
               <PrivateRoute path="/main/prac" exact component={UseInfo} />
               <PrivateRoute path="/main/mypage" exact component={MyPage} />
-            </Wrap>
+          
           </Route>
           <Route component={NotFound} />
         </Switch>
-      <Footer />
+     
       </ConnectedRouter>
+      <Footer />
     </>
   );
 }

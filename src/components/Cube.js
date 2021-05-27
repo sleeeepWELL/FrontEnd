@@ -3,9 +3,7 @@ import * as THREE from "three";
 import "./Font.css";
 
 class Cube extends React.Component {
-  constructor(props) {
-    super(props);
-  }
+ 
   componentDidMount() {
     const width = 120;
     const height = 120;

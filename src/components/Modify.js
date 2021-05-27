@@ -126,19 +126,19 @@ const Modify = (props) => {
   //컨디션
   //해당 하는 컨디션에 따라 불이 들어오게 한다
   React.useEffect(() => {
-    if (editCon == 1) {
+    if (editCon === "1") {
       setEditCon(null);
       setCheckOne(true);
-    } else if (editCon == 2) {
+    } else if (editCon === "2") {
       setEditCon(null);
       setCheckTwo(true);
-    } else if (editCon == 3) {
+    } else if (editCon === "3") {
       setEditCon(null);
       setCheckThree(true);
-    } else if (editCon == 4) {
+    } else if (editCon === "4") {
       setEditCon(null);
       setCheckFour(true);
-    } else if (editCon == 5) {
+    } else if (editCon === "5") {
       setEditCon(null);
       setCheckFive(true);
     }
@@ -184,31 +184,31 @@ const Modify = (props) => {
 
   //하나의 컨디션만 선택될 수 있게 한다
   const getClick = (e) => {
-    if (e.target.value == 1) {
+    if (e.target.value === "1") {
       setCheckOne(true);
       setCheckTwo(false);
       setCheckThree(false);
       setCheckFour(false);
       setCheckFive(false);
-    } else if (e.target.value == 2) {
+    } else if (e.target.value === "2") {
       setCheckOne(false);
       setCheckTwo(true);
       setCheckThree(false);
       setCheckFour(false);
       setCheckFive(false);
-    } else if (e.target.value == 3) {
+    } else if (e.target.value === "3") {
       setCheckOne(false);
       setCheckTwo(false);
       setCheckThree(true);
       setCheckFour(false);
       setCheckFive(false);
-    } else if (e.target.value == 4) {
+    } else if (e.target.value === "4") {
       setCheckOne(false);
       setCheckTwo(false);
       setCheckThree(false);
       setCheckFour(true);
       setCheckFive(false);
-    } else if (e.target.value == 5) {
+    } else if (e.target.value === "5") {
       setCheckOne(false);
       setCheckTwo(false);
       setCheckThree(false);

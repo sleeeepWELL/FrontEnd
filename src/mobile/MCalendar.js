@@ -17,6 +17,7 @@ const MCalendar = (props) => {
   const todo_list = useSelector((state) => state.todo.todo_list);
   const [selectday, _changeColor] = useState(today.format("DD"));
 
+  console.log(todo_list);
   React.useEffect(() => {
     dispatch(todoActions.getAllPostAX());
   }, []);
@@ -87,6 +88,7 @@ const MCalendar = (props) => {
                   props._showModify(false);
                   dispatch(todoActions.changeToday(_day.format("YYYY-MM-DD")));
                   dispatch(todoActions.getOnePostAX(_day.format("YYYY-MM-DD")));
+                  window.scroll(0,320)
                 }}
               >
                 <TextBox>

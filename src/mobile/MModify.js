@@ -537,21 +537,21 @@ const TimeContainer = styled.div`
 const CheckTimeL = styled.div`
   display: flex;
   align-items: center;
-  height: 100%;
+  min-height: 80px;
   width: 40%;
   box-sizing: border-box;
   justify-content: center;
-  margin: 0px;
+
   /* background-color: lightblue; */
 `;
 const CheckTimeR = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 100%;
+  min-height: 80px;
   width: 40%;
   box-sizing: border-box;
-  margin: 0px;
+
   /* background-color: lightsalmon; */
 `;
 

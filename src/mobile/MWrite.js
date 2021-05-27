@@ -39,8 +39,6 @@ import three_gray from "../image/3-gray.png";
 import four_gray from "../image/4-gray.png";
 import five_gray from "../image/5-gray.png";
 
-
-
 const MWrite = (props) => {
   const dispatch = useDispatch();
   // const { addToast } = useToasts();

@@ -41,7 +41,7 @@ const Navigator = () => {
     if (status) {
       dispatch(userActions.getUserSV());
     } else {
-      dispatch(userActions.extensionAccess());
+      dispatch(userActions.extensionAccess(status));
     }
   }, [status]);
 

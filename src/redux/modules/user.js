@@ -3,9 +3,9 @@ import { createAction, handleActions } from "redux-actions";
 import { produce } from "immer";
 import axios from "axios";
 import { config } from "../../shared/config";
-import moment from "moment";
 import Swal from "sweetalert2";
 import welcome from "../../images/welcome.png";
+import { useDispatch } from "react-redux";
 
 // 액션 타입
 const SET_USER = "SET_USER"; // 로그인
@@ -63,8 +63,13 @@ const loginSV = (email, pwd) => {
 
         const Current_time = new Date().getTime();
 
+        const state = getState().user.is_login;
+
         // ACCESS토큰 만료 1분전마다 연장함수 실행
-        setTimeout(extensionAccess(), ACCESS_TOKEN_EXP - Current_time - 60000);
+        setTimeout(
+          extensionAccess(state),
+          ACCESS_TOKEN_EXP - Current_time - 60000
+        );
 
         await Swal.fire({
           // title: `${user}님 환영합니다!`,
@@ -95,7 +100,7 @@ const loginSV = (email, pwd) => {
 };
 
 // 로그인 연장 함수
-const extensionAccess = () => {
+const extensionAccess = (state) => {
   return function (dispatch, getState) {
     const accessToken = localStorage.getItem("token");
     const refreshToken = getCookie("is_login");
@@ -114,6 +119,8 @@ const extensionAccess = () => {
       .then(async (res) => {
         const ACCESS_TOKEN = res.data.accessToken;
         const REFRESH_TOKEN = res.data.refreshToken;
+        const ACCESS_TOKEN_EXP = res.data.accessTokenExpiresIn; // access토큰 만료시간
+        console.log(res);
 
         // 새롭게 받은 리프레시 토큰도 쿠키에 다시 저장
         await setCookie("is_login", REFRESH_TOKEN);
@@ -127,12 +134,18 @@ const extensionAccess = () => {
           "Authorization"
         ] = `Bearer ${ACCESS_TOKEN}`;
 
+        // 현재시간
+        const Current_time = new Date().getTime();
+
         // 로그인상태 true 로 변경
-        await dispatch(setUser());
+        console.log(state);
+        state = true;
 
-        // 29분간격 자동실행
-        setInterval(extensionAccess(), 60000 * 29);
-
+        // 1분전 자동실행
+        setTimeout(
+          extensionAccess(state),
+          ACCESS_TOKEN_EXP - Current_time - 60000 * 29
+        );
         return;
       })
       .catch((err) => {
@@ -140,7 +153,6 @@ const extensionAccess = () => {
       });
   };
 };
-
 // 회원가입
 const signUpSV = (email, nickname, pwd, pwdCheck) => {
   return function (dispatch, getState, { history }) {
@@ -197,8 +209,13 @@ const kakaoLogin = (code, user) => {
           "Authorization"
         ] = `Bearer ${ACCESS_TOKEN}`;
 
+        const state = getState().user.is_login;
+
         // 토큰 만료 1분전 자동연장
-        setTimeout(extensionAccess(), ACCESS_TOKEN_EXP - Current_time - 60000);
+        setTimeout(
+          extensionAccess(state),
+          ACCESS_TOKEN_EXP - Current_time - 60000
+        );
 
         await Swal.fire({
           // title: `${user}님 환영합니다!`,

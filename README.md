@@ -51,15 +51,13 @@
 
 라이브러리 | 설명
 ---|:---:
-
-
-axios | 서버 통신
-redux | 클라이언트 저장소 
-material ui | 외부 ui 사용
-styled-components | 컴포넌트 스타일링
-chart/nivo | 차트
-three | 3D
-moment | 시간 및 
+|axios | 서버 통신|
+|redux | 클라이언트 저장소| 
+|material ui | 외부 ui 사용|
+|styled-components | 컴포넌트 스타일링|
+|chart/nivo | 차트|
+|three | 3D|
+|moment | 시간 및 날짜| 
 
 
 ## 고객 반응 / 개선점

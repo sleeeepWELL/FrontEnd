@@ -9,7 +9,7 @@ const Footer = () => {
       <Wrap>
         <Container>
           <Head>
-            <Logo src={LogoImg}></Logo>
+            <Logo />
             &nbsp;&nbsp;
             <Title className="TimeText">TEAM SLEEPWELL</Title>
           </Head>
@@ -56,9 +56,15 @@ const Container = styled.div`
   }
 `;
 
-const Logo = styled.img`
+const Logo = styled.div`
+  background-color: white;
   width: 40px;
-  object-fit: fill;
+  height: 40px;
+  background: url(${LogoImg});
+  background-position-x: center;
+  background-position-y: center;
+  background-size: contain;
+  background-repeat: no-repeat;
 `;
 
 const Head = styled.div`

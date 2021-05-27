@@ -83,7 +83,7 @@ const loginSV = (email, pwd) => {
         });
 
         dispatch(setUser());
-        await history.replace("/main");
+        await history.push("/main");
       })
       .catch((err) => {
         Swal.fire({

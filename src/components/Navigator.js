@@ -38,11 +38,10 @@ const Navigator = () => {
   };
 
   React.useEffect(() => {
-    if (status) {
-    } else {
+    if (!status) {
       dispatch(userActions.extensionAccess(status));
-      dispatch(userActions.getUserSV());
     }
+    dispatch(userActions.getUserSV());
   }, [status]);
 
   React.useEffect(

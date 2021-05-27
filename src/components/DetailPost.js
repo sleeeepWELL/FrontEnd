@@ -20,7 +20,7 @@ import five from "../image/5-condition.png";
 
 import Swal from "sweetalert2";
 
-//글씨 이미지로 바꾸기
+//태그 글씨 이미지로 바꾸기
 const mapKeywordToImg = {
   음주: beer,
   야식: snack,
@@ -209,6 +209,7 @@ const DetailPost = (props) => {
                 </ConditionText>
                 <ConditionImgBox>
                   <InnerBox>
+                    {/* 기록된 컨디션에 따라 이미지를 보여준다  */}
                     {myCon === "1" && <ConImg img={one}></ConImg>}
                     {myCon === "2" && <ConImg img={two}> </ConImg>}
                     {myCon === "3" && <ConImg img={three}></ConImg>}
@@ -245,6 +246,7 @@ const DetailPost = (props) => {
               <TagImgBox>
                 <InnerBox>
                   {props.date.tag.map((currentTag, idx) => {
+                    //서버에서 태그를 string으로 받기 때문에 해당하는 이미지로 바꿔준다
                     return (
                       <TagImg
                         key={idx}

@@ -39,8 +39,8 @@ import five_gray from "../image/5-gray.png";
 const Modify = (props) => {
   const dispatch = useDispatch();
 
+  //이미 기록해놓은 게시글 정보 가져오기
   const post_list = useSelector((state) => state.todo.day_list);
-
   const _post = props.props.date.selectedAt ? post_list : null;
 
   //받아온 취침시간
@@ -51,6 +51,7 @@ const Modify = (props) => {
   const getEnd = _post.endSleep;
   const myEnd = "2021-05-12T" + getEnd;
 
+  //메모, 취침시간, 기상시간이 있다면 수정페이지에 남겨주고 없거나 변경될 경우 새로 받는다
   const [memo, setMemo] = React.useState(_post ? _post.memo : "");
 
   const [start, setStart] = React.useState(_post ? myStart : "");
@@ -59,6 +60,7 @@ const Modify = (props) => {
   const [end, setEnd] = React.useState(_post ? myEnd : "");
   const endSleep = moment(end).format("HH:mm");
 
+  //총 수면시간 계산
   const startMinute =
     parseInt(startSleep.slice(0, 2) * 60) + parseInt(startSleep.slice(3, 5));
   const endMinute =
@@ -84,6 +86,7 @@ const Modify = (props) => {
   const [tags3, setTags3] = React.useState("");
   const [tags4, setTags4] = React.useState("");
 
+  //태그 이미지 전환
   const [checkbeer, setCheckBeer] = React.useState(false);
   const [checksnack, setCheckSnack] = React.useState(false);
   const [checkwork, setCheckWork] = React.useState(false);
@@ -99,6 +102,7 @@ const Modify = (props) => {
   const icon_work = checkwork ? work_word_gray : work_word;
   const icon_workout = checkworkout ? workout_word_gray : workout_word;
 
+  //태그를 선택하면 배열에 해당 태그를 담는다
   if (tags1) {
     TotalTags.push(tags1);
   }
@@ -114,9 +118,13 @@ const Modify = (props) => {
 
   // 수정하기 태그 가져오기
   const bringTags = props.props.date.tag;
-
+  //useState의 초기값으로 가져온 태그를 넣어둔다
   const [editTags, setEditTags] = React.useState(bringTags);
+  //받아온 태그와 수정된 태그를 합쳐서 서버에 보낸다
+  const sendTags = TotalTags.concat(editTags);
 
+  //컨디션
+  //해당 하는 컨디션에 따라 불이 들어오게 한다
   React.useEffect(() => {
     if (editCon == 1) {
       setEditCon(null);
@@ -136,9 +144,6 @@ const Modify = (props) => {
     }
   }, []);
 
-  const sendTags = TotalTags.concat(editTags);
-
-  //컨디션
   const [checkone, setCheckOne] = React.useState(false);
   const [checktwo, setCheckTwo] = React.useState(false);
   const [checkthree, setCheckThree] = React.useState(false);
@@ -151,6 +156,7 @@ const Modify = (props) => {
   const four_icon = checkfour ? four : four_gray;
   const five_icon = checkfive ? five : five_gray;
 
+  //컨디션을 선택하면 배열에 해당 컨디션을 담는다
   const TotalCon = [];
   if (checkone) {
     TotalCon.push(1);
@@ -168,15 +174,15 @@ const Modify = (props) => {
     TotalCon.push(5);
   }
 
-  const mycondition = String(TotalCon);
-
   //컨디션 수정
+  //기록된 컨디션을 받아온다
   const bringConditions = String(props.props.date.conditions);
-
+  //받아온 컨디션을 초기값으로 정한다
   const [editCon, setEditCon] = React.useState(bringConditions);
-
+  //하나의 컨디션만 서버로 보낸다
   const sendCon = Number(TotalCon.concat(editCon)[0]);
 
+  //하나의 컨디션만 선택될 수 있게 한다
   const getClick = (e) => {
     if (e.target.value == 1) {
       setCheckOne(true);
@@ -234,7 +240,7 @@ const Modify = (props) => {
     dispatch(todoActions.editPostAX(post));
   };
 
-  //mobiletimepicker 색 변환
+  //MobileTimePicker Theme 변경
   const Theme = {
     palette: {
       primary: {
@@ -293,6 +299,7 @@ const Modify = (props) => {
             <TotalTagGrid>
               <TagGrid>
                 {editTags.find((p) => p === "음주") ? (
+                  //받아온 태그 중 해당하는 태그가 있으면 불이 들어오게 한다
                   <IconInput
                     src={icon_beer}
                     alt="beer"
@@ -300,6 +307,7 @@ const Modify = (props) => {
                     type="image"
                     onClick={(e) => {
                       setEditTags(editTags.filter((p) => p !== "음주"));
+                      //다시 선택할 경우 해당 배열에서 제거한다
                     }}
                   />
                 ) : (
@@ -309,7 +317,9 @@ const Modify = (props) => {
                     value={"음주"}
                     type="image"
                     onClick={(e) => {
+                      //선택된 태그가 배열에 담길 수 있게 한다
                       checkbeer ? setTags1(null) : setTags1(e.target.value);
+                      //태그를 선택했을 때 false => true 불이 들어오게 한다
                       checkbeer ? setCheckBeer(false) : setCheckBeer(true);
                     }}
                   />

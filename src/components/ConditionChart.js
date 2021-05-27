@@ -8,6 +8,7 @@ import "./Font.css";
 const ConditionChart = (props) => {
   const dispatch = useDispatch();
 
+  //기록된 컨디션 정보를 받아온다
   const condition = useSelector((state) => state.result.condition);
 
   useEffect(() => {
@@ -27,12 +28,9 @@ const ConditionChart = (props) => {
         maxValue={5}
         margin={{ top: 40, right: 40, bottom: 40, left: 40 }}
         yearSpacing={40}
-        // monthSpacing={5}
         monthBorderColor="#ffffff"
         dayBorderWidth={2}
         dayBorderColor="#ffffff"
-        // width={1100}
-        // height={200}
         legends={[
           {
             anchor: "bottom-right",

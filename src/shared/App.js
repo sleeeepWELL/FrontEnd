@@ -45,8 +45,8 @@ function App() {
           </Route>
           <Route component={NotFound} />
         </Switch>
-      <Footer />
       </ConnectedRouter>
+      <Footer />
     </>
   );
 }

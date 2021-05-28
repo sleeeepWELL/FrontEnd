@@ -229,7 +229,7 @@ const kakaoLogin = (code, user) => {
         dispatch(setUser());
 
         // 메인화면 이동
-        history.push("/main");
+        await history.push("/main");
       })
       .catch((err) => {
         console.log("소셜로그인 에러", err);

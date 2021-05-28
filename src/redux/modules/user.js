@@ -226,10 +226,10 @@ const kakaoLogin = (code, user) => {
           imageAlt: "welcome",
         });
 
-        await dispatch(setUser());
+        dispatch(setUser());
 
         // 메인화면 이동
-        await history.push("/main");
+        history.push("/main");
       })
       .catch((err) => {
         console.log("소셜로그인 에러", err);

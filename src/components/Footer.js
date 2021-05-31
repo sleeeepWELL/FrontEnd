@@ -32,6 +32,9 @@ const Footer = () => {
 };
 
 const Wrap = styled.div`
+  
+  bottom:0;
+  right: 0;
   display: flex;
   width: 100%;
   height: 120px;

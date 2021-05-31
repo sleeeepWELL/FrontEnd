@@ -19,76 +19,86 @@ import "../components/Font.css";
 import { ExpandLessSharp } from "@material-ui/icons";
 
 const Intro = () => {
-  const lazyLoad = (target) => {
-    const io = new IntersectionObserver((e, o) => {
-      e.forEach((entry) => {
-        if (entry.isIntersecting) {
-          const img = entry.target;
-          const src = img.getAttribute("data-lazy");
-          img.setAttribute("src", src);
-          o.disconnect();
-        }
-      });
-    });
-    io.observe(target);
-  };
+  // const lazyLoad = (target) => {
+  //   const io = new IntersectionObserver((e, o) => {
+  //     e.forEach((entry) => {
+  //       if (entry.isIntersecting) {
+  //         const img = entry.target;
+  //         const src = img.getAttribute("data-lazy");
+  //         img.setAttribute("src", src);
+  //         o.disconnect();
+  //       }
+  //     });
+  //   });
+  //   io.observe(target);
+  // };
 
-  const parallax = (target) => {
-    const io = new IntersectionObserver((e, o) => {
-      e.forEach((entry) => {
-        if (entry.isIntersecting) {
-          const div = entry.target;
-          const arr = div.classList;
+  // const parallax = (target) => {
+  //   const io = new IntersectionObserver((e, o) => {
+  //     e.forEach((entry) => {
+  //       if (entry.isIntersecting) {
+  //         const div = entry.target;
+  //         const arr = div.classList;
 
-          if (arr.contains("up")) {
-            div.classList.add("showUp");
-          } else if (arr.contains("left")) {
-            div.classList.add("showLeft");
-          } else if (arr.contains("in")) {
-            div.classList.add("showIn");
-          } else {
-            div.classList.add("showRight");
-          }
-          o.disconnect();
-        }
-      });
-    });
-    io.observe(target);
-  };
+  //         if (arr.contains("up")) {
+  //           div.classList.add("showUp");
+  //         } else if (arr.contains("left")) {
+  //           div.classList.add("showLeft");
+  //         } else if (arr.contains("in")) {
+  //           div.classList.add("showIn");
+  //         } else {
+  //           div.classList.add("showRight");
+  //         }
+  //         o.disconnect();
+  //       }
+  //     });
+  //   });
+  //   io.observe(target);
+  // };
 
-  React.useEffect(() => {
-    const imgs = document.querySelectorAll("img");
-    imgs.forEach(lazyLoad);
+  // React.useEffect(() => {
+  //   const imgs = document.querySelectorAll("img");
+  //   imgs.forEach(lazyLoad);
 
-    const targets = document.querySelectorAll(".animate");
-    targets.forEach(parallax);
-  });
+  //   const targets = document.querySelectorAll(".animate");
+  //   targets.forEach(parallax);
+  // });
 
   return (
     <>
       <Wrap>
         <IntroHeader />
         <Background bg={"#DBDBDB"}>
-          <BackImg data-lazy={IntroA} />
+        <BackImg src={IntroA} />
+          {/* <BackImg data-lazy={IntroA} /> */}
         </Background>
         <Background bg={"white"}>
-          <BackImg className="animate up" data-lazy={IntroB} />
+        <BackImg src={IntroB} />
+          {/* <BackImg className="animate up" data-lazy={IntroB} /> */}
         </Background>
         <Background bg={"#4A5666"}>
-          <BackImg data-lazy={IntroC} />
+        <BackImg src={IntroC} />
+          {/* <BackImg data-lazy={IntroC} /> */}
         </Background>
         <Background bg={"#DBDBDB"}>
-          <BackImg data-lazy={IntroD} />
+        <BackImg src={IntroD} />
+          {/* <BackImg data-lazy={IntroD} /> */}
         </Background>
         <Background bg={"#4A5666"}>
-          <BackImg data-lazy={IntroE1} />
-          <BackImg className="animate right" data-lazy={IntroE2} />
+        <BackImg src={IntroE1} />
+          {/* <BackImg data-lazy={IntroE1} /> */}
+          <BackImg  src={IntroE2} />
+          <BackImg  src={IntroE3} />
+          <BackImg  src={IntroE4} />
+          <BackImg  src={IntroE5} />
+          {/* <BackImg className="animate right" data-lazy={IntroE2} />
           <BackImg className="animate right" data-lazy={IntroE3} />
           <BackImg className="animate right" data-lazy={IntroE4} />
-          <BackImg className="animate right" data-lazy={IntroE5} />
+          <BackImg className="animate right" data-lazy={IntroE5} /> */}
         </Background>
         <Background bg={"#DBDBDB"}>
-          <BackImg data-lazy={IntroF} />
+          {/* <BackImg data-lazy={IntroF} /> */}
+          <BackImg src={IntroF} />
           <GoBtn
             className="TimeText"
             onClick={() => {

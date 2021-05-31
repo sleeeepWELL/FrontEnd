@@ -32,18 +32,23 @@ function App() {
           <Route path="/findpwd" exact component={FindPassword} />
           <Route path="/oauth/callback/kakao"component={OAuth2RedirectHandler}/>
           <Route path="/main">
-         
-              <PrivateRoute path="/main" component={Navigator} />
+       
+              <Navigator/>
               <PrivateRoute path="/main" exact component={MainCalendar} />
               <PrivateRoute path="/main/analysis" exact component={Analysis} />
               <PrivateRoute path="/main/prac" exact component={UseInfo} />
               <PrivateRoute path="/main/mypage" exact component={MyPage} />
-         
+             
           </Route>
+         
           <Route component={NotFound} />
+         
         </Switch>
+
+         <Footer/>
+      
       </ConnectedRouter>
-      <Footer />
+      
     </>
   );
 }
@@ -51,6 +56,7 @@ function App() {
 const Wrap = styled.div`
   display: flex;
   flex-direction: column;
+
 `;
 
 const ContentWrap = styled.div`

@@ -134,7 +134,7 @@ const Wrap = styled.div`
   height: 7vh;
   align-items: center;
   border-bottom: 0.8px solid #bebcbc;
-  position: sticky;
+  position: stickyz;
   box-sizing: border-box;
   top: 0%;
   z-index: 9999;

@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import LogoImg from "../images/Logo.png";
 import "./Font.css";
 
 const Footer = () => {
+ 
   return (
     <>
       <Wrap>
@@ -32,9 +33,6 @@ const Footer = () => {
 };
 
 const Wrap = styled.div`
-  
-  bottom:0;
-  right: 0;
   display: flex;
   width: 100%;
   height: 120px;

@@ -11,6 +11,7 @@ const UseInfo = () => {
 
   return (
     <React.Fragment>
+    
       <Wrap>
         <Backgroud  bg={"#F6F6F6"}>
           <BackImg src={InfoA} />
@@ -22,9 +23,11 @@ const UseInfo = () => {
           <BackImg src={InfoC} />
         </Backgroud>
       </Wrap>
+
     </React.Fragment>
   );
 };
+
 
 const FadeIn = keyframes`
 from {
@@ -36,13 +39,14 @@ to {
 `;
 
 const Wrap = styled.div`
+position:sticky;
   display: flex;
   width: 100vw;
-  height:100%;
+  height:100vh;
   flex-direction: column;
   align-items: center;
   background-color: #f6f6f6;
-  animation: ${FadeIn} 2s;
+  // animation: ${FadeIn} 2s;
   @media (max-width: 600px) {
    
     height:80vh;

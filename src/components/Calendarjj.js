@@ -19,6 +19,7 @@ const Calendar = (props) => {
 
   const start_week = moment(today).startOf("month").week();
   const end_week = moment(today).endOf("month").week();
+ 
   const week_num =
     (start_week > end_week ? 53 - start_week : end_week - start_week) + 1;
   const _week_arr = Array.from({ length: week_num }, (v, i) => start_week + i);
@@ -30,30 +31,27 @@ const Calendar = (props) => {
       >
         {Array.from({ length: 7 }, (v, i) => i).map((day_index) => {
           let _day = today
-            .clone()
-            .startOf("year")
-            .week(week_index)
-            .startOf("week")
-            .add(day_index, "day");
+            .clone().startOf("year").week(week_index).startOf("week").add(day_index, "day");
 
           const is_today =
             moment().format("YYYY-MM-DD") === _day.format("YYYY-MM-DD");
 
+
+          
           const _list = todo_list.filter((item, idx) => {
             if (item.selectedAt === _day.format("YYYY-MM-DD"))
               return item.selectedAt;
           });
-
+          
           const list = _list.map((_l, idx) => {
        
             return (
               <DailyGrid key={`${_l.selectedAt}_${_l.id}`}>
-                {/* 한 칸에 들어갈 것들 */}
-                {_l.selectedAt.split("-")[1] === moment(today).format("MM") ? (
+                {/* {_l.selectedAt.split("-")[1] === moment(today).format("MM") ? ( */}
                   <ToDo {..._l}></ToDo>
-                ) : (
+                {/* ) : (
                   ""
-                )}
+                )} */}
               </DailyGrid>
             );
           });
@@ -61,24 +59,16 @@ const Calendar = (props) => {
   
           if (_day.format("MM") !== today.format("MM")) {
             return (
-              <DayGrid
-                key={`${moment(today).format(
-                  "MM"
-                )}_week_${week_index}_day_${day_index}`}
-              ></DayGrid>
+              <DayGrid 
+              key={`${moment(today).format("MM")}_week_${week_index}_day_${day_index}`}>
+              </DayGrid>
             );
           } else {
             return (
               <DayGrid
-                key={`${moment(today).format(
-                  "MM"
-                )}_week_${week_index}_day_${day_index}`}
-                // bg={"#FFFFFF"}
-                bg={
-                  today.format("YYYY-MM-DD") === _day.format("YYYY-MM-DD")
-                    ? "#4a5566"
-                    : "#FFFFFF"
-                }
+                key={`${moment(today).format("MM")}_week_${week_index}_day_${day_index}`}
+                bg={today.format("YYYY-MM-DD") === _day.format("YYYY-MM-DD")
+                    ? "#4a5566": "#FFFFFF"}
                 onClick={() => {
                   props._showModify(false);
                   dispatch(todoActions.changeToday(_day.format("YYYY-MM-DD")));
@@ -99,7 +89,7 @@ const Calendar = (props) => {
                   {_day.format("DD")}
                 </DayText>
 
-                {_list && list}
+                {list}
               </DayGrid>
             );
           }
@@ -108,7 +98,6 @@ const Calendar = (props) => {
     );
   });
 
-  // 요일이 나올 배열도 만들어주기!
   const nomal_week = ["Mon", "Tue", "Wed", "Thu", "Fri"];
   const move_month = parseInt(moment(today).format("M"));
   return (
@@ -307,6 +296,7 @@ const CalendarContainer = styled.div`
   height: 100%;
   align-items: center;
   border-right: 1px solid #aaaaaa;
+
 `;
 //요일묶음 Grid
 const WeekGrid = styled.div`
@@ -348,6 +338,7 @@ const DayGrid = styled.div`
     // animation: ${sizeUp} 2s ;
   }
 
+
   ${(props) => (props.bg ? `background-color: ${props.bg};` : "")}
 `;
 
@@ -372,6 +363,7 @@ const DailyGrid = styled.div`
   margin: 1px 0px;
   flex-wrap: nowrap;
   width: 100%;
+ 
 `;
 
 export default Calendar;

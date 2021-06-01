@@ -173,6 +173,7 @@ const signUpSV = (email, nickname, pwd, pwdCheck) => {
           timer: 1400,
         });
         history.replace("/login");
+        
       })
       .catch((err) => {
         console.log("회원가입 에러", err);

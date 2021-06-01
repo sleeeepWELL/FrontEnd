@@ -19,6 +19,7 @@ import four from "../image/4-conditions.png";
 import five from "../image/5-conditions.png";
 
 const ToDo = (props) => {
+
   const myTags = props.tag;
 
   const myCon = String(props.conditions);

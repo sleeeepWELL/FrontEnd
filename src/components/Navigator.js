@@ -63,7 +63,7 @@ const Navigator = () => {
   );
 
   //로그인 회원가입에서 헤더 안보이게
-  if (window.location.href === "/login" || window.location.href === "/signup")
+  if (window.location.href === "/login" || window.location.href === "/signup"|| window.location.href ==="/intro")
     return null;
 
   return (

@@ -38,7 +38,7 @@
 
 ## 기술 소개
 * JWT token(Access + Refresh)
-  * setTimeout & setInterval
+  * setTimeout
 * 카카오 소셜 로그인
 * Spring Data JPA + chart.js, nivo를 활용한 분석
 * 데이터 핸들링 + 시각화
@@ -52,7 +52,7 @@
 라이브러리 | 설명
 ---|:---:
 |axios | 서버 통신|
-|redux | 클라이언트 저장소| 
+|redux | 전역상태관리| 
 |material ui | 외부 ui 사용|
 |styled-components | 컴포넌트 스타일링|
 |chart/nivo | 차트|

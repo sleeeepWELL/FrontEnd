@@ -432,7 +432,7 @@ const SemiContainer = styled.div`
 const InputContainer = styled.div`
   display: flex;
   height: 10vh;
-  margin-top: 1rem;
+  margin-top: 1.5rem;
   flex-direction: column;
 
 `;
@@ -508,6 +508,7 @@ const SignUpContainer = styled.div`
 
 const InputBox = styled.input`
   background-color: white;
+
   padding: 15px;
   border: 0.5px solid rgba(76, 76, 76, 0.3);
   border-radius: 10px;

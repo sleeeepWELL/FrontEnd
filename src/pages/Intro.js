@@ -16,6 +16,7 @@ import "../shared/Intro.scss";
 
 import IntroHeader from "../components/IntroHeader";
 import "../components/Font.css";
+import Footer from "../components/Footer";
 import { ExpandLessSharp } from "@material-ui/icons";
 
 const Intro = () => {
@@ -108,6 +109,7 @@ const Intro = () => {
             수면기록하러 가기
           </GoBtn>
         </Background>
+        <Footer />
       </Wrap>
     </>
   );

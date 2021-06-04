@@ -9,6 +9,7 @@ import { debounce } from "lodash";
 import Graphic from "../components/Graphic";
 import "../components/Font.css";
 import MLogin from "../mobile/MLogin";
+import Footer from "../components/Footer";
 
 
 
@@ -124,6 +125,7 @@ const Login = (props) => {
             </LoginContainer>
           </LoginWrap>
         </Wrap>
+        <Footer />
       </React.Fragment>
     );
   }

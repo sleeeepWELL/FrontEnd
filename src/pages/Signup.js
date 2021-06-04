@@ -265,7 +265,7 @@ const Signup = () => {
           <LoginWrap>
             <SignUpContainer>
               <SemiContainer className="TimeText">
-                <div style={{ color: "black", fontSize: "30px" }}>회원가입</div>
+                <div style={{ color: "black", fontSize: "25px" }}>회원가입</div>
 
                 <InputContainer>
                   <InfoTitle>이메일</InfoTitle>
@@ -323,12 +323,12 @@ const Signup = () => {
                     <Info ref={nickNameInfo}>{nicknameMSG}</Info>
                   </InfoDiv>
                 </InputContainer>
-
+               
                 <div
                   style={{
                     display: "flex",
                     flexDirection: "column",
-                    marginTop: "1rem",
+                    marginTop: "2rem",
                   }}
                 >
                   <InfoTitle>비밀번호</InfoTitle>
@@ -345,7 +345,7 @@ const Signup = () => {
                     <Info ref={pwdInfo}>{pwdMSG}</Info>
                   </InfoDiv>
 
-                  <div style={{ height: "1rem" }}></div>
+                  
                   <InfoTitle>비밀번호 확인</InfoTitle>
                   <PwBox
                     className="TimeText"
@@ -360,6 +360,7 @@ const Signup = () => {
                     <Info ref={pwdCheckInfo}>{pwdCheckMSG}</Info>
                   </InfoDiv>
                 </div>
+               
                 <InfoBox>
                   <div
                     style={{ cursor: "pointer", fontSize: "13px" }}
@@ -378,9 +379,11 @@ const Signup = () => {
                     비밀번호 찾기
                   </div>
                 </InfoBox>
+               
                 <SignUpButton onClick={signup}>
                   <span>가입완료</span>
                 </SignUpButton>
+             
               </SemiContainer>
             </SignUpContainer>
           </LoginWrap>
@@ -389,7 +392,10 @@ const Signup = () => {
     );
   }
 };
-
+const Container =styled.div`
+display: flex;
+height: auto;
+`
 const InfoDiv = styled.div`
   display: flex;
   width: 100%;
@@ -412,8 +418,9 @@ const InfoTitle = styled.div`
 `;
 
 const SemiContainer = styled.div`
+
   width: 30%;
-  height: 90%;
+  height: 80%;
   display: flex;
   position: absolute;
   flex-direction: column;
@@ -424,8 +431,10 @@ const SemiContainer = styled.div`
 
 const InputContainer = styled.div`
   display: flex;
+  height: 10vh;
   margin-top: 1rem;
   flex-direction: column;
+
 `;
 
 const InfoBox = styled.div`
@@ -439,6 +448,7 @@ const InfoBox = styled.div`
   justify-content: space-between;
   color: gray;
   font-size: 15px;
+
 `;
 
 const CheckBnt = styled.button`
@@ -465,7 +475,7 @@ const CheckBnt = styled.button`
 
 const Wrap = styled.div`
   width: 100vw;
-  height: 100%;
+  height: 100vh;
   display: flex;
   box-sizing: border-box;
   flex-direction: row;
@@ -477,6 +487,7 @@ const LoginWrap = styled.div`
   display: flex;
   width: 40vw;
   height: 100vh;
+
   justify-content: center;
   box-sizing: border-box;
   align-items: flex-start;
@@ -487,8 +498,8 @@ const SignUpContainer = styled.div`
   display: flex;
   margin-left: 0.7rem;
   width: 90%;
-  height: 100%;
-  border: none;
+  height:100%;
+ 
   box-sizing: border-box;
   align-items: flex-start;
   justify-content: center;
@@ -538,6 +549,11 @@ const SignUpButton = styled.a`
   justify-content: center;
   cursor: pointer;
   color: white;
+  
+  @media (max-width: 1000px) {
+    padding: 2%;
+  }
+ 
 `;
 
 export default Signup;

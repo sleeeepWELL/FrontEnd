@@ -439,10 +439,10 @@ const InputContainer = styled.div`
 
 const InfoBox = styled.div`
   width: 100%;
-  height: 40px;
+  height: 10%;
   align-items: center;
   background-color: white;
-  margin: 20px 0px;
+  margin: 10px 0px;
   padding: 0px;
   display: flex;
   justify-content: space-between;
@@ -540,7 +540,7 @@ const PwBox = styled.input`
 
 const SignUpButton = styled.a`
   display: flex;
-  height: 50px;
+  height: 4vh;
   background-color: rgba(74, 85, 102, 1);
   border: none;
   text-align: center;
@@ -549,10 +549,9 @@ const SignUpButton = styled.a`
   justify-content: center;
   cursor: pointer;
   color: white;
+  padding:1%;
   
-  @media (max-width: 1000px) {
-    padding: 2%;
-  }
+  
  
 `;
 

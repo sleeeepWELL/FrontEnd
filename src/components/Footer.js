@@ -35,7 +35,7 @@ const Footer = () => {
 const Wrap = styled.div`
   display: flex;
   width: 100%;
-  height: 120px;
+  height: auto;
   flex-direction: row;
   justify-content: center;
   align-items: center;

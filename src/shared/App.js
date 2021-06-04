@@ -19,7 +19,7 @@ import { ConnectedRouter } from "connected-react-router";
 import { history } from "../redux/configureStore";
 import OAuth2RedirectHandler from "./OAuth2RedirectHandler";
 import PrivateRoute from "./PrivateRoute";
-import Footer from "../components/Footer";
+
 
 function App() {
   return (
@@ -31,8 +31,9 @@ function App() {
           <Route path="/signup" exact component={Signup} />
           <Route path="/findpwd" exact component={FindPassword} />
           <Route path="/oauth/callback/kakao"component={OAuth2RedirectHandler}/>
+          
+
           <Route path="/main">
-       
               <PrivateRoute path="/main" component={Navigator} />
               <PrivateRoute path="/main" exact component={MainCalendar} />
               <PrivateRoute path="/main/analysis" exact component={Analysis} />
@@ -43,7 +44,7 @@ function App() {
           <Route component={NotFound} />
         </Switch>
       </ConnectedRouter>
-      <Footer />
+    
     </>
   );
 }

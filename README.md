@@ -8,8 +8,6 @@
   잠을 적게 자야 한다 vs 많이 자야 한다 → 개개인마다 다르다.
   개인의 적정수면시간을 어떻게 찾을 수 있을까?
 
-  참고자료)
-
 ![image](https://user-images.githubusercontent.com/53491653/119460984-3521cf00-bd7a-11eb-8599-e1623cfb4c6a.png)
 
 

@@ -33,7 +33,6 @@
 
 ## 기술 소개
 * JWT token(Access + Refresh)
-  * setTimeout
 * 카카오 소셜 로그인
 * Spring Data JPA + chart.js, nivo를 활용한 분석
 * 데이터 핸들링 + 시각화

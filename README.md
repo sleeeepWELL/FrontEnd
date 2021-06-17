@@ -28,6 +28,8 @@
 
 ![image](https://user-images.githubusercontent.com/53491653/119460900-1d4a4b00-bd7a-11eb-9e7b-95928c3cbf11.png)
 
+## React 사용 이유
+수면 기록을 입력하고 정보 분석화면 제공을 하게 되는 등 인터렉션이 잦은 프로젝트 특성에 맞추어 사용자에게 유연한 UI 제공을 위해 Virtual DOM이 적용된 React를 사용하게 되었다.   
 
 ## 기술 소개
 * JWT token(Access + Refresh)

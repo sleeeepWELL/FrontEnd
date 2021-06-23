@@ -53,7 +53,54 @@
 |three | 3D|
 |moment | 시간 및 날짜| 
 
+## 페이지 구성 및 기능소개
+#### :black_small_square: 메인 페이지
+![메인페이지](https://user-images.githubusercontent.com/61656046/123097065-b5ffe380-d46a-11eb-8878-00fd6f2be19c.gif)
+```
+로그인 시 랜더링 되어지는 SleepWell 메인페이지 입니다. 사용자가 기록한 일자별 현황을 달력형태로 한눈에 확인 할 수 있습니다.
+```
+#### :black_small_square: 분석 페이지
+![분석 페이지](https://user-images.githubusercontent.com/61656046/123097516-2eff3b00-d46b-11eb-8696-85288c12ee78.gif)
+```
+연간 컨디션, 주간태그현황, 월간태그현황, 주간수면시간, 요약 을 순서대로 확인 할 수 있는 페이지 입니다.
 
+사용자에게 적정 수면시간을 안내해줍니다.
+```
+#### :black_small_square: 인트로 페이지
+![인트로페이지](https://user-images.githubusercontent.com/61656046/123097530-3292c200-d46b-11eb-8db2-e143889eae66.gif)
+```
+서비스 최초 접속시 보여지는 페이지이며 전반적인 서비스 소개내용을 볼 수 있습니다.
+```
+
+#### :black_small_square: 가이드 페이지
+![가이드페이지](https://user-images.githubusercontent.com/61656046/123097543-358db280-d46b-11eb-9177-26a33ed9146c.gif)
+```
+사용 방법이 안내되어있는 가이드 페이지 입니다.
+```
+#### :black_small_square: 로그인(카카오소셜) / 비밀번호 찾기 / 회원가입
+![로그인](https://user-images.githubusercontent.com/61656046/123097556-3888a300-d46b-11eb-9ad5-b304c88190cf.gif)
+```
+이메일 인증을 통한 회원가입, 비밀번호 찾기 기능을 지원합니다.
+
+카카오 소셜로그인 기능을 지원합니다.
+```
+
+#### :black_small_square: 글 작성 & 수정/삭제
+![작성](https://user-images.githubusercontent.com/61656046/123097582-3de5ed80-d46b-11eb-9415-4becfa79a752.gif)
+![수정,삭제](https://user-images.githubusercontent.com/61656046/123097606-42aaa180-d46b-11eb-9a36-f82ce86bf8c3.gif)
+```
+취침시간, 기상시간, 컨디션(매우나쁨~매우좋음), 태그(음주,야식,야근,운동), 메모를 입력하고 수정 및 삭제 할 수 있습니다.
+```
+#### :black_small_square: 날짜 검색 및 오늘 날짜 이동
+![날짜 검색, 오늘날짜이동](https://user-images.githubusercontent.com/61656046/123097642-49d1af80-d46b-11eb-80ec-168e91716fed.gif)
+```
+3D 입체 보름달을 선택해 날짜 검색기능을 활성화 시킬수 있으며, 오늘 날짜로 바로 이동가능한 버튼도 지원합니다.
+```
+#### :black_small_square: 모바일 화면(반응형)
+![모바일](https://user-images.githubusercontent.com/61656046/123097659-4e966380-d46b-11eb-841c-5285eed4a689.gif)
+```
+모바일부터 태블릿 등 다양한 뷰포트의 기종에서도 원활한 서비스 이용이 가능합니다.
+```
 ### 링크
 **[서비스 링크](https://teamsleepwell.com/ )**
 
